@@ -1,0 +1,95 @@
+
+==================== FINAL INTERFACE ====================
+2016-07-11 06:52:29.9378 UTC
+
+interface main@main:ConvertCommandsToChains 7103
+  interface hash: e19895291b79f9d9a5e4cdc5213296f7
+  ABI hash: d6bb16e86105e1af01b30aedec0cf396
+  export-list hash: 08991498278e0090c7184f08ffabe9c5
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  ConvertCommandsToChains.convertToChains
+  ConvertCommandsToChains.removeAnds
+  ConvertCommandsToChains.removeAndsCriteria
+module dependencies: Types
+package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
+import  -/  Types 1fe2a821c479f8c57cbc15d544cb3b80
+  exports: 0ca340b2206fa4bec0fa47c346912d38
+  And 34af64cb9c8ccae71a9649bf7a4e6031
+  Append 9f9eaba2304b3a73f5e6020a47b884c0
+  Chain 436502276dfefc25c4f890565c7b1954
+  Command 1a692bb0aed02f18f8b3b7fe679728b2
+  Criteria 0bb8af0374b2e775dd8ac74be49785e5
+  Flush 94d7e96e5877a3cfac1c2b73c88e8984
+  Insert f57b13b79012fede550a9fdc33521e74
+  New 352a686146ee2fd0696ba7dda4b16431
+  Rule 4d3c3c68189d749259d4de0f60e70055
+  Rule 7993613af33e03cbc603b5da8f050615
+f2950d35bb0ecfb3061dd7badc791f7e
+  $sadjust_$sgo10 ::
+    (GHC.Base.String -> a1 -> GHC.Base.Maybe a1)
+    -> GHC.Base.String
+    -> Data.Map.Base.Map GHC.Base.String a1
+    -> Data.Map.Base.Map GHC.Base.String a1
+  {- Arity: 3, Strictness: <L,1*C1(C1(U))><S,1*U><S,1*U> -}
+946456047c7b52bc2fa5bc0c3e9afbca
+  $sinsert_$sgo10 ::
+    GHC.Base.String
+    -> a1
+    -> Data.Map.Base.Map GHC.Base.String a1
+    -> Data.Map.Base.Map GHC.Base.String a1
+  {- Arity: 3, Strictness: <S,1*U><L,U><S,1*U> -}
+b322d133bba7f7b6fc41a33c6212acb2
+  $slookup1 ::
+    GHC.Base.String
+    -> Data.Map.Base.Map GHC.Base.String a -> GHC.Base.Maybe a
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
+0e610addc9c1a57921451699e40ee47d
+  $smember1 ::
+    GHC.Base.String
+    -> Data.Map.Base.Map GHC.Base.String a -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
+c9c82bf955eb2c065ead11d89926a137
+  convertToChains ::
+    [Types.Command]
+    -> Data.Map.Base.Map GHC.Base.String Types.Chain
+    -> Data.Map.Base.Map GHC.Base.String Types.Chain
+  {- Arity: 2, Strictness: <S,1*U><S,U> -}
+722fc262f5aedd235e442c580c20129e
+  removeAnds :: Types.Rule -> Types.Rule
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(1*U,U,U)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Types.Rule ->
+                 case ds of wild { Types.Rule c t i ->
+                 Types.Rule (ConvertCommandsToChains.removeAndsCriteria c) t i }) -}
+bb900d4306e1532b3e1431e1a5cf1692
+  removeAndsCriteria :: [Types.Criteria] -> [Types.Criteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
