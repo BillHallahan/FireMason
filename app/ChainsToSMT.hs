@@ -28,6 +28,11 @@ convertMapOfChains m =
     "(check-sat)\n" ++
     "(get-model)"
 
+
+--The goal here is to map each call of a chain to a seperate int, and then create formulas describing that chain's behavior
+--it might be better to split this mapping and conversion to smt into two seperate steps.
+--currently, it seems it might be annoying to, for example, propogate back the point at which
+--a chain was called...
 convertMapOfChains' :: Map.Map String Chain -> [(String, Int)] -> Int -> String
 convertMapOfChains' m ((s, i):xs) j =
     let
@@ -65,7 +70,8 @@ convertRule (Rule c [] i) m ch r =
 convertRule (Rule c t i) m ch r =
     printSMTFunc1 "assert" (printSMTFunc2 "=" (convertCriteriaList c) (printSMTFunc2 "matches-criteria" ch r)) ++ "\n"
     ++ printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc2 "and" (printSMTFunc2 "matches-criteria" ch r) (printSMTFunc2 "reaches" ch r)) (convertTargetList t m ch r)) ++ "\n"
-    ++ printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc2 "and" (printSMTFunc1 "not" (printSMTFunc2 "matches-criteria" ch r)) (printSMTFunc2 "reaches" ch r)) (printSMTFunc2 "reaches" ch (r + 1))) ++ "\n"
+    ++ printSMTFunc1 "assert" (printSMTFunc2 "=>"
+        (printSMTFunc2 "and" (printSMTFunc1 "not" (printSMTFunc2 "matches-criteria" ch r)) (printSMTFunc2 "reaches" ch r)) (printSMTFunc2 "reaches" ch (r + 1))) ++ "\n"
     ++ printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch r)) (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch (r + 1))))
 
 convertCriteriaList :: [Criteria] -> String
