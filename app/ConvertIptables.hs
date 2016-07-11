@@ -1,5 +1,10 @@
 module ConvertIptables where
 
+
+--Some of this could maybe be considered non iptables specific (applying not to criteria)
+--Also, could we add a sperate layer to filter out ors?  So when converting from the firewall, you can
+--indiscriminently use and/or, and then our general, second layer would fix it all...
+
 import Data.Either
 import Data.List
 import Data.Maybe
@@ -76,6 +81,8 @@ notCriteria (And c:cs) = And (map (Not) c):notCriteria cs
 notCriteria (c:cs) = Not c:notCriteria cs
 notCriteria [] = []
 
+
+--Needs testing, may not be entirely accurate?
 invertAndsOrs :: [Criteria] -> [Criteria]
 invertAndsOrs [] = []
 invertAndsOrs (And c:cs) = c ++ invertAndsOrs cs

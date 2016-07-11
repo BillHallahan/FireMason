@@ -4,6 +4,9 @@ import ParserHelp
 import Types
 
 
+--each module has one function tied to it
+--Currently, there may be a glitch if convertTCPRule or convertUDPRule has priority over convertMultiportRule
+
 convertTCPRule :: ModuleFunc
 convertTCPRule ("--sport":sps:xs) = (Just $ portCriteriaFromRangeString sps "source", xs)
 convertTCPRule ("--dport":dps:xs) = (Just $ portCriteriaFromRangeString dps "destination", xs)
@@ -33,6 +36,8 @@ portCriteriaFromNumsRangesString ps portName =
     in
     foldr (\r acc -> [Left $ Port portName r] ++ acc) [] ports
 
+
+--These are all more generally, eventually need to be in a seperate module
 
 convertNumsRangesString :: String -> [Either Int (Int, Int)]
 convertNumsRangesString nrs =
