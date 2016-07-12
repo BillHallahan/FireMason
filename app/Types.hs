@@ -8,8 +8,8 @@ import qualified Data.Set as Set
 
 type Chain = [Rule]
 
-data Criteria = And [Criteria] --We have and but not or to enforce only having horn clauses.
-                               --In general, sometimes just [Criteria] is also used for Anded clauses
+data Criteria = And [Criteria] --We have "and", but not "or", to enforce only having horn clauses.
+                               --In general, sometimes just [Criteria] is also used for Anded clauses, as in Rule
                 | Not Criteria
                 | Port String (Either Int (Int, Int))
                 | IPAddress String Int Int Int Int Int
@@ -17,6 +17,7 @@ data Criteria = And [Criteria] --We have and but not or to enforce only having h
                 | SC String deriving (Eq, Show)
 
 data Target = Jump String
+              | Go Int Int 
               | ACCEPT
               | DROP
               | ST String deriving (Eq, Show)

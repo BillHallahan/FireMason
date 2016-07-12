@@ -4,6 +4,7 @@ import qualified Data.Map as Map
 import qualified Data.Maybe as MB
 import Data.List
 
+import ChainPathSimplification
 import ParserHelp
 import Types
 
@@ -93,6 +94,7 @@ convertTargetList (t:ts) m ch r = "(and " ++ convertTarget t m ch r ++ convertTa
 
 convertTarget :: Target -> Map.Map String Int -> Int -> Int -> String
 convertTarget (Jump s) m ch r = "(reaches " ++ show (MB.fromJust $ Map.lookup s m) ++ " 0)"
+convertTarget (Go i j) _ _ _ = "(reaches" ++ show i ++ " " ++ show j ++ ")"
 convertTarget (ACCEPT) _ ch r = "(and ACCEPT (not " ++ printSMTFunc2 "reaches" ch (r + 1) ++ "))"
 convertTarget (DROP) _ ch r = "(and DROP (not " ++ printSMTFunc2 "reaches" ch (r + 1) ++ "))"
 convertTarget (ST s) _ ch r = s

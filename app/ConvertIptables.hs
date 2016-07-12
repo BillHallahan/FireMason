@@ -41,7 +41,7 @@ convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either Criteria T
 convertCriteriaOrTarget ("-j":j:xs) _ = case j of "ACCEPT" -> (Just [Right ACCEPT],xs, Nothing)
                                                   "DROP" -> (Just [Right DROP],xs, Nothing)
                                                   _ -> (Just [Right $ Jump j], xs, Nothing)
-convertCriteriaOrTarget ("-m":m:xs) _ = (Nothing , xs, Just $ convertMultiportRule)
+convertCriteriaOrTarget ("-m":m:xs) _ = (Nothing , xs, Just $ convertMultiportRule)--Obviously this will eventually be adjusted when we have more modules...
 convertCriteriaOrTarget ("-p":p:xs) _ = 
     let --We need to add commands based on which protocol is being matched
          --but maybe only if multiport not included?

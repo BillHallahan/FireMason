@@ -15,6 +15,10 @@ import ConvertIptables
 import ConvertCommandsToChains
 import ChainsToSMT
 
+
+
+import ChainPathSimplification--temp
+
 main = do
     args <- getArgs
     let fileName = head args
@@ -27,7 +31,15 @@ main = do
         let toS = \k' -> k' ++ " = " ++ (listToS (fromJust $ Map.lookup k' converted))
         let kToRules = map toS k
         putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
-        putStrLn $ convertMapOfChains converted)
+        putStrLn $ convertMapOfChains converted
+
+        let pathSimp = pathSimplification converted
+
+        
+        let testNice = map (\x -> show x) pathSimp
+        let folded = foldr (\x acc-> x ++ "\n" ++ acc) "" testNice
+        putStrLn folded)
+
         --putStrLn $ foldl (++) "" (map (flip (convertChain) 0) v))
         
 convertScript :: String -> Map.Map String Chain

@@ -21,6 +21,9 @@ $IPTABLES -A bad-ports -p udp --sport 100 -j DROP
 $IPTABLES -A bad-ports -p tcp --sport 4  --dport 5 -j DROP
 
 
-
+$IPTABLES -N second
+$IPTABLES -F second
+$IPTABLES -A second -p tcp -j bad-ports
 
 $IPTABLES -A INPUT -j bad-ports
+$IPTABLES -A OUTPUT -j second
