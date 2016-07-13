@@ -15,15 +15,16 @@ $IPTABLES -F bad-ports
 $IPTABLES -A bad-ports -p 22 -j DROP
 $IPTABLES -A bad-ports -p tcp --dport 5
 $IPTABLES -A bad-ports -p tcp --dport 5 -j DROP
-$IPTABLES -A bad-ports -p tcp --dport 902:8999 -j DROP
-$IPTABLES -A bad-ports -p tcp --sport 4 -j DROP
-$IPTABLES -A bad-ports -p udp --sport 100 -j DROP
+$IPTABLES -A bad-ports -p tcp --sport 4:8 -j DROP
 $IPTABLES -A bad-ports -p tcp --sport 4  --dport 5 -j DROP
 
 
 $IPTABLES -N second
 $IPTABLES -F second
 $IPTABLES -A second -p tcp -j bad-ports
+$IPTABLES -A second -p udp -j bad-ports
+$IPTABLES -A second -p 34 -j bad-ports
+
 
 $IPTABLES -A INPUT -j bad-ports
 $IPTABLES -A OUTPUT -j second

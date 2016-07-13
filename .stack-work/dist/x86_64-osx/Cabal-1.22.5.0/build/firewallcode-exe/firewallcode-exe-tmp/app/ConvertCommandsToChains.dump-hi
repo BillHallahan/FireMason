@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-12 00:06:42.341576 UTC
+2016-07-12 17:23:53.734392 UTC
 
 interface main@main:ConvertCommandsToChains 7103
-  interface hash: 6eb15098c335f01c2cc7fe373c14ddb3
-  ABI hash: 57d14b2dddb095548fdbeba3b48f9b56
+  interface hash: 5ae9248cc60aab6825af1223db9cfb43
+  ABI hash: a64200141a91aec2c749553b3a96ea9a
   export-list hash: 08991498278e0090c7184f08ffabe9c5
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -33,18 +33,18 @@ import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
-import  -/  Types 0464b7ecb818add4d07871da5ad1fa02
-  exports: 537c0f60ff38d8be9cf07241e5a5534f
+import  -/  Types 86b517b2012c0e7096573b836da77fea
+  exports: 64af22a0f96b77e5dd44beda62b51246
   And 34af64cb9c8ccae71a9649bf7a4e6031
-  Append ee7ac011bd5137055e915930b61054a7
-  Chain 4db4f27c3dbdcee72b43a981b627b1ba
-  Command 930ce8331745baf3738e8c4b85d098a9
+  Append 8f8f7eb04f6ac1dac85dea1d01fe3589
+  Chain aec08c0e0007926df684a5e6013db052
+  Command c9b0069cb7044c32387e53afed164985
   Criteria 0bb8af0374b2e775dd8ac74be49785e5
-  Flush abdd60f58fa7a89fe6f3244891bf20cd
-  Insert 5e7efe5124dd741722145a5308c02b2c
-  New 97ed6a22303dccc42a0dd2cdbd9b8298
-  Rule 1e20d0adc049aa11d82a4a3b0c23be97
-  Rule fcedef0c835b075d71337f13fded0981
+  Flush 87ae3b9ea492bc0b2c575cbb22c1e944
+  Insert b86456c2a2ae927bf392aa9748674a7d
+  New 9e2e8cab7dc1b5500d9b4a71b9c52edf
+  Rule d3e00b353b6b165758cfde58a0d8f33f
+  Rule 52c19b20a74c44ae6e692dc9433e3b55
 f2950d35bb0ecfb3061dd7badc791f7e
   $sadjust_$sgo10 ::
     (GHC.Base.String -> a1 -> GHC.Base.Maybe a1)
@@ -69,13 +69,13 @@ b322d133bba7f7b6fc41a33c6212acb2
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String a -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-898912c4467883ab10c552c1eae3d8fb
+94d9260c00fddce084f69867c974b4f6
   convertToChains ::
     [Types.Command]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
   {- Arity: 2, Strictness: <S,1*U><S,U> -}
-ee0e3023ccb16664f102395d811ef79e
+1c7bf537f64fab4f5479be90f9df3d38
   removeAnds :: Types.Rule -> Types.Rule
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(1*U,U,U)>m,
      Unfolding: InlineRule (1, True, False)

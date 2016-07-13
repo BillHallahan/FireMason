@@ -30,10 +30,11 @@ main = do
         let listToS = foldl (\acc s -> acc ++ show s ++ "\n") ""
         let toS = \k' -> k' ++ " = " ++ (listToS (fromJust $ Map.lookup k' converted))
         let kToRules = map toS k
-        putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
-        putStrLn $ convertMapOfChains converted
-
         let pathSimp = pathSimplification converted
+
+        putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
+        putStrLn $ convertChains pathSimp--convertMapOfChains converted
+
 
         
         let testNice = map (\x -> show x) pathSimp

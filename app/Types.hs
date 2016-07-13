@@ -6,6 +6,7 @@ module Types where
 
 import qualified Data.Set as Set  
 
+type Label = Int
 type Chain = [Rule]
 
 data Criteria = And [Criteria] --We have "and", but not "or", to enforce only having horn clauses.
@@ -29,7 +30,7 @@ data Command = Append String Rule
 
 data Rule = Rule { criteria :: [Criteria]
                    ,targets :: [Target]
-                   ,label :: Int
+                   ,label :: Label
                  } deriving (Eq, Show)
 
 eitherToRule :: Either Criteria Target -> Rule

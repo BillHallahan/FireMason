@@ -18,9 +18,9 @@ pathSimplification' [] _ _= []
 pathSimplification' ((s, c):xs) m i = 
     let
         simp = pathSimplificationChain c m (i + 1)
-        chainsReffedToInt = Map.fromList $ zip (chainsReferencedInChain2 c) [i + 1..]
+        chainsReffedToInt = Map.fromList $ zip (chainsReferencedInChain c) [i + 1..]
     in
-    [(i, replaceTargetsInChain c chainsReffedToInt )] ++ simp ++ pathSimplification' xs m (i + 1 + length simp)
+    [(i, replaceTargetsInChain c chainsReffedToInt)] ++ simp ++ pathSimplification' xs m (i + 1 + length simp)
 
 pathSimplificationChain :: Chain -> Map.Map String Chain -> Int -> [(Int, Chain)]
 pathSimplificationChain [] _ _ = []
@@ -42,7 +42,7 @@ pathSimplificationTarget :: Target  -> Map.Map String Chain -> Int -> [(Int, Cha
 pathSimplificationTarget (Jump t) m i = 
     let
         newChain = MB.fromJust (Map.lookup t m)
-        chainsReffedToInt = Map.fromList $ zip (chainsReferencedInChain2 newChain) [i + 1..]
+        chainsReffedToInt = Map.fromList $ zip (chainsReferencedInChain newChain) [i + 1..]
     in
     [(i, replaceTargetsInChain newChain chainsReffedToInt)] ++ pathSimplificationChain newChain m (i + 1)
 pathSimplificationTarget _ _ _ = []
@@ -56,11 +56,11 @@ replaceTargetsInTarget [] _ = []
 replaceTargetsInTarget ((Jump t):tx) m = Go (MB.fromJust (Map.lookup t m)) 0 : replaceTargetsInTarget tx m
 replaceTargetsInTarget (t:tx) m = t : replaceTargetsInTarget tx m
 
-chainsReferencedInChain2 :: Chain -> [String]
-chainsReferencedInChain2 (c:cx) = (chainsReferencedInTargets2 $ targets c) ++ chainsReferencedInChain2 cx
-chainsReferencedInChain2 [] = []
+chainsReferencedInChain :: Chain -> [String]
+chainsReferencedInChain (c:cx) = (chainsReferencedInTargets $ targets c) ++ chainsReferencedInChain cx
+chainsReferencedInChain [] = []
 
-chainsReferencedInTargets2 :: [Target] -> [String]
-chainsReferencedInTargets2 (Jump t:tx) = t:chainsReferencedInTargets2 tx
-chainsReferencedInTargets2 (_:tx) = chainsReferencedInTargets2 tx
-chainsReferencedInTargets2 [] = []
+chainsReferencedInTargets :: [Target] -> [String]
+chainsReferencedInTargets (Jump t:tx) = t:chainsReferencedInTargets tx
+chainsReferencedInTargets (_:tx) = chainsReferencedInTargets tx
+chainsReferencedInTargets [] = []

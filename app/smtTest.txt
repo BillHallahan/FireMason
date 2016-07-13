@@ -1,7 +1,0 @@
-(declare-fun protocol () Int)
-(declare-fun destination_port () Int)
-
-(assert (and (= protocol 17)(and (not (and (<= 19282 destination_port ) (<= destination_port 65535)))(and (not (= destination_port 7))(and (not (= destination_port 432))(and (not (and (<= 0 destination_port ) (<= destination_port 76)))(not (= destination_port 2))))))))
-
-(check-sat)
-(get-model)

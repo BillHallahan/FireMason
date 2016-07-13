@@ -1,19 +1,19 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-12 01:49:20.164466 UTC
+2016-07-12 17:53:35.12127 UTC
 
 interface main@main:ChainPathSimplification 7103
-  interface hash: 473b6dffbd715bccc3fb9201aa7bbf84
-  ABI hash: c1bc1d896409278b857b8de4e6462913
-  export-list hash: fac3f4e50ea9149f75f4a5127133e52b
+  interface hash: d731f0ec177ea28bfc5f1bfc7a2d43f8
+  ABI hash: bdc432aaae65ce6c29449789495744de
+  export-list hash: 2074fb21d88c7524149027d8f15b932b
   orphan hash: 9d52f1dfc862ba3826aff57e4d6434d6
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
   where
 exports:
-  ChainPathSimplification.chainsReferencedInChain2
-  ChainPathSimplification.chainsReferencedInTargets2
+  ChainPathSimplification.chainsReferencedInChain
+  ChainPathSimplification.chainsReferencedInTargets
   ChainPathSimplification.pathSimplification
   ChainPathSimplification.pathSimplification'
   ChainPathSimplification.pathSimplificationChain
@@ -42,15 +42,15 @@ import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
-import  -/  Types 0464b7ecb818add4d07871da5ad1fa02
-  exports: 537c0f60ff38d8be9cf07241e5a5534f
-  Chain 4db4f27c3dbdcee72b43a981b627b1ba
+import  -/  Types 86b517b2012c0e7096573b836da77fea
+  exports: 64af22a0f96b77e5dd44beda62b51246
+  Chain aec08c0e0007926df684a5e6013db052
   Go 5994a9084b04b86ca91004e6a3d48e75
   Jump 291b0e970c0679529dc782583d52c8dd
-  Rule 1e20d0adc049aa11d82a4a3b0c23be97
-  Rule fcedef0c835b075d71337f13fded0981
+  Rule d3e00b353b6b165758cfde58a0d8f33f
+  Rule 52c19b20a74c44ae6e692dc9433e3b55
   Target 94ec184325b945ed3029ed0a75745440
-  targets b1469fd35e38fc7cfa02bdd855968e1d
+  targets 69a8f61071ffce2748cf9b991a174145
 8c5cd38fbc83bde32aaad886b431d1dd
   $sfromList ::
     [(GHC.Base.String, a)] -> Data.Map.Base.Map GHC.Base.String a
@@ -118,7 +118,7 @@ af48a93704d252ec634c385f72537ea8
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-b9cbc742a2134259ef4f37025c63fdce
+ab677da7fa70b87e96f51a67cc6a3b50
   $wpathSimplificationRule ::
     [Types.Target]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -132,13 +132,13 @@ a64d4d19f415b97d154f40ebc5a66845
     -> [(GHC.Base.String, a)]
     -> Data.Map.Base.Map GHC.Base.String a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-fde4c4037a7328670c5a512a8b90a39b
-  chainsReferencedInChain2 :: Types.Chain -> [GHC.Base.String]
+3ee8a7ae6fd984f3639143f9a1b3ca91
+  chainsReferencedInChain :: Types.Chain -> [GHC.Base.String]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-3a9709e08f2809bcfff0c04ae50ccdca
-  chainsReferencedInTargets2 :: [Types.Target] -> [GHC.Base.String]
+72fe9e75ee44721cadabbba69d5da2df
+  chainsReferencedInTargets :: [Types.Target] -> [GHC.Base.String]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-31a81d106ebb255b23844d901034180f
+a848ffa1a005171bed7a638cadc87c63
   pathSimplification ::
     Data.Map.Base.Map GHC.Base.String Types.Chain
     -> [(GHC.Types.Int, Types.Chain)]
@@ -156,7 +156,7 @@ fde4c4037a7328670c5a512a8b90a39b
                       ChainPathSimplification.pathSimplification2)
                    m
                    ChainPathSimplification.pathSimplification1) -}
-76474bf6701e662ca9353b8af2e5cd33
+4387259972cef55159c9a50fd72e1da2
   pathSimplification' ::
     [(GHC.Base.String, Types.Chain)]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -196,14 +196,14 @@ f7ae1e6e854feae1e5cc5b2b430be7a8
 7ec5d5a9bcab9ca6bf6ba7f4a9c3f20e
   pathSimplification7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "INPUT"#) -}
-6be95a3051b4e2602c51b7c57e207da6
+bc6372a2e2f1a80759f2916510d1037d
   pathSimplificationChain ::
     Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
     -> [(GHC.Types.Int, Types.Chain)]
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)> -}
-42e11dc34d9cbc424aaac10780bd5711
+d2dc2957b054ff59c128f54109fa620d
   pathSimplificationRule ::
     Types.Rule
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -217,14 +217,14 @@ f7ae1e6e854feae1e5cc5b2b430be7a8
                    w2 :: GHC.Types.Int ->
                  case w of ww { Types.Rule ww1 ww2 ww3 ->
                  ChainPathSimplification.$wpathSimplificationRule ww2 w1 w2 }) -}
-ffe5cd72cd90ae802128d9b10d07f8cf
+4c2262a680a68c7821c98a872f5f665a
   pathSimplificationTarget ::
     Types.Target
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
     -> [(GHC.Types.Int, Types.Chain)]
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)> -}
-4311df6ad2a4e791d76b572d16a6184a
+0edd7585313550b47c9659395f652d55
   replaceTargetsInChain ::
     Types.Chain
     -> Data.Map.Base.Map GHC.Base.String GHC.Types.Int -> Types.Chain
