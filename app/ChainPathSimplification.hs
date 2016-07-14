@@ -9,58 +9,42 @@ import Types
 pathSimplification :: Map.Map String Chain -> [(Int, Chain)]
 pathSimplification m =
     let
-        init = map (\s -> (s, MB.fromJust (Map.lookup s m))) ["INPUT", "OUTPUT", "FORWARD"]
+        init = map (\s -> MB.fromJust (Map.lookup s m)) ["INPUT", "OUTPUT", "FORWARD"]
     in
 	pathSimplification' init m 0
 
-pathSimplification' :: [(String, Chain)] -> Map.Map String Chain -> Int -> [(Int, Chain)]
-pathSimplification' [] _ _= []
-pathSimplification' ((s, c):xs) m i = 
+
+pathSimplification' :: [Chain] -> Map.Map String Chain -> Int -> [(Int, Chain)]
+pathSimplification' [] _ _ = []
+pathSimplification' (c:cx) m ch =
     let
-        simp = pathSimplificationChain c m (i + 1)
-        chainsReffedToInt = Map.fromList $ zip (chainsReferencedInChain c) [i + 1..]
+        (simplified, newChains) = pathSimplificationChain c m ch 0
     in
-    [(i, replaceTargetsInChain c chainsReffedToInt)] ++ simp ++ pathSimplification' xs m (i + 1 + length simp)
+    (ch, simplified):newChains ++ pathSimplification' cx m (ch + 1 + length newChains)
 
-pathSimplificationChain :: Chain -> Map.Map String Chain -> Int -> [(Int, Chain)]
-pathSimplificationChain [] _ _ = []
-pathSimplificationChain (r:rs) m i =
+pathSimplificationChain :: Chain -> Map.Map String Chain -> Int-> Int -> (Chain, [(Int, Chain)])
+pathSimplificationChain [] _ _ _ = ([], [])
+pathSimplificationChain (r:rx) m ch ru =
     let
-        simp = pathSimplificationRule r m i
+        (c, ic) = pathSimplificationChain rx m ch (ru + 1)
+        (newTargets, ic') = pathSimplificationTargets (targets r) m (ch + length ic) ru 
     in
-    simp ++ pathSimplificationChain rs m (i + length simp)
+    ((Rule (criteria r) newTargets (label r)):c, ic ++ ic')
 
-pathSimplificationRule :: Rule  -> Map.Map String Chain -> Int -> [(Int, Chain)]
-pathSimplificationRule (Rule _ [] _) _ _ = []
-pathSimplificationRule (Rule _ (t:ts) j) m i =
+
+pathSimplificationTargets :: [Target] -> Map.Map String Chain -> Int -> Int  -> ([Target], [(Int, Chain)])
+pathSimplificationTargets [] _ _ _ = ([], [])
+pathSimplificationTargets (t:ts) m ch r =
     let
-        simp = pathSimplificationTarget t m i
+        (t', ic) = pathSimplificationTarget t m ch r
+        (t'', ic') = pathSimplificationTargets ts m (ch + length ic) r
     in
-        simp ++ pathSimplificationRule (Rule [] ts j) m (i + length simp)
+    (t':t'', ic ++ ic')
 
-pathSimplificationTarget :: Target  -> Map.Map String Chain -> Int -> [(Int, Chain)]
-pathSimplificationTarget (Jump t) m i = 
+pathSimplificationTarget :: Target -> Map.Map String Chain -> Int -> Int  -> (Target, [(Int, Chain)])
+pathSimplificationTarget (Jump j) m ch _ = 
     let
-        newChain = MB.fromJust (Map.lookup t m)
-        chainsReffedToInt = Map.fromList $ zip (chainsReferencedInChain newChain) [i + 1..]
+        chain = MB.fromJust (Map.lookup j m) 
     in
-    [(i, replaceTargetsInChain newChain chainsReffedToInt)] ++ pathSimplificationChain newChain m (i + 1)
-pathSimplificationTarget _ _ _ = []
-
-replaceTargetsInChain :: Chain -> Map.Map String Int -> Chain
-replaceTargetsInChain [] _ = []
-replaceTargetsInChain ((Rule c t i):cx) m = (Rule c (replaceTargetsInTarget t m) i):replaceTargetsInChain cx m
-
-replaceTargetsInTarget :: [Target] -> Map.Map String Int -> [Target]
-replaceTargetsInTarget [] _ = []
-replaceTargetsInTarget ((Jump t):tx) m = Go (MB.fromJust (Map.lookup t m)) 0 : replaceTargetsInTarget tx m
-replaceTargetsInTarget (t:tx) m = t : replaceTargetsInTarget tx m
-
-chainsReferencedInChain :: Chain -> [String]
-chainsReferencedInChain (c:cx) = (chainsReferencedInTargets $ targets c) ++ chainsReferencedInChain cx
-chainsReferencedInChain [] = []
-
-chainsReferencedInTargets :: [Target] -> [String]
-chainsReferencedInTargets (Jump t:tx) = t:chainsReferencedInTargets tx
-chainsReferencedInTargets (_:tx) = chainsReferencedInTargets tx
-chainsReferencedInTargets [] = []
+        (Go (ch + 1) 0, pathSimplification' [chain] m (ch + 1))
+pathSimplificationTarget t _ _ _ = (t, [])

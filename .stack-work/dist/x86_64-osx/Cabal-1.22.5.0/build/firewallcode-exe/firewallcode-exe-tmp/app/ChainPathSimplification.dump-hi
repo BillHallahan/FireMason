@@ -1,26 +1,22 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-12 17:53:35.12127 UTC
+2016-07-14 04:03:53.590409 UTC
 
 interface main@main:ChainPathSimplification 7103
-  interface hash: d731f0ec177ea28bfc5f1bfc7a2d43f8
-  ABI hash: bdc432aaae65ce6c29449789495744de
-  export-list hash: 2074fb21d88c7524149027d8f15b932b
-  orphan hash: 9d52f1dfc862ba3826aff57e4d6434d6
+  interface hash: 5e326bec265a86033ab67fdbe423f6f6
+  ABI hash: 4a99d7c4851efe1286078ef4967cec9a
+  export-list hash: 756c25e0f2d36dffd08a6f679f6a8177
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
   where
 exports:
-  ChainPathSimplification.chainsReferencedInChain
-  ChainPathSimplification.chainsReferencedInTargets
   ChainPathSimplification.pathSimplification
   ChainPathSimplification.pathSimplification'
   ChainPathSimplification.pathSimplificationChain
-  ChainPathSimplification.pathSimplificationRule
   ChainPathSimplification.pathSimplificationTarget
-  ChainPathSimplification.replaceTargetsInChain
-  ChainPathSimplification.replaceTargetsInTarget
+  ChainPathSimplification.pathSimplificationTargets
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
@@ -37,7 +33,6 @@ family instance modules: base-4.8.2.0:Control.Applicative
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
-import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
@@ -48,97 +43,30 @@ import  -/  Types 86b517b2012c0e7096573b836da77fea
   Go 5994a9084b04b86ca91004e6a3d48e75
   Jump 291b0e970c0679529dc782583d52c8dd
   Rule d3e00b353b6b165758cfde58a0d8f33f
-  Rule 52c19b20a74c44ae6e692dc9433e3b55
   Target 94ec184325b945ed3029ed0a75745440
+  criteria 46fb209df497ecddaf0530b77e30ce1e
+  label 852c3fa49664d9ed5eb5aa975bbe1395
   targets 69a8f61071ffce2748cf9b991a174145
-8c5cd38fbc83bde32aaad886b431d1dd
-  $sfromList ::
-    [(GHC.Base.String, a)] -> Data.Map.Base.Map GHC.Base.String a
-  {- Arity: 1, Strictness: <S,1*U>,
-     Unfolding: (\ @ a ds :: [(GHC.Base.String, a)] ->
-                 case ds of wild {
-                   [] -> Data.Map.Base.Tip @ GHC.Base.String @ a
-                   : ds1 ds2
-                   -> case ds1 of wild1 { (,) kx x ->
-                      case ds2 of wild2 {
-                        []
-                        -> case kx of dt { DEFAULT ->
-                           Data.Map.Base.Bin
-                             @ GHC.Base.String
-                             @ a
-                             1
-                             dt
-                             x
-                             (Data.Map.Base.Tip @ GHC.Base.String @ a)
-                             (Data.Map.Base.Tip @ GHC.Base.String @ a) }
-                        : ipv ipv1
-                        -> case ipv of wild3 { (,) ky ds3 ->
-                           case GHC.Classes.$fOrd[]_$s$ccompare1 kx ky of wild4 {
-                             DEFAULT
-                             -> case kx of dt { DEFAULT ->
-                                ChainPathSimplification.$sfromList1
-                                  @ a
-                                  (Data.Map.Base.Bin
-                                     @ GHC.Base.String
-                                     @ a
-                                     1
-                                     dt
-                                     x
-                                     (Data.Map.Base.Tip @ GHC.Base.String @ a)
-                                     (Data.Map.Base.Tip @ GHC.Base.String @ a))
-                                  wild2 }
-                             GHC.Types.LT
-                             -> case kx of dt { DEFAULT ->
-                                ChainPathSimplification.$wpoly_go10
-                                  @ a
-                                  1
-                                  (Data.Map.Base.Bin
-                                     @ GHC.Base.String
-                                     @ a
-                                     1
-                                     dt
-                                     x
-                                     (Data.Map.Base.Tip @ GHC.Base.String @ a)
-                                     (Data.Map.Base.Tip @ GHC.Base.String @ a))
-                                  wild2 } } } } } }) -}
-db89e46af64b275051b4276a46f67de0
-  $sfromList1 ::
-    Data.Map.Base.Map GHC.Base.String a1
-    -> [(GHC.Base.String, a1)] -> Data.Map.Base.Map GHC.Base.String a1
-  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-af48a93704d252ec634c385f72537ea8
-  $sinsert_$sgo10 ::
-    GHC.Base.String
-    -> a1
-    -> Data.Map.Base.Map GHC.Base.String a1
-    -> Data.Map.Base.Map GHC.Base.String a1
-  {- Arity: 3, Strictness: <S,1*U><L,U><S,1*U> -}
 236fd3d50c4cef3f0f819989ba70c756
   $slookup1 ::
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-ab677da7fa70b87e96f51a67cc6a3b50
-  $wpathSimplificationRule ::
+9d50807757c2dfc71490ff80314219f0
+  $wpathSimplificationChain ::
+    Types.Chain
+    -> Data.Map.Base.Map GHC.Base.String Types.Chain
+    -> GHC.Types.Int
+    -> (# Types.Chain, [(GHC.Types.Int, Types.Chain)] #)
+  {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>, Inline: [0] -}
+0d7a0ba2391095e43c28c83191f7bab3
+  $wpathSimplificationTargets ::
     [Types.Target]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
-    -> [(GHC.Types.Int, Types.Chain)]
+    -> (# [Types.Target], [(GHC.Types.Int, Types.Chain)] #)
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>, Inline: [0] -}
-a64d4d19f415b97d154f40ebc5a66845
-  $wpoly_go10 ::
-    GHC.Prim.Int#
-    -> Data.Map.Base.Map GHC.Base.String a
-    -> [(GHC.Base.String, a)]
-    -> Data.Map.Base.Map GHC.Base.String a
-  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-3ee8a7ae6fd984f3639143f9a1b3ca91
-  chainsReferencedInChain :: Types.Chain -> [GHC.Base.String]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-72fe9e75ee44721cadabbba69d5da2df
-  chainsReferencedInTargets :: [Types.Target] -> [GHC.Base.String]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-a848ffa1a005171bed7a638cadc87c63
+8d994a366525c65e76400d4b2219af29
   pathSimplification ::
     Data.Map.Base.Map GHC.Base.String Types.Chain
     -> [(GHC.Types.Int, Types.Chain)]
@@ -147,18 +75,17 @@ a848ffa1a005171bed7a638cadc87c63
                  ChainPathSimplification.pathSimplification'
                    (GHC.Base.map
                       @ [GHC.Types.Char]
-                      @ (GHC.Base.String, Types.Chain)
+                      @ [Types.Rule]
                       (\ s :: GHC.Base.String ->
-                       (s,
-                        case ChainPathSimplification.$slookup1 @ [Types.Rule] s m of wild {
-                          GHC.Base.Nothing -> Data.Maybe.fromJust1 @ Types.Chain
-                          GHC.Base.Just x -> x }))
+                       case ChainPathSimplification.$slookup1 @ [Types.Rule] s m of wild {
+                         GHC.Base.Nothing -> Data.Maybe.fromJust1 @ Types.Chain
+                         GHC.Base.Just x -> x })
                       ChainPathSimplification.pathSimplification2)
                    m
                    ChainPathSimplification.pathSimplification1) -}
-4387259972cef55159c9a50fd72e1da2
+eccb02cc12eede5802db86de5cecba48
   pathSimplification' ::
-    [(GHC.Base.String, Types.Chain)]
+    [Types.Chain]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
     -> [(GHC.Types.Int, Types.Chain)]
@@ -196,50 +123,78 @@ f7ae1e6e854feae1e5cc5b2b430be7a8
 7ec5d5a9bcab9ca6bf6ba7f4a9c3f20e
   pathSimplification7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "INPUT"#) -}
-bc6372a2e2f1a80759f2916510d1037d
+1766c621a369553a0f11322d3ef6fd16
   pathSimplificationChain ::
     Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
-    -> [(GHC.Types.Int, Types.Chain)]
-  {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)> -}
-d2dc2957b054ff59c128f54109fa620d
-  pathSimplificationRule ::
-    Types.Rule
-    -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
-    -> [(GHC.Types.Int, Types.Chain)]
-  {- Arity: 3, Strictness: <S(LSL),1*U(A,1*U,A)><L,U><L,U(U)>,
+    -> (Types.Chain, [(GHC.Types.Int, Types.Chain)])
+  {- Arity: 4, Strictness: <S,1*U><L,U><L,U(U)><L,A>m,
      Inline: INLINE[0],
-     Unfolding: InlineRule (3, True, False)
-                (\ w :: Types.Rule
+     Unfolding: InlineRule (4, True, False)
+                (\ w :: Types.Chain
                    w1 :: Data.Map.Base.Map GHC.Base.String Types.Chain
-                   w2 :: GHC.Types.Int ->
-                 case w of ww { Types.Rule ww1 ww2 ww3 ->
-                 ChainPathSimplification.$wpathSimplificationRule ww2 w1 w2 }) -}
-4c2262a680a68c7821c98a872f5f665a
+                   w2 :: GHC.Types.Int
+                   w3 :: GHC.Types.Int ->
+                 case ChainPathSimplification.$wpathSimplificationChain
+                        w
+                        w1
+                        w2 of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+d8c39b1db67ac8b61829c1dd40dd6226
   pathSimplificationTarget ::
     Types.Target
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
-    -> [(GHC.Types.Int, Types.Chain)]
-  {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)> -}
-0edd7585313550b47c9659395f652d55
-  replaceTargetsInChain ::
-    Types.Chain
-    -> Data.Map.Base.Map GHC.Base.String GHC.Types.Int -> Types.Chain
-  {- Arity: 2, Strictness: <S,1*U><L,U> -}
-7b7ed658a50800453df357c9b95b16f4
-  replaceTargetsInTarget ::
+    -> GHC.Types.Int
+    -> (Types.Target, [(GHC.Types.Int, Types.Chain)])
+  {- Arity: 4, Strictness: <S,1*U><L,U><L,U(U)><L,A>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (4, True, False)
+                (\ w :: Types.Target
+                   w1 :: Data.Map.Base.Map GHC.Base.String Types.Chain
+                   w2 :: GHC.Types.Int
+                   w3 :: GHC.Types.Int ->
+                 case w of wild {
+                   DEFAULT -> (wild, GHC.Types.[] @ (GHC.Types.Int, Types.Chain))
+                   Types.Jump j
+                   -> (Types.Go
+                         (case w2 of wild1 { GHC.Types.I# x ->
+                          GHC.Types.I# (GHC.Prim.+# x 1) })
+                         ChainPathSimplification.pathSimplification1,
+                       ChainPathSimplification.pathSimplification'
+                         (GHC.Types.:
+                            @ Types.Chain
+                            (case ChainPathSimplification.$slookup1
+                                    @ [Types.Rule]
+                                    j
+                                    w1 of wild1 {
+                               GHC.Base.Nothing -> Data.Maybe.fromJust1 @ Types.Chain
+                               GHC.Base.Just x -> x })
+                            (GHC.Types.[] @ Types.Chain))
+                         w1
+                         (case w2 of wild1 { GHC.Types.I# x ->
+                          GHC.Types.I# (GHC.Prim.+# x 1) })) }) -}
+5bdf59c16b2b3082bd85e3f6f47228a0
+  pathSimplificationTargets ::
     [Types.Target]
-    -> Data.Map.Base.Map GHC.Base.String GHC.Types.Int
-    -> [Types.Target]
-  {- Arity: 2, Strictness: <S,1*U><L,U> -}
-"SPEC/ChainPathSimplification fromList @ String _" [ALWAYS] forall @ a
-                                                                   $dOrd :: GHC.Classes.Ord
-                                                                              GHC.Base.String
-  Data.Map.Base.fromList @ [GHC.Types.Char] @ a $dOrd
-  = ChainPathSimplification.$sfromList @ a
+    -> Data.Map.Base.Map GHC.Base.String Types.Chain
+    -> GHC.Types.Int
+    -> GHC.Types.Int
+    -> ([Types.Target], [(GHC.Types.Int, Types.Chain)])
+  {- Arity: 4, Strictness: <S,1*U><L,U><L,U(U)><L,A>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (4, True, False)
+                (\ w :: [Types.Target]
+                   w1 :: Data.Map.Base.Map GHC.Base.String Types.Chain
+                   w2 :: GHC.Types.Int
+                   w3 :: GHC.Types.Int ->
+                 case ChainPathSimplification.$wpathSimplificationTargets
+                        w
+                        w1
+                        w2 of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
