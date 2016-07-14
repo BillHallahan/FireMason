@@ -45,10 +45,12 @@ class ToSMT a where
     toSMTPrereq :: a -> [String]
     toSMT :: a -> Int -> Int -> String --The first int is to identify the chain as having been called from a unique position
                                        --The second and third int identify the chain and rule number, respectively, the chain was called from
-    toSMTPath :: a -> Int -> Int -> String
+    toSMTPath :: a -> Int -> Int -> String 
+    toSMTNotPath :: a -> Int -> Int -> String --Written if criteria is not met
 
     toSMTPrereq _ = []
     toSMTPath _ _ _ = ""
+    toSMTNotPath _ _ _ = ""
 
 
 instance ToSMT Chain where
@@ -61,7 +63,7 @@ instance ToSMT Chain where
     toSMTPath rs ch ru =
         let
             numLabels = (length . nub $ map (\r -> label r) rs)
-            reachesEnd = printSMTFunc1 "assert" $ printSMTFunc2 "=>" (printSMTFunc2 "reaches" ch numLabels) (printSMTFunc1 "reaches-end" ch)
+            reachesEnd = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "reaches" ch numLabels) (printSMTFunc1 "reaches-end" ch)
         in
         chainToSMT rs toSMTPath ch ru ++ "\n" ++ reachesEnd
 
@@ -79,9 +81,7 @@ chainToSMT [] _ _ _ = ""
 instance ToSMT Rule where
     toSMTPrereq (Rule c t _) = toSMTPrereq c ++ toSMTPrereq t
 
-    toSMT (Rule [] _ i) ch r = ""
-    toSMT (Rule c [] i) ch r =
-        printSMTFunc1 "assert" (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc2 "matches-criteria" ch r))
+    toSMT (Rule [] t i) ch r = printSMTFunc1 "assert" (printSMTFunc2 "matches-criteria" ch r)
     toSMT (Rule c _ i) ch r =
         printSMTFunc1 "assert" (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc2 "matches-criteria" ch r))
         
@@ -90,10 +90,11 @@ instance ToSMT Rule where
         printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc2 "reaches" ch r) (printSMTFunc2 "reaches" ch (r + 1))) ++ "\n" ++
         printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch r)) (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch (r + 1))))
     toSMTPath (Rule c t i) ch r =
-        printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc2 "and" (printSMTFunc2 "matches-criteria" ch r) (printSMTFunc2 "reaches" ch r)) (toSMTPath t ch r)) ++ "\n"
+        printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc2 "matches-rule" ch r) (toSMTPath t ch r)) ++ "\n"
         ++ printSMTFunc1 "assert" (printSMTFunc2 "=>"
             (printSMTFunc2 "and" (printSMTFunc1 "not" (printSMTFunc2 "matches-criteria" ch r)) (printSMTFunc2 "reaches" ch r)) (printSMTFunc2 "reaches" ch (r + 1))) ++ "\n"
-        ++ printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch r)) (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch (r + 1))))
+        ++ printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch r)) (printSMTFunc1 "not" (printSMTFunc2 "reaches" ch (r + 1)))) ++ "\n"
+        ++ toSMTNotPath t ch r 
 
 instance ToSMT [Criteria] where
     toSMTPrereq [] = []
@@ -102,7 +103,7 @@ instance ToSMT [Criteria] where
 
     toSMT [] _ _ = ""
     toSMT (c:[]) ch r = toSMT c ch r
-    toSMT (c:cs) ch r = "(and " ++ toSMT c ch r ++ toSMT cs ch r ++ ")"
+    toSMT (c:cs) ch r = printSMTFunc2 "and" (toSMT c ch r) (toSMT cs ch r)
 
 instance ToSMT Criteria where
     toSMTPrereq (Not c) = toSMTPrereq c
@@ -114,7 +115,7 @@ instance ToSMT Criteria where
                                 "(assert (<= protocol 255))"]
     toSMTPrereq _ = []
 
-    toSMT (Not c) ch r = "(not " ++ toSMT c ch r ++ ")"
+    toSMT (Not c) ch r = printSMTFunc1 "not" (toSMT c ch r)
     toSMT (Port s (Left i)) _ _ = "(= " ++ s ++ "_port " ++ show i ++ ")"
     toSMT (Port s (Right (i, j))) _ _=
         "(and (<= " ++ show i ++ " " ++ s ++ "_port " ++ ") (<= " ++ s ++ "_port " ++ show j ++ "))"
@@ -126,16 +127,25 @@ instance ToSMT [Target] where
 
     toSMTPath [] ch r = ""
     toSMTPath (t:[]) ch r = toSMTPath t ch r
-    toSMTPath (t:ts) ch r = "(and " ++ toSMTPath t ch r ++ toSMTPath ts ch r ++ ")"
+    toSMTPath (t:ts) ch r = printSMTFunc2 "and" (toSMTPath t ch r) (toSMTPath ts ch r)
+
+    toSMTNotPath [] ch r = ""
+    toSMTNotPath (t:[]) ch r = toSMTNotPath t ch r
+    toSMTNotPath (t:ts) ch r = printSMTFunc2 "and" (toSMTNotPath t ch r) (toSMTNotPath ts ch r)
 
 instance ToSMT Target where 
     toSMT _ _ _ = ""
 
-    toSMTPath (Go i j) ch r = "(reaches " ++ show i ++ " " ++ show j ++ ")\n(assert (=> (reaches-end " ++ show i ++ ") (reaches " ++ show ch ++ " " ++ show (r + 1) ++ ") ))"
+    toSMTPath (Go i j) ch r = "(and (reaches " ++ show i ++ " " ++ show j ++ ")\n(= (reaches-end " ++ show i ++ ") (reaches " ++ show ch ++ " " ++ show (r + 1) ++  ")) )"
     toSMTPath (ACCEPT) ch r = "(and ACCEPT (not " ++ printSMTFunc2 "reaches" ch (r + 1) ++ "))"
     toSMTPath (DROP) ch r = "(and DROP (not " ++ printSMTFunc2 "reaches" ch (r + 1) ++ "))"
     toSMTPath (ST s) ch r = s
     toSMTPath _ _ _ = error "NOT HERE"
+
+    toSMTNotPath (Go i j) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=>"
+        (printSMTFunc1 "not" $ printSMTFunc2 "matches-rule" ch r)
+        (printSMTFunc1 "not" $ printSMTFunc2 "reaches" i j)
+    toSMTNotPath _ _ _ = ""
 
 
 printSMTFunc1 :: (ToString a) => String -> a -> String
