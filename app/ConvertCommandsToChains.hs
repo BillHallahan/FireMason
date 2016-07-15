@@ -4,6 +4,8 @@ import qualified Data.Map as Map
 
 import Types
 
+--I'm not sure how iptables specific this is, I seperated it out because I thought it might be useful for other firewalls.
+
 convertToChains :: [Command] -> Map.Map String Chain -> Map.Map String Chain
 convertToChains [] m = m
 convertToChains (New s : cs) m = convertToChains cs (Map.insert s [] m)

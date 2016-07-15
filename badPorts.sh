@@ -63,7 +63,7 @@ $IPTABLES -A second-chain -p udp --sport 3423 -j ACCEPT
 
 $IPTABLES -A INPUT -j bad-ports
 
-$IPTABLES -A OUTPUT -j bad-ports
+#$IPTABLES -A OUTPUT -j bad-ports
 
-$IPTABLES -A FORWARD -j bad-ports
+#$IPTABLES -A FORWARD -j bad-ports
 IPTABLES2=/sbin/iptables

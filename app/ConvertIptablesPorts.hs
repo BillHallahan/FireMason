@@ -8,33 +8,33 @@ import Types
 --Currently, there may be a glitch if convertTCPRule or convertUDPRule has priority over convertMultiportRule
 
 convertTCPRule :: ModuleFunc
-convertTCPRule ("--sport":sps:xs) = (Just $ portCriteriaFromRangeString sps "source", xs)
-convertTCPRule ("--dport":dps:xs) = (Just $ portCriteriaFromRangeString dps "destination", xs)
+convertTCPRule ("--sport":sps:xs) = (Just [Left $ portCriteriaFromRangeString sps "source"], xs)
+convertTCPRule ("--dport":dps:xs) = (Just [Left $ portCriteriaFromRangeString dps "destination"], xs)
 convertTCPRule xs = (Nothing, xs)
 
 convertUDPRule :: ModuleFunc
-convertUDPRule ("--sport":sps:xs) = (Just $ portCriteriaFromRangeString sps "source", xs)
-convertUDPRule ("--dport":dps:xs) = (Just $ portCriteriaFromRangeString dps "destination", xs)
+convertUDPRule ("--sport":sps:xs) = (Just [Left $ portCriteriaFromRangeString sps "source"], xs)
+convertUDPRule ("--dport":dps:xs) = (Just [Left $ portCriteriaFromRangeString dps "destination"], xs)
 convertUDPRule xs = (Nothing, xs)
 
 convertMultiportRule :: ModuleFunc
-convertMultiportRule ("--sport":sps:xs) = (Just $ portCriteriaFromNumsRangesString sps "source", xs)
-convertMultiportRule ("--dport":dps:xs) = (Just $ (portCriteriaFromNumsRangesString dps "destination"), xs)
-convertMultiportRule ("--port":ps:xs) = (Just $ portCriteriaFromNumsRangesString ps "source" ++ portCriteriaFromNumsRangesString ps "destination", xs)
+convertMultiportRule ("--sport":sps:xs) = (Just $ [Left $ Or(portCriteriaFromNumsRangesString sps "source")], xs)
+convertMultiportRule ("--dport":dps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString dps "destination")], xs)
+convertMultiportRule ("--port":ps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString ps "source" ++ portCriteriaFromNumsRangesString ps "destination")], xs)
 convertMultiportRule xs = (Nothing, xs)
 
 
 
 
-portCriteriaFromRangeString :: String -> String -> [Either Criteria Target]
-portCriteriaFromRangeString ps portName = [Left $ Port portName $ convertNumRange . splitNonconsuming ":" $ ps]
+portCriteriaFromRangeString :: String -> String -> Criteria
+portCriteriaFromRangeString ps portName = Port portName $ convertNumRange . splitNonconsuming ":" $ ps
 
-portCriteriaFromNumsRangesString :: String -> String -> [Either Criteria Target]
+portCriteriaFromNumsRangesString :: String -> String -> [Criteria]
 portCriteriaFromNumsRangesString ps portName =
     let
         ports = convertNumsRangesString $ ps
     in
-    foldr (\r acc -> [Left $ Port portName r] ++ acc) [] ports
+    foldr (\r acc -> [Port portName r] ++ acc) [] ports
 
 
 --These are all more generally, eventually need to be in a seperate module

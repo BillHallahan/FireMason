@@ -24,6 +24,7 @@ convertChains c =
         convertedString = foldr (\x acc -> x ++ "\n" ++ acc ) "" converted
     in
     "(set-option :produce-models true)\n\n" ++ 
+    "(set-logic QF_UFLIA)\n\n" ++
     "(declare-fun reaches(Int Int) Bool)\n" ++
     "(declare-fun reaches-end(Int) Bool)\n" ++
     "(declare-fun matches-criteria(Int Int) Bool)\n" ++

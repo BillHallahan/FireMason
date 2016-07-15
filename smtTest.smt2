@@ -1,5 +1,7 @@
 (set-option :produce-models true)
 
+(set-logic QF_UFLIA)
+
 (declare-fun reaches(Int Int) Bool)
 (declare-fun reaches-end(Int) Bool)
 (declare-fun matches-criteria(Int Int) Bool)

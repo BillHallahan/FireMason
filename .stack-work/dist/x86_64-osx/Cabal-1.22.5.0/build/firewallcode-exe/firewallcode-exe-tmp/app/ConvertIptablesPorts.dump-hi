@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-12 17:23:54.353089 UTC
+2016-07-15 05:35:16.254751 UTC
 
 interface main@main:ConvertIptablesPorts 7103
-  interface hash: 2bbe9705a29c7ee8cc336c4adfad6912
-  ABI hash: 713c1e33852700c72d24729bfa7823c1
+  interface hash: 719593c7ec59288ab2aa4d52054f8871
+  ABI hash: 13088ff3fbd0a526a1d303d5cf7657ad
   export-list hash: 7e11eee6fed4134f059c4a51bb10d402
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -43,13 +43,13 @@ import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
   splitNonconsuming 0ad3bc01b3b4404a744d4b546e1552e6
-import  -/  Types 86b517b2012c0e7096573b836da77fea
-  exports: 64af22a0f96b77e5dd44beda62b51246
-  Criteria 0bb8af0374b2e775dd8ac74be49785e5
-  ModuleFunc 4ada43fa0a610d3fe5715959da1ab1e5
-  Port f3f26c0a636095d98e13e8942d4aad12
-  Target 94ec184325b945ed3029ed0a75745440
-cffe6e2c12323dc1eca264860dd047f1
+import  -/  Types f3c0cd2c58b051c8b44ce0dae38e88bf
+  exports: 0d7c283a33cd5a6cf1119cbf9c6f37d5
+  Criteria 19a72d0760c735e182ba3fd8c42cd125
+  ModuleFunc 938e7f35fa096d4eb40eddfbf2bac2d0
+  Or d8e927ccf2a4ee191c0efe968363d312
+  Port 3eb531f9427fa85d52d77052056f49f7
+790bf697809ff3db014a043dcffc8296
   $wconvertMultiportRule ::
     [GHC.Base.String]
     -> (# GHC.Base.Maybe
@@ -90,9 +90,18 @@ cffe6e2c12323dc1eca264860dd047f1
                                       : sps xs
                                       -> (# GHC.Base.Just
                                               @ [Data.Either.Either Types.Criteria Types.Target]
-                                              (ConvertIptablesPorts.portCriteriaFromNumsRangesString
-                                                 sps
-                                                 ConvertIptablesPorts.convertMultiportRule3),
+                                              (GHC.Types.:
+                                                 @ (Data.Either.Either Types.Criteria Types.Target)
+                                                 (Data.Either.Left
+                                                    @ Types.Criteria
+                                                    @ Types.Target
+                                                    (Types.Or
+                                                       (ConvertIptablesPorts.portCriteriaFromNumsRangesString
+                                                          sps
+                                                          ConvertIptablesPorts.convertMultiportRule3)))
+                                                 (GHC.Types.[]
+                                                    @ (Data.Either.Either
+                                                         Types.Criteria Types.Target))),
                                             xs #) } }
                             GHC.Types.True
                             -> case ds1 of wild2 {
@@ -106,14 +115,22 @@ cffe6e2c12323dc1eca264860dd047f1
                                  : ps xs
                                  -> (# GHC.Base.Just
                                          @ [Data.Either.Either Types.Criteria Types.Target]
-                                         (GHC.Base.++
+                                         (GHC.Types.:
                                             @ (Data.Either.Either Types.Criteria Types.Target)
-                                            (ConvertIptablesPorts.portCriteriaFromNumsRangesString
-                                               ps
-                                               ConvertIptablesPorts.convertMultiportRule3)
-                                            (ConvertIptablesPorts.portCriteriaFromNumsRangesString
-                                               ps
-                                               ConvertIptablesPorts.convertMultiportRule2)),
+                                            (Data.Either.Left
+                                               @ Types.Criteria
+                                               @ Types.Target
+                                               (Types.Or
+                                                  (GHC.Base.++
+                                                     @ Types.Criteria
+                                                     (ConvertIptablesPorts.portCriteriaFromNumsRangesString
+                                                        ps
+                                                        ConvertIptablesPorts.convertMultiportRule3)
+                                                     (ConvertIptablesPorts.portCriteriaFromNumsRangesString
+                                                        ps
+                                                        ConvertIptablesPorts.convertMultiportRule2))))
+                                            (GHC.Types.[]
+                                               @ (Data.Either.Either Types.Criteria Types.Target))),
                                        xs #) } }
                       } in
                       case GHC.Base.eqString
@@ -126,11 +143,19 @@ cffe6e2c12323dc1eca264860dd047f1
                              : dps xs
                              -> (# GHC.Base.Just
                                      @ [Data.Either.Either Types.Criteria Types.Target]
-                                     (ConvertIptablesPorts.portCriteriaFromNumsRangesString
-                                        dps
-                                        ConvertIptablesPorts.convertMultiportRule2),
+                                     (GHC.Types.:
+                                        @ (Data.Either.Either Types.Criteria Types.Target)
+                                        (Data.Either.Left
+                                           @ Types.Criteria
+                                           @ Types.Target
+                                           (Types.Or
+                                              (ConvertIptablesPorts.portCriteriaFromNumsRangesString
+                                                 dps
+                                                 ConvertIptablesPorts.convertMultiportRule2)))
+                                        (GHC.Types.[]
+                                           @ (Data.Either.Either Types.Criteria Types.Target))),
                                    xs #) } } }) -}
-1678045640c9e2b15b2e8a0ef93dd32d
+dbb143f20c0dddc2f2eaaf8704fe69eb
   convertMultiportRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -201,7 +226,7 @@ feb86f82f46d8c6e6a832e091145f554
   convertNumsRangesString_go ::
     [[GHC.Types.Char]] -> [[GHC.Types.Char]]
   {- Arity: 1, Strictness: <S,1*U> -}
-3df948a71ba4fb12c6988772a967aa7d
+f86db1743ede0753baf653ccf1c07b8f
   convertTCPRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -232,9 +257,16 @@ feb86f82f46d8c6e6a832e091145f554
                                   : sps xs
                                   -> (GHC.Base.Just
                                         @ [Data.Either.Either Types.Criteria Types.Target]
-                                        (ConvertIptablesPorts.portCriteriaFromRangeString
-                                           sps
-                                           ConvertIptablesPorts.convertMultiportRule3),
+                                        (GHC.Types.:
+                                           @ (Data.Either.Either Types.Criteria Types.Target)
+                                           (Data.Either.Left
+                                              @ Types.Criteria
+                                              @ Types.Target
+                                              (Types.Port
+                                                 ConvertIptablesPorts.convertMultiportRule3
+                                                 (ConvertIptablesPorts.convertTCPRule1 sps)))
+                                           (GHC.Types.[]
+                                              @ (Data.Either.Either Types.Criteria Types.Target))),
                                       xs) } }
                         GHC.Types.True
                         -> case ds1 of wild2 {
@@ -248,11 +280,32 @@ feb86f82f46d8c6e6a832e091145f554
                              : dps xs
                              -> (GHC.Base.Just
                                    @ [Data.Either.Either Types.Criteria Types.Target]
-                                   (ConvertIptablesPorts.portCriteriaFromRangeString
-                                      dps
-                                      ConvertIptablesPorts.convertMultiportRule2),
+                                   (GHC.Types.:
+                                      @ (Data.Either.Either Types.Criteria Types.Target)
+                                      (Data.Either.Left
+                                         @ Types.Criteria
+                                         @ Types.Target
+                                         (Types.Port
+                                            ConvertIptablesPorts.convertMultiportRule2
+                                            (ConvertIptablesPorts.convertTCPRule1 dps)))
+                                      (GHC.Types.[]
+                                         @ (Data.Either.Either Types.Criteria Types.Target))),
                                  xs) } } }) -}
-f8bb59ee34c19ca98fa0fea54dfd26d6
+c85944fe84bf0ef356391e238c871555
+  convertTCPRule1 ::
+    GHC.Base.String
+    -> Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: GHC.Base.String ->
+                 ConvertIptablesPorts.convertNumRange
+                   (ParserHelp.splitNonconsuming
+                      ConvertIptablesPorts.convertTCPRule2
+                      x)) -}
+85cee50f6583e45848fcac1e76b442f5
+  convertTCPRule2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# ":"#) -}
+06091722bbe5805422b687732b750e58
   convertUDPRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -283,9 +336,16 @@ f8bb59ee34c19ca98fa0fea54dfd26d6
                                   : sps xs
                                   -> (GHC.Base.Just
                                         @ [Data.Either.Either Types.Criteria Types.Target]
-                                        (ConvertIptablesPorts.portCriteriaFromRangeString
-                                           sps
-                                           ConvertIptablesPorts.convertMultiportRule3),
+                                        (GHC.Types.:
+                                           @ (Data.Either.Either Types.Criteria Types.Target)
+                                           (Data.Either.Left
+                                              @ Types.Criteria
+                                              @ Types.Target
+                                              (Types.Port
+                                                 ConvertIptablesPorts.convertMultiportRule3
+                                                 (ConvertIptablesPorts.convertTCPRule1 sps)))
+                                           (GHC.Types.[]
+                                              @ (Data.Either.Either Types.Criteria Types.Target))),
                                       xs) } }
                         GHC.Types.True
                         -> case ds1 of wild2 {
@@ -299,61 +359,42 @@ f8bb59ee34c19ca98fa0fea54dfd26d6
                              : dps xs
                              -> (GHC.Base.Just
                                    @ [Data.Either.Either Types.Criteria Types.Target]
-                                   (ConvertIptablesPorts.portCriteriaFromRangeString
-                                      dps
-                                      ConvertIptablesPorts.convertMultiportRule2),
+                                   (GHC.Types.:
+                                      @ (Data.Either.Either Types.Criteria Types.Target)
+                                      (Data.Either.Left
+                                         @ Types.Criteria
+                                         @ Types.Target
+                                         (Types.Port
+                                            ConvertIptablesPorts.convertMultiportRule2
+                                            (ConvertIptablesPorts.convertTCPRule1 dps)))
+                                      (GHC.Types.[]
+                                         @ (Data.Either.Either Types.Criteria Types.Target))),
                                  xs) } } }) -}
-fd70e27584a1b2aac40e6f60e3eab289
+be52997e206d152c4f67e3610d0e3c09
   portCriteriaFromNumsRangesString ::
-    GHC.Base.String
-    -> GHC.Base.String
-    -> [Data.Either.Either Types.Criteria Types.Target]
+    GHC.Base.String -> GHC.Base.String -> [Types.Criteria]
   {- Arity: 2, Strictness: <L,U><L,U>,
      Unfolding: (\ ps :: GHC.Base.String portName :: GHC.Base.String ->
                  letrec {
                    go :: [Data.Either.Either
                             GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)]
-                         -> [Data.Either.Either Types.Criteria Types.Target]
+                         -> [Types.Criteria]
                      {- Arity: 1, Strictness: <S,1*U> -}
                    = \ ds :: [Data.Either.Either
                                 GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)] ->
                      case ds of wild {
-                       []
-                       -> GHC.Types.[] @ (Data.Either.Either Types.Criteria Types.Target)
+                       [] -> GHC.Types.[] @ Types.Criteria
                        : y ys
-                       -> GHC.Types.:
-                            @ (Data.Either.Either Types.Criteria Types.Target)
-                            (Data.Either.Left
-                               @ Types.Criteria
-                               @ Types.Target
-                               (Types.Port portName y))
-                            (go ys) }
+                       -> GHC.Types.: @ Types.Criteria (Types.Port portName y) (go ys) }
                  } in
                  go (ConvertIptablesPorts.convertNumsRangesString ps)) -}
-8de166a5f08d33eb4c87de235f8cc4c1
+744f65179be44b8fd4f0678e622632bc
   portCriteriaFromRangeString ::
-    GHC.Base.String
-    -> GHC.Base.String
-    -> [Data.Either.Either Types.Criteria Types.Target]
-  {- Arity: 2, Strictness: <L,U><L,U>m2,
+    GHC.Base.String -> GHC.Base.String -> Types.Criteria
+  {- Arity: 2, Strictness: <L,U><L,U>m4,
      Unfolding: InlineRule (2, True, False)
                 (\ ps :: GHC.Base.String portName :: GHC.Base.String ->
-                 GHC.Types.:
-                   @ (Data.Either.Either Types.Criteria Types.Target)
-                   (Data.Either.Left
-                      @ Types.Criteria
-                      @ Types.Target
-                      (Types.Port
-                         portName
-                         (ConvertIptablesPorts.convertNumRange
-                            (ParserHelp.splitNonconsuming
-                               ConvertIptablesPorts.portCriteriaFromRangeString1
-                               ps))))
-                   (GHC.Types.[]
-                      @ (Data.Either.Either Types.Criteria Types.Target))) -}
-d3769eacb1c6cf06f73a1a16821d6d03
-  portCriteriaFromRangeString1 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# ":"#) -}
+                 Types.Port portName (ConvertIptablesPorts.convertTCPRule1 ps)) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
