@@ -69,11 +69,7 @@ instance ToSMT Chain where
         chainToSMT rs toSMTPath ch ru ++ "\n" ++ reachesEnd
 
 chainToSMT :: [Rule] -> (Rule -> Int -> Int -> String) -> Int -> Int -> String
-chainToSMT (r:r':rs) f ch ru = 
-    let
-        nextR = if label r == label r' then ru else ru + 1
-    in
-    f r ch ru ++ "\n" ++ chainToSMT (r':rs) (f) ch nextR
+chainToSMT (r:r':rs) f ch ru = f r ch ru ++ "\n" ++ chainToSMT (r':rs) (f) ch (ru + 1)
 chainToSMT (r:[]) f ch ru = 
     f r ch ru
 chainToSMT [] _ _ _ = ""
@@ -120,7 +116,9 @@ instance ToSMT Criteria where
     toSMT (Port s (Left i)) _ _ = "(= " ++ s ++ "_port " ++ show i ++ ")"
     toSMT (Port s (Right (i, j))) _ _=
         "(and (<= " ++ show i ++ " " ++ s ++ "_port " ++ ") (<= " ++ s ++ "_port " ++ show j ++ "))"
+    toSMT (PropVariableCriteria i) _ _ = "v" ++ show i
     toSMT (Protocol i) _ _ = "(= protocol " ++ show i ++ ")"
+    toSMT x _ _ = error $ "unrecognized criteria " ++ show x
 
 
 instance ToSMT [Target] where 
@@ -140,6 +138,7 @@ instance ToSMT Target where
     toSMTPath (Go i j) ch r = "(and (reaches " ++ show i ++ " " ++ show j ++ ")\n(= (reaches-end " ++ show i ++ ") (reaches " ++ show ch ++ " " ++ show (r + 1) ++  ")) )"
     toSMTPath (ACCEPT) ch r = "(and ACCEPT (not " ++ printSMTFunc2 "reaches" ch (r + 1) ++ "))"
     toSMTPath (DROP) ch r = "(and DROP (not " ++ printSMTFunc2 "reaches" ch (r + 1) ++ "))"
+    toSMTPath (PropVariableTarget i b) _ _ = if b then "v" ++ show i else printSMTFunc1 "not" ("v" ++ show i)
     toSMTPath (ST s) ch r = s
     toSMTPath _ _ _ = error "NOT HERE"
 

@@ -14,6 +14,7 @@ import Types
 import ConvertIptables
 import ConvertCommandsToChains
 import ChainsToSMT
+import EliminateAndsOrs
 
 
 
@@ -24,7 +25,8 @@ main = do
     let fileName = head args
     withFile fileName ReadMode (\handle -> do
         contents <- hGetContents handle
-        let converted = convertScript contents
+        let converted' = Map.toList . convertScript $ contents
+        let converted = Map.fromList $ eliminateAndsOrsFromStringChains converted' 0 
         let k = Map.keys converted
         let v = Map.elems converted
         let listToS = foldl (\acc s -> acc ++ show s ++ "\n") ""

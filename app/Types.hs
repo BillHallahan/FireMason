@@ -14,6 +14,7 @@ data Criteria = And [Criteria]
                 | Not Criteria
                 | Port String (Either Int (Int, Int))
                 | IPAddress String Int Int Int Int Int
+                | PropVariableCriteria Int
                 | Protocol Int
                 | SC String deriving (Eq, Show)
 
@@ -21,6 +22,7 @@ data Target = Jump String
               | Go Int Int
               | ACCEPT
               | DROP
+              | PropVariableTarget Int Bool
               | ST String deriving (Eq, Show)
 
 data Command = Append String Rule

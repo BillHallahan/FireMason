@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-15 04:52:01.450057 UTC
+2016-07-16 02:56:01.294085 UTC
 
 interface main@main:Main 7103
-  interface hash: 2ff00a38808eb50959c6b22fca9ddc5d
-  ABI hash: 75c7bae9696ec09db64ac68d8c2a6f29
+  interface hash: febcfed44e7cc625093d6a04cae600f3
+  ABI hash: a5c1c3b49d219ba0bc1eb1075c5d4a1a
   export-list hash: 66addcba93e4a33a8a73e85b1f9f3925
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 1e3361fb471ccc1f0605f4d3c4d9aa91
@@ -17,7 +17,7 @@ exports:
   Main.subBashVariables
 module dependencies: ChainPathSimplification ChainsToSMT
                      ConvertCommandsToChains ConvertIptables ConvertIptablesPorts
-                     ParserHelp Types
+                     EliminateAndsOrs ParserHelp Types
 package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
@@ -64,21 +64,24 @@ import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  ChainPathSimplification a478b0ffb16440905a5fd3f22c2e2efa
+import  -/  ChainPathSimplification d00f349b588a3c2744cb325c2e958770
   exports: 756c25e0f2d36dffd08a6f679f6a8177
-  pathSimplification bbb97cb734b5c47915937802f323cea7
-import  -/  ChainsToSMT 60548b909d57aae35df1c9f394dc3951
+  pathSimplification 182e0c2d9bad9852e21668afe152b371
+import  -/  ChainsToSMT f5e495f6b34835506cc20b46a58a5157
   exports: 072a3f808360efb508bd134b0f43f6ae
-  convertChains 58665f714f0e33790fa097fe5f9e100a
-import  -/  ConvertCommandsToChains ceb912aae349895a6d8a5a423780ec57
+  convertChains 13cd20a2f3af9d4ed11c5065c8c2ca00
+import  -/  ConvertCommandsToChains 990dc6a24055ed1209eba77c3cc1ceba
   exports: 08991498278e0090c7184f08ffabe9c5
-  convertToChains 9e2846e17517a9e2bf0b6d40d2b0a110
-import  -/  ConvertIptables 0bf7e87b6afe4be713a2cc578ebebcbc
+  convertToChains d05786b015cc4bc46e590b82889ee2a2
+import  -/  ConvertIptables a17b70d2a241369605671f059047c6df
   exports: 679e593bdc72bfd30af4f673e47de6a4
-  convertLine 25f37883b98d7726d91cf495e5c76571
-import  -/  Types f3c0cd2c58b051c8b44ce0dae38e88bf
-  exports: 0d7c283a33cd5a6cf1119cbf9c6f37d5
-  Chain 3b15d8129d09742588c662fa86e386f8
+  convertLine 952e8625836f018d3173e7834ebd3c6c
+import  -/  EliminateAndsOrs 6790a801b65f95da82690504e48b6624
+  exports: 1c7d8d3b5bbc4ffc717f60b5f0afb39a
+  eliminateAndsOrsFromStringChains 5c4f3db119d9483622504e47643e82b3
+import  -/  Types c6c075991b637d3ffff26bde91508d6b
+  exports: 6d8afa41f3ffc08d7f7272724af688cd
+  Chain 20cffba301ebdcc8b4608e6cd2fe6f8f
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
 7b0b71b671f53f3fcb282dcb3e5d0f06
@@ -86,7 +89,7 @@ import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals
     [GHC.Types.Char]
     -> Data.Map.Base.Map [GHC.Types.Char] a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-b109017e3c64d14cd9cafc465aac3a99
+a1267e84910fd164c718801f780f4e7d
   convertScript ::
     GHC.Base.String -> Data.Map.Base.Map GHC.Base.String Types.Chain
   {- Arity: 1, Strictness: <S,1*U>,
@@ -99,7 +102,7 @@ b109017e3c64d14cd9cafc465aac3a99
                             Main.convertScript15)
                          Main.convertScript11))
                    Main.convertScript1) -}
-41c6a5fb7de1ad735356bfbf8750d5c0
+db39255cdbbc7c99ebc27440957cc7f0
   convertScript1 :: Data.Map.Base.Map [GHC.Types.Char] [Types.Rule]
   {- Unfolding: (ConvertIptables.$sfromList
                    @ [Types.Rule]
@@ -127,37 +130,37 @@ f9e6f616fd6f95a83442b18b4043bd44
 864eb6d140d3e3eab397b5f52b340f7e
   convertScript15 :: [GHC.Types.Int]
   {- Unfolding: (GHC.Enum.eftInt 1 9223372036854775807) -}
-ce6bf4f49003d42ae0b10e30c4f847f6
+c6a18ee314a529a8697e2fdbb3b484a8
   convertScript2 :: [(GHC.Base.String, Types.Chain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Chain)
                    Main.convertScript9
                    Main.convertScript3) -}
-1e8cec95abeb664493af90ad4110387b
+f7a6b1fc44a6dbb587948579a665f670
   convertScript3 :: [(GHC.Base.String, Types.Chain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Chain)
                    Main.convertScript7
                    Main.convertScript4) -}
-e403ac4f4aec7e4abb8a0654b79c2f4e
+5c7233e29d7c834166f833c98438082f
   convertScript4 :: [(GHC.Base.String, Types.Chain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Chain)
                    Main.convertScript5
                    (GHC.Types.[] @ (GHC.Base.String, Types.Chain))) -}
-8c6f449f3975a206c009794d2456b84c
+7139db7427c2e6bf3d680006c4a8e633
   convertScript5 :: ([GHC.Types.Char], [Types.Rule])
   {- Unfolding: ((Main.convertScript6, GHC.Types.[] @ Types.Rule)) -}
 147fc91ccafcd004d476c3940fa07d4e
   convertScript6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "FORWARD"#) -}
-8f844a984dc5fd8d90cda0a837bb8207
+298f9c320d9787f1a75294391a14ff52
   convertScript7 :: ([GHC.Types.Char], [Types.Rule])
   {- Unfolding: ((Main.convertScript8, GHC.Types.[] @ Types.Rule)) -}
 6ed2d76465774cfb1bf5b3910cb594fb
   convertScript8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "OUTPUT"#) -}
-1cc52a6e6134622b6b138f9d4b96c582
+3a314b523a4378a51c3ab7a2096e60c2
   convertScript9 :: ([GHC.Types.Char], [Types.Rule])
   {- Unfolding: ((Main.convertScript10,
                   GHC.Types.[] @ Types.Rule)) -}
@@ -166,16 +169,16 @@ e403ac4f4aec7e4abb8a0654b79c2f4e
     [[GHC.Types.Char]]
     -> [GHC.Types.Int] -> [([GHC.Types.Char], GHC.Types.Int)]
   {- Arity: 2, Strictness: <S,1*U><L,1*U> -}
-d71a8e039581c00b505bc7a8fd8d3f17
+ed31bdeda523ee0b2f0587827d7a26d3
   convertScript_go1 ::
     [(GHC.Base.String, GHC.Types.Int)] -> [Types.Command]
   {- Arity: 1, Strictness: <S,1*U> -}
-4d64126d9c93de2286985d47676927a2
+439324daaefd01b5dbb4ef27dfdd3f1d
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: InlineRule (0, True, True)
                 Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R)) -}
-3b869a5c2ded99e903c50a8a2d6c64e8
+ea0ae02aea20c49f20aa3119ce96a44d
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -200,103 +203,20 @@ d71a8e039581c00b505bc7a8fd8d3f17
                    (<GHC.IO.Handle.Types.Handle>_R
                     ->_R Sym (GHC.Types.NTCo:IO[0] <()>_R))
                    ipv }) -}
-ea82c36c7672dbc013cec99f1bb98433
+ac9298e9e7b115f2bde8a94920441b50
   main2 ::
     GHC.IO.Handle.Types.Handle
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 2,
-     Unfolding: (\ handle :: GHC.IO.Handle.Types.Handle[OneShot]
-                   eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
-                 case GHC.IO.Handle.Text.hGetContents1
-                        handle
-                        eta of ds1 { (#,#) ipv ipv1 ->
-                 let {
-                   converted :: Data.Map.Base.Map GHC.Base.String Types.Chain
-                   = Main.convertScript ipv1
-                 } in
-                 case GHC.IO.Handle.Text.hPutStr2
-                        GHC.IO.Handle.FD.stdout
-                        (letrec {
-                           go10 :: (GHC.Base.String -> GHC.Base.String)
-                                   -> Data.Map.Base.Map [GHC.Types.Char] [Types.Rule]
-                                   -> GHC.Base.String
-                                   -> GHC.Base.String
-                             {- Arity: 3, Strictness: <C(S),1*C1(U)><S,1*U><L,U> -}
-                           = \ z' :: GHC.Base.String -> GHC.Base.String
-                               ds :: Data.Map.Base.Map [GHC.Types.Char] [Types.Rule]
-                               eta1 :: GHC.Base.String ->
-                             case ds of wild {
-                               Data.Map.Base.Bin dt kx x l r
-                               -> go10
-                                    (\ tpl :: GHC.Base.String[OneShot] ->
-                                     go10
-                                       z'
-                                       r
-                                       (GHC.Base.++
-                                          @ GHC.Types.Char
-                                          tpl
-                                          (GHC.Base.++
-                                             @ GHC.Types.Char
-                                             (GHC.Base.++
-                                                @ GHC.Types.Char
-                                                kx
-                                                (GHC.CString.unpackAppendCString#
-                                                   " = "#
-                                                   (case Main.$slookup1
-                                                           @ [Types.Rule]
-                                                           kx
-                                                           converted of wild1 {
-                                                      GHC.Base.Nothing
-                                                      -> case Data.Maybe.fromJust1
-                                                         ret_ty [GHC.Types.Char]
-                                                         of {}
-                                                      GHC.Base.Just x1
-                                                      -> Main.main_go1
-                                                           x1
-                                                           (GHC.Types.[] @ GHC.Types.Char) })))
-                                             Main.main3)))
-                                    l
-                                    eta1
-                               Data.Map.Base.Tip -> z' eta1 }
-                         } in
-                         go10
-                           (GHC.Base.id @ GHC.Base.String)
-                           converted
-                           (GHC.Types.[] @ GHC.Types.Char))
-                        GHC.Types.True
-                        ipv of ds2 { (#,#) ipv2 ipv3 ->
-                 let {
-                   pathSimp :: [(GHC.Types.Int, Types.Chain)]
-                   = ChainPathSimplification.pathSimplification converted
-                 } in
-                 case GHC.IO.Handle.Text.hPutStr2
-                        GHC.IO.Handle.FD.stdout
-                        (ChainsToSMT.convertChains pathSimp)
-                        GHC.Types.True
-                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
-                 GHC.IO.Handle.Text.hPutStr2
-                   GHC.IO.Handle.FD.stdout
-                   (Main.main_go pathSimp)
-                   GHC.Types.True
-                   ipv4 } } }) -}
-7712229fed6ec86da7ab7126489dc9cc
-  main3 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "\n"#) -}
-ed15fd697db4ffa4ab5525f07afaf57e
-  main4 ::
+  {- Arity: 2 -}
+92d13c1bc36a3f54b178e8289d338c28
+  main3 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (GHC.TopHandler.runMainIO1
                    @ ()
                    Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-182b138a7b1515989fa3609e44e76853
-  main_go :: [(GHC.Types.Int, Types.Chain)] -> [GHC.Types.Char]
-  {- Arity: 1, Strictness: <S,1*U> -}
-554c9c3ee165dfef58bd430605d05d6b
-  main_go1 :: [Types.Rule] -> [GHC.Types.Char] -> [GHC.Types.Char]
-  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
 4ecf14c73b0c14c1ea96b7a160c8c440
   subBashVariables ::
     [(GHC.Base.String, GHC.Types.Int)]

@@ -85,15 +85,15 @@ notCriteria [] = []
 --Needs testing, may not be entirely accurate?
 invertAndsOrs :: [Criteria] -> [Criteria]
 invertAndsOrs [] = []
-invertAndsOrs (And c:cs) = c ++ invertAndsOrs cs
+invertAndsOrs (And c:cs) = (Or $ invertAndsOrs c):invertAndsOrs cs
+invertAndsOrs (Or c:cs) = (And $ invertAndsOrs c):invertAndsOrs cs
 invertAndsOrs (c) =
     let
         firstAnd = (\c' -> case c' of And c' -> False
                                       _ -> True)
-        ored = takeWhile firstAnd c
-        afterOred = dropWhile firstAnd c
+        (ored, afterOred)= span firstAnd c
     in
-    [And ored] ++ invertAndsOrs afterOred
+    ored ++ invertAndsOrs afterOred
 
 protocolToNum :: Map.Map String Int
 protocolToNum = Map.fromList $ 
