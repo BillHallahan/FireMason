@@ -110,6 +110,7 @@ instance ToSMT Criteria where
     toSMTPrereq (Protocol _) = ["(declare-fun protocol () Int)",
                                 "(assert (<= 0 protocol))",
                                 "(assert (<= protocol 255))"]
+    toSMTPrereq (PropVariableCriteria i) = ["(declare-fun v" ++ show i ++ " () Bool)"]
     toSMTPrereq _ = []
 
     toSMT (Not c) ch r = printSMTFunc1 "not" (toSMT c ch r)
@@ -134,6 +135,9 @@ instance ToSMT [Target] where
 
 instance ToSMT Target where 
     toSMT _ _ _ = ""
+
+    toSMTPrereq (PropVariableTarget i _) = ["(declare-fun v" ++ show i ++ " () Bool)"]
+    toSMTPrereq _ = []
 
     toSMTPath (Go i j) ch r = "(and (reaches " ++ show i ++ " " ++ show j ++ ")\n(= (reaches-end " ++ show i ++ ") (reaches " ++ show ch ++ " " ++ show (r + 1) ++  ")) )"
     toSMTPath (ACCEPT) ch r = "(and ACCEPT (not " ++ printSMTFunc2 "reaches" ch (r + 1) ++ "))"

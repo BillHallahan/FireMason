@@ -1,0 +1,378 @@
+
+==================== FINAL INTERFACE ====================
+2016-07-16 22:31:32.846814 UTC
+
+interface main@main:ParseSpecificationLanguage 7103
+  interface hash: 1eb0f41101a302d4631eb838b8341775
+  ABI hash: 9210d9b82038543bc963cbeb71ebe3f6
+  export-list hash: b505b3467ff13f32105b07c6d563ab57
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  ParseSpecificationLanguage.parseAfterCriteria
+  ParseSpecificationLanguage.parseAfterTarget
+  ParseSpecificationLanguage.parseSpecificationCriteria
+  ParseSpecificationLanguage.parseSpecificationLanguage
+  ParseSpecificationLanguage.parseSpecificationLanguage'
+  ParseSpecificationLanguage.parseSpecificationTarget
+module dependencies: ParserHelp Types
+package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0 split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+import  -/  base-4.8.2.0:Data.Char c8f827952d4111ae2e47c0b105217cdb
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
+import  -/  base-4.8.2.0:Data.OldList d8fd80b0e14aa085ce6219cd89dad356
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
+import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
+  exports: 4408f0f73d248a4701f2f315f854c188
+  isInteger cc10131991668b1b7abaf3e084cfc260
+  splitNonconsuming 0ad3bc01b3b4404a744d4b546e1552e6
+import  -/  Types c6c075991b637d3ffff26bde91508d6b
+  exports: 6d8afa41f3ffc08d7f7272724af688cd
+  DROP 42837edea5676d03f7d03328ed69e18d
+  Port d2dac972a51c375d69494da5f4aa8159
+  Rule a945a75689e6900eb671f3ef55c2611b
+  Rule 9a2ae2be006f7dbdb2210cc8cde33a3b
+ca8ebb218873cb72d08ca69c582b53ca
+  $wparseAfterCriteria ::
+    [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
+b36b51f239514caf0ff0cf1dc795514b
+  $wparseAfterTarget ::
+    [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
+     Unfolding: (\ w :: [GHC.Base.String] ->
+                 case w of wild {
+                   []
+                   -> case ParseSpecificationLanguage.parseAfterTarget8
+                      ret_ty (# Types.Rule, [GHC.Base.String] #)
+                      of {}
+                   : ds xs
+                   -> case GHC.Base.eqString
+                             ds
+                             ParseSpecificationLanguage.parseAfterTarget7 of wild1 {
+                        GHC.Types.False
+                        -> case ds of wild2 {
+                             []
+                             -> case ParseSpecificationLanguage.parseAfterTarget6 xs
+                                ret_ty (# Types.Rule, [GHC.Base.String] #)
+                                of {}
+                             : ds1 ds2
+                             -> case ds1 of wild3 { GHC.Types.C# ds3 ->
+                                case ds3 of ds4 {
+                                  DEFAULT
+                                  -> case ParseSpecificationLanguage.parseAfterTarget5 xs wild2
+                                     ret_ty (# Types.Rule, [GHC.Base.String] #)
+                                     of {}
+                                  ','
+                                  -> case ds2 of wild4 {
+                                       [] -> (# Types.$fMonoidRule_$cmempty, xs #)
+                                       : ipv ipv1
+                                       -> case ParseSpecificationLanguage.parseAfterTarget5 xs wild2
+                                          ret_ty (# Types.Rule, [GHC.Base.String] #)
+                                          of {} } } } }
+                        GHC.Types.True
+                        -> ParseSpecificationLanguage.$wparseSpecificationTarget xs } }) -}
+447554522fe155c6dfd2274c70913cb5
+  $wparseSpecificationCriteria ::
+    [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
+     Unfolding: (\ w :: [GHC.Base.String] ->
+                 case w of wild {
+                   []
+                   -> (# Types.$fMonoidRule_$cmempty,
+                         GHC.Types.[] @ GHC.Base.String #)
+                   : ds ds1
+                   -> case GHC.Base.eqString
+                             ds
+                             ParseSpecificationLanguage.parseSpecificationCriteria6 of wild1 {
+                        GHC.Types.False -> (# Types.$fMonoidRule_$cmempty, wild #)
+                        GHC.Types.True
+                        -> case ds1 of wild2 {
+                             [] -> (# Types.$fMonoidRule_$cmempty, wild #)
+                             : ds2 ds3
+                             -> case ds2 of wild3 {
+                                  [] -> (# Types.$fMonoidRule_$cmempty, wild #)
+                                  : ds4 ds5
+                                  -> case ds4 of wild4 { GHC.Types.C# ds6 ->
+                                     case ds6 of ds7 {
+                                       DEFAULT -> (# Types.$fMonoidRule_$cmempty, wild #)
+                                       '='
+                                       -> case ds5 of wild5 {
+                                            []
+                                            -> case ds3 of wild6 {
+                                                 [] -> (# Types.$fMonoidRule_$cmempty, wild #)
+                                                 : dp xs
+                                                 -> let {
+                                                      ds8 :: (Types.Rule, [GHC.Base.String])
+                                                      = case ParseSpecificationLanguage.$wparseAfterCriteria
+                                                               xs of ww { (#,#) ww1 ww2 ->
+                                                        (ww1, ww2) }
+                                                    } in
+                                                    (# case ds8 of wild7 { (,) r xss ->
+                                                       case r of ww4 { Types.Rule ww5 ww6 ww7 ->
+                                                       Types.Rule
+                                                         (GHC.Base.++
+                                                            @ Types.Criteria
+                                                            (GHC.Types.:
+                                                               @ Types.Criteria
+                                                               (Types.Port
+                                                                  ParseSpecificationLanguage.parseSpecificationCriteria5
+                                                                  (Data.Either.Left
+                                                                     @ GHC.Types.Int
+                                                                     @ (GHC.Types.Int,
+                                                                        GHC.Types.Int)
+                                                                     (case dp of wild8 {
+                                                                        []
+                                                                        -> ParseSpecificationLanguage.parseSpecificationCriteria4
+                                                                        : ipv ipv1
+                                                                        -> case (ParserHelp.isInteger_go
+                                                                                   wild8)
+                                                                                  `cast`
+                                                                                (Data.Monoid.NTCo:All[0]) of wild9 {
+                                                                             GHC.Types.False
+                                                                             -> ParseSpecificationLanguage.parseSpecificationCriteria4
+                                                                             GHC.Types.True
+                                                                             -> case Text.Read.readEither6
+                                                                                       @ GHC.Types.Int
+                                                                                       (Text.ParserCombinators.ReadP.run
+                                                                                          @ GHC.Types.Int
+                                                                                          ParseSpecificationLanguage.parseSpecificationCriteria3
+                                                                                          wild8) of wild10 {
+                                                                                  []
+                                                                                  -> ParseSpecificationLanguage.parseSpecificationCriteria2
+                                                                                  : x ds9
+                                                                                  -> case ds9 of wild11 {
+                                                                                       [] -> x
+                                                                                       : ipv2 ipv3
+                                                                                       -> ParseSpecificationLanguage.parseSpecificationCriteria1 } } } })))
+                                                               (GHC.Types.[] @ Types.Criteria))
+                                                            ww5)
+                                                         (GHC.Base.++
+                                                            @ Types.Target
+                                                            (GHC.Types.[] @ Types.Target)
+                                                            ww6)
+                                                         (case ww7 of wild8 { GHC.Types.I# y1 ->
+                                                          case GHC.Prim.tagToEnum#
+                                                                 @ GHC.Types.Bool
+                                                                 (GHC.Prim.<=# (-1) y1) of wild9 {
+                                                            GHC.Types.False
+                                                            -> ParseSpecificationLanguage.parseAfterTarget1
+                                                            GHC.Types.True -> wild8 } }) } },
+                                                       case ds8 of wild7 { (,) r xss -> xss } #) }
+                                            : ipv ipv1
+                                            -> (# Types.$fMonoidRule_$cmempty,
+                                                  wild #) } } } } } } }) -}
+dff0e263b8b9da65cb227bf514587645
+  $wparseSpecificationTarget ::
+    [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
+     Unfolding: (\ w :: [GHC.Base.String] ->
+                 case w of wild {
+                   []
+                   -> (# Types.$fMonoidRule_$cmempty,
+                         GHC.Types.[] @ GHC.Base.String #)
+                   : ds xs
+                   -> case GHC.Base.eqString
+                             ds
+                             ParseSpecificationLanguage.parseAfterTarget4 of wild1 {
+                        GHC.Types.False
+                        -> case ParseSpecificationLanguage.parseAfterTarget3
+                           ret_ty (# Types.Rule, [GHC.Base.String] #)
+                           of {}
+                        GHC.Types.True
+                        -> let {
+                             ds1 :: (Types.Rule, [GHC.Base.String])
+                             = case ParseSpecificationLanguage.$wparseAfterCriteria
+                                      xs of ww { (#,#) ww1 ww2 ->
+                               (ww1, ww2) }
+                           } in
+                           (# case ds1 of wild2 { (,) r xss ->
+                              case r of ww4 { Types.Rule ww5 ww6 ww7 ->
+                              Types.Rule
+                                (GHC.Base.++ @ Types.Criteria (GHC.Types.[] @ Types.Criteria) ww5)
+                                (GHC.Base.++
+                                   @ Types.Target
+                                   ParseSpecificationLanguage.parseAfterTarget2
+                                   ww6)
+                                (case ww7 of wild3 { GHC.Types.I# y1 ->
+                                 case GHC.Prim.tagToEnum#
+                                        @ GHC.Types.Bool
+                                        (GHC.Prim.<=# (-1) y1) of wild4 {
+                                   GHC.Types.False -> ParseSpecificationLanguage.parseAfterTarget1
+                                   GHC.Types.True -> wild3 } }) } },
+                              case ds1 of wild2 { (,) r xss -> xss } #) } }) -}
+2e32fc8b37c8c828798ff1ee47bf52fd
+  parseAfterCriteria ::
+    [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
+  {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ w :: [GHC.Base.String] ->
+                 case ParseSpecificationLanguage.$wparseAfterCriteria
+                        w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+4c8b8328d42274f9aa11fb13f9760efe
+  parseAfterTarget ::
+    [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
+  {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ w :: [GHC.Base.String] ->
+                 case ParseSpecificationLanguage.$wparseAfterTarget
+                        w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+52ff8d9efa6f53feb6e4a196faae77a4
+  parseAfterTarget1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# (-1)) -}
+7028239fcf2d50006c79e6aaa8ce439b
+  parseAfterTarget2 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   Types.DROP
+                   (GHC.Types.[] @ Types.Target)) -}
+5e8d951aa5de82aebd0340dea2b01761
+  parseAfterTarget3 :: (Types.Rule, [GHC.Base.String])
+  {- Strictness: b -}
+452d4f04b22d34ea3a826a1be708b035
+  parseAfterTarget4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "DROP"#) -}
+b03fd55cf98f2b79bde0ff562c8442bf
+  parseAfterTarget5 ::
+    [GHC.Base.String]
+    -> [GHC.Types.Char] -> (Types.Rule, [GHC.Base.String])
+  {- Arity: 2, Strictness: <L,U><L,U>b -}
+fff46fe16fad66e0cf260e8eef4f20f5
+  parseAfterTarget6 ::
+    [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
+  {- Arity: 1, Strictness: <L,U>b -}
+068d87a911b2b9a07768796e7112f5f7
+  parseAfterTarget7 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "AND"#) -}
+9e77481a9ef5159c36615ac65d597999
+  parseAfterTarget8 :: (Types.Rule, [GHC.Base.String])
+  {- Strictness: b -}
+5d3cc6830f4baa72f45123aee4559051
+  parseSpecificationCriteria ::
+    [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
+  {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ w :: [GHC.Base.String] ->
+                 case ParseSpecificationLanguage.$wparseSpecificationCriteria
+                        w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+4dd8a66fd9fa7fb781c52e64a8a3f75a
+  parseSpecificationCriteria1 :: GHC.Types.Int
+  {- Strictness: b -}
+2fda2c63ef7fac3780a64d768c0b5320
+  parseSpecificationCriteria2 :: GHC.Types.Int
+  {- Strictness: b -}
+c1bbd613606759fb7816bd7d94108aae
+  parseSpecificationCriteria3 ::
+    Text.ParserCombinators.ReadP.P GHC.Types.Int
+  {- Unfolding: ((GHC.Read.$fReadInt3
+                    GHC.Read.$fReadInt_$sconvertInt
+                    Text.ParserCombinators.ReadPrec.minPrec)
+                   `cast`
+                 (Text.ParserCombinators.ReadP.NTCo:ReadP[0] <GHC.Types.Int>_R)
+                   @ GHC.Types.Int
+                   (Text.Read.readEither5 @ GHC.Types.Int)) -}
+c4b319e19e978ae225238cac16920cb9
+  parseSpecificationCriteria4 :: GHC.Types.Int
+  {- Strictness: b -}
+f9549b1fa4d2f1b656ebbc33abfdf67f
+  parseSpecificationCriteria5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "destination"#) -}
+9a83afb25afb4f0dc9457141fb2bfbd7
+  parseSpecificationCriteria6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "destination_port"#) -}
+8fcf7d323bf85a98e3b26759185ed76b
+  parseSpecificationLanguage :: GHC.Base.String -> [Types.Rule]
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ s :: GHC.Base.String ->
+                 case Data.OldList.wordsFB
+                        @ [[GHC.Types.Char]]
+                        ParseSpecificationLanguage.parseSpecificationLanguage1
+                        (GHC.Types.[] @ [GHC.Types.Char])
+                        s of wild {
+                   [] -> GHC.Types.[] @ Types.Rule
+                   : ipv ipv1
+                   -> GHC.Types.:
+                        @ Types.Rule
+                        (case ParseSpecificationLanguage.$wparseSpecificationCriteria
+                                wild of ww { (#,#) ww1 ww2 ->
+                         ww1 })
+                        (GHC.Types.[] @ Types.Rule) }) -}
+360bbe0216c41e756b1828ab43917aab
+  parseSpecificationLanguage' :: [GHC.Base.String] -> [Types.Rule]
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: [GHC.Base.String] ->
+                 case ds of wild {
+                   [] -> GHC.Types.[] @ Types.Rule
+                   : ipv ipv1
+                   -> GHC.Types.:
+                        @ Types.Rule
+                        (case ParseSpecificationLanguage.parseSpecificationCriteria
+                                wild of wild1 { (,) r xs ->
+                         r })
+                        (GHC.Types.[] @ Types.Rule) }) -}
+6a49f5407aa32c33c20249f32bc83e73
+  parseSpecificationLanguage1 ::
+    [GHC.Types.Char] -> [[GHC.Types.Char]] -> [[GHC.Types.Char]]
+  {- Arity: 2,
+     Unfolding: (\ x :: [GHC.Types.Char]
+                   ys :: [[GHC.Types.Char]][OneShot] ->
+                 letrec {
+                   go :: [[GHC.Types.Char]] -> [[GHC.Types.Char]]
+                     {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ ds :: [[GHC.Types.Char]] ->
+                     case ds of wild {
+                       [] -> ys
+                       : y ys1
+                       -> case GHC.Classes.$fEq[]_$s$c==1
+                                 (GHC.Types.[] @ GHC.Types.Char)
+                                 y of wild1 {
+                            GHC.Types.False -> GHC.Types.: @ [GHC.Types.Char] y (go ys1)
+                            GHC.Types.True -> go ys1 } }
+                 } in
+                 go
+                   (ParserHelp.splitNonconsuming
+                      ParseSpecificationLanguage.parseSpecificationLanguage2
+                      x)) -}
+51238ea5f300cc17fad06b81d2e001c8
+  parseSpecificationLanguage2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "="#) -}
+4debd1a6d3bd00287669b3d0b7e49911
+  parseSpecificationTarget ::
+    [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
+  {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ w :: [GHC.Base.String] ->
+                 case ParseSpecificationLanguage.$wparseSpecificationTarget
+                        w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

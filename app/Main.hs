@@ -15,6 +15,7 @@ import ConvertIptables
 import ConvertCommandsToChains
 import ChainsToSMT
 import EliminateAndsOrs
+import ParseSpecificationLanguage
 
 
 
@@ -41,7 +42,10 @@ main = do
         
         let testNice = map (\x -> show x) pathSimp
         let folded = foldr (\x acc-> x ++ "\n" ++ acc) "" testNice
-        putStrLn folded)
+        putStrLn folded
+        let specTest = parseSpecificationLanguage "destination_port = 78 AND destination_port = 79    => DROP"
+        putStrLn $ show specTest
+        )
 
         --putStrLn $ foldl (++) "" (map (flip (convertChain) 0) v))
         

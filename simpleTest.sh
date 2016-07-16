@@ -23,6 +23,6 @@ $IPTABLES -F third
 $IPTABLES -A third -p 33 -j DROP
 
 
-$IPTABLES -A OUTPUT -p 1 -j first
+$IPTABLES -A OUTPUT -m multiport -p tcp --dport 5,6,8 -j first
 $IPTABLES -A OUTPUT -p 2 -j second
 $IPTABLES -A OUTPUT -p 3 -j third

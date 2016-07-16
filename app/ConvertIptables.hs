@@ -34,7 +34,7 @@ convertRule (x, i) fs =
         of (Just ect, xs, Just f) -> (mappend) <$> (map eitherToRule ect) <*> convertRule(xs, i) (f:fs)
            (Just ect, xs, Nothing) -> (mappend) <$> (map eitherToRule ect) <*> convertRule(xs, i) (fs)
            (Nothing, xs, Just f) -> convertRule(xs, i) (f:fs)
-           _ -> error "Not parsable."
+           _ -> error ("Not parsable. " ++ show x)
 
 
 convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either Criteria Target], [String], Maybe ModuleFunc)

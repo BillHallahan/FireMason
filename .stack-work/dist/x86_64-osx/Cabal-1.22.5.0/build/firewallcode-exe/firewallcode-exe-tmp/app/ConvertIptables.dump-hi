@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-15 22:57:44.28387 UTC
+2016-07-16 23:13:48.40992 UTC
 
 interface main@main:ConvertIptables 7103
-  interface hash: fb61295eb89115110b6bd7ff66724f34
-  ABI hash: a17b70d2a241369605671f059047c6df
+  interface hash: 98ac7a04b06a2dab8efb72883735d4ba
+  ABI hash: 1bb3f8340c324c07db25be35c1e11bb8
   export-list hash: 679e593bdc72bfd30af4f673e47de6a4
   orphan hash: a5b584c51f165a04d7b4683f650178e4
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -45,11 +45,11 @@ import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  ConvertIptablesPorts 449144cbb0d96d1bd331b40b89b6e7ad
-  exports: 7e11eee6fed4134f059c4a51bb10d402
+import  -/  ConvertIptablesPorts e645d7af82a3107d082f905703b488a6
+  exports: 85292e38103a9eef1309495f33162327
   convertMultiportRule aaf3468b487fcbea261e524bac6427a6
-  convertTCPRule 4e1f821852b1d908ab2560c7d8ecf74c
-  convertUDPRule c186cb599c8d403dd2d5222e4b225b54
+  convertTCPRule 57412f7849a81db8367773bc2e1f3c56
+  convertUDPRule f6385ad65ae0cd940ae59fe56a05bbe0
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
@@ -294,7 +294,7 @@ eb79efacb0d64738e5d9286436f765b8
 edb5649af944fd450b41554414c31acf
   notCriteria :: [Types.Criteria] -> [Types.Criteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-0d6967af6716130041fc2778b7e40676
+e539f9588c8dc9c1f7df959db93a3c4a
   protocolConvertFuncs ::
     Data.Map.Base.Map GHC.Types.Int Types.ModuleFunc
   {- Unfolding: (ConvertIptables.$sfromList2
@@ -303,26 +303,26 @@ edb5649af944fd450b41554414c31acf
                             [Data.Either.Either Types.Criteria Types.Target],
                           [GHC.Base.String]))
                    ConvertIptables.protocolConvertFuncs1) -}
-8519f2b1a95f0813be349eb231ac6950
+ac62f3629f6f53f4d3734b82f2d77a8a
   protocolConvertFuncs1 :: [(GHC.Types.Int, Types.ModuleFunc)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Types.Int, Types.ModuleFunc)
                    ConvertIptables.protocolConvertFuncs5
                    ConvertIptables.protocolConvertFuncs2) -}
-daf34f34c381244760d073dce1623ea7
+0bfcfb6344d0037fb3107bbbaef22f07
   protocolConvertFuncs2 :: [(GHC.Types.Int, Types.ModuleFunc)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Types.Int, Types.ModuleFunc)
                    ConvertIptables.protocolConvertFuncs3
                    (GHC.Types.[] @ (GHC.Types.Int, Types.ModuleFunc))) -}
-db456ad81a8c605cb34b8bffe368a24f
+29010518336f07cde0546f9b20f955ed
   protocolConvertFuncs3 :: (GHC.Types.Int, Types.ModuleFunc)
   {- Unfolding: ((ConvertIptables.protocolConvertFuncs4,
                   ConvertIptablesPorts.convertUDPRule)) -}
 53668904f01a24ba4c37c5233edb5dbb
   protocolConvertFuncs4 :: GHC.Types.Int
   {- HasNoCafRefs, Unfolding: (GHC.Types.I# 17) -}
-8131b12dfc3997116da2bb734497fd11
+fa3fc9f35be18c3d8aca2a9f8f736105
   protocolConvertFuncs5 :: (GHC.Types.Int, Types.ModuleFunc)
   {- Unfolding: ((ConvertIptables.protocolConvertFuncs6,
                   ConvertIptablesPorts.convertTCPRule)) -}

@@ -9,7 +9,6 @@
    (ite (and (matches-criteria r c) (reaches r c)) true false))
 (declare-fun ACCEPT () Bool)
 (declare-fun DROP () Bool)
-(declare-fun v8 () Bool)
 (assert (=> ACCEPT (not DROP)))
 (assert (=> DROP (not ACCEPT)))
 (declare-fun protocol () Int)
@@ -21,6 +20,7 @@
 (declare-fun destination_port () Int)
 (assert (<= 0 destination_port))
 (assert (<= destination_port 65535))
+(declare-fun v8 () Bool)
 
 (assert (=> (reaches 0 0) (and (reaches 1 0)
 (= (reaches-end 1) (reaches 0 1)) )))

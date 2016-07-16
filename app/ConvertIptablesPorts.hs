@@ -8,14 +8,20 @@ import Types
 --Currently, there may be a glitch if convertTCPRule or convertUDPRule has priority over convertMultiportRule
 
 convertTCPRule :: ModuleFunc
-convertTCPRule ("--sport":sps:xs) = (Just [Left $ portCriteriaFromRangeString sps "source"], xs)
-convertTCPRule ("--dport":dps:xs) = (Just [Left $ portCriteriaFromRangeString dps "destination"], xs)
+convertTCPRule ("--sport":sps:xs) = convertPortRuleNoCommas "source" sps xs ("--sport":sps:xs)
+convertTCPRule ("--dport":dps:xs) = convertPortRuleNoCommas "destination" dps xs ("--dport":dps:xs)
 convertTCPRule xs = (Nothing, xs)
 
 convertUDPRule :: ModuleFunc
-convertUDPRule ("--sport":sps:xs) = (Just [Left $ portCriteriaFromRangeString sps "source"], xs)
-convertUDPRule ("--dport":dps:xs) = (Just [Left $ portCriteriaFromRangeString dps "destination"], xs)
+convertUDPRule ("--sport":sps:xs) = convertPortRuleNoCommas "source" sps xs ("--sport":sps:xs)
+convertUDPRule ("--dport":dps:xs) = convertPortRuleNoCommas "destination" dps xs ("--dport":dps:xs)
 convertUDPRule xs = (Nothing, xs)
+
+--this will convert a port range, but will return nothing if it is a list of ports
+--this is to prevent conflicts between the rules for tcp and udp, and the rule 
+--for -m multiport
+convertPortRuleNoCommas :: String -> String -> [String] -> [String] -> (Maybe [Either Criteria Target], [String])
+convertPortRuleNoCommas name p xs xss = if filter (','==) p == "" then (Just [Left $ portCriteriaFromRangeString p name], xs) else (Nothing, xss)
 
 convertMultiportRule :: ModuleFunc
 convertMultiportRule ("--sport":sps:xs) = (Just $ [Left $ Or(portCriteriaFromNumsRangesString sps "source")], xs)
