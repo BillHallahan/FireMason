@@ -16,7 +16,7 @@ $IPTABLES -A first -p 11 -j DROP
 
 $IPTABLES -N second
 $IPTABLES -F second
-$IPTABLES -A second -p 22 -j DROP
+$IPTABLES -A second -p 22 -m multiport --dport 2 -j DROP
 
 $IPTABLES -N third
 $IPTABLES -F third

@@ -25,19 +25,14 @@ data Target = Jump String
               | PropVariableTarget Int Bool
               | ST String deriving (Eq, Show)
 
-data Command = Append String Rule
-               | Insert String Int Rule
-               | New String
-               | Flush (Maybe String) deriving (Eq, Show)
-
 data Rule = Rule { criteria :: [Criteria]
                    ,targets :: [Target]
                    ,label :: Label
                  } deriving (Eq, Show)
 
-eitherToRule :: Either Criteria Target -> Rule
-eitherToRule (Left c) = Rule [c] [] (minBound :: Int)
-eitherToRule (Right t) = Rule [] [t] (minBound :: Int)
+eitherToRule :: Either Criteria Target -> Int -> Rule
+eitherToRule (Left c) i = Rule [c] [] i
+eitherToRule (Right t) i = Rule [] [t] i
 
 
 instance Monoid Rule where

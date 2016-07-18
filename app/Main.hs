@@ -17,6 +17,7 @@ import ChainsToSMT
 import EliminateAndsOrs
 import ParseSpecificationLanguage
 
+import IptablesTypes
 
 
 import ChainPathSimplification--temp
@@ -26,6 +27,8 @@ main = do
     let fileName = head args
     withFile fileName ReadMode (\handle -> do
         contents <- hGetContents handle
+
+
         let converted' = Map.toList . convertScript $ contents
         let converted = Map.fromList $ eliminateAndsOrsFromStringChains converted' 0 
         let k = Map.keys converted
@@ -45,10 +48,11 @@ main = do
         putStrLn folded
         let specTest = parseSpecificationLanguage "destination_port = 78 AND destination_port = 79    => DROP"
         putStrLn $ show specTest
+        --putStrLn $ show converted2
         )
 
         --putStrLn $ foldl (++) "" (map (flip (convertChain) 0) v))
-        
+
 convertScript :: String -> Map.Map String Chain
 convertScript coms =
     let
@@ -58,9 +62,9 @@ convertScript coms =
         splitWords = map (\(s, i) -> (words s, i)) noVariables
     in
         --The map list is iptables specific... should be adjusted at some point
-        convertToChains (concat $ map convertLine splitWords) (Map.fromList [("INPUT", []),
-                                                                             ("OUTPUT", []),
-                                                                             ("FORWARD", [])])
+        convertToChains (map ((flip convertLine) []) splitWords) (Map.fromList [("INPUT", []),
+                                                                                  ("OUTPUT", []),
+                                                                                  ("FORWARD", [])])
 
 --this only partially finds and substitutes for bash constants, but it's sufficient for
 --our current example scripts

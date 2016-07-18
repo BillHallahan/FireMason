@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-15 16:58:33.97495 UTC
+2016-07-18 01:21:04.032426 UTC
 
 interface main@main:ConvertCommandsToChains 7103
-  interface hash: 8d542b02bb66a893b91dd320afba842a
-  ABI hash: 990dc6a24055ed1209eba77c3cc1ceba
+  interface hash: e375af0038f40b6490c485bdd2f2fa21
+  ABI hash: 266e27dd5f09b5f4fb906a8bebd89ed8
   export-list hash: 08991498278e0090c7184f08ffabe9c5
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -15,7 +15,7 @@ exports:
   ConvertCommandsToChains.convertToChains
   ConvertCommandsToChains.removeAnds
   ConvertCommandsToChains.removeAndsCriteria
-module dependencies: Types
+module dependencies: IptablesTypes Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
@@ -33,18 +33,21 @@ import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
-import  -/  Types c6c075991b637d3ffff26bde91508d6b
-  exports: 6d8afa41f3ffc08d7f7272724af688cd
-  And ac765cd8e9966b0169569c35a321d37b
-  Append 2de9be3e5035c7069757d90cd279a1a9
-  Chain 20cffba301ebdcc8b4608e6cd2fe6f8f
-  Command e41b31ca79df0ab63e8bb1e05327e7f8
-  Criteria eaa17001dee044b8177381f37549db26
-  Flush 5a3583d65d30edd588a521bbafe21924
-  Insert 8e09ee69d3b1a280a958afebc63b58ee
-  New b1eb8d2aed01ad64c9f7573eb02cf5ca
-  Rule a945a75689e6900eb671f3ef55c2611b
-  Rule 9a2ae2be006f7dbdb2210cc8cde33a3b
+import  -/  IptablesTypes f16d64653d63b5cd2581393bea511a90
+  exports: 2abc8708d65a1f1004f1c63350f29dad
+  Append 741853c63cb0e92ef0b0777e9fe96d9e
+  Flush 71c439064dbb9b059ca7c7e58e09a745
+  Insert be7385e63bc1d393a4921ba222091991
+  Line c1f67ede0d91749a1fa8101a9edbf4b0
+  Line 8da415a69224cbb32b1f44717d70814f
+  New 59940bbd31b838b23a94ff3e0e525842
+import  -/  Types 2c9f2c6fc140cb90725c2f1e96210a95
+  exports: 98cf0ae77f95faeb276b282dfb3cdefd
+  And 69fba4a95faaa8f829c278b146400a58
+  Chain 0a970728856b5d9154b0315f841145e0
+  Criteria 301d972945a67a79ef58d0f57083ac37
+  Rule 383b44bce8aade0d9cd1e1c5c0d45fb5
+  Rule ac330ce08d4cccb73260095eb52eb1d7
 f2950d35bb0ecfb3061dd7badc791f7e
   $sadjust_$sgo10 ::
     (GHC.Base.String -> a1 -> GHC.Base.Maybe a1)
@@ -69,20 +72,20 @@ b322d133bba7f7b6fc41a33c6212acb2
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String a -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-d05786b015cc4bc46e590b82889ee2a2
+9ce5e2758b0557b958d21a11cc68d231
   convertToChains ::
-    [Types.Command]
+    [IptablesTypes.Line]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
   {- Arity: 2, Strictness: <S,1*U><S,U> -}
-08840a274642972e25b5229ea2827690
+9cb7a85a7f5f1d8875df798e47304457
   removeAnds :: Types.Rule -> Types.Rule
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(1*U,U,U)>m,
      Unfolding: InlineRule (1, True, False)
                 (\ ds :: Types.Rule ->
                  case ds of wild { Types.Rule c t i ->
                  Types.Rule (ConvertCommandsToChains.removeAndsCriteria c) t i }) -}
-5d943d96274ba241d6b5e901abc71d33
+99bdc6c32fc3fdc69a526305cea850c8
   removeAndsCriteria :: [Types.Criteria] -> [Types.Criteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 vectorised variables:

@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-15 16:58:34.090014 UTC
+2016-07-17 03:38:58.793396 UTC
 
 interface main@main:ChainPathSimplification 7103
-  interface hash: a89667f41d36a7a3b8205f85c16ebac1
-  ABI hash: d00f349b588a3c2744cb325c2e958770
+  interface hash: 9890cb5a8976cd9018446063a90905d0
+  ABI hash: cdd505f88943bc9a0157a1e87b2eb27f
   export-list hash: 756c25e0f2d36dffd08a6f679f6a8177
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -37,36 +37,36 @@ import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
-import  -/  Types c6c075991b637d3ffff26bde91508d6b
-  exports: 6d8afa41f3ffc08d7f7272724af688cd
-  Chain 20cffba301ebdcc8b4608e6cd2fe6f8f
+import  -/  Types 2c9f2c6fc140cb90725c2f1e96210a95
+  exports: 98cf0ae77f95faeb276b282dfb3cdefd
+  Chain 0a970728856b5d9154b0315f841145e0
   Go 219ce01605a49acddda2ae33fa3945e3
   Jump e4c673930b1e9f730e80c2df019b4354
-  Rule a945a75689e6900eb671f3ef55c2611b
+  Rule 383b44bce8aade0d9cd1e1c5c0d45fb5
   Target 7ae42b578730cec1847a60a81b4bf4b8
-  criteria c7269a57ba8d0bdaf73b043edb7c7add
-  label 8efcd11766ee0e65aca74440a6950cb3
-  targets ec12f2905fc66baf8baa3f44c9863dcb
+  criteria 5b8533cdc53545fcea0706ca7ae2ba91
+  label 29e70a94ef11ac439309b20c2d514613
+  targets dabc9615e422ce8e03e5c82c6f655a6d
 236fd3d50c4cef3f0f819989ba70c756
   $slookup1 ::
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-ae497e769716a23edd532da84333aef8
+365631dd9d4e6d92bb179d0cb27a976b
   $wpathSimplificationChain ::
     Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
     -> (# Types.Chain, [(GHC.Types.Int, Types.Chain)] #)
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>, Inline: [0] -}
-88a681e7c63e68d292688844332298c4
+a11ac6e16763e02b06ab0abfe009fa89
   $wpathSimplificationTargets ::
     [Types.Target]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
     -> (# [Types.Target], [(GHC.Types.Int, Types.Chain)] #)
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>, Inline: [0] -}
-182e0c2d9bad9852e21668afe152b371
+cd4e9f53c86a365f75d411b352e9acf1
   pathSimplification ::
     Data.Map.Base.Map GHC.Base.String Types.Chain
     -> [(GHC.Types.Int, Types.Chain)]
@@ -83,7 +83,7 @@ ae497e769716a23edd532da84333aef8
                       ChainPathSimplification.pathSimplification2)
                    m
                    ChainPathSimplification.pathSimplification1) -}
-5769b2231fbc83291d817c7f99bac6ec
+337391557fa9da71aa7fc92e6db30591
   pathSimplification' ::
     [Types.Chain]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -123,7 +123,7 @@ f7ae1e6e854feae1e5cc5b2b430be7a8
 7ec5d5a9bcab9ca6bf6ba7f4a9c3f20e
   pathSimplification7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "INPUT"#) -}
-a8fc9f36fd719bc067d3fc2f732a89fc
+def700238dbd2856701b0de972e8a2b7
   pathSimplificationChain ::
     Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -142,7 +142,7 @@ a8fc9f36fd719bc067d3fc2f732a89fc
                         w1
                         w2 of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-cd522103e6d4e25293a6af26dc21e0f1
+753936be1fb6cfeedbe2cb0948ffdd20
   pathSimplificationTarget ::
     Types.Target
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -176,7 +176,7 @@ cd522103e6d4e25293a6af26dc21e0f1
                          w1
                          (case w2 of wild1 { GHC.Types.I# x ->
                           GHC.Types.I# (GHC.Prim.+# x 1) })) }) -}
-f648dae4dd115c059c0319c8fa40f3cf
+57d835796663a4c40d7d03910cb9d4c5
   pathSimplificationTargets ::
     [Types.Target]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain

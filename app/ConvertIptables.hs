@@ -1,41 +1,49 @@
 module ConvertIptables where
 
 
---Some of this could maybe be considered non iptables specific (applying not to criteria)
---Also, could we add a sperate layer to filter out ors?  So when converting from the firewall, you can
---indiscriminently use and/or, and then our general, second layer would fix it all...
-
 import Data.Either
 import Data.List
 import Data.Maybe
 
 import qualified Data.Map as Map
 
+import IptablesTypes
 import ConvertIptablesPorts
 import ParserHelp
 import Types
 
+convertLine :: ([String], Int) -> [ModuleFunc] -> Line
+convertLine (s, i) fs
+    | [] <- s = Line "filter" None mempty
+    | "iptables":xs <- s = convertLine (xs, i) fs
+    | "-t":t:xs <- s = 
+        let
+            l = convertLine (xs, i) fs
+        in
+        Line t (command l) (rule l)
+    | isJust c = let 
+                    l = convertLine (xs', i) fs
+                 in
+                 Line (table l) (fromJust c) (rule l)
+    | isJust ct = let
+                    ect = fromJust ct
+                    l = convertLine (xs'', i) newFs
+                  in Line (table l) (command l) (((mappend) <$> (map (flip eitherToRule $ i) ect) <*> [rule l]) !! 0)
+    | isNothing ct = let
+                        l = convertLine (xs'', i) newFs
+                  in Line (table l) (command l) (rule l)
+    where (c, xs') = convertCommand (s, i)
+          (ct, xs'', f) = convertCriteriaOrTarget s fs
+          newFs = if isJust f then (fromJust f):fs else fs
 
-convertLine :: ([String], Int) -> [Command]
-convertLine ("iptables":xs, i) = convertLine (xs, i)
-convertLine ("-A":chain:xs, i) = map (Append chain) $ convertRule (xs, i) []
-convertLine ("-F":chain:_, i) = [Flush $ Just chain]
-convertLine ("-F":_, i) = [Flush Nothing]
-convertLine ("-I":chain:num:xs, i) | isInteger num = map (Insert chain (read num :: Int)) $ convertRule (xs, i) []
-                                   | otherwise = map (Insert chain 0) $ convertRule (num:xs, i) []
-convertLine ("-N":chain:_, i) = [New chain]
-convertLine (x:xs, i) = convertLine (xs, i)
-convertLine(_, i) = [Append "S" $ Rule [] [] i]
-
-convertRule :: ([String], Int) -> [ModuleFunc] -> [Rule]
-convertRule ([], i) _ = [Rule [] [] i]
-convertRule (x, i) fs =
-    case convertCriteriaOrTarget x fs
-        of (Just ect, xs, Just f) -> (mappend) <$> (map eitherToRule ect) <*> convertRule(xs, i) (f:fs)
-           (Just ect, xs, Nothing) -> (mappend) <$> (map eitherToRule ect) <*> convertRule(xs, i) (fs)
-           (Nothing, xs, Just f) -> convertRule(xs, i) (f:fs)
-           _ -> error ("Not parsable. " ++ show x)
-
+convertCommand :: ([String], Int) -> (Maybe Command, [String])
+convertCommand ("-A":chain:xs, i) = (Just $ Append chain, xs)
+convertCommand ("-F":chain:xs, i) = (Just . Flush $ Just chain , xs)
+convertCommand ("-F":xs, i) = (Just . Flush $ Nothing , xs)
+convertCommand ("-I":chain:num:xs, i) | isInteger num = (Just $ Insert chain (read num :: Int), xs)
+                                   | otherwise = (Just $ Insert chain 0, num:xs)
+convertCommand ("-N":chain:xs, i) = (Just . New $ chain , xs)
+convertCommand (xs, _) = (Nothing, xs)
 
 convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either Criteria Target], [String], Maybe ModuleFunc)
 convertCriteriaOrTarget ("-j":j:xs) _ = case j of "ACCEPT" -> (Just [Right ACCEPT],xs, Nothing)

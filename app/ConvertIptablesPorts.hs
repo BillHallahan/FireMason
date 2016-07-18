@@ -29,9 +29,6 @@ convertMultiportRule ("--dport":dps:xs) = (Just $ [Left $ Or (portCriteriaFromNu
 convertMultiportRule ("--port":ps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString ps "source" ++ portCriteriaFromNumsRangesString ps "destination")], xs)
 convertMultiportRule xs = (Nothing, xs)
 
-
-
-
 portCriteriaFromRangeString :: String -> String -> Criteria
 portCriteriaFromRangeString ps portName = Port portName $ convertNumRange . splitNonconsuming ":" $ ps
 
@@ -44,7 +41,6 @@ portCriteriaFromNumsRangesString ps portName =
 
 
 --These are all more generally, eventually need to be in a seperate module
-
 convertNumsRangesString :: String -> [Either Int (Int, Int)]
 convertNumsRangesString nrs =
     let

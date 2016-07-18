@@ -2,26 +2,28 @@ module ConvertCommandsToChains where
 
 import qualified Data.Map as Map
 
+import IptablesTypes
 import Types
 
 --I'm not sure how iptables specific this is, I seperated it out because I thought it might be useful for other firewalls.
 
-convertToChains :: [Command] -> Map.Map String Chain -> Map.Map String Chain
-convertToChains [] m = m
-convertToChains (New s : cs) m = convertToChains cs (Map.insert s [] m)
-convertToChains (Flush (Just s) : cs) m =
-    if Map.member s m
-        then convertToChains cs (Map.insert s [] m)
-        else error "HERE!"
-convertToChains (Append s r : cs) m = convertToChains cs $ Map.adjust (\v -> v ++ [removeAnds r]) s m 
-convertToChains (Insert s i r : cs) m =
-    let
-        c = case Map.lookup s m of Just c' -> c'
-                                   Nothing -> error "HERE"
-        (xs, xs') = splitAt i c
-    in
-    convertToChains cs $ Map.insert s (xs ++ removeAnds r:xs') m
-convertToChains _ _ = error "HERE"
+convertToChains :: [Line] -> Map.Map String Chain -> Map.Map String Chain
+convertToChains l m
+    | [] <- l = m
+    | New s <- c = convertToChains ls (Map.insert s [] m)
+    | Flush (Just s) <- c = if Map.member s m
+                                then convertToChains ls (Map.insert s [] m)
+                                else error "HERE!"
+    | Append s <- c = convertToChains ls $  Map.adjust (\v -> v ++ [removeAnds r]) s m
+    | Insert s i <- c = 
+        let
+            ch = case Map.lookup s m of Just c' -> c'
+                                        Nothing -> error "HERE"
+            (xs, xs') = splitAt i ch
+        in
+        convertToChains ls $ Map.insert s (xs ++ removeAnds r:xs') m
+    | otherwise = error "HERE"
+    where (Line t c r):ls = l
 
 
 removeAnds :: Rule -> Rule

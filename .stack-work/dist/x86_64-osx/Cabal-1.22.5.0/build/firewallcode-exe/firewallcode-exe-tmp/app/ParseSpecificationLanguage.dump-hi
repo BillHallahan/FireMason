@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-16 22:31:32.846814 UTC
+2016-07-17 03:38:58.64088 UTC
 
 interface main@main:ParseSpecificationLanguage 7103
-  interface hash: 1eb0f41101a302d4631eb838b8341775
-  ABI hash: 9210d9b82038543bc963cbeb71ebe3f6
+  interface hash: 23ba5e0f22cdf922717479e7bf79718e
+  ABI hash: e1f486d254264a57be266e76c7da99e3
   export-list hash: b505b3467ff13f32105b07c6d563ab57
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -44,17 +44,17 @@ import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
   splitNonconsuming 0ad3bc01b3b4404a744d4b546e1552e6
-import  -/  Types c6c075991b637d3ffff26bde91508d6b
-  exports: 6d8afa41f3ffc08d7f7272724af688cd
+import  -/  Types 2c9f2c6fc140cb90725c2f1e96210a95
+  exports: 98cf0ae77f95faeb276b282dfb3cdefd
   DROP 42837edea5676d03f7d03328ed69e18d
-  Port d2dac972a51c375d69494da5f4aa8159
-  Rule a945a75689e6900eb671f3ef55c2611b
-  Rule 9a2ae2be006f7dbdb2210cc8cde33a3b
-ca8ebb218873cb72d08ca69c582b53ca
+  Port 8ac4169bf898472df0a5d1d9380502e0
+  Rule 383b44bce8aade0d9cd1e1c5c0d45fb5
+  Rule ac330ce08d4cccb73260095eb52eb1d7
+c650f79ead7417cb3d965aeed2f0601f
   $wparseAfterCriteria ::
     [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-b36b51f239514caf0ff0cf1dc795514b
+2cb776341f25b0ace4d86ed16fd6c363
   $wparseAfterTarget ::
     [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
@@ -90,7 +90,7 @@ b36b51f239514caf0ff0cf1dc795514b
                                           of {} } } } }
                         GHC.Types.True
                         -> ParseSpecificationLanguage.$wparseSpecificationTarget xs } }) -}
-447554522fe155c6dfd2274c70913cb5
+5a35c6fc76e8635b445491c0ffb5f04f
   $wparseSpecificationCriteria ::
     [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
@@ -180,7 +180,7 @@ b36b51f239514caf0ff0cf1dc795514b
                                             : ipv ipv1
                                             -> (# Types.$fMonoidRule_$cmempty,
                                                   wild #) } } } } } } }) -}
-dff0e263b8b9da65cb227bf514587645
+c418ed7dff888a9005c7b3f8c0dd66f0
   $wparseSpecificationTarget ::
     [GHC.Base.String] -> (# Types.Rule, [GHC.Base.String] #)
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
@@ -219,7 +219,7 @@ dff0e263b8b9da65cb227bf514587645
                                    GHC.Types.False -> ParseSpecificationLanguage.parseAfterTarget1
                                    GHC.Types.True -> wild3 } }) } },
                               case ds1 of wild2 { (,) r xss -> xss } #) } }) -}
-2e32fc8b37c8c828798ff1ee47bf52fd
+da4cdd3d4621510bc43bde13afcdfd64
   parseAfterCriteria ::
     [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
@@ -228,7 +228,7 @@ dff0e263b8b9da65cb227bf514587645
                  case ParseSpecificationLanguage.$wparseAfterCriteria
                         w of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-4c8b8328d42274f9aa11fb13f9760efe
+7b6a15a6e4f99804fd82e984ffce4ac6
   parseAfterTarget ::
     [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
@@ -247,28 +247,28 @@ dff0e263b8b9da65cb227bf514587645
                    @ Types.Target
                    Types.DROP
                    (GHC.Types.[] @ Types.Target)) -}
-5e8d951aa5de82aebd0340dea2b01761
+3b416b336a3dd1295089543dbac94caa
   parseAfterTarget3 :: (Types.Rule, [GHC.Base.String])
   {- Strictness: b -}
 452d4f04b22d34ea3a826a1be708b035
   parseAfterTarget4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "DROP"#) -}
-b03fd55cf98f2b79bde0ff562c8442bf
+9f423caba00ea3c3034b5cfce0015f31
   parseAfterTarget5 ::
     [GHC.Base.String]
     -> [GHC.Types.Char] -> (Types.Rule, [GHC.Base.String])
   {- Arity: 2, Strictness: <L,U><L,U>b -}
-fff46fe16fad66e0cf260e8eef4f20f5
+3054e4027038be8e5e2c59826f716c08
   parseAfterTarget6 ::
     [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
   {- Arity: 1, Strictness: <L,U>b -}
 068d87a911b2b9a07768796e7112f5f7
   parseAfterTarget7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "AND"#) -}
-9e77481a9ef5159c36615ac65d597999
+5d9555668324625776896b5ef69910f4
   parseAfterTarget8 :: (Types.Rule, [GHC.Base.String])
   {- Strictness: b -}
-5d3cc6830f4baa72f45123aee4559051
+185e55e016731ef44479d9eedf9b34e2
   parseSpecificationCriteria ::
     [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
@@ -302,7 +302,7 @@ f9549b1fa4d2f1b656ebbc33abfdf67f
 9a83afb25afb4f0dc9457141fb2bfbd7
   parseSpecificationCriteria6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "destination_port"#) -}
-8fcf7d323bf85a98e3b26759185ed76b
+b81537a5f585d2cd10756a2bc7bca857
   parseSpecificationLanguage :: GHC.Base.String -> [Types.Rule]
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ s :: GHC.Base.String ->
@@ -319,7 +319,7 @@ f9549b1fa4d2f1b656ebbc33abfdf67f
                                 wild of ww { (#,#) ww1 ww2 ->
                          ww1 })
                         (GHC.Types.[] @ Types.Rule) }) -}
-360bbe0216c41e756b1828ab43917aab
+eaf7ec5a516b1746e2b47b13c99c28c0
   parseSpecificationLanguage' :: [GHC.Base.String] -> [Types.Rule]
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -359,7 +359,7 @@ f9549b1fa4d2f1b656ebbc33abfdf67f
 51238ea5f300cc17fad06b81d2e001c8
   parseSpecificationLanguage2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "="#) -}
-4debd1a6d3bd00287669b3d0b7e49911
+c925b905c1aa6f1836fdd978c0a87221
   parseSpecificationTarget ::
     [GHC.Base.String] -> (Types.Rule, [GHC.Base.String])
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
