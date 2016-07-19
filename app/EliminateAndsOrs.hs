@@ -17,7 +17,7 @@ eliminateAndsOrsFromChain (Rule c t i:rs) j =
     let
         (newC, newR) = eliminateAndsOrs c j
     in
-    newR ++ (Rule newC t i):eliminateAndsOrsFromChain rs (j + length newR) 
+    newR ++ (Rule newC t i):eliminateAndsOrsFromChain rs (j + length newR)
 
 --returns new criteria with the or's replaced by propositional variables,
 --and rules that correctly determine those propositional variables values

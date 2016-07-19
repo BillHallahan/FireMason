@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-18 01:21:04.032426 UTC
+2016-07-18 01:53:47.0289 UTC
 
 interface main@main:ConvertCommandsToChains 7103
-  interface hash: e375af0038f40b6490c485bdd2f2fa21
-  ABI hash: 266e27dd5f09b5f4fb906a8bebd89ed8
-  export-list hash: 08991498278e0090c7184f08ffabe9c5
+  interface hash: 2a76aae4f220e93bae95325f88e4992b
+  ABI hash: 6b050de8766013c90493223ef7094b56
+  export-list hash: 9b55398c89f4fd6ce5e3aee133145aff
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -13,8 +13,6 @@ interface main@main:ConvertCommandsToChains 7103
   where
 exports:
   ConvertCommandsToChains.convertToChains
-  ConvertCommandsToChains.removeAnds
-  ConvertCommandsToChains.removeAndsCriteria
 module dependencies: IptablesTypes Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
@@ -41,13 +39,9 @@ import  -/  IptablesTypes f16d64653d63b5cd2581393bea511a90
   Line c1f67ede0d91749a1fa8101a9edbf4b0
   Line 8da415a69224cbb32b1f44717d70814f
   New 59940bbd31b838b23a94ff3e0e525842
-import  -/  Types 2c9f2c6fc140cb90725c2f1e96210a95
+import  -/  Types 15733f3d5b2348898cb8d19c63aa8a61
   exports: 98cf0ae77f95faeb276b282dfb3cdefd
-  And 69fba4a95faaa8f829c278b146400a58
   Chain 0a970728856b5d9154b0315f841145e0
-  Criteria 301d972945a67a79ef58d0f57083ac37
-  Rule 383b44bce8aade0d9cd1e1c5c0d45fb5
-  Rule ac330ce08d4cccb73260095eb52eb1d7
 f2950d35bb0ecfb3061dd7badc791f7e
   $sadjust_$sgo10 ::
     (GHC.Base.String -> a1 -> GHC.Base.Maybe a1)
@@ -78,16 +72,6 @@ b322d133bba7f7b6fc41a33c6212acb2
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
   {- Arity: 2, Strictness: <S,1*U><S,U> -}
-9cb7a85a7f5f1d8875df798e47304457
-  removeAnds :: Types.Rule -> Types.Rule
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(1*U,U,U)>m,
-     Unfolding: InlineRule (1, True, False)
-                (\ ds :: Types.Rule ->
-                 case ds of wild { Types.Rule c t i ->
-                 Types.Rule (ConvertCommandsToChains.removeAndsCriteria c) t i }) -}
-99bdc6c32fc3fdc69a526305cea850c8
-  removeAndsCriteria :: [Types.Criteria] -> [Types.Criteria]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

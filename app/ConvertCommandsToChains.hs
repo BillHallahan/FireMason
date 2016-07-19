@@ -14,23 +14,13 @@ convertToChains l m
     | Flush (Just s) <- c = if Map.member s m
                                 then convertToChains ls (Map.insert s [] m)
                                 else error "HERE!"
-    | Append s <- c = convertToChains ls $  Map.adjust (\v -> v ++ [removeAnds r]) s m
+    | Append s <- c = convertToChains ls $  Map.adjust (\v -> v ++ [r]) s m
     | Insert s i <- c = 
         let
             ch = case Map.lookup s m of Just c' -> c'
                                         Nothing -> error "HERE"
             (xs, xs') = splitAt i ch
         in
-        convertToChains ls $ Map.insert s (xs ++ removeAnds r:xs') m
+        convertToChains ls $ Map.insert s (xs ++ r:xs') m
     | otherwise = error "HERE"
     where (Line t c r):ls = l
-
-
-removeAnds :: Rule -> Rule
-removeAnds (Rule c t i) = Rule (removeAndsCriteria c) t i
-
-
-removeAndsCriteria :: [Criteria] -> [Criteria]
-removeAndsCriteria (And c:cx) = (removeAndsCriteria c) ++ removeAndsCriteria cx
-removeAndsCriteria (c:cx) = c:removeAndsCriteria cx
-removeAndsCriteria [] = []

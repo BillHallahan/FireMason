@@ -1,53 +1,112 @@
 module ParseSpecificationLanguage where
 
 import Data.Char
+import Data.List
+import Data.List.Split
+
+import Data.Maybe
 
 import ParserHelp
 import Types
 
-parseSpecificationLanguage :: String -> [Rule]
-parseSpecificationLanguage s = 
+lexer :: String -> [String]
+lexer s
+    | s == "" = []  
+    | '=':'>':xs <- afterSpaces = "=>":lexer xs
+    | '=':xs <- afterSpaces = "=":lexer xs
+    | '(':xs <- afterSpaces = "(":lexer xs
+    | ')':xs <- afterSpaces = ")":lexer xs
+    | ',':xs <- afterSpaces = ",":lexer xs
+    | length nextTerm >= 1 = nextTerm:lexer afterTerm
+    | otherwise = error $ "Unrecognized pattern " ++ afterTerm
+    where
+        afterSpaces = dropWhile isSpace s
+        (nextTerm, afterTerm) = span ((flip elem) ('_':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
+
+parse :: [String] -> [Rule]
+parse s = map parseRule (splitOn [","] s)
+
+parseRule :: [String] -> Rule
+parseRule s =
     let
-        splitWords = words $ s
-        splitEquals = concat $ map (splitNonconsuming "=") splitWords
-        noWhitespace = filter ("" /=) splitEquals
+        (c, t) = break ("=>" == ) s
     in
-    parseSpecificationLanguage' noWhitespace
+    Rule (parseSpecificationCriteria c) (parseSpecificationTarget $ tail t) 0
 
-parseSpecificationLanguage' :: [String] -> [Rule]
-parseSpecificationLanguage' [] =[]
-parseSpecificationLanguage' s =
+isConjunction :: String -> Bool
+isConjunction s = s `elem` ["AND", "OR"]
+
+toConjunction :: String -> Maybe ([Criteria] -> Criteria)
+toConjunction "AND" = Just And
+toConjunction "OR" = Just Or
+toConjunction _ = Nothing
+
+--Returns Nothing if passed an empty list, or the conjunctip corresponding
+--to "AND" or "OR" at the head of the list, if that exists
+--if the list has elements, and the first is not valid, errors
+conjunctionAtFront :: [String] -> Maybe ([Criteria] -> Criteria)
+conjunctionAtFront [] = Nothing
+conjunctionAtFront s =  if isConjunction (head s) then 
+                            toConjunction (head s)
+                        else
+                            error ("Invalid: " ++ (head s))
+
+parseSpecificationCriteria :: [String] -> [Criteria]
+parseSpecificationCriteria s
+    | [] <- s = []
+    | ("(":xs) <-s =
+        let
+            inParen = parseSpecificationCriteria (findInLeadingParenthesis $ "(":xs)
+            after = findAfterLeadingParenthesis $ "(":xs
+            conj = conjunctionAtFront after
+        in
+        if isJust conj then [fromJust conj (inParen ++ (parseSpecificationCriteria $ tail after))] else inParen
+    | otherwise =
+        let
+            (c, xs) = parseSpecificationCriteria' s
+            conj = conjunctionAtFront xs
+        in
+        if isJust conj then [fromJust conj $ c ++ (parseSpecificationCriteria $ tail xs)] else c
+
+parseSpecificationCriteria' :: [String] -> ([Criteria], [String])
+parseSpecificationCriteria' s
+    | ("protocol":"=":p:xs) <- s =
+        let
+            p' = if isInteger p then (read p :: Int) else error "Invalid protocol"
+        in
+        ([Protocol p'], xs)
+    | ("destination_port":"=":dp:xs) <- s =
+        let
+            p = if isInteger dp then (read dp :: Int) else error "Invalid port"
+        in
+        ([Port "destination" (Left p)], xs)
+    | ("source_port":"=":dp:xs) <- s = --This is terrible, don't duplicate like this...
+        let
+            p = if isInteger dp then (read dp :: Int) else error "Invalid port"
+        in
+        ([Port "source" (Left p)], xs)
+    | otherwise = ([SC $ concat s], [])
+
+parseSpecificationTarget :: [String] -> [Target]
+parseSpecificationTarget ("DROP":[]) = [DROP]
+parseSpecificationTarget ("ACCEPT":[]) = [ACCEPT]
+
+--Given a list of strings beginning with "(", finds all strings up to the matching ")"
+findInLeadingParenthesis :: [String] -> [String]
+findInLeadingParenthesis ("(":xs) = findInLeadingParenthesis' xs 1
+findInLeadingParenthesis s = s
+
+findInLeadingParenthesis' :: [String] -> Int -> [String]
+findInLeadingParenthesis' (")":xs) 1 = []
+findInLeadingParenthesis' ("(":xs) i = "(":findInLeadingParenthesis' xs (i + 1)
+findInLeadingParenthesis' (")":xs) i = ")":findInLeadingParenthesis' xs (i - 1)
+findInLeadingParenthesis' (x:xs) i = x:findInLeadingParenthesis' xs i
+
+--Given a list of strings beginning with "(", finds all strings after the matching ")"
+findAfterLeadingParenthesis :: [String] -> [String]
+findAfterLeadingParenthesis s =
     let
-        (r, xs) = parseSpecificationCriteria s
+        leading = findInLeadingParenthesis s
     in
-    --error $ show s
-    [r]
-
-parseSpecificationCriteria :: [String] -> (Rule, [String])
-parseSpecificationCriteria [] = (mempty Rule, [])
-parseSpecificationCriteria ("destination_port":"=":dp:xs) =
-    let
-        p = if isInteger dp then (read dp :: Int) else error "Invalid port"
-        (r, xss) = parseAfterCriteria xs
-    in
-    (Rule [Port "destination" (Left p)] [] (-1) `mappend` r, xss)
-parseSpecificationCriteria x = (mempty, x)
-
-parseAfterCriteria :: [String] -> (Rule, [String]) 
-parseAfterCriteria [] = (mempty, [])
-parseAfterCriteria ("AND":xs) = parseSpecificationCriteria xs
-parseAfterCriteria ("=":">":xs) = parseSpecificationTarget xs
-parseAfterCriteria (x:xs) = error ("Unrecognized symbol " ++ x ++ "  " ++ show xs)
-
-parseSpecificationTarget :: [String] -> (Rule, [String])
-parseSpecificationTarget [] = (mempty, [])
-parseSpecificationTarget ("DROP":xs) = 
-    let
-        (r, xss) = parseAfterCriteria xs
-    in
-    (Rule [] [DROP] (-1) `mappend` r, xss)
-
-parseAfterTarget :: [String] -> (Rule, [String]) 
-parseAfterTarget ("AND":xs) = parseSpecificationTarget xs
-parseAfterTarget (",":xs) = (mempty, xs)
-parseAfterTarget (x:xs) = error ("Unrecognized symbol " ++ x ++ "  " ++ show xs)
+    --The 2 accounts for the opening and closing parenthesis
+    drop (2 + length leading) s

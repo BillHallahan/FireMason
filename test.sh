@@ -12,7 +12,7 @@ IPTABLES=/sbin/iptables
 #BAD PORTS,TROJAN,BACKDOOR PORTS
 $IPTABLES -N bad-ports
 $IPTABLES -F bad-ports
-$IPTABLES -A bad-ports -p 0 -j DROP
+$IPTABLES -p 0 -j DROP  -A bad-ports
 $IPTABLES -A bad-ports -p 22 -j DROP
 $IPTABLES -A bad-ports -p tcp --sport 6
 $IPTABLES -A bad-ports -p tcp --dport 5 -j second

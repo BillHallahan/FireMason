@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-17 03:38:58.505032 UTC
+2016-07-19 22:13:33.045665 UTC
 
 interface main@main:EliminateAndsOrs 7103
-  interface hash: e64efea1bf31f73f5f0db899d5eaa4dd
+  interface hash: a38db79346abeeec5d28a155c4e10d40
   ABI hash: ceea3df232a2fe9cd2c014c6f6c23fdb
   export-list hash: 1c7d8d3b5bbc4ffc717f60b5f0afb39a
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -31,7 +31,7 @@ import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  Types 2c9f2c6fc140cb90725c2f1e96210a95
+import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   exports: 98cf0ae77f95faeb276b282dfb3cdefd
   And 69fba4a95faaa8f829c278b146400a58
   Chain 0a970728856b5d9154b0315f841145e0
