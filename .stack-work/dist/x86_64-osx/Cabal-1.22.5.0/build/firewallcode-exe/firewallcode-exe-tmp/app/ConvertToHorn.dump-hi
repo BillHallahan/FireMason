@@ -1,0 +1,88 @@
+
+==================== FINAL INTERFACE ====================
+2016-07-20 16:43:37.157936 UTC
+
+interface main@main:ConvertToHorn 7103
+  interface hash: 090b9a795d11be74a96c62bcf78a01fc
+  ABI hash: a713a9eaae853d95dd5fdb8f7817fae8
+  export-list hash: 6cae4fa71e994bf8d4abef0831a46b33
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  ConvertToHorn.eliminateAnds
+  ConvertToHorn.eliminateAndsOrsFromChain
+  ConvertToHorn.eliminateAndsOrsFromStringChains
+  ConvertToHorn.eliminateOrs
+  ConvertToHorn.simplifyNots
+module dependencies: Types
+package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  Types be1e767e9389ce9c8fd11ba155041f23
+  exports: 98cf0ae77f95faeb276b282dfb3cdefd
+  And 69fba4a95faaa8f829c278b146400a58
+  Chain 0a970728856b5d9154b0315f841145e0
+  Criteria 301d972945a67a79ef58d0f57083ac37
+  Not 3535d01f02a34ce7e2e65f8bfd0e0468
+  Or 48229210229e525ac9cc96e3f7d4cdaf
+  PropVariableCriteria e1461d4596b1fd5d85b7e8ca96e75587
+  PropVariableTarget 5ad7f002faeafc40e3f1236dd1296d21
+  Rule 383b44bce8aade0d9cd1e1c5c0d45fb5
+  Rule ac330ce08d4cccb73260095eb52eb1d7
+  criteria 5b8533cdc53545fcea0706ca7ae2ba91
+  label 29e70a94ef11ac439309b20c2d514613
+  targets dabc9615e422ce8e03e5c82c6f655a6d
+379cf416cd3944e2654b70d7ad1cb2f0
+  $weliminateOrs ::
+    [Types.Criteria]
+    -> GHC.Types.Int -> (# [Types.Criteria], [Types.Rule] #)
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)>,
+     Inline: [0] -}
+fb3a1085860c0ba8d8f0f99e3b62723b
+  eliminateAnds :: [Types.Criteria] -> [Types.Criteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+8304d1c276d7731414f16c90189ee20f
+  eliminateAndsOrsFromChain ::
+    Types.Chain -> GHC.Types.Int -> Types.Chain
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)> -}
+5272b164d0e31d29f24b36a6df33cf2c
+  eliminateAndsOrsFromStringChains ::
+    [(GHC.Base.String, Types.Chain)]
+    -> GHC.Types.Int -> [(GHC.Base.String, Types.Chain)]
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)> -}
+fa7336d3b4943492768ef05c4233e3a4
+  eliminateOrs ::
+    [Types.Criteria]
+    -> GHC.Types.Int -> ([Types.Criteria], [Types.Rule])
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: [Types.Criteria] w1 :: GHC.Types.Int ->
+                 case ConvertToHorn.$weliminateOrs w w1 of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+7d2cc672c917380485d2e3dbdb657f8d
+  simplifyNots :: [Types.Criteria] -> [Types.Criteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
