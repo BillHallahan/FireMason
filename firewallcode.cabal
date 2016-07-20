@@ -29,11 +29,15 @@ executable firewallcode-exe
                      , containers
                      , MissingH
   default-language:    Haskell2010
-  other-modules:       ConvertCommandsToChains
+  other-modules:       ChainPathSimplification
+                     , ConvertCommandsToChains
                      , ChainsToSMT
                      , ConvertIptables
                      , ConvertIptablesPorts
+                     , EliminateAndsOrs
+                     , IptablesTypes
                      , ParserHelp
+                     , ParseSpecificationLanguage
                      , Types
 
 test-suite firewallcode-test

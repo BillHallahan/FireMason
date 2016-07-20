@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-19 21:47:20.437249 UTC
+2016-07-20 02:11:04.880661 UTC
 
 interface main@main:ParseSpecificationLanguage 7103
-  interface hash: b75e83bc4ebe0388fd66b3131e5262c5
-  ABI hash: 6e410c10774a7c539f984f066cc11aa4
+  interface hash: 4f83a3e1832044166b7a8e3345a2f5a2
+  ABI hash: 14d77e673a817efcae35781815f6ecfd
   export-list hash: 18b78b5e45df71d295885bec234dff07
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -57,6 +57,7 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   And 69fba4a95faaa8f829c278b146400a58
   Criteria 301d972945a67a79ef58d0f57083ac37
   DROP 42837edea5676d03f7d03328ed69e18d
+  Not 3535d01f02a34ce7e2e65f8bfd0e0468
   Or 48229210229e525ac9cc96e3f7d4cdaf
   Port 8ac4169bf898472df0a5d1d9380502e0
   Protocol 177d6607da755b98ab077f33e0dc8651
@@ -90,9 +91,9 @@ ff94b31302515e92163caceeb8003c1a
                                 xs of ww { (#,#) ww1 ww2 ->
                          GHC.Types.: @ Types.Target ww1 ww2 } } },
                     ParseSpecificationLanguage.parseRule1 #)) -}
-c32356bcd971e4df81b34ab26ccfec78
+1fd20b42361e3639a32e3c561af4c25c
   $wparseSpecificationCriteria' ::
-    [GHC.Base.String] -> (# [Types.Criteria], [GHC.Base.String] #)
+    [GHC.Base.String] -> (# Types.Criteria, [GHC.Base.String] #)
   {- Arity: 1, Strictness: <S,U>, Inline: [0] -}
 0bf82b2cef70f6f11c56d88e3e5a56f5
   $wparseSpecificationTarget ::
@@ -301,9 +302,9 @@ ac5d046e15ff212a262d215fd1e197fb
 6d031b380c9d1244f926837fa66eac76
   parseSpecificationCriteria :: [GHC.Base.String] -> [Types.Criteria]
   {- Arity: 1, Strictness: <S,1*U> -}
-94aff76c10aee96178196a4b2f74f214
+47a1431e76d9f240ac5799b76657027a
   parseSpecificationCriteria' ::
-    [GHC.Base.String] -> ([Types.Criteria], [GHC.Base.String])
+    [GHC.Base.String] -> (Types.Criteria, [GHC.Base.String])
   {- Arity: 1, Strictness: <S,U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ w :: [GHC.Base.String] ->

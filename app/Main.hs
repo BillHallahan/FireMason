@@ -42,13 +42,12 @@ main = do
         putStrLn $ convertChains pathSimp--convertMapOfChains converted
 
 
-        
         let testNice = map (\x -> show x) pathSimp
         let folded = foldr (\x acc-> x ++ "\n" ++ acc) "" testNice
         putStrLn folded
         let specTest2 = lexer ("(destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP," ++
-                              "(protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP," ++
-                              "(protocol = 1 AND destination_port = 45 AND source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT")
+                              "(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP," ++
+                              "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT")
         putStrLn $ show specTest2
         putStrLn $ show (parse specTest2)
 

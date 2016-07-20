@@ -12,6 +12,7 @@ import Types
 lexer :: String -> [String]
 lexer s
     | s == "" = []  
+    | 'n':'o':'t':xs <- afterSpaces = "not":lexer xs
     | '=':'>':xs <- afterSpaces = "=>":lexer xs
     | '=':xs <- afterSpaces = "=":lexer xs
     | '(':xs <- afterSpaces = "(":lexer xs
@@ -66,26 +67,31 @@ parseSpecificationCriteria s
             (c, xs) = parseSpecificationCriteria' s
             conj = conjunctionAtFront xs
         in
-        if isJust conj then [fromJust conj $ c ++ (parseSpecificationCriteria $ tail xs)] else c
+        if isJust conj then [fromJust conj $ c:(parseSpecificationCriteria $ tail xs)] else [c]
 
-parseSpecificationCriteria' :: [String] -> ([Criteria], [String])
+parseSpecificationCriteria' :: [String] -> (Criteria, [String])
 parseSpecificationCriteria' s
+    | ("not":xs) <- s =
+        let
+            (next, xs') = parseSpecificationCriteria' xs
+        in
+        (Not next, xs')
     | ("protocol":"=":p:xs) <- s =
         let
             p' = if isInteger p then (read p :: Int) else error "Invalid protocol"
         in
-        ([Protocol p'], xs)
+        (Protocol p', xs)
     | ("destination_port":"=":dp:xs) <- s =
         let
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
-        ([Port "destination" (Left p)], xs)
+        (Port "destination" (Left p), xs)
     | ("source_port":"=":dp:xs) <- s = --This is terrible, don't duplicate like this...
         let
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
-        ([Port "source" (Left p)], xs)
-    | otherwise = ([SC $ concat s], [])
+        (Port "source" (Left p), xs)
+    | otherwise = (SC $ concat s, [])
 
 parseSpecificationTarget :: [String] -> [Target]
 parseSpecificationTarget ("DROP":[]) = [DROP]
