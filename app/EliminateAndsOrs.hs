@@ -15,30 +15,38 @@ eliminateAndsOrsFromChain :: Chain -> Int -> Chain
 eliminateAndsOrsFromChain [] _ = []
 eliminateAndsOrsFromChain (Rule c t i:rs) j =
     let
-        (newC, newR) = eliminateAndsOrs c j
+        (newC, newR) = eliminateOrs c j--eliminateAndsOrs c j
+        newC' = eliminateAnds newC
+        newR' = map (\r -> Rule (eliminateAnds $ criteria r) (targets r) (label r)) newR
     in
-    newR ++ (Rule newC t i):eliminateAndsOrsFromChain rs (j + length newR)
+    newR' ++ (Rule newC' t i):eliminateAndsOrsFromChain rs (j + length newR')
+
+eliminateAnds :: [Criteria] -> [Criteria]
+eliminateAnds [] = []
+eliminateAnds (And c:cs) = eliminateAnds $ c ++ cs
+eliminateAnds (Or c:cs) = Or (eliminateAnds c):eliminateAnds cs
+eliminateAnds (c:cs) = c:eliminateAnds cs
 
 --returns new criteria with the or's replaced by propositional variables,
 --and rules that correctly determine those propositional variables values
-eliminateAndsOrs :: [Criteria] -> Int -> ([Criteria], [Rule])
-eliminateAndsOrs [] _ = ([], [])
-eliminateAndsOrs (And c:cs) i = 
+eliminateOrs :: [Criteria] -> Int -> ([Criteria], [Rule])
+eliminateOrs [] _ = ([], [])
+eliminateOrs (And c:cs) i =
     let
-        (c', r) = eliminateAndsOrs c i
-        (cs', rs) = eliminateAndsOrs cs (i + length r)
+        (c', r) = eliminateOrs c i
+        (cs', rs) = eliminateOrs cs (i + length r)
     in
-    (c' ++ cs', r ++ rs)
-eliminateAndsOrs (Or c:cs) i = 
+    ((And c'):cs', r ++ rs)
+eliminateOrs (Or c:cs) i = 
     let
-        (c', r') = eliminateAndsOrs c i
+        (c', r') = eliminateOrs c i
         r = map (\c''-> Rule [c''] [PropVariableTarget i True] (-1)) c'
         rnot = Rule (map (Not) c') [PropVariableTarget i False] (-1)
-        (cs', r'') = eliminateAndsOrs cs (i + length r')
+        (cs', r'') = eliminateOrs cs (i + length r')
     in
     (PropVariableCriteria i:cs', r ++ rnot:r' ++r'')
-eliminateAndsOrs (x:xs) i =
+eliminateOrs (c:cs) i =
     let
-        (c, r) = eliminateAndsOrs xs i
+        (cs', r) = eliminateOrs cs i
     in
-    (x:c, r)
+    (c:cs', r)

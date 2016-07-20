@@ -1,20 +1,21 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-19 22:13:33.045665 UTC
+2016-07-20 01:53:21.41322 UTC
 
 interface main@main:EliminateAndsOrs 7103
-  interface hash: a38db79346abeeec5d28a155c4e10d40
-  ABI hash: ceea3df232a2fe9cd2c014c6f6c23fdb
-  export-list hash: 1c7d8d3b5bbc4ffc717f60b5f0afb39a
+  interface hash: 26b5aeb1f97805a4a2dd0d319e5e6280
+  ABI hash: 1498481029413a1d7015c16326211768
+  export-list hash: 30c7b98bad0c34892d110fbb8494ca40
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
   where
 exports:
-  EliminateAndsOrs.eliminateAndsOrs
+  EliminateAndsOrs.eliminateAnds
   EliminateAndsOrs.eliminateAndsOrsFromChain
   EliminateAndsOrs.eliminateAndsOrsFromStringChains
+  EliminateAndsOrs.eliminateOrs
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
@@ -42,24 +43,18 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   PropVariableTarget 5ad7f002faeafc40e3f1236dd1296d21
   Rule 383b44bce8aade0d9cd1e1c5c0d45fb5
   Rule ac330ce08d4cccb73260095eb52eb1d7
-dce14241af390eacca331cac3955673b
-  $weliminateAndsOrs ::
+  criteria 5b8533cdc53545fcea0706ca7ae2ba91
+  label 29e70a94ef11ac439309b20c2d514613
+  targets dabc9615e422ce8e03e5c82c6f655a6d
+6a32e594e4a5e5d59516cbdacc91440b
+  $weliminateOrs ::
     [Types.Criteria]
     -> GHC.Types.Int -> (# [Types.Criteria], [Types.Rule] #)
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)>,
      Inline: [0] -}
-20449288530f36ed744f40c0f0897041
-  eliminateAndsOrs ::
-    [Types.Criteria]
-    -> GHC.Types.Int -> ([Types.Criteria], [Types.Rule])
-  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)>m,
-     Inline: INLINE[0],
-     Unfolding: InlineRule (2, True, False)
-                (\ w :: [Types.Criteria] w1 :: GHC.Types.Int ->
-                 case EliminateAndsOrs.$weliminateAndsOrs
-                        w
-                        w1 of ww { (#,#) ww1 ww2 ->
-                 (ww1, ww2) }) -}
+91667e292ced98280ad5d923d72132a5
+  eliminateAnds :: [Types.Criteria] -> [Types.Criteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 4c6c7c3845d797248716241267a0fe61
   eliminateAndsOrsFromChain ::
     Types.Chain -> GHC.Types.Int -> Types.Chain
@@ -69,6 +64,16 @@ dce14241af390eacca331cac3955673b
     [(GHC.Base.String, Types.Chain)]
     -> GHC.Types.Int -> [(GHC.Base.String, Types.Chain)]
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)> -}
+1d4c930a0675aed57cb5005abf2c4ab8
+  eliminateOrs ::
+    [Types.Criteria]
+    -> GHC.Types.Int -> ([Types.Criteria], [Types.Rule])
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: [Types.Criteria] w1 :: GHC.Types.Int ->
+                 case EliminateAndsOrs.$weliminateOrs w w1 of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
