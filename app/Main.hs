@@ -52,12 +52,19 @@ main = do
         putStrLn $ show (parse specTest2)
 
         let elim = eliminateAndsOrsFromChain (parse specTest2) 0
+        putStrLn $ "(destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP,\n" ++
+                              "(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP,\n" ++
+                              "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT\n"
         putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" elim
 
         let notTest = [Not $ Not $ Not ( And [Protocol 1, Or[Port "destination" $ Left 45, Not . Port "source" $ Left 60]])]
         putStrLn $ show notTest
         putStrLn . show $ simplifyNots notTest
-        
+
+        let parse1 = parse . lexer $ "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT"
+        putStrLn $ "\n\ninitial ==" ++ show parse1
+        putStrLn $ "eliminateAndsNots ==" ++  (show $ simplifyNots (criteria $ parse1 !! 0))
+        putStrLn $ "eliminateAndsOrsFromChain ==" ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
         --putStrLn $ show converted2
         )
 

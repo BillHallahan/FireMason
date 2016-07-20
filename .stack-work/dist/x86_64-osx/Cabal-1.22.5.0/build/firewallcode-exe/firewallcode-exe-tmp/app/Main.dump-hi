@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-20 16:43:37.523986 UTC
+2016-07-20 23:15:38.143864 UTC
 
 interface main@main:Main 7103
-  interface hash: 5278de66a32456af0cc6fecfa7e3fa9b
+  interface hash: aba7c683adf7536ed08d6b84189772c1
   ABI hash: 24716762c2d4e62308a2832696f05fa9
   export-list hash: 66addcba93e4a33a8a73e85b1f9f3925
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -78,10 +78,10 @@ import  -/  ConvertCommandsToChains 6b050de8766013c90493223ef7094b56
 import  -/  ConvertIptables a6430bc27d0304072e82329f1871bc05
   exports: ef49473372d64775c3df845e703a42c0
   convertLine 625bee1f56ca05fb9ead8293b86c6793
-import  -/  ConvertToHorn a713a9eaae853d95dd5fdb8f7817fae8
+import  -/  ConvertToHorn 3f7d953c723dbca55d8f81164f8f63c5
   exports: 6cae4fa71e994bf8d4abef0831a46b33
-  eliminateAndsOrsFromChain 8304d1c276d7731414f16c90189ee20f
-  eliminateAndsOrsFromStringChains 5272b164d0e31d29f24b36a6df33cf2c
+  eliminateAndsOrsFromChain eb081c3e88b83d689a205b3b289b57db
+  eliminateAndsOrsFromStringChains dc140fa1b0f1c0640fdea83c3b5f3a45
   simplifyNots 7d2cc672c917380485d2e3dbdb657f8d
 import  -/  IptablesTypes f16d64653d63b5cd2581393bea511a90
   exports: 2abc8708d65a1f1004f1c63350f29dad
@@ -97,6 +97,7 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   Or 48229210229e525ac9cc96e3f7d4cdaf
   Port 8ac4169bf898472df0a5d1d9380502e0
   Protocol 177d6607da755b98ab077f33e0dc8651
+  criteria 5b8533cdc53545fcea0706ca7ae2ba91
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
 7b0b71b671f53f3fcb282dcb3e5d0f06
