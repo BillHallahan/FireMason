@@ -14,7 +14,7 @@ import Types
 import ConvertIptables
 import ConvertCommandsToChains
 import ChainsToSMT
-import EliminateAndsOrs
+import ConvertToHorn
 import ParseSpecificationLanguage
 
 import IptablesTypes
@@ -53,6 +53,11 @@ main = do
 
         let elim = eliminateAndsOrsFromChain (parse specTest2) 0
         putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" elim
+
+        let notTest = [Not $ Not $ Not ( And [Protocol 1, Or[Port "destination" $ Left 45, Not . Port "source" $ Left 60]])]
+        putStrLn $ show notTest
+        putStrLn . show $ simplifyNots notTest
+        
         --putStrLn $ show converted2
         )
 

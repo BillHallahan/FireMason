@@ -42,7 +42,7 @@ toConjunction "AND" = Just And
 toConjunction "OR" = Just Or
 toConjunction _ = Nothing
 
---Returns Nothing if passed an empty list, or the conjunctip corresponding
+--Returns Nothing if passed an empty list, or the conjunction corresponding
 --to "AND" or "OR" at the head of the list, if that exists
 --if the list has elements, and the first is not valid, errors
 conjunctionAtFront :: [String] -> Maybe ([Criteria] -> Criteria)

@@ -34,7 +34,7 @@ executable firewallcode-exe
                      , ChainsToSMT
                      , ConvertIptables
                      , ConvertIptablesPorts
-                     , EliminateAndsOrs
+                     , ConvertToHorn
                      , IptablesTypes
                      , ParserHelp
                      , ParseSpecificationLanguage

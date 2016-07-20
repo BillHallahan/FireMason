@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-20 02:04:57.558615 UTC
+2016-07-20 03:01:03.006886 UTC
 
 interface main@main:EliminateAndsOrs 7103
-  interface hash: 26b5aeb1f97805a4a2dd0d319e5e6280
-  ABI hash: 1498481029413a1d7015c16326211768
-  export-list hash: 30c7b98bad0c34892d110fbb8494ca40
+  interface hash: 67ce4ba85874cefa4d89a6dbff01bd76
+  ABI hash: 812bf840ff2b4fcfa0bd917437adffe2
+  export-list hash: dc06e7c8c7b773ae4df5901efbc049d3
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -16,6 +16,7 @@ exports:
   EliminateAndsOrs.eliminateAndsOrsFromChain
   EliminateAndsOrs.eliminateAndsOrsFromStringChains
   EliminateAndsOrs.eliminateOrs
+  EliminateAndsOrs.simplifyNots
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
@@ -74,6 +75,9 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
                 (\ w :: [Types.Criteria] w1 :: GHC.Types.Int ->
                  case EliminateAndsOrs.$weliminateOrs w w1 of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
+8675da02b6f2b3c304600d423d4d7240
+  simplifyNots :: [Types.Criteria] -> [Types.Criteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-20 02:28:21.538053 UTC
+2016-07-20 16:43:37.523986 UTC
 
 interface main@main:Main 7103
-  interface hash: bfff7441fd3647299b7ca3616de0b53b
+  interface hash: 5278de66a32456af0cc6fecfa7e3fa9b
   ABI hash: 24716762c2d4e62308a2832696f05fa9
   export-list hash: 66addcba93e4a33a8a73e85b1f9f3925
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -17,8 +17,8 @@ exports:
   Main.subBashVariables
 module dependencies: ChainPathSimplification ChainsToSMT
                      ConvertCommandsToChains ConvertIptables ConvertIptablesPorts
-                     EliminateAndsOrs IptablesTypes ParseSpecificationLanguage
-                     ParserHelp Types
+                     ConvertToHorn IptablesTypes ParseSpecificationLanguage ParserHelp
+                     Types
 package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
@@ -48,6 +48,7 @@ family instance modules: base-4.8.2.0:Control.Applicative
 import  -/  MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ:Data.List.Utils 3175b3ec4b48152a0154ae1c82f8e5ca
 import  -/  MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ:Data.String.Utils 635ce11bcb5f4c4a71b87f62bdb0d8da
 import  -/  base-4.8.2.0:Data.Char c8f827952d4111ae2e47c0b105217cdb
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
@@ -77,10 +78,11 @@ import  -/  ConvertCommandsToChains 6b050de8766013c90493223ef7094b56
 import  -/  ConvertIptables a6430bc27d0304072e82329f1871bc05
   exports: ef49473372d64775c3df845e703a42c0
   convertLine 625bee1f56ca05fb9ead8293b86c6793
-import  -/  EliminateAndsOrs 1498481029413a1d7015c16326211768
-  exports: 30c7b98bad0c34892d110fbb8494ca40
-  eliminateAndsOrsFromChain 4c6c7c3845d797248716241267a0fe61
-  eliminateAndsOrsFromStringChains 5401ee28c424aa90afeafe2a4a1d129d
+import  -/  ConvertToHorn a713a9eaae853d95dd5fdb8f7817fae8
+  exports: 6cae4fa71e994bf8d4abef0831a46b33
+  eliminateAndsOrsFromChain 8304d1c276d7731414f16c90189ee20f
+  eliminateAndsOrsFromStringChains 5272b164d0e31d29f24b36a6df33cf2c
+  simplifyNots 7d2cc672c917380485d2e3dbdb657f8d
 import  -/  IptablesTypes f16d64653d63b5cd2581393bea511a90
   exports: 2abc8708d65a1f1004f1c63350f29dad
 import  -/  ParseSpecificationLanguage 14d77e673a817efcae35781815f6ecfd
@@ -89,7 +91,12 @@ import  -/  ParseSpecificationLanguage 14d77e673a817efcae35781815f6ecfd
   parse 3a1fb3aeb2bf92221ae92733fcbce179
 import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   exports: 98cf0ae77f95faeb276b282dfb3cdefd
+  And 69fba4a95faaa8f829c278b146400a58
   Chain 0a970728856b5d9154b0315f841145e0
+  Not 3535d01f02a34ce7e2e65f8bfd0e0468
+  Or 48229210229e525ac9cc96e3f7d4cdaf
+  Port 8ac4169bf898472df0a5d1d9380502e0
+  Protocol 177d6607da755b98ab077f33e0dc8651
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
 7b0b71b671f53f3fcb282dcb3e5d0f06

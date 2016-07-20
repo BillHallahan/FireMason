@@ -34,7 +34,6 @@ eitherToRule :: Either Criteria Target -> Int -> Rule
 eitherToRule (Left c) i = Rule [c] [] i
 eitherToRule (Right t) i = Rule [] [t] i
 
-
 instance Monoid Rule where
     mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
     Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2 }
