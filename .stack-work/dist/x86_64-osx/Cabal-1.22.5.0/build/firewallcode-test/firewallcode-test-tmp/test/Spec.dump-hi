@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-20 02:30:39.219048 UTC
+2016-07-21 03:00:42.914141 UTC
 
 interface main@main:Main 7103
-  interface hash: 0ccef573368d53654c4f3eac118c03f4
-  ABI hash: 69ee9f2a45a2b723a3ba5d95ad5e90db
-  export-list hash: 1f196230d46b142ebbd063e2f9b9ee1f
+  interface hash: 99308cac41df56934a02cf7263f599d2
+  ABI hash: b8996492293fb1318d1e332f11afb795
+  export-list hash: d2168741a05b0326dc9f271955573cb2
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 255ca1b8b00407bf6d6f3ea029caf2a9
   sig of: Nothing
@@ -13,44 +13,65 @@ interface main@main:Main 7103
   where
 exports:
   Main.main
-module dependencies:
-package dependencies: base-4.8.2.0* ghc-prim-0.4.0.0
+module dependencies: ConvertToHorn ConvertToHornTests Types
+package dependencies: HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0*
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       integer-gmp-1.0.0.0
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
 family instance modules: base-4.8.2.0:Control.Applicative
-                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Monoid
-                         base-4.8.2.0:Data.Type.Equality base-4.8.2.0:GHC.Generics
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit d58e5f70f93d158130fd424e61ba73e8
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Base 3fa8f8d2179caf234ea001207f41fb0c
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Text b3d7abd36319eebe52970172b76af5d2
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
-import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-7f701c978661b9123c62453080c37f3e
-  main :: GHC.Types.IO ()
+import  -/  ConvertToHornTests decfa6890d54fd9a8c0e9cb2c9d1cb99
+  exports: cc56c36927657e18d3a2911c32a6db1c
+  convertToHornTests 3c9240f9e87530b8258181e070eda752
+06648003e0f61c232829a77a2bccd2e7
+  main :: GHC.Types.IO Test.HUnit.Base.Counts
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: InlineRule (0, True, True)
-                Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R)) -}
-fc826442b6a4ca935b17a3bc5a0b603c
+                Main.main1
+                  `cast`
+                (Sym (GHC.Types.NTCo:IO[0] <Test.HUnit.Base.Counts>_R)) -}
+677392782e3c4589421f61105304a60a
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Test.HUnit.Base.Counts #)
   {- Arity: 1, Strictness: <L,U>,
-     Unfolding: (\ eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
-                 GHC.IO.Handle.Text.hPutStr2
-                   GHC.IO.Handle.FD.stdout
-                   Main.main2
-                   GHC.Types.True
-                   eta) -}
-6688892a9eb245487d93124030f3cde3
-  main2 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString#
-                   "Test suite not yet implemented"#) -}
-723543acccda64f69566790ad5aafa20
-  main3 ::
+     Unfolding: (\ s :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case Test.HUnit.Text.runTestTT3 of ww { Test.HUnit.Text.PutText ww1 ww2 ->
+                 case Test.HUnit.Text.$wa
+                        @ GHC.Types.Int
+                        ww1
+                        ww2
+                        ConvertToHornTests.convertToHornTests
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case ipv1 of wild { (,) counts' ds ->
+                 case ds of wild1 { GHC.Types.I# ds2 ->
+                 case ds2 of ds3 {
+                   DEFAULT
+                   -> GHC.IO.failIO1
+                        @ Test.HUnit.Base.Counts
+                        Test.HUnit.Text.runTestTT2
+                        ipv
+                   0 -> (# ipv, counts' #) } } } } }) -}
+2c68928b36cabc43b12ab1cc11d136bc
+  main2 ::
     GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Test.HUnit.Base.Counts #)
   {- Arity: 1,
      Unfolding: (GHC.TopHandler.runMainIO1
-                   @ ()
-                   Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+                   @ Test.HUnit.Base.Counts
+                   Main.main1
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <Test.HUnit.Base.Counts>_R))) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
