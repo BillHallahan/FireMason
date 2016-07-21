@@ -66,11 +66,8 @@ convertCriteriaOrTarget ("-p":p:xs) _ =
 convertCriteriaOrTarget ("!":xs) fs =
     let
         (notted, xss, f) = convertCriteriaOrTarget xs fs
-        nottedCrit = lefts . fromJust $ notted
-        inv = invertAndsOrs nottedCrit
     in
-        (Just $ map (\x -> Left x) (notCriteria inv), xss, f)
-
+        (Just [Left . Not . And . lefts . fromJust $ notted], xss, f)
 
 
 convertCriteriaOrTarget x fs =
@@ -84,24 +81,24 @@ convertCriteriaOrTarget x fs =
                          Nothing -> error ("Not parsable." ++ show x)
 
 
-notCriteria :: [Criteria] -> [Criteria]
-notCriteria (And c:cs) = And (map (Not) c):notCriteria cs
-notCriteria (c:cs) = Not c:notCriteria cs
-notCriteria [] = []
+--notCriteria :: [Criteria] -> [Criteria]
+--notCriteria (And c:cs) = And (map (Not) c):notCriteria cs
+--notCriteria (c:cs) = Not c:notCriteria cs
+--notCriteria [] = []
 
 
---Needs testing, may not be entirely accurate?
-invertAndsOrs :: [Criteria] -> [Criteria]
-invertAndsOrs [] = []
-invertAndsOrs (And c:cs) = (Or $ invertAndsOrs c):invertAndsOrs cs
-invertAndsOrs (Or c:cs) = (And $ invertAndsOrs c):invertAndsOrs cs
-invertAndsOrs (c) =
-    let
-        firstAnd = (\c' -> case c' of And c' -> False
-                                      _ -> True)
-        (ored, afterOred)= span firstAnd c
-    in
-    ored ++ invertAndsOrs afterOred
+----THIS NEEDS TO GO, AND WE CAN JUST COUNT ON ConvertToHorn.hs later...
+--invertAndsOrs :: [Criteria] -> [Criteria]
+--invertAndsOrs [] = []
+--invertAndsOrs (And c:cs) = (Or $ invertAndsOrs c):invertAndsOrs cs
+--invertAndsOrs (Or c:cs) = (And $ invertAndsOrs c):invertAndsOrs cs
+--invertAndsOrs (c) =
+--    let
+--        firstAnd = (\c' -> case c' of And c' -> False
+--                                      _ -> True)
+--        (ored, afterOred)= span firstAnd c
+--    in
+--    ored ++ invertAndsOrs afterOred
 
 protocolToNum :: Map.Map String Int
 protocolToNum = Map.fromList $ 

@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-20 02:28:21.158949 UTC
+2016-07-21 17:11:40.526252 UTC
 
 interface main@main:ConvertIptables 7103
-  interface hash: 76a193f161089313f4a559dbb5d04e30
-  ABI hash: a6430bc27d0304072e82329f1871bc05
-  export-list hash: ef49473372d64775c3df845e703a42c0
+  interface hash: 455d6985880656e79522f6495fc1f4ce
+  ABI hash: 7717e2a3a0025cb05d12148f25ef6b0c
+  export-list hash: 3c20eb45be7d1d2c633d7ce0a3b6a3e2
   orphan hash: a5b584c51f165a04d7b4683f650178e4
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -15,8 +15,6 @@ exports:
   ConvertIptables.convertCommand
   ConvertIptables.convertCriteriaOrTarget
   ConvertIptables.convertLine
-  ConvertIptables.invertAndsOrs
-  ConvertIptables.notCriteria
   ConvertIptables.protocolConvertFuncs
   ConvertIptables.protocolToNum
 module dependencies: ConvertIptablesPorts IptablesTypes ParserHelp
@@ -76,7 +74,6 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   Jump e4c673930b1e9f730e80c2df019b4354
   ModuleFunc ab5330f02a891d005ffbea99fe1c0e14
   Not 3535d01f02a34ce7e2e65f8bfd0e0468
-  Or 48229210229e525ac9cc96e3f7d4cdaf
   Protocol 177d6607da755b98ab077f33e0dc8651
   Target 7ae42b578730cec1847a60a81b4bf4b8
   eitherToRule 97c592b40986cf8442f7842b925ed501
@@ -465,12 +462,6 @@ f94b1baeeb95b7be5a38a2256ccacb12
                         ww2
                         w1 of ww3 { (#,,#) ww4 ww5 ww6 ->
                  IptablesTypes.Line ww4 ww5 ww6 } }) -}
-e0e038dd5d49d3a9b88234e73dac63dc
-  invertAndsOrs :: [Types.Criteria] -> [Types.Criteria]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-72990f56b38d50c3242964a21c659ae5
-  notCriteria :: [Types.Criteria] -> [Types.Criteria]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 80f22561f208e6a0370f219503c5eb52
   protocolConvertFuncs ::
     Data.Map.Base.Map GHC.Types.Int Types.ModuleFunc

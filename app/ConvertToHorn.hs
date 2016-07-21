@@ -17,7 +17,6 @@ eliminateAndsOrsFromChain (Rule c t i:rs) j =
     let
         simpNotsC = simplifyNots (eliminateAnds c False)
         (newC, newR, k) = eliminateOrs simpNotsC j
-        --newC' = eliminateAnds newC False
         afterChain = eliminateAndsOrsFromChain (newR ++ rs) (j + k)
     in
     (Rule newC t i):afterChain

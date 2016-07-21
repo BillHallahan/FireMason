@@ -10,7 +10,11 @@ convertToHornTests = TestList [TestLabel "eliminateAndsTestNotAnd" eliminateAnds
                              , TestLabel "eliminateAndsTestNotNot" eliminateAndsTestNotNot
                              , TestLabel "eliminateAndsTestAndFalse" eliminateAndsTestAndFalse
                              , TestLabel "eliminateAndsTestAndTrue" eliminateAndsTestAndTrue
+
                              , TestLabel "eliminateOrsAnd" eliminateOrsTestAnd
+                             , TestLabel "eliminateOrsOr" eliminateOrsTestOr
+                             , TestLabel "eliminateOrsOr" eliminateOrsTestOr2
+
                              , TestLabel "simplifyNotsTestAnd" simplifyNotsTestAnd
                              , TestLabel "simplifyNotsTestOr" simplifyNotsTestOr
                              , TestLabel "simplifyNotsTestNot" simplifyNotsTestNot
@@ -83,12 +87,50 @@ eliminateAndsTestAndTrue =
         [And $ [Protocol 1, Port "destination" (Left 1)]]
 
 
-andCriteria = [And [Protocol 1, Port "destination" (Left 1), And [Protocol 2, Port "destination" (Left 3)]]]
+
+andCriteria = 
+    [And 
+        [Protocol 1, Port "destination" (Left 1), 
+            And [Protocol 2, Port "destination" (Left 3)]
+        ]
+    ]
 
 eliminateOrsTestAnd =
     TestCase $ assertEqual "eliminateOrs is not eliminating corrrectly."
         (eliminateOrs andCriteria 0)
         (andCriteria, [], 0)
+
+eliminateOrsTestOr =
+    TestCase $ assertEqual "eliminateOrs is not eliminating corrrectly."
+    (eliminateOrs [Or [And [Protocol 1, Port "destination" (Left 3)], Protocol 2]] 0)
+    (
+        [PropVariableCriteria 0],
+        [Rule {criteria = [And [Protocol 1, Port "destination" (Left 3)]], targets = [PropVariableTarget 0 True], label = -1},
+        Rule {criteria = [Protocol 2], targets = [PropVariableTarget 0 True], label = -1},
+        Rule {criteria = [Not (And [Protocol 1, Port "destination" (Left 3)]),Not (Protocol 2)], targets = [PropVariableTarget 0 False], label = -1}]
+        , 1
+    )
+
+eliminateOrsTestOr2 =
+    TestCase $ assertEqual "eliminateOrs is not eliminating corrrectly."
+        (eliminateOrs 
+            [And 
+                [Or [Protocol 1, Protocol 2], 
+                Or [Port "destination" (Left 1), Port "destination" (Left 2)]
+                ]
+            ] 0)
+        (
+            [And [PropVariableCriteria 0,PropVariableCriteria 1]],
+            [Rule {criteria = [Protocol 1], targets = [PropVariableTarget 0 True], label = -1},
+            Rule {criteria = [Protocol 2], targets = [PropVariableTarget 0 True], label = -1},
+            Rule {criteria = [Not (Protocol 1),Not (Protocol 2)], targets = [PropVariableTarget 0 False], label = -1},
+            Rule {criteria = [Port "destination" (Left 1)], targets = [PropVariableTarget 1 True], label = -1},
+            Rule {criteria = [Port "destination" (Left 2)], targets = [PropVariableTarget 1 True], label = -1},
+            Rule {criteria = [Not (Port "destination" (Left 1)),Not (Port "destination" (Left 2))], targets = [PropVariableTarget 1 False], label = -1}]
+            , 2
+        )
+
+
 
 simplifyNotsTestAnd =
     TestCase $ assertEqual "simplifyNot is not adjusting corrrectly."
