@@ -1,17 +1,18 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-21 03:00:42.734174 UTC
+2016-07-21 03:07:40.572508 UTC
 
 interface main@main:ConvertToHornTests 7103
-  interface hash: 2727653847d56cd434bfeb92156d29ff
-  ABI hash: decfa6890d54fd9a8c0e9cb2c9d1cb99
-  export-list hash: cc56c36927657e18d3a2911c32a6db1c
-  orphan hash: cd5a5287bf65ec328b99f0270aaefb06
+  interface hash: 176919cfe7986dace4d4874b9d0497bd
+  ABI hash: a7c7db61a423f3bbc4d57802beef529b
+  export-list hash: 2eca4183df47606e42d80d61a90d691f
+  orphan hash: 4e75d7171eab0018727b8ba2c7ecae1d
   flag hash: 768efad6ceab0d9cfe2bb912c6118be4
   sig of: Nothing
   used TH splices: False
   where
 exports:
+  ConvertToHornTests.andCriteria
   ConvertToHornTests.convertToHornTests
   ConvertToHornTests.eliminateAndsTestAndFalse
   ConvertToHornTests.eliminateAndsTestAndTrue
@@ -19,6 +20,7 @@ exports:
   ConvertToHornTests.eliminateAndsTestNotNot
   ConvertToHornTests.eliminateAndsTestOrAnd
   ConvertToHornTests.eliminateAndsTestOrAnd2
+  ConvertToHornTests.eliminateOrsTestAnd
   ConvertToHornTests.simplifyNotsTestAnd
   ConvertToHornTests.simplifyNotsTestMixed
   ConvertToHornTests.simplifyNotsTestNot
@@ -44,6 +46,7 @@ import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  ConvertToHorn a22e4241a25a4135f5a0ba3d8ec46e98
   exports: 6cae4fa71e994bf8d4abef0831a46b33
   eliminateAnds e9fda12cd16fa7bf3653704c47bf2122
+  eliminateOrs ace4065f0f0e8b2053687384741c26e8
   simplifyNots 7d2cc672c917380485d2e3dbdb657f8d
 import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   exports: 98cf0ae77f95faeb276b282dfb3cdefd
@@ -52,15 +55,76 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   Or 48229210229e525ac9cc96e3f7d4cdaf
   Port 8ac4169bf898472df0a5d1d9380502e0
   Protocol 177d6607da755b98ab077f33e0dc8651
-8a82b3798a1d1596de5f5061dc3219db
-  $s$fEq[] :: GHC.Classes.Eq [Types.Criteria]
+aff5d6daaf1b236f86c27d12810b4b58
+  $s$fEq(,,) ::
+    GHC.Classes.Eq ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+                  (GHC.Classes.$fEq(,,)_$c==
+                     @ [Types.Criteria]
+                     @ [Types.Rule]
+                     @ GHC.Types.Int
+                     ConvertToHornTests.$s$fEq(,,)_$dEq
+                     ConvertToHornTests.$s$fEq(,,)_$dEq1
+                     GHC.Classes.$fEqInt)
+                  ConvertToHornTests.$s$fEq(,,)_$s$fEq(,,)_$c/= -}
+76bf4c1c38372c8bf628b7215a63cd33
+  $s$fEq(,,)_$dEq :: GHC.Classes.Eq [Types.Criteria]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1 -}
+73fecbd306c276d3a4000fb2aa852f3d
+  $s$fEq(,,)_$dEq1 :: GHC.Classes.Eq [Types.Rule]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                ConvertToHornTests.$s$fEq(,,)_$s$fEq[] -}
+6e381106906e90c5d575ee6d03c611f6
+  $s$fEq(,,)_$s$fEq(,,)_$c/= ::
+    ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+    -> ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+    -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SLL),1*U(1*U,1*U,1*U(U))><S(SLL),1*U(1*U,1*U,1*U(U))>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a1 :: ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+                   b1 :: ([Types.Criteria], [Types.Rule], GHC.Types.Int) ->
+                 case GHC.Classes.$fEq(,,)_$c==
+                        @ [Types.Criteria]
+                        @ [Types.Rule]
+                        @ GHC.Types.Int
+                        ConvertToHornTests.$s$fEq(,,)_$dEq
+                        ConvertToHornTests.$s$fEq(,,)_$dEq1
+                        GHC.Classes.$fEqInt
+                        a1
+                        b1 of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True -> GHC.Types.False }) -}
+c33e1070c1a88bfb08964b90a03ea9b5
+  $s$fEq(,,)_$s$fEq[] :: GHC.Classes.Eq [Types.Rule]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.Rule]
+                  (GHC.Classes.$fEq[]_$c== @ Types.Rule Types.$fEqRule)
+                  ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/= -}
+1565a27046388cc7e1e84fa6b32030db
+  $s$fEq(,,)_$s$fEq[]1 :: GHC.Classes.Eq [Types.Criteria]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ [Types.Criteria]
                   (GHC.Classes.$fEq[]_$c== @ Types.Criteria Types.$fEqCriteria)
-                  ConvertToHornTests.$s$fEq[]_$s$fEq[]_$c/= -}
-25949f1d7a7f34e03374fee434ae868f
-  $s$fEq[]_$s$fEq[]_$c/= ::
+                  ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/=1 -}
+50d7d13623b9e79c5a82bfe4b8743eac
+  $s$fEq(,,)_$s$fEq[]_$c/= ::
+    [Types.Rule] -> [Types.Rule] -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ x :: [Types.Rule] y :: [Types.Rule] ->
+                 GHC.Classes.not
+                   (GHC.Classes.$fEq[]_$c== @ Types.Rule Types.$fEqRule x y)) -}
+7bbc1e8cbe19f171afef5de650a90d20
+  $s$fEq(,,)_$s$fEq[]_$c/=1 ::
     [Types.Criteria] -> [Types.Criteria] -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Inline: INLINE (sat-args=2),
@@ -72,16 +136,51 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
                       Types.$fEqCriteria
                       x
                       y)) -}
-0dc9a2cd753c3010e60146f9d843d35c
-  $s$fShow[] :: GHC.Show.Show [Types.Criteria]
+fd7ddd37e4872f37a467f88b400ba3c4
+  $s$fShow(,,) ::
+    GHC.Show.Show ([Types.Criteria], [Types.Rule], GHC.Types.Int)
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
-                  @ [Types.Criteria]
-                  ConvertToHornTests.$s$fShow[]3
-                  ConvertToHornTests.$s$fShow[]2
-                  ConvertToHornTests.$s$fShow[]1 -}
-0936c525ea5ceddc4957e30bf71023d7
-  $s$fShow[]1 :: [[Types.Criteria]] -> GHC.Show.ShowS
+                  @ ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+                  (GHC.Show.$fShow(,,)_$cshowsPrec
+                     @ [Types.Criteria]
+                     @ [Types.Rule]
+                     @ GHC.Types.Int
+                     ConvertToHornTests.$s$fShow(,,)_$dShow
+                     ConvertToHornTests.$s$fShow(,,)_$dShow1
+                     GHC.Show.$fShowInt)
+                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow
+                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList -}
+4181d67aef369eac235bf43c66b4cb43
+  $s$fShow(,,)1 :: [[Types.Rule]] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [[Types.Rule]] eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ [Types.Rule]
+                   Types.$fShowRule_$cshowList
+                   eta
+                   eta1) -}
+08503bd3e9e634b73f5a6584685962bd
+  $s$fShow(,,)2 :: [Types.Rule] -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: [Types.Rule] ->
+                 GHC.Show.showList__
+                   @ Types.Rule
+                   Types.$fShowRule1
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+bec89cb3d56a7fef700f41ab18b026e6
+  $s$fShow(,,)3 :: GHC.Types.Int -> [Types.Rule] -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ ds :: GHC.Types.Int
+                   eta :: [Types.Rule]
+                   eta1 :: GHC.Base.String ->
+                 Types.$fShowRule_$cshowList eta eta1) -}
+4c30ddb8a06ec25fe6b51d3e5622a310
+  $s$fShow(,,)4 :: [[Types.Criteria]] -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U><L,U>,
      Unfolding: InlineRule (2, True, False)
                 (\ eta :: [[Types.Criteria]] eta1 :: GHC.Base.String ->
@@ -90,8 +189,8 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
                    Types.$fShowCriteria_$cshowList
                    eta
                    eta1) -}
-69d3695570457dc5e655e198753673e9
-  $s$fShow[]2 :: [Types.Criteria] -> GHC.Base.String
+88b84e43a51d3e8e1b80338e3d8d41a5
+  $s$fShow(,,)5 :: [Types.Criteria] -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
                 (\ x :: [Types.Criteria] ->
@@ -100,255 +199,427 @@ import  -/  Types be1e767e9389ce9c8fd11ba155041f23
                    Types.$fShowCriteria1
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-c744634cfb5bd896c2325a2f8a0a9ca5
-  $s$fShow[]3 :: GHC.Types.Int -> [Types.Criteria] -> GHC.Show.ShowS
+a3a120b46a6730dd5c8fd94cfe4d7d75
+  $s$fShow(,,)6 ::
+    GHC.Types.Int -> [Types.Criteria] -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,A>,
      Unfolding: InlineRule (1, True, True)
                 (\ ds :: GHC.Types.Int
                    eta :: [Types.Criteria]
                    eta1 :: GHC.Base.String ->
                  Types.$fShowCriteria_$cshowList eta eta1) -}
-3c9240f9e87530b8258181e070eda752
+af9e6954a5b37ff7cc3b24bd35cb594d
+  $s$fShow(,,)_$dShow :: GHC.Show.Show [Types.Criteria]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1 -}
+389c55aa5cca4a8f90a53e81dbb99fea
+  $s$fShow(,,)_$dShow1 :: GHC.Show.Show [Types.Rule]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                ConvertToHornTests.$s$fShow(,,)_$s$fShow[] -}
+c4fbd535295bdbd091369dcc6c5aff70
+  $s$fShow(,,)_$s$fShow(,,)_$cshow ::
+    ([Types.Criteria], [Types.Rule], GHC.Types.Int) -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U,U,U(U))>m2,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: ([Types.Criteria], [Types.Rule], GHC.Types.Int) ->
+                 GHC.Show.$fShow(,,)_$cshowsPrec
+                   @ [Types.Criteria]
+                   @ [Types.Rule]
+                   @ GHC.Types.Int
+                   ConvertToHornTests.$s$fShow(,,)_$dShow
+                   ConvertToHornTests.$s$fShow(,,)_$dShow1
+                   GHC.Show.$fShowInt
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+9d95efb3670e6069ff92bb77fc872ef4
+  $s$fShow(,,)_$s$fShow(,,)_$cshowList ::
+    [([Types.Criteria], [Types.Rule], GHC.Types.Int)] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [([Types.Criteria], [Types.Rule], GHC.Types.Int)]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+                   (GHC.Show.$fShow(,,)_$cshowsPrec
+                      @ [Types.Criteria]
+                      @ [Types.Rule]
+                      @ GHC.Types.Int
+                      ConvertToHornTests.$s$fShow(,,)_$dShow
+                      ConvertToHornTests.$s$fShow(,,)_$dShow1
+                      GHC.Show.$fShowInt
+                      GHC.Show.shows18)
+                   eta
+                   eta1) -}
+0d243b976ab21a3279ac44f4f8df282d
+  $s$fShow(,,)_$s$fShow[] :: GHC.Show.Show [Types.Rule]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.Rule]
+                  ConvertToHornTests.$s$fShow(,,)3
+                  ConvertToHornTests.$s$fShow(,,)2
+                  ConvertToHornTests.$s$fShow(,,)1 -}
+dc7b03b8974a1984fcc179d10c747f3a
+  $s$fShow(,,)_$s$fShow[]1 :: GHC.Show.Show [Types.Criteria]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.Criteria]
+                  ConvertToHornTests.$s$fShow(,,)6
+                  ConvertToHornTests.$s$fShow(,,)5
+                  ConvertToHornTests.$s$fShow(,,)4 -}
+dcc08867f42bd02394375d0d3e23a46b
+  andCriteria :: [Types.Criteria]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria1
+                   (GHC.Types.[] @ Types.Criteria)) -}
+bbe9842dc6bfa6f6c98de8c225898ac2
+  andCriteria1 :: Types.Criteria
+  {- Strictness: m1,
+     Unfolding: (Types.And ConvertToHornTests.andCriteria2) -}
+b3a20a913ab33de13e73e3e8c78631f2
+  andCriteria10 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 3) -}
+6910b0bc63f7f88474174976357e4287
+  andCriteria11 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "destination"#) -}
+cd1f1f719683ee57db1589413790fc8f
+  andCriteria12 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m7,
+     Unfolding: (Types.Protocol ConvertToHornTests.andCriteria13) -}
+a16b4ecd67a7704a746ec64abea50ddf
+  andCriteria13 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 2) -}
+d6b11a8e1d11fefaa3eb2ae52f863b2b
+  andCriteria14 :: Types.Criteria
+  {- Strictness: m4,
+     Unfolding: (Types.Port
+                   ConvertToHornTests.andCriteria11
+                   ConvertToHornTests.andCriteria15) -}
+675aecba115cf2d4c5b1a71d72617c78
+  andCriteria15 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   ConvertToHornTests.andCriteria16) -}
+93b278cf6e80dafc7d962def6098bc3f
+  andCriteria16 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1) -}
+bf0356f0815ebb96b65d1aec21842119
+  andCriteria17 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m7,
+     Unfolding: (Types.Protocol ConvertToHornTests.andCriteria16) -}
+0585d02607028beee514a99b0da9ea2b
+  andCriteria2 :: [Types.Criteria]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria17
+                   ConvertToHornTests.andCriteria3) -}
+3ab9b64cc8fda3b60a61f05bc939bc68
+  andCriteria3 :: [Types.Criteria]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria14
+                   ConvertToHornTests.andCriteria4) -}
+a832aa45d8228b03b4b4162ea3c02c0c
+  andCriteria4 :: [Types.Criteria]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria5
+                   (GHC.Types.[] @ Types.Criteria)) -}
+62cd295b1466122b9a88c2a9c3f8ac4b
+  andCriteria5 :: Types.Criteria
+  {- Strictness: m1,
+     Unfolding: (Types.And ConvertToHornTests.andCriteria6) -}
+0c736f4732b88ef3ff93a3c5fba16143
+  andCriteria6 :: [Types.Criteria]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria12
+                   ConvertToHornTests.andCriteria7) -}
+bfc43c9cc0129ca545d54aeb4ad9341a
+  andCriteria7 :: [Types.Criteria]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria8
+                   (GHC.Types.[] @ Types.Criteria)) -}
+e39c21974ec6837742742348e1ee0acb
+  andCriteria8 :: Types.Criteria
+  {- Strictness: m4,
+     Unfolding: (Types.Port
+                   ConvertToHornTests.andCriteria11
+                   ConvertToHornTests.andCriteria9) -}
+f426c6701028058198e39e80b8019a09
+  andCriteria9 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   ConvertToHornTests.andCriteria10) -}
+185423ed9e8e31aa8669d5fdf603e24b
   convertToHornTests :: Test.HUnit.Base.Test
   {- Strictness: m2,
      Unfolding: (Test.HUnit.Base.TestList
                    ConvertToHornTests.convertToHornTests1) -}
-dd7ca135d7e1c102bdae3639b7eb1ec3
+9e180780010626228a87ee790cdf9106
   convertToHornTests1 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests28
+                   ConvertToHornTests.convertToHornTests31
                    ConvertToHornTests.convertToHornTests2) -}
-7f072d6d23fb060bbaa6ecc85698d7a7
+2098759eae72eb37b55f2b5b417cb0ff
   convertToHornTests10 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests11
+                   ConvertToHornTests.convertToHornTests14
+                   ConvertToHornTests.convertToHornTests11) -}
+46c6bd95805c8920481aa0c26100b492
+  convertToHornTests11 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   ConvertToHornTests.convertToHornTests12
                    (GHC.Types.[] @ Test.HUnit.Base.Test)) -}
-d573869fec5e5d4832ab07a44772f671
-  convertToHornTests11 :: Test.HUnit.Base.Test
+c2860748c3d31d76c80cca0a360b1ef2
+  convertToHornTests12 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests12
+                   ConvertToHornTests.convertToHornTests13
                    ConvertToHornTests.simplifyNotsTestMixed) -}
-6ce8b86f4e7aa392512a4b7885b355dc
-  convertToHornTests12 :: [GHC.Types.Char]
+8f2ee8d761b9ffa396395f757fd770d7
+  convertToHornTests13 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNotsTestMixed"#) -}
-5505179e26e8abd9e7ff2cb967b97aed
-  convertToHornTests13 :: Test.HUnit.Base.Test
+7294e33536ecc27240036a27cf3d74a0
+  convertToHornTests14 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests14
+                   ConvertToHornTests.convertToHornTests15
                    ConvertToHornTests.simplifyNotsTestNot) -}
-e0652ea6cfa99c47b2fca4c085274b2a
-  convertToHornTests14 :: [GHC.Types.Char]
+8e7f960c5f4b17bf6f1c580efe043a27
+  convertToHornTests15 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNotsTestNot"#) -}
-49857c714f696ec3d748f69c2fd05acb
-  convertToHornTests15 :: Test.HUnit.Base.Test
+a751d9ec9b8f1cb50a5f14c360a1eafc
+  convertToHornTests16 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests16
+                   ConvertToHornTests.convertToHornTests17
                    ConvertToHornTests.simplifyNotsTestOr) -}
-5405b98aa6fa18dfe39e464dafada0d9
-  convertToHornTests16 :: [GHC.Types.Char]
+6205402f88ec56fab5841bcb7afd9717
+  convertToHornTests17 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "simplifyNotsTestOr"#) -}
-870ae6c768d950da96837d41ada1e110
-  convertToHornTests17 :: Test.HUnit.Base.Test
+e48f5f2d498ca0ef8b98d108e6f9652f
+  convertToHornTests18 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests18
+                   ConvertToHornTests.convertToHornTests19
                    ConvertToHornTests.simplifyNotsTestAnd) -}
-559440e2b0cc5457b92f2d9d28fd6d95
-  convertToHornTests18 :: [GHC.Types.Char]
+96a5cc43f309ba3f26d917b4418ae6c9
+  convertToHornTests19 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNotsTestAnd"#) -}
-2ff558e2cf579fed49ed4e35569aefd0
-  convertToHornTests19 :: Test.HUnit.Base.Test
-  {- Strictness: m3,
-     Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests20
-                   ConvertToHornTests.eliminateAndsTestAndTrue) -}
-23d0599c9575dccc4f450a8ba0847911
+ab5294c80741f09a68a18864f506e6e0
   convertToHornTests2 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests27
+                   ConvertToHornTests.convertToHornTests30
                    ConvertToHornTests.convertToHornTests3) -}
-4b8888fd95de2b9a1b8f23f9cfbc07a0
-  convertToHornTests20 :: [GHC.Types.Char]
+05a35fafc49cd250ef011452414689c5
+  convertToHornTests20 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   ConvertToHornTests.convertToHornTests21
+                   ConvertToHornTests.eliminateOrsTestAnd) -}
+95825982cd5f2913406b4e00e6631387
+  convertToHornTests21 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "eliminateOrsAnd"#) -}
+4d785da107014255ee0c76bd79a28479
+  convertToHornTests22 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   ConvertToHornTests.convertToHornTests23
+                   ConvertToHornTests.eliminateAndsTestAndTrue) -}
+92ea7b7f8de4bf33046d2dc391caac2a
+  convertToHornTests23 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "eliminateAndsTestAndTrue"#) -}
-3fd6844048bd837d3b577f0f83474bf9
-  convertToHornTests21 :: Test.HUnit.Base.Test
+d517bd43efe05c7f4297dd9ddd2376e7
+  convertToHornTests24 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests22
+                   ConvertToHornTests.convertToHornTests25
                    ConvertToHornTests.eliminateAndsTestAndFalse) -}
-f3df207a25901da729215a46017bd702
-  convertToHornTests22 :: [GHC.Types.Char]
+412045bf6692541c835c86215f379943
+  convertToHornTests25 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "eliminateAndsTestAndFalse"#) -}
-f1157fec00e089171cf37033504f3953
-  convertToHornTests23 :: Test.HUnit.Base.Test
+6d634aabceb7f978f98369f1f60e5783
+  convertToHornTests26 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests24
+                   ConvertToHornTests.convertToHornTests27
                    ConvertToHornTests.eliminateAndsTestNotNot) -}
-56b995cc5d741b271f095ebe4c43b60e
-  convertToHornTests24 :: [GHC.Types.Char]
+44aba9c5c633d6df4a4a92a0f29918e6
+  convertToHornTests27 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "eliminateAndsTestNotNot"#) -}
-caafa092c4e1e7e7a5e04df788ab358d
-  convertToHornTests25 :: Test.HUnit.Base.Test
-  {- Strictness: m3,
-     Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests26
-                   ConvertToHornTests.eliminateAndsTestOrAnd2) -}
-28b96ba2ebf51b30757a9bd3d80d129b
-  convertToHornTests26 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString#
-                   "eliminateAndsTestNotOrAnd"#) -}
-a936569b490fce349dfab6bf558ec925
-  convertToHornTests27 :: Test.HUnit.Base.Test
-  {- Strictness: m3,
-     Unfolding: (Test.HUnit.Base.TestLabel
-                   ConvertToHornTests.convertToHornTests26
-                   ConvertToHornTests.eliminateAndsTestOrAnd) -}
-7a0f4c5783e85ca1ee41f7a4a6bf184b
+6c25ef508328bf3e890098cd6f9f4248
   convertToHornTests28 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
                    ConvertToHornTests.convertToHornTests29
-                   ConvertToHornTests.eliminateAndsTestNotAnd) -}
-78539b63cd317fba65901614ffca26be
+                   ConvertToHornTests.eliminateAndsTestOrAnd2) -}
+9fce9f3395b0e10b40a963b47e22d823
   convertToHornTests29 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "eliminateAndsTestNotAnd"#) -}
-95cddf99a1f2873003e509503b801b60
+                   "eliminateAndsTestNotOrAnd"#) -}
+cfe8da3cdd2af09fb84757e068af5efe
   convertToHornTests3 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests25
+                   ConvertToHornTests.convertToHornTests28
                    ConvertToHornTests.convertToHornTests4) -}
-a52c4c9d58b6e1a0a654bb877b2fc0f3
+c15272d2f87637cde75df62a38bb3fad
+  convertToHornTests30 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   ConvertToHornTests.convertToHornTests29
+                   ConvertToHornTests.eliminateAndsTestOrAnd) -}
+a26bc1e17bb43d129eac1507c9ff8c00
+  convertToHornTests31 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   ConvertToHornTests.convertToHornTests32
+                   ConvertToHornTests.eliminateAndsTestNotAnd) -}
+c4576c0b76c4ef3e9f471d807542f92d
+  convertToHornTests32 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "eliminateAndsTestNotAnd"#) -}
+a568dbfdc14b65c68d6abd338a6734e4
   convertToHornTests4 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests23
+                   ConvertToHornTests.convertToHornTests26
                    ConvertToHornTests.convertToHornTests5) -}
-4b319fddf370c24ea1c47d625cbbaa75
+5caf27fd226eade49a07e2bfeb376de4
   convertToHornTests5 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests21
+                   ConvertToHornTests.convertToHornTests24
                    ConvertToHornTests.convertToHornTests6) -}
-43270df82c7e096ebd9de0dff7bd0ef4
+913d1498d2b3196af7d0fc1c1aef0142
   convertToHornTests6 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests19
+                   ConvertToHornTests.convertToHornTests22
                    ConvertToHornTests.convertToHornTests7) -}
-2830d4978447ae1c285a11b4ad61b441
+ace74a831d1b03e85a421fdf02d61b93
   convertToHornTests7 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests17
+                   ConvertToHornTests.convertToHornTests20
                    ConvertToHornTests.convertToHornTests8) -}
-4ae6eb966bc246cd459875c5f9c252b2
+7cf5cdefc18447ae3a72b25282589e7c
   convertToHornTests8 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests15
+                   ConvertToHornTests.convertToHornTests18
                    ConvertToHornTests.convertToHornTests9) -}
-29613f1a61c5524c7caa1139b3b0463a
+a74330a2c3af04855cd7a29283db5566
   convertToHornTests9 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests13
+                   ConvertToHornTests.convertToHornTests16
                    ConvertToHornTests.convertToHornTests10) -}
-934974b41481438c093d845489ab7663
+3e0e1bcb21c4889998496f50ef4a40fb
   eliminateAndsTestAndFalse :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.eliminateAndsTestAndFalse1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-b822ee0a00c2850e159f0be7fa415837
+4ab1175dfc972e0f778cbc54953f9bb1
   eliminateAndsTestAndFalse1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (Test.HUnit.Base.@=?7
                    @ [Types.Criteria]
-                   ConvertToHornTests.eliminateAndsTestAndFalse4
+                   ConvertToHornTests.eliminateAndsTestAndFalse3
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
-                   ConvertToHornTests.eliminateAndsTestAndFalse3
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+                   ConvertToHornTests.eliminateAndsTestAndTrue4
                    ConvertToHornTests.eliminateAndsTestAndFalse2
-                   ConvertToHornTests.simplifyNotsTestOr14) -}
-a9163d80ae88eae67b0674604980560a
+                   ConvertToHornTests.simplifyNotsTestOr11) -}
+097264228826f090c6823cd3fc2b9806
   eliminateAndsTestAndFalse2 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.eliminateAnds
                    ConvertToHornTests.eliminateAndsTestAndTrue2
                    GHC.Types.False) -}
-1b48b2a577bd6365d2a62a3d8e2db754
-  eliminateAndsTestAndFalse3 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString#
-                   "eliminateAnd is not eliminating corrrectly."#) -}
-a59b170b59e08da95a6206371708921f
-  eliminateAndsTestAndFalse4 :: GHC.Stack.CallStack
+6055c632fca55effa03413e32a24e220
+  eliminateAndsTestAndFalse3 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
-                   ConvertToHornTests.eliminateAndsTestAndFalse5) -}
-b7976f3d965b07249b45f3f6028a1bca
-  eliminateAndsTestAndFalse5 ::
+                   ConvertToHornTests.eliminateAndsTestAndFalse4) -}
+f902aa000325de34d0e9913702e1ebc0
+  eliminateAndsTestAndFalse4 ::
     [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
-                   ConvertToHornTests.eliminateAndsTestAndFalse6
+                   ConvertToHornTests.eliminateAndsTestAndFalse5
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-d0928f92cff042d7bca112e566bcb875
-  eliminateAndsTestAndFalse6 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+9f4870cf86b91c3ccc7d8190eacb90b3
+  eliminateAndsTestAndFalse5 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
-                  ConvertToHornTests.eliminateAndsTestAndFalse7)) -}
-519053bfd34fc43bf428d6f0dff5608e
-  eliminateAndsTestAndFalse7 :: GHC.SrcLoc.SrcLoc
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
+                  ConvertToHornTests.eliminateAndsTestAndFalse6)) -}
+973e60c273ce423b033d72da937ff4bc
+  eliminateAndsTestAndFalse6 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
-                   ConvertToHornTests.eliminateAndsTestAndFalse8
-                   ConvertToHornTests.simplifyNotsTestMixed78
-                   ConvertToHornTests.eliminateAndsTestAndFalse8
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
+                   ConvertToHornTests.eliminateAndsTestAndFalse7
+                   ConvertToHornTests.simplifyNotsTestMixed73
+                   ConvertToHornTests.eliminateAndsTestAndFalse7
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-1bb5cc93a6fa0c78eda475e9f60cc063
-  eliminateAndsTestAndFalse8 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 75) -}
-ac4d91c8cdeb3a323949e337614c59b9
+ed21d863155d0c6e4c3ea9e3a2ec5283
+  eliminateAndsTestAndFalse7 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 76) -}
+189b64de35bfe0c02c63da7bc6027f15
   eliminateAndsTestAndTrue :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.eliminateAndsTestAndTrue1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-79ef790cef371065ca45548af5e450aa
+9dbbcdcc1e2ce99a9e238beb2227f2e1
   eliminateAndsTestAndTrue1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -358,32 +629,32 @@ ac4d91c8cdeb3a323949e337614c59b9
                    ConvertToHornTests.eliminateAndsTestAndTrue5
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
                    ConvertToHornTests.eliminateAndsTestAndTrue4
                    ConvertToHornTests.eliminateAndsTestAndTrue3
                    ConvertToHornTests.eliminateAndsTestAndTrue2) -}
-0394fa04cef97aab097e325e9274242f
+1c43182bbd1fa676c4afc71f0055a097
   eliminateAndsTestAndTrue2 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestAnd7
                    (GHC.Types.[] @ Types.Criteria)) -}
-e7cb6c99dd6c84d8eaed8b8b36a1f416
+eed778777582211fb1316655f5e3df7c
   eliminateAndsTestAndTrue3 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.eliminateAnds
                    ConvertToHornTests.eliminateAndsTestAndTrue2
                    GHC.Types.True) -}
-c2232548e7877af3a01336a042751ecd
+b02e0acf1460bb38b9457c6ddf80b598
   eliminateAndsTestAndTrue4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "eliminateAndTrue is not eliminating corrrectly."#) -}
-d312a6ef4e9c8b6ff2d6172b878ed7a9
+                   "eliminateAnd is not eliminating corrrectly."#) -}
+9f95e2ce7d9474e384904ccb47b11819
   eliminateAndsTestAndTrue5 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.eliminateAndsTestAndTrue6) -}
-4968fa7966c5d8368004982519314552
+e3c42aae68ce1e90d198bab8b30bfb46
   eliminateAndsTestAndTrue6 ::
     [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
@@ -391,33 +662,33 @@ d312a6ef4e9c8b6ff2d6172b878ed7a9
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.eliminateAndsTestAndTrue7
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-6ebf6adda78db2898393777f24b89ea8
+23b54175d27c433dd5ccb2e5a685e0ae
   eliminateAndsTestAndTrue7 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
                   ConvertToHornTests.eliminateAndsTestAndTrue8)) -}
-a04f4231a33b1fa205aba764271cbafd
+495e7df94fee1617954df56b507093c4
   eliminateAndsTestAndTrue8 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
                    ConvertToHornTests.eliminateAndsTestAndTrue9
-                   ConvertToHornTests.simplifyNotsTestMixed78
+                   ConvertToHornTests.simplifyNotsTestMixed73
                    ConvertToHornTests.eliminateAndsTestAndTrue9
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-0b1be8f9bbea3fe9ebb989c17fc1e0af
+2fec5274eea091a121982007da59c4b8
   eliminateAndsTestAndTrue9 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 80) -}
-594df5afb819e857b10ebe7d1ed08ddd
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 81) -}
+a24d9377efe66320ad869d43d20e12cf
   eliminateAndsTestNotAnd :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.eliminateAndsTestNotAnd1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-521bb2a601855e8626821fff0aee267e
+d9b4439bb14d486165c64d12f4956370
   eliminateAndsTestNotAnd1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -427,17 +698,17 @@ a04f4231a33b1fa205aba764271cbafd
                    ConvertToHornTests.eliminateAndsTestNotAnd10
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
-                   ConvertToHornTests.eliminateAndsTestAndFalse3
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+                   ConvertToHornTests.eliminateAndsTestAndTrue4
                    ConvertToHornTests.eliminateAndsTestNotAnd6
                    ConvertToHornTests.eliminateAndsTestNotAnd2) -}
-2d327e200ba76fc55923e1899d89a01d
+a4eb0bfa3da7f6fcc968f5a537ee0ebc
   eliminateAndsTestNotAnd10 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.eliminateAndsTestNotAnd11) -}
-27d950479637181dcffdb37558a3c5c9
+60c3e3704542ccc13ffbc35a3dfeedf8
   eliminateAndsTestNotAnd11 ::
     [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
@@ -445,76 +716,76 @@ a04f4231a33b1fa205aba764271cbafd
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.eliminateAndsTestNotAnd12
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-bf85789d9d4cbcc3162ae4fe4dd1f205
+a11f4da8273de42de64f03ab9514a5a3
   eliminateAndsTestNotAnd12 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
                   ConvertToHornTests.eliminateAndsTestNotAnd13)) -}
-180e872f1a35f53c1d7008fdb4605418
+9b54222bc9a4e1a13775b7942980c47a
   eliminateAndsTestNotAnd13 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
                    ConvertToHornTests.eliminateAndsTestNotAnd14
-                   ConvertToHornTests.simplifyNotsTestMixed78
+                   ConvertToHornTests.simplifyNotsTestMixed73
                    ConvertToHornTests.eliminateAndsTestNotAnd14
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-ff738726ec02d034d4d4aaca62bac584
+2a10dfc6b16cb4f9177bfe0b2ab03e97
   eliminateAndsTestNotAnd14 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 19) -}
-93675091fd20a80eadb709aca322fef0
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 20) -}
+c2275cd6dd5c3b7bf5990eb5459e6345
   eliminateAndsTestNotAnd2 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestNotAnd3
                    (GHC.Types.[] @ Types.Criteria)) -}
-28442f0027514553ea8d373347f32e72
+6d68afa4889f8137fcf293d0081c8507
   eliminateAndsTestNotAnd3 :: Types.Criteria
   {- Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotAnd4) -}
-b723e7b01637814f0603ff908b4de4c3
+ecfe6eb584dd26dc0c1617e13d4aa864
   eliminateAndsTestNotAnd4 :: Types.Criteria
   {- Strictness: m1,
      Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestNotAnd5) -}
-8491eb19c50fd1a965b18790153093e9
+5cb93830560c99cc3e40e88a5e5accd5
   eliminateAndsTestNotAnd5 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
-                   ConvertToHornTests.eliminateAndsTestOrAnd38) -}
-ea03a5947783d9ae6734558ac2561690
+                   ConvertToHornTests.andCriteria17
+                   ConvertToHornTests.eliminateAndsTestOrAnd35) -}
+6678e2c8a8055b2109404a1f53cee880
   eliminateAndsTestNotAnd6 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.eliminateAnds
                    ConvertToHornTests.eliminateAndsTestNotAnd7
                    GHC.Types.False) -}
-3fd52c8d9ba98e47be6cc61d88f0dd6a
+f6769665b015e1875cac28c786841e2f
   eliminateAndsTestNotAnd7 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestNotAnd8
                    (GHC.Types.[] @ Types.Criteria)) -}
-c5faa75de874c8f621a73e46e8fc8ed7
+b947d27cdcf7d09b40867eb6dd5ba574
   eliminateAndsTestNotAnd8 :: Types.Criteria
   {- Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotAnd9) -}
-b5fd6192fb18f11037b6bde1a3cde4df
+45874e7cce3b886632df62277a61c2b7
   eliminateAndsTestNotAnd9 :: Types.Criteria
   {- Unfolding: (Types.And
-                   ConvertToHornTests.eliminateAndsTestOrAnd35) -}
-93ad7049969b75b8ce36a811001a38c0
+                   ConvertToHornTests.eliminateAndsTestOrAnd32) -}
+c21c90d450723aee000cd379c83aec9c
   eliminateAndsTestNotNot :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.eliminateAndsTestNotNot1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-73446911f5b69a359b31e1ac79ee0d94
+efcdd2835e4fd8e134e4fab081a8d61f
   eliminateAndsTestNotNot1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -524,80 +795,80 @@ b5fd6192fb18f11037b6bde1a3cde4df
                    ConvertToHornTests.eliminateAndsTestNotNot25
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
                    ConvertToHornTests.eliminateAndsTestNotNot24
                    ConvertToHornTests.eliminateAndsTestNotNot13
                    ConvertToHornTests.eliminateAndsTestNotNot2) -}
-f52e12cd6910d2051694171940836e87
+84c7117a1d60be84b9de750bc6532d41
   eliminateAndsTestNotNot10 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestNotNot11
                    (GHC.Types.[] @ Types.Criteria)) -}
-ad71ed006593ea76a47a6ad15fc0ee5d
+dcf130dc40dbeb8e6668771eb56426c9
   eliminateAndsTestNotNot11 :: Types.Criteria
   {- Unfolding: (Types.Port
                    ConvertToHornTests.eliminateAndsTestNotNot12
-                   ConvertToHornTests.simplifyNotsTestOr8) -}
+                   ConvertToHornTests.andCriteria15) -}
 eb183ee1b270d78890cfea2ba3e0447c
   eliminateAndsTestNotNot12 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "source"#) -}
-64b23b8f1e9e8611dc61ba168d924cb5
+f87c41f5101b9a716fbed8c8695bb661
   eliminateAndsTestNotNot13 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.eliminateAnds
                    ConvertToHornTests.eliminateAndsTestNotNot14
                    GHC.Types.True) -}
-f37deacb1641d544ac43a64c3a24d97c
+dda5ac26eb29d1ed76a8649b3ba7a8de
   eliminateAndsTestNotNot14 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestNotNot15
                    (GHC.Types.[] @ Types.Criteria)) -}
-fd6c603c344059205eb0bb34fbd03bb2
+8ae75da02842cf840f158abb783d8669
   eliminateAndsTestNotNot15 :: Types.Criteria
   {- Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot16) -}
-9e6d7ff26b6611d4a60f38c920ce84fa
+7f4e46dbbf7b28699b7a91a10cdc3c86
   eliminateAndsTestNotNot16 :: Types.Criteria
   {- Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot17) -}
-d42771ab399a89cb59f9029d40ee5920
+2f8ce0d22b316fc755ef801cdf772e52
   eliminateAndsTestNotNot17 :: Types.Criteria
   {- Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot18) -}
-d09fb7310e80adab33a23b00838cc1a7
+186a01c142b95cc641234d4b10f19e03
   eliminateAndsTestNotNot18 :: Types.Criteria
   {- Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot19) -}
-04009689aca40e3c7f64b7ace0b0e8ed
+dfeb9cb7b4db64cd690b8e4a83e805bc
   eliminateAndsTestNotNot19 :: Types.Criteria
   {- Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot20) -}
-df6d3651df57f4329a4b3691e7dcb3f9
+5a194eb04d8b7b7cbe779f1489c66285
   eliminateAndsTestNotNot2 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestNotNot3
                    (GHC.Types.[] @ Types.Criteria)) -}
-ce47654e8518f079dfeba91375d2175c
+415bd18198036130e6063a76cff1c5b5
   eliminateAndsTestNotNot20 :: Types.Criteria
   {- Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestNotNot21) -}
-54a60aa9209a7e2ff3dcf25eb2c279e6
+ddc5f9f86b4843463a71b94285529e0a
   eliminateAndsTestNotNot21 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
+                   ConvertToHornTests.andCriteria17
                    ConvertToHornTests.eliminateAndsTestNotNot22) -}
-84bf9e3e8daf5bf56b23f11c961a463f
+666dd3e17c9bbb6c00c2f53eb9339989
   eliminateAndsTestNotNot22 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestNotNot23
                    (GHC.Types.[] @ Types.Criteria)) -}
-e42dde96be4a4e7503d28a3a1ab0285c
+a550cfdd827d4d71ade49b054eb16fc7
   eliminateAndsTestNotNot23 :: Types.Criteria
   {- Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestNotNot10) -}
@@ -605,12 +876,12 @@ e42dde96be4a4e7503d28a3a1ab0285c
   eliminateAndsTestNotNot24 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "eliminateAnds is not eliminating corrrectly."#) -}
-c8ccf0ff1a75b7511afe3794fae65713
+71c543500732f9f368bd2538a2f42cc5
   eliminateAndsTestNotNot25 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.eliminateAndsTestNotNot26) -}
-720197d99200c3f5bad7b1a851dc333e
+69e231c661849655a75ba173967fa6c8
   eliminateAndsTestNotNot26 ::
     [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
@@ -618,354 +889,409 @@ c8ccf0ff1a75b7511afe3794fae65713
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.eliminateAndsTestNotNot27
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-f22b50be244bbd58c5e9c4ba916d0168
+ab0fbe90712cefb6371f69335604648d
   eliminateAndsTestNotNot27 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
                   ConvertToHornTests.eliminateAndsTestNotNot28)) -}
-197207fceca46879906631b4d3419c8b
+dd64a9f89be6966dd4b1b9bae8a33047
   eliminateAndsTestNotNot28 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
                    ConvertToHornTests.eliminateAndsTestNotNot29
-                   ConvertToHornTests.simplifyNotsTestMixed78
+                   ConvertToHornTests.simplifyNotsTestMixed73
                    ConvertToHornTests.eliminateAndsTestNotNot29
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-f871904f46a8ffdb75594205d661149b
+6d83f33541f03364790fecb948f3a5b0
   eliminateAndsTestNotNot29 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 62) -}
-16a38650bb4bf1dcd9369f5e1036cee9
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 63) -}
+f8e8445fc7593ca2735d10ed8a919f92
   eliminateAndsTestNotNot3 :: Types.Criteria
   {- Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot4) -}
-e5870fc6ac8c744ab72b8ec36fd07d03
+6cb903ab524661083716890186dd7f9c
   eliminateAndsTestNotNot4 :: Types.Criteria
   {- Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot5) -}
-e38385af64966f2958143d81e93d24e7
+5fb1596f1ed5b2a612ed831d0faed857
   eliminateAndsTestNotNot5 :: Types.Criteria
   {- Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot6) -}
-646d5ce8d67fa7d43cd4ea83b63331cf
+7f431f701ae7580dcb96d7685d3e3848
   eliminateAndsTestNotNot6 :: Types.Criteria
   {- Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot7) -}
-9ab4f48cfbf0978683314b7915166582
+b10d2db9917fb023931a49fe58f091f2
   eliminateAndsTestNotNot7 :: Types.Criteria
   {- Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestNotNot8) -}
-2505fde15529b3af78dc99e97235f0d2
+e30caa1a7b0448e9fa9171f7b83e8165
   eliminateAndsTestNotNot8 :: Types.Criteria
   {- Strictness: m1,
      Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestNotNot9) -}
-3d6a16eb2f70836073c49e095c2375a7
+0762eecd33b6e75804fc9569d8ee14f7
   eliminateAndsTestNotNot9 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
+                   ConvertToHornTests.andCriteria17
                    ConvertToHornTests.eliminateAndsTestNotNot10) -}
-5c33ead41b91cf6e4465331aef483417
+d30e9bf52b78d085ab09cd6348de557b
   eliminateAndsTestOrAnd :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
-                   ConvertToHornTests.eliminateAndsTestOrAnd31
+                   ConvertToHornTests.eliminateAndsTestOrAnd28
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-8fb49f6773db1fe94936ec64a81eb748
+7f3499992f0ca7a9e4a66ab01851ca19
   eliminateAndsTestOrAnd1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (Test.HUnit.Base.@=?7
                    @ [Types.Criteria]
-                   ConvertToHornTests.eliminateAndsTestOrAnd26
+                   ConvertToHornTests.eliminateAndsTestOrAnd23
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
                    ConvertToHornTests.eliminateAndsTestNotNot24
-                   ConvertToHornTests.eliminateAndsTestOrAnd16
+                   ConvertToHornTests.eliminateAndsTestOrAnd13
                    ConvertToHornTests.eliminateAndsTestOrAnd3) -}
-a33fcddb9f48060ffb845865aab6ca60
+3a4c37e1ee4e12e93eb051de7f6ff480
   eliminateAndsTestOrAnd10 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.eliminateAndsTestOrAnd14
-                   ConvertToHornTests.eliminateAndsTestOrAnd11) -}
-903d46d786f317eaf5f719d40890df63
-  eliminateAndsTestOrAnd11 :: [Types.Criteria]
-  {- Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.eliminateAndsTestOrAnd12
-                   (GHC.Types.[] @ Types.Criteria)) -}
-b3ea053ab4709b7b0137b6640037ad3f
-  eliminateAndsTestOrAnd12 :: Types.Criteria
-  {- Unfolding: (Types.Port
-                   ConvertToHornTests.simplifyNotsTestOr9
-                   ConvertToHornTests.eliminateAndsTestOrAnd13) -}
-b9ab180c8934bf5bcbc712f1bf074548
-  eliminateAndsTestOrAnd13 ::
-    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
-  {- HasNoCafRefs,
-     Unfolding: (Data.Either.Left
-                   @ GHC.Types.Int
-                   @ (GHC.Types.Int, GHC.Types.Int)
-                   ConvertToHornTests.simplifyNotsTestMixed37) -}
-2a1e1c93d4cc121027e689e5bdca4bc3
-  eliminateAndsTestOrAnd14 :: Types.Criteria
+                   ConvertToHornTests.eliminateAndsTestOrAnd11
+                   ConvertToHornTests.andCriteria7) -}
+b0d2143c7e3d698a38a0c683e14c3460
+  eliminateAndsTestOrAnd11 :: Types.Criteria
   {- Unfolding: (Types.Port
                    ConvertToHornTests.eliminateAndsTestNotNot12
-                   ConvertToHornTests.eliminateAndsTestOrAnd15) -}
-00840acae8a6ca5f17cd63cceb04073b
-  eliminateAndsTestOrAnd15 ::
+                   ConvertToHornTests.eliminateAndsTestOrAnd12) -}
+5edd58b154a35e066540cd1c45b47038
+  eliminateAndsTestOrAnd12 ::
     Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
   {- HasNoCafRefs,
      Unfolding: (Data.Either.Left
                    @ GHC.Types.Int
                    @ (GHC.Types.Int, GHC.Types.Int)
-                   ConvertToHornTests.simplifyNotsTestMixed43) -}
-26c2eb9a3a6b1b9130d08194d85ed5a0
-  eliminateAndsTestOrAnd16 :: [Types.Criteria]
+                   ConvertToHornTests.andCriteria13) -}
+820baac3a58a77739fe124a206e4a9a5
+  eliminateAndsTestOrAnd13 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.eliminateAnds
-                   ConvertToHornTests.eliminateAndsTestOrAnd17
+                   ConvertToHornTests.eliminateAndsTestOrAnd14
                    GHC.Types.False) -}
-34a3f28ab48805c48fe4424eedcae35f
+6fb4e1b2a5490643ed56658aea53cd7c
+  eliminateAndsTestOrAnd14 :: [Types.Criteria]
+  {- Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.eliminateAndsTestOrAnd15
+                   (GHC.Types.[] @ Types.Criteria)) -}
+e7b494237d712297193c2b67a5a80726
+  eliminateAndsTestOrAnd15 :: Types.Criteria
+  {- Unfolding: (Types.Not
+                   ConvertToHornTests.eliminateAndsTestOrAnd16) -}
+e68b49746b8d01986a452c57344118d0
+  eliminateAndsTestOrAnd16 :: Types.Criteria
+  {- Unfolding: (Types.Or
+                   ConvertToHornTests.eliminateAndsTestOrAnd17) -}
+ece67128f8b45f81a741eaf2b629eaaa
   eliminateAndsTestOrAnd17 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.eliminateAndsTestOrAnd18
+                   ConvertToHornTests.andCriteria17
+                   ConvertToHornTests.eliminateAndsTestOrAnd18) -}
+b24d5109e478a16411ce1116dd09a9dd
+  eliminateAndsTestOrAnd18 :: [Types.Criteria]
+  {- Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.eliminateAndsTestOrAnd19
                    (GHC.Types.[] @ Types.Criteria)) -}
-d9fa30c8b38034594ec27bd49e8f7926
-  eliminateAndsTestOrAnd18 :: Types.Criteria
-  {- Unfolding: (Types.Not
-                   ConvertToHornTests.eliminateAndsTestOrAnd19) -}
-7b9307f4b1c3d278dcc207927563aefa
+b467b691b339f96a07e278ba93fe2608
   eliminateAndsTestOrAnd19 :: Types.Criteria
-  {- Unfolding: (Types.Or
+  {- Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestOrAnd20) -}
-cd2cace0c58200971787135fd6952925
+684a5b58a23066d9a0408ccf47a840b9
   eliminateAndsTestOrAnd2 :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.eliminateAndsTestOrAnd1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-844c819804f375f8248f41cbf730b05b
+7bd5e3c6a742ba85e98695e373c6310b
   eliminateAndsTestOrAnd20 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
+                   ConvertToHornTests.andCriteria14
                    ConvertToHornTests.eliminateAndsTestOrAnd21) -}
-f6b03f8b21c0e81f119dc24f64c5cbd9
+765d06656a093bfc1909e71093d45f90
   eliminateAndsTestOrAnd21 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestOrAnd22
                    (GHC.Types.[] @ Types.Criteria)) -}
-9e4c3e6f3751c7fc4410b9605a1cd512
+18b2336a53e93cfc5e2abde6b97c1092
   eliminateAndsTestOrAnd22 :: Types.Criteria
   {- Unfolding: (Types.And
-                   ConvertToHornTests.eliminateAndsTestOrAnd23) -}
-edc2aac8059a2a7124d6149ae549c24f
-  eliminateAndsTestOrAnd23 :: [Types.Criteria]
-  {- Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestOr7
-                   ConvertToHornTests.eliminateAndsTestOrAnd24) -}
-89825f2cf10561cb7313939f7f22c1d2
-  eliminateAndsTestOrAnd24 :: [Types.Criteria]
-  {- Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.eliminateAndsTestOrAnd25
-                   (GHC.Types.[] @ Types.Criteria)) -}
-936d0d47416d8d36e0b3f0c92d7fe31d
-  eliminateAndsTestOrAnd25 :: Types.Criteria
-  {- Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestOrAnd10) -}
-d2523d14d83a6f29049df2b036606749
-  eliminateAndsTestOrAnd26 :: GHC.Stack.CallStack
+92143c50328661323bf76be05f48afcd
+  eliminateAndsTestOrAnd23 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
-                   ConvertToHornTests.eliminateAndsTestOrAnd27) -}
-147b3803086b8cbed6c505747c75cdb8
-  eliminateAndsTestOrAnd27 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+                   ConvertToHornTests.eliminateAndsTestOrAnd24) -}
+dcd2259cbe00c99f64dc1fd5ccc41a56
+  eliminateAndsTestOrAnd24 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
-                   ConvertToHornTests.eliminateAndsTestOrAnd28
+                   ConvertToHornTests.eliminateAndsTestOrAnd25
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-f92c52fa0674a7f36fbf2309bd77fcda
-  eliminateAndsTestOrAnd28 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+f91f219309c7bc93656f960f1e3f6056
+  eliminateAndsTestOrAnd25 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
-                  ConvertToHornTests.eliminateAndsTestOrAnd29)) -}
-d64e95c517e277d6fb8febcabb8c595e
-  eliminateAndsTestOrAnd29 :: GHC.SrcLoc.SrcLoc
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
+                  ConvertToHornTests.eliminateAndsTestOrAnd26)) -}
+9740f463f54d38a94ff90626a1e3d976
+  eliminateAndsTestOrAnd26 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
-                   ConvertToHornTests.eliminateAndsTestOrAnd30
-                   ConvertToHornTests.simplifyNotsTestMixed78
-                   ConvertToHornTests.eliminateAndsTestOrAnd30
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
+                   ConvertToHornTests.eliminateAndsTestOrAnd27
+                   ConvertToHornTests.simplifyNotsTestMixed73
+                   ConvertToHornTests.eliminateAndsTestOrAnd27
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-4c7b1fd77dbc37b7aa83f568674d5b8c
+2b3b1a00d7e2cc345ed80fa7ec4c548f
+  eliminateAndsTestOrAnd27 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 46) -}
+b1e403ebbd5f1346df566c64860e501a
+  eliminateAndsTestOrAnd28 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [Types.Criteria]
+                   ConvertToHornTests.eliminateAndsTestOrAnd38
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+                   ConvertToHornTests.eliminateAndsTestNotNot24
+                   ConvertToHornTests.eliminateAndsTestOrAnd37
+                   ConvertToHornTests.eliminateAndsTestOrAnd29) -}
+f7ab7beff503180f8fc1e40337f19955
+  eliminateAndsTestOrAnd29 :: [Types.Criteria]
+  {- Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.eliminateAndsTestOrAnd30
+                   (GHC.Types.[] @ Types.Criteria)) -}
+8553a10b702428a4e33ddd0f6bc32986
   eliminateAndsTestOrAnd3 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestOrAnd4
                    (GHC.Types.[] @ Types.Criteria)) -}
-6e72795ab9300b2b061c5269e6e7cbad
-  eliminateAndsTestOrAnd30 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 45) -}
-ddcf32eb753b2f1c2b29fe7719c158b1
-  eliminateAndsTestOrAnd31 ::
-    GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 1,
-     Unfolding: (Test.HUnit.Base.@=?7
-                   @ [Types.Criteria]
-                   ConvertToHornTests.eliminateAndsTestOrAnd41
-                     `cast`
-                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
-                   ConvertToHornTests.eliminateAndsTestNotNot24
-                   ConvertToHornTests.eliminateAndsTestOrAnd40
+122637abd479fdf7bf263316a5519c4d
+  eliminateAndsTestOrAnd30 :: Types.Criteria
+  {- Unfolding: (Types.Not
+                   ConvertToHornTests.eliminateAndsTestOrAnd31) -}
+237b1feb82290ffc1f531ebf019a1d2f
+  eliminateAndsTestOrAnd31 :: Types.Criteria
+  {- Unfolding: (Types.Or
                    ConvertToHornTests.eliminateAndsTestOrAnd32) -}
-b6e239999762e81b2f1035a929e9c7f5
+a4cb8bec19e5b7a5c966a5f6bad7caa5
   eliminateAndsTestOrAnd32 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.eliminateAndsTestOrAnd33
+                   ConvertToHornTests.andCriteria17
+                   ConvertToHornTests.eliminateAndsTestOrAnd33) -}
+714f8a1ce49a11c20f19198d360f63c2
+  eliminateAndsTestOrAnd33 :: [Types.Criteria]
+  {- Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.eliminateAndsTestOrAnd34
                    (GHC.Types.[] @ Types.Criteria)) -}
-e9f5445cbdd138460eb48711147773e0
-  eliminateAndsTestOrAnd33 :: Types.Criteria
-  {- Unfolding: (Types.Not
-                   ConvertToHornTests.eliminateAndsTestOrAnd34) -}
-c09cac3577fb28ad4f89ea6290fed1b9
+13c59e374c2dd507c077c54a26df89e8
   eliminateAndsTestOrAnd34 :: Types.Criteria
-  {- Unfolding: (Types.Or
+  {- Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestOrAnd35) -}
-871b50f4116573040fe57ceb598fe623
+19ad194c607f9a99414c6eb2c10bfc5a
   eliminateAndsTestOrAnd35 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
+                   ConvertToHornTests.andCriteria14
                    ConvertToHornTests.eliminateAndsTestOrAnd36) -}
-d49b771846634f758e056a6bb347526c
+60c798c2d287aa65e014c5bbfb76f66b
   eliminateAndsTestOrAnd36 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.eliminateAndsTestOrAnd37
+                   ConvertToHornTests.eliminateAndsTestOrAnd11
                    (GHC.Types.[] @ Types.Criteria)) -}
-0ef7c20f58a5ecfd65bf791fc77d8557
-  eliminateAndsTestOrAnd37 :: Types.Criteria
-  {- Unfolding: (Types.And
-                   ConvertToHornTests.eliminateAndsTestOrAnd38) -}
-58b77fb8ce47c4ceb48d7cf695a4ff70
-  eliminateAndsTestOrAnd38 :: [Types.Criteria]
-  {- Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestOr7
+abee78da464e07ce249deaf9bbf7caa1
+  eliminateAndsTestOrAnd37 :: [Types.Criteria]
+  {- Unfolding: (ConvertToHorn.eliminateAnds
+                   ConvertToHornTests.eliminateAndsTestOrAnd29
+                   GHC.Types.False) -}
+d1369cad146b7320f7935e8970f5d6c6
+  eliminateAndsTestOrAnd38 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.eliminateAndsTestOrAnd39) -}
-726f861fd7b22c8e85446306fc469dc9
-  eliminateAndsTestOrAnd39 :: [Types.Criteria]
-  {- Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.eliminateAndsTestOrAnd14
-                   (GHC.Types.[] @ Types.Criteria)) -}
-2db20cf773c45768be3bd13a58bde3f9
+c9613edf8179bd88dba9abb47d24e721
+  eliminateAndsTestOrAnd39 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   ConvertToHornTests.eliminateAndsTestOrAnd40
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+218768b0d3834eea481926e4395dcb49
   eliminateAndsTestOrAnd4 :: Types.Criteria
   {- Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.eliminateAndsTestOrAnd5) -}
-43fc01cbe1f4bcdd7e607d14e569838a
-  eliminateAndsTestOrAnd40 :: [Types.Criteria]
-  {- Unfolding: (ConvertToHorn.eliminateAnds
-                   ConvertToHornTests.eliminateAndsTestOrAnd32
-                   GHC.Types.False) -}
-1a818ba4acf959cabc631e9e5cd36e4f
-  eliminateAndsTestOrAnd41 :: GHC.Stack.CallStack
+d3adbeeb7f90817e76db9dd892486e79
+  eliminateAndsTestOrAnd40 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: (GHC.Stack.CallStack
-                   ConvertToHornTests.eliminateAndsTestOrAnd42) -}
-3dfe1584183100e757a5cd4bd3f7bb94
-  eliminateAndsTestOrAnd42 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
-  {- Strictness: m2,
-     Unfolding: (GHC.Types.:
-                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
-                   ConvertToHornTests.eliminateAndsTestOrAnd43
-                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-450a61eb5247def7d51ffeff3dd48502
-  eliminateAndsTestOrAnd43 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
-  {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
-                  ConvertToHornTests.eliminateAndsTestOrAnd44)) -}
-f5a56fffc9df545a0dc03fd6233db14c
-  eliminateAndsTestOrAnd44 :: GHC.SrcLoc.SrcLoc
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
+                  ConvertToHornTests.eliminateAndsTestOrAnd41)) -}
+562629fe53e395bba97d0c77e6df53a4
+  eliminateAndsTestOrAnd41 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
-                   ConvertToHornTests.eliminateAndsTestOrAnd45
-                   ConvertToHornTests.simplifyNotsTestMixed78
-                   ConvertToHornTests.eliminateAndsTestOrAnd45
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
+                   ConvertToHornTests.eliminateAndsTestOrAnd42
+                   ConvertToHornTests.simplifyNotsTestMixed73
+                   ConvertToHornTests.eliminateAndsTestOrAnd42
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-be0169c76d7ad65dcf0e86c423ee8b36
-  eliminateAndsTestOrAnd45 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 31) -}
-069a246a3ce45593609f1e0aad16643d
+6b127c944761a923a38303fb2ce6e86b
+  eliminateAndsTestOrAnd42 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 32) -}
+90f0669926f1d141584ca26a64c8c022
   eliminateAndsTestOrAnd5 :: Types.Criteria
   {- Strictness: m2,
      Unfolding: (Types.Or ConvertToHornTests.eliminateAndsTestOrAnd6) -}
-56d04a7017dd6338c7b8388459832a2e
+3bf9a00bb6951b1a5bedd9823b07b9f5
   eliminateAndsTestOrAnd6 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
+                   ConvertToHornTests.andCriteria17
                    ConvertToHornTests.eliminateAndsTestOrAnd7) -}
-e5226c97375579dd5c8da05f17023ba9
+d8b2e25fe9f14c102e1ba5e24e2c607a
   eliminateAndsTestOrAnd7 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.eliminateAndsTestOrAnd8
                    (GHC.Types.[] @ Types.Criteria)) -}
-6bd68bcc3fe11439a4fc2816606aa6d0
+f0eeea5105104b22f37d066a1ad63ecd
   eliminateAndsTestOrAnd8 :: Types.Criteria
   {- Strictness: m1,
      Unfolding: (Types.And
                    ConvertToHornTests.eliminateAndsTestOrAnd9) -}
-c13a0d3ca5f9abce910c8016a3d5a55f
+e478e1b220a6b0637ca5967ea2828c86
   eliminateAndsTestOrAnd9 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestOr7
+                   ConvertToHornTests.andCriteria14
                    ConvertToHornTests.eliminateAndsTestOrAnd10) -}
-4a4f3a8d7291f3b08cd5b131c2f89fae
+c7ee926b7d81a1a8ec57b6aeeb9e15e4
+  eliminateOrsTestAnd :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   ConvertToHornTests.eliminateOrsTestAnd1
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+81e737d604666a116374c20ce7e92198
+  eliminateOrsTestAnd1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+                   ConvertToHornTests.eliminateOrsTestAnd6
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   ConvertToHornTests.$s$fEq(,,)
+                   ConvertToHornTests.$s$fShow(,,)
+                   ConvertToHornTests.eliminateOrsTestAnd5
+                   ConvertToHornTests.eliminateOrsTestAnd4
+                   ConvertToHornTests.eliminateOrsTestAnd2) -}
+8541050b4828a675a6cb6301a01c3736
+  eliminateOrsTestAnd10 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 89) -}
+2b306cd4d7db03be74488bff64ed7c90
+  eliminateOrsTestAnd2 ::
+    ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+  {- Strictness: m,
+     Unfolding: ((ConvertToHornTests.andCriteria,
+                  GHC.Types.[] @ Types.Rule,
+                  ConvertToHornTests.eliminateOrsTestAnd3)) -}
+5d58cc3953d228a26410c8bd8349449e
+  eliminateOrsTestAnd3 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 0) -}
+9e6c1578fd2e3fb476761a22c28ac82e
+  eliminateOrsTestAnd4 ::
+    ([Types.Criteria], [Types.Rule], GHC.Types.Int)
+  {- Unfolding: (case ConvertToHorn.$weliminateOrs
+                        ConvertToHornTests.andCriteria
+                        ConvertToHornTests.eliminateOrsTestAnd3 of ww { (#,,#) ww1 ww2 ww3 ->
+                 (ww1, ww2, ww3) }) -}
+c92d4aba4ada499eabc83b5532ec308e
+  eliminateOrsTestAnd5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "eliminateOrs is not eliminating corrrectly."#) -}
+de69dbc9eef53a76e37848e50e584cf2
+  eliminateOrsTestAnd6 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   ConvertToHornTests.eliminateOrsTestAnd7) -}
+cdaa778b2c43984f3096f2d628c04e48
+  eliminateOrsTestAnd7 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   ConvertToHornTests.eliminateOrsTestAnd8
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+311bfd1c495eb3315751afd12ec7c681
+  eliminateOrsTestAnd8 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
+                  ConvertToHornTests.eliminateOrsTestAnd9)) -}
+3e2cfc0487365edb0fcf5b0495baaef1
+  eliminateOrsTestAnd9 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
+                   ConvertToHornTests.eliminateOrsTestAnd10
+                   ConvertToHornTests.simplifyNotsTestMixed73
+                   ConvertToHornTests.eliminateOrsTestAnd10
+                   ConvertToHornTests.simplifyNotsTestNot10) -}
+90a56127959e3e0fb7d4cfa014ec0dd7
   simplifyNotsTestAnd :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestAnd1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-5f4cfdcbcac58259932b0396bc52cfe7
+53db6638b02143707861588876fe9369
   simplifyNotsTestAnd1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -975,92 +1301,92 @@ c13a0d3ca5f9abce910c8016a3d5a55f
                    ConvertToHornTests.simplifyNotsTestAnd8
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
-                   ConvertToHornTests.simplifyNotsTestMixed73
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+                   ConvertToHornTests.simplifyNotsTestMixed68
                    ConvertToHornTests.simplifyNotsTestAnd4
                    ConvertToHornTests.simplifyNotsTestAnd2) -}
-888afe3f1c4aacd1e7f07b8a52270cf9
+9fdf0f917750e94eb8077b61bcf96578
   simplifyNotsTestAnd10 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
                   ConvertToHornTests.simplifyNotsTestAnd11)) -}
-23425962fad21bd824e88ebf663cf5d0
+f5480452b5454441b54a8690aab52385
   simplifyNotsTestAnd11 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
                    ConvertToHornTests.simplifyNotsTestAnd12
-                   ConvertToHornTests.simplifyNotsTestMixed78
+                   ConvertToHornTests.simplifyNotsTestMixed73
                    ConvertToHornTests.simplifyNotsTestAnd12
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-d230adda9d5dbf1406e37d3e3c62b22d
+3e27f31d7ae47ad5932c613797d2da41
   simplifyNotsTestAnd12 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 88) -}
-300cecf49c68ee5b68f3610a14b7bc1b
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 94) -}
+960aa4ddb7378845102405e730b723d5
   simplifyNotsTestAnd2 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestAnd3
                    (GHC.Types.[] @ Types.Criteria)) -}
-d680219ef57d7fb1788f16e5878f6ab1
+d0ca3606c444210fa0e55119fbec6c42
   simplifyNotsTestAnd3 :: Types.Criteria
   {- Strictness: m2,
      Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestOr4) -}
-d4d9bfb59aa339b721a663bf0a9cf3bf
+e6d5a73a1d06d90dd5f4a34e15627881
   simplifyNotsTestAnd4 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.simplifyNots
                    ConvertToHornTests.simplifyNotsTestAnd5) -}
-b164fcac44506e17cff731f6cb34f69b
+4e73885cbfb1a0c8300a5b4ba4331000
   simplifyNotsTestAnd5 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestAnd6
                    (GHC.Types.[] @ Types.Criteria)) -}
-42be1a0d90ea5dd94ec9526c84885f02
+28e0ccadf96538a15c32f584f8061ef1
   simplifyNotsTestAnd6 :: Types.Criteria
   {- Unfolding: (Types.Not
                    ConvertToHornTests.simplifyNotsTestAnd7) -}
-386169b4e761d965a5ea4491cb9fdc04
+aa79cbc331b5700ca02272e93321d808
   simplifyNotsTestAnd7 :: Types.Criteria
   {- Unfolding: (Types.And
-                   ConvertToHornTests.simplifyNotsTestOr14) -}
-c9f86058defebcfb7fcbf1561ed755ae
+                   ConvertToHornTests.simplifyNotsTestOr11) -}
+010bb5911787ec8fab5286fdf51fbfb6
   simplifyNotsTestAnd8 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.simplifyNotsTestAnd9) -}
-145ed0d3c0fd791b4ecbee49ee751dd8
+024795cea4445bb548d44c542d424c49
   simplifyNotsTestAnd9 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.simplifyNotsTestAnd10
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-0edfdf0322ed43ac5e31b454e3f73868
+d348c4db953ad4507bf20bd7762181c6
   simplifyNotsTestMixed :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestMixed1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-b205022b13dc3c8b34edb996e9004273
+6cfd2a89e732f3975fe27a692c58b1f1
   simplifyNotsTestMixed1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (Test.HUnit.Base.@=?7
                    @ [Types.Criteria]
-                   ConvertToHornTests.simplifyNotsTestMixed74
+                   ConvertToHornTests.simplifyNotsTestMixed69
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
-                   ConvertToHornTests.simplifyNotsTestMixed73
-                   ConvertToHornTests.simplifyNotsTestMixed47
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+                   ConvertToHornTests.simplifyNotsTestMixed68
+                   ConvertToHornTests.simplifyNotsTestMixed42
                    ConvertToHornTests.simplifyNotsTestMixed2) -}
 b92f7ac548a0b46e458c803c8d9e7f73
   simplifyNotsTestMixed10 :: [Types.Criteria]
@@ -1112,7 +1438,7 @@ d79f6861844b99b2f8f67d0edfe1c0fe
   {- HasNoCafRefs,
      Unfolding: (Types.Protocol
                    ConvertToHornTests.simplifyNotsTestMixed20) -}
-c6fe513d4d82ac823e8b064ba4320c2b
+f6651ff745a8e46b6da4137374ac37c0
   simplifyNotsTestMixed2 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
@@ -1143,25 +1469,25 @@ ca6fa5bd6418d67a85bebed7669c2757
 701ce972af8634dad5ddaa00b3503934
   simplifyNotsTestMixed25 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 5) -}
-e0bf036fa7de948487c4b9c15f6ded82
+88d1abd61204a9b4acc2973bc5923da5
   simplifyNotsTestMixed26 :: Types.Criteria
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestMixed27) -}
-1db947f422b05febf7737c7e45e6759e
+de8faea2e6539302fc7747642ca807b7
   simplifyNotsTestMixed27 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed38
+                   ConvertToHornTests.simplifyNotsTestMixed37
                    ConvertToHornTests.simplifyNotsTestMixed28) -}
-d698c89138261ad8bf7bbd5b6aab6b12
+17b09fdb3cbb60e1b4c783c3d0e88b4a
   simplifyNotsTestMixed28 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed29
                    (GHC.Types.[] @ Types.Criteria)) -}
-651063e3e201602480c1e8f98764e35d
+f50ff3b99e74c48e51e0f25a71d93e07
   simplifyNotsTestMixed29 :: Types.Criteria
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestMixed30) -}
@@ -1172,7 +1498,7 @@ d698c89138261ad8bf7bbd5b6aab6b12
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed24
                    ConvertToHornTests.simplifyNotsTestMixed4) -}
-23e0fd81d420b2e6e7c7926ac2f1f22b
+7ca3a80614a2712f90c0e54293442043
   simplifyNotsTestMixed30 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
@@ -1199,31 +1525,34 @@ df8625baebd5d166f351343802e5ad3e
 3e4da8a00187f3021426eb783a1f0c9f
   simplifyNotsTestMixed34 :: GHC.Types.Int
   {- HasNoCafRefs, Unfolding: (GHC.Types.I# 4) -}
-9e109548a453f73959a831ff07ee0b83
+05a32bc478a65058018ecc293d810d0d
   simplifyNotsTestMixed35 :: Types.Criteria
   {- HasNoCafRefs, Strictness: m3,
      Unfolding: (Types.Not
                    ConvertToHornTests.simplifyNotsTestMixed36) -}
-f136b633cbf1fd23c87313e513ccb437
+cda7a6f5930f9058a2a87026dd091982
   simplifyNotsTestMixed36 :: Types.Criteria
   {- HasNoCafRefs,
-     Unfolding: (Types.Protocol
-                   ConvertToHornTests.simplifyNotsTestMixed37) -}
-5c35e2914b88ced5e593b4287c489e09
-  simplifyNotsTestMixed37 :: GHC.Types.Int
-  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 3) -}
-eec03584c882c5d47a1c19edd3c60c7d
-  simplifyNotsTestMixed38 :: Types.Criteria
+     Unfolding: (Types.Protocol ConvertToHornTests.andCriteria10) -}
+34af2211ea9aac1531f86ddfbc28922f
+  simplifyNotsTestMixed37 :: Types.Criteria
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (Types.And
+                   ConvertToHornTests.simplifyNotsTestMixed38) -}
+97bf2ee2ebb2f189136ab9104048da95
+  simplifyNotsTestMixed38 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.simplifyNotsTestMixed41
                    ConvertToHornTests.simplifyNotsTestMixed39) -}
-27b48f51453d370a6183b7367466f4b5
+24072b0a365e7fe2157c3bafc24929ee
   simplifyNotsTestMixed39 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed44
-                   ConvertToHornTests.simplifyNotsTestMixed40) -}
+                   ConvertToHornTests.simplifyNotsTestMixed40
+                   (GHC.Types.[] @ Types.Criteria)) -}
 2bf0fe1973bb46be994d5ec7ebb6ea09
   simplifyNotsTestMixed4 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
@@ -1231,56 +1560,62 @@ eec03584c882c5d47a1c19edd3c60c7d
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed21
                    ConvertToHornTests.simplifyNotsTestMixed5) -}
-239a32be2d8f47b0abc5e4bc5acd6034
-  simplifyNotsTestMixed40 :: [Types.Criteria]
-  {- HasNoCafRefs, Strictness: m2,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed41
-                   (GHC.Types.[] @ Types.Criteria)) -}
-c883d00c45af02e05e11dc123b1eb6c3
+5abafa00eea1675826fa5a48328dd483
+  simplifyNotsTestMixed40 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Not ConvertToHornTests.andCriteria12) -}
+a2acf1f75463873cc2007ab817cb3131
   simplifyNotsTestMixed41 :: Types.Criteria
   {- HasNoCafRefs, Strictness: m3,
-     Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestMixed42) -}
-81164eba3e00c96b5e2be9ecc446f3e0
-  simplifyNotsTestMixed42 :: Types.Criteria
-  {- HasNoCafRefs,
-     Unfolding: (Types.Protocol
-                   ConvertToHornTests.simplifyNotsTestMixed43) -}
-8ba7ace6f80362c8134154de1eee7f71
-  simplifyNotsTestMixed43 :: GHC.Types.Int
-  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 2) -}
-25ad7c25aa50bc15ed7340000096d85a
-  simplifyNotsTestMixed44 :: Types.Criteria
-  {- HasNoCafRefs, Strictness: m3,
-     Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestMixed45) -}
-f3b2519dc2c7151689d5ad6f40594e2a
-  simplifyNotsTestMixed45 :: Types.Criteria
-  {- HasNoCafRefs,
-     Unfolding: (Types.Protocol
-                   ConvertToHornTests.simplifyNotsTestMixed46) -}
-e00f932154cea4684b1fd99722b8c3e1
-  simplifyNotsTestMixed46 :: GHC.Types.Int
-  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 1) -}
-e0ee19bb238856f3faeeaa686aa30b32
-  simplifyNotsTestMixed47 :: [Types.Criteria]
+     Unfolding: (Types.Not ConvertToHornTests.andCriteria17) -}
+da8704f2fe841702ad11e03764833106
+  simplifyNotsTestMixed42 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.simplifyNots
-                   ConvertToHornTests.simplifyNotsTestMixed48) -}
-741bbfd8af0edc9b5fa84b248856e854
-  simplifyNotsTestMixed48 :: [Types.Criteria]
+                   ConvertToHornTests.simplifyNotsTestMixed43) -}
+1f1a96de9e2beb447b871e957303ecb6
+  simplifyNotsTestMixed43 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed63
-                   ConvertToHornTests.simplifyNotsTestMixed49) -}
-3a34f32bc788690682a51806a7b2bc6f
-  simplifyNotsTestMixed49 :: [Types.Criteria]
+                   ConvertToHornTests.simplifyNotsTestMixed58
+                   ConvertToHornTests.simplifyNotsTestMixed44) -}
+ed23565f3d53e7c2ecf44057860c658d
+  simplifyNotsTestMixed44 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed24
+                   ConvertToHornTests.simplifyNotsTestMixed45) -}
+35237c79f5e4c1ed87fa46f5d7ad3ecb
+  simplifyNotsTestMixed45 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.simplifyNotsTestMixed54
+                   ConvertToHornTests.simplifyNotsTestMixed46) -}
+982cc6463340fd760f0ebcd71d74f238
+  simplifyNotsTestMixed46 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.simplifyNotsTestMixed47
+                   (GHC.Types.[] @ Types.Criteria)) -}
+479e11ffc0631fbf029893a83001f7c4
+  simplifyNotsTestMixed47 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Not
+                   ConvertToHornTests.simplifyNotsTestMixed48) -}
+957d8a6d2ed828432e6b9fc795e20e11
+  simplifyNotsTestMixed48 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.And
+                   ConvertToHornTests.simplifyNotsTestMixed49) -}
+19c6bbac1bbd9a92bfad11c3843b4a0b
+  simplifyNotsTestMixed49 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.simplifyNotsTestMixed19
                    ConvertToHornTests.simplifyNotsTestMixed50) -}
 1338ec0e61b17bdf309c0a6d680cb673
   simplifyNotsTestMixed5 :: [Types.Criteria]
@@ -1289,129 +1624,125 @@ e0ee19bb238856f3faeeaa686aa30b32
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed6
                    (GHC.Types.[] @ Types.Criteria)) -}
-72fc9856a22098ea82605b53591e37c8
+4317ffb780799c1e9d607b06325435fd
   simplifyNotsTestMixed50 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed59
-                   ConvertToHornTests.simplifyNotsTestMixed51) -}
-e2f69d7be3899dfa78ee4b19a73b6955
-  simplifyNotsTestMixed51 :: [Types.Criteria]
-  {- HasNoCafRefs,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed52
+                   ConvertToHornTests.simplifyNotsTestMixed51
                    (GHC.Types.[] @ Types.Criteria)) -}
-8768ca3b806bf3689997039d23a381ef
-  simplifyNotsTestMixed52 :: Types.Criteria
+895e643fd5629e2c2f4e9179f3a13d3d
+  simplifyNotsTestMixed51 :: Types.Criteria
   {- HasNoCafRefs,
-     Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestMixed53) -}
-04354a0fce33e845f113dc94e6fb7593
-  simplifyNotsTestMixed53 :: Types.Criteria
-  {- HasNoCafRefs,
-     Unfolding: (Types.And
-                   ConvertToHornTests.simplifyNotsTestMixed54) -}
-b168d465a1c434947007b64355bca2cd
-  simplifyNotsTestMixed54 :: [Types.Criteria]
-  {- HasNoCafRefs,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed19
-                   ConvertToHornTests.simplifyNotsTestMixed55) -}
-865e51c495fc5f0db12b044ad931b0db
-  simplifyNotsTestMixed55 :: [Types.Criteria]
-  {- HasNoCafRefs,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed56
-                   (GHC.Types.[] @ Types.Criteria)) -}
-6521f6cf3580541ae1ee0c109e6056e8
-  simplifyNotsTestMixed56 :: Types.Criteria
-  {- HasNoCafRefs,
-     Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestMixed57) -}
-bda6c3becc4889bc5e8ec8f71472959a
-  simplifyNotsTestMixed57 :: [Types.Criteria]
+     Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestMixed52) -}
+604e270c8107034fe9049db068427430
+  simplifyNotsTestMixed52 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed16
-                   ConvertToHornTests.simplifyNotsTestMixed58) -}
-f8eaa87e9dca9c395da86cc470a8f27b
-  simplifyNotsTestMixed58 :: [Types.Criteria]
+                   ConvertToHornTests.simplifyNotsTestMixed53) -}
+ced64951458336262fdad93a246fe63e
+  simplifyNotsTestMixed53 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed13
                    (GHC.Types.[] @ Types.Criteria)) -}
-c3b4be358c40a0bd81f68c19371cdbc9
-  simplifyNotsTestMixed59 :: Types.Criteria
+f057d25a21bce23215a5a0b869f579fd
+  simplifyNotsTestMixed54 :: Types.Criteria
   {- HasNoCafRefs,
      Unfolding: (Types.Not
+                   ConvertToHornTests.simplifyNotsTestMixed55) -}
+8057122a11acbacdea1826029870190b
+  simplifyNotsTestMixed55 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Not
+                   ConvertToHornTests.simplifyNotsTestMixed56) -}
+bec6defa20647d5279c2f09ceaf1d856
+  simplifyNotsTestMixed56 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Not
+                   ConvertToHornTests.simplifyNotsTestMixed57) -}
+3c8e0acbe5c29c6969c97a141530db93
+  simplifyNotsTestMixed57 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Not
+                   ConvertToHornTests.simplifyNotsTestMixed21) -}
+0def170edc36cbc48e5bbf0a40c09af7
+  simplifyNotsTestMixed58 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Not
+                   ConvertToHornTests.simplifyNotsTestMixed59) -}
+c404fc7795f66493e7fc9f59604b0921
+  simplifyNotsTestMixed59 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.And
                    ConvertToHornTests.simplifyNotsTestMixed60) -}
 38f71c0b73ef55c9af2f1bcf993caf72
   simplifyNotsTestMixed6 :: Types.Criteria
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestMixed7) -}
-61c7ced4dacc0b64943ee2119bf62df5
-  simplifyNotsTestMixed60 :: Types.Criteria
+10f548379d7c6cb08e7c31bb1faf7979
+  simplifyNotsTestMixed60 :: [Types.Criteria]
   {- HasNoCafRefs,
-     Unfolding: (Types.Not
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.simplifyNotsTestMixed65
                    ConvertToHornTests.simplifyNotsTestMixed61) -}
-6168c391686da8993252a7626fb79b7b
-  simplifyNotsTestMixed61 :: Types.Criteria
+d0be618eaf26f082193ae2c4a7874487
+  simplifyNotsTestMixed61 :: [Types.Criteria]
   {- HasNoCafRefs,
-     Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestMixed62) -}
-3c316a3d4af028531078a4f97d50e7e5
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.simplifyNotsTestMixed62
+                   (GHC.Types.[] @ Types.Criteria)) -}
+33de82d45e1215b318c9ab6f74800fc3
   simplifyNotsTestMixed62 :: Types.Criteria
   {- HasNoCafRefs,
-     Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestMixed21) -}
-16df4852236d8d25c8ebd6df549cba26
-  simplifyNotsTestMixed63 :: Types.Criteria
-  {- HasNoCafRefs,
-     Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestMixed64) -}
-63ed6d4d32077489cb42a1d0ebc7188e
-  simplifyNotsTestMixed64 :: Types.Criteria
-  {- HasNoCafRefs,
      Unfolding: (Types.And
-                   ConvertToHornTests.simplifyNotsTestMixed65) -}
-55b063658a5890605a039b184f1a33ca
-  simplifyNotsTestMixed65 :: [Types.Criteria]
-  {- HasNoCafRefs,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed70
-                   ConvertToHornTests.simplifyNotsTestMixed66) -}
-2f353a0aef4674d792b0c3c4ce4655f4
-  simplifyNotsTestMixed66 :: [Types.Criteria]
-  {- HasNoCafRefs,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed67
-                   (GHC.Types.[] @ Types.Criteria)) -}
-7641dae816b511a7b210943c8ea809a0
-  simplifyNotsTestMixed67 :: Types.Criteria
-  {- HasNoCafRefs,
-     Unfolding: (Types.And
-                   ConvertToHornTests.simplifyNotsTestMixed68) -}
-c699accb4916a6de6c0b0b6721db77ed
-  simplifyNotsTestMixed68 :: [Types.Criteria]
+                   ConvertToHornTests.simplifyNotsTestMixed63) -}
+02b6cef43e7fd8cf54ad7038c06646b7
+  simplifyNotsTestMixed63 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed36
-                   ConvertToHornTests.simplifyNotsTestMixed69) -}
-98f1ca90c645ca7808267f8ca9254ef7
-  simplifyNotsTestMixed69 :: [Types.Criteria]
+                   ConvertToHornTests.simplifyNotsTestMixed64) -}
+4e1d7837821b41e1b597bf469e0d65b3
+  simplifyNotsTestMixed64 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed33
                    (GHC.Types.[] @ Types.Criteria)) -}
+63d034ca5e619f44d86b09526173d362
+  simplifyNotsTestMixed65 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestMixed66) -}
+622ba4bc23cbf8696dc4a6d0a09cc960
+  simplifyNotsTestMixed66 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria17
+                   ConvertToHornTests.simplifyNotsTestMixed67) -}
+078a1353e0d1b5543cbdeff3933e1950
+  simplifyNotsTestMixed67 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.andCriteria12
+                   (GHC.Types.[] @ Types.Criteria)) -}
+c2c34674b697b667f906da80a7402360
+  simplifyNotsTestMixed68 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "simplifyNot is not adjusting corrrectly."#) -}
+98f61bdeafafde46c3b8cd3c41525245
+  simplifyNotsTestMixed69 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   ConvertToHornTests.simplifyNotsTestMixed70) -}
 53c8feb19dbf7521ac7877ab60fcc7be
   simplifyNotsTestMixed7 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
@@ -1419,62 +1750,48 @@ c699accb4916a6de6c0b0b6721db77ed
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed18
                    ConvertToHornTests.simplifyNotsTestMixed8) -}
-600c42ac7801185bd2bc6d754b10df0a
-  simplifyNotsTestMixed70 :: Types.Criteria
-  {- HasNoCafRefs,
-     Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestMixed71) -}
-d04b3dfdfea0013512947d1c4251dce9
-  simplifyNotsTestMixed71 :: [Types.Criteria]
-  {- HasNoCafRefs,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
-                   ConvertToHornTests.simplifyNotsTestMixed72) -}
-b47fc2f19c97a9b7e25418bfe526122c
-  simplifyNotsTestMixed72 :: [Types.Criteria]
-  {- HasNoCafRefs,
-     Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed42
-                   (GHC.Types.[] @ Types.Criteria)) -}
-381b3244aae56292cb01fdbf7c989fd6
-  simplifyNotsTestMixed73 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString#
-                   "simplifyNot is not adjusting corrrectly."#) -}
-e20012d8dd3b42e6f3acf1c96c5e012b
-  simplifyNotsTestMixed74 :: GHC.Stack.CallStack
-  {- Strictness: m,
-     Unfolding: (GHC.Stack.CallStack
-                   ConvertToHornTests.simplifyNotsTestMixed75) -}
-fdb7ca1353f7c5122558ba3658801fc8
-  simplifyNotsTestMixed75 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+b8f539025abc1054f7929061f77372ac
+  simplifyNotsTestMixed70 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
-                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed71
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-6fb379ac327ba03a9cc798ae0dc93985
-  simplifyNotsTestMixed76 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+a967c1e07d2f7c45ba335c139a9b3608
+  simplifyNotsTestMixed71 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
-                  ConvertToHornTests.simplifyNotsTestMixed77)) -}
-a59a3225264eba1642d3a7b5ab384e5b
-  simplifyNotsTestMixed77 :: GHC.SrcLoc.SrcLoc
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
+                  ConvertToHornTests.simplifyNotsTestMixed72)) -}
+b45e3b2edaa2b064a37bda7f89d0469d
+  simplifyNotsTestMixed72 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
-                   ConvertToHornTests.simplifyNotsTestMixed79
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
+                   ConvertToHornTests.simplifyNotsTestMixed74
                    ConvertToHornTests.simplifyNotsTestMixed25
-                   ConvertToHornTests.simplifyNotsTestMixed79
-                   ConvertToHornTests.simplifyNotsTestMixed78) -}
-fccf86e567bfe0b9ef758b1583f24ba8
-  simplifyNotsTestMixed78 :: GHC.Types.Int
+                   ConvertToHornTests.simplifyNotsTestMixed74
+                   ConvertToHornTests.simplifyNotsTestMixed73) -}
+4fdf3d0a97602c82948884f5b0596c4f
+  simplifyNotsTestMixed73 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 16) -}
-4eb30bd23e14140e8f0e53c19ea09043
-  simplifyNotsTestMixed79 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 103) -}
+cf36e3268600b84857b8f32a157eb738
+  simplifyNotsTestMixed74 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 109) -}
+3ceb371684455e77f8c73cbbf88728f3
+  simplifyNotsTestMixed75 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "test/ConvertToHornTests.hs"#) -}
+e53ffb146d1ceabc4a1c2e8b5f580474
+  simplifyNotsTestMixed76 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "ConvertToHornTests"#) -}
+63e8cbb676e2fe7720d480e4d1ad84ce
+  simplifyNotsTestMixed77 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "main"#) -}
+4a01c600f1bc45c7fc0232a27a38d5df
+  simplifyNotsTestMixed78 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "assertEqual"#) -}
 eac04a23c1ba4d56c377556746b566a5
   simplifyNotsTestMixed8 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
@@ -1482,32 +1799,19 @@ eac04a23c1ba4d56c377556746b566a5
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestMixed9
                    (GHC.Types.[] @ Types.Criteria)) -}
-9a07c3486728ec22f0e55e8391736cdc
-  simplifyNotsTestMixed80 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString#
-                   "test/ConvertToHornTests.hs"#) -}
-c1199701e6324f7d5dd0f9e538b5872d
-  simplifyNotsTestMixed81 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "ConvertToHornTests"#) -}
-36135f4a6fddd1b76d2a56774ce61be3
-  simplifyNotsTestMixed82 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "main"#) -}
-29adca9c152c937cc5419db0447e5b65
-  simplifyNotsTestMixed83 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "assertEqual"#) -}
 a248ba8061b7c238739caa893ac652e4
   simplifyNotsTestMixed9 :: Types.Criteria
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (Types.And
                    ConvertToHornTests.simplifyNotsTestMixed10) -}
-c4db0a1de57377ef72df8e6cecb06023
+893121e398b3b41cfeb63c2ee3d458c4
   simplifyNotsTestNot :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestNot1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-72f635d65f8ef026a1a6b936ca93d471
+c2ee66fce3ca2c3924dc43fc847c7c87
   simplifyNotsTestNot1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -1517,207 +1821,268 @@ c4db0a1de57377ef72df8e6cecb06023
                    ConvertToHornTests.simplifyNotsTestNot6
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
-                   ConvertToHornTests.simplifyNotsTestMixed73
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+                   ConvertToHornTests.simplifyNotsTestMixed68
                    ConvertToHornTests.simplifyNotsTestNot3
                    ConvertToHornTests.simplifyNotsTestNot2) -}
 6ab26233ced61dda9829ac9e87383e25
   simplifyNotsTestNot10 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 27) -}
-c099cea829feff71cfc8c40a4aef1806
+10ff459ccc317ce2f33b6a8228c3aebc
   simplifyNotsTestNot11 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 98) -}
-2b9edd91d375436ba5c4fe6dd99b40f8
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 104) -}
+1e6bbb6e5c42fbed07c6cb754d695d89
   simplifyNotsTestNot2 :: [Types.Criteria]
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
+                   ConvertToHornTests.andCriteria17
                    (GHC.Types.[] @ Types.Criteria)) -}
-1ea70a21a8d97305e8a21263f1978a92
+30958254f7d9138d5fa3c54bba9e813b
   simplifyNotsTestNot3 :: [Types.Criteria]
   {- Unfolding: (ConvertToHorn.simplifyNots
                    ConvertToHornTests.simplifyNotsTestNot4) -}
-b44296abc5aad8b1eb111b6255ee8469
+8066744451b18c05efef84525379c775
   simplifyNotsTestNot4 :: [Types.Criteria]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestNot5
                    (GHC.Types.[] @ Types.Criteria)) -}
-607b5e4a031a83e2254a6675ecb13089
+f9e15616b64689498123e9743fbee646
   simplifyNotsTestNot5 :: Types.Criteria
   {- HasNoCafRefs,
      Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestMixed44) -}
-239f093af4f7399479b8fb42331c5495
+                   ConvertToHornTests.simplifyNotsTestMixed41) -}
+e4f2dc35824d5faf8fb18769730f8fb5
   simplifyNotsTestNot6 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.simplifyNotsTestNot7) -}
-1b87fcf18cb6113e4e90be40a5a3a138
+5429821d642eee9fe360b98883f659bf
   simplifyNotsTestNot7 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.simplifyNotsTestNot8
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-0f905fdabe6431a23efef2b77adb910f
+52828815c793ab531f24ed63533f4ba2
   simplifyNotsTestNot8 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
                   ConvertToHornTests.simplifyNotsTestNot9)) -}
-38325ba7847baa5445790419f1eea8ab
+2aac0f52fddfabad81e0ab1df6e73328
   simplifyNotsTestNot9 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
                    ConvertToHornTests.simplifyNotsTestNot11
-                   ConvertToHornTests.simplifyNotsTestMixed78
+                   ConvertToHornTests.simplifyNotsTestMixed73
                    ConvertToHornTests.simplifyNotsTestNot11
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-020f12000760c3d7fc5513befac6a620
+255aaf7c8728f8be994795a40af66277
   simplifyNotsTestOr :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestOr1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-1a698a0b8bb03ff5c697a9c9b8af0918
+1d7b357d379fc65e8f954cffcaf506c8
   simplifyNotsTestOr1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (Test.HUnit.Base.@=?7
                    @ [Types.Criteria]
-                   ConvertToHornTests.simplifyNotsTestOr16
+                   ConvertToHornTests.simplifyNotsTestOr13
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq[]
-                   ConvertToHornTests.$s$fShow[]
-                   ConvertToHornTests.simplifyNotsTestMixed73
-                   ConvertToHornTests.simplifyNotsTestOr10
+                   ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+                   ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+                   ConvertToHornTests.simplifyNotsTestMixed68
+                   ConvertToHornTests.simplifyNotsTestOr7
                    ConvertToHornTests.simplifyNotsTestOr2) -}
-c46cbf562f02a83d81d4770f1a707e0f
-  simplifyNotsTestOr10 :: [Types.Criteria]
-  {- Unfolding: (ConvertToHorn.simplifyNots
-                   ConvertToHornTests.simplifyNotsTestOr11) -}
-481325e3895e39c1c241c22c58e2def7
+d8de3cbc61d467d4754d85a434f7e381
+  simplifyNotsTestOr10 :: Types.Criteria
+  {- Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestOr11) -}
+15493472ef1358c4e37aed0a4d9191f6
   simplifyNotsTestOr11 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestOr12
-                   (GHC.Types.[] @ Types.Criteria)) -}
-0b45200184249dd3f72c4686a9095879
-  simplifyNotsTestOr12 :: Types.Criteria
-  {- Unfolding: (Types.Not
-                   ConvertToHornTests.simplifyNotsTestOr13) -}
-827c3fd71898f48f659a0bce759330f5
-  simplifyNotsTestOr13 :: Types.Criteria
-  {- Unfolding: (Types.Or ConvertToHornTests.simplifyNotsTestOr14) -}
-e662fda04cf742afe440d57f2e52138b
-  simplifyNotsTestOr14 :: [Types.Criteria]
+                   ConvertToHornTests.andCriteria17
+                   ConvertToHornTests.simplifyNotsTestOr12) -}
+a6a4bbcbc9b82f381a0023958346504c
+  simplifyNotsTestOr12 :: [Types.Criteria]
   {- Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed45
-                   ConvertToHornTests.simplifyNotsTestOr15) -}
-17b5931b4422e0c8c0fb00bb54390ee1
-  simplifyNotsTestOr15 :: [Types.Criteria]
-  {- Unfolding: (GHC.Types.:
-                   @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestOr7
+                   ConvertToHornTests.andCriteria14
                    (GHC.Types.[] @ Types.Criteria)) -}
-621245e24acf04537efe40c25e103c81
-  simplifyNotsTestOr16 :: GHC.Stack.CallStack
+79b007b7680d461d6ebd5a7aa912e4d0
+  simplifyNotsTestOr13 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
-                   ConvertToHornTests.simplifyNotsTestOr17) -}
-78aec97b0b6455e2bbcae62ac90872bb
-  simplifyNotsTestOr17 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+                   ConvertToHornTests.simplifyNotsTestOr14) -}
+a1181b6e31d108d732a052e7bd4999e5
+  simplifyNotsTestOr14 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
-                   ConvertToHornTests.simplifyNotsTestOr18
+                   ConvertToHornTests.simplifyNotsTestOr15
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-4ee3e8e52e0860cfba5f493dd4b8a23c
-  simplifyNotsTestOr18 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+a1859f7834463ec97766dfe46608ca98
+  simplifyNotsTestOr15 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
-     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed83,
-                  ConvertToHornTests.simplifyNotsTestOr19)) -}
-2ff906ed7f719a83ca0b385e29a891bf
-  simplifyNotsTestOr19 :: GHC.SrcLoc.SrcLoc
+     Unfolding: ((ConvertToHornTests.simplifyNotsTestMixed78,
+                  ConvertToHornTests.simplifyNotsTestOr16)) -}
+3a402225c30f0102490e2eb713beb063
+  simplifyNotsTestOr16 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
-                   ConvertToHornTests.simplifyNotsTestMixed82
-                   ConvertToHornTests.simplifyNotsTestMixed81
-                   ConvertToHornTests.simplifyNotsTestMixed80
-                   ConvertToHornTests.simplifyNotsTestOr20
-                   ConvertToHornTests.simplifyNotsTestMixed78
-                   ConvertToHornTests.simplifyNotsTestOr20
+                   ConvertToHornTests.simplifyNotsTestMixed77
+                   ConvertToHornTests.simplifyNotsTestMixed76
+                   ConvertToHornTests.simplifyNotsTestMixed75
+                   ConvertToHornTests.simplifyNotsTestOr17
+                   ConvertToHornTests.simplifyNotsTestMixed73
+                   ConvertToHornTests.simplifyNotsTestOr17
                    ConvertToHornTests.simplifyNotsTestNot10) -}
-b8a36d86dd59a33e15728f334c2ccbdf
+fdb260ec6551f832faa69aaa404589dd
+  simplifyNotsTestOr17 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 99) -}
+fa35c11da02cf76986a340ebb3e5beb2
   simplifyNotsTestOr2 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestOr3
                    (GHC.Types.[] @ Types.Criteria)) -}
-248e1b510597db3b7c4d33f0945ffaac
-  simplifyNotsTestOr20 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 93) -}
-cc685a78d784f146abe4cfb2492c77c4
+6303956dbc4bf34f6b8dd9ca0d9c8521
   simplifyNotsTestOr3 :: Types.Criteria
   {- Strictness: m1,
      Unfolding: (Types.And ConvertToHornTests.simplifyNotsTestOr4) -}
-efc96990125188af4bd4b72c0d11a418
+80a9603c163c75bd95b01c5faf59fbd2
   simplifyNotsTestOr4 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
-                   ConvertToHornTests.simplifyNotsTestMixed44
+                   ConvertToHornTests.simplifyNotsTestMixed41
                    ConvertToHornTests.simplifyNotsTestOr5) -}
-f3a7df6efbc02380670f8e20e4c2cd24
+6d8c8bb1513d667d1192cdd39354b3d0
   simplifyNotsTestOr5 :: [Types.Criteria]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Types.Criteria
                    ConvertToHornTests.simplifyNotsTestOr6
                    (GHC.Types.[] @ Types.Criteria)) -}
-45a735f728bf898b4c29fc6005f75b9d
+24bb0680d43346e42dafcd59ca2db1db
   simplifyNotsTestOr6 :: Types.Criteria
   {- Strictness: m3,
-     Unfolding: (Types.Not ConvertToHornTests.simplifyNotsTestOr7) -}
-148ff0d147abb4afe2cb46268a59d058
-  simplifyNotsTestOr7 :: Types.Criteria
-  {- Unfolding: (Types.Port
-                   ConvertToHornTests.simplifyNotsTestOr9
+     Unfolding: (Types.Not ConvertToHornTests.andCriteria14) -}
+f47fac90ee05cf4b8a444dbd78b3c0f6
+  simplifyNotsTestOr7 :: [Types.Criteria]
+  {- Unfolding: (ConvertToHorn.simplifyNots
                    ConvertToHornTests.simplifyNotsTestOr8) -}
-df5c255a004e6187d68cb43d8ef8afcf
-  simplifyNotsTestOr8 ::
-    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
-  {- HasNoCafRefs,
-     Unfolding: (Data.Either.Left
-                   @ GHC.Types.Int
-                   @ (GHC.Types.Int, GHC.Types.Int)
-                   ConvertToHornTests.simplifyNotsTestMixed46) -}
-b097cb283dcda8550528fbc109be0085
-  simplifyNotsTestOr9 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "destination"#) -}
+cfdf372467920cd3de7c2940aa63cd78
+  simplifyNotsTestOr8 :: [Types.Criteria]
+  {- Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   ConvertToHornTests.simplifyNotsTestOr9
+                   (GHC.Types.[] @ Types.Criteria)) -}
+d8bb846d4dd7f3699fc0f04c49dea85f
+  simplifyNotsTestOr9 :: Types.Criteria
+  {- Unfolding: (Types.Not
+                   ConvertToHornTests.simplifyNotsTestOr10) -}
+"SPEC/ConvertToHornTests $fEq(,,) @ [Criteria] @ [Rule] @ Int" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                         [Types.Criteria]
+                                                                               $dEq1 :: GHC.Classes.Eq
+                                                                                          [Types.Rule]
+                                                                               $dEq2 :: GHC.Classes.Eq
+                                                                                          GHC.Types.Int
+  GHC.Classes.$fEq(,,) @ [Types.Criteria]
+                       @ [Types.Rule]
+                       @ GHC.Types.Int
+                       $dEq
+                       $dEq1
+                       $dEq2
+  = ConvertToHornTests.$s$fEq(,,)
+"SPEC/ConvertToHornTests $fEq(,,)_$c/= @ [Criteria] @ [Rule] @ Int" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                              [Types.Criteria]
+                                                                                    $dEq1 :: GHC.Classes.Eq
+                                                                                               [Types.Rule]
+                                                                                    $dEq2 :: GHC.Classes.Eq
+                                                                                               GHC.Types.Int
+  GHC.Classes.$fEq(,,)_$c/= @ [Types.Criteria]
+                            @ [Types.Rule]
+                            @ GHC.Types.Int
+                            $dEq
+                            $dEq1
+                            $dEq2
+  = ConvertToHornTests.$s$fEq(,,)_$s$fEq(,,)_$c/=
 "SPEC/ConvertToHornTests $fEq[] @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                       Types.Criteria
   GHC.Classes.$fEq[] @ Types.Criteria $dEq
-  = ConvertToHornTests.$s$fEq[]
+  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+"SPEC/ConvertToHornTests $fEq[] @ Rule" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                  Types.Rule
+  GHC.Classes.$fEq[] @ Types.Rule $dEq
+  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]
 "SPEC/ConvertToHornTests $fEq[]_$c/= @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                            Types.Criteria
   GHC.Classes.$fEq[]_$c/= @ Types.Criteria $dEq
-  = ConvertToHornTests.$s$fEq[]_$s$fEq[]_$c/=
+  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/=1
+"SPEC/ConvertToHornTests $fEq[]_$c/= @ Rule" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                       Types.Rule
+  GHC.Classes.$fEq[]_$c/= @ Types.Rule $dEq
+  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/=
+"SPEC/ConvertToHornTests $fShow(,,) @ [Criteria] @ [Rule] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                             [Types.Criteria]
+                                                                                 $dShow1 :: GHC.Show.Show
+                                                                                              [Types.Rule]
+                                                                                 $dShow2 :: GHC.Show.Show
+                                                                                              GHC.Types.Int
+  GHC.Show.$fShow(,,) @ [Types.Criteria]
+                      @ [Types.Rule]
+                      @ GHC.Types.Int
+                      $dShow
+                      $dShow1
+                      $dShow2
+  = ConvertToHornTests.$s$fShow(,,)
+"SPEC/ConvertToHornTests $fShow(,,)_$cshow @ [Criteria] @ [Rule] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                    [Types.Criteria]
+                                                                                        $dShow1 :: GHC.Show.Show
+                                                                                                     [Types.Rule]
+                                                                                        $dShow2 :: GHC.Show.Show
+                                                                                                     GHC.Types.Int
+  GHC.Show.$fShow(,,)_$cshow @ [Types.Criteria]
+                             @ [Types.Rule]
+                             @ GHC.Types.Int
+                             $dShow
+                             $dShow1
+                             $dShow2
+  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow
+"SPEC/ConvertToHornTests $fShow(,,)_$cshowList @ [Criteria] @ [Rule] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                        [Types.Criteria]
+                                                                                            $dShow1 :: GHC.Show.Show
+                                                                                                         [Types.Rule]
+                                                                                            $dShow2 :: GHC.Show.Show
+                                                                                                         GHC.Types.Int
+  GHC.Show.$fShow(,,)_$cshowList @ [Types.Criteria]
+                                 @ [Types.Rule]
+                                 @ GHC.Types.Int
+                                 $dShow
+                                 $dShow1
+                                 $dShow2
+  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList
 "SPEC/ConvertToHornTests $fShow[] @ Criteria" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                           Types.Criteria
   GHC.Show.$fShow[] @ Types.Criteria $dShow
-  = ConvertToHornTests.$s$fShow[]
+  = ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+"SPEC/ConvertToHornTests $fShow[] @ Rule" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                      Types.Rule
+  GHC.Show.$fShow[] @ Types.Rule $dShow
+  = ConvertToHornTests.$s$fShow(,,)_$s$fShow[]
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

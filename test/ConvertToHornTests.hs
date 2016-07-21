@@ -10,6 +10,7 @@ convertToHornTests = TestList [TestLabel "eliminateAndsTestNotAnd" eliminateAnds
                              , TestLabel "eliminateAndsTestNotNot" eliminateAndsTestNotNot
                              , TestLabel "eliminateAndsTestAndFalse" eliminateAndsTestAndFalse
                              , TestLabel "eliminateAndsTestAndTrue" eliminateAndsTestAndTrue
+                             , TestLabel "eliminateOrsAnd" eliminateOrsTestAnd
                              , TestLabel "simplifyNotsTestAnd" simplifyNotsTestAnd
                              , TestLabel "simplifyNotsTestOr" simplifyNotsTestOr
                              , TestLabel "simplifyNotsTestNot" simplifyNotsTestNot
@@ -84,10 +85,10 @@ eliminateAndsTestAndTrue =
 
 andCriteria = [And [Protocol 1, Port "destination" (Left 1), And [Protocol 2, Port "destination" (Left 3)]]]
 
-eliminateOrs =
+eliminateOrsTestAnd =
     TestCase $ assertEqual "eliminateOrs is not eliminating corrrectly."
-        (eliminateOrs andCriteria)
-        andCriteria
+        (eliminateOrs andCriteria 0)
+        (andCriteria, [], 0)
 
 simplifyNotsTestAnd =
     TestCase $ assertEqual "simplifyNot is not adjusting corrrectly."
