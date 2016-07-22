@@ -1,18 +1,18 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-21 03:15:56.85489 UTC
+2016-07-22 01:54:51.797853 UTC
 
 interface main@main:ConvertToHorn 7103
-  interface hash: bd2c300a23de9bb8a8cad4f5518d6d09
-  ABI hash: a22e4241a25a4135f5a0ba3d8ec46e98
-  export-list hash: 6cae4fa71e994bf8d4abef0831a46b33
+  interface hash: ab1e01cea57f3a7dc282c20448a26ab2
+  ABI hash: f6df120d24339ddb046b70a760f58d4c
+  export-list hash: 40cfda620944774707105f0d3acf5dd1
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: a0aab809f050b6a8c91e361e2a7bef92
   sig of: Nothing
   used TH splices: False
   where
 exports:
-  ConvertToHorn.eliminateAnds
+  ConvertToHorn.condenseAndsOrs
   ConvertToHorn.eliminateAndsOrsFromChain
   ConvertToHorn.eliminateAndsOrsFromStringChains
   ConvertToHorn.eliminateOrs
@@ -34,6 +34,7 @@ import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  Types be1e767e9389ce9c8fd11ba155041f23
   exports: 98cf0ae77f95faeb276b282dfb3cdefd
   And 69fba4a95faaa8f829c278b146400a58
@@ -52,8 +53,8 @@ bb4f656d3f684d115bef171aaaade6f1
     -> (# [Types.Criteria], [Types.Rule], GHC.Types.Int #)
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)>,
      Inline: [0] -}
-e9fda12cd16fa7bf3653704c47bf2122
-  eliminateAnds ::
+3a285ec0d5cbbf156da50f2691f677dc
+  condenseAndsOrs ::
     [Types.Criteria] -> GHC.Types.Bool -> [Types.Criteria]
   {- Arity: 2, Strictness: <S,1*U><L,U> -}
 eb081c3e88b83d689a205b3b289b57db

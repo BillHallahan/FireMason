@@ -18,6 +18,8 @@ data Criteria = And [Criteria]
                 | Protocol Int
                 | SC String deriving (Eq, Show)
 
+data InputCriteria = InC Criteria
+
 data Target = Jump String
               | Go Int Int
               | ACCEPT
@@ -43,7 +45,7 @@ type ModuleFunc = [String] -> (Maybe [Either Criteria Target], [String])
 
 
 class ToString a where
-  toString :: a -> String
+    toString :: a -> String
 
 instance ToString Int where
     toString x = show x

@@ -15,21 +15,21 @@ eliminateAndsOrsFromChain :: Chain -> Int -> Chain
 eliminateAndsOrsFromChain [] _ = []--, 0)
 eliminateAndsOrsFromChain (Rule c t i:rs) j =
     let
-        simpNotsC = simplifyNots (eliminateAnds c False)
+        simpNotsC = simplifyNots (condenseAndsOrs c False)
         (newC, newR, k) = eliminateOrs simpNotsC j
         afterChain = eliminateAndsOrsFromChain (newR ++ rs) (j + k)
     in
     (Rule newC t i):afterChain
 
 --We track if directly in an Or using the Bool, and only merge And's if not
-eliminateAnds :: [Criteria] -> Bool -> [Criteria]
-eliminateAnds [] _ = []
-eliminateAnds (Not (And c):cs) inOr = Not (And $ eliminateAnds c False):(eliminateAnds cs inOr)
-eliminateAnds (Not (Or c):cs) inOr = Not (Or $ eliminateAnds c True):(eliminateAnds cs inOr)--AND COORESPONDING FOR OR
-eliminateAnds (Not (Not c):cs) inOr = Not(head $ eliminateAnds [Not c] inOr):(eliminateAnds cs inOr)--might be a better way to do this?
-eliminateAnds (And c:cs) inOr = if inOr then And (eliminateAnds c False):eliminateAnds cs inOr else eliminateAnds (c ++ cs) inOr
-eliminateAnds (Or c:cs) inOr = Or (eliminateAnds c True):(eliminateAnds cs inOr)
-eliminateAnds (c:cs) inOr = c:(eliminateAnds cs inOr)
+condenseAndsOrs :: [Criteria] -> Bool -> [Criteria]
+condenseAndsOrs [] _ = []
+condenseAndsOrs (Not (And c):cs) inOr = Not (And $ condenseAndsOrs c False):(condenseAndsOrs cs inOr)
+condenseAndsOrs (Not (Or c):cs) inOr = Not (Or $ condenseAndsOrs c True):(condenseAndsOrs cs inOr)
+condenseAndsOrs (Not (Not c):cs) inOr = Not(head $ condenseAndsOrs [Not c] inOr):(condenseAndsOrs cs inOr)
+condenseAndsOrs (And c:cs) inOr = if inOr then And (condenseAndsOrs c False):condenseAndsOrs cs inOr else condenseAndsOrs (c ++ cs) inOr
+condenseAndsOrs (Or c:cs) inOr = if not inOr then Or (condenseAndsOrs c True):(condenseAndsOrs cs inOr) else condenseAndsOrs (c ++ cs) inOr--Or (condenseAnds c True):(condenseAnds cs inOr)
+condenseAndsOrs (c:cs) inOr = c:(condenseAndsOrs cs inOr)
 
 --returns new criteria with the or's replaced by propositional variables,
 --rules that correctly determine those propositional variables values
@@ -56,6 +56,8 @@ eliminateOrs (c:cs) i =
     in
     (c:cs', r, j)
 
+--Moves all Nots as deep into the criteria as possible,
+--by applying DeMorgans Law
 simplifyNots :: [Criteria] -> [Criteria]
 simplifyNots [] = []
 simplifyNots (Not (And c):cx) = 

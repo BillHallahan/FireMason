@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-20 23:33:31.461249 UTC
+2016-07-22 03:12:59.080764 UTC
 
 interface main@main:Types 7103
-  interface hash: 9d0f0847be76210c6f6855221854b450
-  ABI hash: be1e767e9389ce9c8fd11ba155041f23
-  export-list hash: 98cf0ae77f95faeb276b282dfb3cdefd
+  interface hash: 50dcdcfdfde2a897fd13f914b906d096
+  ABI hash: fd5a790838778ac0aa4debae73ccd658
+  export-list hash: 35009fc856d82d576d8edf91b0fa5da4
   orphan hash: 6e65ce1f65dc0e4284ce9a99f6379a8d
   flag hash: e468f87777beb3fe7114763efe9ccb2f
   sig of: Nothing
@@ -15,6 +15,7 @@ exports:
   Types.eitherToRule
   Types.Chain
   Types.Criteria{Types.And Types.IPAddress Types.Not Types.Or Types.Port Types.PropVariableCriteria Types.Protocol Types.SC}
+  Types.InputCriteria{Types.InC}
   Types.Label
   Types.ModuleFunc
   Types.Rule{Types.Rule Types.criteria Types.label Types.targets}
@@ -434,6 +435,8 @@ ac330ce08d4cccb73260095eb52eb1d7
     | PropVariableCriteria GHC.Types.Int
     | Protocol GHC.Types.Int
     | SC GHC.Base.String
+190b4c6f951bebf431b4523b137fe1cc
+  data InputCriteria = InC Types.Criteria
 8ea1cbc35ff6354c4e178e365701b867
   type Label = GHC.Types.Int
 ab5330f02a891d005ffbea99fe1c0e14

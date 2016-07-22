@@ -47,7 +47,7 @@ class ToSMT a where
     toSMT :: a -> Int -> Int -> String --The first int is to identify the chain as having been called from a unique position
                                        --The second and third int identify the chain and rule number, respectively, the chain was called from
     toSMTPath :: a -> Int -> Int -> String 
-    toSMTNotPath :: a -> Int -> Int -> String --Written if criteria is not met
+    toSMTNotPath :: a -> Int -> Int -> String --If criteria is not met...
 
     toSMTPrereq _ = []
     toSMTPath _ _ _ = ""
@@ -68,6 +68,7 @@ instance ToSMT Chain where
         in
         chainToSMT rs toSMTPath ch ru ++ "\n" ++ reachesEnd
 
+--The function is used to iterate over the chain in [Rule], likely using a function from the class ToSMT 
 chainToSMT :: [Rule] -> (Rule -> Int -> Int -> String) -> Int -> Int -> String
 chainToSMT (r:r':rs) f ch ru = f r ch ru ++ "\n" ++ chainToSMT (r':rs) (f) ch (ru + 1)
 chainToSMT (r:[]) f ch ru = 

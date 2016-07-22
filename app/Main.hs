@@ -61,9 +61,9 @@ main = do
         putStrLn $ show notTest
         putStrLn . show $ simplifyNots notTest
 
-        let parse1 = parse . lexer $ "(protocol = 1 AND (destination_port = 22 OR destination_port = 41 OR destination_port = 45 OR destination_port = 80) AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT"
+        let parse1 = parse . lexer $ "(protocol = 1 AND (destination_port = 2 OR destination_port = 3 OR destination_port = 4 OR destination_port = 5) AND not source_port = 6) OR (protocol = 7 AND destination_port = 8) => ACCEPT"
         putStrLn $ "\n\ninitial = " ++ show parse1
-        putStrLn $ "eliminateAndsNots = " ++  (show $ simplifyNots ( eliminateAnds (criteria $ parse1 !! 0) True))
+        putStrLn $ "eliminateAndsNots = " ++  (show $ simplifyNots ( condenseAndsOrs (criteria $ parse1 !! 0) False))
         putStrLn $ "eliminateAndsOrsFromChain = " ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
         --putStrLn $ show converted2
         )

@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-21 17:11:41.016552 UTC
+2016-07-22 03:13:01.220646 UTC
 
 interface main@main:Main 7103
-  interface hash: 03da923f7e405cc5034f807d5555fc5c
+  interface hash: 703e5fc9697faf3e6d3916da1c7231ba
   ABI hash: 24716762c2d4e62308a2832696f05fa9
   export-list hash: 66addcba93e4a33a8a73e85b1f9f3925
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -78,9 +78,9 @@ import  -/  ConvertCommandsToChains 6b050de8766013c90493223ef7094b56
 import  -/  ConvertIptables 7717e2a3a0025cb05d12148f25ef6b0c
   exports: 3c20eb45be7d1d2c633d7ce0a3b6a3e2
   convertLine 625bee1f56ca05fb9ead8293b86c6793
-import  -/  ConvertToHorn a22e4241a25a4135f5a0ba3d8ec46e98
-  exports: 6cae4fa71e994bf8d4abef0831a46b33
-  eliminateAnds e9fda12cd16fa7bf3653704c47bf2122
+import  -/  ConvertToHorn f6df120d24339ddb046b70a760f58d4c
+  exports: 40cfda620944774707105f0d3acf5dd1
+  condenseAndsOrs 3a285ec0d5cbbf156da50f2691f677dc
   eliminateAndsOrsFromChain eb081c3e88b83d689a205b3b289b57db
   eliminateAndsOrsFromStringChains dc140fa1b0f1c0640fdea83c3b5f3a45
   simplifyNots 7d2cc672c917380485d2e3dbdb657f8d
@@ -90,8 +90,8 @@ import  -/  ParseSpecificationLanguage 14d77e673a817efcae35781815f6ecfd
   exports: 18b78b5e45df71d295885bec234dff07
   lexer 77c583e36e586e5038c1f8ebe9f4eeb6
   parse 3a1fb3aeb2bf92221ae92733fcbce179
-import  -/  Types be1e767e9389ce9c8fd11ba155041f23
-  exports: 98cf0ae77f95faeb276b282dfb3cdefd
+import  -/  Types fd5a790838778ac0aa4debae73ccd658
+  exports: 35009fc856d82d576d8edf91b0fa5da4
   And 69fba4a95faaa8f829c278b146400a58
   Chain 0a970728856b5d9154b0315f841145e0
   Not 3535d01f02a34ce7e2e65f8bfd0e0468

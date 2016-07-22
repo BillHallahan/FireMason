@@ -31,7 +31,7 @@ convertLine (s, i) fs
                   in Line (table l) (command l) (((mappend) <$> (map (flip eitherToRule $ i) ect) <*> [rule l]) !! 0)
     | isNothing ct = let
                         l = convertLine (xs'', i) newFs
-                  in Line (table l) (command l) (rule l)
+                     in Line (table l) (command l) (rule l)
     where (c, xs') = convertCommand (s, i)
           (ct, xs'', f) = convertCriteriaOrTarget s fs
           newFs = if isJust f then (fromJust f):fs else fs
@@ -41,7 +41,7 @@ convertCommand ("-A":chain:xs, i) = (Just $ Append chain, xs)
 convertCommand ("-F":chain:xs, i) = (Just . Flush $ Just chain , xs)
 convertCommand ("-F":xs, i) = (Just . Flush $ Nothing , xs)
 convertCommand ("-I":chain:num:xs, i) | isInteger num = (Just $ Insert chain (read num :: Int), xs)
-                                   | otherwise = (Just $ Insert chain 0, num:xs)
+                                      | otherwise = (Just $ Insert chain 0, num:xs)
 convertCommand ("-N":chain:xs, i) = (Just . New $ chain , xs)
 convertCommand (xs, _) = (Nothing, xs)
 
@@ -79,26 +79,6 @@ convertCriteriaOrTarget x fs =
     in
         case modParse of Just (ms, s) -> (ms, s, Nothing)
                          Nothing -> error ("Not parsable." ++ show x)
-
-
---notCriteria :: [Criteria] -> [Criteria]
---notCriteria (And c:cs) = And (map (Not) c):notCriteria cs
---notCriteria (c:cs) = Not c:notCriteria cs
---notCriteria [] = []
-
-
-----THIS NEEDS TO GO, AND WE CAN JUST COUNT ON ConvertToHorn.hs later...
---invertAndsOrs :: [Criteria] -> [Criteria]
---invertAndsOrs [] = []
---invertAndsOrs (And c:cs) = (Or $ invertAndsOrs c):invertAndsOrs cs
---invertAndsOrs (Or c:cs) = (And $ invertAndsOrs c):invertAndsOrs cs
---invertAndsOrs (c) =
---    let
---        firstAnd = (\c' -> case c' of And c' -> False
---                                      _ -> True)
---        (ored, afterOred)= span firstAnd c
---    in
---    ored ++ invertAndsOrs afterOred
 
 protocolToNum :: Map.Map String Int
 protocolToNum = Map.fromList $ 
