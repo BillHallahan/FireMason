@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-22 01:54:51.797853 UTC
+2016-07-22 03:13:35.638781 UTC
 
 interface main@main:ConvertToHorn 7103
-  interface hash: ab1e01cea57f3a7dc282c20448a26ab2
+  interface hash: d3e53958419f5a98713ff58b5e1e96c1
   ABI hash: f6df120d24339ddb046b70a760f58d4c
   export-list hash: 40cfda620944774707105f0d3acf5dd1
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -35,8 +35,8 @@ import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  Types be1e767e9389ce9c8fd11ba155041f23
-  exports: 98cf0ae77f95faeb276b282dfb3cdefd
+import  -/  Types fd5a790838778ac0aa4debae73ccd658
+  exports: 35009fc856d82d576d8edf91b0fa5da4
   And 69fba4a95faaa8f829c278b146400a58
   Chain 0a970728856b5d9154b0315f841145e0
   Criteria 301d972945a67a79ef58d0f57083ac37

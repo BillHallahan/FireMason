@@ -190,6 +190,7 @@ eliminateOrsTestOr4 =
             ]
         ] , 
         [Rule {criteria = [And[Protocol 1, PropVariableCriteria 1, Not (Port "source" (Left 6))]], targets = [PropVariableTarget 0 True], label = -1},
+        Rule {criteria = [And[Protocol 7,Port "destination" (Left 8)]], targets = [PropVariableTarget 0 True], label = -1},
         Rule {criteria = [And[Protocol 7,Port "destination" (Left 8)]], targets = [PropVariableTarget 0 True], label = -1}
         ]
         , 0)
