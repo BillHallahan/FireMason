@@ -20,24 +20,24 @@ convertUDPRule xs = (Nothing, xs)
 --this will convert a port range, but will return nothing if it is a list of ports
 --this is to prevent conflicts between the rules for tcp and udp, and the rule 
 --for -m multiport
-convertPortRuleNoCommas :: String -> String -> [String] -> [String] -> (Maybe [Either Criteria Target], [String])
+convertPortRuleNoCommas :: String -> String -> [String] -> [String] -> (Maybe [Either InputCriteria Target], [String])
 convertPortRuleNoCommas name p xs xss = if filter (','==) p == "" then (Just [Left $ portCriteriaFromRangeString p name], xs) else (Nothing, xss)
 
 convertMultiportRule :: ModuleFunc
-convertMultiportRule ("--sport":sps:xs) = (Just $ [Left $ Or(portCriteriaFromNumsRangesString sps "source")], xs)
+convertMultiportRule ("--sport":sps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString sps "source")], xs)
 convertMultiportRule ("--dport":dps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString dps "destination")], xs)
 convertMultiportRule ("--port":ps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString ps "source" ++ portCriteriaFromNumsRangesString ps "destination")], xs)
 convertMultiportRule xs = (Nothing, xs)
 
-portCriteriaFromRangeString :: String -> String -> Criteria
-portCriteriaFromRangeString ps portName = Port portName $ convertNumRange . splitNonconsuming ":" $ ps
+portCriteriaFromRangeString :: String -> String -> InputCriteria
+portCriteriaFromRangeString ps portName = InC . Port portName $ convertNumRange . splitNonconsuming ":" $ ps
 
-portCriteriaFromNumsRangesString :: String -> String -> [Criteria]
+portCriteriaFromNumsRangesString :: String -> String -> [InputCriteria]
 portCriteriaFromNumsRangesString ps portName =
     let
         ports = convertNumsRangesString $ ps
     in
-    foldr (\r acc -> [Port portName r] ++ acc) [] ports
+    foldr (\r acc -> [InC $ Port portName r] ++ acc) [] ports
 
 
 --These are all more generally, eventually need to be in a seperate module

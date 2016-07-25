@@ -7,7 +7,7 @@ import Types
 
 --I'm not sure how iptables specific this is, I seperated it out because I thought it might be useful for other firewalls.
 
-convertToChains :: [Line] -> Map.Map String Chain -> Map.Map String Chain
+convertToChains :: [Line] -> Map.Map String InputChain -> Map.Map String InputChain
 convertToChains l m
     | [] <- l = m
     | New s <- c = convertToChains ls (Map.insert s [] m)

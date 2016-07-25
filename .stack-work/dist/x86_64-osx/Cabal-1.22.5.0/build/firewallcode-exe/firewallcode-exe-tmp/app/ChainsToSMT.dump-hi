@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-22 03:13:00.21882 UTC
+2016-07-23 04:34:09.837626 UTC
 
 interface main@main:ChainsToSMT 7103
-  interface hash: fc5e06089d9e4a3f8df3252795511ebf
-  ABI hash: 12093131816c77e6749aeb4fe1ee0c96
+  interface hash: 1d7e80dd313326ebb868ff19813868c2
+  ABI hash: 2792c71e33285ef6fee141de2790b7e5
   export-list hash: 072a3f808360efb508bd134b0f43f6ae
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e468f87777beb3fe7114763efe9ccb2f
@@ -40,30 +40,30 @@ import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
-import  -/  ChainPathSimplification cdd505f88943bc9a0157a1e87b2eb27f
+import  -/  ChainPathSimplification f9046b939dfaaf88fcff8658009edf4b
   exports: 756c25e0f2d36dffd08a6f679f6a8177
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
-import  -/  Types fd5a790838778ac0aa4debae73ccd658
-  exports: 35009fc856d82d576d8edf91b0fa5da4
-  ACCEPT c43d35b12ef1dfce3f2cd879eac6866b
-  Chain 0a970728856b5d9154b0315f841145e0
-  Criteria 301d972945a67a79ef58d0f57083ac37
-  DROP 42837edea5676d03f7d03328ed69e18d
-  Go 219ce01605a49acddda2ae33fa3945e3
-  Not 3535d01f02a34ce7e2e65f8bfd0e0468
-  Port 8ac4169bf898472df0a5d1d9380502e0
-  PropVariableCriteria e1461d4596b1fd5d85b7e8ca96e75587
-  PropVariableTarget 5ad7f002faeafc40e3f1236dd1296d21
-  Protocol 177d6607da755b98ab077f33e0dc8651
-  Rule 383b44bce8aade0d9cd1e1c5c0d45fb5
-  Rule ac330ce08d4cccb73260095eb52eb1d7
-  ST 4fee19068ddd74cae66bdf54a72346d3
-  Target 7ae42b578730cec1847a60a81b4bf4b8
+import  -/  Types 04c5d15b9d7273cc2ee1e20f9be4a3ba
+  exports: fd7624f994dcfddcd82d0e50111df34c
+  ACCEPT a0e8bfb182327208223f4101204d01d3
+  Chain 1a8a3f6388d02e47b5e652f60f45523b
+  Criteria 61b02b594ef3ae008da99e5e81a331ad
+  DROP 030c92a184ce42e939e5fbc310e578ea
+  Go 467ad786388eaea7566ab2e69ee226ea
+  Not e321d016b035285da499d993e5360dae
+  Port d7bc2cb09990c77f5ec8875ceaee31f7
+  PropVariableCriteria f890028c1176710bbba535a0fa3aa215
+  PropVariableTarget d7cace759dc39a5f0c0dafff9f565d03
+  Protocol 29c2a667093165aebd30cf9c8335414a
+  Rule 8ed946244beed4239f95e13f25795a2d
+  Rule 6966d69265f61f5461d8ecdcc8dd2f8b
+  ST 41e9a5a3c45646fb45defb393e68f489
+  Target 96fab3e40e346c4a445f4966317f4361
   ToString 7be3006f4b3e789e3fa086ea15403adc
-  label 29e70a94ef11ac439309b20c2d514613
+  label 8df94d14fee442f41ce27c4f87b2ceba
   toString b837e6ce5116507eb7419168e473cb92
-199e6a1287d55c518c781835f5d479b0
+decf59857a999c77c6b4e83c8347210d
   $dmtoSMTNotPath ::
     ChainsToSMT.ToSMT a =>
     a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -75,7 +75,7 @@ import  -/  Types fd5a790838778ac0aa4debae73ccd658
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-ab400907d9374042aaf9f927f4b75110
+93a958da1f6d5bdc36021c12414f1848
   $dmtoSMTPath ::
     ChainsToSMT.ToSMT a =>
     a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -87,13 +87,13 @@ ab400907d9374042aaf9f927f4b75110
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-4feff647363f1e2fb3b495de8fa28bc6
+c90bd3366c1108d8966fd6e1165ddaf7
   $dmtoSMTPrereq :: ChainsToSMT.ToSMT a => a -> [GHC.Base.String]
   {- Arity: 2, HasNoCafRefs, Strictness: <L,A><L,A>,
      Unfolding: InlineRule (0, True, True)
                 (\ @ a $dToSMT :: ChainsToSMT.ToSMT a ds :: a ->
                  GHC.Types.[] @ GHC.Base.String) -}
-a7769cfdd53511c876fdfb7e5055046c
+278d893d7a00a4479be5f97c8a4f069e
   $fToSMTCriteria :: ChainsToSMT.ToSMT Types.Criteria
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -103,14 +103,14 @@ a7769cfdd53511c876fdfb7e5055046c
                   ChainsToSMT.$fToSMTCriteria_$ctoSMT
                   ChainsToSMT.$fToSMTCriteria_$ctoSMTNotPath
                   ChainsToSMT.$fToSMTCriteria_$ctoSMTNotPath -}
-a13cefb045b46871d0a4a7c888ce2dda
+f106eefe4583f4c71df62ee1ccfc9bce
   $fToSMTCriteria_$ctoSMT ::
     Types.Criteria -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,A><L,A>, Inline: INLINE[0],
      Unfolding: InlineRule (3, True, True)
                 (\ w :: Types.Criteria w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  ChainsToSMT.$w$ctoSMT w) -}
-72a60036a6e8b686f9652d035d949f7a
+bef0762de406d741529d929a696c2559
   $fToSMTCriteria_$ctoSMTNotPath ::
     Types.Criteria -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>,
@@ -119,34 +119,34 @@ a13cefb045b46871d0a4a7c888ce2dda
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-2774eaee034441e7a72744b1017eb255
+a69d2683c813ad4ba634f4ea1eb7dee1
   $fToSMTCriteria_$ctoSMTPrereq ::
     Types.Criteria -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U> -}
-a7769cfdd53511c876fdfb7e5055046c
-  $fToSMTRule :: ChainsToSMT.ToSMT Types.Rule
+278d893d7a00a4479be5f97c8a4f069e
+  $fToSMTGenRule :: ChainsToSMT.ToSMT Types.Rule
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Rule
-                  ChainsToSMT.$fToSMTRule_$ctoSMTPrereq
-                  ChainsToSMT.$fToSMTRule_$ctoSMT
-                  ChainsToSMT.$fToSMTRule_$ctoSMTPath
-                  ChainsToSMT.$fToSMTRule_$ctoSMTNotPath -}
-2b4bcee80db2bc80715511ceff649f09
-  $fToSMTRule1 :: [GHC.Types.Char]
+                  ChainsToSMT.$fToSMTGenRule_$ctoSMTPrereq
+                  ChainsToSMT.$fToSMTGenRule_$ctoSMT
+                  ChainsToSMT.$fToSMTGenRule_$ctoSMTPath
+                  ChainsToSMT.$fToSMTGenRule_$ctoSMTNotPath -}
+a1f0a8edd89c4698dfbeaecdaf8c86a2
+  $fToSMTGenRule1 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "="#) -}
-54303cfd0465b9eb324e34ed61ccefb1
-  $fToSMTRule2 :: [GHC.Types.Char]
+b1143ca0c77b1e4c035ba4b5188849e7
+  $fToSMTGenRule2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ")"#) -}
-05a91d902620676293d407708ef309c6
-  $fToSMTRule3 :: [GHC.Types.Char]
+13d7f2eb7beb9d5877678b89084f0740
+  $fToSMTGenRule3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "matches-criteria"#) -}
-5b21b91406f0750a601ee63b7173c275
-  $fToSMTRule4 :: [GHC.Types.Char]
+2e4a9eae6961e6ff17a3ab45f9f73beb
+  $fToSMTGenRule4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "assert"#) -}
-7268be12ae82ac40d94e9e9e1a6f0851
-  $fToSMTRule_$ctoSMT ::
+9ae174b756129b58e94b13be605fa0bf
+  $fToSMTGenRule_$ctoSMT ::
     Types.Rule -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S(SLL),1*U(1*U,A,A)><L,1*U(U)><L,1*U(U)>,
      Inline: INLINE[0],
@@ -154,15 +154,15 @@ a7769cfdd53511c876fdfb7e5055046c
                 (\ w :: Types.Rule w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  case w of ww { Types.Rule ww1 ww2 ww3 ->
                  ChainsToSMT.$w$ctoSMT1 ww1 w1 w2 }) -}
-1831a34acd284f9a7cad588e82806299
-  $fToSMTRule_$ctoSMTNotPath ::
+b46bde8d5c11b33debe1e1935fdf483c
+  $fToSMTGenRule_$ctoSMTNotPath ::
     Types.Rule -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>,
      Unfolding: InlineRule (3, True, True)
                 (\ ds :: Types.Rule ds1 :: GHC.Types.Int ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-8747035c9a9f04059d830d89fd6b181d
-  $fToSMTRule_$ctoSMTPath ::
+70d11ccdfc319bd9a891ad0126ad6cc8
+  $fToSMTGenRule_$ctoSMTPath ::
     Types.Rule -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S(SLL),1*U(1*U,1*U,A)><L,U(U)><L,U(U)>,
      Inline: INLINE[0],
@@ -170,18 +170,19 @@ a7769cfdd53511c876fdfb7e5055046c
                 (\ w :: Types.Rule w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  case w of ww { Types.Rule ww1 ww2 ww3 ->
                  ChainsToSMT.$w$ctoSMTPath ww1 ww2 w1 w2 }) -}
-4ad4b3bea9281b72cd2ae9a8282b26ec
-  $fToSMTRule_$ctoSMTPrereq :: Types.Rule -> [GHC.Base.String]
+a76cef7d4bc12fb3ea7c8552a7672a0e
+  $fToSMTGenRule_$ctoSMTPrereq :: Types.Rule -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S(SLL),1*U(1*U,A,A)>,
      Unfolding: InlineRule (1, True, False)
-                (\ ds :: Types.Rule ->
+                (\ ds :: Types.GenRule Types.Criteria ->
                  case ds of wild { Types.Rule c t ds1 ->
-                 ChainsToSMT.$fToSMTRule_$ctoSMTPrereq1 c }) -}
-da47643687950f455e74d03001fda585
-  $fToSMTRule_$ctoSMTPrereq1 :: [Types.Criteria] -> [GHC.Base.String]
+                 ChainsToSMT.$fToSMTGenRule_$ctoSMTPrereq1 c }) -}
+3bd07da31b8e04e90a2d4f438d99060f
+  $fToSMTGenRule_$ctoSMTPrereq1 ::
+    [Types.Criteria] -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U> -}
-1f7912f71a6561619920e5cdd75541d0
-  $fToSMTRule_$sprintSMTFunc1 ::
+a44319e50512e964b8bd5c052a858e53
+  $fToSMTGenRule_$sprintSMTFunc1 ::
     GHC.Base.String
     -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <L,1*U><L,1*U(U)><L,1*U(U)>,
@@ -213,9 +214,9 @@ da47643687950f455e74d03001fda585
                                 GHC.Base.++
                                   @ GHC.Types.Char
                                   (GHC.Types.: @ GHC.Types.Char ww10 ww11)
-                                  ChainsToSMT.$fToSMTRule2 } })) } })))) -}
-f7a2181f867a2868a517ff2d59fca247
-  $fToSMTRule_$sprintSMTFunc2 ::
+                                  ChainsToSMT.$fToSMTGenRule2 } })) } })))) -}
+ebbe425fcebcf265afe76adc7278e047
+  $fToSMTGenRule_$sprintSMTFunc2 ::
     GHC.Base.String
     -> GHC.Base.String -> GHC.Base.String -> GHC.Base.String
   {- Arity: 3, Strictness: <L,1*U><L,1*U><L,1*U>,
@@ -234,9 +235,12 @@ f7a2181f867a2868a517ff2d59fca247
                             x
                             (GHC.CString.unpackAppendCString#
                                " "#
-                               (GHC.Base.++ @ GHC.Types.Char y ChainsToSMT.$fToSMTRule2)))))) -}
-d5f184d81d4d2bd13751e69ec6e6a87b
-  $fToSMTRule_$sprintSMTFunc3 ::
+                               (GHC.Base.++
+                                  @ GHC.Types.Char
+                                  y
+                                  ChainsToSMT.$fToSMTGenRule2)))))) -}
+11d562d90d1a82e3593e11d52ed89b5a
+  $fToSMTGenRule_$sprintSMTFunc3 ::
     GHC.Base.String -> GHC.Base.String -> GHC.Base.String
   {- Arity: 2, Strictness: <L,1*U><L,1*U>,
      Unfolding: (\ s :: GHC.Base.String x :: GHC.Base.String ->
@@ -247,8 +251,8 @@ d5f184d81d4d2bd13751e69ec6e6a87b
                       s
                       (GHC.CString.unpackAppendCString#
                          " "#
-                         (GHC.Base.++ @ GHC.Types.Char x ChainsToSMT.$fToSMTRule2)))) -}
-a7769cfdd53511c876fdfb7e5055046c
+                         (GHC.Base.++ @ GHC.Types.Char x ChainsToSMT.$fToSMTGenRule2)))) -}
+278d893d7a00a4479be5f97c8a4f069e
   $fToSMTTarget :: ChainsToSMT.ToSMT Types.Target
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -273,14 +277,14 @@ b7a6c544286f9873e3c8946ae4c53ef7
 3d96da77b8c0183dd46703c5af555dc0
   $fToSMTTarget5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# " () Bool)"#) -}
-796ceea58c8792447c45b0c219eb5ee0
+af9aec44a921348ce875b411a86a0450
   $fToSMTTarget_$ctoSMT ::
     Types.Target -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>,
      Unfolding: InlineRule (3, True, True)
                 (\ ds :: Types.Target ds1 :: GHC.Types.Int ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-6bae53c70561566447547a21a760844a
+d8a1367a691a9399d535a5527fa9f986
   $fToSMTTarget_$ctoSMTNotPath ::
     Types.Target -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,1*U(U)><L,1*U(U)>,
@@ -290,27 +294,27 @@ b7a6c544286f9873e3c8946ae4c53ef7
                  case ds of wild {
                    DEFAULT -> GHC.Types.[] @ GHC.Types.Char
                    Types.Go i j
-                   -> ChainsToSMT.$fToSMTRule_$sprintSMTFunc3
-                        ChainsToSMT.$fToSMTRule4
-                        (ChainsToSMT.$fToSMTRule_$sprintSMTFunc2
+                   -> ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc3
+                        ChainsToSMT.$fToSMTGenRule4
+                        (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc2
                            ChainsToSMT.$fToSMTTarget4
-                           (ChainsToSMT.$fToSMTRule_$sprintSMTFunc3
+                           (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc3
                               ChainsToSMT.$fToSMTTarget3
-                              (ChainsToSMT.$fToSMTRule_$sprintSMTFunc1
+                              (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc1
                                  ChainsToSMT.$fToSMTTarget2
                                  ch
                                  r))
-                           (ChainsToSMT.$fToSMTRule_$sprintSMTFunc3
+                           (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc3
                               ChainsToSMT.$fToSMTTarget3
-                              (ChainsToSMT.$fToSMTRule_$sprintSMTFunc1
+                              (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc1
                                  ChainsToSMT.$fToSMTTarget1
                                  i
                                  j))) }) -}
-7ed73042ec7dfafc576c944a94f30c8c
+383d7145224016d17593cacd23cd8dc4
   $fToSMTTarget_$ctoSMTPath ::
     Types.Target -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,1*U(U)><L,1*U(U)> -}
-54708d11e5bfc40a4773951cb3215c28
+eef407f5f212b706c2d3af02c2d9d994
   $fToSMTTarget_$ctoSMTPrereq :: Types.Target -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ ds :: Types.Target ->
@@ -331,7 +335,7 @@ b7a6c544286f9873e3c8946ae4c53ef7
                               (GHC.Types.: @ GHC.Types.Char ww5 ww6)
                               ChainsToSMT.$fToSMTTarget5 } }))
                         (GHC.Types.[] @ GHC.Base.String) }) -}
-a7769cfdd53511c876fdfb7e5055046c
+278d893d7a00a4479be5f97c8a4f069e
   $fToSMT[] :: ChainsToSMT.ToSMT [Types.Target]
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -341,17 +345,17 @@ a7769cfdd53511c876fdfb7e5055046c
                   ChainsToSMT.$fToSMT[]_$ctoSMT
                   ChainsToSMT.$fToSMT[]_$ctoSMTPath
                   ChainsToSMT.$fToSMT[]_$ctoSMTNotPath -}
-a7769cfdd53511c876fdfb7e5055046c
+278d893d7a00a4479be5f97c8a4f069e
   $fToSMT[]0 :: ChainsToSMT.ToSMT [Types.Criteria]
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ [Types.Criteria]
-                  ChainsToSMT.$fToSMTRule_$ctoSMTPrereq1
+                  ChainsToSMT.$fToSMTGenRule_$ctoSMTPrereq1
                   ChainsToSMT.$fToSMT[]0_$ctoSMT
                   ChainsToSMT.$fToSMT[]0_$ctoSMTNotPath
                   ChainsToSMT.$fToSMT[]0_$ctoSMTNotPath -}
-847d74eaff35de11ffb659ecf2cc353f
+ea1c6331cc5c8df32309c86257bb789e
   $fToSMT[]0_$ctoSMT ::
     [Types.Criteria]
     -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -359,7 +363,7 @@ a7769cfdd53511c876fdfb7e5055046c
      Unfolding: InlineRule (3, True, True)
                 (\ w :: [Types.Criteria] w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  ChainsToSMT.$w$ctoSMT2 w) -}
-659e3f8f8f9c426e85ab368e6577bc83
+15b9659dc94df6a21ac4c66712df4197
   $fToSMT[]0_$ctoSMTNotPath ::
     [Types.Criteria]
     -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -369,7 +373,7 @@ a7769cfdd53511c876fdfb7e5055046c
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-a7769cfdd53511c876fdfb7e5055046c
+278d893d7a00a4479be5f97c8a4f069e
   $fToSMT[]1 :: ChainsToSMT.ToSMT Types.Chain
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -379,21 +383,25 @@ a7769cfdd53511c876fdfb7e5055046c
                   ChainsToSMT.$fToSMT[]1_$ctoSMT
                   ChainsToSMT.$fToSMT[]1_$ctoSMTPath
                   ChainsToSMT.$fToSMT[]1_$ctoSMTNotPath -}
-51ade4b53257081141bc921b536ade33
+b31b0197ef25895fe8505468e79cbecb
   $fToSMT[]1_$ctoSMT ::
     Types.Chain -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>,
      Unfolding: InlineRule (3, True, False)
                 (\ rs :: Types.Chain ch :: GHC.Types.Int ru :: GHC.Types.Int ->
-                 ChainsToSMT.chainToSMT rs ChainsToSMT.$fToSMTRule_$ctoSMT ch ru) -}
-577dc6b5fa912d9a6d4373591902f5b4
+                 ChainsToSMT.chainToSMT
+                   rs
+                   ChainsToSMT.$fToSMTGenRule_$ctoSMT
+                   ch
+                   ru) -}
+9a67595748979391cac5784a7ccf82e2
   $fToSMT[]1_$ctoSMTNotPath ::
     Types.Chain -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>,
      Unfolding: InlineRule (3, True, True)
                 (\ ds :: Types.Chain ds1 :: GHC.Types.Int ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-ae2d8cc8f81232c15e629b79084fd313
+072311d34cc37466a8848641be8b9877
   $fToSMT[]1_$ctoSMTPath ::
     Types.Chain -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,U><L,U(U)><L,U(U)>,
@@ -404,16 +412,16 @@ ae2d8cc8f81232c15e629b79084fd313
                    @ GHC.Types.Char
                    (ChainsToSMT.chainToSMT
                       rs
-                      ChainsToSMT.$fToSMTRule_$ctoSMTPath
+                      ChainsToSMT.$fToSMTGenRule_$ctoSMTPath
                       ch
                       ru)
                    (GHC.CString.unpackAppendCString#
                       "\n"#
-                      (ChainsToSMT.$fToSMTRule_$sprintSMTFunc3
-                         ChainsToSMT.$fToSMTRule4
-                         (ChainsToSMT.$fToSMTRule_$sprintSMTFunc2
-                            ChainsToSMT.$fToSMTRule1
-                            (ChainsToSMT.$fToSMTRule_$sprintSMTFunc1
+                      (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc3
+                         ChainsToSMT.$fToSMTGenRule4
+                         (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc2
+                            ChainsToSMT.$fToSMTGenRule1
+                            (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc1
                                ChainsToSMT.$fToSMTTarget1
                                ch
                                (case GHC.List.$wlenAcc
@@ -422,19 +430,19 @@ ae2d8cc8f81232c15e629b79084fd313
                                           @ Types.Label
                                           GHC.Classes.eqInt
                                           (GHC.Base.map
-                                             @ Types.Rule
+                                             @ (Types.GenRule Types.Criteria)
                                              @ GHC.Types.Int
-                                             Types.label
+                                             (Types.label @ Types.Criteria)
                                              rs))
                                        0 of ww2 { DEFAULT ->
                                 GHC.Types.I# ww2 }))
                             (ChainsToSMT.$fToSMT[]1_$sprintSMTFunc1
                                ChainsToSMT.$fToSMT[]2
                                ch))))) -}
-de7aabe89efb98ce3893c7ba7c1c089d
+f8543adf8efbb0b92be1115cc673ab1c
   $fToSMT[]1_$ctoSMTPrereq :: Types.Chain -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U> -}
-d3c64ae5d4e52f3f387dc349f4ee9d95
+2bb22912084d5f975d429102a4fa9446
   $fToSMT[]1_$sprintSMTFunc1 ::
     GHC.Base.String -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 2, Strictness: <L,1*U><L,1*U(U)>,
@@ -454,11 +462,11 @@ d3c64ae5d4e52f3f387dc349f4ee9d95
                           GHC.Base.++
                             @ GHC.Types.Char
                             (GHC.Types.: @ GHC.Types.Char ww5 ww6)
-                            ChainsToSMT.$fToSMTRule2 } })))) -}
+                            ChainsToSMT.$fToSMTGenRule2 } })))) -}
 d6a7caa2c64163f1e10b31391bd0430a
   $fToSMT[]2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "reaches-end"#) -}
-eec1983f35f7a21fa36e5c4db4cb1fb2
+ea0b94d8a43456c9b4fcb88f0c0dbfdd
   $fToSMT[]_$ctoSMT ::
     [Types.Target] -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>,
@@ -467,23 +475,23 @@ eec1983f35f7a21fa36e5c4db4cb1fb2
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-5f597938e6c28828ffe73d10911364f4
+7a9383d9547fdf901feb06f8c330e55c
   $fToSMT[]_$ctoSMTNotPath ::
     [Types.Target] -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,U(U)><L,U(U)> -}
-6b68b36e1e8c6d0bba0cb71d468ce5bc
+1639583b08832d0babebdb2054032e23
   $fToSMT[]_$ctoSMTPath ::
     [Types.Target] -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,U(U)><L,U(U)> -}
-edc28e9749894536b11f6370ee9d304f
+29423d03105d0aae78bfb45bb5e83b0a
   $fToSMT[]_$ctoSMTPrereq :: [Types.Target] -> [GHC.Base.String]
   {- Arity: 1, HasNoCafRefs, Strictness: <L,A>,
      Unfolding: InlineRule (1, True, True)
                 (\ ds :: [Types.Target] -> GHC.Types.[] @ GHC.Base.String) -}
-b3e02dbb906ad6a95b7bf57d5310bcb5
+9694b65e4cdcb7d7c99761ac2dca29bc
   $w$ctoSMT :: Types.Criteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-ff3c3f0d3be6ea347808193328fd1e81
+0d331e97910268fd03dc2a78c550d442
   $w$ctoSMT1 ::
     [Types.Criteria]
     -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -493,26 +501,26 @@ ff3c3f0d3be6ea347808193328fd1e81
                    w1 :: GHC.Types.Int ->
                  case ww of wild {
                    []
-                   -> ChainsToSMT.$fToSMTRule_$sprintSMTFunc3
-                        ChainsToSMT.$fToSMTRule4
-                        (ChainsToSMT.$fToSMTRule_$sprintSMTFunc1
-                           ChainsToSMT.$fToSMTRule3
+                   -> ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc3
+                        ChainsToSMT.$fToSMTGenRule4
+                        (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc1
+                           ChainsToSMT.$fToSMTGenRule3
                            w
                            w1)
                    : ipv ipv1
-                   -> ChainsToSMT.$fToSMTRule_$sprintSMTFunc3
-                        ChainsToSMT.$fToSMTRule4
-                        (ChainsToSMT.$fToSMTRule_$sprintSMTFunc2
-                           ChainsToSMT.$fToSMTRule1
+                   -> ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc3
+                        ChainsToSMT.$fToSMTGenRule4
+                        (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc2
+                           ChainsToSMT.$fToSMTGenRule1
                            (ChainsToSMT.$w$ctoSMT2 wild)
-                           (ChainsToSMT.$fToSMTRule_$sprintSMTFunc1
-                              ChainsToSMT.$fToSMTRule3
+                           (ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc1
+                              ChainsToSMT.$fToSMTGenRule3
                               w
                               w1)) }) -}
-2fd667a290670881b2dea731dda84bb0
+4842ff8bf313d524430bc28e09fc6bf2
   $w$ctoSMT2 :: [Types.Criteria] -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-4df5bb84f3a83e6b7e5b0eab55091b4e
+e61b89050c2a928110ad2b7784996db2
   $w$ctoSMTPath ::
     [Types.Criteria]
     -> [Types.Target]
@@ -521,7 +529,7 @@ ff3c3f0d3be6ea347808193328fd1e81
     -> GHC.Base.String
   {- Arity: 4, Strictness: <S,1*U><L,1*U><L,U(U)><L,U(U)>,
      Inline: [0] -}
-a7769cfdd53511c876fdfb7e5055046c
+278d893d7a00a4479be5f97c8a4f069e
   class ToSMT a where
     toSMTPrereq {- Has default method -} :: a -> [GHC.Base.String]
     toSMT :: a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -529,7 +537,7 @@ a7769cfdd53511c876fdfb7e5055046c
       a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
     toSMTNotPath {- Has default method -} ::
       a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
-d5ec57e6e7cf98ef801eba8e7c8204db
+60956cbc53c8b7dbbfc12c38d85f5ad3
   chainToSMT ::
     [Types.Rule]
     -> (Types.Rule
@@ -539,10 +547,10 @@ d5ec57e6e7cf98ef801eba8e7c8204db
     -> GHC.Base.String
   {- Arity: 4, HasNoCafRefs,
      Strictness: <S,1*U><L,C(C1(C1(U)))><L,U><L,U(U)> -}
-b1610821e27ac624718b8249f0c81b62
+6a8c394da0a840b97f7d953dcf2661c3
   convertChains :: [(GHC.Types.Int, Types.Chain)] -> GHC.Base.String
   {- Arity: 1, Strictness: <L,U> -}
-fab726de9d0b3b5fcdd1f99110b742e6
+4b5503e2abea36d7a316d224b4ca0736
   printSMTFunc1 ::
     Types.ToString a => GHC.Base.String -> a -> GHC.Base.String
   {- Arity: 3, Strictness: <L,1*C1(U)><L,1*U><L,U>,
@@ -560,8 +568,8 @@ fab726de9d0b3b5fcdd1f99110b742e6
                          (GHC.Base.++
                             @ GHC.Types.Char
                             ($dToString `cast` (Types.NTCo:ToString[0] <a>_N) x)
-                            ChainsToSMT.$fToSMTRule2)))) -}
-2ce3498dc28d342d071dd581596585dd
+                            ChainsToSMT.$fToSMTGenRule2)))) -}
+0f35a99b069a0e01de31e0af581834e9
   printSMTFunc2 ::
     (Types.ToString a, Types.ToString b) =>
     GHC.Base.String -> a -> b -> GHC.Base.String
@@ -588,10 +596,11 @@ fab726de9d0b3b5fcdd1f99110b742e6
                                (GHC.Base.++
                                   @ GHC.Types.Char
                                   ($dToString1 `cast` (Types.NTCo:ToString[0] <b>_N) y)
-                                  ChainsToSMT.$fToSMTRule2)))))) -}
+                                  ChainsToSMT.$fToSMTGenRule2)))))) -}
 instance ChainsToSMT.ToSMT [Types.Criteria]
   = ChainsToSMT.$fToSMTCriteria
-instance ChainsToSMT.ToSMT [Types.Rule] = ChainsToSMT.$fToSMTRule
+instance ChainsToSMT.ToSMT [Types.GenRule]
+  = ChainsToSMT.$fToSMTGenRule
 instance ChainsToSMT.ToSMT [Types.Target]
   = ChainsToSMT.$fToSMTTarget
 instance ChainsToSMT.ToSMT [[]] = ChainsToSMT.$fToSMT[]
@@ -604,7 +613,7 @@ instance ChainsToSMT.ToSMT [[]] = ChainsToSMT.$fToSMT[]1
 "SPEC printSMTFunc1 @ String" [ALWAYS] forall $dToString :: Types.ToString
                                                               GHC.Base.String
   ChainsToSMT.printSMTFunc1 @ [GHC.Types.Char] $dToString
-  = ChainsToSMT.$fToSMTRule_$sprintSMTFunc3
+  = ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc3
 "SPEC printSMTFunc2 @ Int @ Int" [ALWAYS] forall $dToString :: Types.ToString
                                                                  GHC.Types.Int
                                                  $dToString1 :: Types.ToString GHC.Types.Int
@@ -612,7 +621,7 @@ instance ChainsToSMT.ToSMT [[]] = ChainsToSMT.$fToSMT[]1
                             @ GHC.Types.Int
                             $dToString
                             $dToString1
-  = ChainsToSMT.$fToSMTRule_$sprintSMTFunc1
+  = ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc1
 "SPEC printSMTFunc2 @ String @ String" [ALWAYS] forall $dToString :: Types.ToString
                                                                        GHC.Base.String
                                                        $dToString1 :: Types.ToString GHC.Base.String
@@ -620,7 +629,7 @@ instance ChainsToSMT.ToSMT [[]] = ChainsToSMT.$fToSMT[]1
                             @ [GHC.Types.Char]
                             $dToString
                             $dToString1
-  = ChainsToSMT.$fToSMTRule_$sprintSMTFunc2
+  = ChainsToSMT.$fToSMTGenRule_$sprintSMTFunc2
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

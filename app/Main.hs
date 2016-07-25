@@ -28,9 +28,18 @@ main = do
     withFile fileName ReadMode (\handle -> do
         contents <- hGetContents handle
 
+        let specTest2 = lexer ("(destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP," ++
+                              "(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP," ++
+                              "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT," ++
+                              "not protocol = 3 => ACCEPT")
+        putStrLn $ show specTest2
+        let parsed = parse specTest2
+        putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" parsed
 
+        let inputR = inputChainToChain parsed 0
+        putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" inputR
         let converted' = Map.toList . convertScript $ contents
-        let converted = Map.fromList $ eliminateAndsOrsFromStringChains converted' 0 
+        let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
         let k = Map.keys converted
         let v = Map.elems converted
         let listToS = foldl (\acc s -> acc ++ show s ++ "\n") ""
@@ -51,26 +60,27 @@ main = do
         putStrLn $ show specTest2
         putStrLn $ show (parse specTest2)
 
-        let elim = eliminateAndsOrsFromChain (parse specTest2) 0
+        let elim = inputChainToChain (parse specTest2) 0
         putStrLn $ "(destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP,\n" ++
                               "(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP,\n" ++
                               "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT\n"
         putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" elim
 
-        let notTest = [Not $ Not $ Not ( And [Protocol 1, Or[Port "destination" $ Left 45, Not . Port "source" $ Left 60]])]
+        let notTest = [InCNot $ InCNot $ InCNot ( And [InC . Protocol $ 1, Or[InC $ Port "destination" $ Left 45, InCNot . InC . Port "source" $ Left 60]])]
         putStrLn $ show notTest
         putStrLn . show $ simplifyNots notTest
 
+        putStrLn "HERE"
+
         let parse1 = parse . lexer $ "(protocol = 1 AND (destination_port = 2 OR destination_port = 3 OR destination_port = 4 OR destination_port = 5) AND not source_port = 6) OR (protocol = 7 AND destination_port = 8) => ACCEPT"
         putStrLn $ "\n\ninitial = " ++ show parse1
-        putStrLn $ "eliminateAndsNots = " ++  (show $ simplifyNots ( condenseAndsOrs (criteria $ parse1 !! 0) False))
-        putStrLn $ "eliminateAndsOrsFromChain = " ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
-        --putStrLn $ show converted2
+        putStrLn $ "eliminateAndsNots = " ++  foldl (\acc s -> acc ++ show s ++ "\n") "" (inputChainToChain parse1 0)
+        --putStrLn $ "eliminateAndsOrsFromChain = " ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
         )
 
         --putStrLn $ foldl (++) "" (map (flip (convertChain) 0) v))
 
-convertScript :: String -> Map.Map String Chain
+convertScript :: String -> Map.Map String InputChain
 convertScript coms =
     let
         noBlanks = filter (\s -> any  (not . isSpace) $ fst s) $ zip (lines coms) [1..] 

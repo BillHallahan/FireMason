@@ -2,73 +2,79 @@ module ConvertToHorn where
 
 import Types
 
-eliminateAndsOrsFromStringChains :: [(String, Chain)] -> Int -> [(String, Chain)]
-eliminateAndsOrsFromStringChains [] _ = []
-eliminateAndsOrsFromStringChains ((s, c):sc) j = 
+stringInputChainsToStringChains :: [(String, InputChain)] -> Int -> [(String, Chain)]
+stringInputChainsToStringChains [] _ = []
+stringInputChainsToStringChains ((s, c):sc) j = 
     let
-        c' = eliminateAndsOrsFromChain c j
+        c' = inputChainToChain c j
     in
-    (s, c'):eliminateAndsOrsFromStringChains sc (j + length c')--Adding length c' is sufficient to ensure no
+    (s, c'):stringInputChainsToStringChains sc (j + length c')--Adding length c' is sufficient to ensure no
                                                                --collisions, but will skip some numbers, this is fine
 
-eliminateAndsOrsFromChain :: Chain -> Int -> Chain
-eliminateAndsOrsFromChain [] _ = []--, 0)
-eliminateAndsOrsFromChain (Rule c t i:rs) j =
+inputChainToChain :: [InputRule] -> Int -> [Rule]
+inputChainToChain [] _ = []
+inputChainToChain (r:rs) i = 
     let
-        simpNotsC = simplifyNots (condenseAndsOrs c False)
-        (newC, newR, k) = eliminateOrs simpNotsC j
-        afterChain = eliminateAndsOrsFromChain (newR ++ rs) (j + k)
+    (newC, newR, i') = inputCriteriaToCriteria (criteria r) i
+    r' = Rule newC (targets r) (label r)
     in
-    (Rule newC t i):afterChain
+    r':(inputChainToChain (newR ++ rs) (i + i'))
 
---We track if directly in an Or using the Bool, and only merge And's if not
-condenseAndsOrs :: [Criteria] -> Bool -> [Criteria]
-condenseAndsOrs [] _ = []
-condenseAndsOrs (Not (And c):cs) inOr = Not (And $ condenseAndsOrs c False):(condenseAndsOrs cs inOr)
-condenseAndsOrs (Not (Or c):cs) inOr = Not (Or $ condenseAndsOrs c True):(condenseAndsOrs cs inOr)
-condenseAndsOrs (Not (Not c):cs) inOr = Not(head $ condenseAndsOrs [Not c] inOr):(condenseAndsOrs cs inOr)
-condenseAndsOrs (And c:cs) inOr = if inOr then And (condenseAndsOrs c False):condenseAndsOrs cs inOr else condenseAndsOrs (c ++ cs) inOr
-condenseAndsOrs (Or c:cs) inOr = if not inOr then Or (condenseAndsOrs c True):(condenseAndsOrs cs inOr) else condenseAndsOrs (c ++ cs) inOr--Or (condenseAnds c True):(condenseAnds cs inOr)
-condenseAndsOrs (c:cs) inOr = c:(condenseAndsOrs cs inOr)
+--This should be called only on the [InputCriteria] in an And, and will combine multiple And's into one as much as possible
+condenseAnd :: [InputCriteria] -> [InputCriteria]
+condenseAnd [] = []
+condenseAnd (And c:cx) = (condenseAnd c) ++ condenseAnd cx
+condenseAnd (c:cx) = c:condenseAnd cx
 
---returns new criteria with the or's replaced by propositional variables,
---rules that correctly determine those propositional variables values
---and the number of propositional variables added
-eliminateOrs :: [Criteria] -> Int -> ([Criteria], [Rule], Int)
-eliminateOrs [] _ = ([], [], 0)
-eliminateOrs (And c:cs) i =
+--This should be called only on the [InputCriteria] in an Or, and will combine multiple Or's into one as much as possible
+condenseOr :: [InputCriteria] -> [InputCriteria]
+condenseOr [] = []
+condenseOr (Or c:cx) = (condenseOr c) ++ condenseOr cx
+condenseOr (c:cx) = c:condenseOr cx
+
+eliminateOr :: InputCriteria -> Int -> (Criteria, [InputRule], Int)
+eliminateOr (Or c) i =
     let
-        (c', r, j) = eliminateOrs c i
-        (cs', rs, j') = eliminateOrs cs (i + j)
+        r = map (\c' -> Rule [c'] [PropVariableTarget i True] (-1)) c
+        rNot = Rule (map (InCNot) c) [PropVariableTarget i False] (-1)
     in
-    ((And c'):cs', r ++ rs, j + j')
-eliminateOrs (Or c:cs) i = 
+    (PropVariableCriteria i, rNot:r, i + 1)
+eliminateOr c i = error $ "Invalid " ++ show c
+
+inputCriteriaToCriteria :: [InputCriteria] -> Int -> ([Criteria], [InputRule], Int)
+inputCriteriaToCriteria [] _ = ([], [], 0)
+inputCriteriaToCriteria (And c: cx) i = inputCriteriaToCriteria ((condenseAnd c) ++ cx) i
+inputCriteriaToCriteria (Or c:cx) i = 
     let
-        (c', r', j) = eliminateOrs c (i + 1)
-        r = map (\c''-> Rule [c''] [PropVariableTarget i True] (-1)) c'
-        rnot = Rule (map (Not) c') [PropVariableTarget i False] (-1)
-        (cs', r'', j') = eliminateOrs cs (i + j + 1)
+        (c', r, i') = eliminateOr (Or . condenseOr $ c) i
+        (c'', r', i'') = inputCriteriaToCriteria cx i'
     in
-    (PropVariableCriteria i:cs', r ++ rnot:r' ++r'', j + j' + 1)
-eliminateOrs (c:cs) i =
+    (c':c'', r ++ r', i' + i'')
+inputCriteriaToCriteria (InCNot (InC c):cx) i = 
     let
-        (cs', r, j) = eliminateOrs cs i
+        (c'', r', i') =  inputCriteriaToCriteria cx i
     in
-    (c:cs', r, j)
+    (Not c:c'', r', i')
+inputCriteriaToCriteria (InCNot c:cx) i = inputCriteriaToCriteria ((simplifyNots [InCNot c]) ++ cx) i
+inputCriteriaToCriteria (InC c:cx) i = 
+    let
+        (c'', r', i') =  inputCriteriaToCriteria cx i
+    in
+    (c:c'', r', i')
 
 --Moves all Nots as deep into the criteria as possible,
 --by applying DeMorgans Law
-simplifyNots :: [Criteria] -> [Criteria]
+simplifyNots :: [InputCriteria] -> [InputCriteria]
 simplifyNots [] = []
-simplifyNots (Not (And c):cx) = 
+simplifyNots (InCNot (And c):cx) = 
     let
-        notted = map (Not) c
+        notted = map (InCNot) c
     in
-    Or (simplifyNots notted):simplifyNots cx
-simplifyNots (Not (Or c):cx) = 
+    Or (simplifyNots $ notted):simplifyNots cx
+simplifyNots (InCNot (Or c):cx) = 
     let
-        notted = map (Not) c
+        notted = map (InCNot) c
     in
-    And (simplifyNots notted):simplifyNots cx
-simplifyNots (Not (Not c):cx) = simplifyNots (c:cx)
+    And (simplifyNots $  notted):simplifyNots cx
+simplifyNots (InCNot (InCNot c):cx) = simplifyNots (c:cx)
 simplifyNots (c:cx) = c:simplifyNots cx

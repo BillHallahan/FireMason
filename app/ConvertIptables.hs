@@ -45,7 +45,7 @@ convertCommand ("-I":chain:num:xs, i) | isInteger num = (Just $ Insert chain (re
 convertCommand ("-N":chain:xs, i) = (Just . New $ chain , xs)
 convertCommand (xs, _) = (Nothing, xs)
 
-convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either Criteria Target], [String], Maybe ModuleFunc)
+convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either InputCriteria Target], [String], Maybe ModuleFunc)
 convertCriteriaOrTarget ("-j":j:xs) _ = case j of "ACCEPT" -> (Just [Right ACCEPT],xs, Nothing)
                                                   "DROP" -> (Just [Right DROP],xs, Nothing)
                                                   _ -> (Just [Right $ Jump j], xs, Nothing)
@@ -57,9 +57,9 @@ convertCriteriaOrTarget ("-p":p:xs) _ =
         protocolFunc = (case protocolNum of Nothing -> Nothing
                                             Just x -> Map.lookup x protocolConvertFuncs)
     in
-        (Just [Left $ Protocol (case protocolNum
-                                    of Nothing -> error "No protocol known."
-                                       Just x -> x)]
+        (Just [Left . InC . Protocol $ (case protocolNum
+                                        of Nothing -> error "No protocol known."
+                                           Just x -> x)]
                 , xs, protocolFunc)
 
 
@@ -67,7 +67,7 @@ convertCriteriaOrTarget ("!":xs) fs =
     let
         (notted, xss, f) = convertCriteriaOrTarget xs fs
     in
-        (Just [Left . Not . And . lefts . fromJust $ notted], xss, f)
+        (Just [Left . InCNot . And . lefts . fromJust $ notted], xss, f)
 
 
 convertCriteriaOrTarget x fs =

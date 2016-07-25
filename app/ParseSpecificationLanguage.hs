@@ -24,20 +24,20 @@ lexer s
         afterSpaces = dropWhile isSpace s
         (nextTerm, afterTerm) = span ((flip elem) ('_':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
 
-parse :: [String] -> [Rule]
+parse :: [String] -> [InputRule]
 parse s = map parseRule (splitOn [","] s)
 
-parseRule :: [String] -> Rule
+parseRule :: [String] -> InputRule
 parseRule s =
     let
         (c, t) = break ("=>" == ) s
     in
-    Rule (parseSpecificationCriteria c) (parseSpecificationTarget $ tail t) 0
+    Rule (parseSpecificationCriteria c) (if not . null $ t then parseSpecificationTarget $ tail t else []) 0
 
 isConjunction :: String -> Bool
 isConjunction s = s `elem` ["AND", "OR"]
 
-toConjunction :: String -> Maybe ([Criteria] -> Criteria)
+toConjunction :: String -> Maybe ([InputCriteria] -> InputCriteria)
 toConjunction "AND" = Just And
 toConjunction "OR" = Just Or
 toConjunction _ = Nothing
@@ -45,14 +45,14 @@ toConjunction _ = Nothing
 --Returns Nothing if passed an empty list, or the conjunction corresponding
 --to "AND" or "OR" at the head of the list, if that exists
 --if the list has elements, and the first is not valid, errors
-conjunctionAtFront :: [String] -> Maybe ([Criteria] -> Criteria)
+conjunctionAtFront :: [String] -> Maybe ([InputCriteria] -> InputCriteria)
 conjunctionAtFront [] = Nothing
 conjunctionAtFront s =  if isConjunction (head s) then 
                             toConjunction (head s)
                         else
                             error ("Invalid: " ++ (head s))
 
-parseSpecificationCriteria :: [String] -> [Criteria]
+parseSpecificationCriteria :: [String] -> [InputCriteria]
 parseSpecificationCriteria s
     | [] <- s = []
     | ("(":xs) <-s =
@@ -69,29 +69,29 @@ parseSpecificationCriteria s
         in
         if isJust conj then [fromJust conj $ c:(parseSpecificationCriteria $ tail xs)] else [c]
 
-parseSpecificationCriteria' :: [String] -> (Criteria, [String])
+parseSpecificationCriteria' :: [String] -> (InputCriteria, [String])
 parseSpecificationCriteria' s
     | ("not":xs) <- s =
         let
             (next, xs') = parseSpecificationCriteria' xs
         in
-        (Not next, xs')
+        (InCNot next, xs')
     | ("protocol":"=":p:xs) <- s =
         let
             p' = if isInteger p then (read p :: Int) else error "Invalid protocol"
         in
-        (Protocol p', xs)
+        (InC $ Protocol p', xs)
     | ("destination_port":"=":dp:xs) <- s =
         let
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
-        (Port "destination" (Left p), xs)
+        (InC $ Port "destination" (Left p), xs)
     | ("source_port":"=":dp:xs) <- s = --This is terrible, don't duplicate like this...
         let
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
-        (Port "source" (Left p), xs)
-    | otherwise = (SC $ concat s, [])
+        (InC $ Port "source" (Left p), xs)
+    | otherwise = (InC . SC $ concat s, [])
 
 parseSpecificationTarget :: [String] -> [Target]
 parseSpecificationTarget ("DROP":[]) = [DROP]

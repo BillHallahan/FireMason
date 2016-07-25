@@ -8,7 +8,7 @@ type Table = String
 
 data Line = Line {table :: Table 
                   ,command :: Command
-                  ,rule :: Rule} deriving (Show)
+                  ,rule :: InputRule} deriving (Show)
 
 data Command = Append String
                | Insert String Int
