@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-25 02:45:28.657532 UTC
+2016-07-25 02:59:02.257953 UTC
 
 interface main@main:ConvertToHornTests 7103
-  interface hash: 72009665db2bc5b025f0898d07ffd08b
-  ABI hash: 3880ddbe59534a8fff22694ecc0204cb
-  export-list hash: eb4253a0ef80a71475591989dcf34f34
-  orphan hash: 0e29c1efb9f4c755ad71812fb79d2fb5
+  interface hash: 8eca8ba2c48ef9a10c3b424f193e9eed
+  ABI hash: 3e40ee44fe69892d86691b20cf1975f8
+  export-list hash: 4d76d372eb2203373a236b775e35ec05
+  orphan hash: 9915f20b19b68d9bdaa199af4f62d027
   flag hash: 768efad6ceab0d9cfe2bb912c6118be4
   sig of: Nothing
   used TH splices: False
@@ -42,11 +42,11 @@ import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Base 3fa8f8d21
 import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  ConvertToHorn 05e4793167163e6b36bcc4a9eaaa19c3
+import  -/  ConvertToHorn 6cb55903d556cefafac546a1c5981ddc
   exports: b5f037d6452ad3c0b4404302332b70f7
   condenseAnd e2c6c9a5eb527c545d63b7b7670e02d4
   condenseOr 9b54a6181d32c77079487fee69dddfe9
-  eliminateOr e914085d7d50f104b995d3a4fb21ce89
+  eliminateOr 61d9fe49467467bfd5e4abfc4b8e8834
   inputCriteriaToCriteria 0eb4d3e5812db8a86e2c4584dd72fc10
   simplifyNots bc6c362294bd1424fe8f8fa8ae2bb20c
 import  -/  Types d93d85b9feb9e7bdde739bd993ea6c3d
@@ -63,7 +63,87 @@ import  -/  Types d93d85b9feb9e7bdde739bd993ea6c3d
   criteria 5953dec82ab8a201003cb58763e11434
   label c65f7a8ae4595fcc377a6ac50005b49f
   targets cd7d556154124ef351aeffc69e7ba5a4
-485965835659a9e1e4b5994911ad8a72
+30734dcb316f93d67161fd62790db7cc
+  $s$fEq(,) ::
+    GHC.Classes.Eq
+      (Types.Criteria, [Types.GenRule Types.InputCriteria])
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.Criteria, [Types.GenRule Types.InputCriteria])
+                  (GHC.Classes.$fEq(,)_$c==
+                     @ Types.Criteria
+                     @ [Types.GenRule Types.InputCriteria]
+                     Types.$fEqCriteria
+                     ConvertToHornTests.$s$fEq(,)_$dEq1)
+                  (GHC.Classes.$fEq(,)_$c/=
+                     @ Types.Criteria
+                     @ [Types.GenRule Types.InputCriteria]
+                     Types.$fEqCriteria
+                     ConvertToHornTests.$s$fEq(,)_$dEq1) -}
+9eb6246e271951bed8941e47d6dc2a34
+  $s$fEq(,)_$dEq ::
+    GHC.Classes.Eq (Types.GenRule Types.InputCriteria)
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                ConvertToHornTests.$s$fEq(,)_$s$fEqGenRule -}
+75aab8c4b7acd6abb1eaf7ed5dd3b9a3
+  $s$fEq(,)_$dEq1 ::
+    GHC.Classes.Eq [Types.GenRule Types.InputCriteria]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                ConvertToHornTests.$s$fEq(,)_$s$fEq[] -}
+52fceceed8639dd4c4cf967a9d4f5d16
+  $s$fEq(,)_$s$fEqGenRule ::
+    GHC.Classes.Eq (Types.GenRule Types.InputCriteria)
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.InputCriteria)
+                  (Types.$fEqGenRule_$c==
+                     @ Types.InputCriteria
+                     Types.$fEqInputCriteria)
+                  ConvertToHornTests.$s$fEq(,)_$s$fEqGenRule_$c/= -}
+e65b0739c56a0c1d364086ebd82cc167
+  $s$fEq(,)_$s$fEqGenRule_$c/= ::
+    Types.GenRule Types.InputCriteria
+    -> Types.GenRule Types.InputCriteria -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SLL),1*U(1*U,1*U,1*U(U))><S(SLL),1*U(1*U,1*U,1*U(U))>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a1 :: Types.GenRule Types.InputCriteria
+                   b :: Types.GenRule Types.InputCriteria ->
+                 case Types.$fEqGenRule_$c==
+                        @ Types.InputCriteria
+                        Types.$fEqInputCriteria
+                        a1
+                        b of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True -> GHC.Types.False }) -}
+5a413a61e24432835b5ef5efc035b816
+  $s$fEq(,)_$s$fEq[] ::
+    GHC.Classes.Eq [Types.GenRule Types.InputCriteria]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.GenRule Types.InputCriteria]
+                  (GHC.Classes.$fEq[]_$c==
+                     @ (Types.GenRule Types.InputCriteria)
+                     ConvertToHornTests.$s$fEq(,)_$dEq)
+                  ConvertToHornTests.$s$fEq(,)_$s$fEq[]_$c/= -}
+f977cae44978e39f55eec5e6edfb4d1c
+  $s$fEq(,)_$s$fEq[]_$c/= ::
+    [Types.GenRule Types.InputCriteria]
+    -> [Types.GenRule Types.InputCriteria] -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ x :: [Types.GenRule Types.InputCriteria]
+                   y :: [Types.GenRule Types.InputCriteria] ->
+                 GHC.Classes.not
+                   (GHC.Classes.$fEq[]_$c==
+                      @ (Types.GenRule Types.InputCriteria)
+                      ConvertToHornTests.$s$fEq(,)_$dEq
+                      x
+                      y)) -}
+e71318273667c215bbe951203a6e7f40
   $s$fEq(,,) ::
     GHC.Classes.Eq
       ([Types.Criteria],
@@ -78,47 +158,16 @@ import  -/  Types d93d85b9feb9e7bdde739bd993ea6c3d
                      @ [Types.Criteria]
                      @ [Types.GenRule Types.InputCriteria]
                      @ GHC.Types.Int
-                     ConvertToHornTests.$s$fEq(,,)_$dEq2
-                     ConvertToHornTests.$s$fEq(,,)_$dEq1
+                     ConvertToHornTests.$s$fEq(,,)_$dEq
+                     ConvertToHornTests.$s$fEq(,)_$dEq1
                      GHC.Classes.$fEqInt)
                   ConvertToHornTests.$s$fEq(,,)_$s$fEq(,,)_$c/= -}
-81c8363d57e27faec3424167ff43e0ae
-  $s$fEq(,,)1 ::
-    GHC.Classes.Eq
-      (Types.Criteria,
-       [Types.GenRule Types.InputCriteria],
-       GHC.Types.Int)
-  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ (Types.Criteria,
-                     [Types.GenRule Types.InputCriteria],
-                     GHC.Types.Int)
-                  (GHC.Classes.$fEq(,,)_$c==
-                     @ Types.Criteria
-                     @ [Types.GenRule Types.InputCriteria]
-                     @ GHC.Types.Int
-                     Types.$fEqCriteria
-                     ConvertToHornTests.$s$fEq(,,)_$dEq1
-                     GHC.Classes.$fEqInt)
-                  ConvertToHornTests.$s$fEq(,,)_$s$fEq(,,)_$c/=1 -}
-403b0737f92b061dfe799f9b152f45a7
-  $s$fEq(,,)_$dEq ::
-    GHC.Classes.Eq (Types.GenRule Types.InputCriteria)
-  {- Strictness: m,
-     Unfolding: InlineRule (0, True, True)
-                ConvertToHornTests.$s$fEq(,,)_$s$fEqGenRule -}
-c81ea170a70be106893c29083219763b
-  $s$fEq(,,)_$dEq1 ::
-    GHC.Classes.Eq [Types.GenRule Types.InputCriteria]
+4a8dd89e805d400a9e9810e5d7210dfa
+  $s$fEq(,,)_$dEq :: GHC.Classes.Eq [Types.Criteria]
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 ConvertToHornTests.$s$fEq(,,)_$s$fEq[] -}
-b382ef69769f0f2df19a8c35cb5958eb
-  $s$fEq(,,)_$dEq2 :: GHC.Classes.Eq [Types.Criteria]
-  {- Strictness: m,
-     Unfolding: InlineRule (0, True, True)
-                ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1 -}
-e914d30d7f37486420fd4863e12bd042
+2823e3bb7d2b7d3176ecc6d1d9f52c15
   $s$fEq(,,)_$s$fEq(,,)_$c/= ::
     ([Types.Criteria],
      [Types.GenRule Types.InputCriteria],
@@ -140,102 +189,22 @@ e914d30d7f37486420fd4863e12bd042
                         @ [Types.Criteria]
                         @ [Types.GenRule Types.InputCriteria]
                         @ GHC.Types.Int
-                        ConvertToHornTests.$s$fEq(,,)_$dEq2
-                        ConvertToHornTests.$s$fEq(,,)_$dEq1
+                        ConvertToHornTests.$s$fEq(,,)_$dEq
+                        ConvertToHornTests.$s$fEq(,)_$dEq1
                         GHC.Classes.$fEqInt
                         a1
                         b1 of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-c2587c8b8f9b0bcd8fc8682f08b396b2
-  $s$fEq(,,)_$s$fEq(,,)_$c/=1 ::
-    (Types.Criteria,
-     [Types.GenRule Types.InputCriteria],
-     GHC.Types.Int)
-    -> (Types.Criteria,
-        [Types.GenRule Types.InputCriteria],
-        GHC.Types.Int)
-    -> GHC.Types.Bool
-  {- Arity: 2, HasNoCafRefs,
-     Strictness: <S(SLL),1*U(1*U,1*U,1*U(U))><S(SLL),1*U(1*U,1*U,1*U(U))>,
-     Unfolding: InlineRule (2, True, False)
-                (\ a1 :: (Types.Criteria,
-                          [Types.GenRule Types.InputCriteria],
-                          GHC.Types.Int)
-                   b1 :: (Types.Criteria,
-                          [Types.GenRule Types.InputCriteria],
-                          GHC.Types.Int) ->
-                 case GHC.Classes.$fEq(,,)_$c==
-                        @ Types.Criteria
-                        @ [Types.GenRule Types.InputCriteria]
-                        @ GHC.Types.Int
-                        Types.$fEqCriteria
-                        ConvertToHornTests.$s$fEq(,,)_$dEq1
-                        GHC.Classes.$fEqInt
-                        a1
-                        b1 of wild {
-                   GHC.Types.False -> GHC.Types.True
-                   GHC.Types.True -> GHC.Types.False }) -}
-68a28529288124e09e338302cff602a0
-  $s$fEq(,,)_$s$fEqGenRule ::
-    GHC.Classes.Eq (Types.GenRule Types.InputCriteria)
-  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ (Types.GenRule Types.InputCriteria)
-                  (Types.$fEqGenRule_$c==
-                     @ Types.InputCriteria
-                     Types.$fEqInputCriteria)
-                  ConvertToHornTests.$s$fEq(,,)_$s$fEqGenRule_$c/= -}
-1fb08dda29b9c505fec1d821b2f837a4
-  $s$fEq(,,)_$s$fEqGenRule_$c/= ::
-    Types.GenRule Types.InputCriteria
-    -> Types.GenRule Types.InputCriteria -> GHC.Types.Bool
-  {- Arity: 2, HasNoCafRefs,
-     Strictness: <S(SLL),1*U(1*U,1*U,1*U(U))><S(SLL),1*U(1*U,1*U,1*U(U))>,
-     Unfolding: InlineRule (2, True, False)
-                (\ a1 :: Types.GenRule Types.InputCriteria
-                   b :: Types.GenRule Types.InputCriteria ->
-                 case Types.$fEqGenRule_$c==
-                        @ Types.InputCriteria
-                        Types.$fEqInputCriteria
-                        a1
-                        b of wild {
-                   GHC.Types.False -> GHC.Types.True
-                   GHC.Types.True -> GHC.Types.False }) -}
-59cc938637870f4d1aa73c24a8c07e8e
-  $s$fEq(,,)_$s$fEq[] ::
-    GHC.Classes.Eq [Types.GenRule Types.InputCriteria]
-  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ [Types.GenRule Types.InputCriteria]
-                  (GHC.Classes.$fEq[]_$c==
-                     @ (Types.GenRule Types.InputCriteria)
-                     ConvertToHornTests.$s$fEq(,,)_$dEq)
-                  ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/= -}
-f51ab1f348db449d09ce6e25cbf2f8d8
-  $s$fEq(,,)_$s$fEq[]1 :: GHC.Classes.Eq [Types.Criteria]
+5317372fefc319aba1ca9a3d683cf7bc
+  $s$fEq(,,)_$s$fEq[] :: GHC.Classes.Eq [Types.Criteria]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ [Types.Criteria]
                   (GHC.Classes.$fEq[]_$c== @ Types.Criteria Types.$fEqCriteria)
-                  ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/=1 -}
-58bffe766be860539b7d19d15fc1ab27
+                  ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/= -}
+6ec795ba8d0b926b53beca38fcc75be8
   $s$fEq(,,)_$s$fEq[]_$c/= ::
-    [Types.GenRule Types.InputCriteria]
-    -> [Types.GenRule Types.InputCriteria] -> GHC.Types.Bool
-  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
-     Inline: INLINE (sat-args=2),
-     Unfolding: InlineRule (2, False, False)
-                (\ x :: [Types.GenRule Types.InputCriteria]
-                   y :: [Types.GenRule Types.InputCriteria] ->
-                 GHC.Classes.not
-                   (GHC.Classes.$fEq[]_$c==
-                      @ (Types.GenRule Types.InputCriteria)
-                      ConvertToHornTests.$s$fEq(,,)_$dEq
-                      x
-                      y)) -}
-56c9a21105b78431a8e9d4176b0fce1c
-  $s$fEq(,,)_$s$fEq[]_$c/=1 ::
     [Types.Criteria] -> [Types.Criteria] -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Inline: INLINE (sat-args=2),
@@ -269,28 +238,21 @@ f51ab1f348db449d09ce6e25cbf2f8d8
                       Types.$fEqInputCriteria
                       x
                       y)) -}
-fb387ebfcf76fc6465b06fab619a6cc0
-  $s$fShow(,,) ::
-    GHC.Show.Show
-      (Types.Criteria,
-       [Types.GenRule Types.InputCriteria],
-       GHC.Types.Int)
+d8c06e76a772ef2a20d464214d174b92
+  $s$fShow(,) ::
+    GHC.Show.Show (Types.Criteria, [Types.GenRule Types.InputCriteria])
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
-                  @ (Types.Criteria,
-                     [Types.GenRule Types.InputCriteria],
-                     GHC.Types.Int)
-                  (GHC.Show.$fShow(,,)_$cshowsPrec
+                  @ (Types.Criteria, [Types.GenRule Types.InputCriteria])
+                  (GHC.Show.$fShow(,)_$cshowsPrec
                      @ Types.Criteria
                      @ [Types.GenRule Types.InputCriteria]
-                     @ GHC.Types.Int
                      Types.$fShowCriteria
-                     ConvertToHornTests.$s$fShow(,,)_$dShow1
-                     GHC.Show.$fShowInt)
-                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow
-                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList -}
-6653ee3ea6bc2ce70a9940eb4625259c
-  $s$fShow(,,)1 ::
+                     ConvertToHornTests.$s$fShow(,)_$dShow1)
+                  ConvertToHornTests.$s$fShow(,)_$s$fShow(,)_$cshow
+                  ConvertToHornTests.$s$fShow(,)_$s$fShow(,)_$cshowList -}
+a45044b6af1e0f1e19c131af33739b24
+  $s$fShow(,)1 ::
     [[Types.GenRule Types.InputCriteria]] -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U><L,U>,
      Unfolding: InlineRule (2, True, False)
@@ -298,23 +260,22 @@ fb387ebfcf76fc6465b06fab619a6cc0
                    eta1 :: GHC.Base.String ->
                  GHC.Show.showList__
                    @ [Types.GenRule Types.InputCriteria]
-                   ConvertToHornTests.$s$fShow(,,)2
+                   ConvertToHornTests.$s$fShow(,)2
                    eta
                    eta1) -}
-12943f3e00f1bf67fb0e378096bd1375
-  $s$fShow(,,)2 ::
+8976c2a9d6860e07d384a0375e5b5612
+  $s$fShow(,)2 ::
     [Types.GenRule Types.InputCriteria] -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U><L,U>,
      Unfolding: (\ eta :: [Types.GenRule Types.InputCriteria]
                    eta1 :: GHC.Base.String ->
                  GHC.Show.showList__
                    @ (Types.GenRule Types.InputCriteria)
-                   ConvertToHornTests.$s$fShow(,,)3
+                   ConvertToHornTests.$s$fShow(,)3
                    eta
                    eta1) -}
-2442f199a4f20e9f525c6e429bebf9a9
-  $s$fShow(,,)3 ::
-    Types.GenRule Types.InputCriteria -> GHC.Show.ShowS
+1b961814aa0f4817e44eace932ea2ea3
+  $s$fShow(,)3 :: Types.GenRule Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (\ w2 :: Types.GenRule Types.InputCriteria ->
                  case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
@@ -325,18 +286,18 @@ fb387ebfcf76fc6465b06fab619a6cc0
                    ww3
                    ww4
                    ww5 }) -}
-b2e525695dde1f169e15b02b7f967a82
-  $s$fShow(,,)4 ::
+3f6dd01281dd21bea6fedbee9b03c8f7
+  $s$fShow(,)4 ::
     [Types.GenRule Types.InputCriteria] -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ x :: [Types.GenRule Types.InputCriteria] ->
                  GHC.Show.showList__
                    @ (Types.GenRule Types.InputCriteria)
-                   ConvertToHornTests.$s$fShow(,,)3
+                   ConvertToHornTests.$s$fShow(,)3
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-342019ad48ee12541a146e067e710229
-  $s$fShow(,,)5 ::
+fe47eb67227872c17002276dc2f5f9d7
+  $s$fShow(,)5 ::
     GHC.Types.Int
     -> [Types.GenRule Types.InputCriteria] -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,A>,
@@ -344,9 +305,57 @@ b2e525695dde1f169e15b02b7f967a82
                 (\ ds :: GHC.Types.Int
                    eta :: [Types.GenRule Types.InputCriteria]
                    eta1 :: GHC.Base.String ->
-                 ConvertToHornTests.$s$fShow(,,)2 eta eta1) -}
-7478276804ff6689562d0f167ef0b311
-  $s$fShow(,,)6 ::
+                 ConvertToHornTests.$s$fShow(,)2 eta eta1) -}
+846958ce80863178dfcb593613dbde74
+  $s$fShow(,)_$dShow1 ::
+    GHC.Show.Show [Types.GenRule Types.InputCriteria]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                ConvertToHornTests.$s$fShow(,)_$s$fShow[] -}
+6f90ec2973fc60a24014ceb7a6d5d085
+  $s$fShow(,)_$s$fShow(,)_$cshow ::
+    (Types.Criteria, [Types.GenRule Types.InputCriteria])
+    -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U,U)>m2,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: (Types.Criteria, [Types.GenRule Types.InputCriteria]) ->
+                 GHC.Show.$fShow(,)_$cshowsPrec
+                   @ Types.Criteria
+                   @ [Types.GenRule Types.InputCriteria]
+                   Types.$fShowCriteria
+                   ConvertToHornTests.$s$fShow(,)_$dShow1
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+027a19fbed28ed70bd051252e64bccb1
+  $s$fShow(,)_$s$fShow(,)_$cshowList ::
+    [(Types.Criteria, [Types.GenRule Types.InputCriteria])]
+    -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [(Types.Criteria, [Types.GenRule Types.InputCriteria])]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.Criteria, [Types.GenRule Types.InputCriteria])
+                   (GHC.Show.$fShow(,)_$cshowsPrec
+                      @ Types.Criteria
+                      @ [Types.GenRule Types.InputCriteria]
+                      Types.$fShowCriteria
+                      ConvertToHornTests.$s$fShow(,)_$dShow1
+                      GHC.Show.shows18)
+                   eta
+                   eta1) -}
+a231dff37c2a5d55a98c113e1a72559b
+  $s$fShow(,)_$s$fShow[] ::
+    GHC.Show.Show [Types.GenRule Types.InputCriteria]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.GenRule Types.InputCriteria]
+                  ConvertToHornTests.$s$fShow(,)5
+                  ConvertToHornTests.$s$fShow(,)4
+                  ConvertToHornTests.$s$fShow(,)1 -}
+33ce7f969320b53375eff15555ce4fd4
+  $s$fShow(,,) ::
     GHC.Show.Show
       ([Types.Criteria],
        [Types.GenRule Types.InputCriteria],
@@ -361,12 +370,12 @@ b2e525695dde1f169e15b02b7f967a82
                      @ [Types.GenRule Types.InputCriteria]
                      @ GHC.Types.Int
                      ConvertToHornTests.$s$fShow(,,)_$dShow
-                     ConvertToHornTests.$s$fShow(,,)_$dShow1
+                     ConvertToHornTests.$s$fShow(,)_$dShow1
                      GHC.Show.$fShowInt)
-                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow1
-                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList1 -}
-5bdfca5d216eab8c80b76eb2b33aa411
-  $s$fShow(,,)7 :: [[Types.Criteria]] -> GHC.Show.ShowS
+                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow
+                  ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList -}
+fa14762e2ee39ea97a1b5aea745c7610
+  $s$fShow(,,)1 :: [[Types.Criteria]] -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U><L,U>,
      Unfolding: InlineRule (2, True, False)
                 (\ eta :: [[Types.Criteria]] eta1 :: GHC.Base.String ->
@@ -375,8 +384,8 @@ b2e525695dde1f169e15b02b7f967a82
                    Types.$fShowCriteria_$cshowList
                    eta
                    eta1) -}
-bb47e5eab979985a5f68070612705d3e
-  $s$fShow(,,)8 :: [Types.Criteria] -> GHC.Base.String
+4bef7d68cf13629db6c9b1c86d9f656d
+  $s$fShow(,,)2 :: [Types.Criteria] -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
                 (\ x :: [Types.Criteria] ->
@@ -385,8 +394,8 @@ bb47e5eab979985a5f68070612705d3e
                    Types.$fShowCriteria1
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-0cfd6443bf032b27cc912daa0f7a5e73
-  $s$fShow(,,)9 ::
+7061ae7accbcd8212443250e9ec5627f
+  $s$fShow(,,)3 ::
     GHC.Types.Int -> [Types.Criteria] -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,A>,
      Unfolding: InlineRule (1, True, True)
@@ -394,40 +403,13 @@ bb47e5eab979985a5f68070612705d3e
                    eta :: [Types.Criteria]
                    eta1 :: GHC.Base.String ->
                  Types.$fShowCriteria_$cshowList eta eta1) -}
-43b2dbb2a5f6713056bf2ddfc9b3947a
+1689e4be095fa479b66f02c5e4dca724
   $s$fShow(,,)_$dShow :: GHC.Show.Show [Types.Criteria]
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
-                ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1 -}
-5e8d4b3fd792f17651034a5da685a540
-  $s$fShow(,,)_$dShow1 ::
-    GHC.Show.Show [Types.GenRule Types.InputCriteria]
-  {- Strictness: m,
-     Unfolding: InlineRule (0, True, True)
                 ConvertToHornTests.$s$fShow(,,)_$s$fShow[] -}
-b4722eee9226a7ae8010a1428e13890c
+dc29d0e31d87ebf9b563b459e8004475
   $s$fShow(,,)_$s$fShow(,,)_$cshow ::
-    (Types.Criteria,
-     [Types.GenRule Types.InputCriteria],
-     GHC.Types.Int)
-    -> GHC.Base.String
-  {- Arity: 1, Strictness: <S,1*U(1*U,U,U(U))>m2,
-     Unfolding: InlineRule (1, True, False)
-                (\ x :: (Types.Criteria,
-                         [Types.GenRule Types.InputCriteria],
-                         GHC.Types.Int) ->
-                 GHC.Show.$fShow(,,)_$cshowsPrec
-                   @ Types.Criteria
-                   @ [Types.GenRule Types.InputCriteria]
-                   @ GHC.Types.Int
-                   Types.$fShowCriteria
-                   ConvertToHornTests.$s$fShow(,,)_$dShow1
-                   GHC.Show.$fShowInt
-                   GHC.Show.shows18
-                   x
-                   (GHC.Types.[] @ GHC.Types.Char)) -}
-015a57dbc625c145cd62dd3a7e561fad
-  $s$fShow(,,)_$s$fShow(,,)_$cshow1 ::
     ([Types.Criteria],
      [Types.GenRule Types.InputCriteria],
      GHC.Types.Int)
@@ -442,39 +424,13 @@ b4722eee9226a7ae8010a1428e13890c
                    @ [Types.GenRule Types.InputCriteria]
                    @ GHC.Types.Int
                    ConvertToHornTests.$s$fShow(,,)_$dShow
-                   ConvertToHornTests.$s$fShow(,,)_$dShow1
+                   ConvertToHornTests.$s$fShow(,)_$dShow1
                    GHC.Show.$fShowInt
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-50560e404c71b5d614768e46d451976d
+e7862d26fc5ded061707ade69aa4e589
   $s$fShow(,,)_$s$fShow(,,)_$cshowList ::
-    [(Types.Criteria,
-      [Types.GenRule Types.InputCriteria],
-      GHC.Types.Int)]
-    -> GHC.Show.ShowS
-  {- Arity: 2, Strictness: <S,1*U><L,U>,
-     Unfolding: InlineRule (2, True, False)
-                (\ eta :: [(Types.Criteria,
-                            [Types.GenRule Types.InputCriteria],
-                            GHC.Types.Int)]
-                   eta1 :: GHC.Base.String ->
-                 GHC.Show.showList__
-                   @ (Types.Criteria,
-                      [Types.GenRule Types.InputCriteria],
-                      GHC.Types.Int)
-                   (GHC.Show.$fShow(,,)_$cshowsPrec
-                      @ Types.Criteria
-                      @ [Types.GenRule Types.InputCriteria]
-                      @ GHC.Types.Int
-                      Types.$fShowCriteria
-                      ConvertToHornTests.$s$fShow(,,)_$dShow1
-                      GHC.Show.$fShowInt
-                      GHC.Show.shows18)
-                   eta
-                   eta1) -}
-281fb32f1e94ca96f4f480fb52548283
-  $s$fShow(,,)_$s$fShow(,,)_$cshowList1 ::
     [([Types.Criteria],
       [Types.GenRule Types.InputCriteria],
       GHC.Types.Int)]
@@ -494,28 +450,19 @@ b4722eee9226a7ae8010a1428e13890c
                       @ [Types.GenRule Types.InputCriteria]
                       @ GHC.Types.Int
                       ConvertToHornTests.$s$fShow(,,)_$dShow
-                      ConvertToHornTests.$s$fShow(,,)_$dShow1
+                      ConvertToHornTests.$s$fShow(,)_$dShow1
                       GHC.Show.$fShowInt
                       GHC.Show.shows18)
                    eta
                    eta1) -}
-ccd06e46af98abbade69e30bc24a6817
-  $s$fShow(,,)_$s$fShow[] ::
-    GHC.Show.Show [Types.GenRule Types.InputCriteria]
-  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ [Types.GenRule Types.InputCriteria]
-                  ConvertToHornTests.$s$fShow(,,)5
-                  ConvertToHornTests.$s$fShow(,,)4
-                  ConvertToHornTests.$s$fShow(,,)1 -}
-864000189ce18c785b8a96c72b5a7d0e
-  $s$fShow(,,)_$s$fShow[]1 :: GHC.Show.Show [Types.Criteria]
+8d244f7f8cacbaa555ab5086a65877e5
+  $s$fShow(,,)_$s$fShow[] :: GHC.Show.Show [Types.Criteria]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ [Types.Criteria]
-                  ConvertToHornTests.$s$fShow(,,)9
-                  ConvertToHornTests.$s$fShow(,,)8
-                  ConvertToHornTests.$s$fShow(,,)7 -}
+                  ConvertToHornTests.$s$fShow(,,)3
+                  ConvertToHornTests.$s$fShow(,,)2
+                  ConvertToHornTests.$s$fShow(,,)1 -}
 c378d0897eeeae24221119cdf2b0b813
   $s$fShow[] :: GHC.Show.Show [Types.InputCriteria]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -928,33 +875,33 @@ e9a4a799c8b009d1068417f2ca18d52c
                    @ Types.InputCriteria
                    ConvertToHornTests.condenseOrTest10
                    (GHC.Types.[] @ Types.InputCriteria)) -}
-0fbf9da232def5059091e1a1b3578b39
+94545e9b7ddda5e98fb9868e8761f2b1
   convertToHornTests :: Test.HUnit.Base.Test
   {- Strictness: m2,
      Unfolding: (Test.HUnit.Base.TestList
                    ConvertToHornTests.convertToHornTests1) -}
-b79815a36f01c87b760e92c64fef49f1
+bf5a3cf6d7b4ef85881f52985316ea63
   convertToHornTests1 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests32
                    ConvertToHornTests.convertToHornTests2) -}
-40a9850b284137180cb76292b375b368
+8abbba34787d0f0f05d58a2305c88785
   convertToHornTests10 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests14
                    ConvertToHornTests.convertToHornTests11) -}
-1755577bc1ebfba85b5e372431dd1c48
+584e21b0fc46f834d46c5c0b4280dd54
   convertToHornTests11 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests12
                    (GHC.Types.[] @ Test.HUnit.Base.Test)) -}
-10dcb5fb4cd16fda3f6519309b8fa25a
+40b5e340292f00edf935ac6fefefabf6
   convertToHornTests12 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -964,7 +911,7 @@ b79815a36f01c87b760e92c64fef49f1
   convertToHornTests13 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNotsTestMixed"#) -}
-5888eb95d1e8b53f8f30876a0bef6e18
+d35d4090f91f18885cc4292de22b8c4e
   convertToHornTests14 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -974,7 +921,7 @@ b79815a36f01c87b760e92c64fef49f1
   convertToHornTests15 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNotsTestNot"#) -}
-a96f2fef9d34c191f88b85e4948100a9
+c97396ddbea6b559adf1461c19e8566a
   convertToHornTests16 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -983,7 +930,7 @@ a96f2fef9d34c191f88b85e4948100a9
 6205402f88ec56fab5841bcb7afd9717
   convertToHornTests17 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "simplifyNotsTestOr"#) -}
-d659ae4b744d1b4b87013f4791a0b2e1
+0a59d19611795039e14600e5f54d0464
   convertToHornTests18 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -993,14 +940,14 @@ d659ae4b744d1b4b87013f4791a0b2e1
   convertToHornTests19 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNotsTestAnd"#) -}
-371b745299346019e5b3f515dc5fe138
+b1aacfc40e36ab65c5b0adf1a209b5ab
   convertToHornTests2 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests30
                    ConvertToHornTests.convertToHornTests3) -}
-bca1a223e8fb52cb03b08c57b287965f
+830c81905b90e4cea869da94069af3bc
   convertToHornTests20 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -1010,7 +957,7 @@ bca1a223e8fb52cb03b08c57b287965f
   convertToHornTests21 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "inputCriteriaToCriteriaTestOr3"#) -}
-2bfa6b9746d82655d27bcc79da3c5d8c
+9b65ca6b03c7e75a7addc91b1987ba29
   convertToHornTests22 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -1020,7 +967,7 @@ bca1a223e8fb52cb03b08c57b287965f
   convertToHornTests23 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "inputCriteriaToCriteriaTestOr2"#) -}
-8d63deabd15eac02bfa7081d62c7151e
+fa5b808ef81be87debafcdf3bd5e01cf
   convertToHornTests24 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -1030,7 +977,7 @@ bca1a223e8fb52cb03b08c57b287965f
   convertToHornTests25 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "inputCriteriaToCriteriaTestOr"#) -}
-ace2d27dbd260508eef356ae5603562c
+c7a127b84d48077ed0882ba0e0fbfaf9
   convertToHornTests26 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -1040,7 +987,7 @@ ace2d27dbd260508eef356ae5603562c
   convertToHornTests27 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "inputCriteriaToCriteriaTestAnd"#) -}
-77a0d039782f6861cc3cc04ef6a252c2
+b46ebe7c9f9b7132d2dd7170b850918c
   convertToHornTests28 :: Test.HUnit.Base.Test
   {- Strictness: m3,
      Unfolding: (Test.HUnit.Base.TestLabel
@@ -1049,7 +996,7 @@ ace2d27dbd260508eef356ae5603562c
 03a0b5d4d4967bd1d1762916557628ab
   convertToHornTests29 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "eliminateOrTest"#) -}
-48d724e12a282f1318c26801804ec379
+5232d16c1046a372aa42b737acd6a4d0
   convertToHornTests3 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
@@ -1074,69 +1021,67 @@ addb17c134464fd9a4a195066506dfb3
 832e3d73335917111cc56de20b363d00
   convertToHornTests33 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "condenseAndTest"#) -}
-be5878c47ceb3cbc6f066f2d76754a9c
+ab8442c7092092dc40549a7cd3893672
   convertToHornTests4 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests26
                    ConvertToHornTests.convertToHornTests5) -}
-7fbf2d5ab4e8501a6960bc7bf579f901
+5650c3ddc9448dee7506f22233eb9862
   convertToHornTests5 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests24
                    ConvertToHornTests.convertToHornTests6) -}
-46ca7363be8db5ff1ddab5f2140264e5
+337dec1c4ad8a6a5092f6bd419ba97c1
   convertToHornTests6 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests22
                    ConvertToHornTests.convertToHornTests7) -}
-77aa1b0afd4ecdedbd8ee344980f74e7
+7637dbd80650ada2f3820257fb7d51dd
   convertToHornTests7 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests20
                    ConvertToHornTests.convertToHornTests8) -}
-3bdd2b7b7751cdd6ab1d4158d0fab674
+e57a799770ff28a8048d8642e38312fa
   convertToHornTests8 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests18
                    ConvertToHornTests.convertToHornTests9) -}
-01ffe33cd78c80bc6d3a479086cae7f3
+b27f9937c8c5a3d918e3261094315459
   convertToHornTests9 :: [Test.HUnit.Base.Test]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    ConvertToHornTests.convertToHornTests16
                    ConvertToHornTests.convertToHornTests10) -}
-3aaabec06868fff2960249610a10789a
+af20f3e87e2eaccf7624471c4b36ad75
   eliminateOrTest :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.eliminateOrTest1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-0c3690dd34b805831f74a6c24dfb1adb
+a2a0632b205af35f08521618878857c2
   eliminateOrTest1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (Test.HUnit.Base.@=?7
-                   @ (Types.Criteria,
-                      [Types.GenRule Types.InputCriteria],
-                      GHC.Types.Int)
+                   @ (Types.Criteria, [Types.GenRule Types.InputCriteria])
                    ConvertToHornTests.eliminateOrTest27
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
-                   ConvertToHornTests.$s$fEq(,,)1
-                   ConvertToHornTests.$s$fShow(,,)
+                   ConvertToHornTests.$s$fEq(,)
+                   ConvertToHornTests.$s$fShow(,)
                    ConvertToHornTests.eliminateOrTest26
                    ConvertToHornTests.eliminateOrTest14
                    ConvertToHornTests.eliminateOrTest2) -}
@@ -1165,15 +1110,12 @@ b88e44a6263f9702d013434c6ec28f74
   {- HasNoCafRefs, Strictness: m4,
      Unfolding: (Types.PropVariableCriteria
                    ConvertToHornTests.simplifyNotsTestMixed33) -}
-f88b6405795649019b842209ecf3fef4
+97807ad090e92690435eddbdb0bd673b
   eliminateOrTest14 ::
-    (Types.Criteria,
-     [Types.GenRule Types.InputCriteria],
-     GHC.Types.Int)
+    (Types.Criteria, [Types.GenRule Types.InputCriteria])
   {- HasNoCafRefs, Strictness: m,
      Unfolding: ((ConvertToHornTests.eliminateOrTest13,
-                  ConvertToHornTests.eliminateOrTest15,
-                  ConvertToHornTests.inputCriteriaToCriteriaTestOr22)) -}
+                  ConvertToHornTests.eliminateOrTest15)) -}
 1947535c53c668d10defacccbb4b8990
   eliminateOrTest15 :: [Types.GenRule Types.InputCriteria]
   {- HasNoCafRefs, Strictness: m2,
@@ -1210,13 +1152,11 @@ d0351272c120290d0bde9000e4ff69fc
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr61
                    ConvertToHornTests.eliminateOrTest7
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr40) -}
-962db2a152350c68e687cf11b4104970
-  eliminateOrTest2 ::
-    (Types.Criteria, [Types.InputRule], GHC.Types.Int)
+5ace0935824e8b7b5d916c864fe14b40
+  eliminateOrTest2 :: (Types.Criteria, [Types.InputRule])
   {- Strictness: m,
      Unfolding: ((ConvertToHornTests.eliminateOrTest13,
-                  ConvertToHornTests.eliminateOrTest3,
-                  ConvertToHornTests.inputCriteriaToCriteriaTestOr22)) -}
+                  ConvertToHornTests.eliminateOrTest3)) -}
 3247d41e13a6a786abe9f876b7ace74f
   eliminateOrTest20 :: Types.GenRule Types.InputCriteria
   {- HasNoCafRefs, Strictness: m,
@@ -1359,14 +1299,14 @@ ba0c1662b4bbe36462051dc80b40b700
                    @ Types.InputCriteria
                    ConvertToHornTests.condenseAndTest32
                    ConvertToHornTests.eliminateOrTest5) -}
-c1a877ef0a8bda2dcbcb8cdf9b4ea63d
+a8368894366f3ecd1fe8ef17eac31fa9
   inputCriteriaToCriteriaTestAnd :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.inputCriteriaToCriteriaTestAnd1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-4a911f870e37f47c7269583f0071d4a2
+ff657333b00467a2f5240b7e1d0c9f0e
   inputCriteriaToCriteriaTestAnd1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -1377,7 +1317,7 @@ c1a877ef0a8bda2dcbcb8cdf9b4ea63d
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
                    ConvertToHornTests.$s$fEq(,,)
-                   ConvertToHornTests.$s$fShow(,,)6
+                   ConvertToHornTests.$s$fShow(,,)
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr133
                    ConvertToHornTests.inputCriteriaToCriteriaTestAnd10
                    ConvertToHornTests.inputCriteriaToCriteriaTestAnd2) -}
@@ -1494,14 +1434,14 @@ ae72a3d07b9f004f72ca86dea98b82c3
                    @ Types.InputCriteria
                    ConvertToHornTests.simplifyNotsTestMixed40
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr119) -}
-d1be38543c804c778e40546a8a330b01
+0dbf7840b059ad5c8c5749ad89eb2e7b
   inputCriteriaToCriteriaTestOr :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr112
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-4e4ba4c52d72b125a2a0f00363a7525d
+c03df91ff0d6a4b6891aeae0207670ca
   inputCriteriaToCriteriaTestOr1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -1514,7 +1454,7 @@ d1be38543c804c778e40546a8a330b01
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
                    ConvertToHornTests.$s$fEq(,,)
-                   ConvertToHornTests.$s$fShow(,,)6
+                   ConvertToHornTests.$s$fShow(,,)
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr74
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr28
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr5) -}
@@ -1611,7 +1551,7 @@ f4f166aaf35b1aab924a545ed99cac82
 4a2414d38d4f21be96c32d2947ab414b
   inputCriteriaToCriteriaTestOr111 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 81) -}
-4953cae25d4d95744b7aba2a4fdab5cc
+9017d7ec662e1dcedf6406f7aa22ef22
   inputCriteriaToCriteriaTestOr112 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -1624,7 +1564,7 @@ f4f166aaf35b1aab924a545ed99cac82
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
                    ConvertToHornTests.$s$fEq(,,)
-                   ConvertToHornTests.$s$fShow(,,)6
+                   ConvertToHornTests.$s$fShow(,,)
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr133
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr123
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr113) -}
@@ -1850,7 +1790,7 @@ c07e15754d756d521ba2429fcdc79115
                    @ Types.InputCriteria
                    ConvertToHornTests.simplifyNotsTestMixed17
                    (GHC.Types.[] @ Types.InputCriteria)) -}
-2aaac46315aa1b4bd5347aa8e9b86dee
+52169716d5bd6f328def894cc8ccea6d
   inputCriteriaToCriteriaTestOr2 :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
@@ -1901,7 +1841,7 @@ f487907343ee6a6f947b2095845096b7
                    @ Types.InputCriteria
                    ConvertToHornTests.simplifyNotsTestMixed37
                    ConvertToHornTests.condenseOrTest9) -}
-d2c708dbacf2f3326f781bdbbd2e4503
+848998fafa74058f893102f42a0ed1e3
   inputCriteriaToCriteriaTestOr28 ::
     ([Types.Criteria],
      [Types.GenRule Types.InputCriteria],
@@ -1909,7 +1849,7 @@ d2c708dbacf2f3326f781bdbbd2e4503
   {- HasNoCafRefs, Strictness: m,
      Unfolding: ((ConvertToHornTests.inputCriteriaToCriteriaTestOr69,
                   ConvertToHornTests.inputCriteriaToCriteriaTestOr29,
-                  ConvertToHornTests.condenseAndTest18)) -}
+                  ConvertToHornTests.condenseAndTest25)) -}
 5bb8a56f7116db80eaa1fbbddc8e2aaf
   inputCriteriaToCriteriaTestOr29 ::
     [Types.GenRule Types.InputCriteria]
@@ -1918,7 +1858,7 @@ d2c708dbacf2f3326f781bdbbd2e4503
                    @ (Types.GenRule Types.InputCriteria)
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr64
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr30) -}
-c23aa6401e415cde49fad4af66b9dc6b
+ef2aeb8658f607edb06404e5daf25d84
   inputCriteriaToCriteriaTestOr3 :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
@@ -2307,7 +2247,7 @@ c3721e81964ef238928bf43f1a958134
   {- HasNoCafRefs,
      Unfolding: (Types.And
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr9) -}
-420dd23b41c333e92f4b4c1df90b5f01
+74977e1566176c9bb45f415415b95469
   inputCriteriaToCriteriaTestOr80 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -2320,7 +2260,7 @@ c3721e81964ef238928bf43f1a958134
                      `cast`
                    (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
                    ConvertToHornTests.$s$fEq(,,)
-                   ConvertToHornTests.$s$fShow(,,)6
+                   ConvertToHornTests.$s$fShow(,,)
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr106
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr91
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr81) -}
@@ -2385,7 +2325,7 @@ a512e9196d025698439c7e649228811e
   {- Unfolding: (Types.Port
                    ConvertToHornTests.condenseAndTest31
                    ConvertToHornTests.condenseAndTest24) -}
-9539f3f93e53d07afd376f43f0d771e0
+a6d7cf0f9fbefcdf1e5075e77325dfa3
   inputCriteriaToCriteriaTestOr91 ::
     ([Types.Criteria],
      [Types.GenRule Types.InputCriteria],
@@ -2393,7 +2333,7 @@ a512e9196d025698439c7e649228811e
   {- Strictness: m,
      Unfolding: ((ConvertToHornTests.inputCriteriaToCriteriaTestOr105,
                   ConvertToHornTests.inputCriteriaToCriteriaTestOr92,
-                  ConvertToHornTests.condenseAndTest18)) -}
+                  ConvertToHornTests.condenseAndTest25)) -}
 dd75e7b3273314ae806686d0f14c2dd3
   inputCriteriaToCriteriaTestOr92 ::
     [Types.GenRule Types.InputCriteria]
@@ -2460,14 +2400,14 @@ e1d457dcd9e23bfdb5261470f48c85b2
                    ConvertToHornTests.simplifyNotsTestOr7
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr41
                    ConvertToHornTests.inputCriteriaToCriteriaTestOr40) -}
-50a1b0ae9b5edc6620ecb68b3812e5db
+b105c061a82354f827c9bae7f9cc0b1f
   simplifyNotsTestAnd :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestAnd1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-4d44ca07952a184e33a4e6dd9a2f9f0e
+581dd04211213b4736365d646f25da23
   simplifyNotsTestAnd1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -2482,19 +2422,19 @@ e1d457dcd9e23bfdb5261470f48c85b2
                    ConvertToHornTests.simplifyNotsTestAnd8
                    ConvertToHornTests.simplifyNotsTestAnd6
                    ConvertToHornTests.simplifyNotsTestAnd2) -}
-7e685c80223a0925fad8299d4ccd647d
+700d9707ddfbc23b190d6ce20ff6575e
   simplifyNotsTestAnd10 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.simplifyNotsTestAnd11
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-32f6b49434e3bfe03beaec954065033c
+44832e3e6fa2a1192b0fa970fb05ad95
   simplifyNotsTestAnd11 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
      Unfolding: ((ConvertToHornTests.condenseAndTest48,
                   ConvertToHornTests.simplifyNotsTestAnd12)) -}
-b29064427cf9161afce475f8b3529093
+d45902700ad8580fd4cc03203b19fdc8
   simplifyNotsTestAnd12 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
@@ -2505,9 +2445,9 @@ b29064427cf9161afce475f8b3529093
                    ConvertToHornTests.condenseAndTest43
                    ConvertToHornTests.simplifyNotsTestAnd13
                    ConvertToHornTests.condenseAndTest42) -}
-9f3dd3530780dbd44955947020d1b78e
+c3589ab4bb6397780ec3ca41f5401cdf
   simplifyNotsTestAnd13 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 180) -}
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 136) -}
 afcdfebe844af943df796f481e1699ff
   simplifyNotsTestAnd2 :: [Types.InputCriteria]
   {- Unfolding: (ConvertToHorn.simplifyNots
@@ -2540,19 +2480,19 @@ fdb2653f1d1f67c0a957c82fec16e061
   simplifyNotsTestAnd8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNot is not adjusting (Not And) to (Or Not) corrrectly."#) -}
-45fa8895c093d3c2cf9844bc6d98a927
+2c16928dc8ce995cb207e4b2de1742c1
   simplifyNotsTestAnd9 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.simplifyNotsTestAnd10) -}
-35c962f4438c8b65eddb8b6b5eb79561
+f8f03c7163c1f327fcd948c5e2c89953
   simplifyNotsTestMixed :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestMixed1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-2eb56483bdf459318bc441ee34329d91
+25d76c011265b8e277f00dd687ecd46c
   simplifyNotsTestMixed1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -2914,7 +2854,7 @@ c2c34674b697b667f906da80a7402360
   simplifyNotsTestMixed68 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNot is not adjusting corrrectly."#) -}
-6e3fa2aad5450c3e9e131ebf56d45ceb
+6c6726eb2c0a15ba913d6ffe214702d4
   simplifyNotsTestMixed69 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
@@ -2924,19 +2864,19 @@ b2cd621c87ae1b208e93226c8fafd5dc
   {- HasNoCafRefs,
      Unfolding: (Types.InCNot
                    ConvertToHornTests.simplifyNotsTestMixed8) -}
-a04337bb3f46e88a81b48701c97b3380
+21433df39d78939e316672382bb39576
   simplifyNotsTestMixed70 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.simplifyNotsTestMixed71
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-4cbcd4a9df7f64af4ee1149686dc04b3
+7402856b204b032a3d5efeb7dca0b02d
   simplifyNotsTestMixed71 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
      Unfolding: ((ConvertToHornTests.condenseAndTest48,
                   ConvertToHornTests.simplifyNotsTestMixed72)) -}
-8416589839f18d2c0da46a7236fc85c7
+302dd4403a90ee0feeb28969404bb126
   simplifyNotsTestMixed72 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
@@ -2947,9 +2887,9 @@ a04337bb3f46e88a81b48701c97b3380
                    ConvertToHornTests.simplifyNotsTestMixed33
                    ConvertToHornTests.simplifyNotsTestMixed73
                    ConvertToHornTests.condenseAndTest43) -}
-c147727e0c4d068cd019570a622de444
+89f4cdc9e7cd19cdb0d845113438c834
   simplifyNotsTestMixed73 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 195) -}
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 151) -}
 c5345fb0618d0c3bd578527a6383ae1c
   simplifyNotsTestMixed8 :: Types.InputCriteria
   {- HasNoCafRefs,
@@ -2961,14 +2901,14 @@ f5e10ebb57bb27461252d19fa03f9fe9
                    @ Types.InputCriteria
                    ConvertToHornTests.simplifyNotsTestMixed20
                    ConvertToHornTests.simplifyNotsTestMixed10) -}
-58586e2961548c7e59fcab91cfb0698e
+795aba584baa88c7c37bd059120ae3f6
   simplifyNotsTestNot :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestNot1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-141b8399abf5ea66a64d93bcfd9d8441
+3974e500a7171617647d82a0857e613c
   simplifyNotsTestNot1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -2983,7 +2923,7 @@ f5e10ebb57bb27461252d19fa03f9fe9
                    ConvertToHornTests.simplifyNotsTestNot6
                    ConvertToHornTests.simplifyNotsTestNot5
                    ConvertToHornTests.simplifyNotsTestNot2) -}
-a6acd9a0e5c4f59c7a7a2d88d9828616
+90211267e1b75225cd34688c387117c8
   simplifyNotsTestNot10 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
@@ -2994,9 +2934,9 @@ a6acd9a0e5c4f59c7a7a2d88d9828616
                    ConvertToHornTests.condenseAndTest43
                    ConvertToHornTests.simplifyNotsTestNot11
                    ConvertToHornTests.condenseAndTest42) -}
-831d924cf782cff1b19d85cae9543c9c
+0c59c251bfe1c643a3ca52c26e1eaafe
   simplifyNotsTestNot11 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 190) -}
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 146) -}
 1456c6ea77938bcc1ba57a84fa92b756
   simplifyNotsTestNot2 :: [Types.InputCriteria]
   {- Unfolding: (ConvertToHorn.simplifyNots
@@ -3024,31 +2964,31 @@ c8db6c8018909020b431e83fff51e423
   simplifyNotsTestNot6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNot is not adjusting (Not Not) to () corrrectly."#) -}
-5aa9a9eec9779cf683ce32623de16c40
+ed9190f7467ce55bdc2d25346911bf7a
   simplifyNotsTestNot7 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.simplifyNotsTestNot8) -}
-7e9d6a5e54aab885e3441ac3c4553990
+f75a6a084fb639674cf61411696c5564
   simplifyNotsTestNot8 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.simplifyNotsTestNot9
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-0cb63456dfa8440c47690e7cfc335b2d
+c98c352bd30588bb3b7ab86d3cf1d124
   simplifyNotsTestNot9 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
      Unfolding: ((ConvertToHornTests.condenseAndTest48,
                   ConvertToHornTests.simplifyNotsTestNot10)) -}
-c4b81e5dd286c945c4ef8ac57c27a43b
+529c9ff1be5ca3d3fc3b41f92e683545
   simplifyNotsTestOr :: Test.HUnit.Base.Test
   {- Strictness: m1,
      Unfolding: (Test.HUnit.Base.TestCase
                    ConvertToHornTests.simplifyNotsTestOr1
                      `cast`
                    (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-19154c5312c891b9725e6628343cb8a5
+9dbb73e04b42a01f516d46fc0fc26417
   simplifyNotsTestOr1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -3085,24 +3025,24 @@ bc1284a58052601f9e1500b62a14bf91
   simplifyNotsTestOr13 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "simplifyNot is not adjusting (Not Or) to (Or And) corrrectly."#) -}
-db094b62ba315935d2d51eeffca49971
+36ae12eed7332aba40b821d644c3adb9
   simplifyNotsTestOr14 :: GHC.Stack.CallStack
   {- Strictness: m,
      Unfolding: (GHC.Stack.CallStack
                    ConvertToHornTests.simplifyNotsTestOr15) -}
-a3085b010eaf26b722c71be6224d4e9a
+707a0d9cea4292d101dc667889c2abf1
   simplifyNotsTestOr15 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
   {- Strictness: m2,
      Unfolding: (GHC.Types.:
                    @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
                    ConvertToHornTests.simplifyNotsTestOr16
                    (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
-a51fb7b084cf5627107219ed58285bf6
+f8cc47ea79dcc6440997a352fd7789bb
   simplifyNotsTestOr16 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
   {- Strictness: m,
      Unfolding: ((ConvertToHornTests.condenseAndTest48,
                   ConvertToHornTests.simplifyNotsTestOr17)) -}
-12de6c0e36531b218e1308cb33e43929
+c4bc509d9664582b93fd655e358019de
   simplifyNotsTestOr17 :: GHC.SrcLoc.SrcLoc
   {- Strictness: m,
      Unfolding: (GHC.SrcLoc.SrcLoc
@@ -3113,9 +3053,9 @@ a51fb7b084cf5627107219ed58285bf6
                    ConvertToHornTests.condenseAndTest43
                    ConvertToHornTests.simplifyNotsTestOr18
                    ConvertToHornTests.condenseAndTest42) -}
-4242e08fe26f623c83e84e103bb74934
+859ae45bd41f2a2dae80cbc704a1a723
   simplifyNotsTestOr18 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 185) -}
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 141) -}
 177428e7465a787baa37081c492b9af6
   simplifyNotsTestOr2 :: [Types.InputCriteria]
   {- Unfolding: (ConvertToHorn.simplifyNots
@@ -3156,21 +3096,17 @@ a7aee023fb74f6f60ddeae3241dc20f0
   simplifyNotsTestOr9 :: Types.InputCriteria
   {- Strictness: m3,
      Unfolding: (Types.And ConvertToHornTests.simplifyNotsTestOr10) -}
-"SPEC/ConvertToHornTests $fEq(,,) @ Criteria @ [GenRule
-                                                 InputCriteria] @ Int" [ALWAYS] forall $dEq :: GHC.Classes.Eq
-                                                                                                                                                         Types.Criteria
-                                                                                                                                               $dEq1 :: GHC.Classes.Eq
-                                                                                                                                                          [Types.GenRule
-                                                                                                                                                             Types.InputCriteria]
-                                                                                                                                               $dEq2 :: GHC.Classes.Eq
-                                                                                                                                                          GHC.Types.Int
-  GHC.Classes.$fEq(,,) @ Types.Criteria
-                       @ [Types.GenRule Types.InputCriteria]
-                       @ GHC.Types.Int
-                       $dEq
-                       $dEq1
-                       $dEq2
-  = ConvertToHornTests.$s$fEq(,,)1
+"SPEC/ConvertToHornTests $fEq(,) @ Criteria @ [GenRule
+                                                InputCriteria]" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                                                                                 Types.Criteria
+                                                                                                                                       $dEq1 :: GHC.Classes.Eq
+                                                                                                                                                  [Types.GenRule
+                                                                                                                                                     Types.InputCriteria]
+  GHC.Classes.$fEq(,) @ Types.Criteria
+                      @ [Types.GenRule Types.InputCriteria]
+                      $dEq
+                      $dEq1
+  = ConvertToHornTests.$s$fEq(,)
 "SPEC/ConvertToHornTests $fEq(,,) @ [Criteria] @ [GenRule
                                                    InputCriteria] @ Int" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                                                                                                              [Types.Criteria]
@@ -3186,21 +3122,6 @@ a7aee023fb74f6f60ddeae3241dc20f0
                        $dEq1
                        $dEq2
   = ConvertToHornTests.$s$fEq(,,)
-"SPEC/ConvertToHornTests $fEq(,,)_$c/= @ Criteria @ [GenRule
-                                                      InputCriteria] @ Int" [ALWAYS] forall $dEq :: GHC.Classes.Eq
-                                                                                                                                                                   Types.Criteria
-                                                                                                                                                         $dEq1 :: GHC.Classes.Eq
-                                                                                                                                                                    [Types.GenRule
-                                                                                                                                                                       Types.InputCriteria]
-                                                                                                                                                         $dEq2 :: GHC.Classes.Eq
-                                                                                                                                                                    GHC.Types.Int
-  GHC.Classes.$fEq(,,)_$c/= @ Types.Criteria
-                            @ [Types.GenRule Types.InputCriteria]
-                            @ GHC.Types.Int
-                            $dEq
-                            $dEq1
-                            $dEq2
-  = ConvertToHornTests.$s$fEq(,,)_$s$fEq(,,)_$c/=1
 "SPEC/ConvertToHornTests $fEq(,,)_$c/= @ [Criteria] @ [GenRule
                                                         InputCriteria] @ Int" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                                                                                                                        [Types.Criteria]
@@ -3219,20 +3140,20 @@ a7aee023fb74f6f60ddeae3241dc20f0
 "SPEC/ConvertToHornTests $fEqGenRule @ InputCriteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                                 Types.InputCriteria
   Types.$fEqGenRule @ Types.InputCriteria $dEq
-  = ConvertToHornTests.$s$fEq(,,)_$s$fEqGenRule
+  = ConvertToHornTests.$s$fEq(,)_$s$fEqGenRule
 "SPEC/ConvertToHornTests $fEqGenRule_$c/= @ InputCriteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                                      Types.InputCriteria
   Types.$fEqGenRule_$c/= @ Types.InputCriteria $dEq
-  = ConvertToHornTests.$s$fEq(,,)_$s$fEqGenRule_$c/=
+  = ConvertToHornTests.$s$fEq(,)_$s$fEqGenRule_$c/=
 "SPEC/ConvertToHornTests $fEq[] @ (GenRule InputCriteria)" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                                      (Types.GenRule
                                                                                         Types.InputCriteria)
   GHC.Classes.$fEq[] @ (Types.GenRule Types.InputCriteria) $dEq
-  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]
+  = ConvertToHornTests.$s$fEq(,)_$s$fEq[]
 "SPEC/ConvertToHornTests $fEq[] @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                       Types.Criteria
   GHC.Classes.$fEq[] @ Types.Criteria $dEq
-  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]1
+  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]
 "SPEC/ConvertToHornTests $fEq[] @ InputCriteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                            Types.InputCriteria
   GHC.Classes.$fEq[] @ Types.InputCriteria $dEq
@@ -3241,30 +3162,48 @@ a7aee023fb74f6f60ddeae3241dc20f0
                                                                                           (Types.GenRule
                                                                                              Types.InputCriteria)
   GHC.Classes.$fEq[]_$c/= @ (Types.GenRule Types.InputCriteria) $dEq
-  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/=
+  = ConvertToHornTests.$s$fEq(,)_$s$fEq[]_$c/=
 "SPEC/ConvertToHornTests $fEq[]_$c/= @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                            Types.Criteria
   GHC.Classes.$fEq[]_$c/= @ Types.Criteria $dEq
-  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/=1
+  = ConvertToHornTests.$s$fEq(,,)_$s$fEq[]_$c/=
 "SPEC/ConvertToHornTests $fEq[]_$c/= @ InputCriteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
                                                                                 Types.InputCriteria
   GHC.Classes.$fEq[]_$c/= @ Types.InputCriteria $dEq
   = ConvertToHornTests.$s$fEq[]_$s$fEq[]_$c/=
-"SPEC/ConvertToHornTests $fShow(,,) @ Criteria @ [GenRule
-                                                   InputCriteria] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
-                                                                                                                                                               Types.Criteria
-                                                                                                                                                   $dShow1 :: GHC.Show.Show
-                                                                                                                                                                [Types.GenRule
-                                                                                                                                                                   Types.InputCriteria]
-                                                                                                                                                   $dShow2 :: GHC.Show.Show
-                                                                                                                                                                GHC.Types.Int
-  GHC.Show.$fShow(,,) @ Types.Criteria
-                      @ [Types.GenRule Types.InputCriteria]
-                      @ GHC.Types.Int
-                      $dShow
-                      $dShow1
-                      $dShow2
-  = ConvertToHornTests.$s$fShow(,,)
+"SPEC/ConvertToHornTests $fShow(,) @ Criteria @ [GenRule
+                                                  InputCriteria]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                       Types.Criteria
+                                                                                                                                           $dShow1 :: GHC.Show.Show
+                                                                                                                                                        [Types.GenRule
+                                                                                                                                                           Types.InputCriteria]
+  GHC.Show.$fShow(,) @ Types.Criteria
+                     @ [Types.GenRule Types.InputCriteria]
+                     $dShow
+                     $dShow1
+  = ConvertToHornTests.$s$fShow(,)
+"SPEC/ConvertToHornTests $fShow(,)_$cshow @ Criteria @ [GenRule
+                                                         InputCriteria]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                                     Types.Criteria
+                                                                                                                                                         $dShow1 :: GHC.Show.Show
+                                                                                                                                                                      [Types.GenRule
+                                                                                                                                                                         Types.InputCriteria]
+  GHC.Show.$fShow(,)_$cshow @ Types.Criteria
+                            @ [Types.GenRule Types.InputCriteria]
+                            $dShow
+                            $dShow1
+  = ConvertToHornTests.$s$fShow(,)_$s$fShow(,)_$cshow
+"SPEC/ConvertToHornTests $fShow(,)_$cshowList @ Criteria @ [GenRule
+                                                             InputCriteria]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                                             Types.Criteria
+                                                                                                                                                                 $dShow1 :: GHC.Show.Show
+                                                                                                                                                                              [Types.GenRule
+                                                                                                                                                                                 Types.InputCriteria]
+  GHC.Show.$fShow(,)_$cshowList @ Types.Criteria
+                                @ [Types.GenRule Types.InputCriteria]
+                                $dShow
+                                $dShow1
+  = ConvertToHornTests.$s$fShow(,)_$s$fShow(,)_$cshowList
 "SPEC/ConvertToHornTests $fShow(,,) @ [Criteria] @ [GenRule
                                                      InputCriteria] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                                                                                                                    [Types.Criteria]
@@ -3279,22 +3218,7 @@ a7aee023fb74f6f60ddeae3241dc20f0
                       $dShow
                       $dShow1
                       $dShow2
-  = ConvertToHornTests.$s$fShow(,,)6
-"SPEC/ConvertToHornTests $fShow(,,)_$cshow @ Criteria @ [GenRule
-                                                          InputCriteria] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
-                                                                                                                                                                             Types.Criteria
-                                                                                                                                                                 $dShow1 :: GHC.Show.Show
-                                                                                                                                                                              [Types.GenRule
-                                                                                                                                                                                 Types.InputCriteria]
-                                                                                                                                                                 $dShow2 :: GHC.Show.Show
-                                                                                                                                                                              GHC.Types.Int
-  GHC.Show.$fShow(,,)_$cshow @ Types.Criteria
-                             @ [Types.GenRule Types.InputCriteria]
-                             @ GHC.Types.Int
-                             $dShow
-                             $dShow1
-                             $dShow2
-  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow
+  = ConvertToHornTests.$s$fShow(,,)
 "SPEC/ConvertToHornTests $fShow(,,)_$cshow @ [Criteria] @ [GenRule
                                                             InputCriteria] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                                                                                                                                  [Types.Criteria]
@@ -3309,22 +3233,7 @@ a7aee023fb74f6f60ddeae3241dc20f0
                              $dShow
                              $dShow1
                              $dShow2
-  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow1
-"SPEC/ConvertToHornTests $fShow(,,)_$cshowList @ Criteria @ [GenRule
-                                                              InputCriteria] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
-                                                                                                                                                                                     Types.Criteria
-                                                                                                                                                                         $dShow1 :: GHC.Show.Show
-                                                                                                                                                                                      [Types.GenRule
-                                                                                                                                                                                         Types.InputCriteria]
-                                                                                                                                                                         $dShow2 :: GHC.Show.Show
-                                                                                                                                                                                      GHC.Types.Int
-  GHC.Show.$fShow(,,)_$cshowList @ Types.Criteria
-                                 @ [Types.GenRule Types.InputCriteria]
-                                 @ GHC.Types.Int
-                                 $dShow
-                                 $dShow1
-                                 $dShow2
-  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList
+  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshow
 "SPEC/ConvertToHornTests $fShow(,,)_$cshowList @ [Criteria] @ [GenRule
                                                                 InputCriteria] @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                                                                                                                                          [Types.Criteria]
@@ -3339,16 +3248,16 @@ a7aee023fb74f6f60ddeae3241dc20f0
                                  $dShow
                                  $dShow1
                                  $dShow2
-  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList1
+  = ConvertToHornTests.$s$fShow(,,)_$s$fShow(,,)_$cshowList
 "SPEC/ConvertToHornTests $fShow[] @ (GenRule InputCriteria)" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                                          (Types.GenRule
                                                                                             Types.InputCriteria)
   GHC.Show.$fShow[] @ (Types.GenRule Types.InputCriteria) $dShow
-  = ConvertToHornTests.$s$fShow(,,)_$s$fShow[]
+  = ConvertToHornTests.$s$fShow(,)_$s$fShow[]
 "SPEC/ConvertToHornTests $fShow[] @ Criteria" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                           Types.Criteria
   GHC.Show.$fShow[] @ Types.Criteria $dShow
-  = ConvertToHornTests.$s$fShow(,,)_$s$fShow[]1
+  = ConvertToHornTests.$s$fShow(,,)_$s$fShow[]
 "SPEC/ConvertToHornTests $fShow[] @ InputCriteria" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                                Types.InputCriteria
   GHC.Show.$fShow[] @ Types.InputCriteria $dShow

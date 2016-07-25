@@ -32,13 +32,13 @@ condenseOr [] = []
 condenseOr (Or c:cx) = (condenseOr c) ++ condenseOr cx
 condenseOr (c:cx) = c:condenseOr cx
 
-eliminateOr :: InputCriteria -> Int -> (Criteria, [InputRule], Int)
+eliminateOr :: InputCriteria -> Int -> (Criteria, [InputRule])
 eliminateOr (Or c) i =
     let
         r = map (\c' -> Rule [c'] [PropVariableTarget i True] (-1)) c
         rNot = Rule (map (InCNot) c) [PropVariableTarget i False] (-1)
     in
-    (PropVariableCriteria i, rNot:r, i + 1)
+    (PropVariableCriteria i, rNot:r)
 eliminateOr c i = error $ "Invalid " ++ show c
 
 inputCriteriaToCriteria :: [InputCriteria] -> Int -> ([Criteria], [InputRule], Int)
@@ -46,10 +46,10 @@ inputCriteriaToCriteria [] _ = ([], [], 0)
 inputCriteriaToCriteria (And c: cx) i = inputCriteriaToCriteria ((condenseAnd c) ++ cx) i
 inputCriteriaToCriteria (Or c:cx) i = 
     let
-        (c', r, i') = eliminateOr (Or . condenseOr $ c) i
-        (c'', r', i'') = inputCriteriaToCriteria cx i'
+        (c', r) = eliminateOr (Or . condenseOr $ c) i
+        (c'', r', i'') = inputCriteriaToCriteria cx (i + 1)--We add exactly one Propositional Variable in eliminateOr
     in
-    (c':c'', r ++ r', i' + i'')
+    (c':c'', r ++ r', i'' + 1)
 inputCriteriaToCriteria (InCNot (InC c):cx) i = 
     let
         (c'', r', i') =  inputCriteriaToCriteria cx i

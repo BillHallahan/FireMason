@@ -52,7 +52,7 @@ eliminateOrTest =
             Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 5 True], label = -1},
             Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 5 True], label = -1},
             Rule {criteria = [InC . Protocol $ 3], targets = [PropVariableTarget 5 True], label = -1}]
-            , 6)
+        )
         (eliminateOr (Or [InC . Protocol $ 1, InC . Protocol $ 2, InC . Protocol $ 3]) 5)
 
 inputCriteriaToCriteriaTestAnd =
@@ -87,7 +87,7 @@ inputCriteriaToCriteriaTestOr2 =
             Rule {criteria = [InCNot . InC $ Port "destination" (Left 1), InCNot . InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 False], label = -1},
             Rule {criteria = [InC $ Port "destination" (Left 1)], targets = [PropVariableTarget 1 True], label = -1},
             Rule {criteria = [InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 True], label = -1}]
-            , 3
+            , 2
         )
         (inputCriteriaToCriteria 
             [And 
@@ -113,7 +113,7 @@ inputCriteriaToCriteriaTestOr3 =
      Rule {criteria = [InC . Protocol $ 7], targets = [PropVariableTarget 1 True], label = -1},
      Rule {criteria = [InC . Protocol $ 8], targets = [PropVariableTarget 1 True], label = -1},
      Rule {criteria = [InC . Protocol $ 9], targets = [PropVariableTarget 1 True], label = -1}]
-     , 3)
+     , 2)
     (inputCriteriaToCriteria
         [
             And [
@@ -131,50 +131,6 @@ inputCriteriaToCriteriaTestOr3 =
                 ]
             ]
         ] 0)
-
---eliminateOrsTestOr4 =
---    TestCase $ assertEqual "eliminateOrs is not eliminating correctly."
---        ([
---            Or [
---                And [
---                    Protocol 1,
---                    Or [Port "destination" (Left 2),
---                        Port "destination" (Left 3),
---                        Port "destination" (Left 4),
---                        Port "destination" (Left 5)
---                    ],
---                    Not (Port "source" (Left 6))
---                ],
---                And [Protocol 7,Port "destination" (Left 8)]
---            ]
---        ] , 
---        [Rule {criteria = [And[Protocol 1, PropVariableCriteria 1, Not (Port "source" (Left 6))]], targets = [PropVariableTarget 0 True], label = -1},
---        Rule {criteria = [And[Protocol 7,Port "destination" (Left 8)]], targets = [PropVariableTarget 0 True], label = -1},
---        Rule {criteria = [And[Protocol 7,Port "destination" (Left 8)]], targets = [PropVariableTarget 0 True], label = -1}
---        ]
---        , 0)
---     (eliminateOrs (condenseAndsOrs
---        [
---            Or [
---                And [ 
---                    Protocol 1,
---                    And [
---                        Or [Port "destination" (Left 2),
---                            Or [
---                                Port "destination" (Left 3),
---                                Or [
---                                    Port "destination" (Left 4),
---                                    Port "destination" (Left 5)
---                                ]
---                            ]
---                        ],
---                        Not (Port "source" (Left 6))
---                    ]
---                ],
---                And [Protocol 7,Port "destination" (Left 8)]
---            ]
---        ] False) 0)
-
 
 simplifyNotsTestAnd =
     TestCase $ assertEqual "simplifyNot is not adjusting (Not And) to (Or Not) corrrectly."
