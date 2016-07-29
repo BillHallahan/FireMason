@@ -16,9 +16,11 @@ inputChainToChain [] _ = []
 inputChainToChain (r:rs) i = 
     let
     (newC, newR, i') = inputCriteriaToCriteria (criteria r) i
+    newR' = inputChainToChain newR (i + i')
     r' = Rule newC (targets r) (label r)
     in
-    r':(inputChainToChain (newR ++ rs) (i + i'))
+    newR' ++ [r'] ++ (inputChainToChain rs (i + i' + length newR'))
+    --r':(inputChainToChain (newR ++ rs) (i + i'))
 
 --This should be called only on the [InputCriteria] in an And, and will combine multiple And's into one as much as possible
 condenseAnd :: [InputCriteria] -> [InputCriteria]
