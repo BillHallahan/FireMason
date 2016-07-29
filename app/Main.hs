@@ -13,7 +13,7 @@ import qualified Data.Map as Map
 import Types
 import ConvertIptables
 import ConvertCommandsToChains
-import ChainsToSMT
+import ChainsToSMT2
 import ConvertToHorn
 import ParseSpecificationLanguage
 
@@ -23,9 +23,14 @@ import IptablesTypes
 import ChainPathSimplification--temp
 
 main = do
+
+    --Gets the prewritten smt describing firewall behavior
+    firewallPredicates <- readFile "smt/firewallPredicates.smt2"
+    
     args <- getArgs
     let fileName = head args
     withFile fileName ReadMode (\handle -> do
+
         contents <- hGetContents handle
 
         let specTest2 = lexer ("(destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP," ++
@@ -48,7 +53,7 @@ main = do
         let pathSimp = pathSimplification converted
 
         putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
-        putStrLn $ convertChains pathSimp--convertMapOfChains converted
+        putStrLn $ convertChains pathSimp firewallPredicates--convertMapOfChains converted
 
 
         let testNice = map (\x -> show x) pathSimp

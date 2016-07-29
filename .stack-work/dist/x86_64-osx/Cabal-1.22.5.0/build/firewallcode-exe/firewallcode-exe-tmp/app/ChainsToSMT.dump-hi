@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-23 04:34:09.837626 UTC
+2016-07-29 17:52:24.008903 UTC
 
 interface main@main:ChainsToSMT 7103
-  interface hash: 1d7e80dd313326ebb868ff19813868c2
-  ABI hash: 2792c71e33285ef6fee141de2790b7e5
+  interface hash: 4ebe6f203e183e04eac910d8fbfc21ac
+  ABI hash: 56bf6d27922431da5659e777cf857be4
   export-list hash: 072a3f808360efb508bd134b0f43f6ae
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e468f87777beb3fe7114763efe9ccb2f
@@ -547,9 +547,56 @@ e61b89050c2a928110ad2b7784996db2
     -> GHC.Base.String
   {- Arity: 4, HasNoCafRefs,
      Strictness: <S,1*U><L,C(C1(C1(U)))><L,U><L,U(U)> -}
-6a8c394da0a840b97f7d953dcf2661c3
-  convertChains :: [(GHC.Types.Int, Types.Chain)] -> GHC.Base.String
-  {- Arity: 1, Strictness: <L,U> -}
+7480ce70a413ed20d2d1f69f53edd8f2
+  convertChains ::
+    [(GHC.Types.Int, Types.Chain)]
+    -> GHC.Base.String -> GHC.Base.String
+  {- Arity: 2, Strictness: <L,U><S,1*U>,
+     Unfolding: (\ c :: [(GHC.Types.Int, Types.Chain)]
+                   header :: GHC.Base.String ->
+                 GHC.Base.++
+                   @ GHC.Types.Char
+                   header
+                   (GHC.CString.unpackAppendCString#
+                      "\n"#
+                      (GHC.Base.++
+                         @ GHC.Types.Char
+                         (ChainsToSMT.convertChains_go3
+                            (Data.OldList.nubBy
+                               @ [GHC.Types.Char]
+                               GHC.Base.eqString
+                               (ChainsToSMT.convertChains_go2 c)))
+                         (GHC.CString.unpackAppendCString#
+                            "\n"#
+                            (GHC.Base.++
+                               @ GHC.Types.Char
+                               (ChainsToSMT.convertChains_go1 c)
+                               (GHC.CString.unpackAppendCString#
+                                  "\n"#
+                                  (GHC.Base.++
+                                     @ GHC.Types.Char
+                                     (ChainsToSMT.convertChains_go c)
+                                     ChainsToSMT.convertChains1))))))) -}
+98185c21c43b717639a56981e815f254
+  convertChains1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "(check-sat)\n\
+                   \(get-model)"#) -}
+a1dd19cd44d72bb6667320436bee840f
+  convertChains_go ::
+    [(GHC.Types.Int, Types.Chain)] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+7aaf1af6883532e4680f129b07e85552
+  convertChains_go1 ::
+    [(GHC.Types.Int, Types.Chain)] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+4e6a4dc4004d5fefa62e1c16065d1a1c
+  convertChains_go2 ::
+    [(GHC.Types.Int, Types.Chain)] -> [GHC.Base.String]
+  {- Arity: 1, Strictness: <S,1*U> -}
+66b11ca7f16febae7c8d081ef19b6aef
+  convertChains_go3 :: [[GHC.Types.Char]] -> [GHC.Types.Char]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 4b5503e2abea36d7a316d224b4ca0736
   printSMTFunc1 ::
     Types.ToString a => GHC.Base.String -> a -> GHC.Base.String

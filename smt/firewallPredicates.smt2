@@ -1,4 +1,4 @@
-(declare-datatypes () ((Target ACCEPT DROP RETURN (GO (chain Int) (rule Int)))))
+(declare-datatypes () ((Target ACCEPT DROP RETURN (GO (chain Int) (rule Int)) NONE)))
 
 (declare-fun matches-criteria (Int Int) Bool)
 (declare-fun rule-target (Int Int) Target)
@@ -82,35 +82,3 @@
         )
     )
 )
-
-
-
-
-(assert (= start-chain 0))
-(assert (= start-rule 0))
-
-(assert (= num-of-chains 2))
-
-(assert (= (chain-length 0) 6))
-(assert (= (chain-length 1) 2))
-
-(assert (= (rule-target 0 4) (GO 1 0)))
-(assert (reaches 0 4))
-(assert (matches-criteria 0 4))
-(assert (reaches-end 0))
-
-(assert (matches-criteria 1 0))
-;(assert (= (rule-target 1 0) RETURN))
-
-(assert (matches-criteria 1 1))
-;(assert (= (rule-target 1 1) ACCEPT))
-
-
-
-(assert (reaches 0 5))
-(assert (reaches 1 0))
-(assert (reaches-end 1))
-
-
-(check-sat)
-(get-model)
