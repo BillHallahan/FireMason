@@ -2,6 +2,7 @@ module Main where
 
 import System.IO
 import System.Environment
+import System.Process
 import Data.List
 import Data.String.Utils
 import Data.List.Split
@@ -53,8 +54,10 @@ main = do
         let pathSimp = pathSimplification converted
 
         putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
-        putStrLn $ convertChains pathSimp firewallPredicates--convertMapOfChains converted
+        putStrLn $ convertChainsCheckSMT pathSimp firewallPredicates "(assert (matches-rule 3 8))"
 
+        reshout <- callSMTSolver "temp.smt2" (convertChainsCheckSMT pathSimp firewallPredicates "(assert (matches-rule 3 8))")
+        putStrLn reshout
 
         let testNice = map (\x -> show x) pathSimp
         let folded = foldr (\x acc-> x ++ "\n" ++ acc) "" testNice
@@ -113,3 +116,11 @@ subBashVariables ((s, i):xsi) m
             rep = foldr (\(old, new) acc -> replace old new acc) s m
         in
         (rep, i):subBashVariables xsi m
+
+callSMTSolver :: FilePath -> String -> IO String
+callSMTSolver f s =
+    do
+        writeFile f s
+        (_, Just hout, _, _) <- createProcess (proc "z3" ["temp.smt2"]){ std_out = CreatePipe }
+
+        hGetContents hout

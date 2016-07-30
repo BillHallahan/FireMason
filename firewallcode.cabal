@@ -28,6 +28,7 @@ executable firewallcode-exe
                      , split
                      , containers
                      , MissingH
+                     , process
   default-language:    Haskell2010
   other-modules:       ChainPathSimplification
                      , ConvertCommandsToChains

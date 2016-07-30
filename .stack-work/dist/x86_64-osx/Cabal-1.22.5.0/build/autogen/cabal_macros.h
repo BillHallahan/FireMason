@@ -21,6 +21,13 @@
   (major1) == 0 && (major2) <  5 || \
   (major1) == 0 && (major2) == 5 && (minor) <= 6)
 
+/* package process-1.2.3.0 */
+#define VERSION_process "1.2.3.0"
+#define MIN_VERSION_process(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 3)
+
 /* package split-0.2.3.1 */
 #define VERSION_split "0.2.3.1"
 #define MIN_VERSION_split(major1,major2,minor) (\
@@ -84,5 +91,5 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 1)
 
-#define CURRENT_PACKAGE_KEY "firew_79pMWmxvXz3LJqHXnWireg"
+#define CURRENT_PACKAGE_KEY "firew_B96cYkoLGqMLhiiIN1feui"
 
