@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-30 01:51:06.485598 UTC
+2016-07-31 04:18:40.213096 UTC
 
 interface main@main:Main 7103
-  interface hash: 7c7d078e3d31176bf9583571adf1010d
-  ABI hash: 2faff90bb857a2373e978880ca50feb9
-  export-list hash: eccaa2015c1a62043d374058d45251c5
-  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  interface hash: cc22df3960f7f78509c35b568a09b6dc
+  ABI hash: 336d9668c936008bdfa40f668f19d3f0
+  export-list hash: 1b9bc1bb9b4c8fbecd7c9d202a27ec39
+  orphan hash: da316c59a844b71779ed08b0b476b30d
   flag hash: 1e3361fb471ccc1f0605f4d3c4d9aa91
   sig of: Nothing
   used TH splices: False
@@ -17,9 +17,8 @@ exports:
   Main.main
   Main.subBashVariables
 module dependencies: ChainPathSimplification ChainsToSMT2
-                     ConvertCommandsToChains ConvertIptables ConvertIptablesPorts
-                     ConvertToHorn IptablesTypes ParseSpecificationLanguage ParserHelp
-                     Types
+                     ConvertIptables ConvertIptablesPorts ConvertToHorn IptablesTypes
+                     ParseSpecificationLanguage ParserHelp RuleAdding Types
 package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
@@ -51,7 +50,6 @@ family instance modules: base-4.8.2.0:Control.Applicative
 import  -/  MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ:Data.List.Utils 3175b3ec4b48152a0154ae1c82f8e5ca
 import  -/  MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ:Data.String.Utils 635ce11bcb5f4c4a71b87f62bdb0d8da
 import  -/  base-4.8.2.0:Data.Char c8f827952d4111ae2e47c0b105217cdb
-import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
@@ -71,56 +69,58 @@ import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  ChainPathSimplification f9046b939dfaaf88fcff8658009edf4b
+import  -/  ChainPathSimplification dddb884f47da7624dedfeb10d5e05212
   exports: 756c25e0f2d36dffd08a6f679f6a8177
-  pathSimplification dc8a061208ff165817e6302294758996
-import  -/  ChainsToSMT2 a5b27901f1d97177000770c1a96ee159
+  pathSimplification 8ded98561b826237317d90db6c66d140
+import  -/  ChainsToSMT2 7f43731dc2711ca6d2a4b56cf7164c18
   exports: 34ca2b5c0b259aac1024c1ba9920440d
-  convertChainsCheckSMT d55a20025a7f0f9fd0dce4ff6708217c
-import  -/  ConvertCommandsToChains b500996af724c8ca4d460e3fb7488005
-  exports: 9b55398c89f4fd6ce5e3aee133145aff
-  convertToChains 1038a63056a9370142e76fe6ce370f1d
-import  -/  ConvertIptables ed22fda691d8982bd19871c54cc60df7
-  exports: 3c20eb45be7d1d2c633d7ce0a3b6a3e2
-  convertLine ca70c6779b4d79fb2989a3c0889dc5ba
-import  -/  ConvertToHorn 097328556f17005d40c40a5ecd541a8c
-  exports: b5f037d6452ad3c0b4404302332b70f7
-  inputChainToChain afad14479f477950ce6016b4647d27e7
-  simplifyNots f5fab64342f7937ff3c44f38891a1c77
-  stringInputChainsToStringChains c3f45fce5432833fe8b1d65faa6380ed
-import  -/  IptablesTypes 13c87bb014ba33d025b93f6e4659f089
+  convertChainsCheckSMT 6ee6b4077c80139d8a8af00a3a41d34a
+import  -/  ConvertIptables ba013f88e8d4e279a7c007c56ca94e8d
+  exports: 04c4916c79778099096fd185d87bb83c
+  convertLine 0bd2519aab03b4fec4c09edbc03bd691
+  convertToChains 88fd6951a6af7e4f80f177c4eabb4835
+import  -/  ConvertToHorn 3ee209cec54ddbd0c0601cdf2871a9bb
+  exports: 76cec1257792e94428092746d96d37c3
+  inputInstructionsToInstructions fbdd35491ef6aa3c06b32ff49839b5a5
+  stringInputChainsToStringChains 6e5d12144b487d51d022fde73c2eeb5a
+import  -/  IptablesTypes e06faab7c129cbf3d48a5b1020c739df
   exports: 2abc8708d65a1f1004f1c63350f29dad
-import  -/  ParseSpecificationLanguage b31339ee762e54e69a2f46fc85314850
-  exports: 18b78b5e45df71d295885bec234dff07
+import  -/  ParseSpecificationLanguage 56ac69650d66981eb19967abc952d8c9
+  exports: 97b3a15dfab8f73d45ff5f6798ca2b79
   lexer 77c583e36e586e5038c1f8ebe9f4eeb6
-  parse d7a646f3f6be88dcf8ac67cb7b71b8d4
-import  -/  Types 04c5d15b9d7273cc2ee1e20f9be4a3ba
-  exports: fd7624f994dcfddcd82d0e50111df34c
-  And 5195d3774cf1942d5e58caa42d70af54
-  InC 3539351cc3e190855338110f4e6790ab
-  InCNot 8ff5abb66a695df32bcc8089f70a3b3c
-  InputChain 604fe6ea09318eb2a8b668748af252eb
-  Or de825078084cdb216f3a58cabf01cca3
-  Port d7bc2cb09990c77f5ec8875ceaee31f7
-  Protocol 29c2a667093165aebd30cf9c8335414a
+  parse c57306dd20035f4bddc12478271fc9fd
+import  -/  RuleAdding c827cd188ea967b6b5a5943c16d66a35
+  exports: 566c1b72c89754292ea99720e204f992
+import  -/  Types 169e75f6e2e5e709d9ad236914b99b85
+  exports: 9b4ca373d93ab49f4a726a8f85aa5ef0
+  InputChain 0a250134b38ea513e907deb7dff907d5
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process.Internals a666eb8eec5dfb92a4a28b4ddc0e35b2
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
-b84285e2ade8a0fed23b426a4185d935
-  $s$fShow(,)_$cshow3 ::
+b5629a296b2de4ff3fe18bd1a562fc8f
+  $s$fShowGenRule :: GHC.Show.Show (Types.GenRule Types.Criteria)
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.Criteria)
+                  (Types.$fShowGenRule_$cshowsPrec
+                     @ Types.Criteria
+                     Types.$fShowCriteria)
+                  Main.$s$fShowGenRule3
+                  Main.$s$fShowGenRule1 -}
+128d6c065e1bc11953be7138612e3379
+  $s$fShowGenRule1 ::
     [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U><L,U>,
      Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
                    eta1 :: GHC.Base.String ->
                  GHC.Show.showList__
                    @ (Types.GenRule Types.Criteria)
-                   Main.$s$fShow(,)_$cshow4
+                   Main.$s$fShowGenRule2
                    eta
                    eta1) -}
-ee7bdda0ddebad7039407dafb8dacdaf
-  $s$fShow(,)_$cshow4 ::
-    Types.GenRule Types.Criteria -> GHC.Show.ShowS
+a2d005a8f663bcf4c97b7d93a125784a
+  $s$fShowGenRule2 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
                  case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
@@ -131,8 +131,44 @@ ee7bdda0ddebad7039407dafb8dacdaf
                    ww3
                    ww4
                    ww5 }) -}
-f2e4eeecf56551ab6541f893c65983e0
-  $s$fShowGenRule2 ::
+9022dcae5d49e6d314aef6d4a60b8cab
+  $s$fShowGenRule3 :: Types.GenRule Types.Criteria -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(U,U,U(U))>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: Types.GenRule Types.Criteria ->
+                 case x of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec1
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5
+                   (GHC.Types.[] @ GHC.Types.Char) }) -}
+46883407f236e1f2aeadb230dc4783db
+  $s$fShowGenRule4 ::
+    GHC.Show.Show (Types.GenRule Types.InputCriteria)
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.InputCriteria)
+                  (Types.$fShowGenRule_$cshowsPrec
+                     @ Types.InputCriteria
+                     Types.$fShowInputCriteria)
+                  Main.$s$fShowGenRule7
+                  Main.$s$fShowGenRule5 -}
+b00b0271b17512f84555608a827ca685
+  $s$fShowGenRule5 ::
+    [Types.GenRule Types.InputCriteria] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: (\ eta :: [Types.GenRule Types.InputCriteria]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.InputCriteria)
+                   Main.$s$fShowGenRule6
+                   eta
+                   eta1) -}
+41ea81df5f27c88e39eb8daaa0bf56f1
+  $s$fShowGenRule6 ::
     Types.GenRule Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (\ w2 :: Types.GenRule Types.InputCriteria ->
@@ -144,12 +180,27 @@ f2e4eeecf56551ab6541f893c65983e0
                    ww3
                    ww4
                    ww5 }) -}
+19fc201230f4a2d9e3e0f1d6f863f19c
+  $s$fShowGenRule7 ::
+    Types.GenRule Types.InputCriteria -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(U,U,U(U))>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: Types.GenRule Types.InputCriteria ->
+                 case x of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec1
+                   @ Types.InputCriteria
+                   Types.$fShowInputCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5
+                   (GHC.Types.[] @ GHC.Types.Char) }) -}
 7b0b71b671f53f3fcb282dcb3e5d0f06
   $slookup1 ::
     [GHC.Types.Char]
     -> Data.Map.Base.Map [GHC.Types.Char] a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-de09192fe83d7d0e8538731ca8d60e0b
+5d08955fd8ce5617a569ef9d8ac42648
   callSMTSolver ::
     GHC.IO.FilePath -> GHC.Base.String -> GHC.Types.IO GHC.Base.String
   {- Arity: 3, Strictness: <L,U><L,U><L,U>,
@@ -159,7 +210,7 @@ de09192fe83d7d0e8538731ca8d60e0b
                 (<GHC.IO.FilePath>_R
                  ->_R <GHC.Base.String>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Base.String>_R)) -}
-69268966c62c516a91c3c5604650edc8
+7d463e07ea71d9059cbcbb85d6dce2e9
   callSMTSolver1 ::
     GHC.IO.FilePath
     -> GHC.Base.String
@@ -197,10 +248,10 @@ de09192fe83d7d0e8538731ca8d60e0b
                    -> GHC.IO.failIO1 @ GHC.Base.String Main.callSMTSolver2 ipv8
                    GHC.Base.Just hout
                    -> GHC.IO.Handle.Text.hGetContents1 hout ipv8 } } } } } } }) -}
-6e0ea7d424ff2ae3abedd78c396929fa
+c0800c1fda2f55ffd9f342a4b4b7a099
   callSMTSolver2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "Pattern match failure in do expression at app/Main.hs:124:9-28"#) -}
+                   "Pattern match failure in do expression at app/Main.hs:119:9-28"#) -}
 f412b988b0a108caacbed6f14a966e71
   callSMTSolver3 :: System.Process.Internals.CmdSpec
   {- Strictness: m2,
@@ -220,13 +271,13 @@ ce0b99c5d6319b7e77d332df5111a525
 60bb80a7e1961fbf48550750a724094d
   callSMTSolver6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "z3"#) -}
-a03017ff705785e4761c30bba6e67c18
+34b965b3f38226b06979f18da935a5c9
   convertScript ::
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String Types.InputChain
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ coms :: GHC.Base.String ->
-                 ConvertCommandsToChains.convertToChains
+                 ConvertIptables.convertToChains
                    (GHC.Base.map
                       @ (GHC.Base.String, GHC.Types.Int)
                       @ IptablesTypes.Line
@@ -237,7 +288,7 @@ a03017ff705785e4761c30bba6e67c18
                             Main.convertScript15)
                          Main.convertScript11))
                    Main.convertScript1) -}
-12c0b37eb9f648c28055218294890961
+7264f2551b1368be35f90816bc7b6289
   convertScript1 ::
     Data.Map.Base.Map [GHC.Types.Char] [Types.InputRule]
   {- Unfolding: (ConvertIptables.$sfromList
@@ -266,7 +317,7 @@ f9e6f616fd6f95a83442b18b4043bd44
 864eb6d140d3e3eab397b5f52b340f7e
   convertScript15 :: [GHC.Types.Int]
   {- Unfolding: (GHC.Enum.eftInt 1 9223372036854775807) -}
-3ac82e759a0499ccd715b64e62e32110
+706fd53e77e3c49e0b217f696eec7770
   convertScript16 ::
     (GHC.Base.String, GHC.Types.Int) -> IptablesTypes.Line
   {- Arity: 1, Strictness: <S(SL),1*U(1*U,U(U))>m, Inline: INLINE[0],
@@ -278,39 +329,39 @@ f9e6f616fd6f95a83442b18b4043bd44
                         ww2
                         (GHC.Types.[] @ Types.ModuleFunc) of ww3 { (#,,#) ww4 ww5 ww6 ->
                  IptablesTypes.Line ww4 ww5 ww6 } }) -}
-7825d232697e376d68da3ba8ff31be57
+40b0be17b589bf05dd2050f452fd9825
   convertScript2 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    Main.convertScript9
                    Main.convertScript3) -}
-64fc4a2fc7568ac93a46dd62115f7c87
+cf7c13c222bfcbfa73ada25eb25a556d
   convertScript3 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    Main.convertScript7
                    Main.convertScript4) -}
-8275b85d4d1893cdc2d0a5a5ed6a49df
+b3a83af9010886cb32394e8ca7e49ab0
   convertScript4 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    Main.convertScript5
                    (GHC.Types.[] @ (GHC.Base.String, Types.InputChain))) -}
-a069a8ff8878daf740d33ceb7db31e5f
+eb1d2c8bf07df7a581c3e92b3666ea92
   convertScript5 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((Main.convertScript6,
                   GHC.Types.[] @ Types.InputRule)) -}
 147fc91ccafcd004d476c3940fa07d4e
   convertScript6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "FORWARD"#) -}
-71d5e533c8ff335f21e0589a96518825
+7999ad9d3dd6c732c6720996108e0014
   convertScript7 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((Main.convertScript8,
                   GHC.Types.[] @ Types.InputRule)) -}
 6ed2d76465774cfb1bf5b3910cb594fb
   convertScript8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "OUTPUT"#) -}
-9864042cdef589e4dd6b8720eea81ee4
+297b246554203dd6a533c5b9e484c18a
   convertScript9 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((Main.convertScript10,
                   GHC.Types.[] @ Types.InputRule)) -}
@@ -343,6 +394,13 @@ e3bd864fe81295cabb6b36ca45539f6f
     -> [(GHC.Base.String, GHC.Base.String)]
     -> [(GHC.Base.String, GHC.Types.Int)]
   {- Arity: 2, Strictness: <S,1*U><L,U> -}
+"SPEC/Main $fShowGenRule @ Criteria" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                 Types.Criteria
+  Types.$fShowGenRule @ Types.Criteria $dShow = Main.$s$fShowGenRule
+"SPEC/Main $fShowGenRule @ InputCriteria" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                      Types.InputCriteria
+  Types.$fShowGenRule @ Types.InputCriteria $dShow
+  = Main.$s$fShowGenRule4
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

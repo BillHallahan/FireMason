@@ -31,7 +31,6 @@ executable firewallcode-exe
                      , process
   default-language:    Haskell2010
   other-modules:       ChainPathSimplification
-                     , ConvertCommandsToChains
                      , ChainsToSMT
                      , ConvertIptables
                      , ConvertIptablesPorts

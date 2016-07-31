@@ -80,3 +80,17 @@ simplifyNots (InCNot (Or c):cx) =
     And (simplifyNots $  notted):simplifyNots cx
 simplifyNots (InCNot (InCNot c):cx) = simplifyNots (c:cx)
 simplifyNots (c:cx) = c:simplifyNots cx
+
+
+inputInstructionsToInstructions :: [InputInstruction] -> Int -> [Instruction]
+inputInstructionsToInstructions [] _ = []
+inputInstructionsToInstructions ((ToChainNamed s r):xs) i =
+    let
+         rules = map (ToChainNamed s) (inputChainToChain [r] i)
+    in
+    rules ++ inputInstructionsToInstructions xs (i + length rules)
+inputInstructionsToInstructions ((NoInstruction r):xs) i =
+    let
+        rules = map (NoInstruction) (inputChainToChain [r] i)
+    in
+    rules ++ inputInstructionsToInstructions xs (i + length rules)

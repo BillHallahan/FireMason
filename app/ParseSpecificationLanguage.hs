@@ -17,6 +17,7 @@ lexer s
     | '=':xs <- afterSpaces = "=":lexer xs
     | '(':xs <- afterSpaces = "(":lexer xs
     | ')':xs <- afterSpaces = ")":lexer xs
+    | ':':xs <- afterSpaces = ":":lexer xs
     | ',':xs <- afterSpaces = ",":lexer xs
     | length nextTerm >= 1 = nextTerm:lexer afterTerm
     | otherwise = error $ "Unrecognized pattern " ++ afterTerm
@@ -24,8 +25,16 @@ lexer s
         afterSpaces = dropWhile isSpace s
         (nextTerm, afterTerm) = span ((flip elem) ('_':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
 
-parse :: [String] -> [InputRule]
-parse s = map parseRule (splitOn [","] s)
+parse :: [String] -> [InputInstruction]
+parse s =
+    let
+        instrCon = map parseInstruction (splitOn [","] s)
+    in 
+    map (\(x, sCon) -> sCon . parseRule $ x) instrCon--map parseRule (splitOn [","] s)
+
+parseInstruction :: [String] -> ([String], InputRule -> InputInstruction)
+parseInstruction ("chain":c:":":xs) = (xs, ToChainNamed c)
+parseInstruction xs = (xs, NoInstruction)
 
 parseRule :: [String] -> InputRule
 parseRule s =

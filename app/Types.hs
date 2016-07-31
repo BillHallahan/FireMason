@@ -31,6 +31,25 @@ data Target = Jump String
               | PropVariableTarget Int Bool
               | ST String deriving (Eq, Show)
 
+
+type InputInstruction = SynthInstruction InputRule
+type Instruction = SynthInstruction Rule
+
+
+data NameIdChain = NameIdChain {
+                            name ::String
+                            , id :: Int
+                            , chain :: Chain
+                            } deriving (Eq, Show)
+
+
+nameToIdListMap :: String -> [NameIdChain] -> [Int]
+nameToIdListMap s l = map (\(NameIdChain _ i' _) -> i') . filter (\(NameIdChain n _ _) -> n == s) $ l
+
+
+data SynthInstruction rule = ToChainNamed String rule
+                             | NoInstruction rule deriving (Eq, Show)
+
 type InputRule = GenRule InputCriteria
 type Rule = GenRule Criteria
 

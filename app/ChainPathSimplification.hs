@@ -6,23 +6,23 @@ import qualified Data.Map as Map
 import qualified Data.Maybe as MB
 import Types
 
-pathSimplification :: Map.Map String Chain -> [(Int, Chain)]
+pathSimplification :: Map.Map String Chain -> [NameIdChain]
 pathSimplification m =
     let
-        init = map (\s -> MB.fromJust (Map.lookup s m)) ["INPUT", "OUTPUT", "FORWARD"]
+        init = map (\s -> (s, MB.fromJust (Map.lookup s m))) ["INPUT", "OUTPUT", "FORWARD"]
     in
 	pathSimplification' init m 0
 
 
-pathSimplification' :: [Chain] -> Map.Map String Chain -> Int -> [(Int, Chain)]
+pathSimplification' :: [(String, Chain)] -> Map.Map String Chain -> Int -> [NameIdChain]
 pathSimplification' [] _ _ = []
-pathSimplification' (c:cx) m ch =
+pathSimplification' ((s, c):cx) m ch =
     let
         (simplified, newChains) = pathSimplificationChain c m ch 0
     in
-    (ch, simplified):newChains ++ pathSimplification' cx m (ch + 1 + length newChains)
+    (NameIdChain s ch simplified):newChains ++ pathSimplification' cx m (ch + 1 + length newChains)
 
-pathSimplificationChain :: Chain -> Map.Map String Chain -> Int-> Int -> (Chain, [(Int, Chain)])
+pathSimplificationChain :: Chain -> Map.Map String Chain -> Int-> Int -> (Chain, [NameIdChain])
 pathSimplificationChain [] _ _ _ = ([], [])
 pathSimplificationChain (r:rx) m ch ru =
     let
@@ -32,7 +32,7 @@ pathSimplificationChain (r:rx) m ch ru =
     ((Rule (criteria r) newTargets (label r)):c, ic ++ ic')
 
 
-pathSimplificationTargets :: [Target] -> Map.Map String Chain -> Int -> Int  -> ([Target], [(Int, Chain)])
+pathSimplificationTargets :: [Target] -> Map.Map String Chain -> Int -> Int  -> ([Target], [NameIdChain])
 pathSimplificationTargets [] _ _ _ = ([], [])
 pathSimplificationTargets (t:ts) m ch r =
     let
@@ -41,10 +41,10 @@ pathSimplificationTargets (t:ts) m ch r =
     in
     (t':t'', ic ++ ic')
 
-pathSimplificationTarget :: Target -> Map.Map String Chain -> Int -> Int  -> (Target, [(Int, Chain)])
+pathSimplificationTarget :: Target -> Map.Map String Chain -> Int -> Int  -> (Target, [NameIdChain])
 pathSimplificationTarget (Jump j) m ch _ = 
     let
         chain = MB.fromJust (Map.lookup j m) 
     in
-        (Go (ch + 1) 0, pathSimplification' [chain] m (ch + 1))
+        (Go (ch + 1) 0, pathSimplification' [(j, chain)] m (ch + 1))
 pathSimplificationTarget t _ _ _ = (t, [])

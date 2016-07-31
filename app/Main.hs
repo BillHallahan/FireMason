@@ -13,10 +13,10 @@ import qualified Data.Map as Map
 
 import Types
 import ConvertIptables
-import ConvertCommandsToChains
 import ChainsToSMT2
 import ConvertToHorn
 import ParseSpecificationLanguage
+import RuleAdding
 
 import IptablesTypes
 
@@ -42,8 +42,8 @@ main = do
         let parsed = parse specTest2
         putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" parsed
 
-        let inputR = inputChainToChain parsed 0
-        putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" inputR
+        --let inputR = inputChainToChain parsed 0
+        --putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" inputR
         let converted' = Map.toList . convertScript $ contents
         let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
         let k = Map.keys converted
@@ -62,27 +62,22 @@ main = do
         let testNice = map (\x -> show x) pathSimp
         let folded = foldr (\x acc-> x ++ "\n" ++ acc) "" testNice
         putStrLn folded
-        let specTest2 = lexer ("(destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP," ++
-                              "(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP," ++
+        let specTest2 = lexer ("chain INPUT : (destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP," ++
+                              "chain OUTPUT:(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP," ++
                               "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT")
         putStrLn $ show specTest2
         putStrLn $ show (parse specTest2)
 
-        let elim = inputChainToChain (parse specTest2) 0
+        let elim = inputInstructionsToInstructions (parse specTest2) 0
         putStrLn $ "(destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP,\n" ++
                               "(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP,\n" ++
                               "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT\n"
         putStrLn $ foldr (\x elm -> show x ++"\n" ++ elm) "" elim
 
-        let notTest = [InCNot $ InCNot $ InCNot ( And [InC . Protocol $ 1, Or[InC $ Port "destination" $ Left 45, InCNot . InC . Port "source" $ Left 60]])]
-        putStrLn $ show notTest
-        putStrLn . show $ simplifyNots notTest
-
-        putStrLn "HERE"
 
         let parse1 = parse . lexer $ "(protocol = 1 AND (destination_port = 2 OR destination_port = 3 OR destination_port = 4 OR destination_port = 5) AND not source_port = 6) OR (protocol = 7 AND destination_port = 8) => ACCEPT"
         putStrLn $ "\n\ninitial = " ++ show parse1
-        putStrLn $ "eliminateAndsNots = " ++  foldl (\acc s -> acc ++ show s ++ "\n") "" (inputChainToChain parse1 0)
+        --putStrLn $ "eliminateAndsNots = " ++  foldl (\acc s -> acc ++ show s ++ "\n") "" (inputChainToChain parse1 0)
         --putStrLn $ "eliminateAndsOrsFromChain = " ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
         )
 

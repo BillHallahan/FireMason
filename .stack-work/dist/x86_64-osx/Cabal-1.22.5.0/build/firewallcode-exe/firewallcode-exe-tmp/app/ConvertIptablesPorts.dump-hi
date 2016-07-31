@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-23 04:34:10.066559 UTC
+2016-07-31 03:57:09.422706 UTC
 
 interface main@main:ConvertIptablesPorts 7103
-  interface hash: 0d39cdc38db04569a9eafe06652623d7
-  ABI hash: 9b87bdc1208d8478f73d6c959a0607c8
+  interface hash: c053ce7976b31d2132b28f0bbd00703b
+  ABI hash: fa564f71a1143cf6f1d98b0d11610a88
   export-list hash: 85292e38103a9eef1309495f33162327
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -45,15 +45,15 @@ import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
   splitNonconsuming 0ad3bc01b3b4404a744d4b546e1552e6
-import  -/  Types 04c5d15b9d7273cc2ee1e20f9be4a3ba
-  exports: fd7624f994dcfddcd82d0e50111df34c
-  InC 3539351cc3e190855338110f4e6790ab
-  InputCriteria 2b7688b3d0767262f8baee17da5df09c
-  ModuleFunc d170d47f26948ba04934469c55bed32b
-  Or de825078084cdb216f3a58cabf01cca3
+import  -/  Types 8035c385efcaa67600d82150df24d714
+  exports: 9b4ca373d93ab49f4a726a8f85aa5ef0
+  InC ddb10a0def1f39ff935c5c12be696442
+  InputCriteria acb415766dc18107eb4fab1f0d11c936
+  ModuleFunc 0677adba34aa1b138557609138d11f62
+  Or f7ce8dc139f80b1f4b6a9f92f5a72b8a
   Port d7bc2cb09990c77f5ec8875ceaee31f7
   Target 96fab3e40e346c4a445f4966317f4361
-0937ec6f9387a3bfe138ba45f881beab
+6f783fe3f4d7c462b8b5415eb9477fd8
   $wconvertMultiportRule ::
     [GHC.Base.String]
     -> (# GHC.Base.Maybe
@@ -164,7 +164,7 @@ import  -/  Types 04c5d15b9d7273cc2ee1e20f9be4a3ba
                                            @ (Data.Either.Either
                                                 Types.InputCriteria Types.Target))),
                                    xs #) } } }) -}
-9b87aa210dc45fc91e5479471433869c
+2690d4741e9326a449b7d9ce581afd5e
   $wconvertTCPRule ::
     [GHC.Base.String]
     -> (# GHC.Base.Maybe
@@ -267,7 +267,7 @@ import  -/  Types 04c5d15b9d7273cc2ee1e20f9be4a3ba
                                                 @ (Data.Either.Either
                                                      Types.InputCriteria Types.Target))),
                                         xs #) } } } }) -}
-828435a0c44174199b697db1245fb847
+220dfaafd17c31dc2255180d83493892
   $wconvertUDPRule ::
     [GHC.Base.String]
     -> (# GHC.Base.Maybe
@@ -370,7 +370,7 @@ import  -/  Types 04c5d15b9d7273cc2ee1e20f9be4a3ba
                                                 @ (Data.Either.Either
                                                      Types.InputCriteria Types.Target))),
                                         xs #) } } } }) -}
-551e9df549f7e145a155c9ba8096094f
+1d5ec77d12b9efbac135dfe789802cdf
   convertMultiportRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -441,7 +441,7 @@ feb86f82f46d8c6e6a832e091145f554
   convertNumsRangesString_go ::
     [[GHC.Types.Char]] -> [[GHC.Types.Char]]
   {- Arity: 1, Strictness: <S,1*U> -}
-2718ee7c6d4ea12bfb0200a6c17eb442
+1f798ea2c85cdea99bf18314f559d2a9
   convertPortRuleNoCommas ::
     GHC.Base.String
     -> GHC.Base.String
@@ -486,7 +486,7 @@ a32ab670e3caf26da63c46418c5bce7b
                  case ds1 of wild1 { GHC.Types.C# c2 ->
                  case c2 of wild {
                    DEFAULT -> GHC.Types.False ',' -> GHC.Types.True } }) -}
-a713731e843a99ba636b39eef61c57ef
+e70e366b41897b35eb3b8b174d68d002
   convertTCPRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -494,7 +494,7 @@ a713731e843a99ba636b39eef61c57ef
                  case ConvertIptablesPorts.$wconvertTCPRule
                         w of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-2388eb145fb3c068d48b87ca095e1c50
+1f3b98adeeaccd01ea1fdd69ae155e97
   convertUDPRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -502,7 +502,7 @@ a713731e843a99ba636b39eef61c57ef
                  case ConvertIptablesPorts.$wconvertUDPRule
                         w of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-a0f1c309ae1e3dfcb901ca73af2d5c12
+cdd8fd32d312056a63dbbb357baa5054
   portCriteriaFromNumsRangesString ::
     GHC.Base.String -> GHC.Base.String -> [Types.InputCriteria]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -523,7 +523,7 @@ a0f1c309ae1e3dfcb901ca73af2d5c12
                             (go ys) }
                  } in
                  go (ConvertIptablesPorts.convertNumsRangesString ps)) -}
-b30bf36b95e312e98222547de0264aef
+8fdbe1318c1dd2d88d777a6bcc7f5c8f
   portCriteriaFromRangeString ::
     GHC.Base.String -> GHC.Base.String -> Types.InputCriteria
   {- Arity: 2, Strictness: <L,U><L,U>m1,
