@@ -1,0 +1,72 @@
+
+==================== FINAL INTERFACE ====================
+2016-07-31 04:18:39.885577 UTC
+
+interface main@main:RuleAdding 7103
+  interface hash: 76a9662181c2cee4394151e5532920b8
+  ABI hash: c827cd188ea967b6b5a5943c16d66a35
+  export-list hash: 566c1b72c89754292ea99720e204f992
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  RuleAdding.addRules
+  RuleAdding.findPointCut
+  RuleAdding.findPointCut'
+module dependencies: Types
+package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  Types 169e75f6e2e5e709d9ad236914b99b85
+  exports: 9b4ca373d93ab49f4a726a8f85aa5ef0
+  Chain 3ef74e3624b38c4fea8d8b46f9f858c1
+  Instruction e80a28a5fffe5583f2245ee81f050e62
+  NameIdChain 0c4d7203db78c85c32c32bf62bf137e7
+29735c6325e6696630070cc113ec32e0
+  addRules ::
+    [Types.Instruction] -> [Types.NameIdChain] -> [Types.NameIdChain]
+  {- Arity: 2, Strictness: <S,1*U><L,A>,
+     Unfolding: InlineRule (2, True, False)
+                (\ ds :: [Types.Instruction] n :: [Types.NameIdChain] ->
+                 case ds of wild {
+                   [] -> RuleAdding.addRules1
+                   : x xs -> GHC.Types.[] @ Types.NameIdChain }) -}
+b81c5bc7fbc73c9530f7323d32330a90
+  addRules1 :: [Types.NameIdChain]
+  {- Strictness: b -}
+2c1b8049fad4e1fb7859075fe5b51ed8
+  findPointCut :: Types.Instruction -> [Types.Chain] -> GHC.Types.Int
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,A><L,A>m,
+     Unfolding: InlineRule (2, True, True)
+                (\ i :: Types.Instruction c :: [Types.Chain] ->
+                 RuleAdding.findPointCut1) -}
+82115b68ea146c85ef20a1dc9c610c5b
+  findPointCut' ::
+    Types.Instruction
+    -> [Types.Chain] -> GHC.Types.Int -> GHC.Types.Int
+  {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>m,
+     Unfolding: InlineRule (3, True, True)
+                (\ i :: Types.Instruction c :: [Types.Chain] i' :: GHC.Types.Int ->
+                 RuleAdding.findPointCut1) -}
+93aa8eca446235fa4fa16c54bcfedf0d
+  findPointCut1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
