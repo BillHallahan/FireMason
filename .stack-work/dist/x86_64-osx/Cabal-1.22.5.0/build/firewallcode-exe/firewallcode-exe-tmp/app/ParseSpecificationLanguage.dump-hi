@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-31 03:57:08.520164 UTC
+2016-07-31 05:15:32.077204 UTC
 
 interface main@main:ParseSpecificationLanguage 7103
-  interface hash: c4e6ee7508a369734cb3558ecc62956b
-  ABI hash: 56ac69650d66981eb19967abc952d8c9
+  interface hash: 7b20f6f820854c958a4454549352223c
+  ABI hash: b7d362542694f61d92078c69cc42174f
   export-list hash: 97b3a15dfab8f73d45ff5f6798ca2b79
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -52,24 +52,24 @@ import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
-import  -/  Types 8035c385efcaa67600d82150df24d714
-  exports: 9b4ca373d93ab49f4a726a8f85aa5ef0
+import  -/  Types 5bdb5f68fbf0a790a0e0d2c54cb48e55
+  exports: 896880101ac839295e98cf60f693e54d
   ACCEPT a0e8bfb182327208223f4101204d01d3
   And 6bece94feedd90974b75ce738e0ff722
   DROP 030c92a184ce42e939e5fbc310e578ea
   InC ddb10a0def1f39ff935c5c12be696442
   InCNot 5ac4c6c216a3456d5660e023726b23f1
   InputCriteria acb415766dc18107eb4fab1f0d11c936
-  InputInstruction c434ec48885056d3b403b4dc4ffef5f4
+  InputInstruction dbe04eb5546905382ef4b2db97e09a1e
   InputRule acb415766dc18107eb4fab1f0d11c936
-  NoInstruction 8ffedd9a75bf811bcbd9c11ac688d5f7
+  NoInstruction b969e22921f283e869a0720ab3777dec
   Or f7ce8dc139f80b1f4b6a9f92f5a72b8a
   Port d7bc2cb09990c77f5ec8875ceaee31f7
   Protocol 29c2a667093165aebd30cf9c8335414a
   Rule 4d5f5396220a571836d37b123a90c312
   SC 6471a949fdcd21a63f604423808813f9
   Target 96fab3e40e346c4a445f4966317f4361
-  ToChainNamed 86070f3b50ba10ddf25645c5d3431120
+  ToChainNamed ce4c7bf5b328004ab15754446244f326
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
 a0b65a3cef752ec09d7dfc5e02a5dc7a
@@ -221,7 +221,7 @@ f36dcc62cf478c86855b3b8802eeb668
 77c583e36e586e5038c1f8ebe9f4eeb6
   lexer :: GHC.Base.String -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,U> -}
-c57306dd20035f4bddc12478271fc9fd
+73611d04932e86944d4fba0eba61fcdb
   parse :: [GHC.Base.String] -> [Types.InputInstruction]
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: InlineRule (1, True, False)
@@ -256,11 +256,11 @@ c57306dd20035f4bddc12478271fc9fd
 26c4898de41ab3d8d4b34ee3e497f85e
   parse2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ","#) -}
-c36ace8234ad31c54ef9dc1a5064803a
+c335010426039b1498b1ca0b03366818
   parse3 ::
     [GHC.Base.String] -> Types.SynthInstruction Types.InputRule
   {- Arity: 1, Strictness: <S,1*U> -}
-77064f1f9751b5084e15e78f5b8031be
+250a9c75401265d7b84df47bae3b02e4
   parseInstruction ::
     [GHC.Base.String]
     -> ([GHC.Base.String], Types.InputRule -> Types.InputInstruction)

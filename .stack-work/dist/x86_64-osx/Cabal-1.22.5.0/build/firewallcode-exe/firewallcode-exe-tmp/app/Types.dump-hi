@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-31 04:18:12.338823 UTC
+2016-07-31 05:15:31.492553 UTC
 
 interface main@main:Types 7103
-  interface hash: a919c19d636b2ea86914aa31cfde759b
-  ABI hash: 169e75f6e2e5e709d9ad236914b99b85
-  export-list hash: 9b4ca373d93ab49f4a726a8f85aa5ef0
+  interface hash: 43274ad85fcd113810f63d10c6c1eb62
+  ABI hash: 5bdb5f68fbf0a790a0e0d2c54cb48e55
+  export-list hash: 896880101ac839295e98cf60f693e54d
   orphan hash: 6e65ce1f65dc0e4284ce9a99f6379a8d
   flag hash: e468f87777beb3fe7114763efe9ccb2f
   sig of: Nothing
@@ -26,7 +26,7 @@ exports:
   Types.ModuleFunc
   Types.NameIdChain{Types.NameIdChain Types.chain Types.id Types.name}
   Types.Rule
-  Types.SynthInstruction{Types.NoInstruction Types.ToChainNamed}
+  Types.SynthInstruction{Types.NoInstruction Types.ToChainNamed Types.chainName Types.insRule}
   Types.Target{Types.ACCEPT Types.DROP Types.Go Types.Jump Types.PropVariableTarget Types.ST}
   Types.ToString{Types.toString}
 module dependencies:
@@ -189,54 +189,54 @@ acb415766dc18107eb4fab1f0d11c936
                  case w of ww { Types.NameIdChain ww1 ww2 ww3 ->
                  case w1 of ww4 { Types.NameIdChain ww5 ww6 ww7 ->
                  Types.$w$c==1 ww1 ww2 ww3 ww5 ww6 ww7 } }) -}
-00054e2bc4abb0c44a5888eaf6e001bc
+2640b85626df3e3ba8d769766a058fcb
   $fEqSynthInstruction ::
-    GHC.Classes.Eq rule => GHC.Classes.Eq (Types.SynthInstruction rule)
+    GHC.Classes.Eq r => GHC.Classes.Eq (Types.SynthInstruction r)
   DFunId[0]
   {- Arity: 1, HasNoCafRefs, Strictness: <L,U(C(C1(U)),A)>m,
      Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun: @ rule $dEq :: GHC.Classes.Eq rule.
-                  @ (Types.SynthInstruction rule)
-                  (Types.$fEqSynthInstruction_$c== @ rule $dEq)
-                  (Types.$fEqSynthInstruction_$c/= @ rule $dEq) -}
-00054e2bc4abb0c44a5888eaf6e001bc
+     Unfolding: DFun: @ r $dEq :: GHC.Classes.Eq r.
+                  @ (Types.SynthInstruction r)
+                  (Types.$fEqSynthInstruction_$c== @ r $dEq)
+                  (Types.$fEqSynthInstruction_$c/= @ r $dEq) -}
+2640b85626df3e3ba8d769766a058fcb
   $fEqSynthInstruction_$c/= ::
-    GHC.Classes.Eq rule =>
-    Types.SynthInstruction rule
-    -> Types.SynthInstruction rule -> GHC.Types.Bool
+    GHC.Classes.Eq r =>
+    Types.SynthInstruction r
+    -> Types.SynthInstruction r -> GHC.Types.Bool
   {- Arity: 3, HasNoCafRefs,
      Strictness: <L,1*U(1*C1(C1(U)),A)><S,1*U><S,1*U>,
      Unfolding: InlineRule (3, True, False)
-                (\ @ rule
-                   $dEq :: GHC.Classes.Eq rule
-                   a :: Types.SynthInstruction rule
-                   b :: Types.SynthInstruction rule ->
-                 case Types.$fEqSynthInstruction_$c== @ rule $dEq a b of wild {
+                (\ @ r
+                   $dEq :: GHC.Classes.Eq r
+                   a :: Types.SynthInstruction r
+                   b :: Types.SynthInstruction r ->
+                 case Types.$fEqSynthInstruction_$c== @ r $dEq a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-00054e2bc4abb0c44a5888eaf6e001bc
+2640b85626df3e3ba8d769766a058fcb
   $fEqSynthInstruction_$c== ::
-    GHC.Classes.Eq rule =>
-    Types.SynthInstruction rule
-    -> Types.SynthInstruction rule -> GHC.Types.Bool
+    GHC.Classes.Eq r =>
+    Types.SynthInstruction r
+    -> Types.SynthInstruction r -> GHC.Types.Bool
   {- Arity: 3, HasNoCafRefs,
      Strictness: <L,1*U(1*C1(C1(U)),A)><S,1*U><S,1*U>,
-     Unfolding: (\ @ rule
-                   $dEq :: GHC.Classes.Eq rule
-                   ds :: Types.SynthInstruction rule
-                   ds1 :: Types.SynthInstruction rule ->
+     Unfolding: (\ @ r
+                   $dEq :: GHC.Classes.Eq r
+                   ds :: Types.SynthInstruction r
+                   ds1 :: Types.SynthInstruction r ->
                  case ds of wild {
                    Types.ToChainNamed a1 a2
                    -> case ds1 of wild1 {
                         Types.ToChainNamed b1 b2
                         -> case GHC.Base.eqString a1 b1 of wild2 {
                              GHC.Types.False -> GHC.Types.False
-                             GHC.Types.True -> GHC.Classes.== @ rule $dEq a2 b2 }
+                             GHC.Types.True -> GHC.Classes.== @ r $dEq a2 b2 }
                         Types.NoInstruction ipv -> GHC.Types.False }
                    Types.NoInstruction a1
                    -> case ds1 of wild1 {
                         Types.ToChainNamed ipv ipv1 -> GHC.Types.False
-                        Types.NoInstruction b1 -> GHC.Classes.== @ rule $dEq a1 b1 } }) -}
+                        Types.NoInstruction b1 -> GHC.Classes.== @ r $dEq a1 b1 } }) -}
 96fab3e40e346c4a445f4966317f4361
   $fEqTarget :: GHC.Classes.Eq Types.Target
   DFunId[0]
@@ -561,97 +561,71 @@ acb415766dc18107eb4fab1f0d11c936
                  case w of ww { GHC.Types.I# ww1 ->
                  case w1 of ww2 { Types.NameIdChain ww3 ww4 ww5 ->
                  Types.$w$cshowsPrec3 ww1 ww3 ww4 ww5 w2 } }) -}
-00054e2bc4abb0c44a5888eaf6e001bc
+2640b85626df3e3ba8d769766a058fcb
   $fShowSynthInstruction ::
-    GHC.Show.Show rule => GHC.Show.Show (Types.SynthInstruction rule)
+    GHC.Show.Show r => GHC.Show.Show (Types.SynthInstruction r)
   DFunId[0]
   {- Arity: 1, Strictness: <L,U(C(C1(U)),A,A)>m,
      Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun: @ rule $dShow :: GHC.Show.Show rule.
-                  @ (Types.SynthInstruction rule)
-                  (Types.$fShowSynthInstruction_$cshowsPrec @ rule $dShow)
-                  (Types.$fShowSynthInstruction_$cshow @ rule $dShow)
-                  (Types.$fShowSynthInstruction_$cshowList @ rule $dShow) -}
-43cb3ecaff8ea8332f8bf88835251d44
+     Unfolding: DFun: @ r $dShow :: GHC.Show.Show r.
+                  @ (Types.SynthInstruction r)
+                  (Types.$fShowSynthInstruction_$cshowsPrec @ r $dShow)
+                  (Types.$fShowSynthInstruction_$cshow @ r $dShow)
+                  (Types.$fShowSynthInstruction_$cshowList @ r $dShow) -}
+d5fd1cdfde79c82c0c0699c4b9f9e58e
   $fShowSynthInstruction1 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "NoInstruction "#) -}
-56e4d59b3958618a8170aa93d468e69b
+  {- Unfolding: (GHC.CString.unpackCString# "NoInstruction {"#) -}
+8cbafb84264fcbfa78254e343ab3f501
   $fShowSynthInstruction2 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "ToChainNamed "#) -}
-826c4e139646a1025ea9c1a4e7818eeb
-  $fShowSynthInstruction3 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 11) -}
-00054e2bc4abb0c44a5888eaf6e001bc
+  {- Unfolding: (GHC.CString.unpackCString# "insRule = "#) -}
+275d1b7bc46599703a07bc5e35815f60
+  $fShowSynthInstruction3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chainName = "#) -}
+4fcb1ec2290f2c9d0f9cceea84a88a71
+  $fShowSynthInstruction4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "ToChainNamed {"#) -}
+2640b85626df3e3ba8d769766a058fcb
   $fShowSynthInstruction_$cshow ::
-    GHC.Show.Show rule =>
-    Types.SynthInstruction rule -> GHC.Base.String
-  {- Arity: 2, Strictness: <L,1*U(1*C1(C1(C1(U))),A,A)><S,1*U>,
-     Unfolding: (\ @ rule
-                   $dShow :: GHC.Show.Show rule
-                   x :: Types.SynthInstruction rule ->
-                 case x of wild {
-                   Types.ToChainNamed b1 b2
-                   -> GHC.Base.++
-                        @ GHC.Types.Char
-                        Types.$fShowSynthInstruction2
-                        (GHC.Types.:
-                           @ GHC.Types.Char
-                           GHC.Show.shows6
-                           (GHC.Show.showLitString
-                              b1
-                              (GHC.Types.:
-                                 @ GHC.Types.Char
-                                 GHC.Show.shows6
-                                 (GHC.Types.:
-                                    @ GHC.Types.Char
-                                    GHC.Show.showSpace1
-                                    (GHC.Show.showsPrec
-                                       @ rule
-                                       $dShow
-                                       Types.$fShowSynthInstruction3
-                                       b2
-                                       (GHC.Types.[] @ GHC.Types.Char))))))
-                   Types.NoInstruction b1
-                   -> GHC.Base.++
-                        @ GHC.Types.Char
-                        Types.$fShowSynthInstruction1
-                        (GHC.Show.showsPrec
-                           @ rule
-                           $dShow
-                           Types.$fShowSynthInstruction3
-                           b1
-                           (GHC.Types.[] @ GHC.Types.Char)) }) -}
-00054e2bc4abb0c44a5888eaf6e001bc
+    GHC.Show.Show r => Types.SynthInstruction r -> GHC.Base.String
+  {- Arity: 2, Strictness: <L,1*U(1*C1(C1(U)),A,A)><S,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ r $dShow :: GHC.Show.Show r x :: Types.SynthInstruction r ->
+                 Types.$fShowSynthInstruction_$cshowsPrec
+                   @ r
+                   $dShow
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+2640b85626df3e3ba8d769766a058fcb
   $fShowSynthInstruction_$cshowList ::
-    GHC.Show.Show rule =>
-    [Types.SynthInstruction rule] -> GHC.Show.ShowS
+    GHC.Show.Show r => [Types.SynthInstruction r] -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,U(C(C1(U)),A,A)><S,1*U><L,U>,
      Unfolding: InlineRule (3, True, False)
-                (\ @ rule
-                   $dShow :: GHC.Show.Show rule
-                   eta :: [Types.SynthInstruction rule]
+                (\ @ r
+                   $dShow :: GHC.Show.Show r
+                   eta :: [Types.SynthInstruction r]
                    eta1 :: GHC.Base.String ->
                  GHC.Show.showList__
-                   @ (Types.SynthInstruction rule)
+                   @ (Types.SynthInstruction r)
                    (Types.$fShowSynthInstruction_$cshowsPrec
-                      @ rule
+                      @ r
                       $dShow
                       Types.$fShowGenRule1)
                    eta
                    eta1) -}
-00054e2bc4abb0c44a5888eaf6e001bc
+2640b85626df3e3ba8d769766a058fcb
   $fShowSynthInstruction_$cshowsPrec ::
-    GHC.Show.Show rule =>
-    GHC.Types.Int -> Types.SynthInstruction rule -> GHC.Show.ShowS
+    GHC.Show.Show r =>
+    GHC.Types.Int -> Types.SynthInstruction r -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,1*U(1*C1(C1(U)),A,A)><S,1*U(U)><S,1*U>,
      Inline: INLINE[0],
      Unfolding: InlineRule (3, True, False)
-                (\ @ rule
-                   w :: GHC.Show.Show rule
+                (\ @ r
+                   w :: GHC.Show.Show r
                    w1 :: GHC.Types.Int
-                   w2 :: Types.SynthInstruction rule ->
+                   w2 :: Types.SynthInstruction r ->
                  case w1 of ww { GHC.Types.I# ww1 ->
-                 Types.$w$cshowsPrec4 @ rule w ww1 w2 }) -}
+                 Types.$w$cshowsPrec4 @ r w ww1 w2 }) -}
 96fab3e40e346c4a445f4966317f4361
   $fShowTarget :: GHC.Show.Show Types.Target
   DFunId[0]
@@ -941,37 +915,49 @@ acb415766dc18107eb4fab1f0d11c936
     -> GHC.Base.String
   {- Arity: 5, Strictness: <L,U><L,1*U><L,1*U(U)><L,1*U><L,U>,
      Inline: [0] -}
-00054e2bc4abb0c44a5888eaf6e001bc
+2640b85626df3e3ba8d769766a058fcb
   $w$cshowsPrec4 ::
-    GHC.Show.Show rule =>
-    GHC.Prim.Int# -> Types.SynthInstruction rule -> GHC.Show.ShowS
+    GHC.Show.Show r =>
+    GHC.Prim.Int# -> Types.SynthInstruction r -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,1*U(1*C1(C1(U)),A,A)><L,U><S,1*U>,
      Inline: [0],
-     Unfolding: (\ @ rule
-                   w :: GHC.Show.Show rule
+     Unfolding: (\ @ r
+                   w :: GHC.Show.Show r
                    ww :: GHC.Prim.Int#
-                   w1 :: Types.SynthInstruction rule ->
+                   w1 :: Types.SynthInstruction r ->
                  case w1 of wild {
                    Types.ToChainNamed b1 b2
                    -> let {
-                        g :: GHC.Base.String -> GHC.Base.String
-                        = GHC.Show.showsPrec @ rule w Types.$fShowSynthInstruction3 b2
+                        f :: GHC.Base.String -> GHC.Base.String
+                        = GHC.Show.showsPrec @ r w Types.$fShowGenRule1 b2
                       } in
                       let {
-                        p :: GHC.Show.ShowS {- Arity: 1, Strictness: <L,U> -}
+                        p :: GHC.Show.ShowS {- Arity: 1, Strictness: <L,1*U> -}
                         = \ x :: GHC.Base.String ->
                           GHC.Base.++
                             @ GHC.Types.Char
-                            Types.$fShowSynthInstruction2
-                            (GHC.Types.:
+                            Types.$fShowSynthInstruction4
+                            (GHC.Base.++
                                @ GHC.Types.Char
-                               GHC.Show.shows6
-                               (GHC.Show.showLitString
-                                  b1
-                                  (GHC.Types.:
-                                     @ GHC.Types.Char
-                                     GHC.Show.shows6
-                                     (GHC.Types.: @ GHC.Types.Char GHC.Show.showSpace1 (g x)))))
+                               Types.$fShowSynthInstruction3
+                               (GHC.Types.:
+                                  @ GHC.Types.Char
+                                  GHC.Show.shows6
+                                  (GHC.Show.showLitString
+                                     b1
+                                     (GHC.Types.:
+                                        @ GHC.Types.Char
+                                        GHC.Show.shows6
+                                        (GHC.Base.++
+                                           @ GHC.Types.Char
+                                           Types.$fShowGenRule5
+                                           (GHC.Base.++
+                                              @ GHC.Types.Char
+                                              Types.$fShowSynthInstruction2
+                                              (f (GHC.Base.++
+                                                    @ GHC.Types.Char
+                                                    Types.$fShowGenRule2
+                                                    x))))))))
                       } in
                       case GHC.Prim.tagToEnum#
                              @ GHC.Types.Bool
@@ -985,24 +971,30 @@ acb415766dc18107eb4fab1f0d11c936
                              (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x)) }
                    Types.NoInstruction b1
                    -> let {
-                        g :: GHC.Base.String -> GHC.Base.String
-                        = GHC.Show.showsPrec @ rule w Types.$fShowSynthInstruction3 b1
+                        f :: GHC.Base.String -> GHC.Base.String
+                        = GHC.Show.showsPrec @ r w Types.$fShowGenRule1 b1
+                      } in
+                      let {
+                        p :: GHC.Show.ShowS {- Arity: 1, Strictness: <L,1*U> -}
+                        = \ x :: GHC.Base.String ->
+                          GHC.Base.++
+                            @ GHC.Types.Char
+                            Types.$fShowSynthInstruction1
+                            (GHC.Base.++
+                               @ GHC.Types.Char
+                               Types.$fShowSynthInstruction2
+                               (f (GHC.Base.++ @ GHC.Types.Char Types.$fShowGenRule2 x)))
                       } in
                       case GHC.Prim.tagToEnum#
                              @ GHC.Types.Bool
                              (GHC.Prim.>=# ww 11) of wild1 {
-                        GHC.Types.False
-                        -> \ x :: GHC.Base.String ->
-                           GHC.Base.++ @ GHC.Types.Char Types.$fShowSynthInstruction1 (g x)
+                        GHC.Types.False -> p
                         GHC.Types.True
                         -> \ x :: GHC.Base.String ->
                            GHC.Types.:
                              @ GHC.Types.Char
                              GHC.Show.shows9
-                             (GHC.Base.++
-                                @ GHC.Types.Char
-                                Types.$fShowSynthInstruction1
-                                (g (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x))) } }) -}
+                             (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x)) } }) -}
 0b211c5c1a2550c1e9dbf4549a4074c0
   $w$s$c== ::
     [Types.Criteria]
@@ -1073,11 +1065,11 @@ acb415766dc18107eb4fab1f0d11c936
     | InCNot Types.InputCriteria
     | And [Types.InputCriteria]
     | Or [Types.InputCriteria]
-c434ec48885056d3b403b4dc4ffef5f4
+dbe04eb5546905382ef4b2db97e09a1e
   type InputInstruction = Types.SynthInstruction Types.InputRule
 acb415766dc18107eb4fab1f0d11c936
   type InputRule = Types.GenRule Types.InputCriteria
-e80a28a5fffe5583f2245ee81f050e62
+619fb196a55d168a4d05bed804283f35
   type Instruction = Types.SynthInstruction Types.Rule
 8ea1cbc35ff6354c4e178e365701b867
   type Label = GHC.Types.Int
@@ -1094,9 +1086,10 @@ e80a28a5fffe5583f2245ee81f050e62
                    chain :: Types.Chain}
 af528c7a21c4e5e2b22c75c0fa307886
   type Rule = Types.GenRule Types.Criteria
-00054e2bc4abb0c44a5888eaf6e001bc
-  data SynthInstruction rule
-    = ToChainNamed GHC.Base.String rule | NoInstruction rule
+2640b85626df3e3ba8d769766a058fcb
+  data SynthInstruction r
+    = ToChainNamed {chainName :: GHC.Base.String, insRule :: r}
+    | NoInstruction {insRule :: r}
 96fab3e40e346c4a445f4966317f4361
   data Target
     = Jump GHC.Base.String
@@ -1115,6 +1108,18 @@ af528c7a21c4e5e2b22c75c0fa307886
      Unfolding: InlineRule (1, True, False)
                 (\ ds :: Types.NameIdChain ->
                  case ds of wild { Types.NameIdChain ds1 ds2 ds3 -> ds3 }) -}
+8821439aec3279dd9572bf6c8c110567
+  chainName :: Types.SynthInstruction r -> GHC.Base.String
+  RecSel Types.SynthInstruction
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ r ds :: Types.SynthInstruction r ->
+                 case ds of wild {
+                   Types.ToChainNamed ds1 ds2 -> ds1
+                   Types.NoInstruction ipv -> Types.chainName1 }) -}
+86cc83d13a5267976d269d3f766b53e3
+  chainName1 :: GHC.Base.String
+  {- Strictness: b -}
 edbad6c0d111c4b3d699b6bc8fa105e8
   criteria :: Types.GenRule a -> [a]
   RecSel Types.GenRule
@@ -1153,6 +1158,15 @@ edbad6c0d111c4b3d699b6bc8fa105e8
      Unfolding: InlineRule (1, True, False)
                 (\ ds :: Types.NameIdChain ->
                  case ds of wild { Types.NameIdChain ds1 ds2 ds3 -> ds2 }) -}
+8e138eb267aaea8894463ffcac20987b
+  insRule :: Types.SynthInstruction r -> r
+  RecSel Types.SynthInstruction
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ r ds :: Types.SynthInstruction r ->
+                 case ds of wild {
+                   Types.ToChainNamed ds1 ds2 -> ds2
+                   Types.NoInstruction ds1 -> ds1 }) -}
 8d58cb1a5c54b0d4448a9296479e1955
   label :: Types.GenRule a -> Types.Label
   RecSel Types.GenRule

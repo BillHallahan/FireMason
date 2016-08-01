@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-31 03:57:09.770152 UTC
+2016-07-31 05:15:33.344743 UTC
 
 interface main@main:ConvertIptables 7103
-  interface hash: 745459e72276e64b6f5ee80c7c206a82
-  ABI hash: ba013f88e8d4e279a7c007c56ca94e8d
+  interface hash: 525f9f83fa4a58f652cc7282fb19add0
+  ABI hash: f068cab83984de2c5a5a38d2932cb9bc
   export-list hash: 04c4916c79778099096fd185d87bb83c
   orphan hash: a5b584c51f165a04d7b4683f650178e4
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -66,8 +66,8 @@ import  -/  IptablesTypes e06faab7c129cbf3d48a5b1020c739df
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
-import  -/  Types 8035c385efcaa67600d82150df24d714
-  exports: 9b4ca373d93ab49f4a726a8f85aa5ef0
+import  -/  Types 5bdb5f68fbf0a790a0e0d2c54cb48e55
+  exports: 896880101ac839295e98cf60f693e54d
   ACCEPT a0e8bfb182327208223f4101204d01d3
   And 6bece94feedd90974b75ce738e0ff722
   DROP 030c92a184ce42e939e5fbc310e578ea
@@ -200,12 +200,12 @@ a43a89d96e6e2b7cf01269c2a6da038d
     Data.Map.Base.Map GHC.Types.Int a1
     -> [(GHC.Types.Int, a1)] -> Data.Map.Base.Map GHC.Types.Int a1
   {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-374f4bc7eb35aa10764d96137b9fb52b
-  $sinsert_$sgo10 ::
-    [GHC.Types.Char]
+a170674e00a48c29a220c1439a367888
+  $sinsert_$sgo1 ::
+    GHC.Base.String
     -> a1
-    -> Data.Map.Base.Map [GHC.Types.Char] a1
-    -> Data.Map.Base.Map [GHC.Types.Char] a1
+    -> Data.Map.Base.Map GHC.Base.String a1
+    -> Data.Map.Base.Map GHC.Base.String a1
   {- Arity: 3, Strictness: <S,1*U><L,U><S,1*U> -}
 a61b9ea364cc7c5d7f93ceb2d4f041b3
   $slookup1 ::

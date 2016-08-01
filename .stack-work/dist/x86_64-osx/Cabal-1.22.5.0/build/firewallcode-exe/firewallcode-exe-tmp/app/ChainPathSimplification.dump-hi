@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-07-31 03:57:08.903088 UTC
+2016-07-31 05:15:32.470178 UTC
 
 interface main@main:ChainPathSimplification 7103
-  interface hash: f11918e00a6fce501014c0dafac0d205
+  interface hash: af4bbf4e81252b6866f37052b482bdf8
   ABI hash: dddb884f47da7624dedfeb10d5e05212
   export-list hash: 756c25e0f2d36dffd08a6f679f6a8177
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -37,8 +37,8 @@ import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
-import  -/  Types 8035c385efcaa67600d82150df24d714
-  exports: 9b4ca373d93ab49f4a726a8f85aa5ef0
+import  -/  Types 5bdb5f68fbf0a790a0e0d2c54cb48e55
+  exports: 896880101ac839295e98cf60f693e54d
   Chain 3ef74e3624b38c4fea8d8b46f9f858c1
   Go 467ad786388eaea7566ab2e69ee226ea
   Jump f0e0eef53bcd979c5769895fa291bd1c

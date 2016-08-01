@@ -36,6 +36,10 @@ type InputInstruction = SynthInstruction InputRule
 type Instruction = SynthInstruction Rule
 
 
+data SynthInstruction r = ToChainNamed {chainName :: String
+                                        , insRule :: r}
+                          | NoInstruction {insRule :: r} deriving (Eq, Show)
+
 data NameIdChain = NameIdChain {
                             name ::String
                             , id :: Int
@@ -47,8 +51,6 @@ nameToIdListMap :: String -> [NameIdChain] -> [Int]
 nameToIdListMap s l = map (\(NameIdChain _ i' _) -> i') . filter (\(NameIdChain n _ _) -> n == s) $ l
 
 
-data SynthInstruction rule = ToChainNamed String rule
-                             | NoInstruction rule deriving (Eq, Show)
 
 type InputRule = GenRule InputCriteria
 type Rule = GenRule Criteria
