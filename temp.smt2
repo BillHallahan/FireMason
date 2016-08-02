@@ -2,10 +2,6 @@
 ;num-of-packets
 ;num-of-chains
 ;chain-length
-;Furthermore, make sure to add assertions blocking a packet from being in to chains that do not "connect"
-;For example, the same packet cannot reach both the INPUT and OUTPUT chains in iptables, so if they are 0 and 1:
-;   (assert (forall ((p Int)) (=> (reaches p 0 0) (not (reaches p 1 0)))))
-;   (assert (forall ((p Int)) (=> (reaches p 1 0) (not (reaches p 0 0)))))
 
 (declare-datatypes () ((Target ACCEPT DROP RETURN (GO (chain Int) (rule Int)) NONE)))
 
