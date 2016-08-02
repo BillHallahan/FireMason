@@ -54,9 +54,9 @@ main = do
         let pathSimp = pathSimplification converted
 
         putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
-        putStrLn $ convertChainsCheckSMT pathSimp firewallPredicates "(assert (reaches 0 0))(assert (matches-rule 3 8))"
+        putStrLn $ convertChainsCheckSMT pathSimp firewallPredicates "(assert (reaches 0 0 0))"
 
-        reshout <- callSMTSolver "temp.smt2" (convertChainsCheckSMT pathSimp firewallPredicates "(assert (matches-rule 3 8))")
+        reshout <- callSMTSolver "temp.smt2" (convertChainsCheckSMT pathSimp firewallPredicates "(assert (not (reaches 0 4 0))) (assert (reaches 0 5 0))")
         putStrLn reshout
 
         let testNice = map (\x -> show x) (Map.toList pathSimp)

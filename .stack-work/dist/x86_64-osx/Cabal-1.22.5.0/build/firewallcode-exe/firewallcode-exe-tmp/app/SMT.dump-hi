@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-02 02:35:50.047434 UTC
+2016-08-02 15:43:19.172299 UTC
 
 interface main@main:SMT 7103
-  interface hash: b59f7595596f4971837dd813c57ac4d0
-  ABI hash: ad5cc286b4b8f93c12204fc2a9edd888
-  export-list hash: a94561e4d0f7927a3335aa58f6911b1b
+  interface hash: 53e4dce28180ac760d98492901c3443a
+  ABI hash: 9250496858d53834f97a4641692fb681
+  export-list hash: bdc12074afdd6621e65d5072296d84d4
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -16,6 +16,7 @@ exports:
   SMT.checkSat
   SMT.printSMTFunc1
   SMT.printSMTFunc2
+  SMT.printSMTFunc3
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0 containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
@@ -238,6 +239,43 @@ e480de99ff14c3e09aa6095984962c72
                                   @ GHC.Types.Char
                                   ($dToString1 `cast` (Types.NTCo:ToString[0] <b>_N) y)
                                   SMT.printSMTFunc4)))))) -}
+df48ad66d0f6827890c4de0dc9297b70
+  printSMTFunc3 ::
+    (Types.ToString a, Types.ToString b, Types.ToString c) =>
+    GHC.Base.String -> a -> b -> c -> GHC.Base.String
+  {- Arity: 7,
+     Strictness: <L,1*C1(U)><L,1*C1(U)><L,1*C1(U)><L,1*U><L,U><L,U><L,U>,
+     Unfolding: (\ @ a
+                   @ b
+                   @ c
+                   $dToString :: Types.ToString a
+                   $dToString1 :: Types.ToString b
+                   $dToString2 :: Types.ToString c
+                   s :: GHC.Base.String
+                   x :: a
+                   y :: b
+                   z :: c ->
+                 GHC.CString.unpackAppendCString#
+                   "("#
+                   (GHC.Base.++
+                      @ GHC.Types.Char
+                      s
+                      (GHC.CString.unpackAppendCString#
+                         " "#
+                         (GHC.Base.++
+                            @ GHC.Types.Char
+                            ($dToString `cast` (Types.NTCo:ToString[0] <a>_N) x)
+                            (GHC.CString.unpackAppendCString#
+                               " "#
+                               (GHC.Base.++
+                                  @ GHC.Types.Char
+                                  ($dToString1 `cast` (Types.NTCo:ToString[0] <b>_N) y)
+                                  (GHC.CString.unpackAppendCString#
+                                     " "#
+                                     (GHC.Base.++
+                                        @ GHC.Types.Char
+                                        ($dToString2 `cast` (Types.NTCo:ToString[0] <c>_N) z)
+                                        SMT.printSMTFunc4)))))))) -}
 4d9c3eb6cb95e2107b0acd111b1f294f
   printSMTFunc4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ")"#) -}

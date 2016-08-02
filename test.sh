@@ -20,6 +20,14 @@ $IPTABLES -A bad-ports -p tcp --sport 4:8 -j DROP
 $IPTABLES -A bad-ports -p tcp --sport 4  --dport 5 -j second
 
 
+
+$IPTABLES -N check
+$IPTABLES -F check
+$IPTABLES -p 0 -j DROP  -A check
+
+
+
+
 $IPTABLES -N second
 $IPTABLES -F second
 $IPTABLES -A second -p tcp -m multiport --port 7,8 -j DROP
@@ -27,3 +35,4 @@ $IPTABLES -A second -p tcp -m multiport --port 7,8 -j DROP
 
 $IPTABLES -A INPUT -j bad-ports
 $IPTABLES -A OUTPUT -j second
+$IPTABLES -A OUTPUT -j check

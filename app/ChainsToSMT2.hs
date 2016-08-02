@@ -71,14 +71,16 @@ chainToSMT [] _ _ _ = ""
 instance ToSMT Rule where
     toSMTPrereq (Rule c t) = toSMTPrereq c ++ toSMTPrereq t
 
-    toSMT (Rule [] t) ch r = printSMTFunc1 "assert" (printSMTFunc2 "matches-criteria" ch r)
+    toSMT (Rule [] t) ch r = printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" "p") (printSMTFunc3 "matches-criteria" "p" ch r)))
     toSMT (Rule c _) ch r =
-        printSMTFunc1 "assert" (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc2 "matches-criteria" ch r))
+        printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" "p") (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc3 "matches-criteria" "p" ch r))))
         
     toSMTPath (Rule [] t) ch r = (toSMTPath t ch r)
     toSMTPath (Rule c []) ch r = ""
     toSMTPath (Rule c [PropVariableTarget v b]) ch r =
-        printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc2 "matches-rule" ch r) (toSMTPath (PropVariableTarget v b) ch r)) ++ "\n"
+        printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" 
+            (printSMTFunc2 "and" (printSMTFunc1 "valid-packet" "p") (printSMTFunc3 "matches-rule" "p" ch r))
+            (toSMTPath (PropVariableTarget v b) ch r))) ++ "\n"
         ++ printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE") ++ "\n"
         ++ toSMTNotPath (PropVariableTarget v b) ch r
     toSMTPath (Rule c t) ch r =
@@ -102,14 +104,14 @@ instance ToSMT Criteria where
     toSMTPrereq (Protocol _) = ["(declare-fun protocol () Int)",
                                 "(assert (<= 0 protocol))",
                                 "(assert (<= protocol 255))"]
-    toSMTPrereq (PropVariableCriteria i) = ["(declare-fun v" ++ show i ++ " () Bool)"]
+    toSMTPrereq (PropVariableCriteria i) = ["(declare-fun v" ++ show i ++ " (Int) Bool)"]
     toSMTPrereq _ = []
 
     toSMT (Not c) ch r = printSMTFunc1 "not" (toSMT c ch r)
     toSMT (Port s (Left i)) _ _ = "(= " ++ s ++ "_port " ++ show i ++ ")"
     toSMT (Port s (Right (i, j))) _ _=
         "(and (<= " ++ show i ++ " " ++ s ++ "_port " ++ ") (<= " ++ s ++ "_port " ++ show j ++ "))"
-    toSMT (PropVariableCriteria i) _ _ = "v" ++ show i
+    toSMT (PropVariableCriteria i) _ _ = "(v" ++ show i ++ " p)"
     toSMT (Protocol i) _ _ = "(= protocol " ++ show i ++ ")"
     toSMT x _ _ = error $ "unrecognized criteria " ++ show x
 
@@ -128,13 +130,13 @@ instance ToSMT [Target] where
 instance ToSMT Target where 
     toSMT _ _ _ = ""
 
-    toSMTPrereq (PropVariableTarget i _) = ["(declare-fun v" ++ show i ++ " () Bool)"]
+    toSMTPrereq (PropVariableTarget i _) = ["(declare-fun v" ++ show i ++ " (Int) Bool)"]
     toSMTPrereq _ = []
 
     toSMTPath (Go i j) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) (printSMTFunc2 "GO" (show i) (show j))
     toSMTPath (ACCEPT) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "ACCEPT"
     toSMTPath (DROP) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "DROP"
-    toSMTPath (PropVariableTarget i b) _ _ = if b then "v" ++ show i else printSMTFunc1 "not" ("v" ++ show i)
+    toSMTPath (PropVariableTarget i b) _ _ = if b then "(v" ++ show i ++ " p)" else printSMTFunc1 "not" ("(v" ++ show i ++ " p)")
     toSMTPath (ST s) ch r = s
     toSMTPath _ _ _ = error "NOT HERE"
 
