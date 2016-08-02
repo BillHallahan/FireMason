@@ -34,5 +34,7 @@ $IPTABLES -A second -p tcp -m multiport --port 7,8 -j DROP
 
 
 $IPTABLES -A INPUT -j bad-ports
+$IPTABLES -A INPUT -p udp --sport 98 -j ACCEPT
+
 $IPTABLES -A OUTPUT -j second
 $IPTABLES -A OUTPUT -j check
