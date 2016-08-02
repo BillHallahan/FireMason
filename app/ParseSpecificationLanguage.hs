@@ -41,7 +41,7 @@ parseRule s =
     let
         (c, t) = break ("=>" == ) s
     in
-    Rule (parseSpecificationCriteria c) (if not . null $ t then parseSpecificationTarget $ tail t else []) 0
+    Rule (parseSpecificationCriteria c) (if not . null $ t then parseSpecificationTarget $ tail t else [])
 
 isConjunction :: String -> Bool
 isConjunction s = s `elem` ["AND", "OR"]

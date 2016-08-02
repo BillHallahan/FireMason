@@ -30,14 +30,16 @@ executable firewallcode-exe
                      , MissingH
                      , process
   default-language:    Haskell2010
-  other-modules:       ChainPathSimplification
-                     , ChainsToSMT
+  other-modules:     ChainsToSMT2
                      , ConvertIptables
                      , ConvertIptablesPorts
                      , ConvertToHorn
                      , IptablesTypes
+                     , NameIdChain
                      , ParserHelp
                      , ParseSpecificationLanguage
+                     , RuleAdding
+                     , SMT
                      , Types
 
 test-suite firewallcode-test

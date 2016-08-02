@@ -17,7 +17,7 @@ inputChainToChain (r:rs) i =
     let
     (newC, newR, i') = inputCriteriaToCriteria (criteria r) i
     newR' = inputChainToChain newR (i + i')
-    r' = Rule newC (targets r) (label r)
+    r' = Rule newC (targets r)
     in
     newR' ++ [r'] ++ (inputChainToChain rs (i + i' + length newR'))
     --r':(inputChainToChain (newR ++ rs) (i + i'))
@@ -37,8 +37,8 @@ condenseOr (c:cx) = c:condenseOr cx
 eliminateOr :: InputCriteria -> Int -> (Criteria, [InputRule])
 eliminateOr (Or c) i =
     let
-        r = map (\c' -> Rule [c'] [PropVariableTarget i True] (-1)) c
-        rNot = Rule (map (InCNot) c) [PropVariableTarget i False] (-1)
+        r = map (\c' -> Rule [c'] [PropVariableTarget i True]) c
+        rNot = Rule (map (InCNot) c) [PropVariableTarget i False]
     in
     (PropVariableCriteria i, rNot:r)
 eliminateOr c i = error $ "Invalid " ++ show c

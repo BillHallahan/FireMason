@@ -6,9 +6,12 @@ import Types
 
 type Table = String
 
+type IptablesRule = InputRule
+
 data Line = Line {table :: Table 
                   ,command :: Command
-                  ,rule :: InputRule} deriving (Show)
+                  ,rule :: IptablesRule
+                  ,fileline :: Int} deriving (Show)
 
 data Command = Append String
                | Insert String Int

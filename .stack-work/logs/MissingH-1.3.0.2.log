@@ -134,5 +134,5 @@ src/Data/BinPacking.hs:59:55: Warning:
 [47 of 47] Compiling System.Debian.ControlParser ( src/System/Debian/ControlParser.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Debian/ControlParser.o )
 In-place registering MissingH-1.3.0.2...
 Installing library in
-/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/MissingH-1.3.0.2-0LYz2ExiF1QEfGgduKzSaZ
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/MissingH-1.3.0.2-0LYz2ExiF1QEfGgduKzSaZ
 Registering MissingH-1.3.0.2...

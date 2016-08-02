@@ -6,7 +6,6 @@ module Types where
 
 import qualified Data.Set as Set  
 
-type Label = Int
 type InputChain = [InputRule]
 type Chain = [Rule]
 
@@ -31,6 +30,20 @@ data Target = Jump String
               | PropVariableTarget Int Bool
               | ST String deriving (Eq, Show)
 
+targetsToChainIds :: [Target] -> [Int]
+targetsToChainIds [] = []
+targetsToChainIds ((Go ch r):tx) = ch:targetsToChainIds tx
+targetsToChainIds (t:tx) = targetsToChainIds tx 
+
+data NameIdChain = NameIdChain {
+                            name ::String
+                            , ids :: Int
+                            , chain :: Chain
+                            } deriving (Eq, Show)
+
+
+nameToIdListMap :: String -> [NameIdChain] -> [Int]
+nameToIdListMap s l = map (\(NameIdChain _ i' _) -> i') . filter (\(NameIdChain n _ _) -> n == s) $ l
 
 type InputInstruction = SynthInstruction InputRule
 type Instruction = SynthInstruction Rule
@@ -40,37 +53,27 @@ data SynthInstruction r = ToChainNamed {chainName :: String
                                         , insRule :: r}
                           | NoInstruction {insRule :: r} deriving (Eq, Show)
 
-data NameIdChain = NameIdChain {
-                            name ::String
-                            , id :: Int
-                            , chain :: Chain
-                            } deriving (Eq, Show)
 
 
-nameToIdListMap :: String -> [NameIdChain] -> [Int]
-nameToIdListMap s l = map (\(NameIdChain _ i' _) -> i') . filter (\(NameIdChain n _ _) -> n == s) $ l
+type InputRule = GenRule InputCriteria-- Int 
+type Rule = GenRule Criteria-- Int
 
-
-
-type InputRule = GenRule InputCriteria
-type Rule = GenRule Criteria
-
-data GenRule a = Rule { criteria :: [a]
+data GenRule crit = Rule { criteria :: [crit]
                    ,targets :: [Target]
-                   ,label :: Label
+                   --,label :: label
                  } deriving (Eq, Show)
 
-eitherToRule :: Either InputCriteria Target -> Int -> InputRule
-eitherToRule (Left c) i = Rule [c] [] i
-eitherToRule (Right t) i = Rule [] [t] i
+eitherToRule :: Either InputCriteria Target -> InputRule
+eitherToRule (Left c) = Rule [c] []
+eitherToRule (Right t) = Rule [] [t]
 
 instance Monoid Rule where
-    mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
-    Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2 }
+    mempty = Rule {criteria = [], targets = []}
+    Rule c1 t1 `mappend` Rule c2 t2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2}
 
 instance Monoid InputRule where
-    mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
-    Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2 }
+    mempty = Rule {criteria = [], targets = []}
+    Rule c1 t1 `mappend` Rule c2 t2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2}
 
 
 type ModuleFunc = [String] -> (Maybe [Either InputCriteria Target], [String])

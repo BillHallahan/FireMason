@@ -7,8 +7,6 @@
 (declare-fun reaches-end (Int) Bool)
 (declare-fun returns-from (Int) Bool)
 
-(declare-const start-chain Int)
-(declare-const start-rule Int)
 (declare-const num-of-chains Int)
 (declare-fun chain-length (Int) Int)
 
@@ -35,8 +33,6 @@
 (define-fun isGo ((t Target)) Bool
     (exists ((a Int) (b Int)) (= t (GO a b)))
 )
-
-(assert (reaches start-chain start-rule))
 
 ;These two rules enforce that a packet can only reach up to the end of a chain, not past it,
 ;and that it must reach rule (r - 1) to reach rule r

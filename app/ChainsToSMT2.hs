@@ -6,9 +6,11 @@ import qualified Data.Map as Map
 import qualified Data.Maybe as MB
 import Data.List
 
-import ChainPathSimplification
+import NameIdChain
 import ParserHelp
 import Types
+
+import SMT
 
 
 convertChainsCheckSMT :: [NameIdChain] -> String -> String -> String
@@ -27,8 +29,6 @@ convertChainsCheckSMT c header check =
     in
     header ++ "\n" ++
     chainlen ++ "\n" ++
-    printSMTFunc1 "assert" (printSMTFunc2 "=" "start-chain" "0") ++ "\n" ++
-    printSMTFunc1 "assert" (printSMTFunc2 "=" "start-rule" "0") ++ "\n" ++
     printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (length c)) ++ "\n" ++
     prereqsString ++ "\n" ++
     pathString ++ "\n" ++
@@ -58,11 +58,7 @@ instance ToSMT Chain where
 
     toSMT rs ch ru = chainToSMT rs toSMT ch ru
 
-    toSMTPath rs ch ru =
-        let
-            numLabels = (length . nub $ map (\r -> label r) rs)
-        in
-        chainToSMT rs toSMTPath ch ru
+    toSMTPath rs ch ru = chainToSMT rs toSMTPath ch ru
 
 --The function is used to iterate over the chain in [Rule], likely using a function from the class ToSMT 
 chainToSMT :: [Rule] -> (Rule -> Int -> Int -> String) -> Int -> Int -> String
@@ -73,19 +69,19 @@ chainToSMT [] _ _ _ = ""
 
 
 instance ToSMT Rule where
-    toSMTPrereq (Rule c t _) = toSMTPrereq c ++ toSMTPrereq t
+    toSMTPrereq (Rule c t) = toSMTPrereq c ++ toSMTPrereq t
 
-    toSMT (Rule [] t i) ch r = printSMTFunc1 "assert" (printSMTFunc2 "matches-criteria" ch r)
-    toSMT (Rule c _ i) ch r =
+    toSMT (Rule [] t) ch r = printSMTFunc1 "assert" (printSMTFunc2 "matches-criteria" ch r)
+    toSMT (Rule c _) ch r =
         printSMTFunc1 "assert" (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc2 "matches-criteria" ch r))
         
-    toSMTPath (Rule [] t _) ch r = (toSMTPath t ch r)
-    toSMTPath (Rule c [] i) ch r = ""
-    toSMTPath (Rule c [PropVariableTarget v b] i) ch r =
+    toSMTPath (Rule [] t) ch r = (toSMTPath t ch r)
+    toSMTPath (Rule c []) ch r = ""
+    toSMTPath (Rule c [PropVariableTarget v b]) ch r =
         printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc2 "matches-rule" ch r) (toSMTPath (PropVariableTarget v b) ch r)) ++ "\n"
         ++ printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE") ++ "\n"
         ++ toSMTNotPath (PropVariableTarget v b) ch r
-    toSMTPath (Rule c t i) ch r =
+    toSMTPath (Rule c t) ch r =
         (toSMTPath t ch r) ++ "\n"
         ++ toSMTNotPath t ch r
 
@@ -144,10 +140,3 @@ instance ToSMT Target where
 
     toSMTNotPath (Go i j) ch r = ""
     toSMTNotPath _ _ _ = ""
-
-
-printSMTFunc1 :: (ToString a) => String -> a -> String
-printSMTFunc1 s x = "(" ++ s ++ " " ++ toString x ++ ")"
-
-printSMTFunc2 :: (ToString a, ToString b) => String -> a -> b -> String
-printSMTFunc2 s x y = "(" ++ s ++ " " ++ toString x ++ " " ++ toString y ++ ")"

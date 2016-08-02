@@ -2,7 +2,6 @@ module Main where
 
 import System.IO
 import System.Environment
-import System.Process
 import Data.List
 import Data.String.Utils
 import Data.List.Split
@@ -17,11 +16,12 @@ import ChainsToSMT2
 import ConvertToHorn
 import ParseSpecificationLanguage
 import RuleAdding
+import SMT
 
 import IptablesTypes
 
 
-import ChainPathSimplification--temp
+import NameIdChain--temp
 
 main = do
 
@@ -54,7 +54,7 @@ main = do
         let pathSimp = pathSimplification converted
 
         putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
-        putStrLn $ convertChainsCheckSMT pathSimp firewallPredicates "(assert (matches-rule 3 8))"
+        putStrLn $ convertChainsCheckSMT pathSimp firewallPredicates "(assert (reaches 0 0))(assert (matches-rule 3 8))"
 
         reshout <- callSMTSolver "temp.smt2" (convertChainsCheckSMT pathSimp firewallPredicates "(assert (matches-rule 3 8))")
         putStrLn reshout
@@ -64,7 +64,7 @@ main = do
         putStrLn folded
         let specTest2 = lexer ("chain INPUT : (destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP," ++
                               "chain OUTPUT:(not protocol = 4 OR destination_port = 6) AND (source_port=89) => DROP," ++
-                              "(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT")
+                              "chain INPUT :(protocol = 1 AND destination_port = 45 AND not source_port = 90) OR (protocol = 8 AND destination_port = 9) => ACCEPT")
         putStrLn $ show specTest2
         putStrLn $ show (parse specTest2)
 
@@ -76,7 +76,11 @@ main = do
 
 
         let parse1 = parse . lexer $ "(protocol = 1 AND (destination_port = 2 OR destination_port = 3 OR destination_port = 4 OR destination_port = 5) AND not source_port = 6) OR (protocol = 7 AND destination_port = 8) => ACCEPT"
-        putStrLn $ "\n\ninitial = " ++ show parse1
+        putStrLn $ "\n\ninitial = " ++ show parse1 ++ "\n\n"
+
+
+        let added = addRules elim pathSimp
+        putStrLn $ "added = " ++ show added
         --putStrLn $ "eliminateAndsNots = " ++  foldl (\acc s -> acc ++ show s ++ "\n") "" (inputChainToChain parse1 0)
         --putStrLn $ "eliminateAndsOrsFromChain = " ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
         )
@@ -92,7 +96,7 @@ convertScript coms =
         splitWords = map (\(s, i) -> (words s, i)) noVariables
     in
         --The map list is iptables specific... should be adjusted at some point
-        convertToChains (map ((flip convertLine) []) splitWords) (Map.fromList [("INPUT", []),
+        convertToChains (convertLines splitWords) (Map.fromList [("INPUT", []),
                                                                                   ("OUTPUT", []),
                                                                                   ("FORWARD", [])])
 
@@ -111,11 +115,3 @@ subBashVariables ((s, i):xsi) m
             rep = foldr (\(old, new) acc -> replace old new acc) s m
         in
         (rep, i):subBashVariables xsi m
-
-callSMTSolver :: FilePath -> String -> IO String
-callSMTSolver f s =
-    do
-        writeFile f s
-        (_, Just hout, _, _) <- createProcess (proc "z3" ["temp.smt2"]){ std_out = CreatePipe }
-
-        hGetContents hout

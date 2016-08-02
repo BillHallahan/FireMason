@@ -28,28 +28,34 @@ convertToChains l m
         in
         convertToChains ls $ Map.insert s (xs ++ r:xs') m
     | otherwise = error "HERE"
-    where (Line t c r):ls = l
+    where (Line t c r j):ls = l
+
+
+convertLines :: [([String], Int)] -> [Line]
+convertLines [] = []
+convertLines (x:xs) = convertLine x []:convertLines xs
+
 
 convertLine :: ([String], Int) -> [ModuleFunc] -> Line
 convertLine (s, i) fs
-    | [] <- s = Line "filter" None mempty
+    | [] <- s = Line "filter" None mempty 0
     | "iptables":xs <- s = convertLine (xs, i) fs
     | "-t":t:xs <- s = 
         let
             l = convertLine (xs, i) fs
         in
-        Line t (command l) (rule l)
+        Line t (command l) (rule l) i
     | isJust c = let 
                     l = convertLine (xs', i) fs
                  in
-                 Line (table l) (fromJust c) (rule l)
+                 Line (table l) (fromJust c) (rule l) i
     | isJust ct = let
                     ect = fromJust ct
                     l = convertLine (xs'', i) newFs
-                  in Line (table l) (command l) (((mappend) <$> (map (flip eitherToRule $ i) ect) <*> [rule l]) !! 0)
+                  in Line (table l) (command l) (((mappend) <$> (map (eitherToRule) ect) <*> [rule l]) !! 0) i
     | isNothing ct = let
                         l = convertLine (xs'', i) newFs
-                     in Line (table l) (command l) (rule l)
+                     in Line (table l) (command l) (rule l) i
     where (c, xs') = convertCommand (s, i)
           (ct, xs'', f) = convertCriteriaOrTarget s fs
           newFs = if isJust f then (fromJust f):fs else fs
