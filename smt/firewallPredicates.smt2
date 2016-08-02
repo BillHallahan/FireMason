@@ -15,7 +15,7 @@
 (declare-const num-of-packets Int)
 (declare-const num-of-chains Int)
 (declare-fun chain-length (Int) Int)
-;(declare-fun top-level-chain (Int) Bool)
+(declare-fun terminates-with (Int) Target)
 
 (define-fun valid-packet ((p Int)) Bool
     (and (<= 0 p) (< p num-of-packets)))
@@ -99,7 +99,7 @@
     (forall ((p Int) (c Int) (r Int)) 
         (=> 
             (and (matches-rule p c r) (terminating (rule-target c r))) 
-            (not (reaches p c (+ r 1)))
+            (and (not (reaches p c (+ r 1))) (= (terminates-with p) (rule-target c r)))
         )
     )
 )

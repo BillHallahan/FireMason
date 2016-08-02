@@ -55,7 +55,7 @@ main = do
 
         putStrLn $ foldl (\acc s -> acc ++ s ++ "\n") "" kToRules
         
-        let smt = convertChainsCheckSMT pathSimp firewallPredicates "(assert (reaches 0 0 0)) (assert (= num-of-packets 1)) (assert (reaches 0 4 0))"
+        let smt = convertChainsCheckSMT pathSimp firewallPredicates "(assert (reaches 0 0 0)) (assert (= num-of-packets 1)) (assert (reaches 0 1 4)) (assert (matches-rule 0 0 1) )"
 
         putStrLn smt
 

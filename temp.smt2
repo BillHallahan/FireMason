@@ -15,7 +15,7 @@
 (declare-const num-of-packets Int)
 (declare-const num-of-chains Int)
 (declare-fun chain-length (Int) Int)
-;(declare-fun top-level-chain (Int) Bool)
+(declare-fun terminates-with (Int) Target)
 
 (define-fun valid-packet ((p Int)) Bool
     (and (<= 0 p) (< p num-of-packets)))
@@ -99,7 +99,7 @@
     (forall ((p Int) (c Int) (r Int)) 
         (=> 
             (and (matches-rule p c r) (terminating (rule-target c r))) 
-            (not (reaches p c (+ r 1)))
+            (and (not (reaches p c (+ r 1))) (= (terminates-with p) (rule-target c r)))
         )
     )
 )
@@ -252,5 +252,5 @@
 (assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 8) (matches-criteria p 6 4)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (v11 p)) (matches-criteria p 6 5)))))
 
-(assert (reaches 0 0 0)) (assert (= num-of-packets 1)) (assert (reaches 0 5 0))(check-sat)
+(assert (reaches 0 0 0)) (assert (= num-of-packets 1)) (assert (reaches 0 1 4)) (assert (matches-rule 0 0 1) )(check-sat)
 (get-model)
