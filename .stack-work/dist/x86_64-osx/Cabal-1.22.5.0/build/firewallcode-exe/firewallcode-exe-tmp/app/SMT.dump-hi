@@ -1,0 +1,251 @@
+
+==================== FINAL INTERFACE ====================
+2016-08-02 02:35:50.047434 UTC
+
+interface main@main:SMT 7103
+  interface hash: b59f7595596f4971837dd813c57ac4d0
+  ABI hash: ad5cc286b4b8f93c12204fc2a9edd888
+  export-list hash: a94561e4d0f7927a3335aa58f6911b1b
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  SMT.callSMTSolver
+  SMT.checkSat
+  SMT.printSMTFunc1
+  SMT.printSMTFunc2
+module dependencies: Types
+package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      base-4.8.2.0 containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0 process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
+                      unix-2.7.1.0@unix_KZL8h98IqDM57kQSPo1mKx
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.IO bb5b81adcea33b14bd4abe16d7dde45f
+import  -/  base-4.8.2.0:GHC.IO.Handle.Text 06d2dc7704bcfe88a2157fd04748ace5
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
+import  -/  base-4.8.2.0:System.IO.Unsafe fc45e72b9d9eb2c797a8c81f5821fcd0
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
+import  -/  Types 1fa0e3470a993525fa413846f16fe57d
+  exports: 832ead5b2ba1dd5b901ba211c8588da6
+  ToString 7be3006f4b3e789e3fa086ea15403adc
+  toString b837e6ce5116507eb7419168e473cb92
+import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
+import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process.Internals a666eb8eec5dfb92a4a28b4ddc0e35b2
+4898fbcbbc43ed3344f5a9528a599636
+  callSMTSolver ::
+    GHC.IO.FilePath -> GHC.Base.String -> GHC.Types.IO GHC.Base.String
+  {- Arity: 3, Strictness: <L,U><L,U><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                SMT.callSMTSolver1
+                  `cast`
+                (<GHC.IO.FilePath>_R
+                 ->_R <GHC.Base.String>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Base.String>_R)) -}
+bccd817397ac020bfd9061f9a6cad47e
+  callSMTSolver1 ::
+    GHC.IO.FilePath
+    -> GHC.Base.String
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Base.String #)
+  {- Arity: 3, Strictness: <L,U><L,U><L,U>,
+     Unfolding: (\ f :: GHC.IO.FilePath
+                   s :: GHC.Base.String
+                   eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case System.IO.writeFile1 f s eta of ds1 { (#,#) ipv ipv1 ->
+                 case System.Process.Internals.$wa
+                        System.Process.createProcess3
+                        SMT.callSMTSolver3
+                        (GHC.Base.Nothing @ GHC.IO.FilePath)
+                        (GHC.Base.Nothing @ [(GHC.Base.String, GHC.Base.String)])
+                        System.Process.Internals.Inherit
+                        System.Process.Internals.CreatePipe
+                        System.Process.Internals.Inherit
+                        GHC.Types.False
+                        GHC.Types.False
+                        GHC.Types.False
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case System.Process.createProcess2
+                        System.Process.Internals.Inherit
+                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 case System.Process.createProcess2
+                        System.Process.Internals.CreatePipe
+                        ipv4 of ds4 { (#,#) ipv6 ipv7 ->
+                 case System.Process.createProcess2
+                        System.Process.Internals.Inherit
+                        ipv6 of ds5 { (#,#) ipv8 ipv9 ->
+                 case ipv3 of wild { (,,,) ds ds6 ds7 ds8 ->
+                 case ds6 of wild1 {
+                   GHC.Base.Nothing
+                   -> GHC.IO.failIO1 @ GHC.Base.String SMT.callSMTSolver2 ipv8
+                   GHC.Base.Just hout
+                   -> GHC.IO.Handle.Text.hGetContents1 hout ipv8 } } } } } } }) -}
+cafb82ce0f947c5959f0c14137949ccc
+  callSMTSolver2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "Pattern match failure in do expression at app/SMT.hs:19:9-28"#) -}
+0accd391a54a382e043f58b3f4e45859
+  callSMTSolver3 :: System.Process.Internals.CmdSpec
+  {- Strictness: m2,
+     Unfolding: (System.Process.Internals.RawCommand
+                   SMT.callSMTSolver6
+                   SMT.callSMTSolver4) -}
+75bdb228477354fd95a5cbbf15cb39fa
+  callSMTSolver4 :: [GHC.Base.String]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Base.String
+                   SMT.callSMTSolver5
+                   (GHC.Types.[] @ GHC.Base.String)) -}
+7ffe73d82fe7c6414f9a7e74ae7673dc
+  callSMTSolver5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "temp.smt2"#) -}
+9a14bb1ab20ee10a6c658d2ff56d97c4
+  callSMTSolver6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "z3"#) -}
+d00f4563ef5e93aab3e28f39e86ea9fc
+  checkSat :: GHC.Base.String -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                SMT.checkSat1
+                  `cast`
+                (<GHC.Base.String>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Bool>_R)) -}
+608a200f8539136825dc7fd86b51a25c
+  checkSat1 ::
+    GHC.Base.String
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: (\ s :: GHC.Base.String
+                   s1 :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case System.IO.writeFile1
+                        SMT.checkSat5
+                        s
+                        s1 of ds1 { (#,#) ipv ipv1 ->
+                 case System.Process.Internals.$wa
+                        System.Process.createProcess3
+                        SMT.callSMTSolver3
+                        (GHC.Base.Nothing @ GHC.IO.FilePath)
+                        (GHC.Base.Nothing @ [(GHC.Base.String, GHC.Base.String)])
+                        System.Process.Internals.Inherit
+                        System.Process.Internals.CreatePipe
+                        System.Process.Internals.Inherit
+                        GHC.Types.False
+                        GHC.Types.False
+                        GHC.Types.False
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case System.Process.createProcess2
+                        System.Process.Internals.Inherit
+                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 case System.Process.createProcess2
+                        System.Process.Internals.CreatePipe
+                        ipv4 of ds4 { (#,#) ipv6 ipv7 ->
+                 case System.Process.createProcess2
+                        System.Process.Internals.Inherit
+                        ipv6 of ds5 { (#,#) ipv8 ipv9 ->
+                 case ipv3 of wild { (,,,) ds ds6 ds7 ds8 ->
+                 case ds6 of wild1 {
+                   GHC.Base.Nothing
+                   -> case GHC.Prim.raiseIO#
+                             @ GHC.Exception.SomeException
+                             @ GHC.Base.String
+                             SMT.checkSat3
+                             ipv8
+                      ret_ty (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+                      of {}
+                   GHC.Base.Just hout
+                   -> case GHC.IO.Handle.Text.hGetContents1
+                             hout
+                             ipv8 of ds9 { (#,#) ipv10 ipv11 ->
+                      (# ipv10,
+                         GHC.Base.eqString ipv11 SMT.checkSat2 #) } } } } } } } }) -}
+c2b45f4019cbd74a7b17b3f92a69e655
+  checkSat2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "sat"#) -}
+248d32ede14c084f9c1c24ae205ef31c
+  checkSat3 :: GHC.Exception.SomeException
+  {- Unfolding: (GHC.IO.Exception.$fExceptionIOException_$ctoException
+                   SMT.checkSat4) -}
+34c533ac313fc7ceb95e753e83d4add4
+  checkSat4 :: GHC.IO.Exception.IOException
+  {- Unfolding: (GHC.IO.Exception.IOError
+                   (GHC.Base.Nothing @ GHC.IO.Handle.Types.Handle)
+                   GHC.IO.Exception.UserError
+                   (GHC.Types.[] @ GHC.Types.Char)
+                   SMT.callSMTSolver2
+                   (GHC.Base.Nothing @ Foreign.C.Types.CInt)
+                   (GHC.Base.Nothing @ GHC.IO.FilePath)) -}
+e480de99ff14c3e09aa6095984962c72
+  checkSat5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "checkSat.smt2"#) -}
+6dadeb978a815eb5e980d7f89ff0b9c4
+  printSMTFunc1 ::
+    Types.ToString a => GHC.Base.String -> a -> GHC.Base.String
+  {- Arity: 3, Strictness: <L,1*C1(U)><L,1*U><L,U>,
+     Unfolding: (\ @ a
+                   $dToString :: Types.ToString a
+                   s :: GHC.Base.String
+                   x :: a ->
+                 GHC.CString.unpackAppendCString#
+                   "("#
+                   (GHC.Base.++
+                      @ GHC.Types.Char
+                      s
+                      (GHC.CString.unpackAppendCString#
+                         " "#
+                         (GHC.Base.++
+                            @ GHC.Types.Char
+                            ($dToString `cast` (Types.NTCo:ToString[0] <a>_N) x)
+                            SMT.printSMTFunc4)))) -}
+243e9871a211ea0f88b6b96fd7bf09ab
+  printSMTFunc2 ::
+    (Types.ToString a, Types.ToString b) =>
+    GHC.Base.String -> a -> b -> GHC.Base.String
+  {- Arity: 5, Strictness: <L,1*C1(U)><L,1*C1(U)><L,1*U><L,U><L,U>,
+     Unfolding: (\ @ a
+                   @ b
+                   $dToString :: Types.ToString a
+                   $dToString1 :: Types.ToString b
+                   s :: GHC.Base.String
+                   x :: a
+                   y :: b ->
+                 GHC.CString.unpackAppendCString#
+                   "("#
+                   (GHC.Base.++
+                      @ GHC.Types.Char
+                      s
+                      (GHC.CString.unpackAppendCString#
+                         " "#
+                         (GHC.Base.++
+                            @ GHC.Types.Char
+                            ($dToString `cast` (Types.NTCo:ToString[0] <a>_N) x)
+                            (GHC.CString.unpackAppendCString#
+                               " "#
+                               (GHC.Base.++
+                                  @ GHC.Types.Char
+                                  ($dToString1 `cast` (Types.NTCo:ToString[0] <b>_N) y)
+                                  SMT.printSMTFunc4)))))) -}
+4d9c3eb6cb95e2107b0acd111b1f294f
+  printSMTFunc4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# ")"#) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

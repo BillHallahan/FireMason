@@ -13,23 +13,23 @@ import Types
 import SMT
 
 
-convertChainsCheckSMT :: [NameIdChain] -> String -> String -> String
-convertChainsCheckSMT c header check = 
+convertChainsCheckSMT :: IdNameChain -> String -> String -> String
+convertChainsCheckSMT x header check = 
     let
-        chainlen = foldl (++) "" $ map (\(NameIdChain s i c') -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c')) c
+        chainlen = foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList x)
 
-        prereqs = foldr (++) [] $ map toSMTPrereq $ map (\(NameIdChain s i x) -> x) c
-        prereqsString = foldr (\x acc -> x ++ "\n" ++ acc ) "" $ nub prereqs
+        prereqs = foldr (++) [] $ map toSMTPrereq $ map (\(_, c) -> c) (Map.elems x)
+        prereqsString = foldr (\y acc -> y ++ "\n" ++ acc ) "" $ nub prereqs
 
-        path = map (\(NameIdChain s i x) -> toSMTPath x i 0) c
+        path = map (\(i, (_, x)) -> toSMTPath x i 0) (Map.toList x)
         pathString = foldr (\x acc -> x ++ "\n" ++ acc ) "" path
 
-        converted = map (\(NameIdChain s i x) -> toSMT x i 0) c
+        converted = map (\(i, (_, x)) -> toSMT x i 0) (Map.toList x)
         convertedString = foldr (\x acc -> x ++ "\n" ++ acc ) "" converted
     in
     header ++ "\n" ++
     chainlen ++ "\n" ++
-    printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (length c)) ++ "\n" ++
+    printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (length x)) ++ "\n" ++
     prereqsString ++ "\n" ++
     pathString ++ "\n" ++
     convertedString ++

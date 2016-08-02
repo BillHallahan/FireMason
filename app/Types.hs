@@ -5,6 +5,8 @@
 module Types where
 
 import qualified Data.Set as Set  
+import qualified Data.Map as Map  
+
 
 type InputChain = [InputRule]
 type Chain = [Rule]
@@ -35,15 +37,16 @@ targetsToChainIds [] = []
 targetsToChainIds ((Go ch r):tx) = ch:targetsToChainIds tx
 targetsToChainIds (t:tx) = targetsToChainIds tx 
 
-data NameIdChain = NameIdChain {
-                            name ::String
-                            , ids :: Int
-                            , chain :: Chain
-                            } deriving (Eq, Show)
+--data NameIdChain = NameIdChain {
+--                            name ::String
+--                            , ids :: Int
+--                            , chain :: Chain
+--                            } deriving (Eq, Show)
 
+type IdNameChain = Map.Map Int (String, Chain)
 
-nameToIdListMap :: String -> [NameIdChain] -> [Int]
-nameToIdListMap s l = map (\(NameIdChain _ i' _) -> i') . filter (\(NameIdChain n _ _) -> n == s) $ l
+nameToIdListMap :: String -> IdNameChain -> [Int]
+nameToIdListMap s l = Map.keys . Map.filter (\ (n, _) -> n == s) $ l
 
 type InputInstruction = SynthInstruction InputRule
 type Instruction = SynthInstruction Rule

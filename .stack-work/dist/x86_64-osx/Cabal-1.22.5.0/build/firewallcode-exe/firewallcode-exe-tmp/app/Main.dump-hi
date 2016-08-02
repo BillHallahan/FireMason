@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-01 22:24:18.646586 UTC
+2016-08-02 04:08:46.482488 UTC
 
 interface main@main:Main 7103
-  interface hash: fc2e411e50b55e10a4c8d6401258cf14
-  ABI hash: 6157ca851b27fa0b09644e42e0de66c7
-  export-list hash: e9b1fcb7c2b832edeb0a75c04cf3dbea
-  orphan hash: 22708e38eab943947d89fcbf4ea2e117
+  interface hash: 13920a7e1124e449f911fa307af5ff80
+  ABI hash: 1c72dd82d8647f639f932046d7406113
+  export-list hash: 7ec8e1680a887d2f68dddcecab90cb45
+  orphan hash: 74b069984f2d87212f3567833d5b558b
   flag hash: 1e3361fb471ccc1f0605f4d3c4d9aa91
   sig of: Nothing
   used TH splices: False
@@ -66,60 +66,71 @@ import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  ChainsToSMT2 cde751d47b63a853512dfd91fc117aa1
+import  -/  ChainsToSMT2 f8a3b6a9828f9f09691d308a5dcd3512
   exports: 116a23a42f5b28b393be927d1dd4514a
-  convertChainsCheckSMT bb220a39a738f6670a6ce17997da3e9e
-import  -/  ConvertIptables 07f65a5bbb067a328cf0618e77f8642e
+  convertChainsCheckSMT c51d9ef0a90d8f04bbc35f45e4fca586
+import  -/  ConvertIptables fb293578bb4fac652c569780b3923516
   exports: 4a144007b859e3a59dd9da15010de434
-  convertLines a47788c8245e0be814769fb642ff25d9
-  convertToChains ac67e17341b53eaad05c7ffcf1a532c6
-import  -/  ConvertToHorn 4c908f76448bcb40b92154191fe21883
+  convertLines 02bb8d2593e2e02ea2416c2ced4f5b62
+  convertToChains 8f81b56ff0104ad3cb8b0275068f2fbf
+import  -/  ConvertToHorn ea90e2b8221abca1216d8b03bb3ff050
   exports: 76cec1257792e94428092746d96d37c3
-  inputInstructionsToInstructions d9f078f8130e8f61025f793d0ba94af5
-  stringInputChainsToStringChains 9cc3df73b6a462bc67efc21d658ff965
-import  -/  IptablesTypes a3068a0e8b95259758cd9e2a88dcc2c1
+  inputInstructionsToInstructions 2e804cdf2335304af455dc6726c35dd6
+  stringInputChainsToStringChains 32e9ba65b743e3a9e7e2618d756a8a92
+import  -/  IptablesTypes 13f7c854004856657af339c1f9101f65
   exports: 487856e79b078f5a837392b58e7afa97
-import  -/  NameIdChain a3f302b52e0ae93eec39f653620979f7
-  exports: 067093adcf19cf9b7d63999521430201
-  pathSimplification 1da277a8f63755f588c2d6990132af03
-import  -/  ParseSpecificationLanguage 33141fe9b283368f7891ec7247263f60
+import  -/  NameIdChain 6195fb4e36abae14a6e3c1b0cdf0dceb
+  exports: 587c46b8c3c4b153dcd3ee0ec1ca5dda
+  pathSimplification a16ce62fba9846e65889c094beb99985
+import  -/  ParseSpecificationLanguage 992ac8ca1b54bccb5b0e802302ddd8ca
   exports: 97b3a15dfab8f73d45ff5f6798ca2b79
   lexer 77c583e36e586e5038c1f8ebe9f4eeb6
-  parse b6adca2530be916a742ec21fcbebf527
-import  -/  RuleAdding c934e04e80db2e41075ddc6682d53c1a
+  parse d1ba12565ab38f0e9e81405b171351be
+import  -/  RuleAdding 04d6756bea87091b958aadb14442316e
   exports: eb7d3d9ba91c4dd200996c613845cb34
-  addRules 8fddb97c315dff9b365211fd7e6e9efc
+  addRules 79c3c401fc48a1709d532b65991a23ec
 import  -/  SMT ad5cc286b4b8f93c12204fc2a9edd888
   exports: a94561e4d0f7927a3335aa58f6911b1b
   callSMTSolver 4898fbcbbc43ed3344f5a9528a599636
-import  -/  Types 7934cc096ad4ac018aac4adeb7e3cd39
-  exports: 39af0f5b1cafb87923b315bfa9b266b9
-  InputChain 21741417fa13a64d47626b28a64ff34f
+import  -/  Types 1fa0e3470a993525fa413846f16fe57d
+  exports: 832ead5b2ba1dd5b901ba211c8588da6
+  InputChain 708fe9161f119207ad1dc67de7981e67
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
-dcb2f8385cd9efbf0bd5430fa8f98df7
-  $s$fShowGenRule :: GHC.Show.Show (Types.GenRule Types.Criteria)
+da74823dab0d9ec93a7042065b8f3fcb
+  $s$fShow(,) :: GHC.Show.Show ([GHC.Types.Char], [Types.Rule])
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
-                  @ (Types.GenRule Types.Criteria)
-                  (Types.$fShowGenRule_$cshowsPrec
-                     @ Types.Criteria
-                     Types.$fShowCriteria)
-                  Main.$s$fShowGenRule3
-                  Main.$s$fShowGenRule1 -}
-caa9f4968ce26a1edb3ef071cd3a4dcd
-  $s$fShowGenRule1 ::
-    [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+                  @ ([GHC.Types.Char], [Types.Rule])
+                  (GHC.Show.$fShow(,)_$cshowsPrec
+                     @ [GHC.Types.Char]
+                     @ [Types.Rule]
+                     GHC.Show.$fShow[]_$s$fShow[]1
+                     Main.$s$fShow(,)1)
+                  Main.$s$fShow(,)_$s$fShow(,)_$cshow
+                  Main.$s$fShow(,)_$s$fShow(,)_$cshowList -}
+22ef305beb5a3fdcc87fc815a742e5b6
+  $s$fShow(,)1 :: GHC.Show.Show [Types.Rule]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Main.$s$fShow(,)_$s$fShow[] -}
+c469407f5036ea1991f024167ffcafae
+  $s$fShow(,)2 :: GHC.Show.Show (Types.GenRule Types.Criteria)
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                Main.$s$fShow(,)_$s$fShowGenRule -}
+4e00decb55398b17702b88721b908089
+  $s$fShow(,)3 :: [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U><L,U>,
      Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
                    eta1 :: GHC.Base.String ->
                  GHC.Show.showList__
                    @ (Types.GenRule Types.Criteria)
-                   Main.$s$fShowGenRule2
+                   Main.$s$fShow(,)4
                    eta
                    eta1) -}
-9541bb21b08542ae7968dc709bdef7cb
-  $s$fShowGenRule2 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
+5a0504a7ed07cc28b50f937b3fee602a
+  $s$fShow(,)4 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
                  case w2 of ww2 { Types.Rule ww3 ww4 ->
@@ -129,8 +140,8 @@ caa9f4968ce26a1edb3ef071cd3a4dcd
                    0
                    ww3
                    ww4 }) -}
-6b9db04bac7adfe0e1d3ea12b78e0d95
-  $s$fShowGenRule3 :: Types.GenRule Types.Criteria -> GHC.Base.String
+ea382cf76b0d1ece23babeffffaa3b3e
+  $s$fShow(,)5 :: Types.GenRule Types.Criteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(U,U)>,
      Unfolding: InlineRule (1, True, False)
                 (\ x :: Types.GenRule Types.Criteria ->
@@ -142,8 +153,65 @@ caa9f4968ce26a1edb3ef071cd3a4dcd
                    ww3
                    ww4
                    (GHC.Types.[] @ GHC.Types.Char) }) -}
-41786aa415a26dd876b2671a81d51035
-  $s$fShowGenRule4 ::
+5378952a21e3812e76e3c7db236e2ffa
+  $s$fShow(,)_$s$fShow(,)_$cshow ::
+    ([GHC.Types.Char], [Types.Rule]) -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U,U)>m2,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: ([GHC.Types.Char], [Types.Rule]) ->
+                 GHC.Show.$fShow(,)_$cshowsPrec
+                   @ [GHC.Types.Char]
+                   @ [Types.Rule]
+                   GHC.Show.$fShow[]_$s$fShow[]1
+                   Main.$s$fShow(,)1
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+0cf4d78afbc6ba68bf22190b70463d9f
+  $s$fShow(,)_$s$fShow(,)_$cshowList ::
+    [([GHC.Types.Char], [Types.Rule])] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [([GHC.Types.Char], [Types.Rule])]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ ([GHC.Types.Char], [Types.Rule])
+                   (GHC.Show.$fShow(,)_$cshowsPrec
+                      @ [GHC.Types.Char]
+                      @ [Types.Rule]
+                      GHC.Show.$fShow[]_$s$fShow[]1
+                      Main.$s$fShow(,)1
+                      GHC.Show.shows18)
+                   eta
+                   eta1) -}
+6a2910faa3e433aec283f86b2d69b431
+  $s$fShow(,)_$s$fShowGenRule ::
+    GHC.Show.Show (Types.GenRule Types.Criteria)
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.Criteria)
+                  (Types.$fShowGenRule_$cshowsPrec
+                     @ Types.Criteria
+                     Types.$fShowCriteria)
+                  Main.$s$fShow(,)5
+                  Main.$s$fShow(,)3 -}
+40ffe51c48b98b04dfab36ef8b679483
+  $s$fShow(,)_$s$fShow[] ::
+    GHC.Show.Show [Types.GenRule Types.Criteria]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.GenRule Types.Criteria]
+                  (GHC.Show.$fShow[]_$cshowsPrec
+                     @ (Types.GenRule Types.Criteria)
+                     Main.$s$fShow(,)2)
+                  (GHC.Show.$fShow[]_$cshow
+                     @ (Types.GenRule Types.Criteria)
+                     Main.$s$fShow(,)2)
+                  (GHC.Show.$fShow[]_$cshowList
+                     @ (Types.GenRule Types.Criteria)
+                     Main.$s$fShow(,)2) -}
+91fed521fd6c81ec89d86e1b336b9555
+  $s$fShowGenRule ::
     GHC.Show.Show (Types.GenRule Types.InputCriteria)
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
@@ -151,21 +219,21 @@ caa9f4968ce26a1edb3ef071cd3a4dcd
                   (Types.$fShowGenRule_$cshowsPrec
                      @ Types.InputCriteria
                      Types.$fShowInputCriteria)
-                  Main.$s$fShowGenRule7
-                  Main.$s$fShowGenRule5 -}
-3ae59b63e2e613b65f4118996ad376b9
-  $s$fShowGenRule5 ::
+                  Main.$s$fShowGenRule3
+                  Main.$s$fShowGenRule1 -}
+1abe0518659049b7a33c3adb924e66f8
+  $s$fShowGenRule1 ::
     [Types.GenRule Types.InputCriteria] -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U><L,U>,
      Unfolding: (\ eta :: [Types.GenRule Types.InputCriteria]
                    eta1 :: GHC.Base.String ->
                  GHC.Show.showList__
                    @ (Types.GenRule Types.InputCriteria)
-                   Main.$s$fShowGenRule6
+                   Main.$s$fShowGenRule2
                    eta
                    eta1) -}
-1871fbd37051f2d8c9b499530ab45b66
-  $s$fShowGenRule6 ::
+9d5d92450b0cec8a6e89dbad2a55cdca
+  $s$fShowGenRule2 ::
     Types.GenRule Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (\ w2 :: Types.GenRule Types.InputCriteria ->
@@ -176,8 +244,8 @@ caa9f4968ce26a1edb3ef071cd3a4dcd
                    0
                    ww3
                    ww4 }) -}
-7926fa01c36b3d41a9abb978c1a08afb
-  $s$fShowGenRule7 ::
+cb0a6062377d6d7b0ce0c7ebf981cbae
+  $s$fShowGenRule3 ::
     Types.GenRule Types.InputCriteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(U,U)>,
      Unfolding: InlineRule (1, True, False)
@@ -195,7 +263,7 @@ caa9f4968ce26a1edb3ef071cd3a4dcd
     [GHC.Types.Char]
     -> Data.Map.Base.Map [GHC.Types.Char] a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-8ee93cea615bd66274f36cf08271a242
+7d0775796b9c5f5f59a086354f5844a8
   convertScript ::
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String Types.InputChain
@@ -213,7 +281,7 @@ caa9f4968ce26a1edb3ef071cd3a4dcd
                                Main.convertScript15)
                             Main.convertScript11)))
                    Main.convertScript1) -}
-c1db9931ea4776a78b7170c16548e117
+39c180186e05a105ca453633523f1ca0
   convertScript1 ::
     Data.Map.Base.Map [GHC.Types.Char] [Types.InputRule]
   {- Unfolding: (ConvertIptables.$sfromList
@@ -255,39 +323,39 @@ f9e6f616fd6f95a83442b18b4043bd44
                     (\ @ b c :: GHC.Base.String -> b -> b[OneShot] n :: b[OneShot] ->
                      Data.OldList.wordsFB @ b c n s),
                   i) }) -}
-0a50c2fe3aa1eb6e9f41a0dd9be0e101
+ca306b13ba035ea1226fe6e220a0b166
   convertScript2 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    Main.convertScript9
                    Main.convertScript3) -}
-6e4052a836bed19852be9b42d1c23cc3
+998c67d49b414cd84be04154dd89cb7e
   convertScript3 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    Main.convertScript7
                    Main.convertScript4) -}
-b658abd89499b583e68a278576ca9a53
+d7db1320716dd94f7b4a206ac1263ea0
   convertScript4 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    Main.convertScript5
                    (GHC.Types.[] @ (GHC.Base.String, Types.InputChain))) -}
-959ec3ade47ebd3e77434fc09483d219
+b7e01a6364daaa79a10f5468852c4548
   convertScript5 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((Main.convertScript6,
                   GHC.Types.[] @ Types.InputRule)) -}
 147fc91ccafcd004d476c3940fa07d4e
   convertScript6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "FORWARD"#) -}
-41eafca58ac07094523f514e12c2259e
+24571ea558cc677d64c9cc976935c665
   convertScript7 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((Main.convertScript8,
                   GHC.Types.[] @ Types.InputRule)) -}
 6ed2d76465774cfb1bf5b3910cb594fb
   convertScript8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "OUTPUT"#) -}
-7a46a465e0c2e41e9d5adc433c2d9201
+b7353522d11f491b2a2a425d6a2c44a1
   convertScript9 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((Main.convertScript10,
                   GHC.Types.[] @ Types.InputRule)) -}
@@ -320,13 +388,40 @@ e3bd864fe81295cabb6b36ca45539f6f
     -> [(GHC.Base.String, GHC.Base.String)]
     -> [(GHC.Base.String, GHC.Types.Int)]
   {- Arity: 2, Strictness: <S,1*U><L,U> -}
+"SPEC/Main $fShow(,) @ [Char] @ [Rule]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                    [GHC.Types.Char]
+                                                        $dShow1 :: GHC.Show.Show [Types.Rule]
+  GHC.Show.$fShow(,) @ [GHC.Types.Char] @ [Types.Rule] $dShow $dShow1
+  = Main.$s$fShow(,)
+"SPEC/Main $fShow(,)_$cshow @ [Char] @ [Rule]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                           [GHC.Types.Char]
+                                                               $dShow1 :: GHC.Show.Show [Types.Rule]
+  GHC.Show.$fShow(,)_$cshow @ [GHC.Types.Char]
+                            @ [Types.Rule]
+                            $dShow
+                            $dShow1
+  = Main.$s$fShow(,)_$s$fShow(,)_$cshow
+"SPEC/Main $fShow(,)_$cshowList @ [Char] @ [Rule]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                               [GHC.Types.Char]
+                                                                   $dShow1 :: GHC.Show.Show
+                                                                                [Types.Rule]
+  GHC.Show.$fShow(,)_$cshowList @ [GHC.Types.Char]
+                                @ [Types.Rule]
+                                $dShow
+                                $dShow1
+  = Main.$s$fShow(,)_$s$fShow(,)_$cshowList
 "SPEC/Main $fShowGenRule @ Criteria" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                  Types.Criteria
-  Types.$fShowGenRule @ Types.Criteria $dShow = Main.$s$fShowGenRule
+  Types.$fShowGenRule @ Types.Criteria $dShow
+  = Main.$s$fShow(,)_$s$fShowGenRule
 "SPEC/Main $fShowGenRule @ InputCriteria" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                       Types.InputCriteria
   Types.$fShowGenRule @ Types.InputCriteria $dShow
-  = Main.$s$fShowGenRule4
+  = Main.$s$fShowGenRule
+"SPEC/Main $fShow[] @ (GenRule Criteria)" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                      (Types.GenRule Types.Criteria)
+  GHC.Show.$fShow[] @ (Types.GenRule Types.Criteria) $dShow
+  = Main.$s$fShow(,)_$s$fShow[]
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

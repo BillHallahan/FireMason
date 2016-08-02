@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-01 22:24:18.331903 UTC
+2016-08-02 04:07:39.010961 UTC
 
 interface main@main:RuleAdding 7103
-  interface hash: d435d1f4b9e5c19ffdbdcc74c4e65050
-  ABI hash: c934e04e80db2e41075ddc6682d53c1a
+  interface hash: eda70770f0ea101eb9827e71a21c5e68
+  ABI hash: 04d6756bea87091b958aadb14442316e
   export-list hash: eb7d3d9ba91c4dd200996c613845cb34
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -39,42 +39,47 @@ import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
 import  -/  base-4.8.2.0:Data.OldList d8fd80b0e14aa085ce6219cd89dad356
+import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  ChainsToSMT2 cde751d47b63a853512dfd91fc117aa1
+import  -/  ChainsToSMT2 f8a3b6a9828f9f09691d308a5dcd3512
   exports: 116a23a42f5b28b393be927d1dd4514a
-  convertChainsCheckSMT bb220a39a738f6670a6ce17997da3e9e
-  toSMT 62d5b1442b3b246e3d0d5d1e1b0d610d
-import  -/  NameIdChain a3f302b52e0ae93eec39f653620979f7
-  exports: 067093adcf19cf9b7d63999521430201
-  increaseIndexes df3c8ef3d435c447bd63cbf64b7bc9bc
-  maxId ef983ad837a964f6934fb100f5971864
-  nameIdChainWithId 826e861ef0c4d81dbca085a8fe21789a
+  convertChainsCheckSMT c51d9ef0a90d8f04bbc35f45e4fca586
+  toSMT 28d52cdacd14500ac52ea8e24ce55180
+import  -/  NameIdChain 6195fb4e36abae14a6e3c1b0cdf0dceb
+  exports: 587c46b8c3c4b153dcd3ee0ec1ca5dda
+  increaseIndexes 3c5c2d5d713fd32182b476b32fdc3871
+  maxId 3699a27dcd3f3c76a0209ee923158975
 import  -/  SMT ad5cc286b4b8f93c12204fc2a9edd888
   exports: a94561e4d0f7927a3335aa58f6911b1b
   checkSat d00f4563ef5e93aab3e28f39e86ea9fc
-import  -/  Types 7934cc096ad4ac018aac4adeb7e3cd39
-  exports: 39af0f5b1cafb87923b315bfa9b266b9
-  Chain 63cc581b204b4367506f8067294b4375
+import  -/  Types 1fa0e3470a993525fa413846f16fe57d
+  exports: 832ead5b2ba1dd5b901ba211c8588da6
+  Chain c5bf08697c645273b4267b6433d80fe6
   Criteria 61b02b594ef3ae008da99e5e81a331ad
-  Instruction 961d9c37c629f8d37f154cc6c8c8d7ef
-  NameIdChain a3dc641cee892e9ac581c09c512122d9
-  NameIdChain 8291be8a39ca8cfd31ec21359b660c7b
-  Rule 68d00fff6301ed891d230229e52bda64
-  Rule b6d94cfe05ce24ee2081c8f355e279c9
+  IdNameChain 1e051c17933667c2588a98b7f103a723
+  Instruction ddd707d0e2401532735e3e59e68d0246
+  Rule ecedd5d7e4257206aaf2f27fe228d521
+  Rule ca1c9eeef684868b92691d9b4ce33d9e
   Target 96fab3e40e346c4a445f4966317f4361
-  chain 8bbf7e1f27cb638d758b4325f96d5592
-  chainName ab0cf82ed436ae66ad6a67c8d1630804
-  criteria b22504e024f4f0f8636519bee4a7a9bb
-  ids 0dea467f3f42cf574dc9487e2404f4af
-  insRule a9610eb0bc656025132274d219858804
-  name a8e6111a530434eb1f97885d78c94099
-516ed4e8614814c43c2206f54642cd6e
+  chainName 4cbdff5dcf4e2d494fca04b66b43fc5d
+  criteria 5d1b02c3d1eeb9fa39cca95ac47b07ea
+  insRule 49bd2294319d1e6a6a9a8bcc8f69666b
+574baebeb07ec08f39a9e8555fc8e570
+  $w$sgo10 ::
+    GHC.Prim.Int#
+    -> a1
+    -> Data.Map.Base.Map GHC.Types.Int a1
+    -> Data.Map.Base.Map GHC.Types.Int a1
+  {- Arity: 3, Strictness: <L,U><L,U><S,1*U>, Inline: [0] -}
+c971e91b4a8be1a7a3ecaab8e4810498
   $waddRuleToChainAtPos ::
     Types.Rule
     -> Types.Chain -> GHC.Prim.Int# -> [Types.GenRule Types.Criteria]
@@ -124,6 +129,11 @@ import  -/  Types 7934cc096ad4ac018aac4adeb7e3cd39
                         @ (Types.GenRule Types.Criteria)
                         (GHC.Types.[] @ Types.Rule)
                         (GHC.Types.: @ Types.Rule w w1) }) -}
+1c8d97bb4af95ee56ab398f5bbb65144
+  $wpoly_go10 ::
+    GHC.Prim.Int#
+    -> Data.Map.Base.Map GHC.Types.Int a -> GHC.Base.Maybe a
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U>, Inline: [0] -}
 d5bb99c40d45e5b58debdc5ac37087ed
   $wscoreRules ::
     [Types.Criteria]
@@ -132,59 +142,50 @@ d5bb99c40d45e5b58debdc5ac37087ed
     -> [Types.Target]
     -> GHC.Types.Int
   {- Arity: 4, Strictness: <B,1*U><B,1*U><B,U><B,U>b, Inline: [0] -}
-32629b4c3c8f62305a61b0fe429a708c
+c90600034470d3cb91327157d99988a8
   addRuleToChain ::
     GHC.Base.String
-    -> Types.Rule -> [Types.NameIdChain] -> [Types.NameIdChain]
-  {- Arity: 3, HasNoCafRefs, Strictness: <L,U><L,U><S,1*U>,
+    -> Types.Rule -> Types.IdNameChain -> Types.IdNameChain
+  {- Arity: 3, Strictness: <L,U><L,U><S,1*U>,
      Unfolding: (\ s :: GHC.Base.String
                    r :: Types.Rule
-                   n :: [Types.NameIdChain] ->
-                 letrec {
-                   $wgo :: [Types.NameIdChain]
-                           -> (# [Types.NameIdChain], [Types.NameIdChain] #)
-                     {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-                   = \ w :: [Types.NameIdChain] ->
-                     case w of wild {
-                       []
-                       -> (# GHC.Types.[] @ Types.NameIdChain,
-                             GHC.Types.[] @ Types.NameIdChain #)
-                       : y ys
-                       -> case y of wild1 { Types.NameIdChain ds1 ds2 ds3 ->
-                          let {
-                            w2 :: ([Types.NameIdChain], [Types.NameIdChain])
-                            = case $wgo ys of ww { (#,#) ww1 ww2 -> (ww1, ww2) }
-                          } in
-                          case GHC.Base.eqString ds1 s of wild2 {
-                            GHC.Types.False
-                            -> (# case w2 of wild3 { (,) ts fs -> ts },
-                                  GHC.Types.:
-                                    @ Types.NameIdChain
-                                    wild1
-                                    (case w2 of wild3 { (,) ts fs -> fs }) #)
-                            GHC.Types.True
-                            -> (# GHC.Types.:
-                                    @ Types.NameIdChain
-                                    wild1
-                                    (case w2 of wild3 { (,) ts fs -> ts }),
-                                  case w2 of wild3 { (,) ts fs -> fs } #) } } }
-                 } in
-                 case $wgo n of ww { (#,#) ww1 ww2 ->
-                 letrec {
-                   go :: [Types.NameIdChain] -> [Types.NameIdChain]
-                     {- Arity: 1, Strictness: <S,1*U> -}
-                   = \ ds :: [Types.NameIdChain] ->
-                     case ds of wild {
-                       [] -> ww2
-                       : y ys
-                       -> GHC.Types.:
-                            @ Types.NameIdChain
-                            (case y of wild1 { Types.NameIdChain name i c ->
-                             Types.NameIdChain name i (GHC.Types.: @ Types.Rule r c) })
-                            (go ys) }
-                 } in
-                 go ww1 }) -}
-89d77198b5cc32280cd5d335ae7e791e
+                   n :: Types.IdNameChain ->
+                 case Data.Map.Base.$wpoly_go2
+                        @ GHC.Types.Int
+                        @ (GHC.Base.String, Types.Chain)
+                        (\ ds :: GHC.Types.Int
+                           x :: (GHC.Base.String, Types.Chain)[OneShot] ->
+                         case x of wild { (,) s' ds1 -> GHC.Base.eqString s' s })
+                        n of ww { (#,#) ww6 ww7 ->
+                 case Data.Map.Base.map
+                        @ (GHC.Base.String, [Types.Rule])
+                        @ (GHC.Base.String, [Types.Rule])
+                        @ GHC.Types.Int
+                        (\ ds :: (GHC.Base.String, [Types.Rule]) ->
+                         case ds of wild { (,) s' c -> (s', GHC.Types.: @ Types.Rule r c) })
+                        ww6 of wild {
+                   Data.Map.Base.Bin ipv ipv1 ipv2 ipv3 ipv4
+                   -> case ww7 of wild1 {
+                        Data.Map.Base.Bin ipv5 ipv6 ipv7 ipv8 ipv9
+                        -> Data.Map.Base.union_$shedgeUnion
+                             @ GHC.Types.Int
+                             @ (GHC.Base.String, Types.Chain)
+                             GHC.Classes.$fOrdInt
+                             (Data.Map.Base.NothingS @ GHC.Types.Int)
+                             (Data.Map.Base.NothingS @ GHC.Types.Int)
+                             ipv
+                             ipv1
+                             ipv2
+                             ipv3
+                             ipv4
+                             ipv5
+                             ipv6
+                             ipv7
+                             ipv8
+                             ipv9
+                        Data.Map.Base.Tip -> wild }
+                   Data.Map.Base.Tip -> ww7 } }) -}
+68216ce7aec7d1454ec9212fab539b28
   addRuleToChainAtPos ::
     Types.Rule -> Types.Chain -> GHC.Types.Int -> Types.Chain
   {- Arity: 3, HasNoCafRefs, Strictness: <L,U><L,U><S,1*U(U)>,
@@ -193,33 +194,31 @@ d5bb99c40d45e5b58debdc5ac37087ed
                 (\ w :: Types.Rule w1 :: Types.Chain w2 :: GHC.Types.Int ->
                  case w2 of ww { GHC.Types.I# ww1 ->
                  RuleAdding.$waddRuleToChainAtPos w w1 ww1 }) -}
-8fddb97c315dff9b365211fd7e6e9efc
+79c3c401fc48a1709d532b65991a23ec
   addRules ::
-    [Types.Instruction] -> [Types.NameIdChain] -> [Types.NameIdChain]
+    [Types.Instruction] -> Types.IdNameChain -> Types.IdNameChain
   {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-8e094204cc804e39cc06eda9ae6517f2
+6c497fa0c42b654546ca61bddbdbc8ac
   findBestPointCut ::
     Types.Rule
-    -> GHC.Types.Int
-    -> [Types.NameIdChain]
-    -> GHC.Types.IO GHC.Types.Int
+    -> GHC.Types.Int -> Types.IdNameChain -> GHC.Types.IO GHC.Types.Int
   {- Arity: 4, Strictness: <L,U(U,U)><L,U(U)><L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
                 RuleAdding.findBestPointCut1
                   `cast`
                 (<Types.Rule>_R
                  ->_R <GHC.Types.Int>_R
-                 ->_R <[Types.NameIdChain]>_R
+                 ->_R <Types.IdNameChain>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Int>_R)) -}
-bca6784dcb600e91d45853c0051c540f
+f27931956cf303a52aa49a064e66fdb4
   findBestPointCut1 ::
     Types.Rule
     -> GHC.Types.Int
-    -> [Types.NameIdChain]
+    -> Types.IdNameChain
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Int #)
   {- Arity: 4, Strictness: <L,U(U,U)><L,U(U)><L,U><L,U> -}
-b87e1e665e53c4fab66726d90f346631
+50bb685405d79e0371f87c27fc90650a
   findPointCut :: Types.Rule -> Types.Chain -> GHC.Types.Int
   {- Arity: 2, Strictness: <L,U(U,U)><S,1*U>,
      Unfolding: (\ r :: Types.Rule c :: Types.Chain ->
@@ -245,7 +244,7 @@ f609981890bfb5584e3f1c6699388293
   scoreCriteria ::
     [Types.Criteria] -> [Types.Criteria] -> GHC.Types.Int
   {- Arity: 2, Strictness: <B,1*U><B,U>b -}
-a6a7c13855da8f1aaa38580b6ae2361f
+1e2886ab6a114710cf16b886391507e5
   scoreRules :: Types.Rule -> Types.Rule -> GHC.Types.Int
   {- Arity: 2, Strictness: <B,1*U(1*U,1*U)><B,1*U(U,U)>b,
      Inline: INLINE[0],

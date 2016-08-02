@@ -2,12 +2,14 @@ module RuleAdding where
 
 import Data.List
 import Data.Maybe
+import qualified Data.Map as Map
+
 import Types
 import NameIdChain
 import ChainsToSMT2
 import SMT
 
-addRules :: [Instruction] -> [NameIdChain] -> [NameIdChain]
+addRules :: [Instruction] -> IdNameChain -> IdNameChain
 addRules [] n = n
 addRules (x:xs) n =
     let
@@ -16,27 +18,27 @@ addRules (x:xs) n =
     in
     addRules xs n'
 
-addRuleToChain :: String -> Rule -> [NameIdChain] -> [NameIdChain]
+addRuleToChain :: String -> Rule -> IdNameChain -> IdNameChain
 addRuleToChain s r n = 
     let
-        (change, noChange) = partition (\x -> name x == s) n
-        cut = findPointCut r (chain $ change !! 0)
-        change' = map (\(NameIdChain name i c) -> NameIdChain name i (r:c)) change
+        (change, noChange) = Map.partition (\(s', _) -> s' == s) n
+        cut = findPointCut r (snd . snd $ Map.elemAt 0 change)
+        change' = Map.map (\(s', c)-> (s', r:c)) change
     in
-    change' ++ noChange
+    Map.union change' noChange
 
-findBestPointCut :: Rule -> Int -> [NameIdChain] -> IO Int
+findBestPointCut :: Rule -> Int -> IdNameChain -> IO Int
 findBestPointCut r i n =
     let
-        c = chain . fromJust $ nameIdChainWithId n i
+        c = snd . fromJust $ Map.lookup i n
         cut = findPointCut r c
         newChain = addRuleToChainAtPos r c cut
-        newNameIdChain = increaseIndexes ((NameIdChain "" i newChain):filter (\x -> ids x /= i) n) (maxId n)
-        converted = convertChainsCheckSMT (n ++ newNameIdChain)
+        newNameIdChain = increaseIndexes (Map.insert i ("", newChain) $ Map.filterWithKey (\i' _ -> i' /= i) n) (maxId n)
+        converted = convertChainsCheckSMT (Map.union n newNameIdChain)
             "(declare-const i Int) (declare-const j Int)"
             ("(assert (=> (and (not (reaches i j)) (reaches (+ i " ++ show (maxId n) ++ ") j)) " ++ (toSMT (criteria r) 0 0) ++ "))" ++
             "(assert (=> (and  (reaches i j) (not (reaches (+ i " ++ show (maxId n) ++ ") j))) " ++ (toSMT (criteria r) 0 0) ++ "))")
-        shortened = (NameIdChain "" i (take cut newChain)):filter (\x -> ids x /= i) n
+        shortened = Map.insert i ("", (take cut newChain)) $ Map.filterWithKey (\i' _ -> i' /= i) n
     in
     do 
         noUndesired <- checkSat $ converted ++ "(assert (reaches " ++ show i ++ " 0))" ++ "(assert (reaches " ++ show i ++ " 0))"

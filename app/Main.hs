@@ -59,7 +59,7 @@ main = do
         reshout <- callSMTSolver "temp.smt2" (convertChainsCheckSMT pathSimp firewallPredicates "(assert (matches-rule 3 8))")
         putStrLn reshout
 
-        let testNice = map (\x -> show x) pathSimp
+        let testNice = map (\x -> show x) (Map.toList pathSimp)
         let folded = foldr (\x acc-> x ++ "\n" ++ acc) "" testNice
         putStrLn folded
         let specTest2 = lexer ("chain INPUT : (destination_port = 78) OR (source_port = 78 AND destination_port = 79)    => DROP," ++
