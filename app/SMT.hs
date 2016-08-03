@@ -20,7 +20,7 @@ callSMTSolver :: FilePath -> String -> IO (String, ExitCode)
 callSMTSolver f s =
     do
         writeFile f s
-        (_pIn, pOut, pErr, handle) <- (runInteractiveCommand "z3 temp.smt2")
+        (_pIn, pOut, pErr, handle) <- (runInteractiveCommand ("z3 " ++ f))
         exitCode <- waitForProcess handle
 
         out <- hGetContents pOut

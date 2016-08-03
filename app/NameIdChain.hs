@@ -52,10 +52,6 @@ pathSimplificationTarget (Jump j) m ch _ =
         (Go (ch + 1) 0, pathSimplification' [(j, chain)] m (ch + 1))
 pathSimplificationTarget t _ _ _ = (t, Map.empty)
 
-
---nameIdChainWithId :: [IdNameChain] -> Int -> Maybe IdNameChain
---nameIdChainWithId n i = find (\x -> ids x == i) n
-
 increaseIndexes :: IdNameChain -> Int -> IdNameChain
 increaseIndexes x j = Map.mapKeys (j +) $ Map.map (\(n, c) -> (n, increaseIndexesChain c j)) x
 

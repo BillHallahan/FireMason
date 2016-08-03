@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-03 14:28:41.470554 UTC
+2016-08-03 17:31:24.647504 UTC
 
 interface main@main:SMT 7103
-  interface hash: 3a86a810d0c58b28a0e8c2130aecf866
-  ABI hash: 4837df781fdc7617f7a634254ac2c486
+  interface hash: bd40225104eb7ba8298b5e6f36d6c01b
+  ABI hash: 1e2f1cd31ff32fe5acdf5504946c9bf3
   export-list hash: bdc12074afdd6621e65d5072296d84d4
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -48,7 +48,7 @@ import  -/  Types 1fa0e3470a993525fa413846f16fe57d
   ToString 7be3006f4b3e789e3fa086ea15403adc
   toString b837e6ce5116507eb7419168e473cb92
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
-abf885c032c329a8905ce2caa3204562
+2f3dd8945f807eaaca9913f109bbb3ab
   callSMTSolver ::
     GHC.IO.FilePath
     -> GHC.Base.String
@@ -61,7 +61,7 @@ abf885c032c329a8905ce2caa3204562
                  ->_R <GHC.Base.String>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0]
                                <(GHC.Base.String, GHC.IO.Exception.ExitCode)>_R)) -}
-51fa0573b5807ab070d2ffde761dc4ca
+20db20ad9a3b2c88b479d9caa7587e9e
   callSMTSolver1 ::
     GHC.IO.FilePath
     -> GHC.Base.String
@@ -74,7 +74,7 @@ abf885c032c329a8905ce2caa3204562
                    eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
                  case System.IO.writeFile1 f s eta of ds1 { (#,#) ipv ipv1 ->
                  case System.Process.runInteractiveCommand1
-                        SMT.callSMTSolver2
+                        (GHC.CString.unpackAppendCString# "z3 "# f)
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
                  case ipv3 of wild { (,,,) _pIn pOut pErr handle ->
                  case handle of ww { System.Process.Internals.ProcessHandle ww1 ww2 ->
@@ -83,10 +83,7 @@ abf885c032c329a8905ce2caa3204562
                         pOut
                         ipv4 of ds4 { (#,#) ipv6 ipv7 ->
                  (# ipv6, (ipv7, ipv5) #) } } } } } }) -}
-60c24de443069e36d7b182ec5d2d9cc2
-  callSMTSolver2 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "z3 temp.smt2"#) -}
-61960dfcb4b49491b0ae1d0dc9f6ed77
+2d6ef5dc9b7b794d33b49d559783a5e5
   checkSat :: GHC.Base.String -> GHC.Types.IO GHC.Types.Bool
   {- Arity: 2, Strictness: <L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
@@ -94,7 +91,7 @@ abf885c032c329a8905ce2caa3204562
                   `cast`
                 (<GHC.Base.String>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Bool>_R)) -}
-d4efc049c838bc610292f10a7b6a3641
+bf0d514fe0cf31956cc7da96f7068b14
   checkSat1 ::
     GHC.Base.String
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -103,11 +100,11 @@ d4efc049c838bc610292f10a7b6a3641
      Unfolding: (\ s :: GHC.Base.String
                    s1 :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
                  case System.IO.writeFile1
-                        SMT.checkSat3
+                        SMT.checkSat4
                         s
                         s1 of ds1 { (#,#) ipv ipv1 ->
                  case System.Process.runInteractiveCommand1
-                        SMT.callSMTSolver2
+                        SMT.checkSat3
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
                  case ipv3 of wild { (,,,) _pIn pOut pErr handle ->
                  case handle of ww { System.Process.Internals.ProcessHandle ww1 ww2 ->
@@ -131,8 +128,13 @@ d4efc049c838bc610292f10a7b6a3641
 c2b45f4019cbd74a7b17b3f92a69e655
   checkSat2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "sat"#) -}
-d243aa3a8eb8499775dd0a80fe7cc33b
+5836474dd5b2773fad7a2a87521e8e4a
   checkSat3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   "z3 "#
+                   SMT.checkSat4) -}
+65d4ebd30388c6b621546f1246cfe438
+  checkSat4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "checkSat.smt2"#) -}
 6dadeb978a815eb5e980d7f89ff0b9c4
   printSMTFunc1 ::

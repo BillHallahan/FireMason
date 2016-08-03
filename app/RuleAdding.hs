@@ -34,14 +34,27 @@ findBestPointCut r i n =
         newChain = addRuleToChainAtPos r c cut
         newNameIdChain = increaseIndexes (Map.insert i ("", newChain) $ Map.filterWithKey (\i' _ -> i' /= i) n) (maxId n)
         converted = convertChainsCheckSMT (Map.union n newNameIdChain)
-            "(declare-const i Int) (declare-const j Int)"
-            ((printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" i "0") ++
-            (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "1" (i + maxId n) "0") ++
-            (printSMTFunc1 "assert" $ printSMTFunc2 "and"
-                (printSMTFunc1 "not" (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1")))
-                (printSMTFunc1 "not" (toSMT (criteria r) 0 0))) ++
-            (printSMTFunc1 "assert" $ printSMTFunc2 "and" 
-                (toSMT (criteria r) 0 0) (printSMTFunc1 "not" (printSMTFunc2 "=" (toSMT (targets r) 0 0) (printSMTFunc1 "terminates-with" "1")))))
+            "(assert (= num-of-packets 2))"
+            (
+                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" (show i) "0")
+             ++
+                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" (show $ i + maxId n) "0")
+            ++
+                (printSMTFunc1 "assert"
+                    (printSMTFunc1 "not"
+                        (printSMTFunc2 "and"
+                            (printSMTFunc2 "or"
+                                (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
+                                (toSMT (criteria r) 0 0)
+                            )
+                            (printSMTFunc2 "=>" 
+                                (toSMT (criteria r) 0 0) 
+                                (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "1") (toSMT (targets r) 0 0))
+                            )
+                        )
+                    )
+                )
+            )
         shortened = Map.insert i ("", (take cut newChain)) $ Map.filterWithKey (\i' _ -> i' /= i) n
     in
     do
