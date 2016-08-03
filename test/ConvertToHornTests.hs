@@ -17,8 +17,6 @@ convertToHornTests = TestList [TestLabel "condenseAndTest" condenseAndTest
                                , TestLabel "simplifyNotsTestOr" simplifyNotsTestOr
                                , TestLabel "simplifyNotsTestNot" simplifyNotsTestNot
                                , TestLabel "simplifyNotsTestMixed" simplifyNotsTestMixed
-
-                             --, TestLabel "eliminateOrsOr" eliminateOrsTestOr4
                              ]
 
 condenseAndTest =
@@ -48,10 +46,10 @@ condenseOrTest =
 eliminateOrTest =
     TestCase $ assertEqual "eliminateOr is not correctly converting clauses with Or"
         (PropVariableCriteria 5,
-            [Rule {criteria = [InCNot . InC . Protocol $ 1, InCNot . InC . Protocol $ 2, InCNot . InC . Protocol $ 3], targets = [PropVariableTarget 5 False], label = -1},
-            Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 5 True], label = -1},
-            Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 5 True], label = -1},
-            Rule {criteria = [InC . Protocol $ 3], targets = [PropVariableTarget 5 True], label = -1}]
+            [Rule {criteria = [InCNot . InC . Protocol $ 1, InCNot . InC . Protocol $ 2, InCNot . InC . Protocol $ 3], targets = [PropVariableTarget 5 False]},
+            Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 5 True]},
+            Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 5 True]},
+            Rule {criteria = [InC . Protocol $ 3], targets = [PropVariableTarget 5 True]}]
         )
         (eliminateOr (Or [InC . Protocol $ 1, InC . Protocol $ 2, InC . Protocol $ 3]) 5)
 
@@ -70,9 +68,9 @@ inputCriteriaToCriteriaTestOr =
     TestCase $ assertEqual "inputCriteriaToCriteria is not eliminating corrrectly."
     (
         [PropVariableCriteria 0],
-        [Rule {criteria = [InCNot . And $ [InC . Protocol $ 1, InC $ Port "destination" (Left 3)], InCNot (InC . Protocol $ 2)], targets = [PropVariableTarget 0 False], label = -1},
-        Rule {criteria = [And [InC . Protocol $ 1, InC $ Port "destination" (Left 3)]], targets = [PropVariableTarget 0 True], label = -1},
-        Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True], label = -1}]
+        [Rule {criteria = [InCNot . And $ [InC . Protocol $ 1, InC $ Port "destination" (Left 3)], InCNot (InC . Protocol $ 2)], targets = [PropVariableTarget 0 False]},
+        Rule {criteria = [And [InC . Protocol $ 1, InC $ Port "destination" (Left 3)]], targets = [PropVariableTarget 0 True]},
+        Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True]}]
         , 1
     )
     (inputCriteriaToCriteria [Or [And [InC . Protocol $ 1, InC $ Port "destination" (Left 3)], InC . Protocol $ 2]] 0)
@@ -81,12 +79,12 @@ inputCriteriaToCriteriaTestOr2 =
     TestCase $ assertEqual "eliminateOrs is not eliminating corrrectly."
         (
             [PropVariableCriteria 0, PropVariableCriteria 1],
-            [Rule {criteria = [InCNot . InC . Protocol $ 1, InCNot . InC . Protocol $ 2], targets = [PropVariableTarget 0 False], label = -1},
-            Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 0 True], label = -1},
-            Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True], label = -1},
-            Rule {criteria = [InCNot . InC $ Port "destination" (Left 1), InCNot . InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 False], label = -1},
-            Rule {criteria = [InC $ Port "destination" (Left 1)], targets = [PropVariableTarget 1 True], label = -1},
-            Rule {criteria = [InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 True], label = -1}]
+            [Rule {criteria = [InCNot . InC . Protocol $ 1, InCNot . InC . Protocol $ 2], targets = [PropVariableTarget 0 False]},
+            Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 0 True]},
+            Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True]},
+            Rule {criteria = [InCNot . InC $ Port "destination" (Left 1), InCNot . InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 False]},
+            Rule {criteria = [InC $ Port "destination" (Left 1)], targets = [PropVariableTarget 1 True]},
+            Rule {criteria = [InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 True]}]
             , 2
         )
         (inputCriteriaToCriteria 
@@ -103,16 +101,16 @@ inputCriteriaToCriteriaTestOr3 =
         Protocol 5,
         PropVariableCriteria 1
      ], 
-     [Rule {criteria = [InCNot . InC . Protocol $ 1, InCNot . InC . Protocol $ 2, InCNot . InC . Protocol $ 3, InCNot . InC . Protocol $ 4], targets = [PropVariableTarget 0 False], label = -1},
-     Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 0 True], label = -1},
-     Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True], label = -1},
-     Rule {criteria = [InC . Protocol $ 3], targets = [PropVariableTarget 0 True], label = -1},
-     Rule {criteria = [InC . Protocol $ 4], targets = [PropVariableTarget 0 True], label = -1},
-     Rule {criteria = [InCNot . InC . Protocol $ 6, InCNot . InC . Protocol $ 7, InCNot . InC . Protocol $ 8, InCNot . InC . Protocol $ 9], targets = [PropVariableTarget 1 False], label = -1},
-     Rule {criteria = [InC . Protocol $ 6], targets = [PropVariableTarget 1 True], label = -1},
-     Rule {criteria = [InC . Protocol $ 7], targets = [PropVariableTarget 1 True], label = -1},
-     Rule {criteria = [InC . Protocol $ 8], targets = [PropVariableTarget 1 True], label = -1},
-     Rule {criteria = [InC . Protocol $ 9], targets = [PropVariableTarget 1 True], label = -1}]
+     [Rule {criteria = [InCNot . InC . Protocol $ 1, InCNot . InC . Protocol $ 2, InCNot . InC . Protocol $ 3, InCNot . InC . Protocol $ 4], targets = [PropVariableTarget 0 False]},
+     Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 0 True]},
+     Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True]},
+     Rule {criteria = [InC . Protocol $ 3], targets = [PropVariableTarget 0 True]},
+     Rule {criteria = [InC . Protocol $ 4], targets = [PropVariableTarget 0 True]},
+     Rule {criteria = [InCNot . InC . Protocol $ 6, InCNot . InC . Protocol $ 7, InCNot . InC . Protocol $ 8, InCNot . InC . Protocol $ 9], targets = [PropVariableTarget 1 False]},
+     Rule {criteria = [InC . Protocol $ 6], targets = [PropVariableTarget 1 True]},
+     Rule {criteria = [InC . Protocol $ 7], targets = [PropVariableTarget 1 True]},
+     Rule {criteria = [InC . Protocol $ 8], targets = [PropVariableTarget 1 True]},
+     Rule {criteria = [InC . Protocol $ 9], targets = [PropVariableTarget 1 True]}]
      , 2)
     (inputCriteriaToCriteria
         [

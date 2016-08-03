@@ -1,9 +1,8 @@
 import Test.HUnit
 
 import ConvertToHornTests
+import NameIdChainTests
 
 main = runTestTT tests--putStrLn "Test suite not yet implemented"
 
-tests = convertToHornTests
-
-five = TestCase $ assertEqual "5 = 5" 4 5
+tests = TestList [convertToHornTests, nameIdChainTests]

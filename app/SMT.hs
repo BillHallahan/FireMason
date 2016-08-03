@@ -3,22 +3,28 @@ module SMT where
 import System.IO
 import System.IO.Unsafe
 import System.Process
+import System.Exit
+
+import Debug.Trace
 
 
 import Types
 
 checkSat :: String -> IO Bool
 checkSat s = do
-    res <- callSMTSolver "checkSat.smt2" s
-    return (res == "sat")
+    (res, _) <- callSMTSolver "checkSat.smt2" s
+    trace ("res = " ++ res) $ return ((take 3 res) == "sat")
 
-callSMTSolver :: FilePath -> String -> IO String
+--See https://mail.haskell.org/pipermail/haskell-cafe/2007-November/035146.html
+callSMTSolver :: FilePath -> String -> IO (String, ExitCode)
 callSMTSolver f s =
     do
         writeFile f s
-        (_, Just hout, _, _) <- createProcess (proc "z3" ["temp.smt2"]){ std_out = CreatePipe }
+        (_pIn, pOut, pErr, handle) <- (runInteractiveCommand "z3 temp.smt2")
+        exitCode <- waitForProcess handle
 
-        hGetContents hout
+        out <- hGetContents pOut
+        return (out, exitCode)
 
 printSMTFunc1 :: (ToString a) => String -> a -> String
 printSMTFunc1 s x = "(" ++ s ++ " " ++ toString x ++ ")"

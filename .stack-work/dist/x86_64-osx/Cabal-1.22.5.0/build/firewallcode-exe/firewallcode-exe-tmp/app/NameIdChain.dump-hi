@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-02 02:59:41.73711 UTC
+2016-08-03 15:48:48.334629 UTC
 
 interface main@main:NameIdChain 7103
-  interface hash: 112d35035b24ae47ca2261c01df3fa51
-  ABI hash: 6195fb4e36abae14a6e3c1b0cdf0dceb
-  export-list hash: 587c46b8c3c4b153dcd3ee0ec1ca5dda
-  orphan hash: 0f6023ab2e54760971966fbcb24caa81
+  interface hash: 9fbde857bc3aff248f9603810922d47a
+  ABI hash: 32d9952b24abfbd3c2a90233f14c404e
+  export-list hash: 9c7993892ee68370ae3789d1b64d38b7
+  orphan hash: ad728967a158a55091b0de97996ab5c0
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
@@ -116,6 +116,28 @@ af41f712ba07ba31c3d88758295cf261
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
+0490bfe1c913da52ec37f16d9b3abccf
+  $smapKeys ::
+    (k1 -> GHC.Types.Int)
+    -> Data.Map.Base.Map k1 a -> Data.Map.Base.Map GHC.Types.Int a
+  {- Arity: 2, Strictness: <L,C(U)><S,1*U>,
+     Unfolding: (\ @ k1
+                   @ a
+                   f :: k1 -> GHC.Types.Int
+                   eta :: Data.Map.Base.Map k1 a ->
+                 letrec {
+                   go10 :: [(GHC.Types.Int, a)]
+                           -> Data.Map.Base.Map k1 a -> [(GHC.Types.Int, a)]
+                     {- Arity: 2, Strictness: <L,1*U><S,1*U> -}
+                   = \ z' :: [(GHC.Types.Int, a)] ds :: Data.Map.Base.Map k1 a ->
+                     case ds of wild {
+                       Data.Map.Base.Bin dt kx x l r
+                       -> go10 (GHC.Types.: @ (GHC.Types.Int, a) (f kx, x) (go10 z' r)) l
+                       Data.Map.Base.Tip -> z' }
+                 } in
+                 NameIdChain.$sfromList
+                   @ a
+                   (go10 (GHC.Types.[] @ (GHC.Types.Int, a)) eta)) -}
 a4ad91a96a42849e020e6cadaa36c5dc
   $w$sgo10 ::
     GHC.Prim.Int#
@@ -155,20 +177,23 @@ fd17031c2e59b45b33a248ad8efbcc22
     -> GHC.Prim.Int#
     -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
   {- Arity: 2, Strictness: <S,U><L,U>, Inline: [0] -}
-3c5c2d5d713fd32182b476b32fdc3871
+2405f6b08a1d9ede7026206d10b1b406
   increaseIndexes ::
     Types.IdNameChain -> GHC.Types.Int -> Types.IdNameChain
-  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)>,
-     Unfolding: InlineRule (2, True, False)
-                (\ x :: Types.IdNameChain j :: GHC.Types.Int ->
-                 Data.Map.Base.map
-                   @ (GHC.Base.String, Types.Chain)
-                   @ (GHC.Base.String, Types.Chain)
+  {- Arity: 2, Strictness: <S,1*U><L,U(U)>,
+     Unfolding: (\ x :: Types.IdNameChain j :: GHC.Types.Int ->
+                 NameIdChain.$smapKeys
                    @ GHC.Types.Int
-                   (\ ds :: (GHC.Base.String, Types.Chain) ->
-                    case ds of wild { (,) n c ->
-                    (n, NameIdChain.increaseIndexesChain c j) })
-                   x) -}
+                   @ (GHC.Base.String, Types.Chain)
+                   (GHC.Num.$fNumInt_$c+ j)
+                   (Data.Map.Base.map
+                      @ (GHC.Base.String, Types.Chain)
+                      @ (GHC.Base.String, Types.Chain)
+                      @ GHC.Types.Int
+                      (\ ds :: (GHC.Base.String, Types.Chain) ->
+                       case ds of wild { (,) n c ->
+                       (n, NameIdChain.increaseIndexesChain c j) })
+                      x)) -}
 09352a1e4e0c14610555d694c792f6ab
   increaseIndexesChain :: Types.Chain -> GHC.Types.Int -> Types.Chain
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)> -}
@@ -336,6 +361,11 @@ c1c1cf8ac2c60449e4a41259aade4e6d
                                                     $dOrd :: GHC.Classes.Ord GHC.Types.Int
   Data.Map.Base.fromList @ GHC.Types.Int @ a $dOrd
   = NameIdChain.$sfromList @ a
+"SPEC/NameIdChain mapKeys _ @ Int _" [ALWAYS] forall @ k1
+                                                     @ a
+                                                     $dOrd :: GHC.Classes.Ord GHC.Types.Int
+  Data.Map.Base.mapKeys @ k1 @ GHC.Types.Int @ a $dOrd
+  = NameIdChain.$smapKeys @ k1 @ a
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

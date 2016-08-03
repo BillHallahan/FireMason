@@ -117,7 +117,8 @@ instance ToSMT Criteria where
 
 
 instance ToSMT [Target] where 
-    toSMT _ _ _ = ""
+    toSMT [] ch r = ""
+    toSMT (t:ts) ch r = toSMT t ch r ++ toSMT ts ch r
 
     toSMTPath [] ch r = ""
     toSMTPath (t:[]) ch r = toSMTPath t ch r
@@ -128,6 +129,8 @@ instance ToSMT [Target] where
     toSMTNotPath (t:ts) ch r = printSMTFunc2 "and" (toSMTNotPath t ch r) (toSMTNotPath ts ch r)
 
 instance ToSMT Target where 
+    toSMT ACCEPT _ _ = "ACCEPT"
+    toSMT DROP _ _ = "DROP"
     toSMT _ _ _ = ""
 
     toSMTPrereq (PropVariableTarget i _) = ["(declare-fun v" ++ show i ++ " (Int) Bool)"]

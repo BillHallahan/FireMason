@@ -57,7 +57,7 @@ pathSimplificationTarget t _ _ _ = (t, Map.empty)
 --nameIdChainWithId n i = find (\x -> ids x == i) n
 
 increaseIndexes :: IdNameChain -> Int -> IdNameChain
-increaseIndexes x j = Map.map (\(n, c) -> (n, increaseIndexesChain c j)) x--NameIdChain n (i + j) (increaseIndexesChain c j):increaseIndexes nx j
+increaseIndexes x j = Map.mapKeys (j +) $ Map.map (\(n, c) -> (n, increaseIndexesChain c j)) x
 
 increaseIndexesChain :: Chain -> Int -> Chain
 increaseIndexesChain [] _ = []
@@ -75,7 +75,7 @@ reduceReferenced x i =
     (n, c) = MB.fromJust $ Map.lookup i x
     t = targetsToChainIds . concat $ map (\x -> targets x) c
     in
-    Map.union (foldr1 (Map.union) (map (reduceReferenced x) t)) (Map.fromList [(i, (n, c))])
+    Map.union (foldr (Map.union) Map.empty (map (reduceReferenced x) t)) (Map.fromList [(i, (n, c))])
 
 maxId :: IdNameChain -> Int
 maxId x = maximum . Map.keys $ x
