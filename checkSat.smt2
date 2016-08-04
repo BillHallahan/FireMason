@@ -1,0 +1,225 @@
+;When being used, make sure to initialize the following correctly:
+;num-of-packets
+;num-of-chains
+;chain-length
+
+(declare-datatypes () ((Target ACCEPT DROP RETURN (GO (chain Int) (rule Int)) NONE)))
+
+(declare-fun matches-criteria (Int Int Int) Bool)
+(declare-fun rule-target (Int Int) Target)
+(declare-fun reaches (Int Int Int) Bool)
+(declare-fun reaches-return (Int Int) Bool)
+(declare-fun reaches-end (Int Int) Bool)
+(declare-fun returns-from (Int Int) Bool)
+
+(declare-const num-of-packets Int)
+(declare-const num-of-chains Int)
+(declare-fun chain-length (Int) Int)
+(declare-fun terminates-with (Int) Target)
+
+(define-fun valid-packet ((p Int)) Bool
+    (and (<= 0 p) (< p num-of-packets)))
+
+(define-fun valid-chain ((c Int)) Bool
+    (and (<= 0 c) (< c num-of-chains))
+)
+
+(define-fun valid-rule ((c Int) (r Int)) Bool
+    (and 
+        (valid-chain c)
+        (<= 0 r)
+        (< r (chain-length c))
+    )
+)
+
+(define-fun matches-rule((p Int) (c Int) (r Int)) Bool
+   (and (valid-rule c r) (valid-packet p) (matches-criteria p c r) (reaches p c r)))
+
+(define-fun terminating ((t Target)) Bool 
+    (or (= t ACCEPT) (= t DROP))
+)
+
+(define-fun terminates-at ((p Int) (c Int) (r Int)) Bool
+    (and (matches-rule p c r) (terminating (rule-target c r))))
+
+(define-fun isGo ((t Target)) Bool
+    (exists ((a Int) (b Int)) (= t (GO a b)))
+)
+
+(define-fun top-level-chain ((c Int)) Bool
+    (forall ((c2 Int) (r Int)) 
+        (=> 
+            (and (valid-rule c2 r) (isGo (rule-target c2 r)))
+            (not (= c (chain (rule-target c2 r))))
+        )
+    )
+)
+
+(assert 
+    (forall ((p Int) (c1 Int) (c2 Int)) 
+        (=> 
+            (and (not (= c1 c2)) (valid-packet p) (valid-chain c1) (valid-chain c2) (top-level-chain c1) (top-level-chain c2) (reaches p c1 0)) 
+            (not (reaches p c2 0))
+        )
+    )
+)
+
+;These two rules enforce that a packet can only reach up to the end of a chain, not past it,
+;and that it must reach rule (r - 1) to reach rule r
+
+(assert (forall ((c Int) (p Int)) (=> 
+    (and (valid-chain c) (valid-packet p)) 
+    (not (reaches p c (+ (chain-length c) 1)))
+)))
+
+(assert (forall ((c Int) (r Int) (p Int)) (=> 
+    (and (valid-rule c r) (valid-packet p) (<= 1 r) (reaches p c r))
+    (reaches p c (- r 1))
+)))
+
+(assert (forall ((c Int) (r Int) (p Int)) (=> 
+    (and (valid-rule c r) (valid-packet p) (reaches p c r) (not (matches-criteria p c r))) 
+    (reaches p c (+ r 1))
+)))
+
+(assert (forall ((c Int) (p Int)) (= 
+    (and (valid-chain c) (valid-packet p) (reaches p c (chain-length c)))
+    (reaches-end p c)
+)))
+
+(assert (forall ((c Int) (p Int)) (=> 
+    (and (valid-packet p) (valid-chain c))
+    (= (or (reaches-return p c) (reaches-end p c)) (returns-from p c))
+)))
+
+
+
+;if we reach and match to the rule of a terminating target, we don't go to any new rules
+(assert 
+    (forall ((p Int) (c Int) (r Int)) 
+        (=> 
+            (and (matches-rule p c r) (terminating (rule-target c r))) 
+            (and (not (reaches p c (+ r 1))) (= (terminates-with p) (rule-target c r)))
+        )
+    )
+)
+
+;if we reach and match to the rule of a RETURN target, we don't go to any new rules
+(assert 
+    (forall ( (p Int) (c Int) (r Int)) 
+        (=>
+            (and (matches-rule p c r) (= (rule-target c r) RETURN))
+            (and (reaches-return p c) (not (reaches p c (+ r 1))))
+        )
+    )
+)
+
+;This is for when a rule matches and jumps to another chain
+(assert
+    (forall ((p Int) (c Int) (r Int))
+        (=>
+            (and (matches-rule p c r) (isGo (rule-target c r)))
+            (and
+                ;We go to the appropriate rule in the new chain
+                (reaches p (chain (rule-target c r)) (rule (rule-target c r)))
+                ;If we don't return from the new chain, we don't continue in the old chain
+                (= (returns-from p (chain (rule-target c r))) (reaches p c (+ r 1)))
+            )
+        )
+    )
+)
+
+;This is for when a rule does not match but would jump to another chain if it did
+(assert
+    (forall ((p Int) (c Int) (r Int))
+        (=>
+            (and (not (matches-rule p c r)) (isGo (rule-target c r)))
+            (not (reaches p (chain (rule-target c r)) (rule (rule-target c r))))
+        )
+    )
+)(assert (= num-of-packets 2))
+(assert (= (chain-length 0) 2))(assert (= (chain-length 1) 6))(assert (= (chain-length 2) 1))(assert (= (chain-length 3) 0))(assert (= (chain-length 4) 3))(assert (= (chain-length 5) 6))(assert (= (chain-length 6) 1))(assert (= (chain-length 7) 0))
+(assert (= num-of-chains 8))
+(declare-fun destination_port () Int)
+(assert (<= 0 destination_port))
+(assert (<= destination_port 65535))
+(declare-fun source_port () Int)
+(assert (<= 0 source_port))
+(assert (<= source_port 65535))
+(declare-fun v1 (Int) Bool)
+(declare-fun protocol () Int)
+(assert (<= 0 protocol))
+(assert (<= protocol 255))
+
+(assert (= (rule-target 0 0) DROP))
+
+(assert (= (rule-target 0 1) (GO 1 0)))
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 1 0)) (not (v1 p)))))
+(assert (= (rule-target 1 0) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 1 1)) (v1 p))))
+(assert (= (rule-target 1 1) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 1 2)) (v1 p))))
+(assert (= (rule-target 1 2) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 1 3)) (v1 p))))
+(assert (= (rule-target 1 3) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 1 4)) (v1 p))))
+(assert (= (rule-target 1 4) NONE))
+
+(assert (= (rule-target 1 5) DROP))
+
+(assert (= (rule-target 2 0) DROP))
+
+
+(assert (= (rule-target 4 0) ACCEPT))
+
+(assert (= (rule-target 4 1) DROP))
+
+(assert (= (rule-target 4 2) (GO 5 0)))
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 5 0)) (not (v1 p)))))
+(assert (= (rule-target 5 0) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 5 1)) (v1 p))))
+(assert (= (rule-target 5 1) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 5 2)) (v1 p))))
+(assert (= (rule-target 5 2) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 5 3)) (v1 p))))
+(assert (= (rule-target 5 3) NONE))
+
+(assert (forall ((p Int)) (=> (and (valid-packet p) (matches-rule p 5 4)) (v1 p))))
+(assert (= (rule-target 5 4) NONE))
+
+(assert (= (rule-target 5 5) DROP))
+
+(assert (= (rule-target 6 0) DROP))
+
+
+
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 78) (matches-criteria p 0 0)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 0 1))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (not (= source_port 7)) (and (not (= source_port 8)) (and (not (= destination_port 7)) (not (= destination_port 8))))) (matches-criteria p 1 0)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 7) (matches-criteria p 1 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 8) (matches-criteria p 1 2)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 7) (matches-criteria p 1 3)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 8) (matches-criteria p 1 4)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (v1 p) (matches-criteria p 1 5)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (not (= protocol 4)) (matches-criteria p 2 0)))))
+
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 1) (and (= destination_port 45) (not (= source_port 90)))) (matches-criteria p 4 0)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 78) (matches-criteria p 4 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 4 2))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (not (= source_port 7)) (and (not (= source_port 8)) (and (not (= destination_port 7)) (not (= destination_port 8))))) (matches-criteria p 5 0)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 7) (matches-criteria p 5 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 8) (matches-criteria p 5 2)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 7) (matches-criteria p 5 3)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 8) (matches-criteria p 5 4)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (v1 p) (matches-criteria p 5 5)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (not (= protocol 4)) (matches-criteria p 6 0)))))
+
+(assert (reaches 0 0 0))(assert (reaches 0 4 0))(assert (not (and (or (= (terminates-with 0) (terminates-with 1)) (and (= protocol 1) (and (= destination_port 45) (not (= source_port 90))))) (=> (and (= protocol 1) (and (= destination_port 45) (not (= source_port 90)))) (= (terminates-with 1) ACCEPT)))))(check-sat)
+(get-model)

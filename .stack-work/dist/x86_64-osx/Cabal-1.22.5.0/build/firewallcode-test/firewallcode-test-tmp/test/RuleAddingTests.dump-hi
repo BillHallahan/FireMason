@@ -1,0 +1,1336 @@
+
+==================== FINAL INTERFACE ====================
+2016-08-04 18:30:06.170581 UTC
+
+interface main@main:RuleAddingTests 7103
+  interface hash: ee5f701627e6d743d80c04e7eea1d2a7
+  ABI hash: b8cee72190bbeb6ffe007e21792a618b
+  export-list hash: de69826243c1cafe7b92403929fe36c6
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 768efad6ceab0d9cfe2bb912c6118be4
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  RuleAddingTests.ruleAddingTests
+  RuleAddingTests.scoreCriteriaListTest1
+  RuleAddingTests.scoreCriteriaListTest10
+  RuleAddingTests.scoreCriteriaListTest2
+  RuleAddingTests.scoreCriteriaListTest3
+  RuleAddingTests.scoreCriteriaListTest4
+  RuleAddingTests.scoreCriteriaListTest5
+  RuleAddingTests.scoreCriteriaListTest6
+  RuleAddingTests.scoreCriteriaListTest7
+  RuleAddingTests.scoreCriteriaListTest8
+  RuleAddingTests.scoreCriteriaListTest9
+module dependencies: ChainsToSMT2 NameIdChain ParserHelp RuleAdding
+                     SMT Types
+package dependencies: HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0 process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
+                      split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE
+                      unix-2.7.1.0@unix_KZL8h98IqDM57kQSPo1mKx
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit d58e5f70f93d158130fd424e61ba73e8
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Base 3fa8f8d2179caf234ea001207f41fb0c
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  RuleAdding 65e5aa51d4fb75ea8d48ee4347add8a9
+  exports: 6760121fddc5c0c42a24aba430e1368c
+  scoreCriteriaList aedb372811c43ca00e55b90ec3812815
+import  -/  Types c46a0be4cd8ade8ba26fecb677a7621f
+  exports: b337d79f64478d90b066d0db54c4845e
+  Destination 922d80ba258cc0a086584d38ca75ebef
+  Not 4c108d6b8d28d69ef551773a5b7fd604
+  Port 7fac22dbdd5e01d480bf117c22f09521
+  Protocol fe7579db3bf10f763094c06a95c77cb8
+  Source b53eb4518fedc84d30c0b4327bd32c7d
+2d219829d81b1992c1ef563ac3cad479
+  ruleAddingTests :: Test.HUnit.Base.Test
+  {- Strictness: m2,
+     Unfolding: (Test.HUnit.Base.TestList
+                   RuleAddingTests.ruleAddingTests1) -}
+3e354586ae39dd27c4d387aaa5737633
+  ruleAddingTests1 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests29
+                   RuleAddingTests.ruleAddingTests2) -}
+6837301563d777b164ee570a841caca7
+  ruleAddingTests10 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests11
+                   (GHC.Types.[] @ Test.HUnit.Base.Test)) -}
+c5e4b54e1a864385bcf75c599616e765
+  ruleAddingTests11 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests12
+                   RuleAddingTests.scoreCriteriaListTest10) -}
+7cdce0d6b8fc661c188461c8f2cb642b
+  ruleAddingTests12 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "scoreCriteriaList10"#) -}
+3392d01d77783a8ea8aff90f375e2734
+  ruleAddingTests13 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests14
+                   RuleAddingTests.scoreCriteriaListTest9) -}
+2275fe8c99a900c9bd22880c2b168e58
+  ruleAddingTests14 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList9"#) -}
+9ed8d4e2a3a8d068e98535e1011ff952
+  ruleAddingTests15 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests16
+                   RuleAddingTests.scoreCriteriaListTest8) -}
+6efbbdcdcb6f0389015be7ec0ed3aa86
+  ruleAddingTests16 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList8"#) -}
+c6810efc57792976a9515e3f99ad342c
+  ruleAddingTests17 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests18
+                   RuleAddingTests.scoreCriteriaListTest7) -}
+e9667d215a5af5368b2c0aaba30eb2af
+  ruleAddingTests18 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList7"#) -}
+76c9b68818636f906bec96c18a1fce8a
+  ruleAddingTests19 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests20
+                   RuleAddingTests.scoreCriteriaListTest6) -}
+9cd9e9ab31fa93211a255dee182bad05
+  ruleAddingTests2 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests27
+                   RuleAddingTests.ruleAddingTests3) -}
+004b378fa14484fa40eecd5068b5475a
+  ruleAddingTests20 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList6"#) -}
+d04b132668fd5dcc75ce9a9131de6cc9
+  ruleAddingTests21 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests22
+                   RuleAddingTests.scoreCriteriaListTest5) -}
+767179d20d94b0067c469c435701b3e0
+  ruleAddingTests22 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList5"#) -}
+e1aa618500a0f0db39d1217e9aeea4d0
+  ruleAddingTests23 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests24
+                   RuleAddingTests.scoreCriteriaListTest4) -}
+1b4731c4ea6307c43dcbb8d1827aaa66
+  ruleAddingTests24 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList4"#) -}
+dfb43f37a2cb60f2557b7f9ac3b608ce
+  ruleAddingTests25 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests26
+                   RuleAddingTests.scoreCriteriaListTest3) -}
+2a576e04df8facf4aaa996bf65470914
+  ruleAddingTests26 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList3"#) -}
+c0a489f49e3c0276aeacd21297ecbebb
+  ruleAddingTests27 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests28
+                   RuleAddingTests.scoreCriteriaListTest2) -}
+19df1ca79cccfe0d4f3c7728b309e6d3
+  ruleAddingTests28 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList2"#) -}
+02851e6253145bba5e22b887965c39ec
+  ruleAddingTests29 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   RuleAddingTests.ruleAddingTests30
+                   RuleAddingTests.scoreCriteriaListTest1) -}
+20b09c79bc3ac77acdebf6e170bf983d
+  ruleAddingTests3 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests25
+                   RuleAddingTests.ruleAddingTests4) -}
+2c1ed88afbd55e6cd64a50e2c3adc113
+  ruleAddingTests30 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "scoreCriteriaList1"#) -}
+66d9c1c486e888bf952ba8e105ecc537
+  ruleAddingTests4 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests23
+                   RuleAddingTests.ruleAddingTests5) -}
+89b7452d333421dae5e839a81870eec0
+  ruleAddingTests5 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests21
+                   RuleAddingTests.ruleAddingTests6) -}
+af7a4e2f27a1109f221237a59ab02760
+  ruleAddingTests6 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests19
+                   RuleAddingTests.ruleAddingTests7) -}
+1a95c0ca1519363643886ab7426ecb5a
+  ruleAddingTests7 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests17
+                   RuleAddingTests.ruleAddingTests8) -}
+6cce9ace53474749e2bf5478ff450133
+  ruleAddingTests8 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests15
+                   RuleAddingTests.ruleAddingTests9) -}
+cdc9c3dace8db8f5582bd92da1885171
+  ruleAddingTests9 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   RuleAddingTests.ruleAddingTests13
+                   RuleAddingTests.ruleAddingTests10) -}
+9c28ec9b98e5b5e2cda599d6d220e69a
+  scoreCriteriaListTest1 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest145
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+65efdfc6dcd8184d3236da97862e1360
+  scoreCriteriaListTest10 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest11
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+97b051b7cb19338cfc0dbe6a307a1146
+  scoreCriteriaListTest100 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest108
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest92
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest101
+                         RuleAddingTests.scoreCriteriaListTest83)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+934a23df116e1b321104b0a51bc5df44
+  scoreCriteriaListTest101 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest102
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+e8a199d6add45804518681be3e7dac17
+  scoreCriteriaListTest102 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest103) -}
+8a68ab82be5ea1593f07cb29f147ced2
+  scoreCriteriaListTest103 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest104) -}
+3c4bdebe333a9909aaf201e839eb0dbb
+  scoreCriteriaListTest104 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest105
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+b2cab7761852307b9729a25e7016a07b
+  scoreCriteriaListTest105 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest106)) -}
+1707189b01ab303f2550bde7eba58f33
+  scoreCriteriaListTest106 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest107
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest107
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+20c29719de14cd966d3fab9acca46c1c
+  scoreCriteriaListTest107 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 41) -}
+85b3ef8becfe27b5983078de96fab9a4
+  scoreCriteriaListTest108 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest98
+                   (GHC.Types.[] @ Types.Criteria)) -}
+ec4f1cdc4fe5e82a4929959d998edc43
+  scoreCriteriaListTest109 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest126
+                        RuleAddingTests.scoreCriteriaListTest3_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest117
+                        RuleAddingTests.scoreCriteriaListTest3_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest110
+                         RuleAddingTests.scoreCriteriaListTest83)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+4073dfd63f5cf471030cf9060116ba0f
+  scoreCriteriaListTest10_c :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest30
+                   (GHC.Types.[] @ Types.Criteria)) -}
+65e6379c175d4e430c14dfb628f4534c
+  scoreCriteriaListTest11 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest32
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest26
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest13
+                         RuleAddingTests.scoreCriteriaListTest12)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+ee1fdd3bdf736c5f1aed09e89370e621
+  scoreCriteriaListTest110 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest111
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+5f8a3e215f1c672e47c90158f2100993
+  scoreCriteriaListTest111 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest112) -}
+ab12a3c9a09f6cca4ffc60a4ab877cb9
+  scoreCriteriaListTest112 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest113) -}
+363b6a4b195f47d3d2e6b168434ccdb6
+  scoreCriteriaListTest113 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest114
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+5684c9fdd6b617f92b2561339a5ac39e
+  scoreCriteriaListTest114 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest115)) -}
+83972374811f9d8fd3f77042756a96e9
+  scoreCriteriaListTest115 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest116
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest116
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+5fa8579d07825a7ead50779118368e91
+  scoreCriteriaListTest116 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 34) -}
+26355841cdc6e9b43f84311e53627d5b
+  scoreCriteriaListTest117 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest118
+                   (GHC.Types.[] @ Types.Criteria)) -}
+c35116a79f018580312a7193ccd38024
+  scoreCriteriaListTest118 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   RuleAddingTests.scoreCriteriaListTest119) -}
+4c4e790bd5313f0c8c63102b3ae848a7
+  scoreCriteriaListTest119 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs,
+     Unfolding: (Data.Either.Right
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   RuleAddingTests.scoreCriteriaListTest120) -}
+e0052e722c848ea1c4a14143a26e76dd
+  scoreCriteriaListTest12 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "scoreCriteriaList should look inside Not's, and matching two elements, only one of which is in a Not."#) -}
+29db05579c834ee4beae1569d318fe1e
+  scoreCriteriaListTest120 :: (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs,
+     Unfolding: ((RuleAddingTests.scoreCriteriaListTest122,
+                  RuleAddingTests.scoreCriteriaListTest121)) -}
+2f915b901cb55bf12a22e27144fb3b4a
+  scoreCriteriaListTest121 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 79) -}
+6e5fde8d2eb74db4500ed0e54c16e394
+  scoreCriteriaListTest122 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 45) -}
+534a2a00b6ffdc0edf65cd57c119e716
+  scoreCriteriaListTest123 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   RuleAddingTests.scoreCriteriaListTest124) -}
+56a9e62be53aba7737f961b68016468b
+  scoreCriteriaListTest124 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   RuleAddingTests.scoreCriteriaListTest125) -}
+722e12a7d88edb2e26346e1a94b873ca
+  scoreCriteriaListTest125 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 22) -}
+8b1b793dd3ed9d18fa4f55fd96162b56
+  scoreCriteriaListTest126 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest127
+                   (GHC.Types.[] @ Types.Criteria)) -}
+7ec7cbe6f1088bd895aa37b68ee85751
+  scoreCriteriaListTest127 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Port
+                   Types.Source
+                   RuleAddingTests.scoreCriteriaListTest124) -}
+703d73ce25a397b21cb2d523d49b4d02
+  scoreCriteriaListTest128 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest3_c
+                        RuleAddingTests.scoreCriteriaListTest2_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest137
+                        RuleAddingTests.scoreCriteriaListTest2_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest130
+                         RuleAddingTests.scoreCriteriaListTest129)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+8591a053cef69ac8014e7a1a1c920926
+  scoreCriteriaListTest129 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "scoreCriteriaList should match as many constructors as similarly as possible."#) -}
+ebcd5fa9625a241361aa7d702f603970
+  scoreCriteriaListTest13 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest14
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+a92a3a002904db2e817fc74eced98993
+  scoreCriteriaListTest130 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest131
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+aec5bdd6e4570c6a7dda5183b4e19f5c
+  scoreCriteriaListTest131 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest132) -}
+138d347b737dac009bdde73a368e0d3c
+  scoreCriteriaListTest132 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest133) -}
+930210df6f863317a94b9eb2cde0a956
+  scoreCriteriaListTest133 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest134
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+88cf0edd46e361d11ffde57a3edcc819
+  scoreCriteriaListTest134 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest135)) -}
+db034714e8f0087291e17ba36b7ef4f0
+  scoreCriteriaListTest135 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest136
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest136
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+56a5d148cbf144caffa32ce6f4619f3b
+  scoreCriteriaListTest136 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 27) -}
+53d2174fe1c238aeb100008db235aa5e
+  scoreCriteriaListTest137 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest140
+                   RuleAddingTests.scoreCriteriaListTest138) -}
+2b2684ba371865de789142e5b42de0cf
+  scoreCriteriaListTest138 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest139
+                   (GHC.Types.[] @ Types.Criteria)) -}
+b17f8b5ec0c2192057ae1e6124ab5b05
+  scoreCriteriaListTest139 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest43) -}
+572bc0dec1c05a574253789b1423a184
+  scoreCriteriaListTest14 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest15) -}
+d546a9f9f74af71101dd04c8e944856a
+  scoreCriteriaListTest140 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   RuleAddingTests.scoreCriteriaListTest141) -}
+55c3ddc111f4620196b96f4a712c4f09
+  scoreCriteriaListTest141 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   RuleAddingTests.scoreCriteriaListTest142) -}
+ebaacc272cb25a6ad5a0249e04462e7e
+  scoreCriteriaListTest142 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 134) -}
+4a75a43616be42952e5bbeced3a85df0
+  scoreCriteriaListTest143 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m5,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest144) -}
+99a44493679d61a12e5d107eb44120a8
+  scoreCriteriaListTest144 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1) -}
+781093dd459aa20a8bed16d058f9ea03
+  scoreCriteriaListTest145 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest160
+                        RuleAddingTests.scoreCriteriaListTest3_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest154
+                        RuleAddingTests.scoreCriteriaListTest3_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest147
+                         RuleAddingTests.scoreCriteriaListTest146)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+a9f93c67e94680fe897c768b10880005
+  scoreCriteriaListTest146 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "scoreCriteriaList should match constructors as similarly as possible."#) -}
+d5992ddbbd16291d528b1b5b84f0d58a
+  scoreCriteriaListTest147 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest148
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+d1a83458f240b8fdc0f7cae527ea23b3
+  scoreCriteriaListTest148 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest149) -}
+1cf09e1646f2c8be9aa992cf73a82df1
+  scoreCriteriaListTest149 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest150) -}
+1e0596ab3d32866feb002d166b161a31
+  scoreCriteriaListTest15 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest16) -}
+f40ac7c90a66787426a2529079419d30
+  scoreCriteriaListTest150 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest151
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+b793c0b175ba98ffbbaa59f4c5ccd34f
+  scoreCriteriaListTest151 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest152)) -}
+d4f3073857f5319944b3015e21d12a71
+  scoreCriteriaListTest152 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest153
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest153
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+1667cba9787946f56870e2adf4f1cce8
+  scoreCriteriaListTest153 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 20) -}
+1270f06ecb063fea2437568fe34c68f0
+  scoreCriteriaListTest154 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest155
+                   (GHC.Types.[] @ Types.Criteria)) -}
+0fe5f9ab74b22f2f80e206208da1bdd2
+  scoreCriteriaListTest155 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   RuleAddingTests.scoreCriteriaListTest156) -}
+6db5964a9fd2f151cd951573bd7c1a62
+  scoreCriteriaListTest156 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs,
+     Unfolding: (Data.Either.Right
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   RuleAddingTests.scoreCriteriaListTest157) -}
+2c524e508f8c8e24cb17834ee719ed71
+  scoreCriteriaListTest157 :: (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs,
+     Unfolding: ((RuleAddingTests.scoreCriteriaListTest159,
+                  RuleAddingTests.scoreCriteriaListTest158)) -}
+6f80977e57cd78265fc66f93c594f845
+  scoreCriteriaListTest158 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 130) -}
+e0789545289cf2cf306e2def22fbc896
+  scoreCriteriaListTest159 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 24) -}
+3d5460363ffb1b204c94e25d890d88fe
+  scoreCriteriaListTest16 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest17
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+0f0ab0d96152c783e4b435f870839543
+  scoreCriteriaListTest160 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest161
+                   (GHC.Types.[] @ Types.Criteria)) -}
+06d3885e2ee2ad6d3c6bd938422537ba
+  scoreCriteriaListTest161 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest122) -}
+18f939f2207d8d3b787798138d88f4c6
+  scoreCriteriaListTest17 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest18)) -}
+957697bee736b399c8b04fb6ffe583d5
+  scoreCriteriaListTest18 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest21
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest21
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+d83f927131574bf48f0cf17fc8898da9
+  scoreCriteriaListTest19 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 26) -}
+dfc97b36ee5317504e25ce3974c97602
+  scoreCriteriaListTest2 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest128
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+3f038bb0e6d7ef1e3daddfb2b1d7f630
+  scoreCriteriaListTest20 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 16) -}
+9f637a12d73406321ebc1abe04d2c84f
+  scoreCriteriaListTest21 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 84) -}
+661faca387450ced5dcedec2a1d48298
+  scoreCriteriaListTest22 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "test/RuleAddingTests.hs"#) -}
+429c133357e4ad72bd70f50b40cf0240
+  scoreCriteriaListTest23 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "RuleAddingTests"#) -}
+d8c20fe29cb15ab45f45bf35e8d1b656
+  scoreCriteriaListTest24 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "main"#) -}
+16cc3e77aa3ab703b73ade825ab6bc52
+  scoreCriteriaListTest25 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "assertBool"#) -}
+7ae1dfce47732c794b241df5cae286d8
+  scoreCriteriaListTest26 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest27
+                   (GHC.Types.[] @ Types.Criteria)) -}
+175850158168c460c5b5e92f0bd88c69
+  scoreCriteriaListTest27 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Not RuleAddingTests.scoreCriteriaListTest28) -}
+d60823bf86e9cd25afda5abc336e7652
+  scoreCriteriaListTest28 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest29) -}
+1ea228f93bb715868170346cab8bdd48
+  scoreCriteriaListTest29 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 83) -}
+6c00e6f7815ec6e99825dd0d96d41cbd
+  scoreCriteriaListTest2_c :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest143
+                   RuleAddingTests.scoreCriteriaListTest3_c) -}
+bdb75fdde74474ad84bda30d467ae968
+  scoreCriteriaListTest3 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest109
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+dc37e6e8ca91ffc5c960365481d24ab1
+  scoreCriteriaListTest30 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m5,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest31) -}
+6a07ed7fdca1ea3753c7596483c5557e
+  scoreCriteriaListTest31 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 17) -}
+bda1e60f0d53b1476087042e4c608234
+  scoreCriteriaListTest32 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest33
+                   (GHC.Types.[] @ Types.Criteria)) -}
+a33417df60e836376661bff18c07a9a7
+  scoreCriteriaListTest33 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   RuleAddingTests.scoreCriteriaListTest34) -}
+29711d7125c204dd9863341949911337
+  scoreCriteriaListTest34 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   RuleAddingTests.scoreCriteriaListTest35) -}
+f045cf2200effd13448e88227e96300b
+  scoreCriteriaListTest35 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 4) -}
+ff1eb6471d88704f7c74ab2fe6400140
+  scoreCriteriaListTest36 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest32
+                        RuleAddingTests.scoreCriteriaListTest9_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest44
+                        RuleAddingTests.scoreCriteriaListTest9_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest37
+                         RuleAddingTests.scoreCriteriaListTest12)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+7b11d77526cbee27d067697af952c13a
+  scoreCriteriaListTest37 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest38
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+ea4e305a7fb2573246a96c849f68fd92
+  scoreCriteriaListTest38 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest39) -}
+7ae82303eb30282f96385b77d9e91b05
+  scoreCriteriaListTest39 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest40) -}
+edf2c8a1593a1c6a4941cd7b924d51d2
+  scoreCriteriaListTest3_c :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest123
+                   (GHC.Types.[] @ Types.Criteria)) -}
+51ae4775e5a68b3fd27851965d46ee10
+  scoreCriteriaListTest4 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest100
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+9700c769793ace2de5729e442e5a5f87
+  scoreCriteriaListTest40 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest41
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+8b51757c730da4cff39bdc4ccb1531ea
+  scoreCriteriaListTest41 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest42)) -}
+c859581f532a30cb450c15b21d7804b5
+  scoreCriteriaListTest42 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest43
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest43
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+769858598e87c130b4924776a7b3ea93
+  scoreCriteriaListTest43 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 77) -}
+596dae4cb416d4752eb0be77881181a7
+  scoreCriteriaListTest44 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest28
+                   (GHC.Types.[] @ Types.Criteria)) -}
+ae2a0ba24d0c4de77c9caaec2212b7c9
+  scoreCriteriaListTest45 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Types.Not RuleAddingTests.scoreCriteriaListTest30) -}
+ab57442baa301e3acde7d3e3be33b6c5
+  scoreCriteriaListTest46 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest9_c
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest44
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest48
+                         RuleAddingTests.scoreCriteriaListTest47)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+c76e7199bf329f16b2ec0166c9053c05
+  scoreCriteriaListTest47 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "scoreCriteriaList should look inside Not's, but favor matching two elements that are both not in Not's."#) -}
+0d28c842506fb50c3a8976e8d3ebf855
+  scoreCriteriaListTest48 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest49
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+78036bd4eb1efbd5124184a6ed47d04c
+  scoreCriteriaListTest49 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest50) -}
+6e3865b7ee90bd0e90ef37c587143a49
+  scoreCriteriaListTest5 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest82
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+e4f4495163f448af66e381d6c2905317
+  scoreCriteriaListTest50 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest51) -}
+7d5d0955599cec0dc01471a848025e8f
+  scoreCriteriaListTest51 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest52
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+79622499d2eb43c442b5b8eb5efdbb00
+  scoreCriteriaListTest52 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest53)) -}
+3b17cd4004b5ecf21dee40e61356be8c
+  scoreCriteriaListTest53 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest54
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest54
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+e53fd38c55f992e1b50b6f8dc48ec00d
+  scoreCriteriaListTest54 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 69) -}
+634834930e9d7f48e5a008c2f0cd1841
+  scoreCriteriaListTest55 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest10_c
+                        RuleAddingTests.scoreCriteriaListTest9_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest26
+                        RuleAddingTests.scoreCriteriaListTest9_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest57
+                         RuleAddingTests.scoreCriteriaListTest56)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+713e2aa17e697efd6f766eed373e5406
+  scoreCriteriaListTest56 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "scoreCriteriaList should look inside Not's, and favor matching two elements that are both in Not's."#) -}
+177e8f30bd04c135b6abe0e94e054bbe
+  scoreCriteriaListTest57 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest58
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+db75c0b609e6ec0ae6296d71dcd7ca5a
+  scoreCriteriaListTest58 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest59) -}
+604b1fdb4d36f2a308df3ad74ffb8f27
+  scoreCriteriaListTest59 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest60) -}
+d5fd74ed01dc445f30a6a33fc2affa6c
+  scoreCriteriaListTest5_c :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest30
+                   RuleAddingTests.scoreCriteriaListTest96) -}
+a84c14aa218d0f48c6590d070936b31a
+  scoreCriteriaListTest6 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest64
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+d5c28b2ec3abff4f672f3744d14737fe
+  scoreCriteriaListTest60 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest61
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+bd3961b16b47eb5c6325622e6643a768
+  scoreCriteriaListTest61 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest62)) -}
+4d3d5cb0e8102df993056bdab6baeb9a
+  scoreCriteriaListTest62 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest63
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest63
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+695d2092c3e535c8c6656b00d25cec95
+  scoreCriteriaListTest63 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 62) -}
+c6ce177b83b80089912a7ef0da759754
+  scoreCriteriaListTest64 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest76
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest73
+                        RuleAddingTests.scoreCriteriaListTest10_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest66
+                         RuleAddingTests.scoreCriteriaListTest65)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+35e43ca38ce020fbbc4b07e8bea25590
+  scoreCriteriaListTest65 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "scoreCriteriaList should favor lists without extra constructors."#) -}
+b1b55b181639518b3456d3c721b5c359
+  scoreCriteriaListTest66 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest67
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+8162c2420f989408735a79327e10b3db
+  scoreCriteriaListTest67 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest68) -}
+dbb8c0766963ce3b77aaee9a3f2be85f
+  scoreCriteriaListTest68 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest69) -}
+2d5b4849d1d47b4dc533ac720e13da60
+  scoreCriteriaListTest69 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest70
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+86c0d5e02570d23bf5bd11ddcc148686
+  scoreCriteriaListTest7 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest55
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+feaac2553bafd4e1d6baed1804aeff2f
+  scoreCriteriaListTest70 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest71)) -}
+a72b2c30aaf6867ab6dc5d750cfcff2d
+  scoreCriteriaListTest71 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest72
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest72
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+8072173224f14fc4716b5d3d23f71655
+  scoreCriteriaListTest72 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 55) -}
+464a1db507937e7063941a2572225152
+  scoreCriteriaListTest73 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest74
+                   (GHC.Types.[] @ Types.Criteria)) -}
+f8dd732d66bc8b00abd607086249c223
+  scoreCriteriaListTest74 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest75) -}
+8b199ca0ba39e19e2878b1263f5e746f
+  scoreCriteriaListTest75 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 123) -}
+84d3983ca2e6ba2c3af838c2b7c8a586
+  scoreCriteriaListTest76 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest81
+                   RuleAddingTests.scoreCriteriaListTest77) -}
+b8701ee9466126c863c371b5661d0d8a
+  scoreCriteriaListTest77 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest78
+                   (GHC.Types.[] @ Types.Criteria)) -}
+f0fefda2c2dee5eb5d297c7b5b805e1c
+  scoreCriteriaListTest78 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Port
+                   Types.Source
+                   RuleAddingTests.scoreCriteriaListTest79) -}
+087d3a4bbeff560731da30d5461c258a
+  scoreCriteriaListTest79 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   RuleAddingTests.scoreCriteriaListTest80) -}
+4a7f060d62df51917e7cdca9acfdfbc3
+  scoreCriteriaListTest8 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest46
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+0fd33df75522218cba95bc8dfcb12efe
+  scoreCriteriaListTest80 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 156) -}
+9d875c26f3a18ccad24bb6b6ca5a33c7
+  scoreCriteriaListTest81 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest20) -}
+6733e356a64351afb61864ddd2e0eaac
+  scoreCriteriaListTest82 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ eta2 :: GHC.Prim.State#
+                             GHC.Prim.RealWorld[OneShot] ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest97
+                        RuleAddingTests.scoreCriteriaListTest5_c of ww { DEFAULT ->
+                 case RuleAdding.$wscoreCriteriaList
+                        RuleAddingTests.scoreCriteriaListTest91
+                        RuleAddingTests.scoreCriteriaListTest5_c of ww1 { DEFAULT ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<# ww ww1) of wild {
+                   GHC.Types.False
+                   -> (RuleAddingTests.scoreCriteriaListTest84
+                         RuleAddingTests.scoreCriteriaListTest83)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        eta2
+                   GHC.Types.True -> (# eta2, GHC.Tuple.() #) } } }) -}
+8c7f7e5ce1c123320748b404570a0728
+  scoreCriteriaListTest83 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "Given otherwise identical constructors, scoreCriteriaList should match parameters as similarly as possible, generally left to right."#) -}
+ea3cb905ea0c9ab4932939d5f0e447d1
+  scoreCriteriaListTest84 ::
+    GHC.Base.String -> Test.HUnit.Lang.Assertion
+  {- Unfolding: (Test.HUnit.Lang.assertFailure
+                   RuleAddingTests.scoreCriteriaListTest85
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))) -}
+ac5150f0ffe937b23c6b782a989a2384
+  scoreCriteriaListTest85 :: GHC.Stack.CallStack
+  {- Unfolding: (GHC.Stack.CallStack
+                   RuleAddingTests.scoreCriteriaListTest86) -}
+e2259afaac3048f779a650e1e2299d18
+  scoreCriteriaListTest86 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   Test.HUnit.Base.$fAssertableBool11
+                   RuleAddingTests.scoreCriteriaListTest87) -}
+96695533f5f3493f02b40fd2522b5c88
+  scoreCriteriaListTest87 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   RuleAddingTests.scoreCriteriaListTest88
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+ce5b53a5fbbaf541bea8c4059cf996b5
+  scoreCriteriaListTest88 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Unfolding: ((RuleAddingTests.scoreCriteriaListTest25,
+                  RuleAddingTests.scoreCriteriaListTest89)) -}
+92856529e4de68d5f6e83c26977d1787
+  scoreCriteriaListTest89 :: GHC.SrcLoc.SrcLoc
+  {- Unfolding: (GHC.SrcLoc.SrcLoc
+                   RuleAddingTests.scoreCriteriaListTest24
+                   RuleAddingTests.scoreCriteriaListTest23
+                   RuleAddingTests.scoreCriteriaListTest22
+                   RuleAddingTests.scoreCriteriaListTest90
+                   RuleAddingTests.scoreCriteriaListTest20
+                   RuleAddingTests.scoreCriteriaListTest90
+                   RuleAddingTests.scoreCriteriaListTest19) -}
+bd0913f3f3a8f351889e0b012335c864
+  scoreCriteriaListTest9 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   RuleAddingTests.scoreCriteriaListTest36
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+4461784e588115ffe96d108b17572f7b
+  scoreCriteriaListTest90 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 48) -}
+e38a62df7278885b30c3876e3ddd7cf1
+  scoreCriteriaListTest91 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest93
+                   RuleAddingTests.scoreCriteriaListTest92) -}
+716bef1bbff2189e71ee1096f7115582
+  scoreCriteriaListTest92 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest81
+                   (GHC.Types.[] @ Types.Criteria)) -}
+89126b77d5a51354dd0f69474ea68ef3
+  scoreCriteriaListTest93 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   RuleAddingTests.scoreCriteriaListTest94) -}
+73d4eeace48d3c1391fefe2e01339f0d
+  scoreCriteriaListTest94 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   RuleAddingTests.scoreCriteriaListTest95) -}
+3469bf890a2a4f93ed6f2f8e6b49ba0e
+  scoreCriteriaListTest95 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 56) -}
+da55094e7e553881b31441f05ac453c8
+  scoreCriteriaListTest96 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest93
+                   (GHC.Types.[] @ Types.Criteria)) -}
+37f6c4e8c266ff87b09e3a06e44f5271
+  scoreCriteriaListTest97 :: [Types.Criteria]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest98
+                   RuleAddingTests.scoreCriteriaListTest96) -}
+4f8f1cfb2ae1a617d08a31ed80c19a29
+  scoreCriteriaListTest98 :: Types.Criteria
+  {- HasNoCafRefs,
+     Unfolding: (Types.Protocol
+                   RuleAddingTests.scoreCriteriaListTest99) -}
+66c322d7c9dc9a379ecf18b53484eca1
+  scoreCriteriaListTest99 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 15) -}
+d6500d2df093b5ffecb70b56faa8b080
+  scoreCriteriaListTest9_c :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   RuleAddingTests.scoreCriteriaListTest45
+                   (GHC.Types.[] @ Types.Criteria)) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+
