@@ -18,6 +18,16 @@ data Criteria = Not Criteria
                 | Protocol Int
                 | SC String deriving (Eq, Show)
 
+
+isStateless :: Criteria -> Bool
+isStateless (Not c) = isStateless c
+isStateless (Port _ _) = True
+isStateless (Protocol _) = True
+isStateless (SC _) = True
+
+isStateful :: Criteria -> Bool
+isStateful c = not . isStateless $ c
+
 data Endpoint = Source | Destination deriving (Eq, Show)
 
 --type  InputCriteria = Criteria

@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-04 14:42:20.016412 UTC
+2016-08-04 18:49:56.831826 UTC
 
 interface main@main:NameIdChain 7103
-  interface hash: f7d8cfddf1cb48f66e885c984120942f
-  ABI hash: da4eddb39ecdd1d7fadcbcd2349153a0
+  interface hash: a28fbbf366be9075005b6742037c028b
+  ABI hash: 344c53e300d98c0a14be5ecc25dd6174
   export-list hash: 9c7993892ee68370ae3789d1b64d38b7
   orphan hash: ad728967a158a55091b0de97996ab5c0
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -43,16 +43,16 @@ import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
-import  -/  Types c46a0be4cd8ade8ba26fecb677a7621f
-  exports: b337d79f64478d90b066d0db54c4845e
-  Chain 1c1e925b4f3abcc0f7c08b46942e8c49
+import  -/  Types 07deaa85949e0404125659b7da182fb1
+  exports: 308a8e9ef15b1d0368eef76fcb360a92
+  Chain a954734d411b95e71008d4bd63a0bf9c
   Go 467ad786388eaea7566ab2e69ee226ea
-  IdNameChain 2ee05852ac1e913c731d0f9795d18c00
+  IdNameChain b3fb6d734a0a6400fb959a050b6e3e62
   Jump f0e0eef53bcd979c5769895fa291bd1c
-  Rule 740435491b4ac8b41eeacf73bdfac641
+  Rule 8d9cf447e21b08fbe9de4980b6719bce
   Target 96fab3e40e346c4a445f4966317f4361
-  criteria a3b943de0a8a343a11062bf6bb2223d9
-  targets 83ac0a795aeb9de7ff0b2423b634fd3f
+  criteria 9e1415da147b27a484efb51d5dca829c
+  targets 56ea84577ec4f878c135413eaae475c5
   targetsToChainIds 7fbc1449d86dc559dd9f8d12eb962ada
 76f6b42f1f9f551d150e9dc186722d54
   $sfromList ::
@@ -145,14 +145,14 @@ a4ad91a96a42849e020e6cadaa36c5dc
     -> Data.Map.Base.Map GHC.Types.Int a1
     -> Data.Map.Base.Map GHC.Types.Int a1
   {- Arity: 3, Strictness: <L,U><L,U><S,1*U>, Inline: [0] -}
-83a730b6fe45eb8f3d38d56b249be84c
+3da8084a78a94c233c0f9fd61167ac58
   $wpathSimplificationChain ::
     Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> GHC.Types.Int
     -> (# Types.Chain, Types.IdNameChain #)
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>, Inline: [0] -}
-3b54f13bc15b834aa5339aa013908b43
+af7244ca721477015edc0ac29888378d
   $wpathSimplificationTargets ::
     [Types.Target]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -171,13 +171,13 @@ f055d12426795aee5c0da9921d790578
     -> [(GHC.Types.Int, a)]
     -> Data.Map.Base.Map GHC.Types.Int a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-e146631c8c859340eddf2e7282866efe
+21d34073c3b31d4258049a42a710c1c6
   $wreduceReferenced ::
     Types.IdNameChain
     -> GHC.Prim.Int#
     -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
   {- Arity: 2, Strictness: <S,U><L,U>, Inline: [0] -}
-f702f8afd821caed1f1a2075066d63d4
+05c63abba5778af826ab76815094280b
   increaseIndexes ::
     Types.IdNameChain -> GHC.Types.Int -> Types.IdNameChain
   {- Arity: 2, Strictness: <S,1*U><L,U(U)>,
@@ -194,7 +194,7 @@ f702f8afd821caed1f1a2075066d63d4
                        case ds of wild { (,) n c ->
                        (n, NameIdChain.increaseIndexesChain c j) })
                       x)) -}
-ef283382a849f70a7c2d93f23adb31ac
+7151cf8585d766fea1a012c1b5c3d2b7
   increaseIndexesChain :: Types.Chain -> GHC.Types.Int -> Types.Chain
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)> -}
 a2dc20460dcc513ac89ed17d400cb94d
@@ -206,7 +206,7 @@ a2dc20460dcc513ac89ed17d400cb94d
                  case ds of wild {
                    DEFAULT -> wild
                    Types.Go c r -> Types.Go (GHC.Num.$fNumInt_$c+ c i) r }) -}
-69b844d5c67c58431841bbf7005f4556
+fc52e9f7a18255aa7444bbaf811c4070
   maxId :: Types.IdNameChain -> GHC.Types.Int
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -220,7 +220,7 @@ a2dc20460dcc513ac89ed17d400cb94d
                       @ (GHC.Base.String, Types.Chain)
                       (GHC.Types.[] @ GHC.Types.Int)
                       x)) -}
-cad0446a6572e9043856ffb8fd5de2e6
+694bb36f7c5d67a80d3b53f372f4bc2d
   pathSimplification ::
     Data.Map.Base.Map GHC.Base.String Types.Chain -> Types.IdNameChain
   {- Arity: 1, Strictness: <L,U>,
@@ -237,7 +237,7 @@ cad0446a6572e9043856ffb8fd5de2e6
                       NameIdChain.pathSimplification2)
                    m
                    NameIdChain.pathSimplification1) -}
-5355b818f5507a35d512909560761463
+ee614a5ea5d6189713f6fa0ea33baff3
   pathSimplification' ::
     [(GHC.Base.String, Types.Chain)]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -277,7 +277,7 @@ df5c533af57a9e0eef9a1c287614be95
 bae3459e96e6702704aba2682633120e
   pathSimplification7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "INPUT"#) -}
-9f5e1f7defd1a29109b77476e85cdb6b
+61790aa55764b00a30371e2b323df8e8
   pathSimplificationChain ::
     Types.Chain
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -296,7 +296,7 @@ bae3459e96e6702704aba2682633120e
                         w1
                         w2 of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-de02b8272413cd220d49aec1d0b59692
+8b5f57fa2eca1ca44b5bcd26054ef785
   pathSimplificationTarget ::
     Types.Target
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -330,7 +330,7 @@ de02b8272413cd220d49aec1d0b59692
                          w1
                          (case w2 of wild1 { GHC.Types.I# x ->
                           GHC.Types.I# (GHC.Prim.+# x 1) })) }) -}
-56912cbe6c267bf39f5b730496d26bc4
+56d5805a53416d1a6c9fc14a2f4cfd7d
   pathSimplificationTargets ::
     [Types.Target]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
@@ -349,7 +349,7 @@ de02b8272413cd220d49aec1d0b59692
                         w1
                         w2 of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-98ea59cb3b6670bf5f5cb74bb891d394
+3783bbd2a33b356f60e6f1afde2d194e
   reduceReferenced ::
     Types.IdNameChain -> GHC.Types.Int -> Types.IdNameChain
   {- Arity: 2, Strictness: <S,U><S,U(U)>, Inline: INLINE[0],
