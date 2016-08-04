@@ -94,12 +94,12 @@ parseSpecificationCriteria' s
         let
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
-        (InC $ Port "destination" (Left p), xs)
+        (InC $ Port Destination (Left p), xs)
     | ("source_port":"=":dp:xs) <- s = --This is terrible, don't duplicate like this...
         let
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
-        (InC $ Port "source" (Left p), xs)
+        (InC $ Port Source (Left p), xs)
     | otherwise = (InC . SC $ concat s, [])
 
 parseSpecificationTarget :: [String] -> [Target]

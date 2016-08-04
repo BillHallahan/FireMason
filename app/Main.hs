@@ -90,7 +90,7 @@ main = do
         putStrLn $ "rulesToAdd = " ++ foldr (\x elm -> show x ++"\n" ++ elm) "" rulesToAdd
 
         added <- addRules rulesToAdd pathSimp
-        putStrLn $ "added = " ++ show added
+        putStrLn $ "added =\n" ++ foldr (\x e -> x ++ "\n" ++ e) "" (concat (map (\(n, x) -> n:(map (show) x)) (Map.elems added)))
         --putStrLn $ "eliminateAndsNots = " ++  foldl (\acc s -> acc ++ show s ++ "\n") "" (inputChainToChain parse1 0)
         --putStrLn $ "eliminateAndsOrsFromChain = " ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
         )

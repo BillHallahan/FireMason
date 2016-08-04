@@ -12,11 +12,13 @@ type InputChain = [InputRule]
 type Chain = [Rule]
 
 data Criteria = Not Criteria
-                | Port String (Either Int (Int, Int))
+                | Port Endpoint (Either Int (Int, Int))
                 | IPAddress String Int Int Int Int Int
                 | PropVariableCriteria Int
                 | Protocol Int
                 | SC String deriving (Eq, Show)
+
+data Endpoint = Source | Destination deriving (Eq, Show)
 
 --type  InputCriteria = Criteria
 data InputCriteria = InC Criteria

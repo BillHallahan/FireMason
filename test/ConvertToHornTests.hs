@@ -21,24 +21,24 @@ convertToHornTests = TestList [TestLabel "condenseAndTest" condenseAndTest
 
 condenseAndTest =
     TestCase $ assertEqual "condenseAnd is not eliminating corrrectly."
-        [InC . Protocol $ 1, InC $ Port "destination" (Left 1), InC $ Port "source" (Left 2)
+        [InC . Protocol $ 1, InC $ Port Destination (Left 1), InC $ Port Source (Left 2)
             , Or [And [InC . Protocol $ 3, InC . Protocol $ 4]]]
         (condenseAnd
             [And $ 
                 [InC . Protocol $ 1
-                    , And [InC $ Port "destination" (Left 1), InC $ Port "source" (Left 2)]
+                    , And [InC $ Port Destination (Left 1), InC $ Port Source (Left 2)]
                     , Or [And [InC . Protocol $ 3, InC . Protocol $ 4]]
                 ]
             ])
             
 condenseOrTest =
     TestCase $ assertEqual "condenseOr is not eliminating corrrectly."
-        [InC . Protocol $ 1, InC $ Port "destination" (Left 1), InC $ Port "source" (Left 2)
+        [InC . Protocol $ 1, InC $ Port Destination (Left 1), InC $ Port Source (Left 2)
             , And [Or [InC . Protocol $ 3, InC . Protocol $ 4]]]
         (condenseOr
             [Or $ 
                 [InC . Protocol $ 1
-                    , Or [InC $ Port "destination" (Left 1), InC $ Port "source" (Left 2)]
+                    , Or [InC $ Port Destination (Left 1), InC $ Port Source (Left 2)]
                     , And [Or [InC . Protocol $ 3, InC . Protocol $ 4]]
                 ]
             ])
@@ -55,11 +55,11 @@ eliminateOrTest =
 
 inputCriteriaToCriteriaTestAnd =
     TestCase $ assertEqual "inputCriteriaToCriteria is not eliminating corrrectly."
-        ([Protocol 1, Port "destination" (Left 1), Protocol 2, Port "destination" (Left 3)], [], 0)
+        ([Protocol 1, Port Destination (Left 1), Protocol 2, Port Destination (Left 3)], [], 0)
         (inputCriteriaToCriteria 
             [And 
-                [InC . Protocol $ 1, InC $ Port "destination" (Left 1), 
-                    And [InC . Protocol $ 2, InC $ Port "destination" (Left 3)]
+                [InC . Protocol $ 1, InC $ Port Destination (Left 1), 
+                    And [InC . Protocol $ 2, InC $ Port Destination (Left 3)]
                 ]
             ]
             0)
@@ -68,12 +68,12 @@ inputCriteriaToCriteriaTestOr =
     TestCase $ assertEqual "inputCriteriaToCriteria is not eliminating corrrectly."
     (
         [PropVariableCriteria 0],
-        [Rule {criteria = [InCNot . And $ [InC . Protocol $ 1, InC $ Port "destination" (Left 3)], InCNot (InC . Protocol $ 2)], targets = [PropVariableTarget 0 False]},
-        Rule {criteria = [And [InC . Protocol $ 1, InC $ Port "destination" (Left 3)]], targets = [PropVariableTarget 0 True]},
+        [Rule {criteria = [InCNot . And $ [InC . Protocol $ 1, InC $ Port Destination (Left 3)], InCNot (InC . Protocol $ 2)], targets = [PropVariableTarget 0 False]},
+        Rule {criteria = [And [InC . Protocol $ 1, InC $ Port Destination (Left 3)]], targets = [PropVariableTarget 0 True]},
         Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True]}]
         , 1
     )
-    (inputCriteriaToCriteria [Or [And [InC . Protocol $ 1, InC $ Port "destination" (Left 3)], InC . Protocol $ 2]] 0)
+    (inputCriteriaToCriteria [Or [And [InC . Protocol $ 1, InC $ Port Destination (Left 3)], InC . Protocol $ 2]] 0)
 
 inputCriteriaToCriteriaTestOr2 =
     TestCase $ assertEqual "eliminateOrs is not eliminating corrrectly."
@@ -82,15 +82,15 @@ inputCriteriaToCriteriaTestOr2 =
             [Rule {criteria = [InCNot . InC . Protocol $ 1, InCNot . InC . Protocol $ 2], targets = [PropVariableTarget 0 False]},
             Rule {criteria = [InC . Protocol $ 1], targets = [PropVariableTarget 0 True]},
             Rule {criteria = [InC . Protocol $ 2], targets = [PropVariableTarget 0 True]},
-            Rule {criteria = [InCNot . InC $ Port "destination" (Left 1), InCNot . InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 False]},
-            Rule {criteria = [InC $ Port "destination" (Left 1)], targets = [PropVariableTarget 1 True]},
-            Rule {criteria = [InC $ Port "destination" (Left 2)], targets = [PropVariableTarget 1 True]}]
+            Rule {criteria = [InCNot . InC $ Port Destination (Left 1), InCNot . InC $ Port Destination (Left 2)], targets = [PropVariableTarget 1 False]},
+            Rule {criteria = [InC $ Port Destination (Left 1)], targets = [PropVariableTarget 1 True]},
+            Rule {criteria = [InC $ Port Destination (Left 2)], targets = [PropVariableTarget 1 True]}]
             , 2
         )
         (inputCriteriaToCriteria 
             [And 
                 [Or [InC . Protocol $ 1, InC . Protocol $ 2], 
-                Or [InC $ Port "destination" (Left 1), InC $ Port "destination" (Left 2)]
+                Or [InC $ Port Destination (Left 1), InC $ Port Destination (Left 2)]
                 ]
             ] 0)
 
@@ -132,13 +132,13 @@ inputCriteriaToCriteriaTestOr3 =
 
 simplifyNotsTestAnd =
     TestCase $ assertEqual "simplifyNot is not adjusting (Not And) to (Or Not) corrrectly."
-        [Or $ [InCNot . InC . Protocol $ 1, InCNot . InC $ Port "destination" (Left 1)]]
-        (simplifyNots [InCNot . And $ [InC . Protocol $ 1, InC $ Port "destination" (Left 1)]])
+        [Or $ [InCNot . InC . Protocol $ 1, InCNot . InC $ Port Destination (Left 1)]]
+        (simplifyNots [InCNot . And $ [InC . Protocol $ 1, InC $ Port Destination (Left 1)]])
 
 simplifyNotsTestOr =
     TestCase $ assertEqual "simplifyNot is not adjusting (Not Or) to (Or And) corrrectly."
-        [And $ [InCNot . InC . Protocol $ 1, InCNot . InC $ Port "destination" (Left 1)]]
-        (simplifyNots [InCNot . Or $ [InC . Protocol $ 1, InC $ Port "destination" (Left 1)]])
+        [And $ [InCNot . InC . Protocol $ 1, InCNot . InC $ Port Destination (Left 1)]]
+        (simplifyNots [InCNot . Or $ [InC . Protocol $ 1, InC $ Port Destination (Left 1)]])
 
 simplifyNotsTestNot =
     TestCase $ assertEqual "simplifyNot is not adjusting (Not Not) to () corrrectly."

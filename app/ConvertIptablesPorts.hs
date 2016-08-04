@@ -8,31 +8,31 @@ import Types
 --Currently, there may be a glitch if convertTCPRule or convertUDPRule has priority over convertMultiportRule
 
 convertTCPRule :: ModuleFunc
-convertTCPRule ("--sport":sps:xs) = convertPortRuleNoCommas "source" sps xs ("--sport":sps:xs)
-convertTCPRule ("--dport":dps:xs) = convertPortRuleNoCommas "destination" dps xs ("--dport":dps:xs)
+convertTCPRule ("--sport":sps:xs) = convertPortRuleNoCommas Source sps xs ("--sport":sps:xs)
+convertTCPRule ("--dport":dps:xs) = convertPortRuleNoCommas Destination dps xs ("--dport":dps:xs)
 convertTCPRule xs = (Nothing, xs)
 
 convertUDPRule :: ModuleFunc
-convertUDPRule ("--sport":sps:xs) = convertPortRuleNoCommas "source" sps xs ("--sport":sps:xs)
-convertUDPRule ("--dport":dps:xs) = convertPortRuleNoCommas "destination" dps xs ("--dport":dps:xs)
+convertUDPRule ("--sport":sps:xs) = convertPortRuleNoCommas Source sps xs ("--sport":sps:xs)
+convertUDPRule ("--dport":dps:xs) = convertPortRuleNoCommas Destination dps xs ("--dport":dps:xs)
 convertUDPRule xs = (Nothing, xs)
 
 --this will convert a port range, but will return nothing if it is a list of ports
 --this is to prevent conflicts between the rules for tcp and udp, and the rule 
 --for -m multiport
-convertPortRuleNoCommas :: String -> String -> [String] -> [String] -> (Maybe [Either InputCriteria Target], [String])
+convertPortRuleNoCommas :: Endpoint -> String -> [String] -> [String] -> (Maybe [Either InputCriteria Target], [String])
 convertPortRuleNoCommas name p xs xss = if filter (','==) p == "" then (Just [Left $ portCriteriaFromRangeString p name], xs) else (Nothing, xss)
 
 convertMultiportRule :: ModuleFunc
-convertMultiportRule ("--sport":sps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString sps "source")], xs)
-convertMultiportRule ("--dport":dps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString dps "destination")], xs)
-convertMultiportRule ("--port":ps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString ps "source" ++ portCriteriaFromNumsRangesString ps "destination")], xs)
+convertMultiportRule ("--sport":sps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString sps Source)], xs)
+convertMultiportRule ("--dport":dps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString dps Destination)], xs)
+convertMultiportRule ("--port":ps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString ps Source ++ portCriteriaFromNumsRangesString ps Destination)], xs)
 convertMultiportRule xs = (Nothing, xs)
 
-portCriteriaFromRangeString :: String -> String -> InputCriteria
+portCriteriaFromRangeString :: String -> Endpoint -> InputCriteria
 portCriteriaFromRangeString ps portName = InC . Port portName $ convertNumRange . splitNonconsuming ":" $ ps
 
-portCriteriaFromNumsRangesString :: String -> String -> [InputCriteria]
+portCriteriaFromNumsRangesString :: String -> Endpoint -> [InputCriteria]
 portCriteriaFromNumsRangesString ps portName =
     let
         ports = convertNumsRangesString $ ps

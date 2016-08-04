@@ -52,7 +52,15 @@ test-suite firewallcode-test
                      , containers
                      , MissingH
                      , HUnit
-  other-modules:       ConvertToHorn
+                     , process
+  other-modules:       ChainsToSMT2
+                     , ConvertToHorn
+                     , ConvertToHornTests
+                     , NameIdChain
+                     , NameIdChainTests
+                     , RuleAdding
+                     , RuleAddingTests
+                     , SMT
                      , Types
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010

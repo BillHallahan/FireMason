@@ -3,6 +3,7 @@ module RuleAdding where
 import Data.List
 import Data.Maybe
 import qualified Data.Map as Map
+import Data.Ord
 
 import Types
 import NameIdChain
@@ -32,13 +33,13 @@ findBestPointCut r i n =
         (_, c) = fromJust $ Map.lookup i n
         cut = findPointCut r c
         newChain = addRuleToChainAtPos r c cut
-        newNameIdChain = increaseIndexes (Map.insert i ("", newChain) $ Map.filterWithKey (\i' _ -> i' /= i) n) (maxId n)
+        newNameIdChain = increaseIndexes (Map.insert i ("", newChain) n) (1 + maxId n)
         converted = convertChainsCheckSMT (Map.union n newNameIdChain)
             "(assert (= num-of-packets 2))"
             (
                 (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" (show i) "0")
              ++
-                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" (show $ i + maxId n) "0")
+                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" (show $ i + 1 + maxId n) "0")
             ++
                 (printSMTFunc1 "assert"
                     (printSMTFunc1 "not"
@@ -55,7 +56,7 @@ findBestPointCut r i n =
                     )
                 )
             )
-        shortened = Map.insert i ("", (take cut newChain)) $ Map.filterWithKey (\i' _ -> i' /= i) n
+        shortened = Map.insert i ("", (take cut newChain)) n
     in
     do
         firewallPredicates <- readFile "smt/firewallPredicates.smt2"
@@ -72,19 +73,41 @@ addRuleToChainAtPos r c i =
 findPointCut :: Rule -> Chain -> Int
 findPointCut r [] = 0
 findPointCut r c = 
-    let 
+    let
         scores =  map (scoreRules r) c
     in
     fromJust $ elemIndex (maximum scores) scores
 
 
 scoreRules :: Rule -> Rule -> Int
-scoreRules (Rule c t) (Rule c' t') = (scoreCriteria c c') + (scoreTargets t t')
+scoreRules (Rule c t) (Rule c' t') = (scoreCriteriaList c c') + (scoreTargets t t')
 
-scoreCriteria :: [Criteria] -> [Criteria] -> Int
-scoreCriteria [] _ = 0
-scoreCriteria (c:cx) c' = if c `elem` c' then 1 + scoreCriteria cx c' else scoreCriteria cx c' 
+scoreCriteriaList :: [Criteria] -> [Criteria] -> Int
+scoreCriteriaList [] cx' = - (10000 * length cx')
+scoreCriteriaList cx [] = - (10000 * length cx)
+scoreCriteriaList (c:cx) cx' = 
+    let
+        c' = maximumBy (comparing (scoreCriteria c)) cx'
+    in
+    scoreCriteria c c' + scoreCriteriaList cx (delete c' cx')
+
+--Should return values in between -10000 and 10000, where -10000 is no match, 10000 is a perfect match
+scoreCriteria :: Criteria -> Criteria -> Int
+scoreCriteria (Protocol i) (Protocol j) = 5000 + div ((255 - (abs $ j - i)) * 10000) 510
+scoreCriteria (Port e p) (Port e' p') =
+    let
+        pNum = case p of Left n -> n
+                         Right (n, n') -> n
+        pNum' = case p' of Left n -> n
+                           Right (n, n') -> n 
+    in
+    if e == e' then 5000 + div ((65535 + 65535 - (abs $ pNum - pNum')) * 10000) (4 * 65535)
+               else div ((65535 - (abs $ pNum - pNum')) * 10000) (2 * 65535)
+scoreCriteria (Not c) (Not c') = scoreCriteria c c'
+scoreCriteria (Not c) (c') = (scoreCriteria c c') `div` 2
+scoreCriteria (c) (Not c') = (scoreCriteria c c') `div` 2
+scoreCriteria _ _ = -10000
 
 scoreTargets :: [Target] -> [Target] -> Int
 scoreTargets [] _ = 0
-scoreTargets (t:tx) t' = if t `elem` t' then 1 + scoreTargets tx t' else scoreTargets tx t'
+scoreTargets (t:tx) t' = if t `elem` t' then 10000 + scoreTargets tx t' else scoreTargets tx t'

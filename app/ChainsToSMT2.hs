@@ -98,7 +98,11 @@ instance ToSMT [Criteria] where
 
 instance ToSMT Criteria where
     toSMTPrereq (Not c) = toSMTPrereq c
-    toSMTPrereq (Port s _) = ["(declare-fun " ++ s ++ "_port () Int)",
+    toSMTPrereq (Port e _) = 
+        let
+            s = if e == Source then "source" else "destination"
+        in
+                             ["(declare-fun " ++ s ++ "_port () Int)",
                               "(assert (<= 0 " ++ s ++ "_port))",
                               "(assert (<= " ++ s ++ "_port 65535))"]
     toSMTPrereq (Protocol _) = ["(declare-fun protocol () Int)",
@@ -108,8 +112,15 @@ instance ToSMT Criteria where
     toSMTPrereq _ = []
 
     toSMT (Not c) ch r = printSMTFunc1 "not" (toSMT c ch r)
-    toSMT (Port s (Left i)) _ _ = "(= " ++ s ++ "_port " ++ show i ++ ")"
-    toSMT (Port s (Right (i, j))) _ _=
+    toSMT (Port e (Left i)) _ _ =
+        let
+            s = if e == Source then "source" else "destination"
+        in
+        "(= " ++ s ++ "_port " ++ show i ++ ")"
+    toSMT (Port e (Right (i, j))) _ _=
+        let
+            s = if e == Source then "source" else "destination"
+        in
         "(and (<= " ++ show i ++ " " ++ s ++ "_port " ++ ") (<= " ++ s ++ "_port " ++ show j ++ "))"
     toSMT (PropVariableCriteria i) _ _ = "(v" ++ show i ++ " p)"
     toSMT (Protocol i) _ _ = "(= protocol " ++ show i ++ ")"
