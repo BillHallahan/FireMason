@@ -37,11 +37,14 @@ findBestPointCut' r i n n' =
     let
         (i', cut) = findPointCut r i n'
         (name, c) = fromJust $ Map.lookup i' n
+
         newChain = (addRuleToChainAtPos r c cut)
         updatedChains = foldr (\i'' e -> Map.insert i'' (name, newChain) e) n (idsWithName name n)
         newNameIdChain = increaseIndexes (updatedChains) (1 + maxId n)
-        shortened = Map.insert i (name, (take cut newChain)) n'
         combinedNIC = Map.union n newNameIdChain
+
+        shortened = Map.insert i (name, (take cut newChain)) n'
+
         idsOld = idsWithName name n
         idsNew = idsWithName name newNameIdChain
 

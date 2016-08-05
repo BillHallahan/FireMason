@@ -34,7 +34,7 @@ convertChainsCheckSMT x header check =
     pathString ++ "\n" ++
     convertedString ++
     check ++
-    "(check-sat)\n" ++
+    "(check-sat-using (then qe smt))\n" ++
     "(get-model)"
 
 

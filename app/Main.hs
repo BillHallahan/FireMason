@@ -83,12 +83,12 @@ main = do
 
 
         let rulesToAdd = (flip inputInstructionsToInstructions 0) . parse . lexer $
-                             ("chain INPUT : (destination_port = 78)     => DROP," ++
-                              "chain OUTPUT: not protocol = 4  => DROP," ++
-                              "chain INPUT :(protocol = 1 AND destination_port = 45 AND not source_port = 90) => ACCEPT," ++
-                              "chain INPUT : (destination_port = 4)     => ACCEPT," ++
-                              "chain INPUT : (destination_port = 89)     => ACCEPT," ++
-                              "chain bad-ports : source_port = 10 => ACCEPT")
+                             ("chain INPUT : (destination_port = 78)     => DROP")-- ++
+                              --"chain OUTPUT: not protocol = 4  => DROP," ++
+                              --"chain INPUT :(protocol = 1 AND destination_port = 45 AND not source_port = 90) => ACCEPT," ++
+                              --"chain INPUT : (destination_port = 4)     => ACCEPT," ++
+                              --"chain INPUT : (destination_port = 89)     => ACCEPT," ++
+                              --"chain bad-ports : source_port = 10 => ACCEPT")
 
         putStrLn $ "rulesToAdd = " ++ foldr (\x elm -> show x ++"\n" ++ elm) "" rulesToAdd
 

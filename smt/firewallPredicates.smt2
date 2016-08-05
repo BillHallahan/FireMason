@@ -84,7 +84,7 @@
 (assert
     (forall ((p Int) (c Int))
         (=>
-            (and (valid-packet p) (top-level-chain c))
+            (and (valid-packet p) (top-level-chain c) (reaches-end p c))
             (= (terminates-with p) (policy c))
         )
     )
@@ -106,6 +106,11 @@
 
 (assert (forall ((c Int) (r Int) (p Int)) (=> 
     (and (valid-rule c r) (valid-packet p) (reaches p c r) (not (matches-criteria p c r))) 
+    (reaches p c (+ r 1))
+)))
+
+(assert (forall ((c Int) (r Int) (p Int)) (=> 
+    (and (valid-rule c r) (valid-packet p) (reaches p c r) (= (rule-target c r) NONE)) 
     (reaches p c (+ r 1))
 )))
 

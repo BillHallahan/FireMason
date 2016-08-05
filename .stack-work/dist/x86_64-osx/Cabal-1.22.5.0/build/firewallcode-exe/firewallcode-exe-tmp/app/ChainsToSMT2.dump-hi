@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-05 17:23:55.74981 UTC
+2016-08-05 21:10:05.71361 UTC
 
 interface main@main:ChainsToSMT2 7103
-  interface hash: 75cba5f6db70c2a7077060dd9eb6fddf
+  interface hash: 28d764a92889d5363b67bc698ae19901
   ABI hash: ad820e6a4fa9451fc1b3e2882be5a8e7
   export-list hash: 116a23a42f5b28b393be927d1dd4514a
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -42,7 +42,7 @@ import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  NameIdChain 1bf5f97ad5daf9446af6844fb011c863
+import  -/  NameIdChain ed4f977db77462fdd0e87dd1e981f4ce
   exports: 9ff82ba4aa39e1eb044c914702771b51
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
