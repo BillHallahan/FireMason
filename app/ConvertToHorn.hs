@@ -16,10 +16,10 @@ inputChainToChain [] _ = []
 inputChainToChain (r:rs) i = 
     let
     (newC, newR, i') = inputCriteriaToCriteria (criteria r) i
-    newR' = inputChainToChain newR (i + i')
-    r' = Rule newC (targets r)
+    newR' = newR--newR' = inputChainToChain newR (i + i')
+    r' = map (\c -> Rule c (targets r)) newC
     in
-    newR' ++ [r'] ++ (inputChainToChain rs (i + i' + length newR'))
+    newR' ++ r' ++ (inputChainToChain rs (i + i' + length newR'))
     --r':(inputChainToChain (newR ++ rs) (i + i'))
 
 --This should be called only on the [InputCriteria] in an And, and will combine multiple And's into one as much as possible
@@ -34,41 +34,46 @@ condenseOr [] = []
 condenseOr (Or c:cx) = (condenseOr c) ++ condenseOr cx
 condenseOr (c:cx) = c:condenseOr cx
 
-eliminateOr :: InputCriteria -> Int -> (Criteria, [InputRule])
-eliminateOr (Or c) i =
-    let
-        r = map (\c' -> Rule [c'] [PropVariableTarget i True]) c
-        rNot = Rule (map (InCNot) c) [PropVariableTarget i False]
-    in
-    (PropVariableCriteria i, rNot:r)
-eliminateOr c i = error $ "Invalid " ++ show c
 
-inputCriteriaToCriteria :: [InputCriteria] -> Int -> ([Criteria], [InputRule], Int)
-inputCriteriaToCriteria [] _ = ([], [], 0)
+--This should be called only on the [InputCriteria] in an Or
+eliminateOr :: [InputCriteria] -> Int -> ([[Criteria]], [Rule], Int)
+eliminateOr [] i = ([], [], i)
+eliminateOr (c:cx) i = 
+    let
+        (c', r, i') = inputCriteriaToCriteria [c] i
+        (c'', r', i'') = eliminateOr cx i'
+    in
+    (c' ++ c'', r ++ r', i'')
+
+
+inputCriteriaToCriteria :: [InputCriteria] -> Int -> ([[Criteria]], [Rule], Int)
+inputCriteriaToCriteria [] i = ([[]], [], i)
 inputCriteriaToCriteria (And c: cx) i = inputCriteriaToCriteria ((condenseAnd c) ++ cx) i
 inputCriteriaToCriteria (Or c:cx) i = 
     let
-        (c', r) = eliminateOr (Or . condenseOr $ c) i
-        (c'', r', i'') = inputCriteriaToCriteria cx (i + 1)--We add exactly one Propositional Variable in eliminateOr
+        (c', r, i') = eliminateOr (condenseOr $ c) i
+        (c'', r', i'') = inputCriteriaToCriteria cx (i')--We add exactly one Propositional Variable in eliminateOr
     in
-    (c':c'', r ++ r', i'' + 1)
+    ((mappend) <$> c' <*> c'', r ++ r', i'')
 inputCriteriaToCriteria (InCNot (InC c):cx) i = 
     let
         (c'', r', i') =  inputCriteriaToCriteria cx i
     in
-    (Not c:c'', r', i')
+    (map (Not c:) c'', r', i')
 inputCriteriaToCriteria (InCNot c:cx) i = inputCriteriaToCriteria ((simplifyNots [InCNot c]) ++ cx) i
 inputCriteriaToCriteria (InC c:cx) i = 
     let
         (c'', r', i') =  inputCriteriaToCriteria cx i
+        propRules = [Rule [c] [PropVariableTarget i True], Rule [Not c] [PropVariableTarget i False]]
     in
-    (c:c'', r', i')
+    if isStateless c then (map (c:) c'', r', i')
+        else (map (c:) c'', r' ++ propRules, i' + 1)
 
 --Moves all Nots as deep into the criteria as possible,
 --by applying DeMorgans Law
 simplifyNots :: [InputCriteria] -> [InputCriteria]
 simplifyNots [] = []
-simplifyNots (InCNot (And c):cx) = 
+simplifyNots (InCNot (And c):cx) =
     let
         notted = map (InCNot) c
     in
