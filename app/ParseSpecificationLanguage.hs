@@ -23,7 +23,7 @@ lexer s
     | otherwise = error $ "Unrecognized pattern " ++ afterTerm
     where
         afterSpaces = dropWhile isSpace s
-        (nextTerm, afterTerm) = span ((flip elem) ('_':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
+        (nextTerm, afterTerm) = span ((flip elem) ('-':'_':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
 
 parse :: [String] -> [InputInstruction]
 parse s =

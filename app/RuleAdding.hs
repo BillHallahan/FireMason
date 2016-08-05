@@ -45,7 +45,10 @@ findBestPointCut r i n =
                     (printSMTFunc1 "not"
                         (printSMTFunc2 "and"
                             (printSMTFunc2 "or"
-                                (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
+                                (printSMTFunc2 "and"
+                                    (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
+                                    (printSMTFunc2 "=" (printSMTFunc2 "reaches-end" "0" (show i)) (printSMTFunc2 "reaches-end" "1" (show $ i + 1 + maxId n)))
+                                )
                                 (toSMT (criteria r) 0 0)
                             )
                             (printSMTFunc2 "=>" 
@@ -82,18 +85,22 @@ findPointCut r c =
 scoreRules :: Rule -> Rule -> Int
 scoreRules (Rule c t) (Rule c' t') = (scoreCriteriaList c c') + (scoreTargets t t')
 
+--scoreCriteriaMax
+scm :: Int
+scm = 100000
+
 scoreCriteriaList :: [Criteria] -> [Criteria] -> Int
-scoreCriteriaList [] cx' = - (10000 * length cx')
-scoreCriteriaList cx [] = - (10000 * length cx)
+scoreCriteriaList [] cx' = - (scm * length cx')
+scoreCriteriaList cx [] = - (scm * length cx)
 scoreCriteriaList (c:cx) cx' = 
     let
         c' = maximumBy (comparing (scoreCriteria c)) cx'
     in
     scoreCriteria c c' + scoreCriteriaList cx (delete c' cx')
 
---Should return values in between -10000 and 10000, where -10000 is no match, 10000 is a perfect match
+--Should return values in between -scm and scm, where -scm is no match, scm is a perfect match
 scoreCriteria :: Criteria -> Criteria -> Int
-scoreCriteria (Protocol i) (Protocol j) = 5000 + div ((255 - (abs $ j - i)) * 10000) 510
+scoreCriteria (Protocol i) (Protocol j) = (div scm 2) + div ((255 - (abs $ j - i)) * scm) 510
 scoreCriteria (Port e p) (Port e' p') =
     let
         pNum = case p of Left n -> n
@@ -101,13 +108,13 @@ scoreCriteria (Port e p) (Port e' p') =
         pNum' = case p' of Left n -> n
                            Right (n, n') -> n 
     in
-    if e == e' then 5000 + div ((65535 + 65535 - (abs $ pNum - pNum')) * 10000) (4 * 65535)
-               else div ((65535 - (abs $ pNum - pNum')) * 10000) (2 * 65535)
+    if e == e' then (div scm 2) + div ((65535 + 65535 - (abs $ pNum - pNum')) * scm) (4 * 65535)
+               else div ((65535 - (abs $ pNum - pNum')) * scm) (2 * 65535)
 scoreCriteria (Not c) (Not c') = scoreCriteria c c'
 scoreCriteria (Not c) (c') = (scoreCriteria c c') `div` 2
 scoreCriteria (c) (Not c') = (scoreCriteria c c') `div` 2
-scoreCriteria _ _ = -10000
+scoreCriteria _ _ = -scm
 
 scoreTargets :: [Target] -> [Target] -> Int
 scoreTargets [] _ = 0
-scoreTargets (t:tx) t' = if t `elem` t' then 10000 + scoreTargets tx t' else scoreTargets tx t'
+scoreTargets (t:tx) t' = if t `elem` t' then scm + scoreTargets tx t' else scoreTargets tx t'
