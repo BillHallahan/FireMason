@@ -28,26 +28,43 @@ addRuleToChain s r n =
         return ret
 
 findBestPointCut :: Rule -> Int -> IdNameChain -> IO Int
-findBestPointCut r i n =
+findBestPointCut r i n = findBestPointCut' r i n n
+
+--We cut chains shorter in n' as we determine that certain positions are too deep to insert the new rule
+--We use n to always be able to evaluate the new rule with the whole chain
+findBestPointCut' :: Rule -> Int -> IdNameChain -> IdNameChain -> IO Int
+findBestPointCut' r i n n' =
     let
-        (_, c) = fromJust $ Map.lookup i n
-        cut = findPointCut r c
-        newChain = addRuleToChainAtPos r c cut
-        newNameIdChain = increaseIndexes (Map.insert i ("", newChain) n) (1 + maxId n)
-        converted = convertChainsCheckSMT (Map.union n newNameIdChain)
-            "(assert (= num-of-packets 2))"
+        (i', cut) = findPointCut r i n'
+        (name, c) = fromJust $ Map.lookup i' n
+        newChain = (addRuleToChainAtPos r c cut)
+        updatedChains = foldr (\i'' e -> Map.insert i'' (name, newChain) e) n (idsWithName name n)
+        newNameIdChain = increaseIndexes (updatedChains) (1 + maxId n)
+        shortened = Map.insert i (name, (take cut newChain)) n'
+        combinedNIC = Map.union n newNameIdChain
+        idsOld = idsWithName name n
+        idsNew = idsWithName name newNameIdChain
+
+        converted = convertChainsCheckSMT (combinedNIC)
+            "(assert (= num-of-packets 2))\n(declare-const chain0 Int)\n(declare-const chain1 Int)"
             (
-                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" (show i) "0")
+                ((printSMTFunc1 "assert") . (printSMTFunc1 "or") . (foldr1 (++)) $ map (\i'' -> printSMTFunc2 "=" "chain0" (show i'')) idsOld)
              ++
-                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" (show $ i + 1 + maxId n) "0")
-            ++
+                ((printSMTFunc1 "assert") . (printSMTFunc1 "or") . (foldr1 (++)) $ map (\i'' -> printSMTFunc2 "=" "chain1" (show i'')) idsNew)
+             ++
+                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" "chain0" "0")
+             ++
+                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "1" "chain1" "0")
+             ++
+                (foldr1 (++) (map (\i'' -> printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc1 "policy" i'') "NONE") (idsOld ++ idsNew)))
+             ++
                 (printSMTFunc1 "assert"
                     (printSMTFunc1 "not"
                         (printSMTFunc2 "and"
                             (printSMTFunc2 "or"
                                 (printSMTFunc2 "and"
                                     (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
-                                    (printSMTFunc2 "=" (printSMTFunc2 "reaches-end" "0" (show i)) (printSMTFunc2 "reaches-end" "1" (show $ i + 1 + maxId n)))
+                                    (printSMTFunc2 "=" (printSMTFunc2 "reaches-end" "0" "chain0") (printSMTFunc2 "reaches-end" "1" "chain1"))
                                 )
                                 (toSMT (criteria r) 0 0)
                             )
@@ -59,12 +76,11 @@ findBestPointCut r i n =
                     )
                 )
             )
-        shortened = Map.insert i ("", (take cut newChain)) n
     in
     do
         firewallPredicates <- readFile "smt/firewallPredicates.smt2"
         noUndesired <- checkSat (firewallPredicates ++ converted)
-        if not noUndesired then return cut else trace ("cut length = " ++ show cut ++ " rule = " ++ show r) findBestPointCut r i shortened
+        if not noUndesired then return cut else trace ("cut length = " ++ show cut ++ " rule = " ++ show r) findBestPointCut' r i n shortened
 
 addRuleToChainAtPos :: Rule -> Chain -> Int -> Chain 
 addRuleToChainAtPos r c i =
@@ -73,13 +89,14 @@ addRuleToChainAtPos r c i =
     in
     c' ++ r:c''
 
-findPointCut :: Rule -> Chain -> Int
-findPointCut r [] = 0
-findPointCut r c = 
+findPointCut :: Rule -> Int -> IdNameChain -> (Int, Int)
+findPointCut r i n = 
     let
+        (_, c) = fromJust $ Map.lookup i n
         scores =  map (scoreRules r) c
+        maxScoreLoc = if not . null $ scores then fromJust $ elemIndex (maximum scores) scores else 0
     in
-    fromJust $ elemIndex (maximum scores) scores
+    (i, maxScoreLoc)
 
 
 scoreRules :: Rule -> Rule -> Int

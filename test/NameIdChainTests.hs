@@ -6,7 +6,8 @@ import NameIdChain
 
 import Data.Map as Map
 
-nameIdChainTests = TestList [TestLabel "increaseIndexesTest" increaseIndexesTest
+nameIdChainTests = TestList [TestLabel "idsWithNameTest" idsWithNameTest
+                             , TestLabel "increaseIndexesTest" increaseIndexesTest
                              , TestLabel "increaseIndexesChainTest" increaseIndexesChainTest
                              , TestLabel "increaseIndexesTargetTest1" increaseIndexesTargetTest1
                              , TestLabel "increaseIndexesTargetTest2" increaseIndexesTargetTest2
@@ -79,6 +80,11 @@ testIdNameChainPlus6 = Map.fromList [(6, ("chain0", chain0Plus6))
                                     , (14, ("chain8", chain8))
                                     , (17, ("chain11", chain11))
                                     ]
+
+idsWithNameTest = 
+    TestCase $ assertEqual "idsWithNameTest is not working correctly."
+    [5, 7]
+    (idsWithName "chain5" testIdNameChain)
 
 increaseIndexesTest = 
     TestCase $ assertEqual "increaseIndexes is not working correctly."

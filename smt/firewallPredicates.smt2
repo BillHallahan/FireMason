@@ -11,6 +11,7 @@
 (declare-fun reaches-return (Int Int) Bool)
 (declare-fun reaches-end (Int Int) Bool)
 (declare-fun returns-from (Int Int) Bool)
+(declare-fun policy (Int) Target)
 
 (declare-const num-of-packets Int)
 (declare-const num-of-chains Int)
@@ -55,6 +56,11 @@
     )
 )
 
+(define-fun reaches-top-level-chain ((p Int) (c Int)) Bool
+    (and (valid-packet p) (valid-chain c) (top-level-chain c) (reaches p c 0))
+)
+
+;Says a packet can only be in one top level chain
 (assert 
     (forall ((p Int) (c1 Int) (c2 Int)) 
         (=> 
@@ -63,6 +69,27 @@
         )
     )
 )
+
+;Says a non-top-level-chain cannot have a policy
+(assert
+    (forall ((c Int))
+        (=>
+            (not (top-level-chain c))
+            (= (policy c) NONE)
+        )
+    )
+)
+
+;Says a top-level-chain's policy is the outcome of a packet when it reaches the end of it
+(assert
+    (forall ((p Int) (c Int))
+        (=>
+            (and (valid-packet p) (top-level-chain c))
+            (= (terminates-with p) (policy c))
+        )
+    )
+)
+
 
 ;These two rules enforce that a packet can only reach up to the end of a chain, not past it,
 ;and that it must reach rule (r - 1) to reach rule r
@@ -73,7 +100,7 @@
 )))
 
 (assert (forall ((c Int) (r Int) (p Int)) (=> 
-    (and (valid-rule c r) (valid-packet p) (<= 1 r) (reaches p c r))
+    (and (valid-chain c) (<= 0 r) (<= r (chain-length c)) (valid-packet p) (<= 1 r) (reaches p c r))
     (reaches p c (- r 1))
 )))
 

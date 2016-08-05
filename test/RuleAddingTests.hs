@@ -14,6 +14,7 @@ ruleAddingTests = TestList [TestLabel "scoreCriteriaList1" scoreCriteriaListTest
                            , TestLabel "scoreCriteriaList8" scoreCriteriaListTest8
                            , TestLabel "scoreCriteriaList9" scoreCriteriaListTest9
                            , TestLabel "scoreCriteriaList10" scoreCriteriaListTest10
+                           , TestLabel "addRuleToChainAtPos" addRuleToChainAtPosTest
                            ]
 
 scoreCriteriaListTest1 =
@@ -86,3 +87,22 @@ scoreCriteriaListTest10 =
             c = [Protocol 17]
          in
             scoreCriteriaList [Port Destination $ Left 4] c < scoreCriteriaList [Not $ Protocol 83] c)
+
+addRuleToChainAtPosTest =
+    TestCase $ assertEqual "addRuleToChainAtPos is not eliminating corrrectly."
+        [Rule [Protocol 0] [DROP]
+         , Rule [Protocol 1] [DROP]
+         , Rule [Protocol 2] [DROP]
+         , Rule [Protocol 3] [DROP]
+         , Rule [Protocol 4] [DROP]]
+        (addRuleToChainAtPos 
+            (Rule [Protocol 2] [DROP])
+            [Rule [Protocol 0] [DROP]
+             , Rule [Protocol 1] [DROP]
+             , Rule [Protocol 3] [DROP]
+             , Rule [Protocol 4] [DROP]]
+             2
+        )
+
+
+

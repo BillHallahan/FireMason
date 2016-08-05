@@ -11,6 +11,7 @@
 (declare-fun reaches-return (Int Int) Bool)
 (declare-fun reaches-end (Int Int) Bool)
 (declare-fun returns-from (Int Int) Bool)
+(declare-fun policy (Int) Target)
 
 (declare-const num-of-packets Int)
 (declare-const num-of-chains Int)
@@ -55,6 +56,11 @@
     )
 )
 
+(define-fun reaches-top-level-chain ((p Int) (c Int)) Bool
+    (and (valid-packet p) (valid-chain c) (top-level-chain c) (reaches p c 0))
+)
+
+;Says a packet can only be in one top level chain
 (assert 
     (forall ((p Int) (c1 Int) (c2 Int)) 
         (=> 
@@ -63,6 +69,27 @@
         )
     )
 )
+
+;Says a non-top-level-chain cannot have a policy
+(assert
+    (forall ((c Int))
+        (=>
+            (not (top-level-chain c))
+            (= (policy c) NONE)
+        )
+    )
+)
+
+;Says a top-level-chain's policy is the outcome of a packet when it reaches the end of it
+(assert
+    (forall ((p Int) (c Int))
+        (=>
+            (and (valid-packet p) (top-level-chain c))
+            (= (terminates-with p) (policy c))
+        )
+    )
+)
+
 
 ;These two rules enforce that a packet can only reach up to the end of a chain, not past it,
 ;and that it must reach rule (r - 1) to reach rule r
@@ -73,7 +100,7 @@
 )))
 
 (assert (forall ((c Int) (r Int) (p Int)) (=> 
-    (and (valid-rule c r) (valid-packet p) (<= 1 r) (reaches p c r))
+    (and (valid-chain c) (<= 0 r) (<= r (chain-length c)) (valid-packet p) (<= 1 r) (reaches p c r))
     (reaches p c (- r 1))
 )))
 
@@ -138,7 +165,9 @@
         )
     )
 )(assert (= num-of-packets 2))
-(assert (= (chain-length 0) 5))(assert (= (chain-length 1) 4))(assert (= (chain-length 2) 2))(assert (= (chain-length 3) 4))(assert (= (chain-length 4) 0))(assert (= (chain-length 5) 5))(assert (= (chain-length 6) 5))(assert (= (chain-length 7) 2))(assert (= (chain-length 8) 4))(assert (= (chain-length 9) 0))
+(declare-const chain0 Int)
+(declare-const chain1 Int)
+(assert (= (chain-length 0) 5))(assert (= (chain-length 1) 4))(assert (= (chain-length 2) 2))(assert (= (chain-length 3) 4))(assert (= (chain-length 4) 0))(assert (= (chain-length 5) 5))(assert (= (chain-length 6) 5))(assert (= (chain-length 7) 2))(assert (= (chain-length 8) 5))(assert (= (chain-length 9) 0))
 (assert (= num-of-chains 10))
 (declare-fun protocol () Int)
 (assert (<= 0 protocol))
@@ -203,11 +232,13 @@
 (assert (= (rule-target 7 1) (GO 8 0)))
 (assert (= (rule-target 8 0) DROP))
 
-(assert (= (rule-target 8 1) DROP))
+(assert (= (rule-target 8 1) ACCEPT))
 
 (assert (= (rule-target 8 2) DROP))
 
 (assert (= (rule-target 8 3) DROP))
+
+(assert (= (rule-target 8 4) DROP))
 
 
 
@@ -240,9 +271,10 @@
 (assert (forall ((p Int)) (=> (valid-packet p) (= (not (= protocol 4)) (matches-criteria p 7 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 7 1))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 7) (matches-criteria p 8 0)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 9) (matches-criteria p 8 1)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 7) (matches-criteria p 8 2)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 9) (matches-criteria p 8 3)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 10) (matches-criteria p 8 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 9) (matches-criteria p 8 2)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 7) (matches-criteria p 8 3)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 9) (matches-criteria p 8 4)))))
 
-(assert (reaches 0 1 0))(assert (reaches 0 6 0))(assert (not (and (or (and (= (terminates-with 0) (terminates-with 1)) (= (reaches-end 0 1) (reaches-end 1 6))) (= source_port 10)) (=> (= source_port 10) (= (terminates-with 1) ACCEPT)))))(check-sat)
+(assert (or (= chain0 1)(= chain0 3)))(assert (or (= chain1 6)(= chain1 8)))(assert (reaches 0 chain0 0))(assert (reaches 1 chain1 0))(assert (= (policy 1) NONE))(assert (= (policy 3) NONE))(assert (= (policy 6) NONE))(assert (= (policy 8) NONE))(assert (not (and (or (and (= (terminates-with 0) (terminates-with 1)) (= (reaches-end 0 chain0) (reaches-end 1 chain1))) (= source_port 10)) (=> (= source_port 10) (= (terminates-with 1) ACCEPT)))))(check-sat)
 (get-model)

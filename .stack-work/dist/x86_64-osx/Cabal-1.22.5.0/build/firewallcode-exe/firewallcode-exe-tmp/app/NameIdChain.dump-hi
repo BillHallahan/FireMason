@@ -1,17 +1,18 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-04 18:49:56.831826 UTC
+2016-08-05 17:26:55.768701 UTC
 
 interface main@main:NameIdChain 7103
-  interface hash: a28fbbf366be9075005b6742037c028b
-  ABI hash: 344c53e300d98c0a14be5ecc25dd6174
-  export-list hash: 9c7993892ee68370ae3789d1b64d38b7
+  interface hash: 75d2244d7e860ec5b53bd40c5c361abc
+  ABI hash: ed4f977db77462fdd0e87dd1e981f4ce
+  export-list hash: 9ff82ba4aa39e1eb044c914702771b51
   orphan hash: ad728967a158a55091b0de97996ab5c0
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
   where
 exports:
+  NameIdChain.idsWithName
   NameIdChain.increaseIndexes
   NameIdChain.increaseIndexesChain
   NameIdChain.increaseIndexesTarget
@@ -38,11 +39,13 @@ family instance modules: base-4.8.2.0:Control.Applicative
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  Types 07deaa85949e0404125659b7da182fb1
   exports: 308a8e9ef15b1d0368eef76fcb360a92
   Chain a954734d411b95e71008d4bd63a0bf9c
@@ -177,6 +180,22 @@ f055d12426795aee5c0da9921d790578
     -> GHC.Prim.Int#
     -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
   {- Arity: 2, Strictness: <S,U><L,U>, Inline: [0] -}
+3de579c44d30b55be435ed01c7254140
+  idsWithName ::
+    GHC.Base.String -> Types.IdNameChain -> [GHC.Types.Int]
+  {- Arity: 2, Strictness: <L,U><S,1*U>,
+     Unfolding: (\ s :: GHC.Base.String n :: Types.IdNameChain ->
+                 Data.Map.Base.keys1
+                   @ GHC.Types.Int
+                   @ (GHC.Base.String, Types.Chain)
+                   (GHC.Types.[] @ GHC.Types.Int)
+                   (Data.Map.Base.filterWithKey
+                      @ GHC.Types.Int
+                      @ (GHC.Base.String, Types.Chain)
+                      (\ ds :: GHC.Types.Int
+                         x :: (GHC.Base.String, Types.Chain)[OneShot] ->
+                       case x of wild { (,) x1 ds1 -> GHC.Base.eqString s x1 })
+                      n)) -}
 05c63abba5778af826ab76815094280b
   increaseIndexes ::
     Types.IdNameChain -> GHC.Types.Int -> Types.IdNameChain
