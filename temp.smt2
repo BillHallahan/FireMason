@@ -250,5 +250,5 @@
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 7)) (matches-criteria p 6 2)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 8)) (matches-criteria p 6 3)))))
 
-(assert (reaches 0 0 0)) (assert (= num-of-packets 1)) (assert (reaches 0 1 4)) (assert (matches-rule 0 0 1) )(check-sat-using (then qe smt))
+(assert (reaches 0 0 0)) (assert (= num-of-packets 1)) (assert (reaches 0 1 4)) (assert (matches-rule 0 0 1) )(check-sat-using (then (repeat (then simplify qe)) smt))
 (get-model)

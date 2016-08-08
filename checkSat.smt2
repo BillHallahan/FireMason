@@ -172,20 +172,28 @@
 )(assert (= num-of-packets 2))
 (declare-const chain0 Int)
 (declare-const chain1 Int)
-(assert (= (chain-length 0) 2))(assert (= (chain-length 1) 6))(assert (= (chain-length 2) 4))(assert (= (chain-length 3) 4))(assert (= (chain-length 4) 2))(assert (= (chain-length 5) 1))(assert (= (chain-length 6) 4))(assert (= (chain-length 7) 0))(assert (= (chain-length 8) 3))(assert (= (chain-length 9) 6))(assert (= (chain-length 10) 4))(assert (= (chain-length 11) 4))(assert (= (chain-length 12) 2))(assert (= (chain-length 13) 1))(assert (= (chain-length 14) 4))(assert (= (chain-length 15) 0))
+(assert (= (chain-length 0) 6))(assert (= (chain-length 1) 6))(assert (= (chain-length 2) 4))(assert (= (chain-length 3) 4))(assert (= (chain-length 4) 3))(assert (= (chain-length 5) 1))(assert (= (chain-length 6) 4))(assert (= (chain-length 7) 0))(assert (= (chain-length 8) 6))(assert (= (chain-length 9) 7))(assert (= (chain-length 10) 4))(assert (= (chain-length 11) 4))(assert (= (chain-length 12) 3))(assert (= (chain-length 13) 1))(assert (= (chain-length 14) 4))(assert (= (chain-length 15) 0))
 (assert (= num-of-chains 16))
+(declare-fun destination_port () Int)
+(assert (<= 0 destination_port))
+(assert (<= destination_port 65535))
 (declare-fun protocol () Int)
 (assert (<= 0 protocol))
 (assert (<= protocol 255))
 (declare-fun source_port () Int)
 (assert (<= 0 source_port))
 (assert (<= source_port 65535))
-(declare-fun destination_port () Int)
-(assert (<= 0 destination_port))
-(assert (<= destination_port 65535))
 
-(assert (= (rule-target 0 0) (GO 1 0)))
+(assert (= (rule-target 0 0) ACCEPT))
+
 (assert (= (rule-target 0 1) ACCEPT))
+
+(assert (= (rule-target 0 2) DROP))
+
+(assert (= (rule-target 0 3) (GO 1 0)))
+(assert (= (rule-target 0 4) ACCEPT))
+
+(assert (= (rule-target 0 5) ACCEPT))
 
 (assert (= (rule-target 1 0) DROP))
 
@@ -214,8 +222,10 @@
 
 (assert (= (rule-target 3 3) DROP))
 
-(assert (= (rule-target 4 0) (GO 6 0)))
-(assert (= (rule-target 4 1) (GO 5 0)))
+(assert (= (rule-target 4 0) DROP))
+
+(assert (= (rule-target 4 1) (GO 6 0)))
+(assert (= (rule-target 4 2) (GO 5 0)))
 (assert (= (rule-target 5 0) DROP))
 
 (assert (= (rule-target 6 0) DROP))
@@ -227,21 +237,29 @@
 (assert (= (rule-target 6 3) DROP))
 
 
-(assert (= (rule-target 8 0) DROP))
+(assert (= (rule-target 8 0) ACCEPT))
 
-(assert (= (rule-target 8 1) (GO 9 0)))
-(assert (= (rule-target 8 2) ACCEPT))
+(assert (= (rule-target 8 1) ACCEPT))
 
-(assert (= (rule-target 9 0) DROP))
+(assert (= (rule-target 8 2) DROP))
+
+(assert (= (rule-target 8 3) (GO 9 0)))
+(assert (= (rule-target 8 4) ACCEPT))
+
+(assert (= (rule-target 8 5) ACCEPT))
+
+(assert (= (rule-target 9 0) ACCEPT))
 
 (assert (= (rule-target 9 1) DROP))
 
-(assert (= (rule-target 9 2) NONE))
-(assert (= (rule-target 9 3) (GO 11 0)))
+(assert (= (rule-target 9 2) DROP))
 
-(assert (= (rule-target 9 4) ACCEPT))
+(assert (= (rule-target 9 3) NONE))
+(assert (= (rule-target 9 4) (GO 11 0)))
 
-(assert (= (rule-target 9 5) (GO 10 0)))
+(assert (= (rule-target 9 5) ACCEPT))
+
+(assert (= (rule-target 9 6) (GO 10 0)))
 
 (assert (= (rule-target 10 0) DROP))
 
@@ -259,8 +277,10 @@
 
 (assert (= (rule-target 11 3) DROP))
 
-(assert (= (rule-target 12 0) (GO 14 0)))
-(assert (= (rule-target 12 1) (GO 13 0)))
+(assert (= (rule-target 12 0) DROP))
+
+(assert (= (rule-target 12 1) (GO 14 0)))
+(assert (= (rule-target 12 2) (GO 13 0)))
 (assert (= (rule-target 13 0) DROP))
 
 (assert (= (rule-target 14 0) DROP))
@@ -273,8 +293,12 @@
 
 
 
-(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 0 0))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 17) (= source_port 98)) (matches-criteria p 0 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 89) (matches-criteria p 0 0)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 4) (matches-criteria p 0 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 78) (matches-criteria p 0 2)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 0 3))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 1) (and (= destination_port 45) (not (= source_port 90)))) (matches-criteria p 0 4)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 17) (= source_port 98)) (matches-criteria p 0 5)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 0) (matches-criteria p 1 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 22) (matches-criteria p 1 1)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 6)) (matches-criteria p 1 2)))))
@@ -289,23 +313,28 @@
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 8)) (matches-criteria p 3 1)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 7)) (matches-criteria p 3 2)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 8)) (matches-criteria p 3 3)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 4 0))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (not (= protocol 4)) (matches-criteria p 4 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 4 1))))
+(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 4 2))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 0) (matches-criteria p 5 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 7)) (matches-criteria p 6 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 8)) (matches-criteria p 6 1)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 7)) (matches-criteria p 6 2)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 8)) (matches-criteria p 6 3)))))
 
-(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 78) (matches-criteria p 8 0)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 8 1))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 17) (= source_port 98)) (matches-criteria p 8 2)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 0) (matches-criteria p 9 0)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 22) (matches-criteria p 9 1)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 6)) (matches-criteria p 9 2)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 5)) (matches-criteria p 9 3)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (and (<= 4 source_port ) (<= source_port 8))) (matches-criteria p 9 4)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (and (= source_port 4) (= destination_port 5))) (matches-criteria p 9 5)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 89) (matches-criteria p 8 0)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 4) (matches-criteria p 8 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= destination_port 78) (matches-criteria p 8 2)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 8 3))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 1) (and (= destination_port 45) (not (= source_port 90)))) (matches-criteria p 8 4)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 17) (= source_port 98)) (matches-criteria p 8 5)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= source_port 10) (matches-criteria p 9 0)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 0) (matches-criteria p 9 1)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 22) (matches-criteria p 9 2)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 6)) (matches-criteria p 9 3)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 5)) (matches-criteria p 9 4)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (and (<= 4 source_port ) (<= source_port 8))) (matches-criteria p 9 5)))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (and (= source_port 4) (= destination_port 5))) (matches-criteria p 9 6)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 7)) (matches-criteria p 10 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 8)) (matches-criteria p 10 1)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 7)) (matches-criteria p 10 2)))))
@@ -314,13 +343,14 @@
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 8)) (matches-criteria p 11 1)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 7)) (matches-criteria p 11 2)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 8)) (matches-criteria p 11 3)))))
-(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 12 0))))
+(assert (forall ((p Int)) (=> (valid-packet p) (= (not (= protocol 4)) (matches-criteria p 12 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 12 1))))
+(assert (forall ((p Int)) (=> (valid-packet p) (matches-criteria p 12 2))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (= protocol 0) (matches-criteria p 13 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 7)) (matches-criteria p 14 0)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= source_port 8)) (matches-criteria p 14 1)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 7)) (matches-criteria p 14 2)))))
 (assert (forall ((p Int)) (=> (valid-packet p) (= (and (= protocol 6) (= destination_port 8)) (matches-criteria p 14 3)))))
 
-(assert (or (= chain0 0)))(assert (or (= chain1 8)))(assert (reaches 0 chain0 0))(assert (reaches 1 chain1 0))(assert (= (policy 0) NONE))(assert (= (policy 8) NONE))(assert (not (and (or (and (= (terminates-with 0) (terminates-with 1)) (= (reaches-end 0 chain0) (reaches-end 1 chain1))) (= destination_port 78)) (=> (= destination_port 78) (= (terminates-with 1) DROP)))))(check-sat-using (then qe smt))
+(assert (or (= chain0 1)))(assert (or (= chain1 9)))(assert (reaches 0 chain0 0))(assert (reaches 1 chain1 0))(assert (= (policy 1) NONE))(assert (= (policy 9) NONE))(assert (not (and (or (= (terminates-with 0) (terminates-with 1)) (and (reaches-end 0 chain0) (reaches-end 1 chain1)) (= source_port 10)) (=> (= source_port 10) (= (terminates-with 1) ACCEPT)))))(check-sat-using (then (repeat (then simplify qe)) smt))
 (get-model)

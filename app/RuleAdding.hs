@@ -64,11 +64,9 @@ findBestPointCut' r i n n' =
                 (printSMTFunc1 "assert"
                     (printSMTFunc1 "not"
                         (printSMTFunc2 "and"
-                            (printSMTFunc2 "or"
-                                (printSMTFunc2 "and"
-                                    (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
-                                    (printSMTFunc2 "=" (printSMTFunc2 "reaches-end" "0" "chain0") (printSMTFunc2 "reaches-end" "1" "chain1"))
-                                )
+                            (printSMTFunc3 "or"
+                                (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
+                                (printSMTFunc2 "and" (printSMTFunc2 "reaches-end" "0" "chain0") (printSMTFunc2 "reaches-end" "1" "chain1"))
                                 (toSMT (criteria r) 0 0)
                             )
                             (printSMTFunc2 "=>" 
