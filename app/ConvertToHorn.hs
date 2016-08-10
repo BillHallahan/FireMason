@@ -17,7 +17,7 @@ inputChainToChain (r:rs) i =
     let
     (newC, newR, i') = inputCriteriaToCriteria (criteria r) i
     newR' = newR--newR' = inputChainToChain newR (i + i')
-    r' = map (\c -> Rule c (targets r)) newC
+    r' = map (\c -> Rule c (targets r) (label r)) newC
     in
     newR' ++ r' ++ (inputChainToChain rs (i + i' + length newR'))
     --r':(inputChainToChain (newR ++ rs) (i + i'))
@@ -64,7 +64,7 @@ inputCriteriaToCriteria (InCNot c:cx) i = inputCriteriaToCriteria ((simplifyNots
 inputCriteriaToCriteria (InC c:cx) i = 
     let
         (c'', r', i') =  inputCriteriaToCriteria cx i
-        propRules = [Rule [c] [PropVariableTarget i True], Rule [Not c] [PropVariableTarget i False]]
+        propRules = [Rule [c] [PropVariableTarget i True] (-1), Rule [Not c] [PropVariableTarget i False] (-1)]
     in
     if isStateless c then (map (c:) c'', r', i')
         else (map (c:) c'', r' ++ propRules, i' + 1)

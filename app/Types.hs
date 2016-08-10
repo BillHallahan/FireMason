@@ -69,26 +69,27 @@ data SynthInstruction r = ToChainNamed {chainName :: String
                           | NoInstruction {insRule :: r} deriving (Eq, Show)
 
 
+type Label = Int
 
-type InputRule = GenRule InputCriteria-- Int 
-type Rule = GenRule Criteria-- Int
+type InputRule = GenRule InputCriteria
+type Rule = GenRule Criteria
 
 data GenRule crit = Rule { criteria :: [crit]
                    ,targets :: [Target]
-                   --,label :: label
+                   ,label :: Label
                  } deriving (Eq, Show)
 
 eitherToRule :: Either InputCriteria Target -> InputRule
-eitherToRule (Left c) = Rule [c] []
-eitherToRule (Right t) = Rule [] [t]
+eitherToRule (Left c) = Rule [c] [] (-1)
+eitherToRule (Right t) = Rule [] [t] (-1)
 
 instance Monoid Rule where
-    mempty = Rule {criteria = [], targets = []}
-    Rule c1 t1 `mappend` Rule c2 t2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2}
+    mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
+    Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2}
 
 instance Monoid InputRule where
-    mempty = Rule {criteria = [], targets = []}
-    Rule c1 t1 `mappend` Rule c2 t2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2}
+    mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
+    Rule c1 t1 l1 `mappend` Rule c2 t2 l2= Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2}
 
 
 type ModuleFunc = [String] -> (Maybe [Either InputCriteria Target], [String])

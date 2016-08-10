@@ -69,21 +69,21 @@ chainToSMT [] _ _ _ = ""
 
 
 instance ToSMT Rule where
-    toSMTPrereq (Rule c t) = toSMTPrereq c ++ toSMTPrereq t
+    toSMTPrereq (Rule c t _) = toSMTPrereq c ++ toSMTPrereq t
 
-    toSMT (Rule [] t) ch r = printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" "p") (printSMTFunc3 "matches-criteria" "p" ch r)))
-    toSMT (Rule c _) ch r =
+    toSMT (Rule [] t _) ch r = printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" "p") (printSMTFunc3 "matches-criteria" "p" ch r)))
+    toSMT (Rule c _ _) ch r =
         printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" "p") (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc3 "matches-criteria" "p" ch r))))
         
-    toSMTPath (Rule [] t) ch r = (toSMTPath t ch r)
-    toSMTPath (Rule c []) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE"
-    toSMTPath (Rule c [PropVariableTarget v b]) ch r =
+    toSMTPath (Rule [] t _) ch r = (toSMTPath t ch r)
+    toSMTPath (Rule c [] _) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE"
+    toSMTPath (Rule c [PropVariableTarget v b] _) ch r =
         printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" 
             (printSMTFunc2 "and" (printSMTFunc1 "valid-packet" "p") (printSMTFunc3 "matches-rule" "p" ch r))
             (toSMTPath (PropVariableTarget v b) ch r))) ++ "\n"
         ++ printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE") ++ "\n"
         ++ toSMTNotPath (PropVariableTarget v b) ch r
-    toSMTPath (Rule c t) ch r =
+    toSMTPath (Rule c t _) ch r =
         (toSMTPath t ch r) ++ "\n"
         ++ toSMTNotPath t ch r
 

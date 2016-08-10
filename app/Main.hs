@@ -3,9 +3,6 @@ module Main where
 import System.IO
 import System.Environment
 import Data.List
-import Data.String.Utils
-import Data.List.Split
-import Data.Char
 import Data.Maybe
 
 import qualified Data.Map as Map
@@ -14,6 +11,7 @@ import Types
 import ConvertIptables
 import ChainsToSMT2
 import ConvertToHorn
+import InstructionsToIptables
 import ParseSpecificationLanguage
 import RuleAdding
 import SMT
@@ -88,43 +86,27 @@ main = do
                               "chain INPUT :(protocol = 1 AND destination_port = 45 AND not source_port = 90) => ACCEPT," ++
                               "chain INPUT : (destination_port = 4)     => ACCEPT," ++
                               "chain INPUT : (destination_port = 89)     => ACCEPT," ++
-                              "chain bad-ports : source_port = 10 => ACCEPT")
+                              "chain bad-ports : source_port = 10 => ACCEPT," ++
+                              "chain second : destination_port = 100 => ACCEPT")
 
         putStrLn $ "rulesToAdd = " ++ foldr (\x elm -> show x ++"\n" ++ elm) "" rulesToAdd
 
-        added <- addRules rulesToAdd pathSimp
-        putStrLn $ "added =\n" ++ foldr (\x e -> x ++ "\n" ++ e) "" (concat (map (\(n, x) -> n:(map (show) x)) (Map.elems added)))
+        --added <- addRules rulesToAdd pathSimp
+        --putStrLn $ "added =\n" ++ foldr (\x e -> x ++ "\n" ++ e) "" (concat (map (\(i, (n, x)) -> (n ++ " " ++ show i):(map (show) x)) (Map.toList added)))
+
+        addedPos <- instructionsToAddAtPos rulesToAdd pathSimp
+        putStrLn $ "addedAtPos = " ++ show addedPos
+
+        let iptablesCon = map (((flip convert) pathSimp) . insRule) rulesToAdd
+
+        putStrLn $ foldr (\x e -> show x ++ "\n" ++ e) "" iptablesCon
+
+
+        let addedToIp = addToIptables addedPos pathSimp contents
+        putStrLn addedToIp
+
         --putStrLn $ "eliminateAndsNots = " ++  foldl (\acc s -> acc ++ show s ++ "\n") "" (inputChainToChain parse1 0)
         --putStrLn $ "eliminateAndsOrsFromChain = " ++ foldr (\x elm -> show x ++"\n" ++ elm) ""  (eliminateAndsOrsFromChain parse1 0)
         )
 
         --putStrLn $ foldl (++) "" (map (flip (convertChain) 0) v))
-
-convertScript :: String -> Map.Map String InputChain
-convertScript coms =
-    let
-        noBlanks = filter (\s -> any  (not . isSpace) $ fst s) $ zip (lines coms) [1..] 
-        noComments = filter (\s -> not $ "#" `isPrefixOf` (fst s)) noBlanks
-        noVariables = subBashVariables noComments [("/sbin/iptables", "iptables")]
-        splitWords = map (\(s, i) -> (words s, i)) noVariables
-    in
-        --The map list is iptables specific... should be adjusted at some point
-        convertToChains (convertLines splitWords) (Map.fromList [("INPUT", []),
-                                                                                  ("OUTPUT", []),
-                                                                                  ("FORWARD", [])])
-
---this only partially finds and substitutes for bash constants, but it's sufficient for
---our current example scripts
-subBashVariables :: [(String, Int)] -> [(String, String)] -> [(String, Int)]
-subBashVariables [] m = []
-subBashVariables ((s, i):xsi) m
-    | "=" `isInfixOf` s =
-        let
-            spl = splitOn "=" s
-        in
-            subBashVariables xsi (m ++ [("$" ++ spl  !! 0, spl !! 1)])
-    | otherwise = 
-        let
-            rep = foldr (\(old, new) acc -> replace old new acc) s m
-        in
-        (rep, i):subBashVariables xsi m

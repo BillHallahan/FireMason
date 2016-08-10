@@ -11,6 +11,7 @@ import ChainsToSMT2
 import SMT
 import Debug.Trace
 
+
 addRules :: [Instruction] -> IdNameChain -> IO IdNameChain
 addRules [] n = return n
 addRules (x:xs) n =
@@ -18,6 +19,29 @@ addRules (x:xs) n =
         n' <- addRuleToChain (chainName x) (insRule x) n 
         trace ("addRules - " ++ (show . length $ xs)) addRules xs n'
 
+--Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions at which they should be added
+instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Int)]
+instructionsToAddAtPos [] n = return []
+instructionsToAddAtPos (x:xs) n = 
+    do
+        let s = (chainName x)
+        let r = (insRule x)
+        
+        let (change, noChange) = Map.partition (\(s', _) -> s' == s) n
+        cut <- (findBestPointCut r (head . Map.keys $ change) n)
+
+        let l = label $ (snd . head . Map.elems $ change) !! cut
+
+        let r' = Rule (criteria r) (targets r) l
+
+        let change' = Map.map (\(s', c)-> (s', addRuleToChainAtPos r' c cut)) change
+        let n' = Map.union change' noChange
+
+        n'' <- instructionsToAddAtPos xs n'
+        
+        return $ (r', s, l):n''
+
+--Given a chain name, a rule and an IdNameChain, adds the rule to the chain such that no existing nonconflicting rules are affected.
 addRuleToChain :: String -> Rule -> IdNameChain -> IO IdNameChain
 addRuleToChain s r n = 
     do 
@@ -59,8 +83,6 @@ findBestPointCut' r i n n' =
              ++
                 (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "1" "chain1" "0")
              ++
-                (foldr1 (++) (map (\i'' -> printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc1 "policy" i'') "NONE") (idsOld ++ idsNew)))
-             ++
                 (printSMTFunc1 "assert"
                     (printSMTFunc1 "not"
                         (printSMTFunc2 "and"
@@ -101,7 +123,7 @@ findPointCut r i n =
 
 
 scoreRules :: Rule -> Rule -> Int
-scoreRules (Rule c t) (Rule c' t') = (scoreCriteriaList c c') + (scoreTargets t t')
+scoreRules (Rule c t _) (Rule c' t' _) = (scoreCriteriaList c c') + (scoreTargets t t')
 
 --scoreCriteriaMax
 scm :: Int

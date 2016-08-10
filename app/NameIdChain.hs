@@ -32,7 +32,7 @@ pathSimplificationChain (r:rx) m ch ru =
         (c, ic) = pathSimplificationChain rx m ch (ru + 1)
         (newTargets, ic') = pathSimplificationTargets (targets r) m (ch + length ic) ru 
     in
-    ((Rule (criteria r) newTargets):c, Map.union ic ic')
+    ((Rule (criteria r) newTargets (label r)):c, Map.union ic ic')
 
 
 pathSimplificationTargets :: [Target] -> Map.Map String Chain -> Int -> Int  -> ([Target], IdNameChain)
@@ -60,7 +60,7 @@ increaseIndexes x j = Map.mapKeys (j +) $ Map.map (\(n, c) -> (n, increaseIndexe
 
 increaseIndexesChain :: Chain -> Int -> Chain
 increaseIndexesChain [] _ = []
-increaseIndexesChain ((Rule c t):cx) i = (Rule c (map (flip increaseIndexesTarget i) t)):increaseIndexesChain cx i
+increaseIndexesChain ((Rule c t l):cx) i = (Rule c (map (flip increaseIndexesTarget i) t) l):increaseIndexesChain cx i
 
 increaseIndexesTarget :: Target -> Int -> Target
 increaseIndexesTarget (Go c r) i = Go (c + i) r

@@ -4,6 +4,9 @@ module ConvertIptables where
 import Data.Either
 import Data.List
 import Data.Maybe
+import Data.List.Split
+import Data.String.Utils
+import Data.Char
 
 import qualified Data.Map as Map
 
@@ -11,6 +14,39 @@ import IptablesTypes
 import ConvertIptablesPorts
 import ParserHelp
 import Types
+
+convertScript :: String -> Map.Map String InputChain
+convertScript coms =
+    convertToChains (convertScript' coms) (Map.fromList [("INPUT", []),
+                                                         ("OUTPUT", []),
+                                                         ("FORWARD", [])])
+
+convertScript' :: String -> [Line]
+convertScript' coms =
+    let
+        noBlanks = filter (\s -> any  (not . isSpace) $ fst s) $ zip (lines coms) [1..] 
+        noComments = filter (\s -> not $ "#" `isPrefixOf` (fst s)) noBlanks
+        noVariables = subBashVariables noComments [("/sbin/iptables", "iptables")]
+        splitWords = map (\(s, i) -> (words s, i)) noVariables
+    in
+        --The map list is iptables specific... should be adjusted at some point
+        convertLines splitWords
+
+--this only partially finds and substitutes for bash constants, but it's sufficient for
+--our current example scripts
+subBashVariables :: [(String, Int)] -> [(String, String)] -> [(String, Int)]
+subBashVariables [] m = []
+subBashVariables ((s, i):xsi) m
+    | "=" `isInfixOf` s =
+        let
+            spl = splitOn "=" s
+        in
+            subBashVariables xsi (m ++ [("$" ++ spl  !! 0, spl !! 1)])
+    | otherwise = 
+        let
+            rep = foldr (\(old, new) acc -> replace old new acc) s m
+        in
+        (rep, i):subBashVariables xsi m
 
 convertToChains :: [Line] -> Map.Map String InputChain -> Map.Map String InputChain
 convertToChains l m
@@ -38,7 +74,7 @@ convertLines (x:xs) = convertLine x []:convertLines xs
 
 convertLine :: ([String], Int) -> [ModuleFunc] -> Line
 convertLine (s, i) fs
-    | [] <- s = Line "filter" None mempty 0
+    | [] <- s = Line "filter" None (Rule [] [] i) 0
     | "iptables":xs <- s = convertLine (xs, i) fs
     | "-t":t:xs <- s = 
         let
