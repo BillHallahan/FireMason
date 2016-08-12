@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-09 23:46:36.960301 UTC
+2016-08-11 00:33:26.902268 UTC
 
 interface main@main:ConvertToHorn 7103
-  interface hash: bab33871298ea38c8ff589814fc04541
-  ABI hash: 0e545718d88d4d573d9f076057a00c0d
+  interface hash: afea733aeb1316c5aba2111be099ec40
+  ABI hash: 08af6114e66cc4fe3386d6c49df74b2e
   export-list hash: 76cec1257792e94428092746d96d37c3
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -38,48 +38,48 @@ import  -/  base-4.8.2.0:Data.Functor 5c701b0af1708f0192a25dfe14ce6274
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  Types 40fb64e93a610ce366a87f59754aaa8a
-  exports: c5dd2fdaee99eeddeac00fda32d7be65
-  And 1526cf25b9e668a513750436198cf7e3
-  Chain fdabad52d3e9945bd1fdc190af510a61
-  Criteria b2ef1250414b0e6b2678227af251a7bc
-  InC ca414675e42f6754bbee047036866a93
-  InCNot 42ee94f6f0d9d978a2b36241f9607918
-  InputChain 31059d85e8c35722c4471f94f09b42f4
-  InputCriteria 733cf780d3e0b5680c71bad8be1de495
-  InputInstruction 8e6134ff87a0790eabc3ebb79ca0f0ec
-  InputRule 733cf780d3e0b5680c71bad8be1de495
-  Instruction e117c4b6bc059e4f4046a003b87006df
-  NoInstruction bcfc97517d474a6b26424762dfabc11c
-  Not 4c108d6b8d28d69ef551773a5b7fd604
-  Or 9bca2586b526319e1cbbbafedd71f99b
+import  -/  Types 22400a5faae8b7e0ddaf8e819accc2b5
+  exports: 543a62a9d1b1c5a4ade5b8a7472fb031
+  And 6f9bf0163ff27e2a03199030eb3d0445
+  Chain ca4dfb51f2b7cc7fafbf4845e3e2a14f
+  Criteria 78201c2df366762ffa256db3fa879d5e
+  InC 6c0d1368639dd5a4ac0527e46326621f
+  InCNot b117f7befd6efbd09704f41fc25cc327
+  InputChain 6388ac567b47558966f1197d75c5e1c3
+  InputCriteria e40faf9184c5e56de440c7debe74a4a8
+  InputInstruction 59fc02937cc01a8a91bd460221924af6
+  InputRule e40faf9184c5e56de440c7debe74a4a8
+  Instruction 90e65e2dfea234f40917867645605383
+  NoInstruction b969e22921f283e869a0720ab3777dec
+  Not c51190b692ad0139f0c5c973f7d65e98
+  Or d0cd109da857d4a68fc590655040fcf8
   PropVariableTarget d7cace759dc39a5f0c0dafff9f565d03
-  Rule 9482d4c7de3ec7cf655ed4494ac94a4c
-  Rule 709e69aef0024dfd7fca01b519b8602d
-  ToChainNamed ea493aef46203cbc163776b21cb24404
-  criteria 688a2ae712a56f16d00b8fab86921db7
-  isStateless 53995f1489dc18638f3eb6d604cba960
-  label 4cdd83b4363dab9de270c2fbfa3bd4b9
-  targets a8abd9dc3ae8891ba9d35052418c63f0
-bd79e48f314719cef351bf268ea93084
+  Rule 2df5292164aa863af871847a92afc898
+  Rule 4d0f6eb3092e6e02df1b61348eb8fdee
+  ToChainNamed ce4c7bf5b328004ab15754446244f326
+  criteria e73f0ec970096c1c807e629c9074593d
+  isStateless f99c04127b8f0fece461c4f1a93e4834
+  label 662cde7fa163f597123a90cbed5ff308
+  targets 3a1999badf380f23aac258a2bf76a66a
+abd7117e6961c1c428d53e4c4b7c8a82
   $weliminateOr ::
     [Types.InputCriteria]
     -> GHC.Types.Int
     -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
   {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
-d348fb70a2027034e16af4f39a757668
+b1f9cf95bf605587a07f9d24891e2ab8
   $winputCriteriaToCriteria ::
     [Types.InputCriteria]
     -> GHC.Types.Int
     -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
   {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
-c1fcdda79945d71344ba394ca9cb7195
+1137c3f6f58542ca8b6dcd6a24dfca99
   condenseAnd :: [Types.InputCriteria] -> [Types.InputCriteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-5ad8195c0f2865d8c6c6c742da8e055c
+68bf0aca1f140309bdb45b7eb624ff2a
   condenseOr :: [Types.InputCriteria] -> [Types.InputCriteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-f8bf9141c3920ef52c24e72392ef20c9
+84a7f62fefa8dee99707cc71d152efa7
   eliminateOr ::
     [Types.InputCriteria]
     -> GHC.Types.Int
@@ -89,11 +89,11 @@ f8bf9141c3920ef52c24e72392ef20c9
                 (\ w :: [Types.InputCriteria] w1 :: GHC.Types.Int ->
                  case ConvertToHorn.$weliminateOr w w1 of ww { (#,,#) ww1 ww2 ww3 ->
                  (ww1, ww2, ww3) }) -}
-6ca4a7dbfece2cb21bf3cf90648c64fe
+4ee572b0f14059e98fbfcf44f6e8e5b4
   inputChainToChain ::
     [Types.InputRule] -> GHC.Types.Int -> [Types.Rule]
   {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
-82ebc29f2e7309faafabea6faebbb956
+8566b9f769313bcf4cdc39af3328db6a
   inputCriteriaToCriteria ::
     [Types.InputCriteria]
     -> GHC.Types.Int
@@ -105,14 +105,14 @@ f8bf9141c3920ef52c24e72392ef20c9
                         w
                         w1 of ww { (#,,#) ww1 ww2 ww3 ->
                  (ww1, ww2, ww3) }) -}
-24b531c94878591d7e2317d7c2eb8021
+bfe5209af3c0087af8a8b68040f8b475
   inputInstructionsToInstructions ::
     [Types.InputInstruction] -> GHC.Types.Int -> [Types.Instruction]
   {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
-d966d30e838e3bae42daf5131e0a2147
+75518cf002a7a1bd28541f0f995fe0b8
   simplifyNots :: [Types.InputCriteria] -> [Types.InputCriteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-b89287a8140c57b0dd58bad546f15a87
+9680b29690fe9651196f3e2944d7afbd
   stringInputChainsToStringChains ::
     [(GHC.Base.String, Types.InputChain)]
     -> GHC.Types.Int -> [(GHC.Base.String, Types.Chain)]

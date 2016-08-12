@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-09 23:46:48.339919 UTC
+2016-08-12 02:32:34.912346 UTC
 
 interface main@main:SMT 7103
-  interface hash: b54fd1bead51beff885ddfb51225f26d
-  ABI hash: 1e2f1cd31ff32fe5acdf5504946c9bf3
+  interface hash: 3523f3aa28a43204a25486417436ba1b
+  ABI hash: 78b6ee582b4c547d861399edd96af15b
   export-list hash: bdc12074afdd6621e65d5072296d84d4
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -31,7 +31,6 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:GHC.Generics
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
-import  -/  base-4.8.2.0:Debug.Trace 6660afb6094d69397ea084364da8f950
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.IO bb5b81adcea33b14bd4abe16d7dde45f
 import  -/  base-4.8.2.0:GHC.IO.Exception e38c1261b70caecb7af416b94c82c925
@@ -43,8 +42,8 @@ import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  base-4.8.2.0:System.IO.Unsafe fc45e72b9d9eb2c797a8c81f5821fcd0
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  Types 40fb64e93a610ce366a87f59754aaa8a
-  exports: c5dd2fdaee99eeddeac00fda32d7be65
+import  -/  Types 22400a5faae8b7e0ddaf8e819accc2b5
+  exports: 543a62a9d1b1c5a4ade5b8a7472fb031
   ToString 7be3006f4b3e789e3fa086ea15403adc
   toString b837e6ce5116507eb7419168e473cb92
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
@@ -83,7 +82,7 @@ import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d
                         pOut
                         ipv4 of ds4 { (#,#) ipv6 ipv7 ->
                  (# ipv6, (ipv7, ipv5) #) } } } } } }) -}
-2d6ef5dc9b7b794d33b49d559783a5e5
+670eb44a961dd0fbcf136213f196bd85
   checkSat :: GHC.Base.String -> GHC.Types.IO GHC.Types.Bool
   {- Arity: 2, Strictness: <L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
@@ -91,7 +90,7 @@ import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d
                   `cast`
                 (<GHC.Base.String>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Bool>_R)) -}
-bf0d514fe0cf31956cc7da96f7068b14
+508404963613c59cff4ae62db56b7e67
   checkSat1 ::
     GHC.Base.String
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -112,19 +111,10 @@ bf0d514fe0cf31956cc7da96f7068b14
                  case GHC.IO.Handle.Text.hGetContents1
                         pOut
                         ipv4 of ds4 { (#,#) ipv6 ipv7 ->
-                 (Debug.Trace.trace
-                    @ (GHC.Types.IO GHC.Types.Bool)
-                    (GHC.CString.unpackAppendCString# "res = "# ipv7)
-                    (\ s2 :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
-                     (# s2,
-                        GHC.Base.eqString
-                          (GHC.List.$wunsafeTake @ GHC.Types.Char 3 ipv7)
-                          SMT.checkSat2 #))
-                      `cast`
-                    (Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Bool>_R)))
-                   `cast`
-                 (GHC.Types.NTCo:IO[0] <GHC.Types.Bool>_R)
-                   ipv6 } } } } } }) -}
+                 (# ipv6,
+                    GHC.Base.eqString
+                      (GHC.List.$wunsafeTake @ GHC.Types.Char 3 ipv7)
+                      SMT.checkSat2 #) } } } } } }) -}
 c2b45f4019cbd74a7b17b3f92a69e655
   checkSat2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "sat"#) -}

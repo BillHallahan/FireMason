@@ -4,6 +4,7 @@
 
 module Types where
 
+import Data.Int
 import qualified Data.Set as Set  
 import qualified Data.Map as Map  
 
@@ -11,15 +12,21 @@ import qualified Data.Map as Map
 type InputChain = [InputRule]
 type Chain = [Rule]
 
-data Criteria = Not Criteria
+type Address = Int32
+type Mask = Int32
+
+data Criteria = BoolFlag Flag
+                | IPAddress Address Mask
+                | Not Criteria
                 | Port Endpoint (Either Int (Int, Int))
-                | IPAddress String Int Int Int Int Int
                 | PropVariableCriteria Int
                 | Protocol Int
                 | SC String deriving (Eq, Show)
 
+data Flag = SYN | ACK | FIN | RST | URG deriving (Eq, Show)
 
 isStateless :: Criteria -> Bool
+isStateless (BoolFlag _) = True
 isStateless (Not c) = isStateless c
 isStateless (Port _ _) = True
 isStateless (Protocol _) = True

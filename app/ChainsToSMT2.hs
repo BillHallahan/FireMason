@@ -97,6 +97,7 @@ instance ToSMT [Criteria] where
     toSMT (c:cs) ch r = printSMTFunc2 "and" (toSMT c ch r) (toSMT cs ch r)
 
 instance ToSMT Criteria where
+    toSMTPrereq (BoolFlag f) = ["(declare-fun " ++ (flagToString f) ++ " () Bool)"]
     toSMTPrereq (Not c) = toSMTPrereq c
     toSMTPrereq (Port e _) = 
         let
@@ -111,6 +112,7 @@ instance ToSMT Criteria where
     toSMTPrereq (PropVariableCriteria i) = ["(declare-fun v" ++ show i ++ " (Int) Bool)"]
     toSMTPrereq _ = []
 
+    toSMT (BoolFlag f) _ _ = flagToString f
     toSMT (Not c) ch r = printSMTFunc1 "not" (toSMT c ch r)
     toSMT (Port e (Left i)) _ _ =
         let
@@ -125,6 +127,13 @@ instance ToSMT Criteria where
     toSMT (PropVariableCriteria i) _ _ = "(v" ++ show i ++ " p)"
     toSMT (Protocol i) _ _ = "(= protocol " ++ show i ++ ")"
     toSMT x _ _ = error $ "unrecognized criteria " ++ show x
+
+flagToString :: Flag -> String
+flagToString SYN = "SYN"
+flagToString ACK = "ACK"
+flagToString FIN = "FIN"
+flagToString RST = "RST"
+flagToString URG = "URG"
 
 
 instance ToSMT [Target] where 

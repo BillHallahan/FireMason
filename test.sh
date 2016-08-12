@@ -17,14 +17,13 @@ $IPTABLES -A bad-ports -p 22 -j DROP
 $IPTABLES -A bad-ports -p tcp --sport 6
 $IPTABLES -A bad-ports -p tcp --dport 5 -j second
 $IPTABLES -A bad-ports -p tcp --sport 4:8 -j ACCEPT
-$IPTABLES -A bad-ports -p tcp --sport 4  --dport 5 -j second
+$IPTABLES -A bad-ports -p tcp --sport 4 ! --tcp-flags SYN,ACK,FIN SYN --dport 5 -j second
 
 
 
 $IPTABLES -N check
 $IPTABLES -F check
 $IPTABLES -p 0 -j DROP  -A check
-
 
 
 
