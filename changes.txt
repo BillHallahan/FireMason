@@ -1,0 +1,7 @@
+chain INPUT : (destination_port = 78)     => DROP,
+chain OUTPUT: not protocol = 4  => DROP,
+chain INPUT :(protocol = 1 AND destination_port = 45 AND not source_port = 90) => ACCEPT,
+chain INPUT : (destination_port = 4)     => ACCEPT,
+chain INPUT : (destination_port = 89)     => ACCEPT,
+chain bad-ports : ((source_port = 10 OR destination_port = 10) AND (protocol = 87 OR protocol = 88)) OR destination_port = 9 => ACCEPT,
+chain second : destination_port = 100 => ACCEPT

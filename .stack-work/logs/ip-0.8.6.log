@@ -1,0 +1,301 @@
+Configuring ip-0.8.6...
+Building ip-0.8.6...
+Preprocessing library ip-0.8.6...
+[ 1 of 11] Compiling Net.Internal     ( src/Net/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/Internal.o )
+[ 2 of 11] Compiling Net.Types        ( src/Net/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/Types.o )
+
+src/Net/Types.hs:20:1: Warning:
+    The qualified import of ‘Data.Aeson.Types’ is redundant
+      except perhaps to import instances from ‘Data.Aeson.Types’
+    To import instances alone, use: import Data.Aeson.Types()
+
+src/Net/Types.hs:29:1: Warning:
+    The qualified import of ‘Data.Vector.Primitive.Mutable’ is redundant
+      except perhaps to import instances from ‘Data.Vector.Primitive.Mutable’
+    To import instances alone, use: import Data.Vector.Primitive.Mutable()
+
+src/Net/Types.hs:35:1: Warning:
+    The import of ‘Data.Int’ is redundant
+      except perhaps to import instances from ‘Data.Int’
+    To import instances alone, use: import Data.Int()
+
+src/Net/Types.hs:60:20: Warning:
+    Ignoring unusable UNPACK pragma
+      on the second argument of ‘MacEncoding’
+    In the definition of data constructor ‘MacEncoding’
+    In the data declaration for ‘MacEncoding’
+
+src/Net/Types.hs:162:32: Warning: Defined but not used: ‘as’
+
+src/Net/Types.hs:162:35: Warning: Defined but not used: ‘bs’
+
+src/Net/Types.hs:164:40: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:168:31: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:168:58: Warning: Defined but not used: ‘n_2’
+
+src/Net/Types.hs:189:33: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:195:34: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:200:28: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:205:26: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:210:33: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:210:60: Warning: Defined but not used: ‘n_2’
+
+src/Net/Types.hs:216:33: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:216:60: Warning: Defined but not used: ‘n_2’
+
+src/Net/Types.hs:241:31: Warning: Defined but not used: ‘as’
+
+src/Net/Types.hs:241:34: Warning: Defined but not used: ‘bs’
+
+src/Net/Types.hs:243:39: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:247:34: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:253:33: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:253:59: Warning: Defined but not used: ‘n_2’
+
+src/Net/Types.hs:273:26: Warning: Defined but not used: ‘as’
+
+src/Net/Types.hs:273:29: Warning: Defined but not used: ‘bs’
+
+src/Net/Types.hs:275:34: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:279:25: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:279:46: Warning: Defined but not used: ‘n_2’
+
+src/Net/Types.hs:300:27: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:306:28: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:311:22: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:316:20: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:321:27: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:321:48: Warning: Defined but not used: ‘n_2’
+
+src/Net/Types.hs:326:27: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:326:48: Warning: Defined but not used: ‘n_2’
+
+src/Net/Types.hs:350:25: Warning: Defined but not used: ‘as’
+
+src/Net/Types.hs:350:28: Warning: Defined but not used: ‘bs’
+
+src/Net/Types.hs:352:33: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:356:28: Warning: Defined but not used: ‘n_’
+
+src/Net/Types.hs:362:27: Warning: Defined but not used: ‘n_1’
+
+src/Net/Types.hs:362:47: Warning: Defined but not used: ‘n_2’
+[ 3 of 11] Compiling Net.IPv4         ( src/Net/IPv4.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/IPv4.o )
+
+src/Net/IPv4.hs:31:1: Warning:
+    The import of ‘shiftL, complement, .|.’
+    from module ‘Data.Bits’ is redundant
+
+src/Net/IPv4.hs:33:1: Warning:
+    The import of ‘Data.Int’ is redundant
+      except perhaps to import instances from ‘Data.Int’
+    To import instances alone, use: import Data.Int()
+
+src/Net/IPv4.hs:34:1: Warning:
+    The import of ‘Data.Hashable’ is redundant
+      except perhaps to import instances from ‘Data.Hashable’
+    To import instances alone, use: import Data.Hashable()
+
+src/Net/IPv4.hs:35:1: Warning:
+    The import of ‘Data.Aeson’ is redundant
+      except perhaps to import instances from ‘Data.Aeson’
+    To import instances alone, use: import Data.Aeson()
+
+src/Net/IPv4.hs:36:1: Warning:
+    The import of ‘GHC.Generics’ is redundant
+      except perhaps to import instances from ‘GHC.Generics’
+    To import instances alone, use: import GHC.Generics()
+
+src/Net/IPv4.hs:37:1: Warning:
+    The import of ‘Net.Internal’ is redundant
+      except perhaps to import instances from ‘Net.Internal’
+    To import instances alone, use: import Net.Internal()
+
+src/Net/IPv4.hs:38:1: Warning:
+    The import of ‘Control.Monad’ is redundant
+      except perhaps to import instances from ‘Control.Monad’
+    To import instances alone, use: import Control.Monad()
+
+src/Net/IPv4.hs:39:1: Warning:
+    The import of ‘Data.Text.Internal’ is redundant
+      except perhaps to import instances from ‘Data.Text.Internal’
+    To import instances alone, use: import Data.Text.Internal()
+
+src/Net/IPv4.hs:40:1: Warning:
+    The import of ‘Data.Coerce’ is redundant
+      except perhaps to import instances from ‘Data.Coerce’
+    To import instances alone, use: import Data.Coerce()
+
+src/Net/IPv4.hs:41:1: Warning:
+    The import of ‘Unsafe.Coerce’ is redundant
+      except perhaps to import instances from ‘Unsafe.Coerce’
+    To import instances alone, use: import Unsafe.Coerce()
+
+src/Net/IPv4.hs:42:1: Warning:
+    The import of ‘Data.ByteString’ is redundant
+      except perhaps to import instances from ‘Data.ByteString’
+    To import instances alone, use: import Data.ByteString()
+
+src/Net/IPv4.hs:43:1: Warning:
+    The import of ‘Data.Vector.Generic.Mutable’ is redundant
+      except perhaps to import instances from ‘Data.Vector.Generic.Mutable’
+    To import instances alone, use: import Data.Vector.Generic.Mutable()
+
+src/Net/IPv4.hs:44:1: Warning:
+    The import of ‘Control.Monad.Primitive’ is redundant
+      except perhaps to import instances from ‘Control.Monad.Primitive’
+    To import instances alone, use: import Control.Monad.Primitive()
+
+src/Net/IPv4.hs:46:1: Warning:
+    The qualified import of ‘Data.Text.Lazy’ is redundant
+      except perhaps to import instances from ‘Data.Text.Lazy’
+    To import instances alone, use: import Data.Text.Lazy()
+
+src/Net/IPv4.hs:47:1: Warning:
+    The qualified import of ‘Data.Text.IO’ is redundant
+      except perhaps to import instances from ‘Data.Text.IO’
+    To import instances alone, use: import Data.Text.IO()
+
+src/Net/IPv4.hs:48:1: Warning:
+    The qualified import of ‘Data.ByteString’ is redundant
+      except perhaps to import instances from ‘Data.ByteString’
+    To import instances alone, use: import Data.ByteString()
+
+src/Net/IPv4.hs:49:1: Warning:
+    The qualified import of ‘Data.ByteString.Unsafe’ is redundant
+      except perhaps to import instances from ‘Data.ByteString.Unsafe’
+    To import instances alone, use: import Data.ByteString.Unsafe()
+
+src/Net/IPv4.hs:114:7: Warning: Defined but not used: ‘c’
+
+src/Net/IPv4.hs:117:7: Warning: Defined but not used: ‘f’
+[ 4 of 11] Compiling Net.IPv4.Range   ( src/Net/IPv4/Range.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/IPv4/Range.o )
+
+src/Net/IPv4/Range.hs:21:1: Warning:
+    The import of ‘shiftL’ from module ‘Data.Bits’ is redundant
+
+src/Net/IPv4/Range.hs:25:1: Warning:
+    The qualified import of ‘Net.IPv4’ is redundant
+      except perhaps to import instances from ‘Net.IPv4’
+    To import instances alone, use: import Net.IPv4()
+[ 5 of 11] Compiling Net.IPv4.Range.Text ( src/Net/IPv4/Range/Text.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/IPv4/Range/Text.o )
+[ 6 of 11] Compiling Net.IPv4.Text    ( src/Net/IPv4/Text.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/IPv4/Text.o )
+
+src/Net/IPv4/Text.hs:13:1: Warning:
+    The import of ‘Net.IPv4’ is redundant
+      except perhaps to import instances from ‘Net.IPv4’
+    To import instances alone, use: import Net.IPv4()
+[ 7 of 11] Compiling Net.IPv4.String  ( src/Net/IPv4/String.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/IPv4/String.o )
+[ 8 of 11] Compiling Net.IPv4.ByteString.Char8 ( src/Net/IPv4/ByteString/Char8.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/IPv4/ByteString/Char8.o )
+
+src/Net/IPv4/ByteString/Char8.hs:10:1: Warning:
+    The import of ‘Net.IPv4’ is redundant
+      except perhaps to import instances from ‘Net.IPv4’
+    To import instances alone, use: import Net.IPv4()
+
+src/Net/IPv4/ByteString/Char8.hs:18:1: Warning:
+    The import of ‘encodeUtf8’
+    from module ‘Data.Text.Encoding’ is redundant
+
+src/Net/IPv4/ByteString/Char8.hs:19:1: Warning:
+    The import of ‘ByteString’
+    from module ‘Data.ByteString’ is redundant
+[ 9 of 11] Compiling Net.Mac          ( src/Net/Mac.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/Mac.o )
+
+src/Net/Mac.hs:10:1: Warning:
+    The import of ‘Data.Text’ is redundant
+      except perhaps to import instances from ‘Data.Text’
+    To import instances alone, use: import Data.Text()
+
+src/Net/Mac.hs:11:1: Warning:
+    The import of ‘Data.Hashable’ is redundant
+      except perhaps to import instances from ‘Data.Hashable’
+    To import instances alone, use: import Data.Hashable()
+
+src/Net/Mac.hs:12:1: Warning:
+    The import of ‘GHC.Generics’ is redundant
+      except perhaps to import instances from ‘GHC.Generics’
+    To import instances alone, use: import GHC.Generics()
+
+src/Net/Mac.hs:14:1: Warning:
+    The import of ‘Data.Aeson’ is redundant
+      except perhaps to import instances from ‘Data.Aeson’
+    To import instances alone, use: import Data.Aeson()
+
+src/Net/Mac.hs:15:1: Warning:
+    The qualified import of ‘Data.Attoparsec.Text’ is redundant
+      except perhaps to import instances from ‘Data.Attoparsec.Text’
+    To import instances alone, use: import Data.Attoparsec.Text()
+
+src/Net/Mac.hs:16:1: Warning:
+    The qualified import of ‘Data.Attoparsec.ByteString.Char8’ is redundant
+      except perhaps to import instances from ‘Data.Attoparsec.ByteString.Char8’
+    To import instances alone, use: import Data.Attoparsec.ByteString.Char8()
+
+src/Net/Mac.hs:17:1: Warning:
+    The import of ‘shiftR, complement, .&.’
+    from module ‘Data.Bits’ is redundant
+
+src/Net/Mac.hs:18:1: Warning:
+    The import of ‘Net.Internal’ is redundant
+      except perhaps to import instances from ‘Net.Internal’
+    To import instances alone, use: import Net.Internal()
+
+src/Net/Mac.hs:19:1: Warning:
+    The qualified import of ‘Data.Text.Lazy.Builder’ is redundant
+      except perhaps to import instances from ‘Data.Text.Lazy.Builder’
+    To import instances alone, use: import Data.Text.Lazy.Builder()
+
+src/Net/Mac.hs:20:1: Warning:
+    The import of ‘Data.Text.Lazy.Builder.Int’ is redundant
+      except perhaps to import instances from ‘Data.Text.Lazy.Builder.Int’
+    To import instances alone, use: import Data.Text.Lazy.Builder.Int()
+
+src/Net/Mac.hs:21:1: Warning:
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+
+src/Net/Mac.hs:22:1: Warning:
+    The qualified import of ‘Data.Aeson’ is redundant
+      except perhaps to import instances from ‘Data.Aeson’
+    To import instances alone, use: import Data.Aeson()
+
+src/Net/Mac.hs:23:1: Warning:
+    The qualified import of ‘Data.Text.Lazy’ is redundant
+      except perhaps to import instances from ‘Data.Text.Lazy’
+    To import instances alone, use: import Data.Text.Lazy()
+[10 of 11] Compiling Net.Mac.Text     ( src/Net/Mac/Text.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/Mac/Text.o )
+[11 of 11] Compiling Net.Mac.ByteString.Char8 ( src/Net/Mac/ByteString/Char8.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Net/Mac/ByteString/Char8.o )
+
+src/Net/Mac/ByteString/Char8.hs:9:1: Warning:
+    The import of ‘MacEncoding’ from module ‘Net.Types’ is redundant
+
+src/Net/Mac/ByteString/Char8.hs:21:1: Warning:
+    The qualified import of ‘Data.Attoparsec.ByteString.Char8’ is redundant
+      except perhaps to import instances from ‘Data.Attoparsec.ByteString.Char8’
+    To import instances alone, use: import Data.Attoparsec.ByteString.Char8()
+In-place registering ip-0.8.6...
+Installing library in
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/ip-0.8.6-GjaGvXJJ7M4APjo7Nna8VB
+Registering ip-0.8.6...
