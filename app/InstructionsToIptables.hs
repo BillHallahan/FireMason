@@ -48,17 +48,36 @@ instance ToIptables Rule where
     convert (Rule c t _) n = convert c n ++ convert t n
 
 
+
 instance ToIptables [Criteria] where
-    convert cx n = foldr (\x e -> x ++ " " ++ e) "" $ map ((flip convert) n) cx
+    convert [] n = []
+    convert (BoolFlag b:xs) n = 
+        let
+            (b', xs') = convertBoolFlags (BoolFlag b:xs)
+        in
+        b' ++ convert xs' n
+    convert (Not (BoolFlag b):xs) n = 
+        let
+            (b', xs') = convertBoolFlags (Not (BoolFlag b):xs)
+        in
+        b' ++ convert xs' n
+    convert (Not c:xs) n = "! " ++ convert [c] n ++ " " ++ convert xs n
+    convert (Port Destination (Left x):xs) n = "--dport " ++ show x ++ " " ++ convert xs n
+    convert (Port Source (Left x):xs) n = "--sport " ++ show x ++ " " ++ convert xs n
+    convert (Port Destination (Right (x, y)):xs) n = "--dport " ++ show x ++ ":" ++ show y ++ " " ++ convert xs n
+    convert (Port Source (Right (x, y)):xs) n = "--sport " ++ show x ++ ":" ++ show y ++ " " ++ convert xs n
+    convert (Protocol x:xs) n = "-p " ++ show x ++ " " ++ convert xs n
 
-
-instance ToIptables Criteria where
-    convert (Not c) n = "! " ++ convert c n
-    convert (Port Destination (Left x)) n = "--dport " ++ show x
-    convert (Port Source (Left x)) n = "--sport " ++ show x
-    convert (Port Destination (Right (x, y))) n = "--dport " ++ show x ++ ":" ++ show y
-    convert (Port Source (Right (x, y))) n = "--sport " ++ show x ++ ":" ++ show y
-    convert (Protocol x) n = "-p " ++ show x
+convertBoolFlags :: [Criteria] -> (String, [Criteria])
+convertBoolFlags xs = 
+    let
+            (b', xs') = partition (\a -> (ifNotRemoveNot a) `elem` stringsToFlags) xs
+            (neg, pos) = partition (isNot) b'
+            neg' = map (ifNotRemoveNot) neg
+            all = (foldr (++) "" (intersperse "," (map flagsToStrings $ pos ++ neg')))
+            mask = if not . null $ pos then (foldr (++) "" (intersperse "," (map flagsToStrings $ pos))) else "NONE"
+    in
+    ("--tcp-flags " ++ all ++ " " ++ mask ++ " ", xs')
 
 instance ToIptables [Target] where
     convert tx n = foldr (++) "" $ map ((flip convert) n) tx

@@ -4,6 +4,7 @@ import Data.Char
 import Data.List
 import Data.List.Split
 
+import qualified Data.Map as Map  
 import Data.Maybe
 
 import ParserHelp
@@ -100,6 +101,7 @@ parseSpecificationCriteria' s
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
         (InC $ Port Source (Left p), xs)
+    | (head s) `elem` (Map.keys stringsToFlags) = (InC . fromJust $ Map.lookup (head s) stringsToFlags, tail s)
     | otherwise = (InC . SC $ concat s, [])
 
 parseSpecificationTarget :: [String] -> [Target]

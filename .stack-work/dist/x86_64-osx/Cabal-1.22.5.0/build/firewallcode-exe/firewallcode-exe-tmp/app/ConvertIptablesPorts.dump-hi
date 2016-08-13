@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-11 00:33:28.738728 UTC
+2016-08-13 01:34:48.269301 UTC
 
 interface main@main:ConvertIptablesPorts 7103
-  interface hash: ce036825d626298628b061e8caf69e27
-  ABI hash: 6ecc7f37f33502f117c915a428da946d
-  export-list hash: 15c841af90b81c815cb5654478f2a424
-  orphan hash: 42fd2331105774b3e3a9504e8e23a496
+  interface hash: d7392f5f5bd059ee9cdb21d8432c8143
+  ABI hash: 83687948a5d312e2e7cbd8626f5cef1c
+  export-list hash: 85292e38103a9eef1309495f33162327
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
@@ -21,7 +21,6 @@ exports:
   ConvertIptablesPorts.convertUDPRule
   ConvertIptablesPorts.portCriteriaFromNumsRangesString
   ConvertIptablesPorts.portCriteriaFromRangeString
-  ConvertIptablesPorts.stringsToFlags
 module dependencies: ParserHelp Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
@@ -52,96 +51,28 @@ import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
   splitNonconsuming 0ad3bc01b3b4404a744d4b546e1552e6
-import  -/  Types 22400a5faae8b7e0ddaf8e819accc2b5
-  exports: 543a62a9d1b1c5a4ade5b8a7472fb031
-  ACK ad89826654ee1604c1f7364b0a2e5bba
-  And 6f9bf0163ff27e2a03199030eb3d0445
-  BoolFlag a8940ca42c33db2d245b59ebc02cbd0a
+import  -/  Types 6431681dc34ef43a214b91e643fcdb3f
+  exports: c34153ed7d511df2e0480a8ee9e21474
+  And 4073486fc2b2dc4fde9f66dd09188def
   Destination 922d80ba258cc0a086584d38ca75ebef
   Endpoint 55973a7fc1eaa199e3fcffaea36f620c
-  FIN c6735fc7411b942548fb010afd0b5536
-  InC 6c0d1368639dd5a4ac0527e46326621f
-  InCNot b117f7befd6efbd09704f41fc25cc327
-  InputCriteria e40faf9184c5e56de440c7debe74a4a8
-  ModuleFunc 3390922a76f64eece28c1d252dd1d3e2
-  Or d0cd109da857d4a68fc590655040fcf8
-  Port 8a0ec73e1ab267e270216694792c8d9b
-  RST fd96339b82f9a162c088ed0fdec6822f
-  SYN 82074e53e7bc8d3e93155766a4dca1e5
+  InC e8435baf0c10d62acf1ff9d35ad4c6de
+  InCNot 886dc7f5a8dd4563d3f11675bf619db0
+  InputCriteria ee544870784f76612208ff970967bdd1
+  ModuleFunc e8ddbedf3232c535a1b2c0537afbce94
+  Or 2827dba042335b659dd538c55f73dd89
+  Port 0cdcd795ebd2c331c1401f6cf3404c99
   Source b53eb4518fedc84d30c0b4327bd32c7d
   Target 96fab3e40e346c4a445f4966317f4361
-  URG 9404ebfd2c7bb8f2caacbb3e81f4fbcf
+  stringsToFlags 1b67ff14d71794063a3d844602d37d18
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
-7d012a6e3c791a695211541a811277df
-  $sfromList ::
-    [([GHC.Types.Char], a)] -> Data.Map.Base.Map [GHC.Types.Char] a
-  {- Arity: 1, Strictness: <S,1*U>,
-     Unfolding: (\ @ a ds :: [([GHC.Types.Char], a)] ->
-                 case ds of wild {
-                   [] -> Data.Map.Base.Tip @ [GHC.Types.Char] @ a
-                   : ds1 ds2
-                   -> case ds1 of wild1 { (,) kx x ->
-                      case ds2 of wild2 {
-                        []
-                        -> case kx of dt { DEFAULT ->
-                           Data.Map.Base.Bin
-                             @ [GHC.Types.Char]
-                             @ a
-                             1
-                             dt
-                             x
-                             (Data.Map.Base.Tip @ [GHC.Types.Char] @ a)
-                             (Data.Map.Base.Tip @ [GHC.Types.Char] @ a) }
-                        : ipv ipv1
-                        -> case ipv of wild3 { (,) ky ds3 ->
-                           case GHC.Classes.$fOrd[]_$s$ccompare1 kx ky of wild4 {
-                             DEFAULT
-                             -> case kx of dt { DEFAULT ->
-                                ConvertIptablesPorts.$sfromList1
-                                  @ a
-                                  (Data.Map.Base.Bin
-                                     @ [GHC.Types.Char]
-                                     @ a
-                                     1
-                                     dt
-                                     x
-                                     (Data.Map.Base.Tip @ [GHC.Types.Char] @ a)
-                                     (Data.Map.Base.Tip @ [GHC.Types.Char] @ a))
-                                  wild2 }
-                             GHC.Types.LT
-                             -> case kx of dt { DEFAULT ->
-                                ConvertIptablesPorts.$wpoly_go10
-                                  @ a
-                                  1
-                                  (Data.Map.Base.Bin
-                                     @ [GHC.Types.Char]
-                                     @ a
-                                     1
-                                     dt
-                                     x
-                                     (Data.Map.Base.Tip @ [GHC.Types.Char] @ a)
-                                     (Data.Map.Base.Tip @ [GHC.Types.Char] @ a))
-                                  wild2 } } } } } }) -}
-e976f482de083733e15542560ec1b589
-  $sfromList1 ::
-    Data.Map.Base.Map [GHC.Types.Char] a1
-    -> [([GHC.Types.Char], a1)]
-    -> Data.Map.Base.Map [GHC.Types.Char] a1
-  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-8f4d45c9699d87a00330ed8800fd941e
-  $sinsert_$sgo10 ::
-    [GHC.Types.Char]
-    -> a1
-    -> Data.Map.Base.Map [GHC.Types.Char] a1
-    -> Data.Map.Base.Map [GHC.Types.Char] a1
-  {- Arity: 3, Strictness: <S,1*U><L,U><S,1*U> -}
-91722681ee3d701346c1437569a1e9a2
+d40910077e7e5bd24a0b42cf6d40ef0a
   $slookup1 ::
-    [GHC.Types.Char]
-    -> Data.Map.Base.Map [GHC.Types.Char] a -> GHC.Base.Maybe a
+    GHC.Base.String
+    -> Data.Map.Base.Map GHC.Base.String a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-dd558a08c6f595974896acbb1428eb36
+e6e03f127d51e33b920a82fae3c41011
   $wconvertMultiportRule ::
     [GHC.Base.String]
     -> (# GHC.Base.Maybe
@@ -252,14 +183,14 @@ dd558a08c6f595974896acbb1428eb36
                                            @ (Data.Either.Either
                                                 Types.InputCriteria Types.Target))),
                                    xs #) } } }) -}
-03b146649397d747724fa510ced2cc9b
+a10abdff8b58a8621e89765c1b9f2bed
   $wconvertTCPRule ::
     [GHC.Base.String]
     -> (# GHC.Base.Maybe
             [Data.Either.Either Types.InputCriteria Types.Target],
           [GHC.Base.String] #)
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-05a825bcc4409f8eb0fc1b97fefadc33
+b5478b221b7433503d901ca94566ada4
   $wconvertUDPRule ::
     [GHC.Base.String]
     -> (# GHC.Base.Maybe
@@ -370,14 +301,7 @@ dd558a08c6f595974896acbb1428eb36
                                                 @ (Data.Either.Either
                                                      Types.InputCriteria Types.Target))),
                                         xs #) } } } }) -}
-31a9add6dd351b1665977d11dd6d7b23
-  $wpoly_go10 ::
-    GHC.Prim.Int#
-    -> Data.Map.Base.Map [GHC.Types.Char] a
-    -> [([GHC.Types.Char], a)]
-    -> Data.Map.Base.Map [GHC.Types.Char] a
-  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-77443f8a92a290869e9084d9a78d8cee
+6000412d4a3f1a21b6437bdabb97aa10
   convertMultiportRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -442,7 +366,7 @@ a38ff3fcdbd7b31b4b7b7c5b03ac108b
   convertNumsRangesString_go ::
     [[GHC.Types.Char]] -> [[GHC.Types.Char]]
   {- Arity: 1, Strictness: <S,1*U> -}
-629cddc17b98ba2727442ebe7c556d6d
+adea415c4f68223ddc0bc57b1079e796
   convertPortRuleNoCommas ::
     Types.Endpoint
     -> GHC.Base.String
@@ -487,7 +411,7 @@ a32ab670e3caf26da63c46418c5bce7b
                  case ds1 of wild1 { GHC.Types.C# c2 ->
                  case c2 of wild {
                    DEFAULT -> GHC.Types.False ',' -> GHC.Types.True } }) -}
-062d45e523e9a7fbeb1f4a4499c13410
+6774b3e5c2abd92933a71efe5c053902
   convertTCPRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -495,7 +419,7 @@ a32ab670e3caf26da63c46418c5bce7b
                  case ConvertIptablesPorts.$wconvertTCPRule
                         w of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-a3420e1e258a88a332ee6bef98caa0d7
+3769b81583da037a29bada28d18281f4
   convertUDPRule :: Types.ModuleFunc
   {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -503,7 +427,7 @@ a3420e1e258a88a332ee6bef98caa0d7
                  case ConvertIptablesPorts.$wconvertUDPRule
                         w of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-afc882cf49161eb55b79239fd905142a
+c9e858fc97a77f2308b14e48e52d2905
   portCriteriaFromNumsRangesString ::
     GHC.Base.String -> Types.Endpoint -> [Types.InputCriteria]
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -524,7 +448,7 @@ afc882cf49161eb55b79239fd905142a
                             (go ys) }
                  } in
                  go (ConvertIptablesPorts.convertNumsRangesString ps)) -}
-c9905879aca2b2260af21d88b5d70f9e
+edaf8457b38d1f0cb0f238edfb0ae848
   portCriteriaFromRangeString ::
     GHC.Base.String -> Types.Endpoint -> Types.InputCriteria
   {- Arity: 2, Strictness: <L,U><L,U>m1,
@@ -540,96 +464,6 @@ c9905879aca2b2260af21d88b5d70f9e
 d3769eacb1c6cf06f73a1a16821d6d03
   portCriteriaFromRangeString1 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ":"#) -}
-5d42db89231a65d5a715b4ea365b714c
-  stringsToFlags :: Data.Map.Base.Map [GHC.Types.Char] Types.Criteria
-  {- Unfolding: (ConvertIptablesPorts.$sfromList
-                   @ Types.Criteria
-                   ConvertIptablesPorts.stringsToFlags1) -}
-0e6c4a3964869511aaa557a50e1c4b37
-  stringsToFlags1 :: [([GHC.Types.Char], Types.Criteria)]
-  {- Unfolding: (GHC.Types.:
-                   @ ([GHC.Types.Char], Types.Criteria)
-                   ConvertIptablesPorts.stringsToFlags18
-                   ConvertIptablesPorts.stringsToFlags2) -}
-1562c29450075bcd32312280f1bf9a5c
-  stringsToFlags10 :: Types.Criteria
-  {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.RST) -}
-924b942f274978a9a5ace13ea9848f38
-  stringsToFlags11 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "RST"#) -}
-833c83c50b76d0ace02261e37de43062
-  stringsToFlags12 :: ([GHC.Types.Char], Types.Criteria)
-  {- Unfolding: ((ConvertIptablesPorts.stringsToFlags14,
-                  ConvertIptablesPorts.stringsToFlags13)) -}
-7e1f5dcac20c00ab90e3e9518313ea35
-  stringsToFlags13 :: Types.Criteria
-  {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.FIN) -}
-c0a88f860f5db43eb64aa84a9539b6ff
-  stringsToFlags14 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "FIN"#) -}
-bb741e053a2fc4f0a82397ac8fb3cc56
-  stringsToFlags15 :: ([GHC.Types.Char], Types.Criteria)
-  {- Unfolding: ((ConvertIptablesPorts.stringsToFlags17,
-                  ConvertIptablesPorts.stringsToFlags16)) -}
-e1864f1464b3f4f2f8824e26b5ec96d0
-  stringsToFlags16 :: Types.Criteria
-  {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.ACK) -}
-c9bdf55829a6b43a9497912340673b11
-  stringsToFlags17 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "ACK"#) -}
-7b0d94850fc43373e4baa8815f725279
-  stringsToFlags18 :: ([GHC.Types.Char], Types.Criteria)
-  {- Unfolding: ((ConvertIptablesPorts.stringsToFlags20,
-                  ConvertIptablesPorts.stringsToFlags19)) -}
-5a9bef50880fb926ca376f172c9adfda
-  stringsToFlags19 :: Types.Criteria
-  {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.SYN) -}
-21c389293e39d672371444463192b01f
-  stringsToFlags2 :: [([GHC.Types.Char], Types.Criteria)]
-  {- Unfolding: (GHC.Types.:
-                   @ ([GHC.Types.Char], Types.Criteria)
-                   ConvertIptablesPorts.stringsToFlags15
-                   ConvertIptablesPorts.stringsToFlags3) -}
-b239f9f8e44c5d269200c52939525682
-  stringsToFlags20 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "SYN"#) -}
-e7e0d0380a3c75da950dc7d8e10ec948
-  stringsToFlags3 :: [([GHC.Types.Char], Types.Criteria)]
-  {- Unfolding: (GHC.Types.:
-                   @ ([GHC.Types.Char], Types.Criteria)
-                   ConvertIptablesPorts.stringsToFlags12
-                   ConvertIptablesPorts.stringsToFlags4) -}
-30e6149a1b25f6696df2667c0de22b10
-  stringsToFlags4 :: [([GHC.Types.Char], Types.Criteria)]
-  {- Unfolding: (GHC.Types.:
-                   @ ([GHC.Types.Char], Types.Criteria)
-                   ConvertIptablesPorts.stringsToFlags9
-                   ConvertIptablesPorts.stringsToFlags5) -}
-d7c0fa68d028114efbbd6a23384eb5e5
-  stringsToFlags5 :: [([GHC.Types.Char], Types.Criteria)]
-  {- Unfolding: (GHC.Types.:
-                   @ ([GHC.Types.Char], Types.Criteria)
-                   ConvertIptablesPorts.stringsToFlags6
-                   (GHC.Types.[] @ ([GHC.Types.Char], Types.Criteria))) -}
-6dae580bcf5c29ea28ca731edcd45606
-  stringsToFlags6 :: ([GHC.Types.Char], Types.Criteria)
-  {- Unfolding: ((ConvertIptablesPorts.stringsToFlags8,
-                  ConvertIptablesPorts.stringsToFlags7)) -}
-89323763d3cc7188f6376360066945d2
-  stringsToFlags7 :: Types.Criteria
-  {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.URG) -}
-3c78df7a17b7950218a0727340d52135
-  stringsToFlags8 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "URG"#) -}
-bc394a4374754c73ad9c4c458ba67ca9
-  stringsToFlags9 :: ([GHC.Types.Char], Types.Criteria)
-  {- Unfolding: ((ConvertIptablesPorts.stringsToFlags11,
-                  ConvertIptablesPorts.stringsToFlags10)) -}
-"SPEC/ConvertIptablesPorts fromList @ [Char] _" [ALWAYS] forall @ a
-                                                                $dOrd :: GHC.Classes.Ord
-                                                                           [GHC.Types.Char]
-  Data.Map.Base.fromList @ [GHC.Types.Char] @ a $dOrd
-  = ConvertIptablesPorts.$sfromList @ a
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

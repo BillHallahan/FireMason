@@ -17,18 +17,16 @@ convertTCPRule ("--sport":sps:xs) = convertPortRuleNoCommas Source sps xs ("--sp
 convertTCPRule ("--dport":dps:xs) = convertPortRuleNoCommas Destination dps xs ("--dport":dps:xs)
 convertTCPRule ("--tcp-flags":mask:comp:xs) =
     let
-        m = map (\x -> fromJust $ Map.lookup x stringsToFlags) $ splitOn "," mask
-        c = map (\x -> fromJust $ Map.lookup x stringsToFlags) $ splitOn "," comp
+        m = case mask of "ALL" -> Map.elems stringsToFlags
+                         "NONE" -> [] 
+                         _ -> map (\x -> fromJust $ Map.lookup x stringsToFlags) $ splitOn "," mask
+        c = case comp of "ALL" -> Map.elems stringsToFlags
+                         "NONE" -> [] 
+                         _ -> map (\x -> fromJust $ Map.lookup x stringsToFlags) $ splitOn "," comp
         pos = map (InC) (m `intersect` c)
         neg = map (InCNot . InC) (m \\ c)
     in (Just [Left . And $ (pos ++ neg)], xs)
 convertTCPRule xs = (Nothing, xs)
-
-stringsToFlags = Map.fromList [("SYN", BoolFlag SYN)
-                              , ("ACK", BoolFlag ACK)
-                              , ("FIN", BoolFlag FIN)
-                              , ("RST", BoolFlag RST)
-                              , ("URG", BoolFlag URG)]
 
 convertUDPRule :: ModuleFunc
 convertUDPRule ("--sport":sps:xs) = convertPortRuleNoCommas Source sps xs ("--sport":sps:xs)

@@ -8,6 +8,8 @@ import Data.Int
 import qualified Data.Set as Set  
 import qualified Data.Map as Map  
 
+import Data.Maybe
+
 
 type InputChain = [InputRule]
 type Chain = [Rule]
@@ -23,7 +25,37 @@ data Criteria = BoolFlag Flag
                 | Protocol Int
                 | SC String deriving (Eq, Show)
 
-data Flag = SYN | ACK | FIN | RST | URG deriving (Eq, Show)
+data Flag = SYN | ACK | FIN | RST | URG deriving (Ord, Eq, Show)
+
+isNot :: Criteria -> Bool
+isNot (Not _) = True
+isNot _ = False
+
+ifNotRemoveNot :: Criteria -> Criteria
+ifNotRemoveNot (Not x) = ifNotRemoveNot x
+ifNotRemoveNot x = x 
+
+boolFlagToFlag :: Criteria -> Flag
+boolFlagToFlag (BoolFlag x) = x
+boolFlagToFlag _ = error "Must be a BoolFlag."
+
+stringsToFlags :: Map.Map String Criteria
+stringsToFlags = Map.fromList [("SYN", BoolFlag SYN)
+                              , ("ACK", BoolFlag ACK)
+                              , ("FIN", BoolFlag FIN)
+                              , ("RST", BoolFlag RST)
+                              , ("URG", BoolFlag URG)]
+
+flagsToStrings :: Criteria -> String
+flagsToStrings (BoolFlag f) = fromJust $ Map.lookup f flagsToStrings'
+flagsToStrings _ = ""
+
+flagsToStrings' :: Map.Map Flag String
+flagsToStrings' = Map.fromList [(SYN, "SYN")
+                              , (ACK, "ACK")
+                              , (FIN, "FIN")
+                              , (RST, "RST")
+                              , (URG, "URG")]
 
 isStateless :: Criteria -> Bool
 isStateless (BoolFlag _) = True

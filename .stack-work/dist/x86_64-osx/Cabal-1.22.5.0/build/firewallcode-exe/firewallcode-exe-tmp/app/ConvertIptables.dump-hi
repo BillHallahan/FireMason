@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-11 00:33:29.215929 UTC
+2016-08-12 06:30:52.322479 UTC
 
 interface main@main:ConvertIptables 7103
-  interface hash: 467fc6c6355fbfdc735c4bc12cf43572
-  ABI hash: 51e426817f087f41f3171e599d7d7de4
+  interface hash: e3f04f450e2d2d4a76be01efa3870cb7
+  ABI hash: b89ad283e5a112b47383c1d5733cb374
   export-list hash: 51de29114018434dce794de13b31aa3c
   orphan hash: c781883ce9a83727da7a0d4e527513a2
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -69,42 +69,42 @@ import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  ConvertIptablesPorts 6ecc7f37f33502f117c915a428da946d
-  exports: 15c841af90b81c815cb5654478f2a424
-  convertMultiportRule 77443f8a92a290869e9084d9a78d8cee
-  convertTCPRule 062d45e523e9a7fbeb1f4a4499c13410
-  convertUDPRule a3420e1e258a88a332ee6bef98caa0d7
-import  -/  IptablesTypes a8cca4ec85aab8897e6b04d3c09ec10d
+import  -/  ConvertIptablesPorts 83687948a5d312e2e7cbd8626f5cef1c
+  exports: 85292e38103a9eef1309495f33162327
+  convertMultiportRule 6000412d4a3f1a21b6437bdabb97aa10
+  convertTCPRule 6774b3e5c2abd92933a71efe5c053902
+  convertUDPRule 3769b81583da037a29bada28d18281f4
+import  -/  IptablesTypes 499e55bfd3c61f6a4de2f1c4f6e75933
   exports: 487856e79b078f5a837392b58e7afa97
   Append 741853c63cb0e92ef0b0777e9fe96d9e
   Command 4e2ae75ee3b477dcd91b4d0d5a242abc
   Flush 71c439064dbb9b059ca7c7e58e09a745
   Insert be7385e63bc1d393a4921ba222091991
-  Line 5be486eb454151879664d7f30e61f7e7
-  Line 0e81959a5b700cb3ecac7b8b40d9dd78
+  Line 1e9c98124adbba678525ee7f2184868b
+  Line fceaf1d94e703682120069d607a5c23e
   New 59940bbd31b838b23a94ff3e0e525842
   None bd734ffa7080b13325c2713c248c3775
-  command 3c384b0b2aad749cec6deac6dbc43f6e
-  rule f9e029acc73a365b9a8a427616558764
-  table 3f777b6e674cf42cd347712230c1d24d
+  command 9622bc1c874399561bde9d9eac2697f0
+  rule 89fa6ff5d84e113bb9991f789bd092d2
+  table 4e5f0b05ccf4dfa3c6de4cd274da4748
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
-import  -/  Types 22400a5faae8b7e0ddaf8e819accc2b5
-  exports: 543a62a9d1b1c5a4ade5b8a7472fb031
+import  -/  Types 6431681dc34ef43a214b91e643fcdb3f
+  exports: c34153ed7d511df2e0480a8ee9e21474
   ACCEPT a0e8bfb182327208223f4101204d01d3
-  And 6f9bf0163ff27e2a03199030eb3d0445
+  And 4073486fc2b2dc4fde9f66dd09188def
   DROP 030c92a184ce42e939e5fbc310e578ea
-  InC 6c0d1368639dd5a4ac0527e46326621f
-  InCNot b117f7befd6efbd09704f41fc25cc327
-  InputChain 6388ac567b47558966f1197d75c5e1c3
-  InputCriteria e40faf9184c5e56de440c7debe74a4a8
+  InC e8435baf0c10d62acf1ff9d35ad4c6de
+  InCNot 886dc7f5a8dd4563d3f11675bf619db0
+  InputChain 088c1c9430c581e536a11d0e442bc795
+  InputCriteria ee544870784f76612208ff970967bdd1
   Jump f0e0eef53bcd979c5769895fa291bd1c
-  ModuleFunc 3390922a76f64eece28c1d252dd1d3e2
-  Protocol 4dac2e327a2d0444c30af9bf1df029cc
-  Rule 2df5292164aa863af871847a92afc898
+  ModuleFunc e8ddbedf3232c535a1b2c0537afbce94
+  Protocol d38fdc887d9a0e7c53d19d8b463500f3
+  Rule b5742fecd8c62d0db5b3ac3928e2c24a
   Target 96fab3e40e346c4a445f4966317f4361
-  eitherToRule 55c2d392a1da73ee590533ec94dcb611
+  eitherToRule ac7210e1ea8f8282bbe0da7b58d4491d
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
 8f3126123a9807260c8df3ec987129cc
@@ -171,8 +171,8 @@ f3e572805364916335491f3b6d0661f5
     Data.Map.Base.Map GHC.Types.Int a1
     -> [(GHC.Types.Int, a1)] -> Data.Map.Base.Map GHC.Types.Int a1
   {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
-a170674e00a48c29a220c1439a367888
-  $sinsert_$sgo1 ::
+2f62c5623f7fe07988d9e7f2ab139ae3
+  $sinsert_$sgo10 ::
     GHC.Base.String
     -> a1
     -> Data.Map.Base.Map GHC.Base.String a1
@@ -332,7 +332,7 @@ ca17b087588bd9c8ef74e1ddd47a3081
                                      @ IptablesTypes.Command
                                      (IptablesTypes.Append chain),
                                    xs #) } } }) -}
-838547044e4e27212ad39058b4e9013f
+a8096e2a6cad844d94c0c760a6594e88
   $wconvertCriteriaOrTarget ::
     [GHC.Base.String]
     -> [Types.ModuleFunc]
@@ -341,7 +341,7 @@ ca17b087588bd9c8ef74e1ddd47a3081
           [GHC.Base.String],
           GHC.Base.Maybe Types.ModuleFunc #)
   {- Arity: 2, Strictness: <S,U><L,1*U>, Inline: [0] -}
-0e5c8c1dfcadcf0a30d460108bd2cce4
+bd2437fcec7cae83273a547ff5136c82
   $wconvertLine ::
     [GHC.Base.String]
     -> GHC.Types.Int
@@ -414,7 +414,7 @@ cc45462f7d400a7558afc4a3b7eaf2f7
 c9d4a14eba7271367a6daa9fdc55a325
   convertCommand9 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "-I"#) -}
-dd80cd47ede01467b73e80484a750891
+ea184cba848ea8b3ecf27a6220020fad
   convertCriteriaOrTarget ::
     [GHC.Base.String]
     -> [Types.ModuleFunc]
@@ -429,7 +429,7 @@ dd80cd47ede01467b73e80484a750891
                         w
                         w1 of ww { (#,,#) ww1 ww2 ww3 ->
                  (ww1, ww2, ww3) }) -}
-9b3cb85029d84fd201fc96d75d48f549
+241e383b8ecbf3be945b9d7ee9fa81b8
   convertLine ::
     ([GHC.Base.String], GHC.Types.Int)
     -> [Types.ModuleFunc] -> IptablesTypes.Line
@@ -444,11 +444,11 @@ dd80cd47ede01467b73e80484a750891
                         ww2
                         w1 of ww3 { (#,,,#) ww4 ww5 ww6 ww7 ->
                  IptablesTypes.Line ww4 ww5 ww6 ww7 } }) -}
-e6fe7f2c531b39d54e7a602e6f71c7b9
+e98c28607777fe9567fbbbf538ab9f85
   convertLines ::
     [([GHC.Base.String], GHC.Types.Int)] -> [IptablesTypes.Line]
   {- Arity: 1, Strictness: <S,1*U> -}
-bd6158d7b15f7e2a04714f8a3b8fad4a
+460af724fa3d7a4001b81854912aecb1
   convertScript ::
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String Types.InputChain
@@ -458,7 +458,7 @@ bd6158d7b15f7e2a04714f8a3b8fad4a
                  ConvertIptables.convertToChains
                    (ConvertIptables.convertScript' coms)
                    ConvertIptables.convertScript1) -}
-0817ad9ae0aa5e19b7751d73673e8133
+e7afad79a917d915e97c85b0146768d2
   convertScript' :: GHC.Base.String -> [IptablesTypes.Line]
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ coms :: GHC.Base.String ->
@@ -511,58 +511,58 @@ fd34d0b584beffaeae62f56dee4e1ec6
     [[GHC.Types.Char]]
     -> [GHC.Types.Int] -> [([GHC.Types.Char], GHC.Types.Int)]
   {- Arity: 2, Strictness: <S,1*U><L,1*U> -}
-93ce535b65b40c4489225662ad98e6c4
+4565a4adecb7fce0e5937647dfdebc84
   convertScript1 ::
-    Data.Map.Base.Map [GHC.Types.Char] [Types.InputRule]
-  {- Unfolding: (ConvertIptablesPorts.$sfromList
+    Data.Map.Base.Map GHC.Base.String [Types.InputRule]
+  {- Unfolding: (Types.$sfromList1
                    @ [Types.InputRule]
                    ConvertIptables.convertScript2) -}
 e78ac025be8fdeeb97c1e3563b876253
   convertScript10 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "INPUT"#) -}
-342b382d02313de7155741e155e257fd
+567c0fab0adfb5dcce907e52df92716c
   convertScript2 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    ConvertIptables.convertScript9
                    ConvertIptables.convertScript3) -}
-34aee8992690b282a4c179abefd54f1b
+b849eacd9bd6801442a6b3d7fba4f78c
   convertScript3 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    ConvertIptables.convertScript7
                    ConvertIptables.convertScript4) -}
-5558fad52d674a900f7345beee29a34f
+713216b50807e7ecba043c0d045d9dbb
   convertScript4 :: [(GHC.Base.String, Types.InputChain)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.InputChain)
                    ConvertIptables.convertScript5
                    (GHC.Types.[] @ (GHC.Base.String, Types.InputChain))) -}
-5977d0f5e70edbda78d94b4f871a521b
+50e002d22597599325a06afeb932690e
   convertScript5 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((ConvertIptables.convertScript6,
                   GHC.Types.[] @ Types.InputRule)) -}
 58e638f471b99ac9a3a8e510f81c7df4
   convertScript6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "FORWARD"#) -}
-bc64996db53bcd56a7c6b9331f74d1b7
+aa34f39092a284c78524d151a0823b67
   convertScript7 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((ConvertIptables.convertScript8,
                   GHC.Types.[] @ Types.InputRule)) -}
 84f8b903ce0f1733f0a3e8c8c65cb875
   convertScript8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "OUTPUT"#) -}
-142d1330e9b46249b170ad52d2b3bf57
+cccc8ea6ab1d657ffea3367379cbfa11
   convertScript9 :: ([GHC.Types.Char], [Types.InputRule])
   {- Unfolding: ((ConvertIptables.convertScript10,
                   GHC.Types.[] @ Types.InputRule)) -}
-958e620c09041f34c4906c96d82fc74d
+c517f39b07fb55665eb1b630e9454565
   convertToChains ::
     [IptablesTypes.Line]
     -> Data.Map.Base.Map GHC.Base.String Types.InputChain
     -> Data.Map.Base.Map GHC.Base.String Types.InputChain
   {- Arity: 2, Strictness: <S,1*U><S,U> -}
-a0f2f25750c357be4bbe03bc9a499a7e
+31886961a7edaa34c8215d486d36cc3b
   protocolConvertFuncs ::
     Data.Map.Base.Map GHC.Types.Int Types.ModuleFunc
   {- Unfolding: (ConvertIptables.$sfromList
@@ -571,35 +571,35 @@ a0f2f25750c357be4bbe03bc9a499a7e
                             [Data.Either.Either Types.InputCriteria Types.Target],
                           [GHC.Base.String]))
                    ConvertIptables.protocolConvertFuncs1) -}
-6c27b6e98e2e59bc4066a6ce5ad53ea5
+8bcf90fd45061e7cde17474a1e17dd1d
   protocolConvertFuncs1 :: [(GHC.Types.Int, Types.ModuleFunc)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Types.Int, Types.ModuleFunc)
                    ConvertIptables.protocolConvertFuncs5
                    ConvertIptables.protocolConvertFuncs2) -}
-7035c0975328f518137154bbdf4c62f2
+f919032482f312bf4126a5d950070875
   protocolConvertFuncs2 :: [(GHC.Types.Int, Types.ModuleFunc)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Types.Int, Types.ModuleFunc)
                    ConvertIptables.protocolConvertFuncs3
                    (GHC.Types.[] @ (GHC.Types.Int, Types.ModuleFunc))) -}
-1aabde3066b899cb97ec66275c27d0d8
+32194842e93c0381c8a837f34db43896
   protocolConvertFuncs3 :: (GHC.Types.Int, Types.ModuleFunc)
   {- Unfolding: ((ConvertIptables.protocolConvertFuncs4,
                   ConvertIptablesPorts.convertUDPRule)) -}
 53668904f01a24ba4c37c5233edb5dbb
   protocolConvertFuncs4 :: GHC.Types.Int
   {- HasNoCafRefs, Unfolding: (GHC.Types.I# 17) -}
-9793e97ebf5536aa551e0d8b6b6a7ac3
+4f949ca0e3acf71a12cf27c75fdcb32f
   protocolConvertFuncs5 :: (GHC.Types.Int, Types.ModuleFunc)
   {- Unfolding: ((ConvertIptables.protocolConvertFuncs6,
                   ConvertIptablesPorts.convertTCPRule)) -}
 e188c10556a74eea52efc01138f7e8b4
   protocolConvertFuncs6 :: GHC.Types.Int
   {- HasNoCafRefs, Unfolding: (GHC.Types.I# 6) -}
-8179655e74379c40bfb312aae803d9be
+d7c02b2feb809d43a3c3156563dfc0c5
   protocolToNum :: Data.Map.Base.Map GHC.Base.String GHC.Types.Int
-  {- Unfolding: (ConvertIptablesPorts.$sfromList
+  {- Unfolding: (Types.$sfromList1
                    @ GHC.Types.Int
                    ConvertIptables.protocolToNum1) -}
 fa224900252a01108381d264697fc487
