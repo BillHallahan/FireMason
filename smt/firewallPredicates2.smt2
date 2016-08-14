@@ -1,0 +1,125 @@
+;When being used, make sure to initialize the following correctly:
+;num-of-packets
+;num-of-chains
+;chain-length
+
+(declare-datatypes () ((Target ACCEPT DROP RETURN (GO (chain Int) (rule Int)) NONE)))
+
+(declare-fun matches-criteria (Int Int Int) Bool)
+(declare-fun rule-target (Int Int) Target)
+(declare-fun reaches (Int Int Int) Bool)
+(declare-fun reaches-return (Int Int) Bool)
+(declare-fun reaches-end (Int Int) Bool)
+(declare-fun returns-from (Int Int) Bool)
+(declare-fun policy (Int) Target)
+
+(declare-const num-of-packets Int)
+(declare-const num-of-chains Int)
+(declare-fun chain-length (Int) Int)
+(declare-fun terminates-with (Int) Target)
+
+(define-fun valid-packet ((p Int)) Bool
+    (and (<= 0 p) (< p num-of-packets)))
+
+(define-fun valid-chain ((c Int)) Bool
+    (and (<= 0 c) (< c num-of-chains))
+)
+
+(define-fun valid-rule ((c Int) (r Int)) Bool
+    (and 
+        (valid-chain c)
+        (<= 0 r)
+        (< r (chain-length c))
+    )
+)
+
+(define-fun matches-rule((p Int) (c Int) (r Int)) Bool
+   (and (valid-rule c r) (valid-packet p) (matches-criteria p c r) (reaches p c r)))
+
+(define-fun terminating ((t Target)) Bool 
+    (or (= t ACCEPT) (= t DROP))
+)
+
+(define-fun terminates-at ((p Int) (c Int) (r Int)) Bool
+    (and (matches-rule p c r) (terminating (rule-target c r))))
+
+(define-fun isGo ((t Target)) Bool
+    (exists ((a Int) (b Int)) (= t (GO a b)))
+)
+
+(define-fun top-level-chain ((c Int)) Bool
+    (forall ((c2 Int) (r Int)) 
+        (=> 
+            (and (valid-rule c2 r) (isGo (rule-target c2 r)))
+            (not (= c (chain (rule-target c2 r))))
+        )
+    )
+)
+
+(define-fun reaches-top-level-chain ((p Int) (c Int)) Bool
+    (and (valid-packet p) (valid-chain c) (top-level-chain c) (reaches p c 0))
+)
+
+;Says a packet can only be in one top level chain
+(assert 
+    (forall ((p Int) (c1 Int) (c2 Int)) 
+        (=> 
+            (and (not (= c1 c2)) (valid-packet p) (valid-chain c1) (valid-chain c2) (top-level-chain c1) (top-level-chain c2) (reaches p c1 0)) 
+            (not (reaches p c2 0))
+        )
+    )
+)
+
+;Says a non-top-level-chain cannot have a policy
+(assert
+    (forall ((c Int))
+        (=>
+            (not (top-level-chain c))
+            (= (policy c) NONE)
+        )
+    )
+)
+
+;Says a top-level-chain's policy is the outcome of a packet when it reaches the end of it
+(assert
+    (forall ((p Int) (c Int))
+        (=>
+            (and (valid-packet p) (top-level-chain c) (reaches-end p c))
+            (= (terminates-with p) (policy c))
+        )
+    )
+)
+
+
+;These two rules enforce that a packet can only reach up to the end of a chain, not past it,
+;and that it must reach rule (r - 1) to reach rule r
+
+(assert (forall ((c Int) (p Int)) (=> 
+    (and (valid-chain c) (valid-packet p)) 
+    (not (reaches p c (+ (chain-length c) 1)))
+)))
+
+;(assert (forall ((c Int) (r Int) (p Int)) (=> 
+;    (and (valid-chain c) (<= 0 r) (<= r (chain-length c)) (valid-packet p) (<= 1 r) (reaches p c r))
+;    (reaches p c (- r 1))
+;)))
+
+;(assert (forall ((c Int) (r Int) (p Int)) (=> 
+;    (and (valid-rule c r) (valid-packet p) (reaches p c r) (not (matches-criteria p c r))) 
+;    (reaches p c (+ r 1))
+;)))
+
+;(assert (forall ((c Int) (r Int) (p Int)) (=> 
+;   (and (valid-rule c r) (valid-packet p) (reaches p c r) (= (rule-target c r) NONE)) 
+;    (reaches p c (+ r 1))
+;)))
+
+(assert (forall ((c Int) (p Int)) (= 
+    (and (valid-chain c) (valid-packet p) (reaches p c (chain-length c)))
+    (reaches-end p c)
+)))
+
+(assert (forall ((c Int) (p Int)) (=> 
+    (and (valid-packet p) (valid-chain c))
+    (= (or (reaches-return p c) (reaches-end p c)) (returns-from p c))
+)))
