@@ -110,6 +110,7 @@ convertCriteriaOrTarget ("-j":j:xs) _ = case j of "ACCEPT" -> (Just [Right ACCEP
                                                   "DROP" -> (Just [Right DROP],xs, Nothing)
                                                   "RETURN" -> (Just [Right RETURN],xs, Nothing)
                                                   _ -> (Just [Right $ Jump j], xs, Nothing)
+convertCriteriaOrTarget ("-g":g:xs) _ = (Just [Right $ GoTo g], xs, Nothing)
 convertCriteriaOrTarget ("-m":m:xs) _ = (Nothing , xs, Just $ convertMultiportRule)--Obviously this will eventually be adjusted when we have more modules...
 convertCriteriaOrTarget ("-p":p:xs) _ = 
     let --We need to add commands based on which protocol is being matched

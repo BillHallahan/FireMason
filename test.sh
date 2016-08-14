@@ -26,6 +26,7 @@ $IPTABLES -A bad-ports -p tcp --sport 4 ! --tcp-flags SYN,ACK,FIN SYN --dport 5 
 $IPTABLES -N check
 $IPTABLES -F check
 $IPTABLES -p 0 -j DROP  -A check
+$IPTABLES -A check -p tcp --tcp-flags SYN SYN -j ACCEPT
 
 
 
@@ -33,12 +34,18 @@ $IPTABLES -N second
 $IPTABLES -F second
 $IPTABLES -A second -p tcp -m multiport --port 7,8 -j DROP
 
+$IPTABLES -N ret2
+$IPTABLES -F ret2
+$IPTABLES -A -p udp --sport 96 -j RETURN
+$IPTABLES -A ret -p udp -j DROP
+
 $IPTABLES -N ret
 $IPTABLES -F ret
-#$IPTABLES -A ret -p udp --sport 96 -j RETURN
+$IPTABLES -A ret -p udp --sport 96 -g ret2
 $IPTABLES -A ret -p udp -j DROP
 
 $IPTABLES -A INPUT -j ret
+$IPTABLES -A INPUT -j ret2
 $IPTABLES -A INPUT -j bad-ports
 $IPTABLES -A INPUT -p udp --sport 98 -j ACCEPT
 

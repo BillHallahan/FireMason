@@ -77,7 +77,9 @@ data InputCriteria = InC Criteria
 
 
 data Target = Jump String
+              | GoTo String
               | Go Int Int
+              | GoReturn Int Int
               | ACCEPT
               | DROP
               | RETURN

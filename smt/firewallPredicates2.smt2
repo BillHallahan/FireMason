@@ -3,7 +3,7 @@
 ;num-of-chains
 ;chain-length
 
-(declare-datatypes () ((Target ACCEPT DROP RETURN (GO (chain Int) (rule Int)) NONE)))
+(declare-datatypes () ((Target ACCEPT DROP RETURN (GO (chain Int) (rule Int)) (GORETURN (chainR Int) (ruleR Int)) NONE)))
 
 (declare-fun matches-criteria (Int Int Int) Bool)
 (declare-fun rule-target (Int Int) Target)
@@ -47,11 +47,18 @@
     (exists ((a Int) (b Int)) (= t (GO a b)))
 )
 
+(define-fun isGoReturn ((t Target)) Bool
+    (exists ((a Int) (b Int)) (= t (GORETURN a b)))
+)
+
 (define-fun top-level-chain ((c Int)) Bool
-    (forall ((c2 Int) (r Int)) 
+    (forall ((c2 Int) (r Int))
         (=> 
-            (and (valid-rule c2 r) (isGo (rule-target c2 r)))
-            (not (= c (chain (rule-target c2 r))))
+            (valid-rule c2 r)
+            (or
+                (and (isGo (rule-target c2 r)) (not (= c (chain (rule-target c2 r)))))
+                (and (isGoReturn (rule-target c2 r)) (not (= c (chainR (rule-target c2 r)))))
+            )
         )
     )
 )

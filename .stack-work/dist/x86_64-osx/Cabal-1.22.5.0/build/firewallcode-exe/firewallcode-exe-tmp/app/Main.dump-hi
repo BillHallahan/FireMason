@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-14 02:36:05.448318 UTC
+2016-08-14 06:07:07.226299 UTC
 
 interface main@main:Main 7103
-  interface hash: 9c8a695ca5d9da9b88aa43335cc10e5c
-  ABI hash: 6327979fd84394fd2b4cc07159cf762b
+  interface hash: 1ae06e326e3a57cb5b7269e101c6f55b
+  ABI hash: 16fafa2166c702d4dbb806de5ecac161
   export-list hash: ba2c128ff3a48b102e2e9a042f415bc4
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 1e3361fb471ccc1f0605f4d3c4d9aa91
@@ -49,55 +49,127 @@ import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
-import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  base-4.8.2.0:System.Environment ba6e36000c8274703cf7786fbe8d0f6c
 import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
-import  -/  ChainsToSMT2 bd0abae7f1eb76631d40f6d6e62e5a30
+import  -/  ChainsToSMT2 d4f61d7de95fcfcb69844fbbf41ce888
   exports: 6df6e3c5db831fd5191a0f08e93d7557
-  replaceAllCombinations e26fa91ca901e4f64b6956bb18c047bc
-import  -/  ConvertIptables 73324e68152d8a2da3ba002d12ed9ddb
+import  -/  ConvertIptables 1b9a04ba11ce7221793ec30434a35c25
   exports: 51de29114018434dce794de13b31aa3c
-  convertScript 183325a25980714fa76ed7e64b9c6d53
-import  -/  ConvertToHorn 01a2d23cc80a6e9f06083edbc0aeaa55
+  convertScript a7fbcc4f1e01a67bde3edd4633244511
+import  -/  ConvertToHorn 887673dfb978e54bd516825c3a0d813d
   exports: 76cec1257792e94428092746d96d37c3
-  inputInstructionsToInstructions 018b3274104fa8787cd18ca2e479c212
-  stringInputChainsToStringChains 8fa9c256ad8751805a4ec3e9703c8085
-import  -/  InstructionsToIptables 2830020f77f4c51dc85305f49069237d
+  inputInstructionsToInstructions 927e2d326653c26370eb751ac149bf00
+  stringInputChainsToStringChains 7ed078981459267f8e090167ef6fb182
+import  -/  InstructionsToIptables 3e5031a7b7eafe6a40a9d98c8a36a187
   exports: 5ba4bf00a24ceb6f2d15456ea00066ce
-  addToIptables 01e3d2c4103835fb101cdbd61371ad33
-  convert d3c8a48dcbd23e07b50814c3a6e90351
-import  -/  IptablesTypes 11243f7f88578fd1786a56177215f519
+  addToIptables 05431bba1146ee4f7eacb6d5be546417
+  convert 60859b872bcfce5eff3b5fe97abb6c41
+import  -/  IptablesTypes c70d1eba00184fe627b020da17ed4013
   exports: 487856e79b078f5a837392b58e7afa97
-import  -/  NameIdChain e4993fa1089d01db5aa4adb7e637ba97
+import  -/  NameIdChain a75124ff070cd8c12391187f5fb312de
   exports: 9ff82ba4aa39e1eb044c914702771b51
-  pathSimplification 8d339c82dd2d210512bd1ef598e317b7
-import  -/  ParseSpecificationLanguage 16c5f6af420d9255d6aa3fc76a71000a
+  pathSimplification 324fc3e675077637730040ac95764801
+import  -/  ParseSpecificationLanguage 3c7f974bb07933530e358ed8b247b789
   exports: 97b3a15dfab8f73d45ff5f6798ca2b79
   lexer 77c583e36e586e5038c1f8ebe9f4eeb6
-  parse d067d898904b6fa38d6f55b129376118
-import  -/  RuleAdding 4baa44d2471a01ba3e68b7a38461e21f
+  parse db234c1afd0bc5461cf3b1ea21935107
+import  -/  RuleAdding 47de112f82cf7c5a28e1d1e26ba1d6b5
   exports: d21197875f79cbcd5006d1bf1cd8f842
-  instructionsToAddAtPos 75c3ca0e6a45f17849c5b8d8acda4b54
+  instructionsToAddAtPos 06e1a5e4554875a25b2e8fe3b9fe97e8
 import  -/  SMT 78b6ee582b4c547d861399edd96af15b
   exports: bdc12074afdd6621e65d5072296d84d4
-import  -/  Types 8e5d6bf8bd4e68da2c2990dcc945144b
-  exports: 8b870742f535852668b544f1c644b52e
+import  -/  Types f9d70ed3014642084f474e454b622672
+  exports: e4d4ad03c66c3c72a69f0ac142d16980
   insRule 8e138eb267aaea8894463ffcac20987b
-ee6590a2ab0ffaa5074d93f2d3fc4c03
+fa352732f94b2e49733c75c13af3c123
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: InlineRule (0, True, True)
                 Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R)) -}
-e3bd864fe81295cabb6b36ca45539f6f
+4898b204a7a10697585bfe34d0ae10bc
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 1, Strictness: <L,U> -}
-20688fff09df92565d9be8c5f0313411
-  main2 ::
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ s :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case System.Environment.getArgs1 s of ds1 { (#,#) ipv ipv1 ->
+                 case GHC.IO.Handle.FD.openFile1
+                        (GHC.List.$w!! @ GHC.Base.String ipv1 0)
+                        GHC.IO.IOMode.ReadMode
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case GHC.IO.Handle.Text.hGetContents1
+                        ipv3
+                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 case GHC.IO.Handle.FD.openFile1
+                        (GHC.List.$w!! @ GHC.Base.String ipv1 2)
+                        GHC.IO.IOMode.ReadMode
+                        ipv4 of ds4 { (#,#) ipv6 ipv7 ->
+                 case GHC.IO.Handle.Text.hGetContents1
+                        ipv7
+                        ipv6 of ds5 { (#,#) ipv8 ipv9 ->
+                 let {
+                   pathSimp :: Types.IdNameChain
+                   = NameIdChain.pathSimplification
+                       (Types.$sfromList1
+                          @ [Types.Rule]
+                          (ConvertToHorn.stringInputChainsToStringChains
+                             (Data.Map.Base.$fEqMap1
+                                @ [GHC.Types.Char]
+                                @ [Types.InputRule]
+                                (GHC.Types.[] @ ([GHC.Types.Char], [Types.InputRule]))
+                                (ConvertIptables.convertToChains
+                                   (ConvertIptables.convertScript' ipv5)
+                                   ConvertIptables.convertScript1))
+                             Main.main3))
+                 } in
+                 case RuleAdding.instructionsToAddAtPos1
+                        (ConvertToHorn.inputInstructionsToInstructions
+                           (GHC.Base.map
+                              @ [GHC.Base.String]
+                              @ (Types.SynthInstruction Types.InputRule)
+                              ParseSpecificationLanguage.parse3
+                              (Main.main2 (ParseSpecificationLanguage.lexer ipv9)))
+                           Main.main3)
+                        pathSimp
+                        ipv8 of ds6 { (#,#) ipv10 ipv11 ->
+                 Control.Exception.Base.bracket1
+                   @ GHC.IO.Handle.Types.Handle
+                   @ ()
+                   @ ()
+                   (GHC.IO.Handle.FD.openFile1
+                      (GHC.List.$w!! @ GHC.Base.String ipv1 1)
+                      GHC.IO.IOMode.WriteMode)
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <GHC.IO.Handle.Types.Handle>_R))
+                   GHC.IO.Handle.hClose1
+                     `cast`
+                   (<GHC.IO.Handle.Types.Handle>_R
+                    ->_R Sym (GHC.Types.NTCo:IO[0] <()>_R))
+                   (\ hdl :: GHC.IO.Handle.Types.Handle[OneShot]
+                      eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                    GHC.IO.Handle.Text.hPutStr2
+                      hdl
+                      (InstructionsToIptables.addToIptables ipv11 pathSimp ipv5)
+                      GHC.Types.False
+                      eta)
+                     `cast`
+                   (<GHC.IO.Handle.Types.Handle>_R
+                    ->_R Sym (GHC.Types.NTCo:IO[0] <()>_R))
+                   ipv10 } } } } } }) -}
+2e0530f3924d83d7ca016121fea25758
+  main2 :: [GHC.Base.String] -> [[GHC.Base.String]]
+  {- Unfolding: (Data.List.Split.Internals.splitOn
+                   @ GHC.Base.String
+                   GHC.Classes.$fEq[]_$s$fEq[]1
+                   ParseSpecificationLanguage.parse1) -}
+59632552c8a0ed1f6453e3507886e3da
+  main3 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 0) -}
+1e21a4dda29e4a38b1f36879126012e1
+  main4 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,

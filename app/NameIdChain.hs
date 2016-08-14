@@ -44,12 +44,17 @@ pathSimplificationTargets (t:ts) m ch r =
     in
     (t':t'', Map.union ic ic')
 
-pathSimplificationTarget :: Target -> Map.Map String Chain -> Int -> Int  -> (Target, IdNameChain)
+pathSimplificationTarget :: Target -> Map.Map String Chain -> Int -> Int -> (Target, IdNameChain)
 pathSimplificationTarget (Jump j) m ch _ = 
     let
         chain = MB.fromJust (Map.lookup j m) 
     in
         (Go (ch + 1) 0, pathSimplification' [(j, chain)] m (ch + 1))
+pathSimplificationTarget (GoTo g) m ch _ = 
+    let
+        chain = MB.fromJust (Map.lookup g m) 
+    in
+        (GoReturn (ch + 1) 0, pathSimplification' [(g, chain)] m (ch + 1))
 pathSimplificationTarget t _ _ _ = (t, Map.empty)
 
 idsWithName :: String -> IdNameChain -> [Int]

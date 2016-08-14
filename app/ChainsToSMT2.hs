@@ -176,6 +176,7 @@ instance ToSMT Target where
     toSMTPrereq _ = []
 
     toSMTPath (Go i j) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) (printSMTFunc2 "GO" (show i) (show j))
+    toSMTPath (GoReturn i j) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) (printSMTFunc2 "GORETURN" (show i) (show j))
     toSMTPath (ACCEPT) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "ACCEPT"
     toSMTPath (DROP) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "DROP"
     toSMTPath (RETURN) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "RETURN"
