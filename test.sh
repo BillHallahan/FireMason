@@ -33,7 +33,12 @@ $IPTABLES -N second
 $IPTABLES -F second
 $IPTABLES -A second -p tcp -m multiport --port 7,8 -j DROP
 
+$IPTABLES -N ret
+$IPTABLES -F ret
+#$IPTABLES -A ret -p udp --sport 96 -j RETURN
+$IPTABLES -A ret -p udp -j DROP
 
+$IPTABLES -A INPUT -j ret
 $IPTABLES -A INPUT -j bad-ports
 $IPTABLES -A INPUT -p udp --sport 98 -j ACCEPT
 

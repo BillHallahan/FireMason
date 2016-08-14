@@ -28,9 +28,9 @@ main = do
     let outputScriptName = args !! 1
     let changesFileName = args !! 2
 
-    --Gets the prewritten smt describing firewall behavior
-    firewallPredicates <- readFile "smt/firewallPredicates.smt2"
-    
+    let x = replaceAllCombinations "xw" [("x", ["y", "z", "zz", "zzz"]), ("w", ["d", "e"])]
+    putStrLn . show $ x
+
     contents <- readFile inputScriptName
 
     let converted' = Map.toList . convertScript $ contents

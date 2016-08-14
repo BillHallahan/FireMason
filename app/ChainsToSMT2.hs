@@ -5,6 +5,7 @@ module ChainsToSMT2 where
 import qualified Data.Map as Map
 import qualified Data.Maybe as MB
 import Data.List
+import Data.String.Utils
 
 import NameIdChain
 import ParserHelp
@@ -13,28 +14,33 @@ import Types
 import SMT
 
 
-convertChainsCheckSMT :: IdNameChain -> String -> String -> String
-convertChainsCheckSMT x header check = 
+convertChainsCheckSMT :: IdNameChain -> String -> String -> String -> Int -> String -> String
+convertChainsCheckSMT n header replacePCR replacePC packetNum check = 
     let
-        chainlen = foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList x)
+        chainlen = foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList n)
 
-        prereqs = foldr (++) [] $ map toSMTPrereq $ map (\(_, c) -> c) (Map.elems x)
+        prereqs = foldr (++) [] $ map toSMTPrereq $ map (\(_, c) -> c) (Map.elems n)
         prereqsString = foldr (\y acc -> y ++ "\n" ++ acc ) "" $ nub prereqs
 
-        path = map (\(i, (_, x)) -> toSMTPath x i 0) (Map.toList x)
+        path = map (\(i, (_, x)) -> toSMTPath x i 0) (Map.toList n)
         pathString = foldr (\x acc -> x ++ "\n" ++ acc ) "" path
 
-        converted = map (\(i, (_, x)) -> toSMT x i 0) (Map.toList x)
+        converted = map (\(i, (_, x)) -> toSMT x i 0) (Map.toList n)
         convertedString = foldr (\x acc -> x ++ "\n" ++ acc ) "" converted
+
+        repPCR = map (\(i, (_, x)) -> replaceAllCombinations replacePCR [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", [show i]), ("{r}", stringNumList 0 (length x))]) (Map.toList n)
+        repPC = replaceAllCombinations replacePC [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", stringNumList 0 (length n - 1))]
     in
     header ++ "\n" ++
     chainlen ++ "\n" ++
-    printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (length x)) ++ "\n" ++
+    printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (length n)) ++ "\n" ++
     prereqsString ++ "\n" ++
     pathString ++ "\n" ++
+    (foldr (++) "" repPCR) ++ "\n" ++
+    repPC ++ "\n" ++
     convertedString ++
     check ++
-    "(check-sat-using (then (repeat (then simplify qe)) smt))\n" ++
+    "(check-sat-using (then (repeat (then simplify (repeat qe))) smt))\n" ++
     "(get-model)"
 
 
@@ -71,18 +77,21 @@ chainToSMT [] _ _ _ = ""
 instance ToSMT Rule where
     toSMTPrereq (Rule c t _) = toSMTPrereq c ++ toSMTPrereq t
 
-    toSMT (Rule [] t _) ch r = printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" "p") (printSMTFunc3 "matches-criteria" "p" ch r)))
+    toSMT (Rule [] t _) ch r = foldr (++) "" $ map (\p -> printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" p) (printSMTFunc3 "matches-criteria" p ch r))) (stringNumList 0 1)
     toSMT (Rule c _ _) ch r =
-        printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" "p") (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc3 "matches-criteria" "p" ch r))))
+        (foldr (++) "" $ map (\p -> printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" p) (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc3 "matches-criteria" p ch r)))) (stringNumList 0 1))
         
     toSMTPath (Rule [] t _) ch r = (toSMTPath t ch r)
-    toSMTPath (Rule c [] _) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE"
+
+    toSMTPath (Rule c [] _) ch r = printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE")
+
     toSMTPath (Rule c [PropVariableTarget v b] _) ch r =
-        printSMTFunc1 "assert" (printSMTFunc1 "forall ((p Int))" (printSMTFunc2 "=>" 
-            (printSMTFunc2 "and" (printSMTFunc1 "valid-packet" "p") (printSMTFunc3 "matches-rule" "p" ch r))
-            (toSMTPath (PropVariableTarget v b) ch r))) ++ "\n"
+        (foldr (++) "" $ map (\p -> printSMTFunc1 "assert" (printSMTFunc2 "=>" 
+                    (printSMTFunc2 "and" (printSMTFunc1 "valid-packet" p) (printSMTFunc3 "matches-rule" p ch r))
+                    (toSMTPath (PropVariableTarget v b) ch r))) (stringNumList 0 1)) ++ "\n"
         ++ printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE") ++ "\n"
         ++ toSMTNotPath (PropVariableTarget v b) ch r
+
     toSMTPath (Rule c t _) ch r =
         (toSMTPath t ch r) ++ "\n"
         ++ toSMTNotPath t ch r
@@ -135,6 +144,16 @@ flagToString FIN = "FIN"
 flagToString RST = "RST"
 flagToString URG = "URG"
 
+stringNumList :: Int -> Int -> [String]
+stringNumList i j = map (show) [i..j]
+
+replaceAllCombinations :: String -> [(String, [String])] -> String
+replaceAllCombinations s xs =
+    let
+        xs' = map (\x -> zip (repeat . fst $ x) (snd x)) xs
+        cart = (sequence xs')
+    in
+    foldr (++) "" $ map (\c -> foldr (\(o, n) e -> replace o n e) s c) cart
 
 instance ToSMT [Target] where 
     toSMT [] ch r = ""
@@ -159,6 +178,7 @@ instance ToSMT Target where
     toSMTPath (Go i j) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) (printSMTFunc2 "GO" (show i) (show j))
     toSMTPath (ACCEPT) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "ACCEPT"
     toSMTPath (DROP) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "DROP"
+    toSMTPath (RETURN) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "RETURN"
     toSMTPath (PropVariableTarget i b) _ _ = if b then "(v" ++ show i ++ " p)" else printSMTFunc1 "not" ("(v" ++ show i ++ " p)")
     toSMTPath (ST s) ch r = s
     toSMTPath _ _ _ = error "NOT HERE"

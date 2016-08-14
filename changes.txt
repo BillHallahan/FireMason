@@ -1,5 +1,7 @@
+chain INPUT : protocol = 17 AND source_port = 96 => ACCEPT,
 chain INPUT : (destination_port = 78)     => DROP,
 chain OUTPUT: not protocol = 4  => DROP,
+chain INPUT : protocol = 37 AND source_port = 97 => ACCEPT,
 chain INPUT :(protocol = 1 AND destination_port = 45 AND not source_port = 90) => ACCEPT,
 chain INPUT : (destination_port = 4)     => ACCEPT,
 chain INPUT : (destination_port = 89)     => ACCEPT,

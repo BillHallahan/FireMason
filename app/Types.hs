@@ -80,6 +80,7 @@ data Target = Jump String
               | Go Int Int
               | ACCEPT
               | DROP
+              | RETURN
               | PropVariableTarget Int Bool
               | ST String deriving (Eq, Show)
 

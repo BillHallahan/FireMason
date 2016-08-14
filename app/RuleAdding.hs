@@ -72,36 +72,41 @@ findBestPointCut' r i n n' =
         idsOld = idsWithName name n
         idsNew = idsWithName name newNameIdChain
 
-        converted = convertChainsCheckSMT (combinedNIC)
-            "(assert (= num-of-packets 2))\n(declare-const chain0 Int)\n(declare-const chain1 Int)"
-            (
-                ((printSMTFunc1 "assert") . (printSMTFunc1 "or") . (foldr1 (++)) $ map (\i'' -> printSMTFunc2 "=" "chain0" (show i'')) idsOld)
-             ++
-                ((printSMTFunc1 "assert") . (printSMTFunc1 "or") . (foldr1 (++)) $ map (\i'' -> printSMTFunc2 "=" "chain1" (show i'')) idsNew)
-             ++
-                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" "chain0" "0")
-             ++
-                (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "1" "chain1" "0")
-             ++
-                (printSMTFunc1 "assert"
-                    (printSMTFunc1 "not"
-                        (printSMTFunc2 "and"
-                            (printSMTFunc3 "or"
-                                (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
-                                (printSMTFunc2 "and" (printSMTFunc2 "reaches-end" "0" "chain0") (printSMTFunc2 "reaches-end" "1" "chain1"))
-                                (toSMT (criteria r) 0 0)
-                            )
-                            (printSMTFunc2 "=>" 
-                                (toSMT (criteria r) 0 0) 
-                                (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "1") (toSMT (targets r) 0 0))
-                            )
-                        )
-                    )
-                )
-            )
     in
     do
-        firewallPredicates <- readFile "smt/firewallPredicates.smt2"
+        firewallPredicatesReplacePCR <- readFile "smt/firewallPredicatesReplacePCR.smt2"
+        firewallPredicatesReplacePC <- readFile "smt/firewallPredicatesReplacePC.smt2"
+        let converted = convertChainsCheckSMT (combinedNIC) 
+                        "(assert (= num-of-packets 2))\n(declare-const chain0 Int)\n(declare-const chain1 Int)"
+                        firewallPredicatesReplacePCR
+                        firewallPredicatesReplacePC
+                        2
+                        (
+                            ((printSMTFunc1 "assert") . (printSMTFunc1 "or") . (foldr1 (++)) $ map (\i'' -> printSMTFunc2 "=" "chain0" (show i'')) idsOld)
+                         ++
+                            ((printSMTFunc1 "assert") . (printSMTFunc1 "or") . (foldr1 (++)) $ map (\i'' -> printSMTFunc2 "=" "chain1" (show i'')) idsNew)
+                         ++
+                            (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "0" "chain0" "0")
+                         ++
+                            (printSMTFunc1 "assert" $ printSMTFunc3 "reaches" "1" "chain1" "0")
+                         ++
+                            (printSMTFunc1 "assert"
+                                (printSMTFunc1 "not"
+                                    (printSMTFunc2 "and"
+                                        (printSMTFunc3 "or"
+                                            (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "0") (printSMTFunc1 "terminates-with" "1"))
+                                            (printSMTFunc2 "and" (printSMTFunc2 "reaches-end" "0" "chain0") (printSMTFunc2 "reaches-end" "1" "chain1"))
+                                            (toSMT (criteria r) 0 0)
+                                        )
+                                        (printSMTFunc2 "=>" 
+                                            (toSMT (criteria r) 0 0) 
+                                            (printSMTFunc2 "=" (printSMTFunc1 "terminates-with" "1") (toSMT (targets r) 0 0))
+                                        )
+                                    )
+                                )
+                            )
+                        )
+        firewallPredicates <- readFile "smt/firewallPredicates2.smt2"
         noUndesired <- checkSat (firewallPredicates ++ converted)
         if not noUndesired then return cut else trace ("cut length = " ++ show cut ++ " rule = " ++ show r) findBestPointCut' r i n shortened
 

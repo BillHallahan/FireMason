@@ -59,11 +59,11 @@ convertToChains l m
     | Insert s i <- c = 
         let
             ch = case Map.lookup s m of Just c' -> c'
-                                        Nothing -> error "HERE"
+                                        Nothing -> error "Chain to be inserted into not recognized."
             (xs, xs') = splitAt i ch
         in
         convertToChains ls $ Map.insert s (xs ++ r:xs') m
-    | otherwise = error "HERE"
+    | otherwise = error "Iptables command not recognized."
     where (Line t c r j):ls = l
 
 
@@ -108,6 +108,7 @@ convertCommand (xs, _) = (Nothing, xs)
 convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either InputCriteria Target], [String], Maybe ModuleFunc)
 convertCriteriaOrTarget ("-j":j:xs) _ = case j of "ACCEPT" -> (Just [Right ACCEPT],xs, Nothing)
                                                   "DROP" -> (Just [Right DROP],xs, Nothing)
+                                                  "RETURN" -> (Just [Right RETURN],xs, Nothing)
                                                   _ -> (Just [Right $ Jump j], xs, Nothing)
 convertCriteriaOrTarget ("-m":m:xs) _ = (Nothing , xs, Just $ convertMultiportRule)--Obviously this will eventually be adjusted when we have more modules...
 convertCriteriaOrTarget ("-p":p:xs) _ = 
