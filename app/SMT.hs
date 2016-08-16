@@ -4,8 +4,60 @@ import System.IO
 import System.IO.Unsafe
 import System.Process
 import System.Exit
+import Data.String.ToString
 
 import Types
+
+
+data SMT = SMTAnd [SMT]
+           | Assert SMT
+           | SMTEq SMT SMT
+           | SMTF1 String SMT
+           | SMTF2 String SMT SMT
+           | SMTF3 String SMT SMT SMT
+           | Implies SMT SMT
+           | SMTInt Int
+           | SMTNot SMT
+           | SMTOrd Ordering SMT SMT
+           | SMTOr [SMT]
+           | SMTString String
+
+           | MatchesCriteria Int Int Int
+           | MatchesRule Int Int Int
+           | Reaches Int Int Int
+           | ReachesEnd Int Int
+           | ReachesReturn Int Int
+           | ReturnsFrom Int Int
+           | RuleTarget Int Int
+           | TerminatesWith Int
+           | TopLevelChain Int
+
+instance ToString SMT where
+    toString (SMTAnd s) = "(and " ++ foldr (++) "" (map (toString) s) ++ ")"
+    toString (Assert s) = toString (SMTF1 "assert" s)
+    toString (SMTEq e1 e2) = toString (SMTF2 "=" e1 e2)
+    toString (SMTF1 n s) = "(" ++ n ++ " " ++ toString s ++ ")"
+    toString (SMTF2 n s1 s2) = "(" ++ n  ++ " " ++ toString s1 ++ " " ++ toString s2 ++ ")"
+    toString (SMTF3 n s1 s2 s3) = "(" ++ n ++ " " ++ toString s1 ++ " " ++ toString s2 ++ " " ++ toString s3 ++ ")"
+    toString (Implies s1 s2) = toString (SMTF2 "=>" s1 s2)
+    toString (SMTInt i) = toString i
+    toString (SMTNot s) = toString (SMTF1 "not" s)
+    toString (SMTOrd LT s1 s2) = toString (SMTF2 "<" s1 s2)
+    toString (SMTOrd GT s1 s2) = toString (SMTF2 ">" s1 s2)
+    toString (SMTOrd EQ s1 s2) = toString (SMTF2 "=" s1 s2)
+    toString (SMTOr s) = "(or " ++ foldr (++) "" (map (toString) s) ++ ")"
+    toString (SMTString s) = s
+    toString (MatchesCriteria p c r) = toString (SMTF3 "matches-criteria" (SMTInt p) (SMTInt c) (SMTInt r))
+    toString (MatchesRule p c r) = toString (SMTF3 "matches-rule" (SMTInt p) (SMTInt c) (SMTInt r))
+    toString (Reaches p c r) = toString (SMTF3 "reaches" (SMTInt p) (SMTInt c) (SMTInt r))
+    toString (ReachesEnd p c) = toString (SMTF2 "reaches-end" (SMTInt p) (SMTInt c))
+    toString (ReachesReturn p c) = toString (SMTF2 "reaches-return" (SMTInt p) (SMTInt c))
+    toString (ReturnsFrom p c) = toString (SMTF2 "returns-from" (SMTInt p) (SMTInt c))
+    toString (RuleTarget c r) = toString (SMTF2 "rule-target" (SMTInt c) (SMTInt r))
+    toString (TerminatesWith p) = toString (SMTF1 "terminates-with" (SMTInt p))
+    toString (TopLevelChain c) = toString (SMTF1 "top-level-chain" (SMTInt c))
+
+
 
 checkSat :: String -> IO Bool
 checkSat s = do

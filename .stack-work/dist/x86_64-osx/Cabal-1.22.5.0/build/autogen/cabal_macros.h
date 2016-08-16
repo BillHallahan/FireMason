@@ -21,6 +21,13 @@
   (major1) == 0 && (major2) <  5 || \
   (major1) == 0 && (major2) == 5 && (minor) <= 6)
 
+/* package criterion-1.1.1.0 */
+#define VERSION_criterion "1.1.1.0"
+#define MIN_VERSION_criterion(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  1 || \
+  (major1) == 1 && (major2) == 1 && (minor) <= 1)
+
 /* package process-1.2.3.0 */
 #define VERSION_process "1.2.3.0"
 #define MIN_VERSION_process(major1,major2,minor) (\
@@ -34,6 +41,13 @@
   (major1) <  0 || \
   (major1) == 0 && (major2) <  2 || \
   (major1) == 0 && (major2) == 2 && (minor) <= 3)
+
+/* package tostring-0.2.1.1 */
+#define VERSION_tostring "0.2.1.1"
+#define MIN_VERSION_tostring(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  2 || \
+  (major1) == 0 && (major2) == 2 && (minor) <= 1)
 
 /* package HUnit-1.3.1.1 */
 #define VERSION_HUnit "1.3.1.1"
@@ -91,5 +105,5 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 1)
 
-#define CURRENT_PACKAGE_KEY "firew_B96cYkoLGqMLhiiIN1feui"
+#define CURRENT_PACKAGE_KEY "firew_AdSXntBme9yGoesG9gwFu7"
 

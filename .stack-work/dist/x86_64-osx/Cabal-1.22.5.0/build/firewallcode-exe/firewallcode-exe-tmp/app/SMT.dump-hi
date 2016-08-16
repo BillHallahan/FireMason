@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-14 06:06:48.142554 UTC
+2016-08-16 18:46:09.996845 UTC
 
 interface main@main:SMT 7103
-  interface hash: d93fe7bdb8c80269cbc42df790f8dc4d
-  ABI hash: 78b6ee582b4c547d861399edd96af15b
-  export-list hash: bdc12074afdd6621e65d5072296d84d4
+  interface hash: ecf172e6eab593f23671eef3e331c6a3
+  ABI hash: abc1a2629478b7f63fadbfa526309ec5
+  export-list hash: 01bbe557b35de156d1ccb757d89fc506
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -17,20 +17,48 @@ exports:
   SMT.printSMTFunc1
   SMT.printSMTFunc2
   SMT.printSMTFunc3
+  SMT.SMT{SMT.Assert SMT.Implies SMT.MatchesCriteria SMT.MatchesRule SMT.Reaches SMT.ReachesEnd SMT.ReachesReturn SMT.ReturnsFrom SMT.RuleTarget SMT.SMTAnd SMT.SMTEq SMT.SMTF1 SMT.SMTF2 SMT.SMTF3 SMT.SMTInt SMT.SMTNot SMT.SMTOr SMT.SMTOrd SMT.SMTString SMT.TerminatesWith SMT.TopLevelChain}
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0 containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      base-4.8.2.0 binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
-                      integer-gmp-1.0.0.0 process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
                       unix-2.7.1.0@unix_KZL8h98IqDM57kQSPo1mKx
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
 family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
                          base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
                          base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
                          base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.IO bb5b81adcea33b14bd4abe16d7dde45f
 import  -/  base-4.8.2.0:GHC.IO.Exception e38c1261b70caecb7af416b94c82c925
@@ -42,11 +70,44 @@ import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  base-4.8.2.0:System.IO.Unsafe fc45e72b9d9eb2c797a8c81f5821fcd0
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  Types f9d70ed3014642084f474e454b622672
-  exports: e4d4ad03c66c3c72a69f0ac142d16980
-  ToString 7be3006f4b3e789e3fa086ea15403adc
-  toString b837e6ce5116507eb7419168e473cb92
+import  -/  Types 88dc6cad42203d5d5235dd279b1673d5
+  exports: e957a36a1c080f189ed58496f7a5508a
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
+import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f26ed1712f18acd23f20c0cf04363f67
+79ad729369808ae8f7626ed0785b6be5
+  $fToStringSMT :: Data.String.ToString.ToString SMT.SMT
+  DFunId[0]
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                SMT.$fToStringSMT_$ctoString
+                  `cast`
+                (Sym (Data.String.ToString.NTCo:ToString[0] <SMT.SMT>_N)) -}
+79ad729369808ae8f7626ed0785b6be5
+  $fToStringSMT_$ctoString :: SMT.SMT -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U> -}
+79ad729369808ae8f7626ed0785b6be5
+  data SMT
+    = SMTAnd [SMT.SMT]
+    | Assert SMT.SMT
+    | SMTEq SMT.SMT SMT.SMT
+    | SMTF1 GHC.Base.String SMT.SMT
+    | SMTF2 GHC.Base.String SMT.SMT SMT.SMT
+    | SMTF3 GHC.Base.String SMT.SMT SMT.SMT SMT.SMT
+    | Implies SMT.SMT SMT.SMT
+    | SMTInt GHC.Types.Int
+    | SMTNot SMT.SMT
+    | SMTOrd GHC.Types.Ordering SMT.SMT SMT.SMT
+    | SMTOr [SMT.SMT]
+    | SMTString GHC.Base.String
+    | MatchesCriteria GHC.Types.Int GHC.Types.Int GHC.Types.Int
+    | MatchesRule GHC.Types.Int GHC.Types.Int GHC.Types.Int
+    | Reaches GHC.Types.Int GHC.Types.Int GHC.Types.Int
+    | ReachesEnd GHC.Types.Int GHC.Types.Int
+    | ReachesReturn GHC.Types.Int GHC.Types.Int
+    | ReturnsFrom GHC.Types.Int GHC.Types.Int
+    | RuleTarget GHC.Types.Int GHC.Types.Int
+    | TerminatesWith GHC.Types.Int
+    | TopLevelChain GHC.Types.Int
 2f3dd8945f807eaaca9913f109bbb3ab
   callSMTSolver ::
     GHC.IO.FilePath
@@ -126,12 +187,13 @@ c2b45f4019cbd74a7b17b3f92a69e655
 65d4ebd30388c6b621546f1246cfe438
   checkSat4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "checkSat.smt2"#) -}
-6dadeb978a815eb5e980d7f89ff0b9c4
+0b95f0a308bdcb4450bc507db67696d3
   printSMTFunc1 ::
-    Types.ToString a => GHC.Base.String -> a -> GHC.Base.String
+    Data.String.ToString.ToString a =>
+    GHC.Base.String -> a -> GHC.Base.String
   {- Arity: 3, Strictness: <L,1*C1(U)><L,1*U><L,U>,
      Unfolding: (\ @ a
-                   $dToString :: Types.ToString a
+                   $dToString :: Data.String.ToString.ToString a
                    s :: GHC.Base.String
                    x :: a ->
                  GHC.CString.unpackAppendCString#
@@ -143,17 +205,18 @@ c2b45f4019cbd74a7b17b3f92a69e655
                          " "#
                          (GHC.Base.++
                             @ GHC.Types.Char
-                            ($dToString `cast` (Types.NTCo:ToString[0] <a>_N) x)
+                            ($dToString `cast` (Data.String.ToString.NTCo:ToString[0] <a>_N) x)
                             SMT.printSMTFunc4)))) -}
-243e9871a211ea0f88b6b96fd7bf09ab
+f7e5b78c80d51a7155160c69c65f8fb5
   printSMTFunc2 ::
-    (Types.ToString a, Types.ToString b) =>
+    (Data.String.ToString.ToString a,
+     Data.String.ToString.ToString b) =>
     GHC.Base.String -> a -> b -> GHC.Base.String
   {- Arity: 5, Strictness: <L,1*C1(U)><L,1*C1(U)><L,1*U><L,U><L,U>,
      Unfolding: (\ @ a
                    @ b
-                   $dToString :: Types.ToString a
-                   $dToString1 :: Types.ToString b
+                   $dToString :: Data.String.ToString.ToString a
+                   $dToString1 :: Data.String.ToString.ToString b
                    s :: GHC.Base.String
                    x :: a
                    y :: b ->
@@ -166,25 +229,27 @@ c2b45f4019cbd74a7b17b3f92a69e655
                          " "#
                          (GHC.Base.++
                             @ GHC.Types.Char
-                            ($dToString `cast` (Types.NTCo:ToString[0] <a>_N) x)
+                            ($dToString `cast` (Data.String.ToString.NTCo:ToString[0] <a>_N) x)
                             (GHC.CString.unpackAppendCString#
                                " "#
                                (GHC.Base.++
                                   @ GHC.Types.Char
-                                  ($dToString1 `cast` (Types.NTCo:ToString[0] <b>_N) y)
+                                  ($dToString1 `cast` (Data.String.ToString.NTCo:ToString[0] <b>_N)
+                                     y)
                                   SMT.printSMTFunc4)))))) -}
-df48ad66d0f6827890c4de0dc9297b70
+8eb246434ddf33a48f3f2f136b198c05
   printSMTFunc3 ::
-    (Types.ToString a, Types.ToString b, Types.ToString c) =>
+    (Data.String.ToString.ToString a, Data.String.ToString.ToString b,
+     Data.String.ToString.ToString c) =>
     GHC.Base.String -> a -> b -> c -> GHC.Base.String
   {- Arity: 7,
      Strictness: <L,1*C1(U)><L,1*C1(U)><L,1*C1(U)><L,1*U><L,U><L,U><L,U>,
      Unfolding: (\ @ a
                    @ b
                    @ c
-                   $dToString :: Types.ToString a
-                   $dToString1 :: Types.ToString b
-                   $dToString2 :: Types.ToString c
+                   $dToString :: Data.String.ToString.ToString a
+                   $dToString1 :: Data.String.ToString.ToString b
+                   $dToString2 :: Data.String.ToString.ToString c
                    s :: GHC.Base.String
                    x :: a
                    y :: b
@@ -198,21 +263,27 @@ df48ad66d0f6827890c4de0dc9297b70
                          " "#
                          (GHC.Base.++
                             @ GHC.Types.Char
-                            ($dToString `cast` (Types.NTCo:ToString[0] <a>_N) x)
+                            ($dToString `cast` (Data.String.ToString.NTCo:ToString[0] <a>_N) x)
                             (GHC.CString.unpackAppendCString#
                                " "#
                                (GHC.Base.++
                                   @ GHC.Types.Char
-                                  ($dToString1 `cast` (Types.NTCo:ToString[0] <b>_N) y)
+                                  ($dToString1 `cast` (Data.String.ToString.NTCo:ToString[0] <b>_N)
+                                     y)
                                   (GHC.CString.unpackAppendCString#
                                      " "#
                                      (GHC.Base.++
                                         @ GHC.Types.Char
-                                        ($dToString2 `cast` (Types.NTCo:ToString[0] <c>_N) z)
+                                        ($dToString2
+                                           `cast`
+                                         (Data.String.ToString.NTCo:ToString[0] <c>_N)
+                                           z)
                                         SMT.printSMTFunc4)))))))) -}
 4d9c3eb6cb95e2107b0acd111b1f294f
   printSMTFunc4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ")"#) -}
+instance Data.String.ToString.ToString [SMT.SMT]
+  = SMT.$fToStringSMT
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

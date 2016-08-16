@@ -1,11 +1,14 @@
 module Main where
 
+import Text.Printf
 import System.IO
 import System.Environment
 import Data.List
 import Data.Maybe
 
 import qualified Data.Map as Map
+
+import Criterion.Measurement
 
 import Types
 import ConvertIptables
@@ -22,6 +25,9 @@ import IptablesTypes
 import NameIdChain--temp
 
 main = do
+
+    initializeTime
+    start <- getTime
 
     args <- getArgs
     let inputScriptName = args !! 0
@@ -44,3 +50,8 @@ main = do
 
     let addedToIp = addToIptables addedPos pathSimp contents
     writeFile outputScriptName addedToIp
+
+    end <- getTime
+
+    let diff = secs $ end - start
+    printf $ "Computation time: " ++ diff ++ "\n"

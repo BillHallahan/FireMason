@@ -6,6 +6,8 @@ import qualified Data.Map as Map
 import qualified Data.Maybe as MB
 import Data.List
 import Data.String.Utils
+import Data.String.ToString
+
 
 import NameIdChain
 import ParserHelp
@@ -19,6 +21,14 @@ convertChainsCheckSMT n header replacePCR replacePC packetNum check =
     let
         chainlen = foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList n)
 
+        chainSetup = foldr (++) "" $ concat ((map (\(i, (_, c)) -> (map (\p -> setupChain p i (length c)) [0, 1])) (Map.toList n)))
+
+        topLevel = foldr (++) "" $ map (\c -> toString (Assert (TopLevelChain c))) (topLevelChains n)
+        notTopLevel = foldr (++) "" $ map (\c -> toString (Assert (SMTNot (TopLevelChain c)))) (notTopLevelChains n)
+
+        tlPolicy = foldr (++) "" $ map (\c -> topLevelPolicy 0 c) (topLevelChains n) ++ map (\c -> topLevelPolicy 1 c) (topLevelChains n)
+        notTlPolicy = foldr (++) "" $ map (\c -> notTopLevelPolicy 0 c) (notTopLevelChains n) ++ map (\c -> notTopLevelPolicy 1 c) (notTopLevelChains n)
+
         prereqs = foldr (++) [] $ map toSMTPrereq $ map (\(_, c) -> c) (Map.elems n)
         prereqsString = foldr (\y acc -> y ++ "\n" ++ acc ) "" $ nub prereqs
 
@@ -29,26 +39,31 @@ convertChainsCheckSMT n header replacePCR replacePC packetNum check =
         convertedString = foldr (\x acc -> x ++ "\n" ++ acc ) "" converted
 
         repPCR = map (\(i, (_, x)) -> replaceAllCombinations replacePCR [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", [show i]), ("{r}", stringNumList 0 (length x))]) (Map.toList n)
-        repPC = replaceAllCombinations replacePC [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", stringNumList 0 (length n - 1))]
+        --repPC = replaceAllCombinations replacePC [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", stringNumList 0 (length n - 1))]
     in
     header ++ "\n" ++
     chainlen ++ "\n" ++
+    chainSetup ++ "\n" ++
+    topLevel ++ "\n" ++
+    tlPolicy ++ "\n" ++
+    notTlPolicy ++ "\n" ++ 
+    (onlyOneTopLevel 0 (topLevelChains n)) ++ (onlyOneTopLevel 1 (topLevelChains n)) ++ "\n" ++
+    notTopLevel ++ "\n" ++
     printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (length n)) ++ "\n" ++
     prereqsString ++ "\n" ++
     pathString ++ "\n" ++
     (foldr (++) "" repPCR) ++ "\n" ++
-    repPC ++ "\n" ++
+    --repPC ++ "\n" ++
     convertedString ++
     check ++
-    "(check-sat-using (then (repeat (then simplify (repeat qe))) smt))\n" ++
+    "(check-sat)\n" ++
     "(get-model)"
 
 
 
 class ToSMT a where
     toSMTPrereq :: a -> [String]
-    toSMT :: a -> Int -> Int -> String --The first int is to identify the chain as having been called from a unique position
-                                       --The second and third int identify the chain and rule number, respectively, the chain was called from
+    toSMT :: a -> Int -> Int -> String  --The two ints identify the chain and rule number, respectively, the chain was called from
     toSMTPath :: a -> Int -> Int -> String 
     toSMTNotPath :: a -> Int -> Int -> String --If criteria is not met...
 
@@ -77,13 +92,13 @@ chainToSMT [] _ _ _ = ""
 instance ToSMT Rule where
     toSMTPrereq (Rule c t _) = toSMTPrereq c ++ toSMTPrereq t
 
-    toSMT (Rule [] t _) ch r = foldr (++) "" $ map (\p -> printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" p) (printSMTFunc3 "matches-criteria" p ch r))) (stringNumList 0 1)
+    toSMT (Rule [] t _) ch r = foldr (++) "" $ map (\p -> toString (Assert (MatchesCriteria p ch r))) [0, 1]
     toSMT (Rule c _ _) ch r =
-        (foldr (++) "" $ map (\p -> printSMTFunc1 "assert" (printSMTFunc2 "=>" (printSMTFunc1 "valid-packet" p) (printSMTFunc2 "=" (toSMT c ch r) (printSMTFunc3 "matches-criteria" p ch r)))) (stringNumList 0 1))
+        foldr (++) "" $ map (\p -> toString (Assert (SMTEq (SMTString(toSMT c ch r)) (MatchesCriteria p ch r)))) [0, 1]
         
     toSMTPath (Rule [] t _) ch r = (toSMTPath t ch r)
 
-    toSMTPath (Rule c [] _) ch r = printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE")
+    toSMTPath (Rule c [] _) ch r = toString (Assert (SMTEq (RuleTarget ch r) (SMTString "NONE")))--printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE")
 
     toSMTPath (Rule c [PropVariableTarget v b] _) ch r =
         (foldr (++) "" $ map (\p -> printSMTFunc1 "assert" (printSMTFunc2 "=>" 
@@ -175,14 +190,115 @@ instance ToSMT Target where
     toSMTPrereq (PropVariableTarget i _) = ["(declare-fun v" ++ show i ++ " (Int) Bool)"]
     toSMTPrereq _ = []
 
-    toSMTPath (Go i j) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) (printSMTFunc2 "GO" (show i) (show j))
-    toSMTPath (GoReturn i j) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) (printSMTFunc2 "GORETURN" (show i) (show j))
-    toSMTPath (ACCEPT) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "ACCEPT"
-    toSMTPath (DROP) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "DROP"
-    toSMTPath (RETURN) ch r = printSMTFunc1 "assert" $ printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "RETURN"
+    toSMTPath (Go i j) ch r = (toString (Assert (SMTEq (RuleTarget ch r) (SMTF2 "GO" (SMTInt i) (SMTInt j))))) ++ (reachesMatchesGo 0 ch r i j) ++ (reachesMatchesGo 1 ch r i j) ++ (notMatchesGo 0 ch r i j) ++ (notMatchesGo 1 ch r i j)
+    toSMTPath (GoReturn i j) ch r = (toString (Assert (SMTEq (RuleTarget ch r) (SMTF2 "GORETURN" (SMTInt i) (SMTInt j))))) ++ (reachesMatchesGoReturn 0 ch r i j) ++ (reachesMatchesGoReturn 1 ch r i j) ++ (notMatchesGo 0 ch r i j) ++ (notMatchesGo 1 ch r i j)
+    toSMTPath (ACCEPT) ch r = (toString (Assert (SMTEq (RuleTarget ch r) (SMTString "ACCEPT")))) ++ (reachesMatchesTerminating 0 ch r "ACCEPT") ++ (reachesMatchesTerminating 1 ch r "ACCEPT")
+    toSMTPath (DROP) ch r = (toString (Assert (SMTEq (RuleTarget ch r) (SMTString "DROP")))) ++ (reachesMatchesTerminating 0 ch r "DROP") ++ (reachesMatchesTerminating 1 ch r "DROP")
+    toSMTPath (RETURN) ch r = (toString (Assert (SMTEq (RuleTarget ch r) (SMTString "RETURN")))) ++ (reachesMatchesReturn 0 ch r)  ++ (reachesMatchesReturn 1 ch r)
     toSMTPath (PropVariableTarget i b) _ _ = if b then "(v" ++ show i ++ " p)" else printSMTFunc1 "not" ("(v" ++ show i ++ " p)")
     toSMTPath (ST s) ch r = s
     toSMTPath _ _ _ = error "NOT HERE"
 
     toSMTNotPath (Go i j) ch r = ""
     toSMTNotPath _ _ _ = ""
+
+onlyOneTopLevel :: Int -> [Int] -> String
+onlyOneTopLevel _ [] = []
+onlyOneTopLevel p (c:cx) = (foldr (++) "" $ map (\c' -> toString (Assert (Implies (Reaches p c 0) (SMTNot (Reaches p c' 0))))) cx) ++ onlyOneTopLevel p cx
+
+topLevelPolicy :: Int -> Int -> String
+topLevelPolicy p c = 
+    toString
+    (Assert
+        (Implies (ReachesEnd p c) (SMTEq (TerminatesWith p) (SMTString $ "(policy " ++ show c ++ ")")))
+    )
+
+notTopLevelPolicy :: Int -> Int -> String
+notTopLevelPolicy p c = 
+    toString
+    (Assert
+        (SMTEq (SMTString $ "(policy " ++ show c ++ ")") (SMTString $ "NONE"))
+    )
+
+setupChain :: Int -> Int -> Int -> String
+setupChain p c cLen =
+    (notOverChainEnd p c cLen) ++ "\n" ++ (reachesEnd p c cLen) ++ "\n" ++ (returnsFrom p c)
+
+notOverChainEnd :: Int -> Int -> Int -> String
+notOverChainEnd p c cLen =
+    toString
+    (Assert
+        (SMTNot (Reaches p c (cLen + 1)))
+    )
+
+reachesEnd :: Int -> Int -> Int -> String
+reachesEnd p c cLen =
+    toString
+    (Assert
+        (SMTEq (Reaches p c cLen) (ReachesEnd p c))
+    )
+
+returnsFrom :: Int -> Int -> String
+returnsFrom p c =
+    toString
+    (Assert
+        (SMTEq (ReturnsFrom p c) (SMTOr [ReachesReturn p c, ReachesEnd p c]))
+    )
+
+reachesNoneTarget :: Int -> Int -> Int -> String
+reachesNoneTarget p c r = 
+    toString
+    (Assert
+        (Implies (Reaches p c r) (Reaches p c (r + 1)))
+    )
+
+reachesMatchesTerminating :: Int -> Int -> Int -> String -> String
+reachesMatchesTerminating p c r s =
+    toString 
+    (Assert
+        (Implies
+            (MatchesRule p c r)
+            (SMTAnd [SMTNot (Reaches p c (r + 1)), SMTEq (TerminatesWith p) (SMTString s)])
+        )
+    )
+
+reachesMatchesReturn :: Int -> Int -> Int -> String
+reachesMatchesReturn p c r =
+    toString
+    (Assert
+        (Implies
+            (MatchesRule p c r)
+            (SMTAnd [ReturnsFrom p c, SMTNot (Reaches p c (r + 1))])
+        )
+    )
+
+reachesMatchesGo :: Int -> Int -> Int -> Int -> Int -> String
+reachesMatchesGo p c r goC goR =
+    toString
+    (Assert
+        (Implies
+            (MatchesRule p c r)
+            (SMTAnd [Reaches p goC goR, SMTEq (ReturnsFrom p goC) (Reaches p c (r + 1))])
+        )
+    )
+
+reachesMatchesGoReturn :: Int -> Int -> Int -> Int -> Int -> String
+reachesMatchesGoReturn p c r goC goR =
+    toString
+    (Assert
+        (Implies
+            (MatchesRule p c r)
+            (SMTAnd [Reaches p goC goR, SMTNot(Reaches p c (r + 1)), SMTEq (ReturnsFrom p goC) (ReturnsFrom p c)])
+        )
+    )
+
+notMatchesGo :: Int -> Int -> Int -> Int -> Int -> String
+notMatchesGo p c r goC goR =
+    toString
+    (Assert
+        (Implies
+            (SMTNot (MatchesRule p c r))
+            (SMTNot (Reaches p goC goR))
+        )
+    )
+

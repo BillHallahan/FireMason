@@ -57,6 +57,32 @@ pathSimplificationTarget (GoTo g) m ch _ =
         (GoReturn (ch + 1) 0, pathSimplification' [(g, chain)] m (ch + 1))
 pathSimplificationTarget t _ _ _ = (t, Map.empty)
 
+--Returns a list of the top level chains (that is, the chains a packet must start in, and can't reach through a jump/goto)
+topLevelChains :: IdNameChain -> [Int]
+topLevelChains n = 
+    let
+        goes = concat $ map (\(_, (_, c)) -> jumpedTo c) (Map.toList n)
+    in
+    filter (\x -> not $ x `elem` goes) (Map.keys n)
+
+notTopLevelChains :: IdNameChain -> [Int]
+notTopLevelChains n =
+    let
+        top = topLevelChains n
+    in
+    filter (\x -> not $ x `elem` top) (Map.keys n)
+
+--Given a chain, returns all ints in Go or GoReturn
+jumpedTo :: Chain -> [Int]
+jumpedTo [] = []
+jumpedTo (r:rx) = 
+    let
+        goes = concat $ map (\t -> case t of Go i _ -> [i]
+                                             GoReturn i _ -> [i]
+                                             _ -> []) (targets r)
+    in
+    goes ++ jumpedTo rx
+
 idsWithName :: String -> IdNameChain -> [Int]
 idsWithName s n = Map.keys $ Map.filter (\x -> s == fst x) n
 
@@ -69,6 +95,7 @@ increaseIndexesChain ((Rule c t l):cx) i = (Rule c (map (flip increaseIndexesTar
 
 increaseIndexesTarget :: Target -> Int -> Target
 increaseIndexesTarget (Go c r) i = Go (c + i) r
+increaseIndexesTarget (GoReturn c r) i = GoReturn (c + i) r
 increaseIndexesTarget t _ = t
 
 --Given a IdNameChain and an id, returns a new IdNameChain with only the IdNameChain with id, and all IdNameChain's that can be reached

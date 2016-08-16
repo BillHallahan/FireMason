@@ -17,7 +17,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/bin"
-libdir     = "/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/firewallcode-0.1.0.0-B96cYkoLGqMLhiiIN1feui"
+libdir     = "/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/firewallcode-0.1.0.0-AdSXntBme9yGoesG9gwFu7"
 datadir    = "/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/share/x86_64-osx-ghc-7.10.3/firewallcode-0.1.0.0"
 libexecdir = "/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/libexec"
 sysconfdir = "/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/etc"

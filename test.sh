@@ -34,10 +34,15 @@ $IPTABLES -N second
 $IPTABLES -F second
 $IPTABLES -A second -p tcp -m multiport --port 7,8 -j DROP
 
+$IPTABLES -N ret3
+$IPTABLES -F ret3
+$IPTABLES -A ret3 -p udp --sport 96 -j RETURN
+$IPTABLES -A ret3 -p udp -j DROP
+
 $IPTABLES -N ret2
 $IPTABLES -F ret2
-$IPTABLES -A -p udp --sport 96 -j RETURN
-$IPTABLES -A ret -p udp -j DROP
+$IPTABLES -A ret2 -p udp --sport 96 -g ret3
+$IPTABLES -A ret2 -p udp -j DROP
 
 $IPTABLES -N ret
 $IPTABLES -F ret

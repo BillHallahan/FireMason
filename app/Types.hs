@@ -10,6 +10,7 @@ import qualified Data.Map as Map
 
 import Data.Maybe
 
+import Data.String.ToString
 
 type InputChain = [InputRule]
 type Chain = [Rule]
@@ -137,14 +138,8 @@ instance Monoid InputRule where
 type ModuleFunc = [String] -> (Maybe [Either InputCriteria Target], [String])
 
 
-class ToString a where
-    toString :: a -> String
-
 instance ToString Int where
     toString x = show x
-
-instance ToString String where
-    toString x = x
 
 instance ToString Char where
     toString x = [x]

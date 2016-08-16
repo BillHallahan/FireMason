@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-14 06:07:06.802034 UTC
+2016-08-16 19:09:11.097053 UTC
 
 interface main@main:RuleAdding 7103
-  interface hash: bc47f79553fee9814e1f77be691a988e
-  ABI hash: 47de112f82cf7c5a28e1d1e26ba1d6b5
-  export-list hash: d21197875f79cbcd5006d1bf1cd8f842
+  interface hash: 29410cc13b3476992aca2d3186304b75
+  ABI hash: 67e7e86d5eb7549ad5579da33a9b726a
+  export-list hash: 3cb2c8c26b704b0a797dd3e08c750eae
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -27,32 +27,57 @@ exports:
 module dependencies: ChainsToSMT2 NameIdChain ParserHelp SMT Types
 package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
-                      integer-gmp-1.0.0.0 mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
                       process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
                       regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP
                       regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89
                       regex-compat-0.95.1@regex_EyUO1k1s8YNJ81jSdgVW1z
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
                       transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
                       unix-2.7.1.0@unix_KZL8h98IqDM57kQSPo1mKx
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types
          regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP:Text.Regex.Base.Context
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString.Lazy
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.Sequence
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.String
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
          transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
 family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
                          base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
                          base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
                          base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
 import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
@@ -72,23 +97,23 @@ import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  ChainsToSMT2 d4f61d7de95fcfcb69844fbbf41ce888
-  exports: 6df6e3c5db831fd5191a0f08e93d7557
-  convertChainsCheckSMT 8c322bba17e22a00d0c4717a4afdfe2a
-  toSMT 9c67b77ea3a908dbd382eaf126fab952
-import  -/  NameIdChain a75124ff070cd8c12391187f5fb312de
-  exports: 9ff82ba4aa39e1eb044c914702771b51
+import  -/  ChainsToSMT2 43cfb82d1098aadeb187cfc0f6b957e5
+  exports: b7cf436bf12eb9dc349e33b8eb5a94ea
+  convertChainsCheckSMT 3073ac2cc7631733845cd736d8e6f2cb
+  toSMT 3aff6d6effc1846d68343b6e11184a7d
+import  -/  NameIdChain aac7ffb25a66cf3e660975d8a08fbdb3
+  exports: 2a403fe89423b09918ed98d6b89c27e5
   idsWithName e295e73ea29b77061d3bacb68b1f2ab9
   increaseIndexes 54f78e78fa5a8d8e581e828aadbe8fbe
   maxId 195f270f6beb52ef583a0f70d7e2e900
-import  -/  SMT 78b6ee582b4c547d861399edd96af15b
-  exports: bdc12074afdd6621e65d5072296d84d4
+import  -/  SMT abc1a2629478b7f63fadbfa526309ec5
+  exports: 01bbe557b35de156d1ccb757d89fc506
   checkSat 670eb44a961dd0fbcf136213f196bd85
-  printSMTFunc1 6dadeb978a815eb5e980d7f89ff0b9c4
-  printSMTFunc2 243e9871a211ea0f88b6b96fd7bf09ab
-  printSMTFunc3 df48ad66d0f6827890c4de0dc9297b70
-import  -/  Types f9d70ed3014642084f474e454b622672
-  exports: e4d4ad03c66c3c72a69f0ac142d16980
+  printSMTFunc1 0b95f0a308bdcb4450bc507db67696d3
+  printSMTFunc2 f7e5b78c80d51a7155160c69c65f8fb5
+  printSMTFunc3 8eb246434ddf33a48f3f2f136b198c05
+import  -/  Types 88dc6cad42203d5d5235dd279b1673d5
+  exports: e957a36a1c080f189ed58496f7a5508a
   Chain 0e120b9c2c102af49c408de3f34c7e02
   Criteria 605b90b34d99bcf3227a69e454b38e17
   IdNameChain 5f29f0d0ad9ae74c7c9617cc79c8be1c

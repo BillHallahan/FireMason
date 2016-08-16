@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-14 06:06:47.157531 UTC
+2016-08-15 20:57:36.074825 UTC
 
-interface main@main:Types 7103
-  interface hash: f10481323f4984f5b2881b78b28a1a5f
-  ABI hash: f9d70ed3014642084f474e454b622672
-  export-list hash: e4d4ad03c66c3c72a69f0ac142d16980
-  orphan hash: 4188af62807571eaae449c84fd166a62
+interface main@main:Types [orphan module] 7103
+  interface hash: 0c26dc6e3c600a0839eb95e12538f71d
+  ABI hash: 88dc6cad42203d5d5235dd279b1673d5
+  export-list hash: e957a36a1c080f189ed58496f7a5508a
+  orphan hash: e233a1d3077863012ccf188ef97a7e55
   flag hash: e468f87777beb3fe7114763efe9ccb2f
   sig of: Nothing
   used TH splices: False
@@ -41,20 +41,44 @@ exports:
   Types.Rule
   Types.SynthInstruction{Types.NoInstruction Types.ToChainNamed Types.chainName Types.insRule}
   Types.Target{Types.ACCEPT Types.DROP Types.Go Types.GoReturn Types.GoTo Types.Jump Types.PropVariableTarget Types.RETURN Types.ST}
-  Types.ToString{Types.toString}
 module dependencies:
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      base-4.8.2.0* binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
-                      integer-gmp-1.0.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
 family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
                          base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
                          base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
                          base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
 import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
 import  -/  base-4.8.2.0:Data.Int 1419fa899a36eeb2bd16fdb7f0a89738
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
@@ -68,6 +92,7 @@ import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f7
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set 7116dff3002cb8f8fc1c63ac63f4ea50
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
+import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f26ed1712f18acd23f20c0cf04363f67
 605b90b34d99bcf3227a69e454b38e17
   $fEqCriteria :: GHC.Classes.Eq Types.Criteria
   DFunId[0]
@@ -987,48 +1012,34 @@ d5fd1cdfde79c82c0c0699c4b9f9e58e
      Unfolding: (GHC.Show.showList__
                    @ Types.Target
                    Types.$fShowTarget1) -}
-7be3006f4b3e789e3fa086ea15403adc
-  $fToStringChar :: Types.ToString GHC.Types.Char
+21f56d1bbdae5bcbeb040f61d6a9cea0
+  $fToStringChar :: Data.String.ToString.ToString GHC.Types.Char
   DFunId[0]
   {- Arity: 1, HasNoCafRefs, Strictness: <L,U>m2,
      Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Types.$fToStringChar_$ctoString
                   `cast`
-                (Sym (Types.NTCo:ToString[0] <GHC.Types.Char>_N)) -}
+                (Sym (Data.String.ToString.NTCo:ToString[0] <GHC.Types.Char>_N)) -}
 6b8d8cc0e786c6703f42e2426b5ba3ce
   $fToStringChar_$ctoString :: GHC.Types.Char -> GHC.Base.String
   {- Arity: 1, HasNoCafRefs, Strictness: <L,U>m2,
      Unfolding: InlineRule (1, True, False)
                 (\ x :: GHC.Types.Char ->
                  GHC.Types.: @ GHC.Types.Char x (GHC.Types.[] @ GHC.Types.Char)) -}
-7be3006f4b3e789e3fa086ea15403adc
-  $fToStringInt :: Types.ToString GHC.Types.Int
+3551f7be91673f3da5310d0eaef014a8
+  $fToStringInt :: Data.String.ToString.ToString GHC.Types.Int
   DFunId[0]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m2,
      Inline: INLINE (sat-args=0),
      Unfolding: InlineRule (0, False, True)
                 Types.$fToStringInt_$ctoString
                   `cast`
-                (Sym (Types.NTCo:ToString[0] <GHC.Types.Int>_N)) -}
+                (Sym (Data.String.ToString.NTCo:ToString[0] <GHC.Types.Int>_N)) -}
 07880c5c41c52e5267732da9fe80737b
   $fToStringInt_$ctoString :: GHC.Types.Int -> GHC.Base.String
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U)>m2,
      Unfolding: InlineRule (0, True, True) GHC.Show.$fShowInt_$cshow -}
-7be3006f4b3e789e3fa086ea15403adc
-  $fToString[] :: Types.ToString GHC.Base.String
-  DFunId[0]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
-     Inline: INLINE (sat-args=0),
-     Unfolding: InlineRule (0, False, True)
-                Types.$fToString[]_$ctoString
-                  `cast`
-                (Sym (Types.NTCo:ToString[0] <GHC.Base.String>_N)) -}
-86f26df0a364da9692e45f9fdb8d928f
-  $fToString[]_$ctoString :: GHC.Base.String -> GHC.Base.String
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
-     Unfolding: InlineRule (1, True, True)
-                (\ x :: GHC.Base.String -> x) -}
 35b3fa811bccd7f4f16f0fd4017aec33
   $s$fShow(,) :: GHC.Show.Show (GHC.Types.Int, GHC.Types.Int)
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -1456,9 +1467,6 @@ dfe032430ec449bef505cbaea13d9c2a
     | RETURN
     | PropVariableTarget GHC.Types.Int GHC.Types.Bool
     | ST GHC.Base.String
-7be3006f4b3e789e3fa086ea15403adc
-  class ToString a where
-    toString :: a -> GHC.Base.String
 9b50d14b02afeaaac055bf3e181da439
   boolFlagToFlag :: Types.Criteria -> Types.Flag
   {- Arity: 1, Strictness: <S,1*U>,
@@ -1727,9 +1735,10 @@ instance GHC.Show.Show [Types.InputCriteria]
 instance GHC.Show.Show [Types.SynthInstruction]
   = Types.$fShowSynthInstruction
 instance GHC.Show.Show [Types.Target] = Types.$fShowTarget
-instance Types.ToString [GHC.Types.Char] = Types.$fToStringChar
-instance Types.ToString [GHC.Types.Int] = Types.$fToStringInt
-instance Types.ToString [[]] = Types.$fToString[]
+instance Data.String.ToString.ToString [GHC.Types.Char]
+  = Types.$fToStringChar
+instance Data.String.ToString.ToString [GHC.Types.Int]
+  = Types.$fToStringInt
 "SPEC/Types $fShow(,) @ Int @ Int" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                GHC.Types.Int
                                                    $dShow1 :: GHC.Show.Show GHC.Types.Int

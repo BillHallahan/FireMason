@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-14 06:07:07.048068 UTC
+2016-08-16 18:33:00.608097 UTC
 
 interface main@main:InstructionsToIptables 7103
-  interface hash: 66d40de73ff7b733612106d40485c0b9
-  ABI hash: 3e5031a7b7eafe6a40a9d98c8a36a187
-  export-list hash: 5ba4bf00a24ceb6f2d15456ea00066ce
+  interface hash: f15805d5a14fd655567d443aae353e4b
+  ABI hash: 33e3f9c1dce2fc4d5d23dca9e4c81748
+  export-list hash: 78b8b1df694faca9fadd8aec92818327
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e468f87777beb3fe7114763efe9ccb2f
   sig of: Nothing
@@ -21,30 +21,55 @@ module dependencies: ConvertIptables ConvertIptablesPorts
                      IptablesTypes NameIdChain ParserHelp Types
 package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
-                      integer-gmp-1.0.0.0 mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
                       regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP
                       regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89
                       regex-compat-0.95.1@regex_EyUO1k1s8YNJ81jSdgVW1z
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
                       transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types
          regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP:Text.Regex.Base.Context
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString.Lazy
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.Sequence
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.String
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
          transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
 family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
                          base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
                          base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
                          base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
 import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
@@ -59,22 +84,22 @@ import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  ConvertIptables 1b9a04ba11ce7221793ec30434a35c25
-  exports: 51de29114018434dce794de13b31aa3c
+import  -/  ConvertIptables cb20a452e6de0c2b429bfa8c601bdaae
+  exports: 342829fdf4701e38e74799d5c0f98488
   convertScript' 26f04a236d88346f516c212c56b67c42
-import  -/  IptablesTypes c70d1eba00184fe627b020da17ed4013
-  exports: 487856e79b078f5a837392b58e7afa97
+import  -/  IptablesTypes d00b5f0914fc78bd36b0cba55c41ad06
+  exports: 80a1a1ba143ffe2507fc25e66c37967d
   Append 741853c63cb0e92ef0b0777e9fe96d9e
   Command 4e2ae75ee3b477dcd91b4d0d5a242abc
   Insert be7385e63bc1d393a4921ba222091991
   command 7b2f25c5a110e74b019efe2838363c07
   fileline 94e56f50f7b438c5c6fcafdd32693ecb
-import  -/  NameIdChain a75124ff070cd8c12391187f5fb312de
-  exports: 9ff82ba4aa39e1eb044c914702771b51
+import  -/  NameIdChain aac7ffb25a66cf3e660975d8a08fbdb3
+  exports: 2a403fe89423b09918ed98d6b89c27e5
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
-import  -/  Types f9d70ed3014642084f474e454b622672
-  exports: e4d4ad03c66c3c72a69f0ac142d16980
+import  -/  Types 88dc6cad42203d5d5235dd279b1673d5
+  exports: e957a36a1c080f189ed58496f7a5508a
   ACCEPT c23d19f74cbf169e0c66b1631b7e64e6
   BoolFlag a5bd0669b32ca5a1de6cf10948a3bcbc
   Criteria 605b90b34d99bcf3227a69e454b38e17

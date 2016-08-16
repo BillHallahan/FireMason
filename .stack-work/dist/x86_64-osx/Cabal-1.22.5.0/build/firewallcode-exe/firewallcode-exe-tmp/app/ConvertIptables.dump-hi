@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-14 06:07:05.609508 UTC
+2016-08-15 20:58:16.885792 UTC
 
 interface main@main:ConvertIptables 7103
-  interface hash: 47db1c30d7429ba6575ad631b92c4b9b
-  ABI hash: 1b9a04ba11ce7221793ec30434a35c25
-  export-list hash: 51de29114018434dce794de13b31aa3c
+  interface hash: d75b4535f30dc7130941bef98b49187d
+  ABI hash: cb20a452e6de0c2b429bfa8c601bdaae
+  export-list hash: 342829fdf4701e38e74799d5c0f98488
   orphan hash: c781883ce9a83727da7a0d4e527513a2
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -26,30 +26,55 @@ module dependencies: ConvertIptablesPorts IptablesTypes ParserHelp
                      Types
 package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
-                      integer-gmp-1.0.0.0 mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
                       regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP
                       regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89
                       regex-compat-0.95.1@regex_EyUO1k1s8YNJ81jSdgVW1z
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
                       transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types
          regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP:Text.Regex.Base.Context
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString.Lazy
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.Sequence
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.String
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
          transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
 family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
                          base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
                          base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
                          base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
 import  -/  MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ:Data.List.Utils 3175b3ec4b48152a0154ae1c82f8e5ca
 import  -/  MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ:Data.String.Utils 635ce11bcb5f4c4a71b87f62bdb0d8da
 import  -/  base-4.8.2.0:Data.Char c8f827952d4111ae2e47c0b105217cdb
@@ -69,13 +94,13 @@ import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  ConvertIptablesPorts 326ae0a869dbcc625ff4d956547964da
-  exports: 85292e38103a9eef1309495f33162327
+import  -/  ConvertIptablesPorts dd615bc54a3e21db1ca9a02639d12074
+  exports: 31c8875872a21de9ed3bd26f39059fc7
   convertMultiportRule c482b5d6c919022cf376736307de9840
   convertTCPRule ab683791a2ebe24acd083aa1c1de5a72
   convertUDPRule eb2d2ff2170c618fe6a362a98a771836
-import  -/  IptablesTypes c70d1eba00184fe627b020da17ed4013
-  exports: 487856e79b078f5a837392b58e7afa97
+import  -/  IptablesTypes d00b5f0914fc78bd36b0cba55c41ad06
+  exports: 80a1a1ba143ffe2507fc25e66c37967d
   Append 741853c63cb0e92ef0b0777e9fe96d9e
   Command 4e2ae75ee3b477dcd91b4d0d5a242abc
   Flush 71c439064dbb9b059ca7c7e58e09a745
@@ -90,8 +115,8 @@ import  -/  IptablesTypes c70d1eba00184fe627b020da17ed4013
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
-import  -/  Types f9d70ed3014642084f474e454b622672
-  exports: e4d4ad03c66c3c72a69f0ac142d16980
+import  -/  Types 88dc6cad42203d5d5235dd279b1673d5
+  exports: e957a36a1c080f189ed58496f7a5508a
   ACCEPT c23d19f74cbf169e0c66b1631b7e64e6
   And a6b1a400ff03e25bd2ea45d5e2395971
   DROP 2f565e2efac36fb08e1788b7db8447c6

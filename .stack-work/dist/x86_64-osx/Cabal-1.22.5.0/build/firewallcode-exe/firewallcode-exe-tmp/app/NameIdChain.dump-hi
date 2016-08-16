@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-14 06:07:05.927621 UTC
+2016-08-16 18:32:33.429271 UTC
 
 interface main@main:NameIdChain 7103
-  interface hash: 020ce8c0f9f6d4d3c8f452bc0917f22f
-  ABI hash: a75124ff070cd8c12391187f5fb312de
-  export-list hash: 9ff82ba4aa39e1eb044c914702771b51
+  interface hash: b5a76f070865077fd3b30a7753a3cd17
+  ABI hash: aac7ffb25a66cf3e660975d8a08fbdb3
+  export-list hash: 2a403fe89423b09918ed98d6b89c27e5
   orphan hash: ad728967a158a55091b0de97996ab5c0
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -16,38 +16,67 @@ exports:
   NameIdChain.increaseIndexes
   NameIdChain.increaseIndexesChain
   NameIdChain.increaseIndexesTarget
+  NameIdChain.jumpedTo
   NameIdChain.maxId
+  NameIdChain.notTopLevelChains
   NameIdChain.pathSimplification
   NameIdChain.pathSimplification'
   NameIdChain.pathSimplificationChain
   NameIdChain.pathSimplificationTarget
   NameIdChain.pathSimplificationTargets
   NameIdChain.reduceReferenced
+  NameIdChain.topLevelChains
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      base-4.8.2.0* binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
-                      integer-gmp-1.0.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
 family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
                          base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
                          base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
                          base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
 import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  Types f9d70ed3014642084f474e454b622672
-  exports: e4d4ad03c66c3c72a69f0ac142d16980
+import  -/  Types 88dc6cad42203d5d5235dd279b1673d5
+  exports: e957a36a1c080f189ed58496f7a5508a
   Chain 0e120b9c2c102af49c408de3f34c7e02
   Go d6d579ab43aa627e1f96ac0b7fd9529f
   GoReturn 7cbc1fbb1e70a0383ead46b8fb949160
@@ -267,15 +296,19 @@ e295e73ea29b77061d3bacb68b1f2ab9
 243fff688beb8dc47a9c064a85b7d003
   increaseIndexesChain :: Types.Chain -> GHC.Types.Int -> Types.Chain
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)> -}
-13daf8c29feac663c52f414eb2406742
+cebfdedd9981f17ee106c3e5c7fddb9a
   increaseIndexesTarget ::
     Types.Target -> GHC.Types.Int -> Types.Target
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U(U)>,
-     Unfolding: InlineRule (2, True, False)
-                (\ ds :: Types.Target i :: GHC.Types.Int ->
+     Unfolding: (\ ds :: Types.Target i :: GHC.Types.Int ->
                  case ds of wild {
                    DEFAULT -> wild
-                   Types.Go c r -> Types.Go (GHC.Num.$fNumInt_$c+ c i) r }) -}
+                   Types.Go c r -> Types.Go (GHC.Num.$fNumInt_$c+ c i) r
+                   Types.GoReturn c r
+                   -> Types.GoReturn (GHC.Num.$fNumInt_$c+ c i) r }) -}
+00d4b7b4d8ba75d71ee3cb58f34732de
+  jumpedTo :: Types.Chain -> [GHC.Types.Int]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 195f270f6beb52ef583a0f70d7e2e900
   maxId :: Types.IdNameChain -> GHC.Types.Int
   {- Arity: 1, Strictness: <S,1*U>,
@@ -290,6 +323,35 @@ e295e73ea29b77061d3bacb68b1f2ab9
                       @ (GHC.Base.String, Types.Chain)
                       (GHC.Types.[] @ GHC.Types.Int)
                       x)) -}
+e6f21cc994047da0d5b6917b13a01250
+  notTopLevelChains :: Types.IdNameChain -> [GHC.Types.Int]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
+     Unfolding: (\ n :: Types.IdNameChain ->
+                 let {
+                   top :: [GHC.Types.Int] = NameIdChain.topLevelChains n
+                 } in
+                 letrec {
+                   go10 :: [GHC.Types.Int]
+                           -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
+                           -> [GHC.Types.Int]
+                     {- Arity: 2, Strictness: <L,1*U><S,1*U> -}
+                   = \ z' :: [GHC.Types.Int]
+                       ds :: Data.Map.Base.Map
+                               GHC.Types.Int (GHC.Base.String, Types.Chain) ->
+                     case ds of wild {
+                       Data.Map.Base.Bin dt kx x l r
+                       -> go10
+                            (case GHC.List.elem
+                                    @ GHC.Types.Int
+                                    GHC.Classes.$fEqInt
+                                    kx
+                                    top of wild1 {
+                               GHC.Types.False -> GHC.Types.: @ GHC.Types.Int kx (go10 z' r)
+                               GHC.Types.True -> go10 z' r })
+                            l
+                       Data.Map.Base.Tip -> z' }
+                 } in
+                 go10 (GHC.Types.[] @ GHC.Types.Int) n) -}
 324fc3e675077637730040ac95764801
   pathSimplification ::
     Data.Map.Base.Map GHC.Base.String Types.Chain -> Types.IdNameChain
@@ -412,6 +474,42 @@ c97887e2c6d13338ec864aa97c286675
                 (\ w :: Types.IdNameChain w1 :: GHC.Types.Int ->
                  case w1 of ww { GHC.Types.I# ww1 ->
                  NameIdChain.$wreduceReferenced w ww1 }) -}
+1d5ba01408ea3cca7fb2ad7fe9f73400
+  topLevelChains :: Types.IdNameChain -> [GHC.Types.Int]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
+     Unfolding: (\ n :: Types.IdNameChain ->
+                 let {
+                   goes :: [GHC.Types.Int]
+                   = NameIdChain.topLevelChains_go10 (GHC.Types.[] @ GHC.Types.Int) n
+                 } in
+                 letrec {
+                   go10 :: [GHC.Types.Int]
+                           -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
+                           -> [GHC.Types.Int]
+                     {- Arity: 2, Strictness: <L,1*U><S,1*U> -}
+                   = \ z' :: [GHC.Types.Int]
+                       ds :: Data.Map.Base.Map
+                               GHC.Types.Int (GHC.Base.String, Types.Chain) ->
+                     case ds of wild {
+                       Data.Map.Base.Bin dt kx x l r
+                       -> go10
+                            (case GHC.List.elem
+                                    @ GHC.Types.Int
+                                    GHC.Classes.$fEqInt
+                                    kx
+                                    goes of wild1 {
+                               GHC.Types.False -> GHC.Types.: @ GHC.Types.Int kx (go10 z' r)
+                               GHC.Types.True -> go10 z' r })
+                            l
+                       Data.Map.Base.Tip -> z' }
+                 } in
+                 go10 (GHC.Types.[] @ GHC.Types.Int) n) -}
+5ea04af43ecbb5170a1ce768bd897195
+  topLevelChains_go10 ::
+    [GHC.Types.Int]
+    -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
+    -> [GHC.Types.Int]
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,1*U><S,1*U> -}
 "SPEC/NameIdChain fromList @ Int _" [ALWAYS] forall @ a
                                                     $dOrd :: GHC.Classes.Ord GHC.Types.Int
   Data.Map.Base.fromList @ GHC.Types.Int @ a $dOrd
