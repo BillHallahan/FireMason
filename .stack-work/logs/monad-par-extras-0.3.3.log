@@ -1,0 +1,76 @@
+Configuring monad-par-extras-0.3.3...
+Building monad-par-extras-0.3.3...
+Preprocessing library monad-par-extras-0.3.3...
+[1 of 5] Compiling Control.Monad.Par.State ( Control/Monad/Par/State.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/State.o )
+[2 of 5] Compiling Control.Monad.Par.RNG ( Control/Monad/Par/RNG.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/RNG.o )
+
+Control/Monad/Par/RNG.hs:43:1: Warning: Tab character
+
+Control/Monad/Par/RNG.hs:44:1: Warning: Tab character
+
+Control/Monad/Par/RNG.hs:45:1: Warning: Tab character
+
+Control/Monad/Par/RNG.hs:49:1: Warning: Tab character
+
+Control/Monad/Par/RNG.hs:50:1: Warning: Tab character
+[3 of 5] Compiling Control.Monad.Par.Pedigree ( Control/Monad/Par/Pedigree.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Pedigree.o )
+
+Control/Monad/Par/Pedigree.hs:38:1: Warning: Tab character
+[4 of 5] Compiling Control.Monad.Par.Combinator ( Control/Monad/Par/Combinator.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Combinator.o )
+
+Control/Monad/Par/Combinator.hs:88:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:89:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:90:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:91:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:94:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:95:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:96:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:97:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:98:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:108:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:115:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:116:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:120:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:123:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:124:1: Warning: Tab character
+
+Control/Monad/Par/Combinator.hs:183:1: Warning: Tab character
+[5 of 5] Compiling Control.Monad.Par.AList ( Control/Monad/Par/AList.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/AList.o )
+
+Control/Monad/Par/AList.hs:59:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:94:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:95:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:130:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:131:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:147:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:148:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:202:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:232:1: Warning: Tab character
+
+Control/Monad/Par/AList.hs:238:1: Warning: Tab character
+In-place registering monad-par-extras-0.3.3...
+Installing library in
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/monad-par-extras-0.3.3-2Djrgge7sndL6tvzoMxpYM
+Registering monad-par-extras-0.3.3...

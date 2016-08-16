@@ -1,0 +1,57 @@
+Configuring criterion-1.1.1.0...
+Building criterion-1.1.1.0...
+Preprocessing library criterion-1.1.1.0...
+[ 1 of 13] Compiling Paths_criterion  ( .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/autogen/Paths_criterion.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Paths_criterion.o )
+[ 2 of 13] Compiling Criterion.Types  ( Criterion/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Types.o )
+
+Criterion/Types.hs:66:1: Warning:
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+Criterion/Types.hs:74:1: Warning:
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+[ 3 of 13] Compiling Criterion.Monad.Internal ( Criterion/Monad/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Monad/Internal.o )
+
+Criterion/Monad/Internal.hs:20:1: Warning:
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+[ 4 of 13] Compiling Criterion.Measurement ( Criterion/Measurement.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Measurement.o )
+[ 5 of 13] Compiling Criterion.Monad  ( Criterion/Monad.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Monad.o )
+[ 6 of 13] Compiling Criterion.Report ( Criterion/Report.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Report.o )
+[ 7 of 13] Compiling Criterion.IO.Printf ( Criterion/IO/Printf.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/IO/Printf.o )
+[ 8 of 13] Compiling Criterion.Analysis ( Criterion/Analysis.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Analysis.o )
+
+Criterion/Analysis.hs:42:1: Warning:
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+[ 9 of 13] Compiling Criterion.Main.Options ( Criterion/Main/Options.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Main/Options.o )
+
+Criterion/Main/Options.hs:32:1: Warning:
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+[10 of 13] Compiling Criterion.IO     ( Criterion/IO.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/IO.o )
+[11 of 13] Compiling Criterion.Internal ( Criterion/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Internal.o )
+
+Criterion/Internal.hs:21:1: Warning:
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+[12 of 13] Compiling Criterion.Main   ( Criterion/Main.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion/Main.o )
+[13 of 13] Compiling Criterion        ( Criterion.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Criterion.o )
+In-place registering criterion-1.1.1.0...
+Preprocessing executable 'criterion' for criterion-1.1.1.0...
+[1 of 3] Compiling Paths_criterion  ( .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/autogen/Paths_criterion.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/criterion/criterion-tmp/Paths_criterion.o )
+[2 of 3] Compiling Options          ( app/Options.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/criterion/criterion-tmp/Options.o )
+[3 of 3] Compiling Main             ( app/App.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/criterion/criterion-tmp/Main.o )
+Linking .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/criterion/criterion ...
+Installing library in
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/criterion-1.1.1.0-GfL1mOGQgTU3WeNwqBDBn7
+Installing executable(s) in
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/bin
+Registering criterion-1.1.1.0...
