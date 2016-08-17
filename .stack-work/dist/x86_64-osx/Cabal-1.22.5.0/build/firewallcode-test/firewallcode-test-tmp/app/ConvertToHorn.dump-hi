@@ -1,0 +1,152 @@
+
+==================== FINAL INTERFACE ====================
+2016-08-16 22:35:07.157184 UTC
+
+interface main@main:ConvertToHorn 7103
+  interface hash: 74b7abeb0be0aaf82c6bbb45f4125429
+  ABI hash: adeacd3b67a20882e958a347a0abe13d
+  export-list hash: 290064d68c309d84d238815c2aefd5c9
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: a0aab809f050b6a8c91e361e2a7bef92
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  ConvertToHorn.condenseAnd
+  ConvertToHorn.condenseOr
+  ConvertToHorn.eliminateOr
+  ConvertToHorn.inputChainToChain
+  ConvertToHorn.inputCriteriaToCriteria
+  ConvertToHorn.inputInstructionsToInstructions
+  ConvertToHorn.simplifyNots
+  ConvertToHorn.stringInputChainsToStringChains
+module dependencies: Types
+package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      base-4.8.2.0* binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
+import  -/  base-4.8.2.0:Data.Functor 5c701b0af1708f0192a25dfe14ce6274
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  Types 0b00dd021c89cb970c014732ed968c3a
+  exports: e957a36a1c080f189ed58496f7a5508a
+  And 6f8973a3e8312f5e647ee19207a3d3ab
+  Chain 921f6402e04e1d152939e74beed3b178
+  Criteria 605b90b34d99bcf3227a69e454b38e17
+  InC 075d8561aea1d0de698127b00d2425f5
+  InCNot dff5c53ad10c01d755c560b7f732a2d5
+  InputChain 8942a69c4aef0d84ac1d9765cf6521c1
+  InputCriteria 46d431200947c3d9bd44d00a30090ea4
+  InputInstruction 8283a79fb676a857da74ca494965d3f5
+  InputRule 72c60ccc6fbdcae448beffe347d332f6
+  Instruction 0328f3aba5ce22071c928180b5146184
+  NoInstruction b969e22921f283e869a0720ab3777dec
+  Not b8339c1be2f1b9a12b2b3eb568593726
+  Or ff59febff5e51ece40e8046011fc8adf
+  PropVariableTarget 6ba064c034dcec2f01702f62123a9e00
+  Rule 440dab8ac3911035be8d80c7bb7628c9
+  Rule 72c60ccc6fbdcae448beffe347d332f6
+  ToChainNamed ce4c7bf5b328004ab15754446244f326
+  criteria 0d340f4248253f1eff5a005f74dd4365
+  isStateless bfdd7c167c8448b682e3e1e7c031b7ff
+  label e663e3efa92304265398fffcd05ce39d
+  targets 38f8ed52af73e0f1e23298e74cdebeec
+54b4d6f311fe5becea72382711619c69
+  $weliminateOr ::
+    [Types.InputCriteria]
+    -> GHC.Types.Int
+    -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
+  {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
+cf5f4825dc93b5be357d01ab29d8107e
+  $winputCriteriaToCriteria ::
+    [Types.InputCriteria]
+    -> GHC.Types.Int
+    -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
+  {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
+112d8f8ef03747426137167e2818684d
+  condenseAnd :: [Types.InputCriteria] -> [Types.InputCriteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+cc3ac9931bad19180d7c5f2f84cec47d
+  condenseOr :: [Types.InputCriteria] -> [Types.InputCriteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+ee0cd942a5a4f1ee2b8ba8e455c56dc3
+  eliminateOr ::
+    [Types.InputCriteria]
+    -> GHC.Types.Int
+    -> ([[Types.Criteria]], [Types.Rule], GHC.Types.Int)
+  {- Arity: 2, Strictness: <S,1*U><L,U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: [Types.InputCriteria] w1 :: GHC.Types.Int ->
+                 case ConvertToHorn.$weliminateOr w w1 of ww { (#,,#) ww1 ww2 ww3 ->
+                 (ww1, ww2, ww3) }) -}
+f5c912fbdbdd0056385dea8c0694117a
+  inputChainToChain ::
+    [Types.InputRule] -> GHC.Types.Int -> [Types.Rule]
+  {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
+f34db7ba0d070148afbbd16044956a5e
+  inputCriteriaToCriteria ::
+    [Types.InputCriteria]
+    -> GHC.Types.Int
+    -> ([[Types.Criteria]], [Types.Rule], GHC.Types.Int)
+  {- Arity: 2, Strictness: <S,1*U><L,U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: [Types.InputCriteria] w1 :: GHC.Types.Int ->
+                 case ConvertToHorn.$winputCriteriaToCriteria
+                        w
+                        w1 of ww { (#,,#) ww1 ww2 ww3 ->
+                 (ww1, ww2, ww3) }) -}
+5d629f57856a2e08599e712b24f1d78d
+  inputInstructionsToInstructions ::
+    [Types.InputInstruction] -> GHC.Types.Int -> [Types.Instruction]
+  {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
+e5c8324bc765881ce58e3ab636049a9d
+  simplifyNots :: [Types.InputCriteria] -> [Types.InputCriteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+6f58f0f89c7f337cef52a088c81b6d82
+  stringInputChainsToStringChains ::
+    [(GHC.Base.String, Types.InputChain)]
+    -> GHC.Types.Int -> [(GHC.Base.String, Types.Chain)]
+  {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

@@ -77,11 +77,19 @@ jumpedTo :: Chain -> [Int]
 jumpedTo [] = []
 jumpedTo (r:rx) = 
     let
-        goes = concat $ map (\t -> case t of Go i _ -> [i]
-                                             GoReturn i _ -> [i]
-                                             _ -> []) (targets r)
+        goes = targetsToChainIds (targets r)
     in
     goes ++ jumpedTo rx
+
+--Returns a list of all top level chains from which it is eventually possible to reach one of the chains with the given ids
+topLevelJumpingTo :: IdNameChain -> [Int] -> [Int]
+topLevelJumpingTo _ [] = []
+topLevelJumpingTo n (i:ix) = union (topLevelJumpingTo' n i) (topLevelJumpingTo n ix)
+
+topLevelJumpingTo' :: IdNameChain -> Int -> [Int]
+topLevelJumpingTo' n i = filter (\c -> i `elem` (Map.keys $ reduceReferenced n [c])) (topLevelChains n)
+
+
 
 idsWithName :: String -> IdNameChain -> [Int]
 idsWithName s n = Map.keys $ Map.filter (\x -> s == fst x) n
@@ -98,15 +106,18 @@ increaseIndexesTarget (Go c r) i = Go (c + i) r
 increaseIndexesTarget (GoReturn c r) i = GoReturn (c + i) r
 increaseIndexesTarget t _ = t
 
---Given a IdNameChain and an id, returns a new IdNameChain with only the IdNameChain with id, and all IdNameChain's that can be reached
---from it through some sequence of Go's
-reduceReferenced :: IdNameChain -> Int -> IdNameChain
-reduceReferenced x i =
+--Given a IdNameChain and a list of ids, returns a new IdNameChain with only the IdNameChaina with those ids, and all IdNameChain's that can be reached
+--from one of them through some sequence of Go/GoReturn's
+reduceReferenced :: IdNameChain -> [Int] -> IdNameChain
+reduceReferenced n i = foldr (Map.union) Map.empty $ (map (reduceReferenced' n) i)
+
+reduceReferenced' :: IdNameChain -> Int -> IdNameChain
+reduceReferenced' x i =
     let
     (n, c) = MB.fromJust $ Map.lookup i x
     t = targetsToChainIds . concat $ map (\x -> targets x) c
     in
-    Map.union (foldr (Map.union) Map.empty (map (reduceReferenced x) t)) (Map.fromList [(i, (n, c))])
+    Map.union (foldr (Map.union) Map.empty (map (reduceReferenced' x) t)) (Map.fromList [(i, (n, c))])
 
 maxId :: IdNameChain -> Int
 maxId x = maximum . Map.keys $ x

@@ -19,23 +19,8 @@
 (declare-fun terminates-with (Int) Target)
 (declare-fun top-level-chain (Int) Bool)
 
-(define-fun valid-packet ((p Int)) Bool
-    (and (<= 0 p) (< p num-of-packets)))
-
-(define-fun valid-chain ((c Int)) Bool
-    (and (<= 0 c) (< c num-of-chains))
-)
-
-(define-fun valid-rule ((c Int) (r Int)) Bool
-    (and 
-        (valid-chain c)
-        (<= 0 r)
-        (< r (chain-length c))
-    )
-)
-
 (define-fun matches-rule((p Int) (c Int) (r Int)) Bool
-   (and (valid-rule c r) (valid-packet p) (matches-criteria p c r) (reaches p c r)))
+   (and (matches-criteria p c r) (reaches p c r)))
 
 (define-fun terminating ((t Target)) Bool 
     (or (= t ACCEPT) (= t DROP))
@@ -47,7 +32,7 @@
 
 
 (define-fun reaches-top-level-chain ((p Int) (c Int)) Bool
-    (and (valid-packet p) (valid-chain c) (top-level-chain c) (reaches p c 0))
+    (and (top-level-chain c) (reaches p c 0))
 )
 
 

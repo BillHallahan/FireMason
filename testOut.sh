@@ -34,7 +34,14 @@ $IPTABLES -F check
 $IPTABLES -p 0 -j DROP  -A check
 $IPTABLES -A check -p tcp --tcp-flags SYN SYN -j ACCEPT
 
+$IPTABLES -N end
+$IPTABLES -F end
+$IPTABLES -A end -p tcp -m multiport --sport 100,200,300,400,500,600,700,800,900,1000 --dport 100,200,300,400,500,600,700,800,900,1000 -j DROP
 
+$IPTABLES -N forward_jump
+$IPTABLES -F forward_jump
+$IPTABLES -A forward_jump -p tcp -m muliport --sport 11,12,13,14,15,16,17,18 --dport 11,12,17,18,19,20,21,25 -j DROP
+$IPTABLES -A forward_jump -p tcp -j DROP
 
 $IPTABLES -N second
 $IPTABLES -F second
@@ -68,7 +75,21 @@ $IPTABLES -A INPUT -j bad-ports
 iptables -A INPUT -p 17 --sport 96 -j ACCEPT
 iptables -A INPUT -p 1 --dport 45 ! --sport 90  -j ACCEPT
 $IPTABLES -A INPUT -p udp --sport 98 -j ACCEPT
+$IPTABLES -A INPUT -j end
 
 iptables -A OUTPUT ! -p 4  -j DROP
 $IPTABLES -A OUTPUT -j second
 $IPTABLES -A OUTPUT -j check
+$IPTABLES -A OUTPUT -j end
+
+$IPTABLES -A FORWARD -p udp -m multiport --sport 87,88,89,99,199,291,3422 -j ACCEPT
+$IPTABLES -A FORWARD -p udp -m multiport --sport 230:240,4500,4555,6432,6462,7889,8990,12305 --dport 8000,8001,8002,8003,8004,8005 -j ACCEPT
+iptables -A FORWARD -p 6 --tcp-flags SYN,ACK SYN,ACK -j DROP
+iptables -A FORWARD -p 9 -j ACCEPT
+iptables -A FORWARD -p 10 -j ACCEPT
+iptables -A FORWARD -p 22 -j ACCEPT
+$IPTABLES -A FORWARD -p tcp -m multiport --dport 90,95:1110 -j ACCEPT
+$IPTABLES -A FORWARD -p udp -j DROP
+$IPTABLES -A FORWARD -p tcp --tcp-flags SYN,ACK SYN -j forward_jump
+$IPTABLES -A FORWARD -p tcp --tcp-flags RST NONE -j forward_jump
+$IPTABLES -A FORWARD -j end

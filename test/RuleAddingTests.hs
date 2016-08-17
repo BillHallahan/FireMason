@@ -90,17 +90,17 @@ scoreCriteriaListTest10 =
 
 addRuleToChainAtPosTest =
     TestCase $ assertEqual "addRuleToChainAtPos is not eliminating corrrectly."
-        [Rule [Protocol 0] [DROP]
-         , Rule [Protocol 1] [DROP]
-         , Rule [Protocol 2] [DROP]
-         , Rule [Protocol 3] [DROP]
-         , Rule [Protocol 4] [DROP]]
+        [Rule [Protocol 0] [DROP] (-1)
+         , Rule [Protocol 1] [DROP] (-1)
+         , Rule [Protocol 2] [DROP] (-1)
+         , Rule [Protocol 3] [DROP] (-1)
+         , Rule [Protocol 4] [DROP] (-1)]
         (addRuleToChainAtPos 
-            (Rule [Protocol 2] [DROP])
-            [Rule [Protocol 0] [DROP]
-             , Rule [Protocol 1] [DROP]
-             , Rule [Protocol 3] [DROP]
-             , Rule [Protocol 4] [DROP]]
+            (Rule [Protocol 2] [DROP] (-1))
+            [Rule [Protocol 0] [DROP] (-1)
+             , Rule [Protocol 1] [DROP] (-1)
+             , Rule [Protocol 3] [DROP] (-1)
+             , Rule [Protocol 4] [DROP] (-1)]
              2
         )
 

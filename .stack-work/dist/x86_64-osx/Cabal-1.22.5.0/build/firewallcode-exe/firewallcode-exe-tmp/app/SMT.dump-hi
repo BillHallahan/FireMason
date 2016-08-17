@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-16 18:46:09.996845 UTC
+2016-08-16 22:53:16.393097 UTC
 
 interface main@main:SMT 7103
-  interface hash: ecf172e6eab593f23671eef3e331c6a3
-  ABI hash: abc1a2629478b7f63fadbfa526309ec5
+  interface hash: 5d25f07495ed40e0107497b5d29405eb
+  ABI hash: 09fb9034e5f4751795a0207185bf1956
   export-list hash: 01bbe557b35de156d1ccb757d89fc506
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -59,9 +59,9 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
                          unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
+import  -/  base-4.8.2.0:Debug.Trace 6660afb6094d69397ea084364da8f950
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.IO bb5b81adcea33b14bd4abe16d7dde45f
-import  -/  base-4.8.2.0:GHC.IO.Exception e38c1261b70caecb7af416b94c82c925
 import  -/  base-4.8.2.0:GHC.IO.Handle.Text 06d2dc7704bcfe88a2157fd04748ace5
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
@@ -108,26 +108,22 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
     | RuleTarget GHC.Types.Int GHC.Types.Int
     | TerminatesWith GHC.Types.Int
     | TopLevelChain GHC.Types.Int
-2f3dd8945f807eaaca9913f109bbb3ab
+d57fc639a6cff6df30d4f61575e23cb9
   callSMTSolver ::
-    GHC.IO.FilePath
-    -> GHC.Base.String
-    -> GHC.Types.IO (GHC.Base.String, GHC.IO.Exception.ExitCode)
+    GHC.IO.FilePath -> GHC.Base.String -> GHC.Types.IO GHC.Base.String
   {- Arity: 3, Strictness: <L,U><L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
                 SMT.callSMTSolver1
                   `cast`
                 (<GHC.IO.FilePath>_R
                  ->_R <GHC.Base.String>_R
-                 ->_R Sym (GHC.Types.NTCo:IO[0]
-                               <(GHC.Base.String, GHC.IO.Exception.ExitCode)>_R)) -}
-20db20ad9a3b2c88b479d9caa7587e9e
+                 ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Base.String>_R)) -}
+b1722ae019cb29fccd6bab81626e9796
   callSMTSolver1 ::
     GHC.IO.FilePath
     -> GHC.Base.String
     -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          (GHC.Base.String, GHC.IO.Exception.ExitCode) #)
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Base.String #)
   {- Arity: 3, Strictness: <L,U><L,U><L,U>,
      Unfolding: (\ f :: GHC.IO.FilePath
                    s :: GHC.Base.String
@@ -136,14 +132,25 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                  case System.Process.runInteractiveCommand1
                         (GHC.CString.unpackAppendCString# "z3 "# f)
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
-                 case ipv3 of wild { (,,,) _pIn pOut pErr handle ->
-                 case handle of ww { System.Process.Internals.ProcessHandle ww1 ww2 ->
-                 case System.Process.$wa1 ww1 ww2 ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 case ipv3 of wild { (,,,) ds pOut ds3 handle ->
                  case GHC.IO.Handle.Text.hGetContents1
                         pOut
-                        ipv4 of ds4 { (#,#) ipv6 ipv7 ->
-                 (# ipv6, (ipv7, ipv5) #) } } } } } }) -}
-670eb44a961dd0fbcf136213f196bd85
+                        ipv2 of ds4 { (#,#) ipv4 ipv5 ->
+                 letrec {
+                   a :: [GHC.Types.Char]
+                        -> GHC.Prim.State# GHC.Prim.RealWorld
+                        -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+                              GHC.IO.Exception.ExitCode #)
+                     {- Arity: 2, Strictness: <S,1*U><L,U> -}
+                   = \ ds5 :: [GHC.Types.Char]
+                       eta1 :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                     case ds5 of wild1 {
+                       [] -> System.Process.callCommand3 handle eta1
+                       : y ys -> case y of tpl { GHC.Types.C# ipv6 -> a ys eta1 } }
+                 } in
+                 case a ipv5 ipv4 of ds5 { (#,#) ipv6 ipv7 ->
+                 (# ipv6, ipv5 #) } } } } }) -}
+952aca761848002e809fc3d450c6083f
   checkSat :: GHC.Base.String -> GHC.Types.IO GHC.Types.Bool
   {- Arity: 2, Strictness: <L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
@@ -151,7 +158,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                   `cast`
                 (<GHC.Base.String>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Bool>_R)) -}
-508404963613c59cff4ae62db56b7e67
+9fb4273ec1f69a4d8da5c334c2c98215
   checkSat1 ::
     GHC.Base.String
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -166,16 +173,27 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                  case System.Process.runInteractiveCommand1
                         SMT.checkSat3
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
-                 case ipv3 of wild { (,,,) _pIn pOut pErr handle ->
-                 case handle of ww { System.Process.Internals.ProcessHandle ww1 ww2 ->
-                 case System.Process.$wa1 ww1 ww2 ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 case ipv3 of wild { (,,,) ds pOut ds3 handle ->
                  case GHC.IO.Handle.Text.hGetContents1
                         pOut
-                        ipv4 of ds4 { (#,#) ipv6 ipv7 ->
+                        ipv2 of ds4 { (#,#) ipv4 ipv5 ->
+                 letrec {
+                   a :: [GHC.Types.Char]
+                        -> GHC.Prim.State# GHC.Prim.RealWorld
+                        -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+                              GHC.IO.Exception.ExitCode #)
+                     {- Arity: 2, Strictness: <S,1*U><L,U> -}
+                   = \ ds5 :: [GHC.Types.Char]
+                       eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                     case ds5 of wild1 {
+                       [] -> System.Process.callCommand3 handle eta
+                       : y ys -> case y of tpl { GHC.Types.C# ipv6 -> a ys eta } }
+                 } in
+                 case a ipv5 ipv4 of ds5 { (#,#) ipv6 ipv7 ->
                  (# ipv6,
                     GHC.Base.eqString
-                      (GHC.List.$wunsafeTake @ GHC.Types.Char 3 ipv7)
-                      SMT.checkSat2 #) } } } } } }) -}
+                      (GHC.List.$wunsafeTake @ GHC.Types.Char 3 ipv5)
+                      SMT.checkSat2 #) } } } } }) -}
 c2b45f4019cbd74a7b17b3f92a69e655
   checkSat2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "sat"#) -}

@@ -90,6 +90,7 @@ data Target = Jump String
 targetsToChainIds :: [Target] -> [Int]
 targetsToChainIds [] = []
 targetsToChainIds ((Go ch r):tx) = ch:targetsToChainIds tx
+targetsToChainIds ((GoReturn ch r):tx) = ch:targetsToChainIds tx
 targetsToChainIds (t:tx) = targetsToChainIds tx 
 
 --data NameIdChain = NameIdChain {

@@ -4,6 +4,7 @@ import Data.List
 import Data.Maybe
 import qualified Data.Map as Map
 import Data.Ord
+import Data.String.ToString
 
 import Types
 import NameIdChain
@@ -72,14 +73,16 @@ findBestPointCut' r i n n' =
         idsOld = idsWithName name n
         idsNew = idsWithName name newNameIdChain
 
+        topStarting = topLevelJumpingTo combinedNIC (idsOld ++ idsNew)
+
+        relevant = reduceReferenced combinedNIC (topStarting)
+
     in
     do
         firewallPredicatesReplacePCR <- readFile "smt/firewallPredicatesReplacePCR.smt2"
-        firewallPredicatesReplacePC <- readFile "smt/firewallPredicatesReplacePC.smt2"
-        let converted = convertChainsCheckSMT (combinedNIC) 
+        let converted = convertChainsCheckSMT relevant
                         "(assert (= num-of-packets 2))\n(declare-const chain0 Int)\n(declare-const chain1 Int)"
                         firewallPredicatesReplacePCR
-                        firewallPredicatesReplacePC
                         2
                         (
                             ((printSMTFunc1 "assert") . (printSMTFunc1 "or") . (foldr1 (++)) $ map (\i'' -> printSMTFunc2 "=" "chain0" (show i'')) idsOld)

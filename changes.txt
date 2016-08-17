@@ -9,4 +9,6 @@ chain bad-ports : SYN AND protocol = 7 AND not ACK => ACCEPT,
 chain INPUT : not SYN AND ACK => ACCEPT,
 chain INPUT : not SYN AND not ACK => DROP,
 chain bad-ports : ((source_port = 10 OR destination_port = 10) AND (protocol = 87 OR protocol = 88)) OR destination_port = 9 => ACCEPT,
-chain second : destination_port = 100 => ACCEPT
+chain second : destination_port = 100 => ACCEPT,
+chain FORWARD : protocol = 6 AND SYN AND ACK  => DROP,
+chain FORWARD : protocol = 9 OR protocol = 10 OR protocol = 22 => ACCEPT

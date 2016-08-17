@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-16 19:08:20.604613 UTC
+2016-08-16 23:02:41.808856 UTC
 
 interface main@main:ChainsToSMT2 7103
-  interface hash: a0fc26352f8128319bf3a4d726f57868
-  ABI hash: 43cfb82d1098aadeb187cfc0f6b957e5
+  interface hash: e2c664d44d0a90b064ac397aa48b91fd
+  ABI hash: dafe2399c879fd3ff92888075beeb4a1
   export-list hash: b7cf436bf12eb9dc349e33b8eb5a94ea
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e468f87777beb3fe7114763efe9ccb2f
@@ -102,13 +102,13 @@ import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  NameIdChain aac7ffb25a66cf3e660975d8a08fbdb3
-  exports: 2a403fe89423b09918ed98d6b89c27e5
+import  -/  NameIdChain bf376fc3ba5ce8835f08612a5b3090c4
+  exports: 501fc26117e8102ce23278c3667e849a
   notTopLevelChains e6f21cc994047da0d5b6917b13a01250
   topLevelChains 1d5ba01408ea3cca7fb2ad7fe9f73400
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
-import  -/  SMT abc1a2629478b7f63fadbfa526309ec5
+import  -/  SMT 09fb9034e5f4751795a0207185bf1956
   exports: 01bbe557b35de156d1ccb757d89fc506
   Assert a5d6ca844431568c111ea72e7b6de468
   Implies c11c11f84c008034f6077d661a053ec9
@@ -515,16 +515,6 @@ c6a80c664bc7456e7e648d3c8e461018
     -> GHC.Base.String
   {- Arity: 4, Strictness: <S,1*U><S,1*U><L,U(U)><L,U(U)>,
      Inline: [0] -}
-1d4af87df393fd93ed6b6bf4f7d43f56
-  $wconvertChainsCheckSMT ::
-    Types.IdNameChain
-    -> GHC.Base.String
-    -> GHC.Base.String
-    -> GHC.Types.Int
-    -> GHC.Base.String
-    -> [GHC.Types.Char]
-  {- Arity: 5, Strictness: <L,U><S,1*U><L,U><L,U(U)><L,1*U>,
-     Inline: [0] -}
 8e53b9e0aeea648e35f9201136d14c97
   $wlvl ::
     GHC.Base.String
@@ -610,25 +600,15 @@ d0338f225e137edb27a0f4cb625346b4
     -> GHC.Base.String
   {- Arity: 4, HasNoCafRefs,
      Strictness: <S,1*U><L,C(C1(C1(U)))><L,U><L,U(U)> -}
-3073ac2cc7631733845cd736d8e6f2cb
+4fa099702d7ec1187d8fdaec3db7be3d
   convertChainsCheckSMT ::
     Types.IdNameChain
-    -> GHC.Base.String
     -> GHC.Base.String
     -> GHC.Base.String
     -> GHC.Types.Int
     -> GHC.Base.String
     -> GHC.Base.String
-  {- Arity: 6, Strictness: <L,U><S,1*U><L,U><L,A><L,U(U)><L,1*U>,
-     Inline: INLINE[0],
-     Unfolding: InlineRule (6, True, True)
-                (\ w :: Types.IdNameChain
-                   w1 :: GHC.Base.String
-                   w2 :: GHC.Base.String
-                   w3 :: GHC.Base.String
-                   w4 :: GHC.Types.Int
-                   w5 :: GHC.Base.String ->
-                 ChainsToSMT2.$wconvertChainsCheckSMT w w1 w2 w4 w5) -}
+  {- Arity: 5, Strictness: <L,U><S,1*U><L,U><L,U(U)><L,1*U> -}
 2090257453b6b47f51eff5a3427faa42
   flagToString :: Types.Flag -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,

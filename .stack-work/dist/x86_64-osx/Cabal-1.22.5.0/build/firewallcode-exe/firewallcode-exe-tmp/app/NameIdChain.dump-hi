@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-16 18:32:33.429271 UTC
+2016-08-16 23:02:41.241603 UTC
 
 interface main@main:NameIdChain 7103
-  interface hash: b5a76f070865077fd3b30a7753a3cd17
-  ABI hash: aac7ffb25a66cf3e660975d8a08fbdb3
-  export-list hash: 2a403fe89423b09918ed98d6b89c27e5
+  interface hash: 532601916ef0a88a7d1af7a08839c6e9
+  ABI hash: bf376fc3ba5ce8835f08612a5b3090c4
+  export-list hash: 501fc26117e8102ce23278c3667e849a
   orphan hash: ad728967a158a55091b0de97996ab5c0
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -25,7 +25,10 @@ exports:
   NameIdChain.pathSimplificationTarget
   NameIdChain.pathSimplificationTargets
   NameIdChain.reduceReferenced
+  NameIdChain.reduceReferenced'
   NameIdChain.topLevelChains
+  NameIdChain.topLevelJumpingTo
+  NameIdChain.topLevelJumpingTo'
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0* binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
@@ -67,6 +70,7 @@ family instance modules: base-4.8.2.0:Control.Applicative
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.2.0:Data.OldList d8fd80b0e14aa085ce6219cd89dad356
 import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
@@ -254,8 +258,8 @@ f055d12426795aee5c0da9921d790578
     -> [(GHC.Types.Int, a)]
     -> Data.Map.Base.Map GHC.Types.Int a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-fa08e37e302ec00936971261b170d3ea
-  $wreduceReferenced ::
+466a8144cbb90a9e65dacd33fbe2cf88
+  $wreduceReferenced' ::
     Types.IdNameChain
     -> GHC.Prim.Int#
     -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
@@ -466,14 +470,68 @@ c97887e2c6d13338ec864aa97c286675
                         w1
                         w2 of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-5c66f4f14dfb7e5e67d120e5ac8d6e7a
+b9263e843413d81d0e9e6f1145f48272
   reduceReferenced ::
+    Types.IdNameChain -> [GHC.Types.Int] -> Types.IdNameChain
+  {- Arity: 2, Strictness: <L,U><S,1*U>,
+     Unfolding: (\ n :: Types.IdNameChain i :: [GHC.Types.Int] ->
+                 letrec {
+                   go1 :: [GHC.Types.Int]
+                          -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
+                     {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ ds :: [GHC.Types.Int] ->
+                     case ds of wild {
+                       []
+                       -> Data.Map.Base.Tip
+                            @ GHC.Types.Int
+                            @ (GHC.Base.String, Types.Chain)
+                       : y ys
+                       -> case y of ww { GHC.Types.I# ww1 ->
+                          NameIdChain.reduceReferenced1
+                            (NameIdChain.$wreduceReferenced' n ww1)
+                            (go1 ys) } }
+                 } in
+                 go1 i) -}
+0fdcd3fa2347fcc7d9acc7cdfd11289b
+  reduceReferenced' ::
     Types.IdNameChain -> GHC.Types.Int -> Types.IdNameChain
   {- Arity: 2, Strictness: <S,U><S,U(U)>, Inline: INLINE[0],
      Unfolding: InlineRule (2, True, False)
                 (\ w :: Types.IdNameChain w1 :: GHC.Types.Int ->
                  case w1 of ww { GHC.Types.I# ww1 ->
-                 NameIdChain.$wreduceReferenced w ww1 }) -}
+                 NameIdChain.$wreduceReferenced' w ww1 }) -}
+6ad73a6e41b918c8b1d0af2b4e58b311
+  reduceReferenced1 ::
+    Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
+    -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
+    -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
+  {- Arity: 2, Strictness: <S,1*U><S,1*U>,
+     Unfolding: (\ ds :: Data.Map.Base.Map
+                           GHC.Types.Int (GHC.Base.String, Types.Chain)
+                   t2 :: Data.Map.Base.Map
+                           GHC.Types.Int (GHC.Base.String, Types.Chain) ->
+                 case ds of wild {
+                   Data.Map.Base.Bin ipv ipv1 ipv2 ipv3 ipv4
+                   -> case t2 of wild1 {
+                        Data.Map.Base.Bin ipv5 ipv6 ipv7 ipv8 ipv9
+                        -> Data.Map.Base.union_$shedgeUnion
+                             @ GHC.Types.Int
+                             @ (GHC.Base.String, Types.Chain)
+                             GHC.Classes.$fOrdInt
+                             (Data.Map.Base.NothingS @ GHC.Types.Int)
+                             (Data.Map.Base.NothingS @ GHC.Types.Int)
+                             ipv
+                             ipv1
+                             ipv2
+                             ipv3
+                             ipv4
+                             ipv5
+                             ipv6
+                             ipv7
+                             ipv8
+                             ipv9
+                        Data.Map.Base.Tip -> wild }
+                   Data.Map.Base.Tip -> t2 }) -}
 1d5ba01408ea3cca7fb2ad7fe9f73400
   topLevelChains :: Types.IdNameChain -> [GHC.Types.Int]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
@@ -510,6 +568,33 @@ c97887e2c6d13338ec864aa97c286675
     -> Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
     -> [GHC.Types.Int]
   {- Arity: 2, HasNoCafRefs, Strictness: <L,1*U><S,1*U> -}
+33a6ad94d6268e51d5e9bdb2993de188
+  topLevelJumpingTo ::
+    Types.IdNameChain -> [GHC.Types.Int] -> [GHC.Types.Int]
+  {- Arity: 2, Strictness: <L,U><S,1*U> -}
+47dbf6ae3976fd8ea04e7fdf20f33c54
+  topLevelJumpingTo' ::
+    Types.IdNameChain -> GHC.Types.Int -> [GHC.Types.Int]
+  {- Arity: 2, Strictness: <S,U><L,U>,
+     Unfolding: (\ n :: Types.IdNameChain i :: GHC.Types.Int ->
+                 GHC.List.filter
+                   @ GHC.Types.Int
+                   (\ c :: GHC.Types.Int ->
+                    case c of ww { GHC.Types.I# ww1 ->
+                    GHC.List.elem
+                      @ GHC.Types.Int
+                      GHC.Classes.$fEqInt
+                      i
+                      (Data.Map.Base.keys1
+                         @ GHC.Types.Int
+                         @ (GHC.Base.String, Types.Chain)
+                         (GHC.Types.[] @ GHC.Types.Int)
+                         (NameIdChain.reduceReferenced1
+                            (NameIdChain.$wreduceReferenced' n ww1)
+                            (Data.Map.Base.Tip
+                               @ GHC.Types.Int
+                               @ (GHC.Base.String, Types.Chain)))) })
+                   (NameIdChain.topLevelChains n)) -}
 "SPEC/NameIdChain fromList @ Int _" [ALWAYS] forall @ a
                                                     $dOrd :: GHC.Classes.Ord GHC.Types.Int
   Data.Map.Base.fromList @ GHC.Types.Int @ a $dOrd

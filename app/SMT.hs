@@ -8,6 +8,7 @@ import Data.String.ToString
 
 import Types
 
+import Debug.Trace
 
 data SMT = SMTAnd [SMT]
            | Assert SMT
@@ -61,19 +62,20 @@ instance ToString SMT where
 
 checkSat :: String -> IO Bool
 checkSat s = do
-    (res, _) <- callSMTSolver "checkSat.smt2" s
+    res <- callSMTSolver "checkSat.smt2" s
     return ((take 3 res) == "sat")
 
 --See https://mail.haskell.org/pipermail/haskell-cafe/2007-November/035146.html
-callSMTSolver :: FilePath -> String -> IO (String, ExitCode)
+--https://mail.haskell.org/pipermail/haskell-cafe/2007-April/024251.html
+callSMTSolver :: FilePath -> String -> IO String
 callSMTSolver f s =
     do
         writeFile f s
-        (_pIn, pOut, pErr, handle) <- (runInteractiveCommand ("z3 " ++ f))
-        exitCode <- waitForProcess handle
-
+        (_, pOut, _, handle) <- (runInteractiveCommand ("z3 " ++ f))
         out <- hGetContents pOut
-        return (out, exitCode)
+        foldr seq (waitForProcess handle) out
+
+        return out
 
 printSMTFunc1 :: (ToString a) => String -> a -> String
 printSMTFunc1 s x = "(" ++ s ++ " " ++ toString x ++ ")"

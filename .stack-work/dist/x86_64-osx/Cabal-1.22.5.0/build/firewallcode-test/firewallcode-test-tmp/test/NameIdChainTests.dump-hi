@@ -1,0 +1,2791 @@
+
+==================== FINAL INTERFACE ====================
+2016-08-16 23:10:41.787523 UTC
+
+interface main@main:NameIdChainTests 7103
+  interface hash: 8e3fdfcab2f68a22d14fd0c28a50a7df
+  ABI hash: ea5558b0c16675d492567a3720988838
+  export-list hash: 9e5ffaee17247e2503231698ba04d920
+  orphan hash: d022850fe56c147940251fcd88ffb56f
+  flag hash: 768efad6ceab0d9cfe2bb912c6118be4
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  NameIdChainTests.chain0
+  NameIdChainTests.chain0Plus6
+  NameIdChainTests.chain1
+  NameIdChainTests.chain11
+  NameIdChainTests.chain14
+  NameIdChainTests.chain14Plus6
+  NameIdChainTests.chain17
+  NameIdChainTests.chain1Plus6
+  NameIdChainTests.chain3
+  NameIdChainTests.chain3Plus6
+  NameIdChainTests.chain5
+  NameIdChainTests.chain5_2
+  NameIdChainTests.chain8
+  NameIdChainTests.idsWithNameTest
+  NameIdChainTests.increaseIndexesChainTest
+  NameIdChainTests.increaseIndexesTargetTest1
+  NameIdChainTests.increaseIndexesTargetTest2
+  NameIdChainTests.increaseIndexesTest
+  NameIdChainTests.maxIdTest
+  NameIdChainTests.nameIdChainTests
+  NameIdChainTests.reduceReferencedTest1
+  NameIdChainTests.reduceReferencedTest2
+  NameIdChainTests.testIdNameChain
+  NameIdChainTests.testIdNameChainPlus6
+  NameIdChainTests.topLevelChainsTest
+  NameIdChainTests.topLevelJumpingToTest1
+  NameIdChainTests.topLevelJumpingToTest2
+module dependencies: NameIdChain Types
+package dependencies: HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0*
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit d58e5f70f93d158130fd424e61ba73e8
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Base 3fa8f8d2179caf234ea001207f41fb0c
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
+import  -/  NameIdChain dc3429010f48cef105d6f0eae3d3c811
+  exports: 501fc26117e8102ce23278c3667e849a
+  idsWithName af04868ee0cf5ced5b2b7af140891d0a
+  increaseIndexes 2f8155d58578051ee3bfb438e475ad3c
+  increaseIndexesChain df09d49ccc559d9bb277fd3fded4de2d
+  increaseIndexesTarget cebfdedd9981f17ee106c3e5c7fddb9a
+  maxId 65e0691992695e02844f1f5aa8260ac1
+  reduceReferenced 10da9159457a3ecfe0ed476da8f50b16
+  topLevelChains 3047830e3d15028b345d2e37b8b40c93
+  topLevelJumpingTo 0749bcc2ca24b14f3b3812264af64851
+import  -/  Types 0b00dd021c89cb970c014732ed968c3a
+  exports: e957a36a1c080f189ed58496f7a5508a
+  ACCEPT c23d19f74cbf169e0c66b1631b7e64e6
+  DROP 2f565e2efac36fb08e1788b7db8447c6
+  Destination 922d80ba258cc0a086584d38ca75ebef
+  Go d6d579ab43aa627e1f96ac0b7fd9529f
+  Port 0cdcd795ebd2c331c1401f6cf3404c99
+  Protocol d38fdc887d9a0e7c53d19d8b463500f3
+  Rule 440dab8ac3911035be8d80c7bb7628c9
+  Source b53eb4518fedc84d30c0b4327bd32c7d
+  criteria 0d340f4248253f1eff5a005f74dd4365
+  label e663e3efa92304265398fffcd05ce39d
+  targets 38f8ed52af73e0f1e23298e74cdebeec
+cc3df9694d8025008b983cf1119d5a23
+  $s$fEq(,) ::
+    GHC.Classes.Eq ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                  (GHC.Classes.$fEq(,)_$c==
+                     @ [GHC.Types.Char]
+                     @ [Types.GenRule Types.Criteria]
+                     GHC.Classes.$fEq[]_$s$fEq[]1
+                     NameIdChainTests.$s$fEq(,)_$dEq1)
+                  (GHC.Classes.$fEq(,)_$c/=
+                     @ [GHC.Types.Char]
+                     @ [Types.GenRule Types.Criteria]
+                     GHC.Classes.$fEq[]_$s$fEq[]1
+                     NameIdChainTests.$s$fEq(,)_$dEq1) -}
+f3d25f485eb159d4df0a986553fc8d3f
+  $s$fEq(,)_$dEq :: GHC.Classes.Eq (Types.GenRule Types.Criteria)
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                NameIdChainTests.$s$fEq(,)_$s$fEqGenRule -}
+543527c2e92e572969cfc9baa35f1d7f
+  $s$fEq(,)_$dEq1 :: GHC.Classes.Eq [Types.GenRule Types.Criteria]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                NameIdChainTests.$s$fEq(,)_$s$fEq[] -}
+456e4ca9a17fd676a4768a5161183678
+  $s$fEq(,)_$s$fEqGenRule ::
+    GHC.Classes.Eq (Types.GenRule Types.Criteria)
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.Criteria)
+                  (Types.$fEqGenRule_$c== @ Types.Criteria Types.$fEqCriteria)
+                  NameIdChainTests.$s$fEq(,)_$s$fEqGenRule_$c/= -}
+48a27dd6577fd7407fca15d972796046
+  $s$fEq(,)_$s$fEqGenRule_$c/= ::
+    Types.GenRule Types.Criteria
+    -> Types.GenRule Types.Criteria -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SLL),1*U(1*U,1*U,1*U(U))><S(SLL),1*U(1*U,1*U,1*U(U))>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a :: Types.GenRule Types.Criteria
+                   b :: Types.GenRule Types.Criteria ->
+                 case Types.$fEqGenRule_$c==
+                        @ Types.Criteria
+                        Types.$fEqCriteria
+                        a
+                        b of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True -> GHC.Types.False }) -}
+f432e28993d5ecf04584d0a7d99dec1d
+  $s$fEq(,)_$s$fEq[] :: GHC.Classes.Eq [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.GenRule Types.Criteria]
+                  (GHC.Classes.$fEq[]_$c==
+                     @ (Types.GenRule Types.Criteria)
+                     NameIdChainTests.$s$fEq(,)_$dEq)
+                  NameIdChainTests.$s$fEq(,)_$s$fEq[]_$c/= -}
+ad862c76b6e18995d533456eb984e2c3
+  $s$fEq(,)_$s$fEq[]_$c/= ::
+    [Types.GenRule Types.Criteria]
+    -> [Types.GenRule Types.Criteria] -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ x :: [Types.GenRule Types.Criteria]
+                   y :: [Types.GenRule Types.Criteria] ->
+                 GHC.Classes.not
+                   (GHC.Classes.$fEq[]_$c==
+                      @ (Types.GenRule Types.Criteria)
+                      NameIdChainTests.$s$fEq(,)_$dEq
+                      x
+                      y)) -}
+e738b0935473899987d41d445399e195
+  $s$fEqMap ::
+    GHC.Classes.Eq
+      (Data.Map.Base.Map
+         GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Data.Map.Base.Map
+                       GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                  (Data.Map.Base.$fEqMap_$c==
+                     @ GHC.Types.Int
+                     @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                     GHC.Classes.$fEqInt
+                     NameIdChainTests.$s$fEqMap_$dEq1)
+                  NameIdChainTests.$s$fEqMap_$s$fEqMap_$c/= -}
+061ebd86e9e85b9593d85bedd11a9934
+  $s$fEqMap_$dEq1 ::
+    GHC.Classes.Eq ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True) NameIdChainTests.$s$fEq(,) -}
+ef8f28b9994e5a3edc0b230115dedb2d
+  $s$fEqMap_$s$fEqMap_$c/= ::
+    Data.Map.Base.Map
+      GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+    -> Data.Map.Base.Map
+         GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+    -> GHC.Types.Bool
+  {- Arity: 2, Strictness: <L,U><L,U>, Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ x :: Data.Map.Base.Map
+                          GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                   y :: Data.Map.Base.Map
+                          GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]) ->
+                 GHC.Classes.not
+                   (Data.Map.Base.$fEqMap_$c==
+                      @ GHC.Types.Int
+                      @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                      GHC.Classes.$fEqInt
+                      NameIdChainTests.$s$fEqMap_$dEq1
+                      x
+                      y)) -}
+9e146800665a80bfd2ca716eec0dc2ab
+  $s$fShow(,) ::
+    GHC.Show.Show ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                  (GHC.Show.$fShow(,)_$cshowsPrec
+                     @ [GHC.Types.Char]
+                     @ [Types.GenRule Types.Criteria]
+                     GHC.Show.$fShow[]_$s$fShow[]1
+                     NameIdChainTests.$s$fShow(,)_$dShow1)
+                  NameIdChainTests.$s$fShow(,)_$s$fShow(,)_$cshow
+                  NameIdChainTests.$s$fShow(,)_$s$fShow(,)_$cshowList -}
+2e105618018addf1c62d9435f4534df0
+  $s$fShow(,)1 :: [[Types.GenRule Types.Criteria]] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [[Types.GenRule Types.Criteria]]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ [Types.GenRule Types.Criteria]
+                   NameIdChainTests.$s$fShow(,)2
+                   eta
+                   eta1) -}
+a6f76ca067aa38eb2a983c8a649eb5f3
+  $s$fShow(,)2 :: [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.$s$fShow(,)3
+                   eta
+                   eta1) -}
+d9f8314e00eaa45a21a1f585c073736b
+  $s$fShow(,)3 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
+                 case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec2
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5 }) -}
+a6bbb1844a3c3f24333a03ed662b87f6
+  $s$fShow(,)4 :: [Types.GenRule Types.Criteria] -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ x :: [Types.GenRule Types.Criteria] ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.$s$fShow(,)3
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+454ecaabcc2ec108a116059db858c84b
+  $s$fShow(,)5 ::
+    GHC.Types.Int -> [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ ds :: GHC.Types.Int
+                   eta :: [Types.GenRule Types.Criteria]
+                   eta1 :: GHC.Base.String ->
+                 NameIdChainTests.$s$fShow(,)2 eta eta1) -}
+31844645cfd9b37b57c5b6b12d0ca028
+  $s$fShow(,)_$dShow1 :: GHC.Show.Show [Types.GenRule Types.Criteria]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                NameIdChainTests.$s$fShow(,)_$s$fShow[] -}
+f0735fba151dbc570f859126bcd2746c
+  $s$fShow(,)_$s$fShow(,)_$cshow ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+    -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U,U)>m2,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: ([GHC.Types.Char], [Types.GenRule Types.Criteria]) ->
+                 GHC.Show.$fShow(,)_$cshowsPrec
+                   @ [GHC.Types.Char]
+                   @ [Types.GenRule Types.Criteria]
+                   GHC.Show.$fShow[]_$s$fShow[]1
+                   NameIdChainTests.$s$fShow(,)_$dShow1
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+bc84d8376efcb023cb24bb07342cfda6
+  $s$fShow(,)_$s$fShow(,)_$cshowList ::
+    [([GHC.Types.Char], [Types.GenRule Types.Criteria])]
+    -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [([GHC.Types.Char], [Types.GenRule Types.Criteria])]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                   (GHC.Show.$fShow(,)_$cshowsPrec
+                      @ [GHC.Types.Char]
+                      @ [Types.GenRule Types.Criteria]
+                      GHC.Show.$fShow[]_$s$fShow[]1
+                      NameIdChainTests.$s$fShow(,)_$dShow1
+                      GHC.Show.shows18)
+                   eta
+                   eta1) -}
+1eb585ae714c3873aa8429f315c01935
+  $s$fShow(,)_$s$fShow[] ::
+    GHC.Show.Show [Types.GenRule Types.Criteria]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.GenRule Types.Criteria]
+                  NameIdChainTests.$s$fShow(,)5
+                  NameIdChainTests.$s$fShow(,)4
+                  NameIdChainTests.$s$fShow(,)1 -}
+25b9d48356ad7aadd933b6163128466a
+  $s$fShowMap ::
+    GHC.Show.Show
+      (Data.Map.Base.Map
+         GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Data.Map.Base.Map
+                       GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                  (Data.Map.Base.$fShowMap_$cshowsPrec
+                     @ GHC.Types.Int
+                     @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                     GHC.Show.$fShowInt
+                     NameIdChainTests.$s$fShowMap_$dShow1)
+                  (Data.Map.Base.$fShowMap_$cshow
+                     @ GHC.Types.Int
+                     @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                     GHC.Show.$fShowInt
+                     NameIdChainTests.$s$fShowMap_$dShow1)
+                  NameIdChainTests.$s$fShowMap_$s$fShowMap_$cshowList -}
+851123188374b7e6edb319c13cc6950d
+  $s$fShowMap_$dShow1 ::
+    GHC.Show.Show ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                NameIdChainTests.$s$fShow(,) -}
+65e4a681cbc54f16181a73fe583143c6
+  $s$fShowMap_$s$fShowMap_$cshowList ::
+    [Data.Map.Base.Map
+       GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])]
+    -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ ls :: [Data.Map.Base.Map
+                            GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])]
+                   s :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Data.Map.Base.Map
+                        GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   (Data.Map.Base.$fShowMap_$cshowsPrec
+                      @ GHC.Types.Int
+                      @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                      GHC.Show.$fShowInt
+                      NameIdChainTests.$s$fShowMap_$dShow1
+                      GHC.Show.shows18)
+                   ls
+                   s) -}
+6b5f7737a320fa45528f7394424018f2
+  chain0 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain31
+                   NameIdChainTests.chain2) -}
+02ff830dd4892f18a7f54b0c805e8b3d
+  chain0Plus1 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain0Plus8
+                   NameIdChainTests.chain0Plus2) -}
+d66c916937976097655b6435310db6be
+  chain0Plus10 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain0Plus11
+                   NameIdChainTests.chain12) -}
+582f97ee7983d1feeb13b27d520dfe2a
+  chain0Plus11 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 7) -}
+f81592760b3b69d0de639467dc08bf5b
+  chain0Plus2 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain0Plus3
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+8b5f29f01ee9322abe2178bea300fca3
+  chain0Plus3 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain15
+                   NameIdChainTests.chain0Plus4
+                   NameIdChainTests.chain7) -}
+10243bd46edd70f3d248fa2fed98b05f
+  chain0Plus4 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain0Plus5
+                   (GHC.Types.[] @ Types.Target)) -}
+deb1598d7de7653214eab1a8992d80be
+  chain0Plus5 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain0Plus7
+                   NameIdChainTests.chain12) -}
+44307b70e6f459649e2df9e5f8d1fbf8
+  chain0Plus6 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain31
+                   NameIdChainTests.chain0Plus1) -}
+ed034b11eb91463bff0d775f8471e055
+  chain0Plus7 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 11) -}
+49d4c8c30f62f63c7a48b65ef2ab7dda
+  chain0Plus8 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain26
+                   NameIdChainTests.chain0Plus9
+                   NameIdChainTests.chain7) -}
+1232899138384c878d239177d97e3216
+  chain0Plus9 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain0Plus10
+                   (GHC.Types.[] @ Types.Target)) -}
+73baf0a8b7170ac64096d9445236e936
+  chain1 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain56
+                   NameIdChainTests.chain37) -}
+5705603d2f4eb096e8e2a5e7670cefb1
+  chain10 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain13
+                   NameIdChainTests.chain12) -}
+8f099be224cacc79bdc3a0204af870de
+  chain100 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain98
+                   NameIdChainTests.chain34) -}
+56325868929c6badc33bac290611a0ae
+  chain11 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain62
+                   NameIdChainTests.chain58) -}
+5054568f5e533bf81fcb0db064810b48
+  chain12 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0) -}
+1a615bbdc2ffd9c78f5c0fdf984e3b66
+  chain13 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 5) -}
+855612109cfaac65cdefdd9ebeff1bce
+  chain14 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain69
+                   NameIdChainTests.chain64) -}
+0c197ccec6b07b4b3e5e7b42bf0ef825
+  chain14Plus1 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain73
+                   NameIdChainTests.chain14Plus2
+                   NameIdChainTests.chain7) -}
+4f4e71c2a51002b12e714eae5f32c26d
+  chain14Plus2 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain14Plus3
+                   (GHC.Types.[] @ Types.Target)) -}
+5a6a8507b516635899f18d307468f9f6
+  chain14Plus3 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain14Plus4
+                   NameIdChainTests.chain12) -}
+8b27df66ac9c994e7ea1dd921e1a3862
+  chain14Plus4 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 23) -}
+a099c9c6098fb65be941e7dd6baff8e4
+  chain14Plus6 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain14Plus1
+                   NameIdChainTests.chain64) -}
+539f734177263decab0d8e8e4b54e47f
+  chain15 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain21
+                   NameIdChainTests.chain16) -}
+ac6923229d27d2a873b224179ec41ff0
+  chain16 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain18
+                   (GHC.Types.[] @ Types.Criteria)) -}
+5ec9c048cfded19d70fd1e751596b414
+  chain17 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain78
+                   NameIdChainTests.chain74) -}
+cc9e6960da88b78b41323ece0565c879
+  chain18 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m4,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   NameIdChainTests.chain19) -}
+0894826c4d780d22032a6101311fa0f7
+  chain19 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   NameIdChainTests.chain20) -}
+b060056fe1ee08b36813289d501d80b8
+  chain1Plus1 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain1Plus9
+                   NameIdChainTests.chain1Plus2) -}
+102a6c0a1b4904083e8ac3f5b2113348
+  chain1Plus10 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain1Plus11
+                   (GHC.Types.[] @ Types.Target)) -}
+2c8d1f9d35e27c2b4e7b20d324d35740
+  chain1Plus11 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain1Plus12
+                   NameIdChainTests.chain12) -}
+b2074911e6a9c0bc0c0117ad40992efd
+  chain1Plus12 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 9) -}
+5497b34fc076db956dae3983fdf99280
+  chain1Plus2 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain45
+                   NameIdChainTests.chain1Plus3) -}
+20e64bcf1ea3ba304dc6644208bc0134
+  chain1Plus3 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain1Plus4
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+c23f3b2dd2302875b7efe21425dde5c9
+  chain1Plus4 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain41
+                   NameIdChainTests.chain1Plus5
+                   NameIdChainTests.chain7) -}
+9d5bb4e313e18145b76cc5d837a65a90
+  chain1Plus5 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain1Plus7
+                   (GHC.Types.[] @ Types.Target)) -}
+da3badf9713108fe73abae2d016420b9
+  chain1Plus6 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain56
+                   NameIdChainTests.chain1Plus1) -}
+e5c665f5b3fccc0d99b52f4977a940b1
+  chain1Plus7 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain1Plus8
+                   NameIdChainTests.chain12) -}
+3c478b312d350e1d2aeb8ec7e699ade9
+  chain1Plus8 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 13) -}
+d78946cd2017b76b01cf3f28cbc0c62f
+  chain1Plus9 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain55
+                   NameIdChainTests.chain1Plus10
+                   NameIdChainTests.chain7) -}
+f1b4028be5f72d41a89997116bd3ae34
+  chain2 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain23
+                   NameIdChainTests.chain4) -}
+712c43ea63a58941109dc17e41669801
+  chain20 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 4) -}
+0c8cf92671a1348a1fa574e277fe0407
+  chain21 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain22) -}
+c73aee234b975c42f0489fb27444b4ce
+  chain22 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1) -}
+15895b53757a09800f0a36c377ac3725
+  chain23 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain26
+                   NameIdChainTests.chain24
+                   NameIdChainTests.chain7) -}
+15e7d88025ff53b1aad24945a3129a09
+  chain24 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain25
+                   (GHC.Types.[] @ Types.Target)) -}
+aa5c15233f41e7800903847efb848df0
+  chain25 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain22
+                   NameIdChainTests.chain12) -}
+682c741476c41660edfe922710f2e1a8
+  chain26 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain21
+                   NameIdChainTests.chain27) -}
+e76f4fa9af39cb1357d5e5310bda766a
+  chain27 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain28
+                   (GHC.Types.[] @ Types.Criteria)) -}
+84f15d4f426f11747563d3eaf0fc02f9
+  chain28 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m4,
+     Unfolding: (Types.Port Types.Source NameIdChainTests.chain29) -}
+f2dbc51008db7c45ef8b0be7797254d8
+  chain29 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   NameIdChainTests.chain30) -}
+c88f74f75049645c7f48edee83f500bb
+  chain3 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain87
+                   NameIdChainTests.chain80) -}
+46ba2c6b4f1b268657fd76e088e9a421
+  chain30 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 2) -}
+2a5aa8a6fd745357aeb04e5b310c697d
+  chain31 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain33
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+3f1106b422632e139744faed516d26b7
+  chain32 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   Types.DROP
+                   (GHC.Types.[] @ Types.Target)) -}
+8baa1c88a4a37117f341f8bfdbfff0b6
+  chain33 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain21
+                   NameIdChainTests.chain34) -}
+4472287a14d391491df7656400b3f691
+  chain34 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain35
+                   (GHC.Types.[] @ Types.Criteria)) -}
+445f2447931383789d9293aa256f28f3
+  chain35 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m4,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   NameIdChainTests.chain36) -}
+d7dfaaccf8bddbd8305b9a7fbd676720
+  chain36 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   NameIdChainTests.chain22) -}
+ebad0d7f98f254b459cf79b04906f5a0
+  chain37 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain52
+                   NameIdChainTests.chain38) -}
+83bebef6195e5ba56750412dfbf4c392
+  chain38 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain45
+                   NameIdChainTests.chain39) -}
+583a830b87d1298ef8fb4f1430bef5f0
+  chain39 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain40
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+536ba311ead24394b48a9fb275211c3b
+  chain3Plus1 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain3Plus2
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+044876d0f3dd62b05076566edaa33236
+  chain3Plus2 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain85
+                   NameIdChainTests.chain3Plus3
+                   NameIdChainTests.chain7) -}
+9bdec529e9e51702cc98f0dcf4e538fa
+  chain3Plus3 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain3Plus4
+                   (GHC.Types.[] @ Types.Target)) -}
+031a6ccd6ff6fce9ce5442eac7a83b97
+  chain3Plus4 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain68
+                   NameIdChainTests.chain12) -}
+5a2a61dbf057a428382008d9f0c890b9
+  chain3Plus6 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain87
+                   NameIdChainTests.chain3Plus1) -}
+24a2d69ada14f132f866f46050359c7b
+  chain4 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain6
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+d4c2b9fe24e5d5d1c213aab44ff27615
+  chain40 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain41
+                   NameIdChainTests.chain0Plus9
+                   NameIdChainTests.chain7) -}
+c77a38b415629eb978cda8edfb95e01b
+  chain41 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain44
+                   NameIdChainTests.chain42) -}
+abac39ca74ca54099ba67905eed28c8e
+  chain42 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain43
+                   (GHC.Types.[] @ Types.Criteria)) -}
+d4e00b17ef00651a6b898ae2cc74c9e3
+  chain43 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m4,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   NameIdChainTests.chain29) -}
+4e6b3865e96ad43c372ce5f8147b7f2f
+  chain44 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain30) -}
+0f93d7c1d99c7771afdbeca1a072dcf9
+  chain45 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain47
+                   NameIdChainTests.chain46
+                   NameIdChainTests.chain7) -}
+c9e1680bfb9cba5b0b5febb7fa357c2b
+  chain46 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   Types.ACCEPT
+                   (GHC.Types.[] @ Types.Target)) -}
+c7f34d9bda308b7d322a1b9fd82d1748
+  chain47 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain44
+                   NameIdChainTests.chain48) -}
+d04b9b75d218659b1b39e64f32e0dc97
+  chain48 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain49
+                   (GHC.Types.[] @ Types.Criteria)) -}
+af65a3986bd3a478f6128527adf1ad3e
+  chain49 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m4,
+     Unfolding: (Types.Port Types.Source NameIdChainTests.chain50) -}
+53214fbdf831fb30da3e94c6dfe5af45
+  chain5 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain93
+                   NameIdChainTests.chain89) -}
+d98b7a88718287d95bca49a844a7974a
+  chain50 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   NameIdChainTests.chain51) -}
+acfdcc7ead80340da3c04d6aff028f7d
+  chain51 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 3) -}
+7516b0895239c45c088da3d30d8fd9bd
+  chain52 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain55
+                   NameIdChainTests.chain53
+                   NameIdChainTests.chain7) -}
+87c85119ec9456184d3049bb3408a6e3
+  chain53 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain54
+                   (GHC.Types.[] @ Types.Target)) -}
+99c1437225b430a14ad1c93205335874
+  chain54 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain51
+                   NameIdChainTests.chain12) -}
+d6084cda2136c34ab79ede0e1d92dc07
+  chain55 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain44
+                   NameIdChainTests.chain27) -}
+6a2cfd3140219e32fc18893f8102b3f0
+  chain56 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain57
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+221a1c246d6dcdc912f257d6b759e609
+  chain57 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain44
+                   NameIdChainTests.chain34) -}
+2c6bb3927fea84958b624d2f94d72f8b
+  chain58 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain59
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+0d50de69d2be3c00c078d77bff2baf97
+  chain59 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain60
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+e6b53cb8096250519610aa1f39ce6bba
+  chain5_2 :: [Types.GenRule Types.Criteria]
+  {- Strictness: m2, Unfolding: (NameIdChainTests.chain5) -}
+9151556c0805004b9b98e17830ae7ecc
+  chain6 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain15
+                   NameIdChainTests.chain9
+                   NameIdChainTests.chain7) -}
+48872ec4dbbee658029863ce3273f9ac
+  chain60 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain61
+                   NameIdChainTests.chain27) -}
+740aa673fe20d9b861d30b8c3c30cfb9
+  chain61 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain0Plus7) -}
+785c46d5bb8be04b2fb4e1bc68f021ef
+  chain62 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain63
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+5b9c5c1cdfcb65febb4a19415a4f55aa
+  chain63 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain61
+                   NameIdChainTests.chain34) -}
+4a13fad939ec69422b48467689e6974d
+  chain64 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain65
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+38ee9b648f8bb1cc8252a0415616415d
+  chain65 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain66
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+95691be885aad1e1c52cc8db76b0067d
+  chain66 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain67
+                   NameIdChainTests.chain27) -}
+7e91216c9d6597c97b9daeae41193485
+  chain67 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain68) -}
+b62f35a7d8ae501ec8b2ba0da965571e
+  chain68 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 14) -}
+1c383e8073cb677d64494f583d1cc224
+  chain69 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain73
+                   NameIdChainTests.chain70
+                   NameIdChainTests.chain7) -}
+256e9a48e358eeba71c6cea1ab3bbd6c
+  chain7 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# (-1)) -}
+9f9e2515de994a511e5fed47af2b807e
+  chain70 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain71
+                   (GHC.Types.[] @ Types.Target)) -}
+8803a3c7957c34c45e3bcfc752831fdc
+  chain71 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain72
+                   NameIdChainTests.chain12) -}
+782a6d0932d086b8c09fde9de97860a5
+  chain72 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 17) -}
+c9a6a88db9cc54debf6ec83ac3183a85
+  chain73 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain67
+                   NameIdChainTests.chain34) -}
+c6fcafc74d2f24f45471d54f379cb739
+  chain74 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain75
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+9e4d13c8a981bcbbf67e92a3fc97a2d2
+  chain75 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain76
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+5dc5022f894c5fea1774ef3221b84148
+  chain76 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain77
+                   NameIdChainTests.chain27) -}
+5e7f5f82072e449741efc9f0ffcc2600
+  chain77 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain72) -}
+99d29384c65800d07ff261477f9723fb
+  chain78 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain79
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+95b4662172736e8159b16c854759f1e5
+  chain79 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain77
+                   NameIdChainTests.chain34) -}
+889ac16caff094fc3b5a3b35895fd0eb
+  chain8 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain99
+                   NameIdChainTests.chain95) -}
+69f293d83e51c714e75df0c3aa93b87e
+  chain80 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain81
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+ae3c27c11df28b3410983dc71766840a
+  chain81 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain85
+                   NameIdChainTests.chain82
+                   NameIdChainTests.chain7) -}
+2e74852776c791f0761b81bbe065bb9c
+  chain82 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain83
+                   (GHC.Types.[] @ Types.Target)) -}
+221ffbb6518cc8a6cf0c99092bc079e0
+  chain83 :: Types.Target
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Go
+                   NameIdChainTests.chain84
+                   NameIdChainTests.chain12) -}
+ce36e2439134e6130405692644f421f0
+  chain84 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 8) -}
+9a9a843f5cd65311253022e6c3abd07f
+  chain85 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain86
+                   NameIdChainTests.chain27) -}
+56cd364dc0b48b8c16e44a3427fd78bd
+  chain86 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain51) -}
+062834964235178fbcbcf18ddb56a387
+  chain87 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain88
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+9670a07193797e2edcad6a079e61320c
+  chain88 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain86
+                   NameIdChainTests.chain34) -}
+49b178e7c85885b21694dfdadb5bcfb8
+  chain89 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain90
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+ced4a151d0b22dcf183709b05f9cf150
+  chain9 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   NameIdChainTests.chain10
+                   (GHC.Types.[] @ Types.Target)) -}
+69f822317bd46416070ff9ff05c9bea0
+  chain90 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain91
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+37722de280080c69edb0d6763d8a2a40
+  chain91 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain92
+                   NameIdChainTests.chain27) -}
+89d4d4e74cd82e70925f99da3762b449
+  chain92 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain13) -}
+3d9ddf1bd07beb77afcf5f57a1b09b16
+  chain93 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain94
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+e6ffb08d2314bce9f2bb8e882e10bb07
+  chain94 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain92
+                   NameIdChainTests.chain34) -}
+5bbe63acd741c5beddfe1fef3967ecd1
+  chain95 :: [Types.GenRule Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.GenRule Types.Criteria)
+                   NameIdChainTests.chain96
+                   (GHC.Types.[] @ (Types.GenRule Types.Criteria))) -}
+57659ea5663a8ad43472d1279f7c0dbd
+  chain96 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain97
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+7b1f38d77b0aac4d151431c8f46d19d4
+  chain97 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   NameIdChainTests.chain98
+                   NameIdChainTests.chain27) -}
+f8cdb7c25c6e1619bdba9a188b78fbed
+  chain98 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol NameIdChainTests.chain84) -}
+2bfb3437f8073b8934b1a392f9460fbc
+  chain99 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   NameIdChainTests.chain100
+                   NameIdChainTests.chain32
+                   NameIdChainTests.chain7) -}
+b945fc073c3c3a430e15abae937199d3
+  idsWithNameTest :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.idsWithNameTest1
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+c525f8742b66d16d3db4243c7ddc0659
+  idsWithNameTest1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [GHC.Types.Int]
+                   NameIdChainTests.idsWithNameTest6
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   GHC.Classes.$fEq[]_$s$fEq[]
+                   GHC.Show.$fShow[]_$s$fShow[]
+                   NameIdChainTests.idsWithNameTest5
+                   NameIdChainTests.idsWithNameTest3
+                   NameIdChainTests.idsWithNameTest2) -}
+be99a688691e88138617318197132126
+  idsWithNameTest10 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 27) -}
+239f83210e929e8bfaba71515e7e5dd4
+  idsWithNameTest11 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 16) -}
+a319c74cabce16edb4b769627a128195
+  idsWithNameTest12 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 105) -}
+391ed7f258dd7d5ad59e0aef54209668
+  idsWithNameTest13 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "test/NameIdChainTests.hs"#) -}
+6f333935dbf30b43137e3f8acdee73fe
+  idsWithNameTest14 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "NameIdChainTests"#) -}
+5368f9f4f99bc5d87612b5deeaa16e0c
+  idsWithNameTest15 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "main"#) -}
+4cf5fbee57da96a0b318e0b722cdd09e
+  idsWithNameTest16 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "assertEqual"#) -}
+5ba3537fca39d8393a68b7872eb50b07
+  idsWithNameTest2 :: [GHC.Types.Int]
+  {- Unfolding: (NameIdChain.idsWithName
+                   NameIdChainTests.testIdNameChain24
+                   NameIdChainTests.testIdNameChain) -}
+0e1f0b1aa13d289427feca3eb82b2012
+  idsWithNameTest3 :: [GHC.Types.Int]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain13
+                   NameIdChainTests.idsWithNameTest4) -}
+d42ccadaab41864022c8c37209a3efed
+  idsWithNameTest4 :: [GHC.Types.Int]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain0Plus11
+                   (GHC.Types.[] @ GHC.Types.Int)) -}
+b93dd6fab69a0b232c4e0d2ed651a3e1
+  idsWithNameTest5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "idsWithNameTest is not working correctly."#) -}
+6ce33a405f6ee4b5509b848af41c7d02
+  idsWithNameTest6 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.idsWithNameTest7) -}
+f6ffa1248d68852d24166eecd4453f51
+  idsWithNameTest7 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.idsWithNameTest8
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+fda016cf2b8becac281529a0376d4d29
+  idsWithNameTest8 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.idsWithNameTest9)) -}
+beb78bada0b7b8f5843fb9b2aaaa4eb9
+  idsWithNameTest9 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.idsWithNameTest12
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.idsWithNameTest12
+                   NameIdChainTests.idsWithNameTest10) -}
+1d842cd65c0e6362f3ee6cca43c13e35
+  increaseIndexesChainTest :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.increaseIndexesChainTest1
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+3f722642e7b3c93de8faa66717bb7397
+  increaseIndexesChainTest1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [Types.GenRule Types.Criteria]
+                   NameIdChainTests.increaseIndexesChainTest5
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   NameIdChainTests.$s$fEq(,)_$s$fEq[]
+                   NameIdChainTests.$s$fShow(,)_$s$fShow[]
+                   NameIdChainTests.increaseIndexesChainTest4
+                   NameIdChainTests.chain1Plus6
+                   NameIdChainTests.increaseIndexesChainTest2) -}
+9c6aa2539cca731bc0bcbbcd586be41e
+  increaseIndexesChainTest2 :: Types.Chain
+  {- Unfolding: (NameIdChain.increaseIndexesChain
+                   NameIdChainTests.chain1
+                   NameIdChainTests.increaseIndexesChainTest3) -}
+be6c8461c817959079f5633bcf4959b7
+  increaseIndexesChainTest3 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 6) -}
+a91b992e0190f3de14a3ba2038275039
+  increaseIndexesChainTest4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "increaseIndexesChain is not working correctly."#) -}
+45e03a8cffd485ae87803b1c81216e6e
+  increaseIndexesChainTest5 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.increaseIndexesChainTest6) -}
+4a9a8b2711a8dbaa7160d4bd8b3cb7e1
+  increaseIndexesChainTest6 ::
+    [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.increaseIndexesChainTest7
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+a09795401944dce1ed7da2b81cd3898c
+  increaseIndexesChainTest7 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.increaseIndexesChainTest8)) -}
+885b9076363593e9455b4e00650fca8e
+  increaseIndexesChainTest8 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.increaseIndexesChainTest9
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.increaseIndexesChainTest9
+                   NameIdChainTests.idsWithNameTest10) -}
+9aa7aed63a6e4731072464beaec71871
+  increaseIndexesChainTest9 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 115) -}
+fd1f7723d42e11eaeffd81c8622cbd87
+  increaseIndexesTargetTest1 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.increaseIndexesTargetTest4
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+90f7b81b5da77089af55d64ce4444a2d
+  increaseIndexesTargetTest10 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 120) -}
+4d1d2291059c9b7a0aa23bf235ae39c4
+  increaseIndexesTargetTest11 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ Types.Target
+                   NameIdChainTests.increaseIndexesTargetTest12
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   Types.$fEqTarget
+                   Types.$fShowTarget
+                   NameIdChainTests.increaseIndexesTargetTest5
+                   Types.DROP
+                   Types.DROP) -}
+2588b27164959af4cf66b8553ac77892
+  increaseIndexesTargetTest12 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.increaseIndexesTargetTest13) -}
+384bbd094b2b6ec26ab96b89780a674b
+  increaseIndexesTargetTest13 ::
+    [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.increaseIndexesTargetTest14
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+38d2517e6103be8adadfc0f08467cd72
+  increaseIndexesTargetTest14 ::
+    ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.increaseIndexesTargetTest15)) -}
+1ccfe7708dfa686643d23ae577582d27
+  increaseIndexesTargetTest15 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.increaseIndexesTargetTest16
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.increaseIndexesTargetTest16
+                   NameIdChainTests.idsWithNameTest10) -}
+5d56a39e9f921c9722e80d559d93868e
+  increaseIndexesTargetTest16 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 125) -}
+bf6731582c737f928bea2b9afa6a7f70
+  increaseIndexesTargetTest2 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.increaseIndexesTargetTest11
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+19f42363161cf3cdfb5793f05c337915
+  increaseIndexesTargetTest4 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ Types.Target
+                   NameIdChainTests.increaseIndexesTargetTest6
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   Types.$fEqTarget
+                   Types.$fShowTarget
+                   NameIdChainTests.increaseIndexesTargetTest5
+                   NameIdChainTests.chain1Plus11
+                   NameIdChainTests.chain1Plus11) -}
+20585c604835508cba04763caa19f7c2
+  increaseIndexesTargetTest5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "increaseIndexesTarget is not working correctly."#) -}
+5b7d26b3c7f8168b2c1b2d8a7c8ccb3b
+  increaseIndexesTargetTest6 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.increaseIndexesTargetTest7) -}
+7182f1e1d016936b1abc98d3d811832f
+  increaseIndexesTargetTest7 ::
+    [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.increaseIndexesTargetTest8
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+5522c66203133c4d546841c83d379f32
+  increaseIndexesTargetTest8 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.increaseIndexesTargetTest9)) -}
+5636369db03b3153f706acc5eb25f324
+  increaseIndexesTargetTest9 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.increaseIndexesTargetTest10
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.increaseIndexesTargetTest10
+                   NameIdChainTests.idsWithNameTest10) -}
+cfd01ed842b6885b94fcb6978f08ac36
+  increaseIndexesTest :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.increaseIndexesTest1
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+488a7e7a66ba2ddbeb2bdb341a582128
+  increaseIndexesTest1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ (Data.Map.Base.Map
+                        GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.increaseIndexesTest4
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   NameIdChainTests.$s$fEqMap
+                   NameIdChainTests.$s$fShowMap
+                   NameIdChainTests.increaseIndexesTest3
+                   NameIdChainTests.testIdNameChainPlus6
+                   NameIdChainTests.increaseIndexesTest2) -}
+dd6a20f24f84b94969e0bdcbc8113df1
+  increaseIndexesTest2 :: Types.IdNameChain
+  {- Unfolding: (NameIdChain.increaseIndexes
+                   NameIdChainTests.testIdNameChain
+                   NameIdChainTests.increaseIndexesChainTest3) -}
+5ca98da26006f7e78076ed1f7afa3838
+  increaseIndexesTest3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "increaseIndexes is not working correctly."#) -}
+470783342429749726ce463afa91ed3e
+  increaseIndexesTest4 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.increaseIndexesTest5) -}
+3e3db904c7707dbf378269fa5cdf97e9
+  increaseIndexesTest5 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.increaseIndexesTest6
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+91fb029a51a59d3f3c8afb12fa0c5619
+  increaseIndexesTest6 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.increaseIndexesTest7)) -}
+98f0944ba45c5fd9945d5d32b8e09900
+  increaseIndexesTest7 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.increaseIndexesTest8
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.increaseIndexesTest8
+                   NameIdChainTests.idsWithNameTest10) -}
+9f7309051bda9e24cd7d309e9303b23d
+  increaseIndexesTest8 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 110) -}
+ee863e59b98967453072f1d91805329f
+  maxIdTest :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.maxIdTest1
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+ccb6dc232e552042ad1186e660a72b17
+  maxIdTest1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ GHC.Types.Int
+                   NameIdChainTests.maxIdTest5
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   GHC.Classes.$fEqInt
+                   GHC.Show.$fShowInt
+                   NameIdChainTests.maxIdTest4
+                   NameIdChainTests.chain72
+                   NameIdChainTests.maxIdTest2) -}
+e98612a3d3137453b554fd0f4ce497c9
+  maxIdTest2 :: GHC.Types.Int
+  {- Unfolding: (GHC.List.strictMaximum
+                   @ GHC.Types.Int
+                   GHC.Classes.$fOrdInt
+                   NameIdChainTests.maxIdTest3) -}
+bfe5bf78107d89665213b0ff3a066645
+  maxIdTest3 :: [GHC.Types.Int]
+  {- Unfolding: (Data.Map.Base.keys1
+                   @ GHC.Types.Int
+                   @ (GHC.Base.String, Types.Chain)
+                   (GHC.Types.[] @ GHC.Types.Int)
+                   NameIdChainTests.testIdNameChain) -}
+4fa7adf07809d215071d1717aaf8ecf1
+  maxIdTest4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "maxId is not working correctly."#) -}
+94e496b39d85abfd22205631e34b23e1
+  maxIdTest5 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack NameIdChainTests.maxIdTest6) -}
+9ae101e9901c35c72fc8d2e39a83779e
+  maxIdTest6 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.maxIdTest7
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+2a6088d00dc0a267d14453391b5aa55b
+  maxIdTest7 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.maxIdTest8)) -}
+b82ab6271010adaf963f38d920c0484b
+  maxIdTest8 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.maxIdTest9
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.maxIdTest9
+                   NameIdChainTests.idsWithNameTest10) -}
+7453eaad0733a0f6d067782d118cfcd9
+  maxIdTest9 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 165) -}
+3f8aae15e3abbfbdf7d6034d7371b0b3
+  nameIdChainTests :: Test.HUnit.Base.Test
+  {- Strictness: m2,
+     Unfolding: (Test.HUnit.Base.TestList
+                   NameIdChainTests.nameIdChainTests1) -}
+eb5e4ff9c5ce181c8b8c4affd2eccc3f
+  nameIdChainTests1 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests32
+                   NameIdChainTests.nameIdChainTests2) -}
+da261bcdb80ffd556a306324d6057d81
+  nameIdChainTests10 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests14
+                   NameIdChainTests.nameIdChainTests11) -}
+bae3d04fbdfd1b8c2b6156a61ceb8088
+  nameIdChainTests11 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests12
+                   (GHC.Types.[] @ Test.HUnit.Base.Test)) -}
+b105a04e343d737ba3d5a7fd9bac359a
+  nameIdChainTests12 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests13
+                   NameIdChainTests.maxIdTest) -}
+b5d8c926bafa37529a07415ccf57e63e
+  nameIdChainTests13 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "maxIdTest"#) -}
+8e0a1b9a9732f5737d168105c6df0171
+  nameIdChainTests14 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests15
+                   NameIdChainTests.reduceReferencedTest2) -}
+9dab332b791519737e4db3e9404ec563
+  nameIdChainTests15 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "reduceReferencedTest2"#) -}
+a89c6c9daaa62f8523578cd0e4b35aed
+  nameIdChainTests16 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests17
+                   NameIdChainTests.reduceReferencedTest1) -}
+881ca0f2a00df3465f0e46533e8e3e32
+  nameIdChainTests17 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "reduceReferencedTest1"#) -}
+b902e089d144bfe66c02b93a983c7d23
+  nameIdChainTests18 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests19
+                   NameIdChainTests.topLevelJumpingToTest2) -}
+9e837bda90c57ca9c0b6cf4b56347864
+  nameIdChainTests19 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "topLevelJumpingToTest2"#) -}
+160723e95b1921cb4cbced0705d02f80
+  nameIdChainTests2 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests30
+                   NameIdChainTests.nameIdChainTests3) -}
+6a3c0b0a151de66281372fe0450e956e
+  nameIdChainTests20 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests21
+                   NameIdChainTests.topLevelJumpingToTest1) -}
+b7f378e17b2161fea6d9ea71b97873ce
+  nameIdChainTests21 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "topLevelJumpingToTest1"#) -}
+23c6d37da9b0dc64d019933724042543
+  nameIdChainTests22 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests23
+                   NameIdChainTests.topLevelChainsTest) -}
+8a563dce714efe0e418b12fa6c2117cd
+  nameIdChainTests23 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "topLevelChainsTest"#) -}
+d44e06a3a3e72a8670e5e014108c3c96
+  nameIdChainTests24 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests25
+                   NameIdChainTests.increaseIndexesTargetTest2) -}
+3322c0028529f7cd36f3a69a975602ac
+  nameIdChainTests25 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "increaseIndexesTargetTest2"#) -}
+7b1a9f9113f00c2f7b76c96d8d89441d
+  nameIdChainTests26 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests27
+                   NameIdChainTests.increaseIndexesTargetTest1) -}
+75c137839171c62132c81194c34c2985
+  nameIdChainTests27 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "increaseIndexesTargetTest1"#) -}
+f0338230b35a8b885c30d9e99ca76064
+  nameIdChainTests28 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests29
+                   NameIdChainTests.increaseIndexesChainTest) -}
+66eeeafebda3e492b9b2af3e2ca0d149
+  nameIdChainTests29 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "increaseIndexesChainTest"#) -}
+4040a13e83cfd351f364b044671aca4b
+  nameIdChainTests3 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests28
+                   NameIdChainTests.nameIdChainTests4) -}
+2e1df2feadac9bf9cabbcf439d40d33c
+  nameIdChainTests30 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests31
+                   NameIdChainTests.increaseIndexesTest) -}
+f1d77006d50f18c1a5e63249803d0db1
+  nameIdChainTests31 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "increaseIndexesTest"#) -}
+d25b99147cd3057185d7b587bb53e0eb
+  nameIdChainTests32 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   NameIdChainTests.nameIdChainTests33
+                   NameIdChainTests.idsWithNameTest) -}
+e0f74a8a28a2739ab9d189d91e60c30c
+  nameIdChainTests33 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "idsWithNameTest"#) -}
+ad0f8dfd684f71389ca44a09a9d54abb
+  nameIdChainTests4 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests26
+                   NameIdChainTests.nameIdChainTests5) -}
+676190586e29ca5808b9d3ab8221aa25
+  nameIdChainTests5 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests24
+                   NameIdChainTests.nameIdChainTests6) -}
+6fadc1a992ebe2acaa246524795db353
+  nameIdChainTests6 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests22
+                   NameIdChainTests.nameIdChainTests7) -}
+5cf4180e2e2006ab2f70caf12870f6a3
+  nameIdChainTests7 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests20
+                   NameIdChainTests.nameIdChainTests8) -}
+43276cebe707f6be2e51b71558824eb7
+  nameIdChainTests8 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests18
+                   NameIdChainTests.nameIdChainTests9) -}
+f5bfc91e055f1fcfee0b91bd74be5774
+  nameIdChainTests9 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests16
+                   NameIdChainTests.nameIdChainTests10) -}
+1f9873e5222b1e3c16745b332ecdb015
+  reduceReferencedTest1 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.reduceReferencedTest21
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+328697edeef671376d089fa22778a794
+  reduceReferencedTest10 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain29
+                   NameIdChainTests.reduceReferencedTest11) -}
+ff2a199c204b1fe7b43f13eac6f9f1e2
+  reduceReferencedTest11 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain26
+                   NameIdChainTests.reduceReferencedTest12) -}
+7015ad405c698d372e859e231da6fb80
+  reduceReferencedTest12 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain25
+                   NameIdChainTests.reduceReferencedTest13) -}
+0f7f6b56790721ba137e663fa891bebd
+  reduceReferencedTest13 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain22
+                   NameIdChainTests.reduceReferencedTest14) -}
+98892afb7fbe90617ea9f4ce2400e517
+  reduceReferencedTest14 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain19
+                   (GHC.Types.[]
+                      @ (GHC.Types.Int,
+                         ([GHC.Types.Char], [Types.GenRule Types.Criteria])))) -}
+3bb1181828a0a845a5d7c449463b8663
+  reduceReferencedTest15 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "reduceReferenced is not working correctly."#) -}
+9f33ec4c6c50ea0b626965f53e59ed91
+  reduceReferencedTest16 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.reduceReferencedTest17) -}
+47ca7d431a6ce5efd9595ee663a9d515
+  reduceReferencedTest17 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.reduceReferencedTest18
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+de5069fca1a76af50b12b0f8b3f17f8c
+  reduceReferencedTest18 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.reduceReferencedTest19)) -}
+a564c6c36f21878c3303627d8d750f6b
+  reduceReferencedTest19 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.reduceReferencedTest20
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.reduceReferencedTest20
+                   NameIdChainTests.idsWithNameTest10) -}
+9fd2207ffd8e419c883e5662f7add312
+  reduceReferencedTest2 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.reduceReferencedTest4
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+2be634d6509ca7eb419fbf6809f31660
+  reduceReferencedTest20 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 154) -}
+5fe1c2594302dd64d8c432d005e36c55
+  reduceReferencedTest21 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ (Data.Map.Base.Map
+                        GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.reduceReferencedTest26
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   NameIdChainTests.$s$fEqMap
+                   NameIdChainTests.$s$fShowMap
+                   NameIdChainTests.reduceReferencedTest15
+                   NameIdChainTests.reduceReferencedTest23
+                   NameIdChainTests.reduceReferencedTest22) -}
+a3f8449745d13aeeee8b8862060cc957
+  reduceReferencedTest22 :: Types.IdNameChain
+  {- Unfolding: (NameIdChain.reduceReferenced
+                   NameIdChainTests.testIdNameChain
+                   NameIdChainTests.reduceReferencedTest7) -}
+87c42563780d556a5b110b6ab6056005
+  reduceReferencedTest23 ::
+    Data.Map.Base.Map
+      GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: (NameIdChain.$sfromList
+                   @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                   NameIdChainTests.reduceReferencedTest24) -}
+8e32579109790b477dd995d52d64d7b1
+  reduceReferencedTest24 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain29
+                   NameIdChainTests.reduceReferencedTest25) -}
+04e0e0658fc8c1e00b27d2ceefd17082
+  reduceReferencedTest25 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain26
+                   NameIdChainTests.reduceReferencedTest13) -}
+2c99b56a8c17ce7e274b9f0680d2d8b2
+  reduceReferencedTest26 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.reduceReferencedTest27) -}
+5bd719a3f59cbf461822591645a6e5d5
+  reduceReferencedTest27 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.reduceReferencedTest28
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+a04f48efcf5bf56922cd7d2ec6f12777
+  reduceReferencedTest28 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.reduceReferencedTest29)) -}
+0fdd2a547c78c64fa0db4e194d554488
+  reduceReferencedTest29 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.reduceReferencedTest30
+                   NameIdChainTests.idsWithNameTest11
+                   NameIdChainTests.reduceReferencedTest30
+                   NameIdChainTests.idsWithNameTest10) -}
+7294d8bd7e90aba42acc980b63056a8a
+  reduceReferencedTest30 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 145) -}
+3a818beb2b08501ff26043a73af8f217
+  reduceReferencedTest4 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ (Data.Map.Base.Map
+                        GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.reduceReferencedTest16
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   NameIdChainTests.$s$fEqMap
+                   NameIdChainTests.$s$fShowMap
+                   NameIdChainTests.reduceReferencedTest15
+                   NameIdChainTests.reduceReferencedTest8
+                   NameIdChainTests.reduceReferencedTest5) -}
+28538e478be0a2f7f298add678e76f1b
+  reduceReferencedTest5 :: Types.IdNameChain
+  {- Unfolding: (NameIdChain.reduceReferenced
+                   NameIdChainTests.testIdNameChain
+                   NameIdChainTests.reduceReferencedTest6) -}
+b9c899e230a0d46e8e3810e449f66a86
+  reduceReferencedTest6 :: [GHC.Types.Int]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain12
+                   NameIdChainTests.reduceReferencedTest7) -}
+fb73f0be1d05a0b5972eaddf773fbe7e
+  reduceReferencedTest7 :: [GHC.Types.Int]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain22
+                   (GHC.Types.[] @ GHC.Types.Int)) -}
+f995a71cbacb57fe8235857812508ca3
+  reduceReferencedTest8 ::
+    Data.Map.Base.Map
+      GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: (NameIdChain.$sfromList
+                   @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                   NameIdChainTests.reduceReferencedTest9) -}
+26a3f3cda8057ca5c333de06efef22b2
+  reduceReferencedTest9 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain32
+                   NameIdChainTests.reduceReferencedTest10) -}
+956298621f071bb0d680dc1b81f37c5a
+  testIdNameChain ::
+    Data.Map.Base.Map
+      GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: (NameIdChain.$sfromList
+                   @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                   NameIdChainTests.testIdNameChain1) -}
+e6e47db13ad1c9f0ffa7ee618038be4a
+  testIdNameChain1 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain32
+                   NameIdChainTests.testIdNameChain2) -}
+e08f9874a287281cc648514f1113595a
+  testIdNameChain10 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain72,
+                  NameIdChainTests.testIdNameChain11)) -}
+6f82cd877dc0f3dacdc5162d0d58f59e
+  testIdNameChain11 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain12,
+                  NameIdChainTests.chain17)) -}
+1db54ff2e1d1c9a9a93998bdffc3b454
+  testIdNameChain12 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain17"#) -}
+9d64035037356c348deaf9f2c800eb93
+  testIdNameChain13 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain68,
+                  NameIdChainTests.testIdNameChain14)) -}
+a00f5a014e71ba1c9940c0d0f15ca933
+  testIdNameChain14 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain15,
+                  NameIdChainTests.chain14)) -}
+46562ee17bacb6cbfdb5c155481b6867
+  testIdNameChain15 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain14"#) -}
+51f5d43839508bc071f1000b81119e47
+  testIdNameChain16 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain0Plus7,
+                  NameIdChainTests.testIdNameChain17)) -}
+f6bfc521ed9131b85a21a573a219d864
+  testIdNameChain17 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain18,
+                  NameIdChainTests.chain11)) -}
+080a179fc91fb191e38310b9c4b8ad06
+  testIdNameChain18 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain11"#) -}
+d97a3588b13b42d21cc03cc393d665b3
+  testIdNameChain19 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain84,
+                  NameIdChainTests.testIdNameChain20)) -}
+649877db0e200682af3d4ff14d10e98b
+  testIdNameChain2 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain29
+                   NameIdChainTests.testIdNameChain3) -}
+50ba0db264116441f5b7f9dced2fb6b9
+  testIdNameChain20 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain21,
+                  NameIdChainTests.chain8)) -}
+3871a79298000638e6654516e053324d
+  testIdNameChain21 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain8"#) -}
+929863ea4b8d2be1f6f32ae104624951
+  testIdNameChain22 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain0Plus11,
+                  NameIdChainTests.testIdNameChain23)) -}
+098a24185ace47e28618800e69e0fc69
+  testIdNameChain23 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain24,
+                  NameIdChainTests.chain5)) -}
+693d393df5121692ca63efa647f31d59
+  testIdNameChain24 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain5"#) -}
+8bc46b780d192696618a30d43ed9ba51
+  testIdNameChain25 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain13,
+                  NameIdChainTests.testIdNameChain23)) -}
+a990cda5090580a958619febd6ec027f
+  testIdNameChain26 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain51,
+                  NameIdChainTests.testIdNameChain27)) -}
+78a77fa343b4ec9c48826d6cb6128084
+  testIdNameChain27 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain28,
+                  NameIdChainTests.chain3)) -}
+27f982a63975b2e850e5a26835599aeb
+  testIdNameChain28 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain3"#) -}
+805c95db813c83370469325c486e5adc
+  testIdNameChain29 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain22,
+                  NameIdChainTests.testIdNameChain30)) -}
+88da6165c52cfa889a6d803829328916
+  testIdNameChain3 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain26
+                   NameIdChainTests.testIdNameChain4) -}
+d685befedb9c34a4a168eec943f0f4ff
+  testIdNameChain30 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain31,
+                  NameIdChainTests.chain1)) -}
+348773edcecea28233fce2c53ac872cc
+  testIdNameChain31 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain1"#) -}
+3b360a81795279bbdec2502c93c648aa
+  testIdNameChain32 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain12,
+                  NameIdChainTests.testIdNameChain33)) -}
+46ba4745bbb047bccffdbf727389120e
+  testIdNameChain33 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain34,
+                  NameIdChainTests.chain0)) -}
+f87f651732dcc907c7e9c0194f391d7c
+  testIdNameChain34 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "chain0"#) -}
+1fa472dfae2eacdebbef2db689c29cb5
+  testIdNameChain4 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain25
+                   NameIdChainTests.testIdNameChain5) -}
+e42925104ca44e75a06492cef2aa4df0
+  testIdNameChain5 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain22
+                   NameIdChainTests.testIdNameChain6) -}
+3027e489f6b55bce4a179772547d685e
+  testIdNameChain6 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain19
+                   NameIdChainTests.testIdNameChain7) -}
+583609dab182dbe21863b2687eff9fc9
+  testIdNameChain7 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain16
+                   NameIdChainTests.testIdNameChain8) -}
+5bdeea0bc81ed4da5f7df59cb254e590
+  testIdNameChain8 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain13
+                   NameIdChainTests.testIdNameChain9) -}
+942f6da4d2e0f46e448141d214a49be9
+  testIdNameChain9 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChain10
+                   (GHC.Types.[]
+                      @ (GHC.Types.Int,
+                         ([GHC.Types.Char], [Types.GenRule Types.Criteria])))) -}
+24368fcd8d5ba04fe571e604831bd40b
+  testIdNameChainPlus1 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus23
+                   NameIdChainTests.testIdNameChainPlus2) -}
+09454db9a6ce8d0494248c09bee5e46c
+  testIdNameChainPlus10 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus11
+                   (GHC.Types.[]
+                      @ (GHC.Types.Int,
+                         ([GHC.Types.Char], [Types.GenRule Types.Criteria])))) -}
+41826e494935b10293f2b3402c52c333
+  testIdNameChainPlus11 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain14Plus4,
+                  NameIdChainTests.testIdNameChain11)) -}
+9136141e0a342f557ba3cea608250d92
+  testIdNameChainPlus12 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.testIdNameChainPlus14,
+                  NameIdChainTests.testIdNameChainPlus13)) -}
+5f9c20f40eac8f56e4aa5b6f059bfd16
+  testIdNameChainPlus13 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain15,
+                  NameIdChainTests.chain14Plus6)) -}
+1440268efb39a830ea0b4de5e6f50923
+  testIdNameChainPlus14 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 20) -}
+bc84307b3ba363ac547ba9de5a321ff3
+  testIdNameChainPlus15 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain72,
+                  NameIdChainTests.testIdNameChain17)) -}
+be06086a404efda224d9a46d311be766
+  testIdNameChainPlus16 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain68,
+                  NameIdChainTests.testIdNameChain20)) -}
+9bc9ecfddb2f41631303a37dde82403d
+  testIdNameChainPlus17 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain1Plus8,
+                  NameIdChainTests.testIdNameChain23)) -}
+9282043be90e1b06ed41a79eaf16b8ab
+  testIdNameChainPlus18 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain0Plus7,
+                  NameIdChainTests.testIdNameChain23)) -}
+0ee83bd6da37f5f1925011b8ecce7005
+  testIdNameChainPlus19 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain1Plus12,
+                  NameIdChainTests.testIdNameChainPlus20)) -}
+e557e8a9ad7284d3943da632d10b32e2
+  testIdNameChainPlus2 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus21
+                   NameIdChainTests.testIdNameChainPlus3) -}
+898c3e4c95049b6dcecb9f48675e2315
+  testIdNameChainPlus20 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain28,
+                  NameIdChainTests.chain3Plus6)) -}
+2a01885fac5cda7987be59ebb876de15
+  testIdNameChainPlus21 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.chain0Plus11,
+                  NameIdChainTests.testIdNameChainPlus22)) -}
+5ad2a6e3ddcaf102218931d230a2c373
+  testIdNameChainPlus22 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain31,
+                  NameIdChainTests.chain1Plus6)) -}
+87073869e85e4ced6afbc6c89d614018
+  testIdNameChainPlus23 ::
+    (GHC.Types.Int, ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+  {- Unfolding: ((NameIdChainTests.increaseIndexesChainTest3,
+                  NameIdChainTests.testIdNameChainPlus24)) -}
+789e2b283bf29a8967bf8a68da1720f9
+  testIdNameChainPlus24 ::
+    ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: ((NameIdChainTests.testIdNameChain34,
+                  NameIdChainTests.chain0Plus6)) -}
+cf3e061b02f0fd534fa16318577d2e32
+  testIdNameChainPlus3 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus19
+                   NameIdChainTests.testIdNameChainPlus4) -}
+e9ad303e6f1797d88b12a32948240c2c
+  testIdNameChainPlus4 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus18
+                   NameIdChainTests.testIdNameChainPlus5) -}
+9916336a82854c9ef4dafb75c5748302
+  testIdNameChainPlus5 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus17
+                   NameIdChainTests.testIdNameChainPlus7) -}
+ddbeb31a1e6f708334d02604251b2865
+  testIdNameChainPlus6 ::
+    Data.Map.Base.Map
+      GHC.Types.Int ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+  {- Unfolding: (NameIdChain.$sfromList
+                   @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                   NameIdChainTests.testIdNameChainPlus1) -}
+afb3b995dd224e7cdaff67c5bd09fc5f
+  testIdNameChainPlus7 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus16
+                   NameIdChainTests.testIdNameChainPlus8) -}
+a0ef3f5a6e18f04240bbf37f241c620a
+  testIdNameChainPlus8 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus15
+                   NameIdChainTests.testIdNameChainPlus9) -}
+fbe68a42c4a1904a0a8630525ec2c63c
+  testIdNameChainPlus9 ::
+    [(GHC.Types.Int,
+      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))]
+  {- Unfolding: (GHC.Types.:
+                   @ (GHC.Types.Int,
+                      ([GHC.Types.Char], [Types.GenRule Types.Criteria]))
+                   NameIdChainTests.testIdNameChainPlus12
+                   NameIdChainTests.testIdNameChainPlus10) -}
+70a8026c6d42b80bd8647b0a59a7f7af
+  topLevelChainsTest :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.topLevelChainsTest1
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+6da0146f87418f6e37df292e82814189
+  topLevelChainsTest1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [GHC.Types.Int]
+                   NameIdChainTests.topLevelChainsTest6
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   GHC.Classes.$fEq[]_$s$fEq[]
+                   GHC.Show.$fShow[]_$s$fShow[]
+                   NameIdChainTests.topLevelChainsTest5
+                   NameIdChainTests.topLevelChainsTest3
+                   NameIdChainTests.topLevelChainsTest2) -}
+d328d18dcdf942bd6d5983f3453d53dc
+  topLevelChainsTest10 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 130) -}
+75a4c8ced1edc0875681a286a38dc1a9
+  topLevelChainsTest2 :: [GHC.Types.Int]
+  {- Unfolding: (NameIdChain.topLevelChains
+                   NameIdChainTests.testIdNameChain) -}
+f1066376bd872818cb8e89a8d34f7f08
+  topLevelChainsTest3 :: [GHC.Types.Int]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain12
+                   NameIdChainTests.topLevelChainsTest4) -}
+e3ce8502c3d8d2fb066913d0d42e5207
+  topLevelChainsTest4 :: [GHC.Types.Int]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain0Plus7
+                   NameIdChainTests.topLevelJumpingToTest9) -}
+06f83a211f4859785cf2e241e47c9e84
+  topLevelChainsTest5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "topLevelChains is not working correctly."#) -}
+d22b5a1e987c3b44d2304c83cd1192c2
+  topLevelChainsTest6 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.topLevelChainsTest7) -}
+a7a6efa7884e076eac5f8dc15bb18215
+  topLevelChainsTest7 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.topLevelChainsTest8
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+a9263ce143a730500e26b79413ef70f4
+  topLevelChainsTest8 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.topLevelChainsTest9)) -}
+46306a7379d08fc91f10f1fb946fe8c5
+  topLevelChainsTest9 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.topLevelChainsTest10
+                   NameIdChainTests.chain68
+                   NameIdChainTests.topLevelChainsTest10
+                   NameIdChainTests.topLevelJumpingToTest15) -}
+25be443356b67b950868ecc70b5a4c3a
+  topLevelJumpingToTest1 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.topLevelJumpingToTest17
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+7c62f7d9699c7a59493d3c8fe6f5743e
+  topLevelJumpingToTest10 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "topLevelJumpingTo is not working correctly."#) -}
+98a32ddd888785a1e82e93c456514eea
+  topLevelJumpingToTest11 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.topLevelJumpingToTest12) -}
+5ecec843eabfbf85813df95726ef90b3
+  topLevelJumpingToTest12 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.topLevelJumpingToTest13
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+190f1d2c7d2ae245cc3adde7519c5e2d
+  topLevelJumpingToTest13 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.topLevelJumpingToTest14)) -}
+4ce417e8b0e52b6f33824cf0a67370b9
+  topLevelJumpingToTest14 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.topLevelJumpingToTest16
+                   NameIdChainTests.chain68
+                   NameIdChainTests.topLevelJumpingToTest16
+                   NameIdChainTests.topLevelJumpingToTest15) -}
+01f58ea845db73d4364cf404c302acb5
+  topLevelJumpingToTest15 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 25) -}
+5812348f1a13595e2c61f7b807c45c78
+  topLevelJumpingToTest16 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 140) -}
+02baea0e8b35f504d4d7b813f63efe43
+  topLevelJumpingToTest17 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [GHC.Types.Int]
+                   NameIdChainTests.topLevelJumpingToTest22
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   GHC.Classes.$fEq[]_$s$fEq[]
+                   GHC.Show.$fShow[]_$s$fShow[]
+                   NameIdChainTests.topLevelJumpingToTest10
+                   NameIdChainTests.topLevelJumpingToTest21
+                   NameIdChainTests.topLevelJumpingToTest18) -}
+a2eb213f9c84df2adedaa6cab34b78c7
+  topLevelJumpingToTest18 :: [GHC.Types.Int]
+  {- Unfolding: (NameIdChain.topLevelJumpingTo
+                   NameIdChainTests.testIdNameChain
+                   NameIdChainTests.topLevelJumpingToTest19) -}
+f4b5d9e04ee54cd9c6906f27a475e3b4
+  topLevelJumpingToTest19 :: [GHC.Types.Int]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain0Plus11
+                   NameIdChainTests.topLevelJumpingToTest20) -}
+db8ea52ff125dba1f1cfa317fd3372d1
+  topLevelJumpingToTest2 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   NameIdChainTests.topLevelJumpingToTest4
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+dbfa167d750d946f446f820113f64bac
+  topLevelJumpingToTest20 :: [GHC.Types.Int]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain84
+                   (GHC.Types.[] @ GHC.Types.Int)) -}
+50b90105abec85fdb05c029309420a04
+  topLevelJumpingToTest21 :: [GHC.Types.Int]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain12
+                   (GHC.Types.[] @ GHC.Types.Int)) -}
+55064036d7d763aa5ea88631c22e2ee7
+  topLevelJumpingToTest22 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   NameIdChainTests.topLevelJumpingToTest23) -}
+3eb2340043bef0dc2fb9c3861b0f28d5
+  topLevelJumpingToTest23 :: [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   NameIdChainTests.topLevelJumpingToTest24
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+7c85faef6b34c23aaa0a71f58827c154
+  topLevelJumpingToTest24 :: ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((NameIdChainTests.idsWithNameTest16,
+                  NameIdChainTests.topLevelJumpingToTest25)) -}
+d738d52d6dbbf777149585e343a24535
+  topLevelJumpingToTest25 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   NameIdChainTests.idsWithNameTest15
+                   NameIdChainTests.idsWithNameTest14
+                   NameIdChainTests.idsWithNameTest13
+                   NameIdChainTests.topLevelJumpingToTest26
+                   NameIdChainTests.chain68
+                   NameIdChainTests.topLevelJumpingToTest26
+                   NameIdChainTests.topLevelJumpingToTest15) -}
+817b73e2eecf6ca9ad3745bebfce48f7
+  topLevelJumpingToTest26 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 135) -}
+950bf1f833e84858c98516c4c2f3774a
+  topLevelJumpingToTest4 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [GHC.Types.Int]
+                   NameIdChainTests.topLevelJumpingToTest11
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   GHC.Classes.$fEq[]_$s$fEq[]
+                   GHC.Show.$fShow[]_$s$fShow[]
+                   NameIdChainTests.topLevelJumpingToTest10
+                   NameIdChainTests.topLevelJumpingToTest8
+                   NameIdChainTests.topLevelJumpingToTest5) -}
+3617d60164a0b7932a6e9d68ceb5cace
+  topLevelJumpingToTest5 :: [GHC.Types.Int]
+  {- Unfolding: (NameIdChain.topLevelJumpingTo
+                   NameIdChainTests.testIdNameChain
+                   NameIdChainTests.topLevelJumpingToTest6) -}
+d10a9ceb2ab0a5d26e1dacbab67ccbd7
+  topLevelJumpingToTest6 :: [GHC.Types.Int]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain13
+                   NameIdChainTests.topLevelJumpingToTest7) -}
+c1c66498b1dfe0c84cf8d206be0b8c3e
+  topLevelJumpingToTest7 :: [GHC.Types.Int]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain72
+                   (GHC.Types.[] @ GHC.Types.Int)) -}
+1259e1608dc5501747d74855e8243028
+  topLevelJumpingToTest8 :: [GHC.Types.Int]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain12
+                   NameIdChainTests.topLevelJumpingToTest9) -}
+5c1d71926221a010db6429f77a2dfb37
+  topLevelJumpingToTest9 :: [GHC.Types.Int]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Int
+                   NameIdChainTests.chain68
+                   (GHC.Types.[] @ GHC.Types.Int)) -}
+"SPEC/NameIdChainTests $fEq(,) @ [Char] @ [GenRule Criteria]" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                        [GHC.Types.Char]
+                                                                              $dEq1 :: GHC.Classes.Eq
+                                                                                         [Types.GenRule
+                                                                                            Types.Criteria]
+  GHC.Classes.$fEq(,) @ [GHC.Types.Char]
+                      @ [Types.GenRule Types.Criteria]
+                      $dEq
+                      $dEq1
+  = NameIdChainTests.$s$fEq(,)
+"SPEC/NameIdChainTests $fEqGenRule @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                         Types.Criteria
+  Types.$fEqGenRule @ Types.Criteria $dEq
+  = NameIdChainTests.$s$fEq(,)_$s$fEqGenRule
+"SPEC/NameIdChainTests $fEqGenRule_$c/= @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                              Types.Criteria
+  Types.$fEqGenRule_$c/= @ Types.Criteria $dEq
+  = NameIdChainTests.$s$fEq(,)_$s$fEqGenRule_$c/=
+"SPEC/NameIdChainTests $fEqMap @ Int @ ([Char], [GenRule Criteria])" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                               GHC.Types.Int
+                                                                                     $dEq1 :: GHC.Classes.Eq
+                                                                                                ([GHC.Types.Char],
+                                                                                                 [Types.GenRule
+                                                                                                    Types.Criteria])
+  Data.Map.Base.$fEqMap @ GHC.Types.Int
+                        @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                        $dEq
+                        $dEq1
+  = NameIdChainTests.$s$fEqMap
+"SPEC/NameIdChainTests $fEqMap_$c/= @ Int @ ([Char],
+                                            [GenRule Criteria])" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                                                                                GHC.Types.Int
+                                                                                                                                      $dEq1 :: GHC.Classes.Eq
+                                                                                                                                                 ([GHC.Types.Char],
+                                                                                                                                                  [Types.GenRule
+                                                                                                                                                     Types.Criteria])
+  Data.Map.Base.$fEqMap_$c/= @ GHC.Types.Int
+                             @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                             $dEq
+                             $dEq1
+  = NameIdChainTests.$s$fEqMap_$s$fEqMap_$c/=
+"SPEC/NameIdChainTests $fEq[] @ (GenRule Criteria)" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                              (Types.GenRule
+                                                                                 Types.Criteria)
+  GHC.Classes.$fEq[] @ (Types.GenRule Types.Criteria) $dEq
+  = NameIdChainTests.$s$fEq(,)_$s$fEq[]
+"SPEC/NameIdChainTests $fEq[]_$c/= @ (GenRule Criteria)" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                   (Types.GenRule
+                                                                                      Types.Criteria)
+  GHC.Classes.$fEq[]_$c/= @ (Types.GenRule Types.Criteria) $dEq
+  = NameIdChainTests.$s$fEq(,)_$s$fEq[]_$c/=
+"SPEC/NameIdChainTests $fShow(,) @ [Char] @ [GenRule Criteria]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                            [GHC.Types.Char]
+                                                                                $dShow1 :: GHC.Show.Show
+                                                                                             [Types.GenRule
+                                                                                                Types.Criteria]
+  GHC.Show.$fShow(,) @ [GHC.Types.Char]
+                     @ [Types.GenRule Types.Criteria]
+                     $dShow
+                     $dShow1
+  = NameIdChainTests.$s$fShow(,)
+"SPEC/NameIdChainTests $fShow(,)_$cshow @ [Char] @ [GenRule
+                                                     Criteria]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                        [GHC.Types.Char]
+                                                                                                                                            $dShow1 :: GHC.Show.Show
+                                                                                                                                                         [Types.GenRule
+                                                                                                                                                            Types.Criteria]
+  GHC.Show.$fShow(,)_$cshow @ [GHC.Types.Char]
+                            @ [Types.GenRule Types.Criteria]
+                            $dShow
+                            $dShow1
+  = NameIdChainTests.$s$fShow(,)_$s$fShow(,)_$cshow
+"SPEC/NameIdChainTests $fShow(,)_$cshowList @ [Char] @ [GenRule
+                                                         Criteria]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                                [GHC.Types.Char]
+                                                                                                                                                    $dShow1 :: GHC.Show.Show
+                                                                                                                                                                 [Types.GenRule
+                                                                                                                                                                    Types.Criteria]
+  GHC.Show.$fShow(,)_$cshowList @ [GHC.Types.Char]
+                                @ [Types.GenRule Types.Criteria]
+                                $dShow
+                                $dShow1
+  = NameIdChainTests.$s$fShow(,)_$s$fShow(,)_$cshowList
+"SPEC/NameIdChainTests $fShowMap @ Int @ ([Char],
+                                         [GenRule Criteria])" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                            GHC.Types.Int
+                                                                                                                                $dShow1 :: GHC.Show.Show
+                                                                                                                                             ([GHC.Types.Char],
+                                                                                                                                              [Types.GenRule
+                                                                                                                                                 Types.Criteria])
+  Data.Map.Base.$fShowMap @ GHC.Types.Int
+                          @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                          $dShow
+                          $dShow1
+  = NameIdChainTests.$s$fShowMap
+"SPEC/NameIdChainTests $fShowMap_$cshowList @ Int @ ([Char],
+                                                    [GenRule Criteria])" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                                  GHC.Types.Int
+                                                                                                                                                      $dShow1 :: GHC.Show.Show
+                                                                                                                                                                   ([GHC.Types.Char],
+                                                                                                                                                                    [Types.GenRule
+                                                                                                                                                                       Types.Criteria])
+  Data.Map.Base.$fShowMap_$cshowList @ GHC.Types.Int
+                                     @ ([GHC.Types.Char], [Types.GenRule Types.Criteria])
+                                     $dShow
+                                     $dShow1
+  = NameIdChainTests.$s$fShowMap_$s$fShowMap_$cshowList
+"SPEC/NameIdChainTests $fShow[] @ (GenRule Criteria)" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                  (Types.GenRule
+                                                                                     Types.Criteria)
+  GHC.Show.$fShow[] @ (Types.GenRule Types.Criteria) $dShow
+  = NameIdChainTests.$s$fShow(,)_$s$fShow[]
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

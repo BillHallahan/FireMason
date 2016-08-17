@@ -16,8 +16,8 @@ import Types
 import SMT
 
 
-convertChainsCheckSMT :: IdNameChain -> String -> String -> String -> Int -> String -> String
-convertChainsCheckSMT n header replacePCR replacePC packetNum check = 
+convertChainsCheckSMT :: IdNameChain -> String -> String -> Int -> String -> String
+convertChainsCheckSMT n header replacePCR packetNum check = 
     let
         chainlen = foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList n)
 
