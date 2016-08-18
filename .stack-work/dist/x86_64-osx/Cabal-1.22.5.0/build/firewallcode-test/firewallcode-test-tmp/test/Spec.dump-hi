@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-16 23:10:42.010959 UTC
+2016-08-18 01:05:56.950492 UTC
 
 interface main@main:Main 7103
-  interface hash: 5646bb9e52856e865e615ce6f1c711fa
-  ABI hash: bce72562fa8aea27cda1d404415a3e91
+  interface hash: a0679f5e5ab0932c8377e7905ee5b74d
+  ABI hash: 9dda4925cba2f28ca87efa957d07d3bf
   export-list hash: 0958d9622d37ceddab5bf89f9c78ebbe
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 255ca1b8b00407bf6d6f3ea029caf2a9
@@ -14,8 +14,8 @@ interface main@main:Main 7103
 exports:
   Main.main
 module dependencies: ChainsToSMT2 ConvertToHorn ConvertToHornTests
-                     NameIdChain NameIdChainTests ParserHelp RuleAdding RuleAddingTests
-                     SMT Types
+                     CriteriaPrereqAddition CriteriaPrereqAdditionTests NameIdChain
+                     NameIdChainTests ParserHelp RuleAdding RuleAddingTests SMT Types
 package dependencies: HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm
                       MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
@@ -74,23 +74,26 @@ import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit d58e5f70f93d15
 import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Base 3fa8f8d2179caf234ea001207f41fb0c
 import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Text b3d7abd36319eebe52970172b76af5d2
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  ConvertToHornTests ba449ea7ac0707b49f7064a0042733eb
-  exports: 188ef51b2650475f66c4b94ccedc41e1
-  convertToHornTests c68193c405f5f7b11c978be3ef251484
-import  -/  NameIdChainTests ea5558b0c16675d492567a3720988838
-  exports: 9e5ffaee17247e2503231698ba04d920
-  nameIdChainTests 3f8aae15e3abbfbdf7d6034d7371b0b3
-import  -/  RuleAddingTests de86970a051503fce2b8b2d01a5f8d8f
-  exports: 1b0274ab3e6b60459afb88188e82efda
-  ruleAddingTests e490bc1a91342fbff9517365a24246eb
-bd1b9e971736ced308770ccee293ddd6
+import  -/  ConvertToHornTests ef85be282de59ca691c10f46bb4c6db1
+  exports: d823ed33c8aa0936561f339dddb79739
+  convertToHornTests ac567cecbc23c3b952ae90d0880e77ca
+import  -/  CriteriaPrereqAdditionTests 540148748ed9c8c16d69d15a57aef9a7
+  exports: 6a39dba95c7bb5c3ad9e38812ff41a4c
+  criteriaPrereqAdditionTests 76310fc434644b2e439020c0105234fe
+import  -/  NameIdChainTests 3b3d094c751ddf0a408ceac02236b6e8
+  exports: c9dabd2b871f236bbd1821720803eb5e
+  nameIdChainTests 6c37a09e32dc656102052b07bfe9d232
+import  -/  RuleAddingTests 824b0b70511ad7a9fa3b18f77cd045e8
+  exports: 365a3e5221504529a58cd75cb9fd9f18
+  ruleAddingTests 7a6a82e73b5f9a53ca7953e1185f38a4
+8361d24fc126e36fb2c7979ddf38535d
   main :: GHC.Types.IO Test.HUnit.Base.Counts
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: InlineRule (0, True, True)
                 Main.main1
                   `cast`
                 (Sym (GHC.Types.NTCo:IO[0] <Test.HUnit.Base.Counts>_R)) -}
-5e6da6f2c0e170ef16543e1b4728036f
+1682152b72c2cca36ae9c07dc20a6c09
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, Test.HUnit.Base.Counts #)
@@ -112,29 +115,35 @@ bd1b9e971736ced308770ccee293ddd6
                         Test.HUnit.Text.runTestTT2
                         ipv
                    0 -> (# ipv, counts' #) } } } } }) -}
-b790726bbe26b49608e52d264b4f9087
+b1de1c8a4b53091b0e68ebbd992ffa49
   main2 :: Test.HUnit.Base.Test
   {- Unfolding: (Test.HUnit.Base.TestList Main.main3) -}
-e1f8168b614a6a5a75ec6e4528c0df9d
+372159a96e762a3479cd02bfe0aabf2d
   main3 :: [Test.HUnit.Base.Test]
   {- Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   ConvertToHornTests.convertToHornTests
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests
                    Main.main4) -}
-dff8b13286d0975bc0ec8e754fd8cc99
+24d8c8c2c5fbf38843b06d492a2533e4
   main4 :: [Test.HUnit.Base.Test]
   {- Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
-                   NameIdChainTests.nameIdChainTests
+                   ConvertToHornTests.convertToHornTests
                    Main.main5) -}
-9eb6f4a4be10e56d84f2be45f985c709
+b80d1ad615ec17c68c0536591ebfbbe5
   main5 :: [Test.HUnit.Base.Test]
+  {- Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   NameIdChainTests.nameIdChainTests
+                   Main.main6) -}
+0c237dc1e6b60905a2fff0206176146b
+  main6 :: [Test.HUnit.Base.Test]
   {- Unfolding: (GHC.Types.:
                    @ Test.HUnit.Base.Test
                    RuleAddingTests.ruleAddingTests
                    (GHC.Types.[] @ Test.HUnit.Base.Test)) -}
-67771c671fabe2c82143564b878d02f8
-  main6 ::
+859a5c7a9ceb7de41c16c6e6d5aa1e3b
+  main7 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, Test.HUnit.Base.Counts #)
   {- Arity: 1,

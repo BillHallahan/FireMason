@@ -13,7 +13,7 @@ import Types
 lexer :: String -> [String]
 lexer s
     | s == "" = []  
-    | 'n':'o':'t':xs <- afterSpaces = "not":lexer xs
+    | 'N':'O':'T':xs <- afterSpaces = "NOT":lexer xs
     | '=':'>':xs <- afterSpaces = "=>":lexer xs
     | '=':xs <- afterSpaces = "=":lexer xs
     | '(':xs <- afterSpaces = "(":lexer xs
@@ -81,7 +81,7 @@ parseSpecificationCriteria s
 
 parseSpecificationCriteria' :: [String] -> (InputCriteria, [String])
 parseSpecificationCriteria' s
-    | ("not":xs) <- s =
+    | ("NOT":xs) <- s =
         let
             (next, xs') = parseSpecificationCriteria' xs
         in

@@ -17382,5 +17382,5 @@
 (assert (= (and (= protocol 6) (and (= source_port 18) (= destination_port 21))) (matches-criteria 0 39 62)))(assert (= (and (= protocol 6) (and (= source_port 18) (= destination_port 21))) (matches-criteria 1 39 62)))
 (assert (= (and (= protocol 6) (and (= source_port 18) (= destination_port 25))) (matches-criteria 0 39 63)))(assert (= (and (= protocol 6) (and (= source_port 18) (= destination_port 25))) (matches-criteria 1 39 63)))
 (assert (= (= protocol 6) (matches-criteria 0 39 64)))(assert (= (= protocol 6) (matches-criteria 1 39 64)))
-(assert (or (= chain0 16)))(assert (or (= chain1 36)))(assert (reaches 0 chain0 0))(assert (reaches 1 chain1 0))(assert (not (and (or (= (terminates-with 0) (terminates-with 1)) (and (reaches-end 0 chain0) (reaches-end 1 chain1)) (= protocol 22)) (=> (= protocol 22) (= (terminates-with 1) ACCEPT)))))(check-sat)
+(assert (or (and (= chain0 16) (= chain1 36))))(assert (reaches 0 chain0 0))(assert (reaches 1 chain1 0))(assert (not (and (or (= (terminates-with 0) (terminates-with 1)) (and (reaches-end 0 chain0) (reaches-end 1 chain1)) (= protocol 22)) (=> (= protocol 22) (= (terminates-with 1) ACCEPT)))))(check-sat)
 (get-model)

@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-16 23:02:41.808856 UTC
+2016-08-17 19:02:11.336605 UTC
 
 interface main@main:ChainsToSMT2 7103
-  interface hash: e2c664d44d0a90b064ac397aa48b91fd
-  ABI hash: dafe2399c879fd3ff92888075beeb4a1
+  interface hash: fb0203820d73923e0d80192475114364
+  ABI hash: c03da097e32e58a911ae81c2a37d2f30
   export-list hash: b7cf436bf12eb9dc349e33b8eb5a94ea
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e468f87777beb3fe7114763efe9ccb2f
@@ -102,10 +102,10 @@ import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  NameIdChain bf376fc3ba5ce8835f08612a5b3090c4
-  exports: 501fc26117e8102ce23278c3667e849a
-  notTopLevelChains e6f21cc994047da0d5b6917b13a01250
-  topLevelChains 1d5ba01408ea3cca7fb2ad7fe9f73400
+import  -/  NameIdChain 7a2f6538c9eb8e043e9d6954cf49e168
+  exports: fc33992b6e6dd5da0a072bbc471e7160
+  notTopLevelChains 1ea0882497595b9f97b5083f99ba4e09
+  topLevelChains 50d9b6f315d66a0b1c28c951fb2c36f3
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
 import  -/  SMT 09fb9034e5f4751795a0207185bf1956
@@ -131,35 +131,35 @@ import  -/  SMT 09fb9034e5f4751795a0207185bf1956
   printSMTFunc1 0b95f0a308bdcb4450bc507db67696d3
   printSMTFunc2 f7e5b78c80d51a7155160c69c65f8fb5
   printSMTFunc3 8eb246434ddf33a48f3f2f136b198c05
-import  -/  Types 88dc6cad42203d5d5235dd279b1673d5
-  exports: e957a36a1c080f189ed58496f7a5508a
-  ACCEPT c23d19f74cbf169e0c66b1631b7e64e6
+import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
+  exports: 313502530516a346768ec1c819f1e9aa
+  ACCEPT 08ea8d5ba9c8e5ae84bd818c2cc3ee1f
   ACK 69c02da22bdd3d2b93a2ecc7619dcfe7
   BoolFlag a5bd0669b32ca5a1de6cf10948a3bcbc
-  Chain 0e120b9c2c102af49c408de3f34c7e02
+  Chain e29fec291a6abd0b92f253c858f5c2c2
   Criteria 605b90b34d99bcf3227a69e454b38e17
-  DROP 2f565e2efac36fb08e1788b7db8447c6
+  DROP e0e88d7e035c9851606c6a03aeae2391
   FIN acd0c3060669504ee79bdaf73850ca14
   Flag 8e33f4fd031cf75e26ef6380dedbc5c6
-  Go d6d579ab43aa627e1f96ac0b7fd9529f
-  GoReturn 7cbc1fbb1e70a0383ead46b8fb949160
-  IdNameChain 5f29f0d0ad9ae74c7c9617cc79c8be1c
+  Go 4c5408c41de596e0dc952fb3fcb57393
+  GoReturn 108205ab09197687b0a03c823482edba
+  IdNameChain 3156e4a843532a1dd4e07bdcb5955581
   Not b8339c1be2f1b9a12b2b3eb568593726
   Port 0cdcd795ebd2c331c1401f6cf3404c99
   PropVariableCriteria f5e41dea7d9b99ccb199bef4abec2178
-  PropVariableTarget 6ba064c034dcec2f01702f62123a9e00
+  PropVariableTarget e516f11b198d68f0c48067d67afcef52
   Protocol d38fdc887d9a0e7c53d19d8b463500f3
-  RETURN f19eb5346f04b541936c2e6c7023941b
+  RETURN 3f2ed69b4fdf43af50b4a72bb41f96de
   RST 0a1b39e3163ab3ce4a061f2482b7a7bf
-  Rule 95058641645bebda06940fa02ddae755
-  Rule 1aebbd36180eb17bdf58771ca1b3fa66
-  ST 86540ba175dcceb5a5b2e08b549f95fc
+  Rule 463e6937e80c1b2712030bd2add91a30
+  Rule 615e2b227b416b65d444dac1afb7a202
+  ST 36c8ca126b5a21d28e5e60d278f46a6b
   SYN 0cbc6e0a2ddace940e82bf819da11d6b
   Source b53eb4518fedc84d30c0b4327bd32c7d
-  Target 61de3bbba3a194a49975a6981f1b932f
+  Target 97fc31d3ca68602965fcc27b6e7cac76
   URG bf7cb5a70aec1989d3e04436be444b11
 import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f26ed1712f18acd23f20c0cf04363f67
-a70f29b00507644b120444467c9e3471
+268a9f5f9aa1d18e780d2b6dac2860e5
   $dmtoSMTNotPath ::
     ChainsToSMT2.ToSMT a =>
     a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -171,7 +171,7 @@ a70f29b00507644b120444467c9e3471
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-af70fadce2d1449624804786e73a6eb7
+3554552262d658232753c66571006372
   $dmtoSMTPath ::
     ChainsToSMT2.ToSMT a =>
     a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -183,13 +183,13 @@ af70fadce2d1449624804786e73a6eb7
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-0c9c8ea6f25ae027cddb43c841e2e788
+b1fca4ef05bf325c7889500e8390cd03
   $dmtoSMTPrereq :: ChainsToSMT2.ToSMT a => a -> [GHC.Base.String]
   {- Arity: 2, HasNoCafRefs, Strictness: <L,A><L,A>,
      Unfolding: InlineRule (0, True, True)
                 (\ @ a $dToSMT :: ChainsToSMT2.ToSMT a ds :: a ->
                  GHC.Types.[] @ GHC.Base.String) -}
-199c784e1df372db6364172481aa90ed
+a2be6eb6f4c4d92ffb6a6768176a43f4
   $fToSMTCriteria :: ChainsToSMT2.ToSMT Types.Criteria
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -219,7 +219,7 @@ eff2e29c8b035816e146840b13dfdc6b
   $fToSMTCriteria_$ctoSMTPrereq ::
     Types.Criteria -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U> -}
-199c784e1df372db6364172481aa90ed
+a2be6eb6f4c4d92ffb6a6768176a43f4
   $fToSMTGenRule :: ChainsToSMT2.ToSMT Types.Rule
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -249,7 +249,7 @@ d25933cd537498350f4899f192888c88
 28c5401928e5c929060f3307dc47f9b0
   $fToSMTGenRule4 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0) -}
-3f35267d5386736d8109cbb6e4395263
+635f350e3370151a6fa8e644edb175e8
   $fToSMTGenRule_$ctoSMT ::
     Types.Rule -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S(SLL),1*U(1*U,A,A)><L,U><L,U>,
@@ -258,14 +258,14 @@ d25933cd537498350f4899f192888c88
                 (\ w :: Types.Rule w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  case w of ww { Types.Rule ww1 ww2 ww3 ->
                  ChainsToSMT2.$w$ctoSMT1 ww1 w1 w2 }) -}
-bc0e759ff714fa2ec91f408815c1d331
+9af45419de161c191564d3d4c79a1a22
   $fToSMTGenRule_$ctoSMTNotPath ::
     Types.Rule -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>,
      Unfolding: InlineRule (3, True, True)
                 (\ ds :: Types.Rule ds1 :: GHC.Types.Int ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-da2102f12d7ac39174155b52ba67f060
+d733d20b1a6fc6c8dcd5bdf3ca2cdbe9
   $fToSMTGenRule_$ctoSMTPath ::
     Types.Rule -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S(SSL),1*U(1*U,1*U,A)><L,U(U)><L,U(U)>,
@@ -274,7 +274,7 @@ da2102f12d7ac39174155b52ba67f060
                 (\ w :: Types.Rule w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  case w of ww { Types.Rule ww1 ww2 ww3 ->
                  ChainsToSMT2.$w$ctoSMTPath ww1 ww2 w1 w2 }) -}
-f92a3cbb4f19d37f10ae8ae3f435de22
+d665d6e82353b88953118d922be451d2
   $fToSMTGenRule_$ctoSMTPrereq :: Types.Rule -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S(SLL),1*U(1*U,A,A)>,
      Unfolding: InlineRule (1, True, False)
@@ -285,7 +285,7 @@ f92a3cbb4f19d37f10ae8ae3f435de22
   $fToSMTGenRule_$ctoSMTPrereq1 ::
     [Types.Criteria] -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U> -}
-199c784e1df372db6364172481aa90ed
+a2be6eb6f4c4d92ffb6a6768176a43f4
   $fToSMTTarget :: ChainsToSMT2.ToSMT Types.Target
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -304,7 +304,7 @@ fd9f1d94db2f5829ccc1748a08c22903
 a5c7cdd24f536ba4f42457a672da9782
   $fToSMTTarget3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# " (Int) Bool)"#) -}
-26c52c91b912cb2d8357aad834b602b0
+72a4cda7c48b45acab17bcdada554572
   $fToSMTTarget_$ctoSMT ::
     Types.Target -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,A><L,A>,
@@ -314,18 +314,18 @@ a5c7cdd24f536ba4f42457a672da9782
                    DEFAULT -> GHC.Types.[] @ GHC.Types.Char
                    Types.ACCEPT -> ChainsToSMT2.$fToSMTTarget2
                    Types.DROP -> ChainsToSMT2.$fToSMTTarget1 }) -}
-f4ca593ea2052cdb665b2032ebe87ee8
+b39d8255d6041ccae64f310e066c7236
   $fToSMTTarget_$ctoSMTNotPath ::
     Types.Target -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <S,1*U><L,A><L,A>,
      Unfolding: InlineRule (3, True, False)
                 (\ ds :: Types.Target ch :: GHC.Types.Int r :: GHC.Types.Int ->
                  case ds of wild { DEFAULT -> GHC.Types.[] @ GHC.Types.Char }) -}
-b6406a623ecb0e310f7cb4e8d1ee886b
+e58f1fd52ab2d756cd081070cd8ea782
   $fToSMTTarget_$ctoSMTPath ::
     Types.Target -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)> -}
-ded9da202a35ca77948e85254d5cf4ba
+4ffc3dd43b6d8f49223ef22dae583ae1
   $fToSMTTarget_$ctoSMTPrereq :: Types.Target -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ ds :: Types.Target ->
@@ -346,7 +346,7 @@ ded9da202a35ca77948e85254d5cf4ba
                               (GHC.Types.: @ GHC.Types.Char ww5 ww6)
                               ChainsToSMT2.$fToSMTTarget3 } }))
                         (GHC.Types.[] @ GHC.Base.String) }) -}
-199c784e1df372db6364172481aa90ed
+a2be6eb6f4c4d92ffb6a6768176a43f4
   $fToSMT[] :: ChainsToSMT2.ToSMT [Types.Target]
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -356,7 +356,7 @@ ded9da202a35ca77948e85254d5cf4ba
                   ChainsToSMT2.$fToSMT[]_$ctoSMT
                   ChainsToSMT2.$fToSMT[]_$ctoSMTPath
                   ChainsToSMT2.$fToSMT[]_$ctoSMTNotPath -}
-199c784e1df372db6364172481aa90ed
+a2be6eb6f4c4d92ffb6a6768176a43f4
   $fToSMT[]0 :: ChainsToSMT2.ToSMT [Types.Criteria]
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -384,7 +384,7 @@ cf55b393f511862b806f53fafb082d80
                    ds1 :: GHC.Types.Int
                    ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-199c784e1df372db6364172481aa90ed
+a2be6eb6f4c4d92ffb6a6768176a43f4
   $fToSMT[]1 :: ChainsToSMT2.ToSMT Types.Chain
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -394,7 +394,7 @@ cf55b393f511862b806f53fafb082d80
                   ChainsToSMT2.$fToSMT[]1_$ctoSMT
                   ChainsToSMT2.$fToSMT[]1_$ctoSMTPath
                   ChainsToSMT2.$fToSMT[]1_$ctoSMTNotPath -}
-9376d8926473ef20a2296cacbeebed5f
+e14e3fd45f15bb07fc84a7e22f1b3004
   $fToSMT[]1_$ctoSMT ::
     Types.Chain -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>,
@@ -405,14 +405,14 @@ cf55b393f511862b806f53fafb082d80
                    ChainsToSMT2.$fToSMTGenRule_$ctoSMT
                    ch
                    ru) -}
-8207c82043b07e7e94d6fc711fc0427a
+9a88a240797b87496619928810a86e26
   $fToSMT[]1_$ctoSMTNotPath ::
     Types.Chain -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, HasNoCafRefs, Strictness: <L,A><L,A><L,A>,
      Unfolding: InlineRule (3, True, True)
                 (\ ds :: Types.Chain ds1 :: GHC.Types.Int ds2 :: GHC.Types.Int ->
                  GHC.Types.[] @ GHC.Types.Char) -}
-3ea46b880014e55ff2a353019cfb1718
+6ecbc47db71ec6e78e9be1424bacd477
   $fToSMT[]1_$ctoSMTPath ::
     Types.Chain -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)>,
@@ -423,28 +423,28 @@ cf55b393f511862b806f53fafb082d80
                    ChainsToSMT2.$fToSMTGenRule_$ctoSMTPath
                    ch
                    ru) -}
-5779d5ce55985d3292b922a68ac3ccfe
+40375344d0325ab4b98b2f58eb074d7c
   $fToSMT[]1_$ctoSMTPrereq :: Types.Chain -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,1*U> -}
-679ca7e02797f6c6455080c15bf8cd80
+f3b45560df11b2689b2bbccab22eca1d
   $fToSMT[]_$ctoSMT ::
     [Types.Target] -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,A><L,A>, Inline: INLINE[0],
      Unfolding: InlineRule (3, True, True)
                 (\ w :: [Types.Target] w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  ChainsToSMT2.$w$ctoSMT3 w) -}
-10e11f386eaf6c74c43afde8e6d29b5c
+15dd13a0686201e13b8a539f5d81fc14
   $fToSMT[]_$ctoSMTNotPath ::
     [Types.Target] -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,A><L,A>, Inline: INLINE[0],
      Unfolding: InlineRule (3, True, True)
                 (\ w :: [Types.Target] w1 :: GHC.Types.Int w2 :: GHC.Types.Int ->
                  ChainsToSMT2.$w$ctoSMTNotPath w) -}
-fd28d20898c648104b54151753f51997
+c9b0cff01cf965c64a3c541ff09ea6ca
   $fToSMT[]_$ctoSMTPath ::
     [Types.Target] -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)> -}
-30a62fdf3d6f7fb877cc2409ccd79513
+536f2ad61c9beb4b78f9ab1ae6926a6a
   $fToSMT[]_$ctoSMTPrereq :: [Types.Target] -> [GHC.Base.String]
   {- Arity: 1, HasNoCafRefs, Strictness: <L,A>,
      Unfolding: InlineRule (1, True, True)
@@ -500,13 +500,13 @@ fd28d20898c648104b54151753f51997
 d919b9c344f5e647daea973e9dba2436
   $w$ctoSMT2 :: [Types.Criteria] -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-643b1118a95d5cd7491082270f4acf25
+0fea2497bc03f109d9c5c1cdaeeb06a4
   $w$ctoSMT3 :: [Types.Target] -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-c6a80c664bc7456e7e648d3c8e461018
+60fa217c82ec542b967d3593dcceae57
   $w$ctoSMTNotPath :: [Types.Target] -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-0c57b0116e07c8652661b8f24f0d540f
+c3b31783d491bc50daae1f2cbdf621f7
   $w$ctoSMTPath ::
     [Types.Criteria]
     -> [Types.Target]
@@ -582,7 +582,7 @@ d0338f225e137edb27a0f4cb625346b4
                       } in
                       go11 ww
                    GHC.Types.True -> GHC.Types.[] @ [GHC.Types.Char] }) -}
-199c784e1df372db6364172481aa90ed
+a2be6eb6f4c4d92ffb6a6768176a43f4
   class ToSMT a where
     toSMTPrereq {- Has default method -} :: a -> [GHC.Base.String]
     toSMT :: a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
@@ -590,7 +590,7 @@ d0338f225e137edb27a0f4cb625346b4
       a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
     toSMTNotPath {- Has default method -} ::
       a -> GHC.Types.Int -> GHC.Types.Int -> GHC.Base.String
-71a215eb97ec5ab8e3421a7c65530849
+df697edbd6a15babe0e06d45531e6933
   chainToSMT ::
     [Types.Rule]
     -> (Types.Rule
@@ -600,7 +600,7 @@ d0338f225e137edb27a0f4cb625346b4
     -> GHC.Base.String
   {- Arity: 4, HasNoCafRefs,
      Strictness: <S,1*U><L,C(C1(C1(U)))><L,U><L,U(U)> -}
-4fa099702d7ec1187d8fdaec3db7be3d
+47def2195f3768d8d5b5343e89716939
   convertChainsCheckSMT ::
     Types.IdNameChain
     -> GHC.Base.String

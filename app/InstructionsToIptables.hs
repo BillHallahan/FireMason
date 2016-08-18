@@ -13,12 +13,16 @@ import NameIdChain
 import IptablesTypes
 import Types
 
---adds the rules to the iptables specification in the string, based on names from IdNameChain
+import Debug.Trace
+
+
+--adds the rules to the iptables specification in the string, based on information from IdNameChain
 addToIptables :: [(Rule, String, Int)] -> IdNameChain -> String -> String
 addToIptables [] _ s = s
 addToIptables ((r, c, i):xs) n s = 
     let
-        com = command . fromJust $ find (\l -> fileline l == i) (convertScript' s)
+        above = command . fromJust $ find (\l -> fileline l == i) (convertScript' s)
+        com = if (fromJust . comChainName $ above) == c then above else Append c
         xs' = increaseLabelsAbove i xs
     in
     addToIptables xs' n (addToStringAtLine ("iptables " ++ convert com n ++ " " ++ convert r n) i s)
@@ -85,4 +89,8 @@ instance ToIptables [Target] where
 instance ToIptables Target where
     convert (ACCEPT) n = "-j ACCEPT"
     convert (DROP) n = "-j DROP"
-    convert (Go i 0) n = "-j " ++ (fst (fromJust (Map.lookup i n)))
+    convert (Go i 0) n = 
+        let
+            goTo = Map.lookup i n
+        in
+        if isJust goTo then "-j " ++ (fst (fromJust (goTo))) else error "Unrecognized chain when converting to iptables."

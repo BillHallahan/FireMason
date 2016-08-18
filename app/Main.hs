@@ -14,6 +14,7 @@ import Types
 import ConvertIptables
 import ChainsToSMT2
 import ConvertToHorn
+import CriteriaPrereqAddition
 import InstructionsToIptables
 import ParseSpecificationLanguage
 import RuleAdding
@@ -44,11 +45,12 @@ main = do
 
     let rulesToAdd = (flip inputInstructionsToInstructions 0) . parse . lexer $ changes
 
-    addedPos <- instructionsToAddAtPos rulesToAdd pathSimp
+    let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd
 
-    let iptablesCon = map (((flip convert) pathSimp) . insRule) rulesToAdd
+    addedPos <- instructionsToAddAtPos rulesToAdd' pathSimp
 
     let addedToIp = addToIptables addedPos pathSimp contents
+
     writeFile outputScriptName addedToIp
 
     end <- getTime

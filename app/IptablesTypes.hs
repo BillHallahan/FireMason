@@ -18,3 +18,10 @@ data Command = Append String
                | New String
                | Flush (Maybe String)
                | None deriving (Eq, Show)
+
+comChainName :: Command -> Maybe String
+comChainName (Append n) = Just n
+comChainName (Insert n _) = Just n
+comChainName (New n) = Just n
+comChainName (Flush (Just n)) = Just n
+comChainName _ = Nothing

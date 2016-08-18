@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-17 00:59:08.487759 UTC
+2016-08-18 08:10:37.164882 UTC
 
 interface main@main:Main 7103
-  interface hash: 662e9a048e49ee509e5b4e01053d3401
+  interface hash: 4507df99dbf4a34ce54f9ba0ddbc371f
   ABI hash: 8d38df6b4c9735604b4df53282bf4062
   export-list hash: 64aaec8a39dd2742ddb60f14cb8938be
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -14,9 +14,9 @@ interface main@main:Main 7103
 exports:
   Main.main
 module dependencies: ChainsToSMT2 ConvertIptables
-                     ConvertIptablesPorts ConvertToHorn InstructionsToIptables
-                     IptablesTypes NameIdChain ParseSpecificationLanguage ParserHelp
-                     RuleAdding SMT Types
+                     ConvertIptablesPorts ConvertToHorn CriteriaPrereqAddition
+                     InstructionsToIptables IptablesTypes NameIdChain
+                     ParseSpecificationLanguage ParserHelp RuleAdding SMT Types
 package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       abstract-par-0.3.3@abstr_L1snHpEAWsL0S2A3rOumSN
                       aeson-0.11.2.0@aeson_0BUYQHlNZR97HvpYlQAknY
@@ -116,6 +116,7 @@ family instance modules: attoparsec-0.13.0.2@attop_3ca2Lgsju62Jgi1qNOTBAI:Data.A
                          vector-0.11.0.0@vecto_LmZ3LQW4ivu8MsQuVgukln:Data.Vector.Storable
                          vector-0.11.0.0@vecto_LmZ3LQW4ivu8MsQuVgukln:Data.Vector.Unboxed
                          vector-0.11.0.0@vecto_LmZ3LQW4ivu8MsQuVgukln:Data.Vector.Unboxed.Base
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
@@ -128,36 +129,37 @@ import  -/  base-4.8.2.0:Text.Printf 0276d4e7547f991f04a90f6b1e7f1f46
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  criterion-1.1.1.0@crite_GfL1mOGQgTU3WeNwqBDBn7:Criterion.Measurement 01bb3155cd5013de60ce050556c2438b
-import  -/  ChainsToSMT2 dafe2399c879fd3ff92888075beeb4a1
+import  -/  ChainsToSMT2 c03da097e32e58a911ae81c2a37d2f30
   exports: b7cf436bf12eb9dc349e33b8eb5a94ea
-import  -/  ConvertIptables cb20a452e6de0c2b429bfa8c601bdaae
+import  -/  ConvertIptables 2671c195e99f86112559bf3d6bc09fba
   exports: 342829fdf4701e38e74799d5c0f98488
-  convertScript a7fbcc4f1e01a67bde3edd4633244511
-import  -/  ConvertToHorn 07bbe89cce4138bd5ed5086043fd2998
+  convertScript 34c5a8b2dc15587a48772ba08c62d791
+import  -/  ConvertToHorn 4739ed1b09876fc6093b9fa58e465d0e
   exports: 290064d68c309d84d238815c2aefd5c9
-  inputInstructionsToInstructions 927e2d326653c26370eb751ac149bf00
-  stringInputChainsToStringChains 7ed078981459267f8e090167ef6fb182
-import  -/  InstructionsToIptables 33e3f9c1dce2fc4d5d23dca9e4c81748
+  inputInstructionsToInstructions 65bd68905e120013165924acab2e6371
+  stringInputChainsToStringChains 52c6789462b6d89e872cf9dd166273ed
+import  -/  CriteriaPrereqAddition a00ba2cd469c77a14d58c0769d74d0d7
+  exports: 4778581330f534085e6e3d197b3db0ac
+  criteriaPrereqAddition 2cd872c6bf4fa1bdfe295c1be21720c6
+import  -/  InstructionsToIptables ef114a660f5e74b1bdb2553e4c384e31
   exports: 78b8b1df694faca9fadd8aec92818327
-  addToIptables 05431bba1146ee4f7eacb6d5be546417
-  convert 60859b872bcfce5eff3b5fe97abb6c41
-import  -/  IptablesTypes d00b5f0914fc78bd36b0cba55c41ad06
-  exports: 80a1a1ba143ffe2507fc25e66c37967d
-import  -/  NameIdChain bf376fc3ba5ce8835f08612a5b3090c4
-  exports: 501fc26117e8102ce23278c3667e849a
-  pathSimplification 324fc3e675077637730040ac95764801
-import  -/  ParseSpecificationLanguage aaed44ed35a92af6454a10be64e3633e
+  addToIptables c2187643f0da3afc13fbb836e71c833e
+import  -/  IptablesTypes 0831eb350e3c52dad1a4fd399b0fd654
+  exports: 0bdbf9c518841c1aa5e99aa1075f159b
+import  -/  NameIdChain 7a2f6538c9eb8e043e9d6954cf49e168
+  exports: fc33992b6e6dd5da0a072bbc471e7160
+  pathSimplification d5c7b3072829f0a2d2bf42dc0ec8efc9
+import  -/  ParseSpecificationLanguage 997d71a3b77f3d6c5e0083777f86b795
   exports: 3fbd17a953e2cd590fd23cd51be50ae8
   lexer 77c583e36e586e5038c1f8ebe9f4eeb6
-  parse db234c1afd0bc5461cf3b1ea21935107
-import  -/  RuleAdding 67e7e86d5eb7549ad5579da33a9b726a
-  exports: 3cb2c8c26b704b0a797dd3e08c750eae
-  instructionsToAddAtPos 06e1a5e4554875a25b2e8fe3b9fe97e8
+  parse f0255551d51ee79d9bc24516d61a7fcf
+import  -/  RuleAdding 3782f27b7e34f986f41da361feb8abf5
+  exports: 80cb4d9b02a33eb2dc0cadc0541b0f5b
+  instructionsToAddAtPos fd53052540c5d56fc94054d5a811976c
 import  -/  SMT 09fb9034e5f4751795a0207185bf1956
   exports: 01bbe557b35de156d1ccb757d89fc506
-import  -/  Types 88dc6cad42203d5d5235dd279b1673d5
-  exports: e957a36a1c080f189ed58496f7a5508a
-  insRule 8e138eb267aaea8894463ffcac20987b
+import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
+  exports: 313502530516a346768ec1c819f1e9aa
 ee6590a2ab0ffaa5074d93f2d3fc4c03
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <L,U>,

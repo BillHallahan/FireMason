@@ -18,6 +18,8 @@ type Chain = [Rule]
 type Address = Int32
 type Mask = Int32
 
+type ChainId = Int
+
 data Criteria = BoolFlag Flag
                 | IPAddress Address Mask
                 | Not Criteria
@@ -79,15 +81,15 @@ data InputCriteria = InC Criteria
 
 data Target = Jump String
               | GoTo String
-              | Go Int Int
-              | GoReturn Int Int
+              | Go ChainId Int
+              | GoReturn ChainId Int
               | ACCEPT
               | DROP
               | RETURN
               | PropVariableTarget Int Bool
               | ST String deriving (Eq, Show)
 
-targetsToChainIds :: [Target] -> [Int]
+targetsToChainIds :: [Target] -> [ChainId]
 targetsToChainIds [] = []
 targetsToChainIds ((Go ch r):tx) = ch:targetsToChainIds tx
 targetsToChainIds ((GoReturn ch r):tx) = ch:targetsToChainIds tx
@@ -99,7 +101,7 @@ targetsToChainIds (t:tx) = targetsToChainIds tx
 --                            , chain :: Chain
 --                            } deriving (Eq, Show)
 
-type IdNameChain = Map.Map Int (String, Chain)
+type IdNameChain = Map.Map ChainId (String, Chain)
 
 nameToIdListMap :: String -> IdNameChain -> [Int]
 nameToIdListMap s l = Map.keys . Map.filter (\ (n, _) -> n == s) $ l

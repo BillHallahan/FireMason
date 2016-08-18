@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-16 22:35:05.174589 UTC
+2016-08-18 00:52:55.885453 UTC
 
 interface main@main:Types [orphan module] 7103
-  interface hash: cbffbf139a94fa64f1c53a30f8f6426f
-  ABI hash: 0b00dd021c89cb970c014732ed968c3a
-  export-list hash: e957a36a1c080f189ed58496f7a5508a
+  interface hash: ad85416a0f2eae100e93e06092be8961
+  ABI hash: 424b33a5425ba6d35e60eebc847a79c3
+  export-list hash: 313502530516a346768ec1c819f1e9aa
   orphan hash: e233a1d3077863012ccf188ef97a7e55
   flag hash: e798c01df0f47442c61328f896d0a98d
   sig of: Nothing
@@ -25,6 +25,7 @@ exports:
   Types.targetsToChainIds
   Types.Address
   Types.Chain
+  Types.ChainId
   Types.Criteria{Types.BoolFlag Types.IPAddress Types.Not Types.Port Types.PropVariableCriteria Types.Protocol Types.SC}
   Types.Endpoint{Types.Destination Types.Source}
   Types.Flag{Types.ACK Types.FIN Types.RST Types.SYN Types.URG}
@@ -194,7 +195,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                    Types.URG
                    -> case ds1 of wild1 {
                         DEFAULT -> GHC.Types.False Types.URG -> GHC.Types.True } }) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fEqGenRule ::
     GHC.Classes.Eq crit => GHC.Classes.Eq (Types.GenRule crit)
   DFunId[0]
@@ -204,7 +205,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                   @ (Types.GenRule crit)
                   (Types.$fEqGenRule_$c== @ crit $dEq)
                   (Types.$fEqGenRule_$c/= @ crit $dEq) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fEqGenRule_$c/= ::
     GHC.Classes.Eq crit =>
     Types.GenRule crit -> Types.GenRule crit -> GHC.Types.Bool
@@ -218,7 +219,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                  case Types.$fEqGenRule_$c== @ crit $dEq a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fEqGenRule_$c== ::
     GHC.Classes.Eq crit =>
     Types.GenRule crit -> Types.GenRule crit -> GHC.Types.Bool
@@ -233,7 +234,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                  case w1 of ww { Types.Rule ww1 ww2 ww3 ->
                  case w2 of ww4 { Types.Rule ww5 ww6 ww7 ->
                  Types.$w$c== @ crit w ww1 ww2 ww3 ww5 ww6 ww7 } }) -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fEqInputCriteria :: GHC.Classes.Eq Types.InputCriteria
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -241,7 +242,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                   @ Types.InputCriteria
                   Types.$fEqInputCriteria_$c==
                   Types.$fEqInputCriteria_$c/= -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fEqInputCriteria_$c/= ::
     Types.InputCriteria -> Types.InputCriteria -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -250,7 +251,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                  case Types.$fEqInputCriteria_$c== a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fEqInputCriteria_$c== ::
     Types.InputCriteria -> Types.InputCriteria -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
@@ -302,13 +303,13 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                    -> case ds1 of wild1 {
                         Types.ToChainNamed ipv ipv1 -> GHC.Types.False
                         Types.NoInstruction b1 -> GHC.Classes.== @ r $dEq a1 b1 } }) -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fEqTarget :: GHC.Classes.Eq Types.Target
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Target Types.$fEqTarget_$c== Types.$fEqTarget_$c/= -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fEqTarget_$c/= :: Types.Target -> Types.Target -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: InlineRule (2, True, False)
@@ -316,7 +317,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                  case Types.$fEqTarget_$c== a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fEqTarget_$c== :: Types.Target -> Types.Target -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
      Unfolding: (\ ds :: Types.Target ds1 :: Types.Target ->
@@ -375,7 +376,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                    -> case ds1 of wild1 {
                         DEFAULT -> GHC.Types.False
                         Types.ST b1 -> GHC.Base.eqString a1 b1 } }) -}
-72c60ccc6fbdcae448beffe347d332f6
+a16fb285644fe1cfce7725a3e2d545aa
   $fMonoidGenRule :: GHC.Base.Monoid Types.InputRule
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -384,7 +385,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                   Types.$fMonoidGenRule_$cmempty
                   Types.$fMonoidGenRule_$cmappend
                   Types.$fMonoidGenRule_$cmconcat -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fMonoidGenRule0 :: GHC.Base.Monoid Types.Rule
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -393,7 +394,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                   Types.$fMonoidGenRule0_$cmempty
                   Types.$fMonoidGenRule0_$cmappend
                   Types.$fMonoidGenRule0_$cmconcat -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fMonoidGenRule0_$cmappend ::
     Types.Rule -> Types.Rule -> Types.Rule
   {- Arity: 2, HasNoCafRefs,
@@ -408,14 +409,14 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                    (GHC.Base.++ @ Types.Criteria ww1 ww5)
                    (GHC.Base.++ @ Types.Target ww2 ww6)
                    (GHC.Classes.$fOrdInt_$cmax ww3 ww7) } }) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fMonoidGenRule0_$cmconcat :: [Types.Rule] -> Types.Rule
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ w :: [Types.Rule] ->
                  case Types.$wgo1 w of ww { (#,,#) ww1 ww2 ww3 ->
                  Types.Rule @ Types.Criteria ww1 ww2 ww3 }) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fMonoidGenRule0_$cmempty :: Types.Rule
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (Types.Rule
@@ -423,7 +424,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                    (GHC.Types.[] @ Types.Criteria)
                    (GHC.Types.[] @ Types.Target)
                    GHC.Base.minInt) -}
-72c60ccc6fbdcae448beffe347d332f6
+a16fb285644fe1cfce7725a3e2d545aa
   $fMonoidGenRule_$cmappend ::
     Types.InputRule -> Types.InputRule -> Types.InputRule
   {- Arity: 2, HasNoCafRefs,
@@ -438,14 +439,14 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                    (GHC.Base.++ @ Types.InputCriteria ww1 ww5)
                    (GHC.Base.++ @ Types.Target ww2 ww6)
                    (GHC.Classes.$fOrdInt_$cmax ww3 ww7) } }) -}
-72c60ccc6fbdcae448beffe347d332f6
+a16fb285644fe1cfce7725a3e2d545aa
   $fMonoidGenRule_$cmconcat :: [Types.InputRule] -> Types.InputRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ w :: [Types.InputRule] ->
                  case Types.$wgo w of ww { (#,,#) ww1 ww2 ww3 ->
                  Types.Rule @ Types.InputCriteria ww1 ww2 ww3 }) -}
-72c60ccc6fbdcae448beffe347d332f6
+a16fb285644fe1cfce7725a3e2d545aa
   $fMonoidGenRule_$cmempty :: Types.InputRule
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (Types.Rule
@@ -801,7 +802,7 @@ dfd6d9d25b5020133dcc550795c302c4
      Unfolding: InlineRule (3, True, True)
                 (\ w :: GHC.Types.Int w1 :: Types.Flag w2 :: GHC.Base.String ->
                  Types.$w$cshowsPrec1 w1 w2) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fShowGenRule ::
     GHC.Show.Show crit => GHC.Show.Show (Types.GenRule crit)
   DFunId[0]
@@ -833,7 +834,7 @@ c064acd9a271b36b4c8350302fbb84b9
 d07aff3c9bb5d6d09d10650531c3be0b
   $fShowGenRule7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Rule {"#) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fShowGenRule_$cshow ::
     GHC.Show.Show crit => Types.GenRule crit -> GHC.Base.String
   {- Arity: 2, Strictness: <L,1*U(A,A,1*C1(U))><S,1*U(U,U,U(U))>,
@@ -845,7 +846,7 @@ d07aff3c9bb5d6d09d10650531c3be0b
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fShowGenRule_$cshowList ::
     GHC.Show.Show crit => [Types.GenRule crit] -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,U(A,A,C(U))><S,1*U><L,U>,
@@ -862,7 +863,7 @@ d07aff3c9bb5d6d09d10650531c3be0b
                       Types.$fShowGenRule1)
                    eta
                    eta1) -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $fShowGenRule_$cshowsPrec ::
     GHC.Show.Show crit =>
     GHC.Types.Int -> Types.GenRule crit -> GHC.Show.ShowS
@@ -877,11 +878,11 @@ d07aff3c9bb5d6d09d10650531c3be0b
                  case w1 of ww { GHC.Types.I# ww1 ->
                  case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
                  Types.$w$cshowsPrec2 @ crit w ww1 ww3 ww4 ww5 } }) -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fShowGenRule_$cshowsPrec1 ::
     GHC.Types.Int -> Types.Target -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,1*U(U)><S,1*U><L,U> -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fShowInputCriteria :: GHC.Show.Show Types.InputCriteria
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -890,10 +891,10 @@ d07aff3c9bb5d6d09d10650531c3be0b
                   Types.$fShowInputCriteria_$cshowsPrec
                   Types.$fShowInputCriteria_$cshow
                   Types.$fShowInputCriteria_$cshowList -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fShowInputCriteria1 :: Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 1 -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fShowInputCriteria_$cshow ::
     Types.InputCriteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
@@ -903,14 +904,14 @@ d07aff3c9bb5d6d09d10650531c3be0b
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fShowInputCriteria_$cshowList ::
     [Types.InputCriteria] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.InputCriteria
                    Types.$fShowInputCriteria1) -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $fShowInputCriteria_$cshowsPrec ::
     GHC.Types.Int -> Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U(U)><S,1*U>, Inline: INLINE[0],
@@ -983,7 +984,7 @@ d5fd1cdfde79c82c0c0699c4b9f9e58e
                    w2 :: Types.SynthInstruction r ->
                  case w1 of ww { GHC.Types.I# ww1 ->
                  Types.$w$cshowsPrec4 @ r w ww1 w2 }) -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fShowTarget :: GHC.Show.Show Types.Target
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -992,12 +993,12 @@ d5fd1cdfde79c82c0c0699c4b9f9e58e
                   Types.$fShowGenRule_$cshowsPrec1
                   Types.$fShowTarget_$cshow
                   Types.$fShowTarget_$cshowList -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fShowTarget1 :: Types.Target -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (Types.$fShowGenRule_$cshowsPrec1
                    Types.$fShowGenRule1) -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fShowTarget_$cshow :: Types.Target -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -1006,7 +1007,7 @@ d5fd1cdfde79c82c0c0699c4b9f9e58e
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   $fShowTarget_$cshowList :: [Types.Target] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
@@ -1159,7 +1160,7 @@ a985b0484b7e5f9cc695e9ab6fc8a177
   $slookup1 ::
     Types.Flag -> Data.Map.Base.Map Types.Flag a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-0e3f5103e09960d4ef4bd84429529bfb
+534fa52e66a8d770e8df98f5e0a58325
   $w$c== ::
     GHC.Classes.Eq crit =>
     [crit]
@@ -1204,7 +1205,7 @@ a985b0484b7e5f9cc695e9ab6fc8a177
                    Types.RST -> GHC.Base.++ @ GHC.Types.Char Types.$fShowFlag2 w1
                    Types.URG
                    -> GHC.Base.++ @ GHC.Types.Char Types.$fShowFlag1 w1 }) -}
-c6e42a9fdd13a0fe593ee30eef7f0530
+0b1e0a81fe9201731ce251fe5be2edb2
   $w$cshowsPrec2 ::
     GHC.Show.Show crit =>
     GHC.Prim.Int#
@@ -1265,7 +1266,7 @@ c6e42a9fdd13a0fe593ee30eef7f0530
                                               Types.$fShowGenRule1
                                               x1
                                               (let {
-                                                 lvl28 :: [GHC.Types.Char]
+                                                 lvl30 :: [GHC.Types.Char]
                                                  = GHC.Types.:
                                                      @ GHC.Types.Char
                                                      GHC.Show.showList__2
@@ -1276,7 +1277,7 @@ c6e42a9fdd13a0fe593ee30eef7f0530
                                                    {- Arity: 1, Strictness: <S,1*U> -}
                                                  = \ ds2 :: [Types.Target] ->
                                                    case ds2 of wild1 {
-                                                     [] -> lvl28
+                                                     [] -> lvl30
                                                      : y ys
                                                      -> GHC.Types.:
                                                           @ GHC.Types.Char
@@ -1298,7 +1299,7 @@ c6e42a9fdd13a0fe593ee30eef7f0530
                         @ GHC.Types.Char
                         GHC.Show.shows9
                         (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x)) }) -}
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   $w$cshowsPrec3 ::
     GHC.Prim.Int# -> Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <L,U><S,1*U>, Inline: [0] -}
@@ -1382,12 +1383,12 @@ c6e42a9fdd13a0fe593ee30eef7f0530
                              @ GHC.Types.Char
                              GHC.Show.shows9
                              (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x)) } }) -}
-72c60ccc6fbdcae448beffe347d332f6
+a16fb285644fe1cfce7725a3e2d545aa
   $wgo ::
     [Types.InputRule]
     -> (# [Types.InputCriteria], [Types.Target], Types.Label #)
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>, Inline: [0] -}
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   $wgo1 ::
     [Types.Rule] -> (# [Types.Criteria], [Types.Target], Types.Label #)
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>, Inline: [0] -}
@@ -1400,8 +1401,10 @@ dfe032430ec449bef505cbaea13d9c2a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
 6a1826a02311cb325d4bda01862a6323
   type Address = GHC.Int.Int32
-921f6402e04e1d152939e74beed3b178
+e29fec291a6abd0b92f253c858f5c2c2
   type Chain = [Types.Rule]
+c884b4bd8354c5f5ad5e611c0e6a2eb5
+  type ChainId = GHC.Types.Int
 605b90b34d99bcf3227a69e454b38e17
   data Criteria
     = BoolFlag Types.Flag
@@ -1418,50 +1421,50 @@ dfe032430ec449bef505cbaea13d9c2a
 8e33f4fd031cf75e26ef6380dedbc5c6
   data Flag = SYN | ACK | FIN | RST | URG
     Promotable
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   data GenRule crit
     = Rule {criteria :: [crit],
             targets :: [Types.Target],
             label :: Types.Label}
-b430aee04a36ddb759a11b0b10a4269d
+3156e4a843532a1dd4e07bdcb5955581
   type IdNameChain =
-    Data.Map.Base.Map GHC.Types.Int (GHC.Base.String, Types.Chain)
-8942a69c4aef0d84ac1d9765cf6521c1
+    Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
+21aa6876ad119a87651b66f4560aa3a4
   type InputChain = [Types.InputRule]
-46d431200947c3d9bd44d00a30090ea4
+a16fb285644fe1cfce7725a3e2d545aa
   data InputCriteria
     = InC Types.Criteria
     | InCNot Types.InputCriteria
     | And [Types.InputCriteria]
     | Or [Types.InputCriteria]
-8283a79fb676a857da74ca494965d3f5
+a50de6099365cd9a20c2753334db1617
   type InputInstruction = Types.SynthInstruction Types.InputRule
-72c60ccc6fbdcae448beffe347d332f6
+a16fb285644fe1cfce7725a3e2d545aa
   type InputRule = Types.GenRule Types.InputCriteria
-0328f3aba5ce22071c928180b5146184
+5742d5fd0dc1bdf39e80eaa2bfa63e42
   type Instruction = Types.SynthInstruction Types.Rule
 8ea1cbc35ff6354c4e178e365701b867
   type Label = GHC.Types.Int
 5758ea52fd6597c2cd2c854545ea8c21
   type Mask = GHC.Int.Int32
-acd97221e4f0a20678a4bd87efc0aa5b
+cf16424ebcc20cc9c669281ff42e3a94
   type ModuleFunc =
     [GHC.Base.String]
     -> (GHC.Base.Maybe
           [Data.Either.Either Types.InputCriteria Types.Target],
         [GHC.Base.String])
-72c60ccc6fbdcae448beffe347d332f6
+615e2b227b416b65d444dac1afb7a202
   type Rule = Types.GenRule Types.Criteria
 2640b85626df3e3ba8d769766a058fcb
   data SynthInstruction r
     = ToChainNamed {chainName :: GHC.Base.String, insRule :: r}
     | NoInstruction {insRule :: r}
-61de3bbba3a194a49975a6981f1b932f
+97fc31d3ca68602965fcc27b6e7cac76
   data Target
     = Jump GHC.Base.String
     | GoTo GHC.Base.String
-    | Go GHC.Types.Int GHC.Types.Int
-    | GoReturn GHC.Types.Int GHC.Types.Int
+    | Go Types.ChainId GHC.Types.Int
+    | GoReturn Types.ChainId GHC.Types.Int
     | ACCEPT
     | DROP
     | RETURN
@@ -1489,14 +1492,14 @@ acd97221e4f0a20678a4bd87efc0aa5b
 86cc83d13a5267976d269d3f766b53e3
   chainName1 :: GHC.Base.String
   {- Strictness: b -}
-0d340f4248253f1eff5a005f74dd4365
+cf60e7838dcc471025e3f37e89561944
   criteria :: Types.GenRule crit -> [crit]
   RecSel Types.GenRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U,A,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ @ crit ds :: Types.GenRule crit ->
                  case ds of wild { Types.Rule ds1 ds2 ds3 -> ds1 }) -}
-ed17b94db0111513d56212ed1ac2db6e
+4cad1863aacb3a6129850cd355a27f8c
   eitherToRule ::
     Data.Either.Either Types.InputCriteria Types.Target
     -> Types.InputRule
@@ -1616,14 +1619,14 @@ f76636800bda157494a7575c7bc54c12
 bfdd7c167c8448b682e3e1e7c031b7ff
   isStateless :: Types.Criteria -> GHC.Types.Bool
   {- Arity: 1, Strictness: <S,1*U> -}
-e663e3efa92304265398fffcd05ce39d
+6d1112a17350d26c3b7cc905d8b1623a
   label :: Types.GenRule crit -> Types.Label
   RecSel Types.GenRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LLS),1*U(A,A,1*U(U))>,
      Unfolding: InlineRule (1, True, False)
                 (\ @ crit ds :: Types.GenRule crit ->
                  case ds of wild { Types.Rule ds1 ds2 ds3 -> ds3 }) -}
-4b98a8f7d796e299f81b8a30e704dddb
+1600659b06dff954d00791c5c4367336
   nameToIdListMap ::
     GHC.Base.String -> Types.IdNameChain -> [GHC.Types.Int]
   {- Arity: 2, Strictness: <L,U><S,1*U>,
@@ -1633,9 +1636,9 @@ e663e3efa92304265398fffcd05ce39d
                    @ (GHC.Base.String, Types.Chain)
                    (GHC.Types.[] @ GHC.Types.Int)
                    (Data.Map.Base.filterWithKey
-                      @ GHC.Types.Int
+                      @ Types.ChainId
                       @ (GHC.Base.String, Types.Chain)
-                      (\ ds :: GHC.Types.Int
+                      (\ ds :: Types.ChainId
                          x :: (GHC.Base.String, Types.Chain)[OneShot] ->
                        case x of wild { (,) n ds1 -> GHC.Base.eqString n s })
                       l)) -}
@@ -1704,15 +1707,15 @@ ab8b37fc593f9e413fead5d12ff2b617
 88594b12df810c3c3bf142cbe8d29c5c
   stringsToFlags9 :: Types.Criteria
   {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.RST) -}
-38f8ed52af73e0f1e23298e74cdebeec
+73ffac4abc5369d3a9e89359a701a3b6
   targets :: Types.GenRule crit -> [Types.Target]
   RecSel Types.GenRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LSL),1*U(A,1*U,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ @ crit ds :: Types.GenRule crit ->
                  case ds of wild { Types.Rule ds1 ds2 ds3 -> ds2 }) -}
-f49d61ecfd7fb3a365efb9b6bf1a155c
-  targetsToChainIds :: [Types.Target] -> [GHC.Types.Int]
+66678403ad397cc7251a4da536d0a69a
+  targetsToChainIds :: [Types.Target] -> [Types.ChainId]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 instance GHC.Classes.Eq [Types.Criteria] = Types.$fEqCriteria
 instance GHC.Classes.Eq [Types.Endpoint] = Types.$fEqEndpoint
