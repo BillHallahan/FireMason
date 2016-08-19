@@ -1,0 +1,1021 @@
+
+==================== FINAL INTERFACE ====================
+2016-08-18 01:10:11.891802 UTC
+
+interface main@main:CriteriaPrereqAdditionTests 7103
+  interface hash: f0073e07e7d370d7d782b8ad5b0b99a7
+  ABI hash: 540148748ed9c8c16d69d15a57aef9a7
+  export-list hash: 6a39dba95c7bb5c3ad9e38812ff41a4c
+  orphan hash: 28bf73ba2b940d9fd8ff46b8d75b1851
+  flag hash: 768efad6ceab0d9cfe2bb912c6118be4
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest1
+  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest2
+  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest3
+  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest4
+  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests
+module dependencies: CriteriaPrereqAddition Types
+package dependencies: HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0*
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit d58e5f70f93d158130fd424e61ba73e8
+import  -/  HUnit-1.3.1.1@HUnit_7IPmJa5HmrxHl6ny5upchm:Test.HUnit.Base 3fa8f8d2179caf234ea001207f41fb0c
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  CriteriaPrereqAddition a00ba2cd469c77a14d58c0769d74d0d7
+  exports: 4778581330f534085e6e3d197b3db0ac
+  criteriaPrereqAddition 2cd872c6bf4fa1bdfe295c1be21720c6
+import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
+  exports: 313502530516a346768ec1c819f1e9aa
+  ACCEPT 08ea8d5ba9c8e5ae84bd818c2cc3ee1f
+  ACK 69c02da22bdd3d2b93a2ecc7619dcfe7
+  BoolFlag a5bd0669b32ca5a1de6cf10948a3bcbc
+  Destination 922d80ba258cc0a086584d38ca75ebef
+  Not b8339c1be2f1b9a12b2b3eb568593726
+  Port 0cdcd795ebd2c331c1401f6cf3404c99
+  Protocol d38fdc887d9a0e7c53d19d8b463500f3
+  Rule 463e6937e80c1b2712030bd2add91a30
+  SYN 0cbc6e0a2ddace940e82bf819da11d6b
+  ToChainNamed ce4c7bf5b328004ab15754446244f326
+a7dc5487db8e0cce4c950e045612d57f
+  $s$fEqGenRule :: GHC.Classes.Eq (Types.GenRule Types.Criteria)
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.Criteria)
+                  (Types.$fEqGenRule_$c== @ Types.Criteria Types.$fEqCriteria)
+                  CriteriaPrereqAdditionTests.$s$fEqGenRule_$s$fEqGenRule_$c/= -}
+5dd00609dcb98fee05a125a249fce6b3
+  $s$fEqGenRule_$s$fEqGenRule_$c/= ::
+    Types.GenRule Types.Criteria
+    -> Types.GenRule Types.Criteria -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SLL),1*U(1*U,1*U,1*U(U))><S(SLL),1*U(1*U,1*U,1*U(U))>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a :: Types.GenRule Types.Criteria
+                   b :: Types.GenRule Types.Criteria ->
+                 case Types.$fEqGenRule_$c==
+                        @ Types.Criteria
+                        Types.$fEqCriteria
+                        a
+                        b of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True -> GHC.Types.False }) -}
+8261b7434b714ec6ff92248e45daf84f
+  $s$fEqSynthInstruction ::
+    GHC.Classes.Eq
+      (Types.SynthInstruction (Types.GenRule Types.Criteria))
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                  (Types.$fEqSynthInstruction_$c==
+                     @ (Types.GenRule Types.Criteria)
+                     CriteriaPrereqAdditionTests.$s$fEqSynthInstruction_$dEq)
+                  CriteriaPrereqAdditionTests.$s$fEqSynthInstruction1 -}
+ce695f039acb9a12690f152469c5f2d5
+  $s$fEqSynthInstruction1 ::
+    Types.SynthInstruction (Types.GenRule Types.Criteria)
+    -> Types.SynthInstruction (Types.GenRule Types.Criteria)
+    -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Unfolding: (\ a :: Types.SynthInstruction
+                          (Types.GenRule Types.Criteria)
+                   b :: Types.SynthInstruction (Types.GenRule Types.Criteria) ->
+                 case a of wild {
+                   Types.ToChainNamed a1 a2
+                   -> case b of wild1 {
+                        Types.ToChainNamed b1 b2
+                        -> case GHC.Base.eqString a1 b1 of wild2 {
+                             GHC.Types.False -> GHC.Types.True
+                             GHC.Types.True
+                             -> case a2 of ww { Types.Rule ww1 ww2 ww3 ->
+                                case b2 of ww4 { Types.Rule ww5 ww6 ww7 ->
+                                case GHC.Classes.$fEq[]_$c==
+                                       @ Types.Criteria
+                                       Types.$fEqCriteria
+                                       ww1
+                                       ww5 of wild4 {
+                                  GHC.Types.False -> GHC.Types.True
+                                  GHC.Types.True
+                                  -> case GHC.Classes.$fEq[]_$c==
+                                            @ Types.Target
+                                            Types.$fEqTarget
+                                            ww2
+                                            ww6 of wild5 {
+                                       GHC.Types.False -> GHC.Types.True
+                                       GHC.Types.True
+                                       -> case ww3 of wild6 { GHC.Types.I# x ->
+                                          case ww7 of wild7 { GHC.Types.I# y ->
+                                          case GHC.Prim.tagToEnum#
+                                                 @ GHC.Types.Bool
+                                                 (GHC.Prim.==# x y) of wild8 {
+                                            GHC.Types.False -> GHC.Types.True
+                                            GHC.Types.True -> GHC.Types.False } } } } } } } }
+                        Types.NoInstruction ipv -> GHC.Types.True }
+                   Types.NoInstruction a1
+                   -> case b of wild1 {
+                        Types.ToChainNamed ipv ipv1 -> GHC.Types.True
+                        Types.NoInstruction b1
+                        -> case a1 of ww { Types.Rule ww1 ww2 ww3 ->
+                           case b1 of ww4 { Types.Rule ww5 ww6 ww7 ->
+                           case GHC.Classes.$fEq[]_$c==
+                                  @ Types.Criteria
+                                  Types.$fEqCriteria
+                                  ww1
+                                  ww5 of wild2 {
+                             GHC.Types.False -> GHC.Types.True
+                             GHC.Types.True
+                             -> case GHC.Classes.$fEq[]_$c==
+                                       @ Types.Target
+                                       Types.$fEqTarget
+                                       ww2
+                                       ww6 of wild3 {
+                                  GHC.Types.False -> GHC.Types.True
+                                  GHC.Types.True
+                                  -> case ww3 of wild4 { GHC.Types.I# x ->
+                                     case ww7 of wild5 { GHC.Types.I# y ->
+                                     case GHC.Prim.tagToEnum#
+                                            @ GHC.Types.Bool
+                                            (GHC.Prim.==# x y) of wild6 {
+                                       GHC.Types.False -> GHC.Types.True
+                                       GHC.Types.True -> GHC.Types.False } } } } } } } } }) -}
+131e4886a091d0b152a2330a6598ad01
+  $s$fEqSynthInstruction_$dEq ::
+    GHC.Classes.Eq (Types.GenRule Types.Criteria)
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                CriteriaPrereqAdditionTests.$s$fEqGenRule -}
+76ea6d91981b7663f30a984d4616d897
+  $s$fEq[] ::
+    GHC.Classes.Eq
+      [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                  (GHC.Classes.$fEq[]_$c==
+                     @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                     CriteriaPrereqAdditionTests.$s$fEq[]_$dEq)
+                  CriteriaPrereqAdditionTests.$s$fEq[]_$s$fEq[]_$c/= -}
+d64d211cc2005b10ff74f89cc14a4384
+  $s$fEq[]_$dEq ::
+    GHC.Classes.Eq
+      (Types.SynthInstruction (Types.GenRule Types.Criteria))
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                CriteriaPrereqAdditionTests.$s$fEqSynthInstruction -}
+12054e2073f6b533ae5767a3d416accc
+  $s$fEq[]_$s$fEq[]_$c/= ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+    -> [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+    -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Inline: INLINE (sat-args=2),
+     Unfolding: InlineRule (2, False, False)
+                (\ x :: [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   y :: [Types.SynthInstruction (Types.GenRule Types.Criteria)] ->
+                 GHC.Classes.not
+                   (GHC.Classes.$fEq[]_$c==
+                      @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                      CriteriaPrereqAdditionTests.$s$fEq[]_$dEq
+                      x
+                      y)) -}
+5198669a875a64745ed57f05fe7150ad
+  $s$fShowGenRule :: GHC.Show.Show (Types.GenRule Types.Criteria)
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.Criteria)
+                  (Types.$fShowGenRule_$cshowsPrec
+                     @ Types.Criteria
+                     Types.$fShowCriteria)
+                  CriteriaPrereqAdditionTests.$s$fShowGenRule3
+                  CriteriaPrereqAdditionTests.$s$fShowGenRule1 -}
+baa7bdb4e9e2e7e6ad24c129f4b6b5f1
+  $s$fShowGenRule1 ::
+    [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.Criteria)
+                   CriteriaPrereqAdditionTests.$s$fShowGenRule2
+                   eta
+                   eta1) -}
+00bb331823f0cd6fb6e7a32e37f40794
+  $s$fShowGenRule2 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
+                 case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec2
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5 }) -}
+22b92c043e214c5d368259318118813c
+  $s$fShowGenRule3 :: Types.GenRule Types.Criteria -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(U,U,U(U))>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: Types.GenRule Types.Criteria ->
+                 case x of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec2
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5
+                   (GHC.Types.[] @ GHC.Types.Char) }) -}
+67f2b7e74a44d635eef537a1f39d0761
+  $s$fShowSynthInstruction1 ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+    -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                   (\ w2 :: Types.SynthInstruction (Types.GenRule Types.Criteria) ->
+                    Types.$w$cshowsPrec4
+                      @ (Types.GenRule Types.Criteria)
+                      CriteriaPrereqAdditionTests.$s$fShowGenRule
+                      0
+                      w2)
+                   eta
+                   eta1) -}
+1f798f45d87b2a3a9f307316f203cf68
+  $s$fShow[] ::
+    GHC.Show.Show
+      [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                  CriteriaPrereqAdditionTests.$s$fShow[]_$s$fShow[]_$cshowsPrec
+                  CriteriaPrereqAdditionTests.$s$fShow[]_$s$fShow[]_$cshow
+                  CriteriaPrereqAdditionTests.$s$fShow[]_$s$fShow[]_$cshowList -}
+c16b69fa4b4bf72efe467d6f79a00347
+  $s$fShow[]_$s$fShow[]_$cshow ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+    -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: [Types.SynthInstruction (Types.GenRule Types.Criteria)] ->
+                 CriteriaPrereqAdditionTests.$s$fShowSynthInstruction1
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+fe7e6452b9131baa90473dbd3bfb025c
+  $s$fShow[]_$s$fShow[]_$cshowList ::
+    [[Types.SynthInstruction (Types.GenRule Types.Criteria)]]
+    -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [[Types.SynthInstruction (Types.GenRule Types.Criteria)]]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   CriteriaPrereqAdditionTests.$s$fShowSynthInstruction1
+                   eta
+                   eta1) -}
+6add6d1a89133d00617620b54d74bdb4
+  $s$fShow[]_$s$fShow[]_$cshowsPrec ::
+    GHC.Types.Int
+    -> [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+    -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ ds :: GHC.Types.Int
+                   eta :: [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   eta1 :: GHC.Base.String ->
+                 CriteriaPrereqAdditionTests.$s$fShowSynthInstruction1 eta eta1) -}
+b78e7ca89081a6caed13e9ea56faeb09
+  criteriaPrereqAdditionTest1 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest7
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+20d452fab14a1b54c33169b5b3f31aee
+  criteriaPrereqAdditionTest10 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest11
+                   (GHC.Types.[] @ Types.Criteria)) -}
+b9eaa17231a6d4ea2f8fcd8c76256153
+  criteriaPrereqAdditionTest11 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m3,
+     Unfolding: (Types.Not
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest12) -}
+b428ecd5a3f07b98b87129de121f7555
+  criteriaPrereqAdditionTest12 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Types.BoolFlag Types.ACK) -}
+758a978621f1e3d2fd8b246d9bc63676
+  criteriaPrereqAdditionTest13 ::
+    [Types.Criteria] -> Types.SynthInstruction Types.Rule
+  {- Arity: 1,
+     Unfolding: (\ x :: [Types.Criteria] ->
+                 Types.ToChainNamed
+                   @ Types.Rule
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest16
+                   (Types.Rule
+                      @ Types.Criteria
+                      x
+                      CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest15
+                      CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest14)) -}
+4c31cf4343459c5ab6688d441a00ee9f
+  criteriaPrereqAdditionTest14 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# (-1)) -}
+e3e6abd3fe09480f7cccaa1004e773f6
+  criteriaPrereqAdditionTest15 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   Types.ACCEPT
+                   (GHC.Types.[] @ Types.Target)) -}
+374b5cb9fe0ff1710fbd8335f5e0e8cb
+  criteriaPrereqAdditionTest16 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "test"#) -}
+84d0b9bf1e9dea553c41e631182ce320
+  criteriaPrereqAdditionTest17 ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest18
+                   (GHC.Types.[]
+                      @ (Types.SynthInstruction (Types.GenRule Types.Criteria)))) -}
+afa78fa0e8aa571ab4fbe9f6f4744f4f
+  criteriaPrereqAdditionTest18 ::
+    Types.SynthInstruction (Types.GenRule Types.Criteria)
+  {- Strictness: m1,
+     Unfolding: (Types.ToChainNamed
+                   @ (Types.GenRule Types.Criteria)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest16
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest19) -}
+e57613023d2724c0f374fa4f875db2e9
+  criteriaPrereqAdditionTest19 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest20
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest15
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest14) -}
+3a416d76d3ab143df51035b7f810071c
+  criteriaPrereqAdditionTest2 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest35
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+5c86ee0445ba5e4a3f7d3b43a4899a6b
+  criteriaPrereqAdditionTest20 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest21
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest10) -}
+397f981507328df396968c0baeba75fd
+  criteriaPrereqAdditionTest21 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest22) -}
+446c75449c70f5a9daec7bc99b4a9a76
+  criteriaPrereqAdditionTest22 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 6) -}
+43571b5e0b8caee2c0be5c9f720bf102
+  criteriaPrereqAdditionTest23 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest1 is not working correctly."#) -}
+79620164a1b21b037a3278b7f9653ed6
+  criteriaPrereqAdditionTest24 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest25) -}
+16621c2f9efde34d8f40402072761e11
+  criteriaPrereqAdditionTest25 ::
+    [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest26
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+9a8bbf63caeb3f3ad1a2493d2c296562
+  criteriaPrereqAdditionTest26 ::
+    ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest34,
+                  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest27)) -}
+e86b5398420e379b558e91ed266e4771
+  criteriaPrereqAdditionTest27 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest33
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest32
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest31
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest30
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest29
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest30
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest28) -}
+5dd096452318479a613694f0aa5d3699
+  criteriaPrereqAdditionTest28 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 27) -}
+be05ff336ad3b11db80e15079c2e86b9
+  criteriaPrereqAdditionTest29 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 16) -}
+fe824a69ab29cbdb16982a13c673773a
+  criteriaPrereqAdditionTest3 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest51
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+64b0c98bb0a88d51202a6ae5615ca9ee
+  criteriaPrereqAdditionTest30 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 13) -}
+c9168785f41f9de0b1976b458448b5f4
+  criteriaPrereqAdditionTest31 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "test/CriteriaPrereqAdditionTests.hs"#) -}
+020085429aa1ad4421811b161d62d574
+  criteriaPrereqAdditionTest32 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "CriteriaPrereqAdditionTests"#) -}
+55fad06b34b2551c2f8083022068076e
+  criteriaPrereqAdditionTest33 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "main"#) -}
+83c551952595fb63a88405c3a8c250a0
+  criteriaPrereqAdditionTest34 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "assertEqual"#) -}
+8e5c1dc9d9acb25db44eea223aafdb24
+  criteriaPrereqAdditionTest35 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest46
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   CriteriaPrereqAdditionTests.$s$fEq[]
+                   CriteriaPrereqAdditionTests.$s$fShow[]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest45
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest41
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest36) -}
+7232f2cf2fe88ec1d9d517e712dfedce
+  criteriaPrereqAdditionTest36 :: [Types.SynthInstruction Types.Rule]
+  {- Unfolding: (GHC.Base.map
+                   @ [Types.Criteria]
+                   @ (Types.SynthInstruction Types.Rule)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest13
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest37) -}
+c313f833995a956a160d1b6cb56149ce
+  criteriaPrereqAdditionTest37 :: [[Types.Criteria]]
+  {- Unfolding: (CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest38
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest38) -}
+a116ab7455cf5430e06389c511fb2cc5
+  criteriaPrereqAdditionTest38 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest40
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest39) -}
+9f0844a76b543e2c02a7b09c597095bd
+  criteriaPrereqAdditionTest39 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest12
+                   (GHC.Types.[] @ Types.Criteria)) -}
+507354c18ba4312c67a2b3bd14cf0314
+  criteriaPrereqAdditionTest4 :: Test.HUnit.Base.Test
+  {- Strictness: m1,
+     Unfolding: (Test.HUnit.Base.TestCase
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest74
+                     `cast`
+                   (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+5151a740e8c58e43c0aadb28fb94dfb7
+  criteriaPrereqAdditionTest40 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Types.BoolFlag Types.SYN) -}
+a8fc4560800e54e5762cf193b64642f8
+  criteriaPrereqAdditionTest41 ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest42
+                   (GHC.Types.[]
+                      @ (Types.SynthInstruction (Types.GenRule Types.Criteria)))) -}
+4f2eb269377464410410fac65a4f952f
+  criteriaPrereqAdditionTest42 ::
+    Types.SynthInstruction (Types.GenRule Types.Criteria)
+  {- Strictness: m1,
+     Unfolding: (Types.ToChainNamed
+                   @ (Types.GenRule Types.Criteria)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest16
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest43) -}
+c66372183272115a53df4989ed445f89
+  criteriaPrereqAdditionTest43 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest44
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest15
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest14) -}
+632be6951e8d1ad3875c369dbbd2ff2d
+  criteriaPrereqAdditionTest44 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest21
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest38) -}
+4bb3abd58e00d5b30a75e1bbb3852e90
+  criteriaPrereqAdditionTest45 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest2 is not working correctly."#) -}
+12fb5a53ea98f8d3fc81c8f180b29058
+  criteriaPrereqAdditionTest46 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest47) -}
+a16ac630896ae381fc9a8ec094ffb107
+  criteriaPrereqAdditionTest47 ::
+    [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest48
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+0323c00860c2da3ad1bb95edf0939ac7
+  criteriaPrereqAdditionTest48 ::
+    ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest34,
+                  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest49)) -}
+7f5a9d1e56fb706b6a894d91f7117c27
+  criteriaPrereqAdditionTest49 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest33
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest32
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest31
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest50
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest29
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest50
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest28) -}
+28067cad45291de3a38417b75ffbf45b
+  criteriaPrereqAdditionTest50 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 18) -}
+619f551c0d151ab03a0cc41b0846dfa9
+  criteriaPrereqAdditionTest51 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest69
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   CriteriaPrereqAdditionTests.$s$fEq[]
+                   CriteriaPrereqAdditionTests.$s$fShow[]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest68
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest58
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest52) -}
+24c5f83b636cf485153e8b076ec841db
+  criteriaPrereqAdditionTest52 :: [Types.SynthInstruction Types.Rule]
+  {- Unfolding: (GHC.Base.map
+                   @ [Types.Criteria]
+                   @ (Types.SynthInstruction Types.Rule)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest13
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest53) -}
+820c91a3eb72cc5da5b858f9816ed7ab
+  criteriaPrereqAdditionTest53 :: [[Types.Criteria]]
+  {- Unfolding: (CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest54
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest54) -}
+b4fbddbc23dcda67d949f88aa49a04d9
+  criteriaPrereqAdditionTest54 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest55
+                   (GHC.Types.[] @ Types.Criteria)) -}
+91cf1040e9bcedd336045e28935f8db9
+  criteriaPrereqAdditionTest55 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m4,
+     Unfolding: (Types.Port
+                   Types.Destination
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest56) -}
+ec20fa2c6c20b0da85c238ea4ff68443
+  criteriaPrereqAdditionTest56 ::
+    Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int)
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (Data.Either.Left
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int, GHC.Types.Int)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest57) -}
+cb720d378e7bb18a9119ab2fdc10d7b5
+  criteriaPrereqAdditionTest57 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 8) -}
+3f16a1605711c53a39e3faa2fa5082ef
+  criteriaPrereqAdditionTest58 ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest65
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest59) -}
+02fe6f233b3fe400fd52a7709862b13b
+  criteriaPrereqAdditionTest59 ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest60
+                   (GHC.Types.[]
+                      @ (Types.SynthInstruction (Types.GenRule Types.Criteria)))) -}
+fa166f7779a1da20c8b77f8fb1749323
+  criteriaPrereqAdditionTest60 ::
+    Types.SynthInstruction (Types.GenRule Types.Criteria)
+  {- Strictness: m1,
+     Unfolding: (Types.ToChainNamed
+                   @ (Types.GenRule Types.Criteria)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest16
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest61) -}
+f8463d4353ebf3704ee74804386d2e3b
+  criteriaPrereqAdditionTest61 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest62
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest15
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest14) -}
+e270ae8bc9557e28b59e4c5389c533e1
+  criteriaPrereqAdditionTest62 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest63
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest54) -}
+c8b08a9af41d1736ad2d746a5ec9dd69
+  criteriaPrereqAdditionTest63 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest64) -}
+354258c0e450ae94f6d8ec3399a399c9
+  criteriaPrereqAdditionTest64 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 17) -}
+33fa70af3ad93bfe3f538800264d349b
+  criteriaPrereqAdditionTest65 ::
+    Types.SynthInstruction (Types.GenRule Types.Criteria)
+  {- Strictness: m1,
+     Unfolding: (Types.ToChainNamed
+                   @ (Types.GenRule Types.Criteria)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest16
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest66) -}
+336cb294a3be49c35534e3a5fc15852b
+  criteriaPrereqAdditionTest66 :: Types.GenRule Types.Criteria
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Types.Rule
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest67
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest15
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest14) -}
+2a081ba126ac72c35bcf6237cdcc673c
+  criteriaPrereqAdditionTest67 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest21
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest54) -}
+7514cbee7f2cacf2abe2849fdb948a39
+  criteriaPrereqAdditionTest68 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest3 is not working correctly."#) -}
+9b14f1cce20ad356dca6a83876f602f8
+  criteriaPrereqAdditionTest69 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest70) -}
+95095d4f0ee4495fa8aaf6d52632b64a
+  criteriaPrereqAdditionTest7 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest24
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   CriteriaPrereqAdditionTests.$s$fEq[]
+                   CriteriaPrereqAdditionTests.$s$fShow[]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest23
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest17
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest8) -}
+7fedce8fbc16a6727bece136aeecefdb
+  criteriaPrereqAdditionTest70 ::
+    [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest71
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+3521a6718e07eaf6f58a9e4924b7a1b8
+  criteriaPrereqAdditionTest71 ::
+    ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest34,
+                  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest72)) -}
+8d8fb0b4924179476b0caec92e0a498c
+  criteriaPrereqAdditionTest72 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest33
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest32
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest31
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest73
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest29
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest73
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest28) -}
+756b6b93004f5acdaaab7afb7ee0f9ba
+  criteriaPrereqAdditionTest73 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 23) -}
+1f5588d5f2f4e358b423b0247990da93
+  criteriaPrereqAdditionTest74 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (Test.HUnit.Base.@=?7
+                   @ [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest79
+                     `cast`
+                   (Sym (GHC.IP.NTCo:IP[0] <"loc">_N <GHC.Stack.CallStack>_N))
+                   CriteriaPrereqAdditionTests.$s$fEq[]
+                   CriteriaPrereqAdditionTests.$s$fShow[]
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest78
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest77
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest75) -}
+279d4beedf5fd4824d2e4524c5055774
+  criteriaPrereqAdditionTest75 :: [Types.SynthInstruction Types.Rule]
+  {- Unfolding: (GHC.Base.map
+                   @ [Types.Criteria]
+                   @ (Types.SynthInstruction Types.Rule)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest13
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest76) -}
+f777da4472829bcdb13e6549dc091b9d
+  criteriaPrereqAdditionTest76 :: [[Types.Criteria]]
+  {- Unfolding: (CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest67
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest67) -}
+0b819021d0b98c8bb274e851a52d52d4
+  criteriaPrereqAdditionTest77 ::
+    [Types.SynthInstruction (Types.GenRule Types.Criteria)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Types.SynthInstruction (Types.GenRule Types.Criteria))
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest65
+                   (GHC.Types.[]
+                      @ (Types.SynthInstruction (Types.GenRule Types.Criteria)))) -}
+8e44601844369d11cdab0c398e941587
+  criteriaPrereqAdditionTest78 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest4 is not working correctly."#) -}
+5b9d10b646fdb8f10b1b56afd6d91f2f
+  criteriaPrereqAdditionTest79 :: GHC.Stack.CallStack
+  {- Strictness: m,
+     Unfolding: (GHC.Stack.CallStack
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest80) -}
+80d22982f98d7d1531a04f6554107156
+  criteriaPrereqAdditionTest8 :: [Types.SynthInstruction Types.Rule]
+  {- Unfolding: (GHC.Base.map
+                   @ [Types.Criteria]
+                   @ (Types.SynthInstruction Types.Rule)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest13
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest9) -}
+80dcc9bec3155232fd97192ad55f9486
+  criteriaPrereqAdditionTest80 ::
+    [([GHC.Types.Char], GHC.SrcLoc.SrcLoc)]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest81
+                   (GHC.Types.[] @ ([GHC.Types.Char], GHC.SrcLoc.SrcLoc))) -}
+e23aec36f448d07c3cad580f34419cbd
+  criteriaPrereqAdditionTest81 ::
+    ([GHC.Types.Char], GHC.SrcLoc.SrcLoc)
+  {- Strictness: m,
+     Unfolding: ((CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest34,
+                  CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest82)) -}
+acafc98b6dfc5e6f28d52a06eb9cb3e8
+  criteriaPrereqAdditionTest82 :: GHC.SrcLoc.SrcLoc
+  {- Strictness: m,
+     Unfolding: (GHC.SrcLoc.SrcLoc
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest33
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest32
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest31
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest83
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest29
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest83
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest28) -}
+180a09100c3819481817ca67a791f4b0
+  criteriaPrereqAdditionTest83 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 29) -}
+b9acac95d3168438860bb8672749234b
+  criteriaPrereqAdditionTest9 :: [[Types.Criteria]]
+  {- Unfolding: (CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest10
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest10) -}
+76310fc434644b2e439020c0105234fe
+  criteriaPrereqAdditionTests :: Test.HUnit.Base.Test
+  {- Strictness: m2,
+     Unfolding: (Test.HUnit.Base.TestList
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests1) -}
+6e6c3198ef8b684f1047c0517b7b69f2
+  criteriaPrereqAdditionTests1 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests11
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests2) -}
+b4e81cabcb55baea3c96690278c56b02
+  criteriaPrereqAdditionTests10 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest2"#) -}
+16292950dad56598ef7885a6e0c1afc8
+  criteriaPrereqAdditionTests11 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests12
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest1) -}
+32fbe4fa9a4f460996e41b9742b95638
+  criteriaPrereqAdditionTests12 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest1"#) -}
+a9e5a4569900be98bf29e76bfed07f93
+  criteriaPrereqAdditionTests2 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests9
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests3) -}
+ddc28e40375c9b8d1dcf37795b8fd9e8
+  criteriaPrereqAdditionTests3 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests7
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests4) -}
+3cc2e65e6faaaa1ef2631a1ef72132f4
+  criteriaPrereqAdditionTests4 :: [Test.HUnit.Base.Test]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Test.HUnit.Base.Test
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests5
+                   (GHC.Types.[] @ Test.HUnit.Base.Test)) -}
+f7302c8fd8599079ef321f9e4030f0fd
+  criteriaPrereqAdditionTests5 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests6
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest4) -}
+32d1a496b392dd83f83bd9df4cc9fa47
+  criteriaPrereqAdditionTests6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest4"#) -}
+265556daa119ec951a46180506173e14
+  criteriaPrereqAdditionTests7 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests8
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest3) -}
+375e03bcea38a65d642f9213b3fc2857
+  criteriaPrereqAdditionTests8 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "criteriaPrereqAdditionTest3"#) -}
+22dce0b444fd165671f4175bf599fc91
+  criteriaPrereqAdditionTests9 :: Test.HUnit.Base.Test
+  {- Strictness: m3,
+     Unfolding: (Test.HUnit.Base.TestLabel
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTests10
+                   CriteriaPrereqAdditionTests.criteriaPrereqAdditionTest2) -}
+"SPEC/CriteriaPrereqAdditionTests $fEqGenRule @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                    Types.Criteria
+  Types.$fEqGenRule @ Types.Criteria $dEq
+  = CriteriaPrereqAdditionTests.$s$fEqGenRule
+"SPEC/CriteriaPrereqAdditionTests $fEqGenRule_$c/= @ Criteria" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                         Types.Criteria
+  Types.$fEqGenRule_$c/= @ Types.Criteria $dEq
+  = CriteriaPrereqAdditionTests.$s$fEqGenRule_$s$fEqGenRule_$c/=
+"SPEC/CriteriaPrereqAdditionTests $fEqSynthInstruction @ (GenRule
+                                                           Criteria)" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                                                                                                  (Types.GenRule
+                                                                                                                                                                     Types.Criteria)
+  Types.$fEqSynthInstruction @ (Types.GenRule Types.Criteria) $dEq
+  = CriteriaPrereqAdditionTests.$s$fEqSynthInstruction
+"SPEC/CriteriaPrereqAdditionTests $fEq[] @ (SynthInstruction
+                                             (GenRule Criteria))" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                                                                                         (Types.SynthInstruction
+                                                                                                                                                            (Types.GenRule
+                                                                                                                                                               Types.Criteria))
+  GHC.Classes.$fEq[] @ (Types.SynthInstruction
+                          (Types.GenRule Types.Criteria))
+                     $dEq
+  = CriteriaPrereqAdditionTests.$s$fEq[]
+"SPEC/CriteriaPrereqAdditionTests $fEq[]_$c/= @ (SynthInstruction
+                                                  (GenRule Criteria))" [ALWAYS] forall $dEq :: GHC.Classes.Eq
+                                                                                                                                                                   (Types.SynthInstruction
+                                                                                                                                                                      (Types.GenRule
+                                                                                                                                                                         Types.Criteria))
+  GHC.Classes.$fEq[]_$c/= @ (Types.SynthInstruction
+                               (Types.GenRule Types.Criteria))
+                          $dEq
+  = CriteriaPrereqAdditionTests.$s$fEq[]_$s$fEq[]_$c/=
+"SPEC/CriteriaPrereqAdditionTests $fShowGenRule @ Criteria" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                        Types.Criteria
+  Types.$fShowGenRule @ Types.Criteria $dShow
+  = CriteriaPrereqAdditionTests.$s$fShowGenRule
+"SPEC/CriteriaPrereqAdditionTests $fShow[] @ (SynthInstruction
+                                               (GenRule Criteria))" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                               (Types.SynthInstruction
+                                                                                                                                                                  (Types.GenRule
+                                                                                                                                                                     Types.Criteria))
+  GHC.Show.$fShow[] @ (Types.SynthInstruction
+                         (Types.GenRule Types.Criteria))
+                    $dShow
+  = CriteriaPrereqAdditionTests.$s$fShow[]
+"SPEC/CriteriaPrereqAdditionTests $fShow[]_$cshow @ (SynthInstruction
+                                                      (GenRule Criteria))" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                                             (Types.SynthInstruction
+                                                                                                                                                                                (Types.GenRule
+                                                                                                                                                                                   Types.Criteria))
+  GHC.Show.$fShow[]_$cshow @ (Types.SynthInstruction
+                                (Types.GenRule Types.Criteria))
+                           $dShow
+  = CriteriaPrereqAdditionTests.$s$fShow[]_$s$fShow[]_$cshow
+"SPEC/CriteriaPrereqAdditionTests $fShow[]_$cshowList @ (SynthInstruction
+                                                          (GenRule Criteria))" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                                                     (Types.SynthInstruction
+                                                                                                                                                                                        (Types.GenRule
+                                                                                                                                                                                           Types.Criteria))
+  GHC.Show.$fShow[]_$cshowList @ (Types.SynthInstruction
+                                    (Types.GenRule Types.Criteria))
+                               $dShow
+  = CriteriaPrereqAdditionTests.$s$fShow[]_$s$fShow[]_$cshowList
+"SPEC/CriteriaPrereqAdditionTests $fShow[]_$cshowsPrec @ (SynthInstruction
+                                                           (GenRule Criteria))" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                                                                                                                       (Types.SynthInstruction
+                                                                                                                                                                                          (Types.GenRule
+                                                                                                                                                                                             Types.Criteria))
+  GHC.Show.$fShow[]_$cshowsPrec @ (Types.SynthInstruction
+                                     (Types.GenRule Types.Criteria))
+                                $dShow
+  = CriteriaPrereqAdditionTests.$s$fShow[]_$s$fShow[]_$cshowsPrec
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
