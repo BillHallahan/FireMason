@@ -137,7 +137,7 @@ findPointCut r i n =
         jIdChainsAddedCrit = map (\(crit, t, ch) -> (t, map (\(Rule c t l) -> Rule (c ++ crit) t l) ch)) jCritIdChains
         jIdScores = map (\(t, ch) -> findPointCut r t n) jIdChainsAddedCrit
         third = (\(_, _, x) -> x)
-        maxJ = if not . null $ jIdScores then maximumBy (comparing third) jIdScores else (-1, -1, -scm - 1)
+        maxJ = if not . null $ jIdScores then maximumBy (comparing third) jIdScores else (-1, -1, minBound :: Int)
  
         scores =  map (scoreRules r) c
         maxScore = if not . null $ scores then maximum scores else -scm - 1

@@ -9,13 +9,14 @@
 #where your iptables is
 IPTABLES=/sbin/iptables
 
-#BAD PORTS,TROJAN,BACKDOOR PORTS
-$IPTABLES -N bad-ports
-$IPTABLES -F bad-ports
-$IPTABLES -A bad-ports -p 0 -j DROP
-$IPTABLES -A bad-ports -p 22
-$IPTABLES -A bad-ports -p tcp --sport 6
-$IPTABLES -A bad-ports -p tcp --sport 4
 
-$IPTABLES -A INPUT -p udp -j DROP
-$IPTABLES -A INPUT -j bad-ports
+
+$IPTABLES -N end
+$IPTABLES -F end
+$IPTABLES -A end -p tcp --sport 100 --dport 200 -j DROP
+
+
+$IPTABLES -A INPUT -j end
+
+
+$IPTABLES -A FORWARD -j end

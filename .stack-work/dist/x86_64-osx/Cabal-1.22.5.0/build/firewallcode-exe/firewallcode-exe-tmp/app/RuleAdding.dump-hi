@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-19 03:41:38.500976 UTC
+2016-08-19 04:12:12.021345 UTC
 
 interface main@main:RuleAdding 7103
-  interface hash: 4c7454b1937a26728b208f7f206aabf0
+  interface hash: 9ce0cf1a2a0ac8f90be58619ae15aafd
   ABI hash: cca66e1dd477366bb9994e8a463d88e0
   export-list hash: 8a73bed7ef8134d87a15fe36415407a1
   orphan hash: 528d301fe16cdb7a480333b153cdb656
@@ -85,6 +85,7 @@ import  -/  base-4.8.2.0:Data.Ord 66127262fc269c8a61d7d87ba94bd4d2
 import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
 import  -/  base-4.8.2.0:Debug.Trace 6660afb6094d69397ea084364da8f950
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.Enum debc6de3086023a15993ab0cecffb90b
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:GHC.Real 1281efa9baf803bc7859d7efb89a38b3
