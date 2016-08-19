@@ -75,14 +75,17 @@ notTopLevelChains n =
     in
     filter (\x -> not $ x `elem` top) (Map.keys n)
 
---Given a chain, returns all ints in Go or GoReturn i.e. all chains that can be jumped to from that chain
-jumpedTo :: Chain -> [ChainId]
-jumpedTo [] = []
-jumpedTo (r:rx) = 
+--Given a chain, returns all ints in Go or GoReturn, along with accompanying criteria
+jumpedToWithCriteria :: Chain -> [([Criteria], ChainId)]
+jumpedToWithCriteria [] = []
+jumpedToWithCriteria (r:rx) = 
     let
-        goes = targetsToChainIds (targets r)
+        goes = map (\t -> (criteria r, t)) (targetsToChainIds (targets r))
     in
-    goes ++ jumpedTo rx
+    goes ++ jumpedToWithCriteria rx
+
+jumpedTo :: Chain -> [ChainId]
+jumpedTo t = map (snd) (jumpedToWithCriteria t)
 
 --Returns a list of all top level chains from which it is eventually possible to reach one of the chains with the given ids
 topLevelJumpingTo :: IdNameChain -> [ChainId] -> [ChainId]

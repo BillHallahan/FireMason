@@ -23,6 +23,8 @@ data SMT = SMTAnd [SMT]
            | SMTOr [SMT]
            | SMTString String
 
+           | DeclareConst String String
+
            | MatchesCriteria Int Int Int
            | MatchesRule Int Int Int
            | Reaches Int Int Int
@@ -31,11 +33,12 @@ data SMT = SMTAnd [SMT]
            | ReturnsFrom Int Int
            | RuleTarget Int Int
            | TerminatesWith Int
+           | TerminatesAt Int Int Int
            | TopLevelChain Int
 
 instance ToString SMT where
     toString (SMTAnd s) = "(and " ++ foldr (++) "" (map (toString) s) ++ ")"
-    toString (Assert s) = toString (SMTF1 "assert" s)
+    toString (Assert s) = toString (SMTF1 "assert" s) ++ "\n"
     toString (SMTEq e1 e2) = toString (SMTF2 "=" e1 e2)
     toString (SMTF1 n s) = "(" ++ n ++ " " ++ toString s ++ ")"
     toString (SMTF2 n s1 s2) = "(" ++ n  ++ " " ++ toString s1 ++ " " ++ toString s2 ++ ")"
@@ -48,6 +51,9 @@ instance ToString SMT where
     toString (SMTOrd EQ s1 s2) = toString (SMTF2 "=" s1 s2)
     toString (SMTOr s) = "(or " ++ foldr (++) "" (map (toString) s) ++ ")"
     toString (SMTString s) = s
+
+    toString (DeclareConst s1 s2) = toString (SMTF2 "declare-const" (SMTString s1) (SMTString s2))
+
     toString (MatchesCriteria p c r) = toString (SMTF3 "matches-criteria" (SMTInt p) (SMTInt c) (SMTInt r))
     toString (MatchesRule p c r) = toString (SMTF3 "matches-rule" (SMTInt p) (SMTInt c) (SMTInt r))
     toString (Reaches p c r) = toString (SMTF3 "reaches" (SMTInt p) (SMTInt c) (SMTInt r))
@@ -56,6 +62,7 @@ instance ToString SMT where
     toString (ReturnsFrom p c) = toString (SMTF2 "returns-from" (SMTInt p) (SMTInt c))
     toString (RuleTarget c r) = toString (SMTF2 "rule-target" (SMTInt c) (SMTInt r))
     toString (TerminatesWith p) = toString (SMTF1 "terminates-with" (SMTInt p))
+    toString (TerminatesAt p c r) = toString (SMTF3 "terminates-at" (SMTInt p) (SMTInt c) (SMTInt r))
     toString (TopLevelChain c) = toString (SMTF1 "top-level-chain" (SMTInt c))
 
 

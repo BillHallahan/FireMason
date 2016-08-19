@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-17 14:06:39.821639 UTC
+2016-08-19 01:40:12.489924 UTC
 
 interface main@main:SMT 7103
-  interface hash: f6dee2eb7bb6b1f4ea6e3cc43e7e8dd3
-  ABI hash: 09fb9034e5f4751795a0207185bf1956
-  export-list hash: 01bbe557b35de156d1ccb757d89fc506
+  interface hash: 5ca055811f3e22ea435c25c4c35f98fe
+  ABI hash: 16e9c5036ea198b0a66e26b5ca3fcaaa
+  export-list hash: 7e758af48778cb65b9c3c348b5ade829
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -17,7 +17,7 @@ exports:
   SMT.printSMTFunc1
   SMT.printSMTFunc2
   SMT.printSMTFunc3
-  SMT.SMT{SMT.Assert SMT.Implies SMT.MatchesCriteria SMT.MatchesRule SMT.Reaches SMT.ReachesEnd SMT.ReachesReturn SMT.ReturnsFrom SMT.RuleTarget SMT.SMTAnd SMT.SMTEq SMT.SMTF1 SMT.SMTF2 SMT.SMTF3 SMT.SMTInt SMT.SMTNot SMT.SMTOr SMT.SMTOrd SMT.SMTString SMT.TerminatesWith SMT.TopLevelChain}
+  SMT.SMT{SMT.Assert SMT.DeclareConst SMT.Implies SMT.MatchesCriteria SMT.MatchesRule SMT.Reaches SMT.ReachesEnd SMT.ReachesReturn SMT.ReturnsFrom SMT.RuleTarget SMT.SMTAnd SMT.SMTEq SMT.SMTF1 SMT.SMTF2 SMT.SMTF3 SMT.SMTInt SMT.SMTNot SMT.SMTOr SMT.SMTOrd SMT.SMTString SMT.TerminatesAt SMT.TerminatesWith SMT.TopLevelChain}
 module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0 binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
@@ -74,7 +74,7 @@ import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
   exports: 313502530516a346768ec1c819f1e9aa
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
 import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f26ed1712f18acd23f20c0cf04363f67
-79ad729369808ae8f7626ed0785b6be5
+e5704934fa551b6da6593a3e2b988ca2
   $fToStringSMT :: Data.String.ToString.ToString SMT.SMT
   DFunId[0]
   {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
@@ -82,10 +82,10 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
                 SMT.$fToStringSMT_$ctoString
                   `cast`
                 (Sym (Data.String.ToString.NTCo:ToString[0] <SMT.SMT>_N)) -}
-79ad729369808ae8f7626ed0785b6be5
+e5704934fa551b6da6593a3e2b988ca2
   $fToStringSMT_$ctoString :: SMT.SMT -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U> -}
-79ad729369808ae8f7626ed0785b6be5
+e5704934fa551b6da6593a3e2b988ca2
   data SMT
     = SMTAnd [SMT.SMT]
     | Assert SMT.SMT
@@ -99,6 +99,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
     | SMTOrd GHC.Types.Ordering SMT.SMT SMT.SMT
     | SMTOr [SMT.SMT]
     | SMTString GHC.Base.String
+    | DeclareConst GHC.Base.String GHC.Base.String
     | MatchesCriteria GHC.Types.Int GHC.Types.Int GHC.Types.Int
     | MatchesRule GHC.Types.Int GHC.Types.Int GHC.Types.Int
     | Reaches GHC.Types.Int GHC.Types.Int GHC.Types.Int
@@ -107,6 +108,7 @@ import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f
     | ReturnsFrom GHC.Types.Int GHC.Types.Int
     | RuleTarget GHC.Types.Int GHC.Types.Int
     | TerminatesWith GHC.Types.Int
+    | TerminatesAt GHC.Types.Int GHC.Types.Int GHC.Types.Int
     | TopLevelChain GHC.Types.Int
 d57fc639a6cff6df30d4f61575e23cb9
   callSMTSolver ::

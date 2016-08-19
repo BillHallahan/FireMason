@@ -19,7 +19,8 @@ import SMT
 convertChainsCheckSMT :: IdNameChain -> String -> String -> Int -> String -> String
 convertChainsCheckSMT n header replacePCR packetNum check = 
     let
-        chainlen = foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList n)
+        chainlen = (foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList n)) ++
+            (foldl (++) "" $ map (\i -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") "0") (filter ((flip notElem) (Map.keys n)) [0..maxId n]))
 
         chainSetup = foldr (++) "" $ concat ((map (\(i, (_, c)) -> (map (\p -> setupChain p i (length c)) [0, 1])) (Map.toList n)))
 
@@ -49,7 +50,7 @@ convertChainsCheckSMT n header replacePCR packetNum check =
     notTlPolicy ++ "\n" ++ 
     (onlyOneTopLevel 0 (topLevelChains n)) ++ (onlyOneTopLevel 1 (topLevelChains n)) ++ "\n" ++
     notTopLevel ++ "\n" ++
-    printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (length n)) ++ "\n" ++
+    printSMTFunc1 "assert" (printSMTFunc2 "=" "num-of-chains" (maxId n + 1)) ++ "\n" ++
     prereqsString ++ "\n" ++
     pathString ++ "\n" ++
     (foldr (++) "" repPCR) ++ "\n" ++

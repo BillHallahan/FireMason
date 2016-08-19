@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-18 05:14:22.285106 UTC
+2016-08-18 21:05:23.881701 UTC
 
 interface main@main:NameIdChain 7103
-  interface hash: 3112305b329bc277c53259b4be181475
-  ABI hash: 7a2f6538c9eb8e043e9d6954cf49e168
-  export-list hash: fc33992b6e6dd5da0a072bbc471e7160
+  interface hash: 4929027806038c61880c0f67eb8538d6
+  ABI hash: b39995c094355a47bdfc0118beddb685
+  export-list hash: 2f25f518278efa55ee9e8b9dd6b2e92e
   orphan hash: 196feb39ba4ecdf09405732513da6af7
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -17,6 +17,7 @@ exports:
   NameIdChain.increaseIndexesChain
   NameIdChain.increaseIndexesTarget
   NameIdChain.jumpedTo
+  NameIdChain.jumpedToWithCriteria
   NameIdChain.labels
   NameIdChain.maxId
   NameIdChain.notTopLevelChains
@@ -84,6 +85,7 @@ import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
   exports: 313502530516a346768ec1c819f1e9aa
   Chain e29fec291a6abd0b92f253c858f5c2c2
   ChainId c884b4bd8354c5f5ad5e611c0e6a2eb5
+  Criteria 605b90b34d99bcf3227a69e454b38e17
   Go 4c5408c41de596e0dc952fb3fcb57393
   GoReturn 108205ab09197687b0a03c823482edba
   GoTo 43a2108f77812364ff6f78a5370525f7
@@ -313,8 +315,28 @@ c259ecc3097b57f6bf5849a08c1d7860
                    Types.Go c r -> Types.Go (GHC.Num.$fNumInt_$c+ c i) r
                    Types.GoReturn c r
                    -> Types.GoReturn (GHC.Num.$fNumInt_$c+ c i) r }) -}
-27e16ad3b5407f8b971a6c988c0ee101
+ea9de6cb1b4be98f872ca5c77c7a580c
   jumpedTo :: Types.Chain -> [Types.ChainId]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ t :: Types.Chain ->
+                 GHC.Base.build
+                   @ GHC.Types.Int
+                   (\ @ b1 c :: GHC.Types.Int -> b1 -> b1[OneShot] n :: b1[OneShot] ->
+                    GHC.Base.foldr
+                      @ ([Types.Criteria], Types.ChainId)
+                      @ b1
+                      (GHC.Base.mapFB
+                         @ GHC.Types.Int
+                         @ b1
+                         @ ([Types.Criteria], Types.ChainId)
+                         c
+                         (Data.Tuple.snd @ [Types.Criteria] @ Types.ChainId))
+                      n
+                      (NameIdChain.jumpedToWithCriteria t))) -}
+a3787d79700c9205d262c7a430eae02d
+  jumpedToWithCriteria ::
+    Types.Chain -> [([Types.Criteria], Types.ChainId)]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 2b70ed7dc08629e9817ce2decf6111af
   labels :: Types.IdNameChain -> [Types.Label]

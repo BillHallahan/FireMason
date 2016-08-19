@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-18 09:04:02.069036 UTC
+2016-08-19 03:41:38.500976 UTC
 
 interface main@main:RuleAdding 7103
-  interface hash: eb5e4e0df100ed5b4197e290edd51943
-  ABI hash: ee00ada221e377eb23c44f83155ce5e7
-  export-list hash: 80cb4d9b02a33eb2dc0cadc0541b0f5b
-  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  interface hash: 4c7454b1937a26728b208f7f206aabf0
+  ABI hash: cca66e1dd477366bb9994e8a463d88e0
+  export-list hash: 8a73bed7ef8134d87a15fe36415407a1
+  orphan hash: 528d301fe16cdb7a480333b153cdb656
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
@@ -82,6 +82,7 @@ import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
 import  -/  base-4.8.2.0:Data.OldList d8fd80b0e14aa085ce6219cd89dad356
 import  -/  base-4.8.2.0:Data.Ord 66127262fc269c8a61d7d87ba94bd4d2
+import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
 import  -/  base-4.8.2.0:Debug.Trace 6660afb6094d69397ea084364da8f950
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
@@ -94,24 +95,35 @@ import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  ChainsToSMT2 c03da097e32e58a911ae81c2a37d2f30
+import  -/  ChainsToSMT2 d481d373ad5135ef0f83d35baec2e821
   exports: b7cf436bf12eb9dc349e33b8eb5a94ea
   convertChainsCheckSMT 47def2195f3768d8d5b5343e89716939
-  toSMT 3590199aa072ec22adf883f3a32f4696
-import  -/  NameIdChain 7a2f6538c9eb8e043e9d6954cf49e168
-  exports: fc33992b6e6dd5da0a072bbc471e7160
+  toSMT dccac9e1030ecd7ff85ac44c43a16a5f
+import  -/  NameIdChain b39995c094355a47bdfc0118beddb685
+  exports: 2f25f518278efa55ee9e8b9dd6b2e92e
   idsWithName 3d73b76d115da9c621b476f5ecece785
   increaseIndexes c259ecc3097b57f6bf5849a08c1d7860
+  jumpedToWithCriteria a3787d79700c9205d262c7a430eae02d
   labels 2b70ed7dc08629e9817ce2decf6111af
   maxId 41e70e8283c3e5c90d465112e4112cb9
   reduceReferenced e13eb648ed5eb79fe425dc6b220bfc79
   topLevelJumpingTo 42dba3ffa6aae4190253d50f563a95e0
-import  -/  SMT 09fb9034e5f4751795a0207185bf1956
-  exports: 01bbe557b35de156d1ccb757d89fc506
+import  -/  SMT 16e9c5036ea198b0a66e26b5ca3fcaaa
+  exports: 7e758af48778cb65b9c3c348b5ade829
+  Assert f9c06f165f0d7078827b0a6417121cb2
+  DeclareConst 4c8f0e4ca1531c24afc6cba11283e159
+  Implies 4adbdffb6fb0123c33da22db801c1139
+  Reaches d1d55a7318c099a8e655eaa3e1417a6c
+  SMTAnd caa63e731babf5467d6d1d0ae5c9efdf
+  SMTEq 1685fc83606d403b978092753dd64e73
+  SMTF2 282c7bcc3b94723cfdc6ab918cddda80
+  SMTF3 cfd43abffa53055e90a5aa643c11c215
+  SMTInt 3a9060e7b3eb28b39a6a5e757bf49b8c
+  SMTNot 2973b8256f925b6023af813438298509
+  SMTOr 7e788ee7940765d59282f24c364fe35b
+  SMTString 2318a10c0f240f1a156fc3c06b9f5e29
+  TerminatesWith 5344f7eb693271ff20162f14d2048228
   checkSat 952aca761848002e809fc3d450c6083f
-  printSMTFunc1 0b95f0a308bdcb4450bc507db67696d3
-  printSMTFunc2 f7e5b78c80d51a7155160c69c65f8fb5
-  printSMTFunc3 8eb246434ddf33a48f3f2f136b198c05
 import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
   exports: 313502530516a346768ec1c819f1e9aa
   Chain e29fec291a6abd0b92f253c858f5c2c2
@@ -131,6 +143,119 @@ import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
   label 6d1112a17350d26c3b7cc905d8b1623a
   targets 73ffac4abc5369d3a9e89359a701a3b6
 import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f26ed1712f18acd23f20c0cf04363f67
+d15d3bc3ae8b87c74c86bb932e0725ef
+  $s$fShow(,) :: GHC.Show.Show ([GHC.Types.Char], [Types.Rule])
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ ([GHC.Types.Char], [Types.Rule])
+                  (GHC.Show.$fShow(,)_$cshowsPrec
+                     @ [GHC.Types.Char]
+                     @ [Types.Rule]
+                     RuleAdding.$s$fShow(,)7
+                     RuleAdding.$s$fShow(,)1)
+                  RuleAdding.$s$fShow(,)_$s$fShow(,)_$cshow
+                  RuleAdding.$s$fShow(,)_$s$fShow(,)_$cshowList -}
+9517fd092589842554e37c73e9afdef0
+  $s$fShow(,)1 :: GHC.Show.Show [Types.Rule]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                RuleAdding.$s$fShow(,)_$s$fShow[] -}
+d7821b7df5f29d5b0be72eab245c82a1
+  $s$fShow(,)2 :: [[Types.GenRule Types.Criteria]] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [[Types.GenRule Types.Criteria]]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ [Types.GenRule Types.Criteria]
+                   RuleAdding.$s$fShow(,)3
+                   eta
+                   eta1) -}
+7d6f014eac2da89666dbbbbb59541b8f
+  $s$fShow(,)3 :: [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.Criteria)
+                   RuleAdding.$s$fShow(,)4
+                   eta
+                   eta1) -}
+c6a6b524a40fe12c4bd58d8680c8a74c
+  $s$fShow(,)4 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
+                 case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec2
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5 }) -}
+8b7d7e44d0483a7d4eeebdbf8e90878d
+  $s$fShow(,)5 :: [Types.GenRule Types.Criteria] -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ x :: [Types.GenRule Types.Criteria] ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.Criteria)
+                   RuleAdding.$s$fShow(,)4
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+91cad1f8fa6f3194c4f3a4e673118109
+  $s$fShow(,)6 ::
+    GHC.Types.Int -> [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ ds :: GHC.Types.Int
+                   eta :: [Types.GenRule Types.Criteria]
+                   eta1 :: GHC.Base.String ->
+                 RuleAdding.$s$fShow(,)3 eta eta1) -}
+05e3a7e7209b4f541e94b779965e3ce5
+  $s$fShow(,)7 :: GHC.Show.Show [GHC.Types.Char]
+  {- Strictness: m,
+     Unfolding: InlineRule (0, True, True)
+                GHC.Show.$fShow[]_$s$fShow[]1 -}
+1e04c460e616a0cac814cba3aaa399cf
+  $s$fShow(,)_$s$fShow(,)_$cshow ::
+    ([GHC.Types.Char], [Types.Rule]) -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U,U)>m2,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: ([GHC.Types.Char], [Types.Rule]) ->
+                 GHC.Show.$fShow(,)_$cshowsPrec
+                   @ [GHC.Types.Char]
+                   @ [Types.Rule]
+                   RuleAdding.$s$fShow(,)7
+                   RuleAdding.$s$fShow(,)1
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+482e22e47a94a99b798cdc89f6426e23
+  $s$fShow(,)_$s$fShow(,)_$cshowList ::
+    [([GHC.Types.Char], [Types.Rule])] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ eta :: [([GHC.Types.Char], [Types.Rule])]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ ([GHC.Types.Char], [Types.Rule])
+                   (GHC.Show.$fShow(,)_$cshowsPrec
+                      @ [GHC.Types.Char]
+                      @ [Types.Rule]
+                      RuleAdding.$s$fShow(,)7
+                      RuleAdding.$s$fShow(,)1
+                      GHC.Show.shows18)
+                   eta
+                   eta1) -}
+8f51c88bae2ae7f46d8b121b8f124d37
+  $s$fShow(,)_$s$fShow[] ::
+    GHC.Show.Show [Types.GenRule Types.Criteria]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ [Types.GenRule Types.Criteria]
+                  RuleAdding.$s$fShow(,)6
+                  RuleAdding.$s$fShow(,)5
+                  RuleAdding.$s$fShow(,)2 -}
 82419da5d2766b39041af172160ea385
   $w$sgo10 ::
     GHC.Prim.Int#
@@ -188,43 +313,6 @@ e6d8a6a803ec11c41c08fbdfc941e328
                         @ (Types.GenRule Types.Criteria)
                         (GHC.Types.[] @ Types.Rule)
                         (GHC.Types.: @ Types.Rule w w1) }) -}
-7e17f1b39af60973300631d4272a4f7b
-  $wfindPointCut ::
-    Types.Rule
-    -> Types.ChainId
-    -> Types.IdNameChain
-    -> (# Types.ChainId, GHC.Types.Int #)
-  {- Arity: 3, Strictness: <L,U(U,U,A)><L,U(U)><L,1*U>, Inline: [0],
-     Unfolding: (\ w :: Types.Rule
-                   w1 :: Types.ChainId
-                   w2 :: Types.IdNameChain ->
-                 (# w1,
-                    case w1 of ww { GHC.Types.I# ww1 ->
-                    case RuleAdding.$wpoly_go10
-                           @ (GHC.Base.String, Types.Chain)
-                           ww1
-                           w2 of wild {
-                      GHC.Base.Nothing
-                      -> case Data.Maybe.fromJust1 ret_ty GHC.Types.Int of {}
-                      GHC.Base.Just x
-                      -> case x of wild1 { (,) ds c ->
-                         case GHC.Base.map
-                                @ (Types.GenRule Types.Criteria)
-                                @ GHC.Types.Int
-                                (RuleAdding.scoreRules w)
-                                c of wild2 {
-                           [] -> RuleAdding.findPointCut1
-                           : ds1 ds2
-                           -> case Data.OldList.findIndex
-                                     @ GHC.Types.Int
-                                     (GHC.Classes.eqInt
-                                        (GHC.List.strictMaximum
-                                           @ GHC.Types.Int
-                                           GHC.Classes.$fOrdInt
-                                           wild2))
-                                     wild2 of wild3 {
-                                GHC.Base.Nothing -> Data.Maybe.fromJust1 @ GHC.Types.Int
-                                GHC.Base.Just x1 -> x1 } } } } } #)) -}
 b8b3db7f5b6fd2abc9ea7476910ef55b
   $wpoly_go10 ::
     GHC.Prim.Int#
@@ -250,10 +338,12 @@ a44709392ddc4f69880e71832abd85bd
                 (\ w :: Types.Rule w1 :: Types.Chain w2 :: GHC.Types.Int ->
                  case w2 of ww { GHC.Types.I# ww1 ->
                  RuleAdding.$waddRuleToChainAtPos w w1 ww1 }) -}
-6a4aa21a8e12f3f52b605620325f780e
+b098e00beb52f48f64964a07d70b1968
   findBestPointCut ::
     Types.Rule
-    -> Types.ChainId -> Types.IdNameChain -> GHC.Types.IO GHC.Types.Int
+    -> Types.ChainId
+    -> Types.IdNameChain
+    -> GHC.Types.IO (Types.ChainId, GHC.Types.Int)
   {- Arity: 4, Strictness: <L,U(U,U,U(U))><L,U(U)><L,U>,
      Unfolding: InlineRule (0, True, True)
                 RuleAdding.findBestPointCut1
@@ -261,14 +351,15 @@ a44709392ddc4f69880e71832abd85bd
                 (<Types.Rule>_R
                  ->_R <Types.ChainId>_R
                  ->_R <Types.IdNameChain>_R
-                 ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Int>_R)) -}
-b0dff7b276e916acd8275fbe09c30794
+                 ->_R Sym (GHC.Types.NTCo:IO[0]
+                               <(Types.ChainId, GHC.Types.Int)>_R)) -}
+115f6ed490911ee3517223a17b3a1751
   findBestPointCut' ::
     Types.Rule
     -> Types.ChainId
     -> Types.IdNameChain
     -> Types.IdNameChain
-    -> GHC.Types.IO GHC.Types.Int
+    -> GHC.Types.IO (Types.ChainId, GHC.Types.Int)
   {- Arity: 5, Strictness: <L,U(U,U,U(U))><L,U(U)><L,U><L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
                 RuleAdding.findBestPointCut2
@@ -277,14 +368,16 @@ b0dff7b276e916acd8275fbe09c30794
                  ->_R <Types.ChainId>_R
                  ->_R <Types.IdNameChain>_R
                  ->_R <Types.IdNameChain>_R
-                 ->_R Sym (GHC.Types.NTCo:IO[0] <GHC.Types.Int>_R)) -}
-9aa53891c8b890a249a2f1d5197cbd57
+                 ->_R Sym (GHC.Types.NTCo:IO[0]
+                               <(Types.ChainId, GHC.Types.Int)>_R)) -}
+384767e555b0ccd6833090c9f78e6e1e
   findBestPointCut1 ::
     Types.Rule
     -> Types.ChainId
     -> Types.IdNameChain
     -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Int #)
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          (Types.ChainId, GHC.Types.Int) #)
   {- Arity: 4, Strictness: <L,U(U,U,U(U))><L,U(U)><L,U>,
      Unfolding: InlineRule (3, True, False)
                 (\ r :: Types.Rule
@@ -292,30 +385,23 @@ b0dff7b276e916acd8275fbe09c30794
                    n :: Types.IdNameChain
                    eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
                  RuleAdding.findBestPointCut2 r i n n eta) -}
-bd3739e3833d39a66f4b548106fd7b02
+671eb3b368a5606b5b61fa3db46048de
   findBestPointCut2 ::
     Types.Rule
     -> Types.ChainId
     -> Types.IdNameChain
     -> Types.IdNameChain
     -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Int #)
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          (Types.ChainId, GHC.Types.Int) #)
   {- Arity: 5, Strictness: <L,U(U,U,U(U))><L,U(U)><L,U><L,U><L,U> -}
-43b8b609cd385576d71f489ed00d99cc
+0ab6c53669325bde24d471a67c98dea9
   findPointCut ::
     Types.Rule
     -> Types.ChainId
     -> Types.IdNameChain
-    -> (Types.ChainId, GHC.Types.Int)
-  {- Arity: 3, Strictness: <L,U(U,U,A)><L,U(U)><L,1*U>m,
-     Inline: INLINE[0],
-     Unfolding: InlineRule (3, True, False)
-                (\ w :: Types.Rule w1 :: Types.ChainId w2 :: Types.IdNameChain ->
-                 case RuleAdding.$wfindPointCut w w1 w2 of ww { (#,#) ww1 ww2 ->
-                 (ww1, ww2) }) -}
-93aa8eca446235fa4fa16c54bcfedf0d
-  findPointCut1 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0) -}
+    -> (Types.ChainId, GHC.Types.Int, GHC.Types.Int)
+  {- Arity: 3, Strictness: <L,U(U,U,U(U))><L,U(U)><L,U> -}
 fd53052540c5d56fc94054d5a811976c
   instructionsToAddAtPos ::
     [Types.Instruction]
@@ -375,6 +461,34 @@ d7555902c10d47e502c469b89ecff0b0
                 (\ w :: [Types.Target] w1 :: [Types.Target] ->
                  case RuleAdding.$wscoreTargets w w1 of ww { DEFAULT ->
                  GHC.Types.I# ww }) -}
+"SPEC/RuleAdding $fShow(,) @ [Char] @ [Rule]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                          [GHC.Types.Char]
+                                                              $dShow1 :: GHC.Show.Show [Types.Rule]
+  GHC.Show.$fShow(,) @ [GHC.Types.Char] @ [Types.Rule] $dShow $dShow1
+  = RuleAdding.$s$fShow(,)
+"SPEC/RuleAdding $fShow(,)_$cshow @ [Char] @ [Rule]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                 [GHC.Types.Char]
+                                                                     $dShow1 :: GHC.Show.Show
+                                                                                  [Types.Rule]
+  GHC.Show.$fShow(,)_$cshow @ [GHC.Types.Char]
+                            @ [Types.Rule]
+                            $dShow
+                            $dShow1
+  = RuleAdding.$s$fShow(,)_$s$fShow(,)_$cshow
+"SPEC/RuleAdding $fShow(,)_$cshowList @ [Char] @ [Rule]" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                                     [GHC.Types.Char]
+                                                                         $dShow1 :: GHC.Show.Show
+                                                                                      [Types.Rule]
+  GHC.Show.$fShow(,)_$cshowList @ [GHC.Types.Char]
+                                @ [Types.Rule]
+                                $dShow
+                                $dShow1
+  = RuleAdding.$s$fShow(,)_$s$fShow(,)_$cshowList
+"SPEC/RuleAdding $fShow[] @ (GenRule Criteria)" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                            (Types.GenRule
+                                                                               Types.Criteria)
+  GHC.Show.$fShow[] @ (Types.GenRule Types.Criteria) $dShow
+  = RuleAdding.$s$fShow(,)_$s$fShow[]
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

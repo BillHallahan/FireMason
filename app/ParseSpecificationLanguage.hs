@@ -12,7 +12,7 @@ import Types
 
 lexer :: String -> [String]
 lexer s
-    | s == "" = []  
+    | all isSpace s = []  
     | 'N':'O':'T':xs <- afterSpaces = "NOT":lexer xs
     | '=':'>':xs <- afterSpaces = "=>":lexer xs
     | '=':xs <- afterSpaces = "=":lexer xs
@@ -21,7 +21,7 @@ lexer s
     | ':':xs <- afterSpaces = ":":lexer xs
     | ',':xs <- afterSpaces = ",":lexer xs
     | length nextTerm >= 1 = nextTerm:lexer afterTerm
-    | otherwise = error $ "Unrecognized pattern " ++ afterTerm
+    | otherwise = error $ "Unrecognized pattern " ++ s ++ afterTerm
     where
         afterSpaces = dropWhile isSpace s
         (nextTerm, afterTerm) = span ((flip elem) ('-':'_':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
