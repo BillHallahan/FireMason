@@ -91,6 +91,6 @@ instance ToIptables Target where
     convert (DROP) n = "-j DROP"
     convert (Go i 0) n = 
         let
-            goTo = Map.lookup i n
+            goTo = lookupName n i
         in
-        if isJust goTo then "-j " ++ (fst (fromJust (goTo))) else error "Unrecognized chain when converting to iptables."
+        if isJust goTo then "-j " ++ (fromJust (goTo)) else error "Unrecognized chain when converting to iptables."

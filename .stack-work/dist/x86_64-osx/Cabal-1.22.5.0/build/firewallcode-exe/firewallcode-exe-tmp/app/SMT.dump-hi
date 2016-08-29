@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-19 01:40:12.489924 UTC
+2016-08-29 20:11:39.891375 UTC
 
 interface main@main:SMT 7103
-  interface hash: 5ca055811f3e22ea435c25c4c35f98fe
-  ABI hash: 16e9c5036ea198b0a66e26b5ca3fcaaa
-  export-list hash: 7e758af48778cb65b9c3c348b5ade829
+  interface hash: 873134f24351581aeed9a8515542eeb9
+  ABI hash: c41b7464359db2df4f4b070fa3ed3edc
+  export-list hash: f0323f17d5b754a19fed6a0e8267a257
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -26,14 +26,17 @@ package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
                       process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
                       semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
                       text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
                       tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
                       unix-2.7.1.0@unix_KZL8h98IqDM57kQSPo1mKx
                       unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
                       utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
+                      z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
          binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
          bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
@@ -41,6 +44,7 @@ orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
          main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+         transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
 family instance modules: base-4.8.2.0:Control.Applicative
                          base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
                          base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
@@ -70,10 +74,11 @@ import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  base-4.8.2.0:System.IO.Unsafe fc45e72b9d9eb2c797a8c81f5821fcd0
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
-  exports: 313502530516a346768ec1c819f1e9aa
+import  -/  Types 8f9f9ef24d7a230d4a5552d2b301ad89
+  exports: f5f85a5f38b612d4f86997d2d16e8581
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
 import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f26ed1712f18acd23f20c0cf04363f67
+import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9c2736322
 e5704934fa551b6da6593a3e2b988ca2
   $fToStringSMT :: Data.String.ToString.ToString SMT.SMT
   DFunId[0]

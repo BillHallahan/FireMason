@@ -22,11 +22,9 @@ import SMT
 
 import IptablesTypes
 
-
 import NameIdChain--temp
 
 main = do
-
     initializeTime
     start <- getTime
 
@@ -39,7 +37,7 @@ main = do
 
     let converted' = Map.toList . convertScript $ contents
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
-    let pathSimp = pathSimplification converted
+    let pathSimp = pathSimplification2' converted
 
     changes <- readFile changesFileName
 

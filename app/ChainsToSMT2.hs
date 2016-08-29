@@ -19,10 +19,10 @@ import SMT
 convertChainsCheckSMT :: IdNameChain -> String -> String -> Int -> String -> String
 convertChainsCheckSMT n header replacePCR packetNum check = 
     let
-        chainlen = (foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (Map.toList n)) ++
-            (foldl (++) "" $ map (\i -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") "0") (filter ((flip notElem) (Map.keys n)) [0..maxId n]))
+        chainlen = (foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (toList' n)) ++
+            (foldl (++) "" $ map (\i -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") "0") (filter ((flip notElem) (validIds n)) [0..maxId n]))
 
-        chainSetup = foldr (++) "" $ concat ((map (\(i, (_, c)) -> (map (\p -> setupChain p i (length c)) [0, 1])) (Map.toList n)))
+        chainSetup = foldr (++) "" $ concat ((map (\(i, (_, c)) -> (map (\p -> setupChain p i (length c)) [0, 1])) (toList' n)))
 
         topLevel = foldr (++) "" $ map (\c -> toString (Assert (TopLevelChain c))) (topLevelChains n)
         notTopLevel = foldr (++) "" $ map (\c -> toString (Assert (SMTNot (TopLevelChain c)))) (notTopLevelChains n)
@@ -30,16 +30,16 @@ convertChainsCheckSMT n header replacePCR packetNum check =
         tlPolicy = foldr (++) "" $ map (\c -> topLevelPolicy 0 c) (topLevelChains n) ++ map (\c -> topLevelPolicy 1 c) (topLevelChains n)
         notTlPolicy = foldr (++) "" $ map (\c -> notTopLevelPolicy 0 c) (notTopLevelChains n) ++ map (\c -> notTopLevelPolicy 1 c) (notTopLevelChains n)
 
-        prereqs = foldr (++) [] $ map toSMTPrereq $ map (\(_, c) -> c) (Map.elems n)
+        prereqs = foldr (++) [] $ map toSMTPrereq $ map (\(_, c) -> c) (namesChains n)
         prereqsString = foldr (\y acc -> y ++ "\n" ++ acc ) "" $ nub prereqs
 
-        path = map (\(i, (_, x)) -> toSMTPath x i 0) (Map.toList n)
+        path = map (\(i, (_, x)) -> toSMTPath x i 0) (toList' n)
         pathString = foldr (\x acc -> x ++ "\n" ++ acc ) "" path
 
-        converted = map (\(i, (_, x)) -> toSMT x i 0) (Map.toList n)
+        converted = map (\(i, (_, x)) -> toSMT x i 0) (toList' n)
         convertedString = foldr (\x acc -> x ++ "\n" ++ acc ) "" converted
 
-        repPCR = map (\(i, (_, x)) -> replaceAllCombinations replacePCR [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", [show i]), ("{r}", stringNumList 0 (length x))]) (Map.toList n)
+        repPCR = map (\(i, (_, x)) -> replaceAllCombinations replacePCR [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", [show i]), ("{r}", stringNumList 0 (length x))]) (toList' n)
         --repPC = replaceAllCombinations replacePC [("{p}", stringNumList 0 (packetNum - 1)), ("{c}", stringNumList 0 (length n - 1))]
     in
     header ++ "\n" ++
@@ -122,35 +122,35 @@ instance ToSMT [Criteria] where
     toSMT (c:cs) ch r = printSMTFunc2 "and" (toSMT c ch r) (toSMT cs ch r)
 
 instance ToSMT Criteria where
-    toSMTPrereq (BoolFlag f) = ["(declare-fun " ++ (flagToString f) ++ " () Bool)"]
+    toSMTPrereq (BoolFlag f) = ["(declare-fun " ++ (flagToString f) ++ " (Int) Bool)"]
     toSMTPrereq (Not c) = toSMTPrereq c
     toSMTPrereq (Port e _) = 
         let
             s = if e == Source then "source" else "destination"
         in
-                             ["(declare-fun " ++ s ++ "_port () Int)",
-                              "(assert (<= 0 " ++ s ++ "_port))",
-                              "(assert (<= " ++ s ++ "_port 65535))"]
-    toSMTPrereq (Protocol _) = ["(declare-fun protocol () Int)",
-                                "(assert (<= 0 protocol))",
-                                "(assert (<= protocol 255))"]
+                             ["(declare-fun " ++ s ++ "_port (Int) Int)",
+                              "(assert (<= 0 (" ++ s ++ "_port 0)))",
+                              "(assert (<= (" ++ s ++ "_port 0) 65535))"]
+    toSMTPrereq (Protocol _) = ["(declare-fun protocol (Int) Int)",
+                                "(assert (<= 0 (protocol 0)))",
+                                "(assert (<= (protocol 0) 255))"]
     toSMTPrereq (PropVariableCriteria i) = ["(declare-fun v" ++ show i ++ " (Int) Bool)"]
     toSMTPrereq _ = []
 
-    toSMT (BoolFlag f) _ _ = flagToString f
+    toSMT (BoolFlag f) _ _ = "(" ++ flagToString f ++ " 0)"
     toSMT (Not c) ch r = printSMTFunc1 "not" (toSMT c ch r)
     toSMT (Port e (Left i)) _ _ =
         let
             s = if e == Source then "source" else "destination"
         in
-        "(= " ++ s ++ "_port " ++ show i ++ ")"
+        "(= (" ++ s ++ "_port 0)" ++ show i ++ ")"
     toSMT (Port e (Right (i, j))) _ _=
         let
             s = if e == Source then "source" else "destination"
         in
-        "(and (<= " ++ show i ++ " " ++ s ++ "_port " ++ ") (<= " ++ s ++ "_port " ++ show j ++ "))"
+        "(and (<= " ++ show i ++ " (" ++ s ++ "_port 0)) (<= (" ++ s ++ "_port 0)" ++ show j ++ "))"
     toSMT (PropVariableCriteria i) _ _ = "(v" ++ show i ++ " p)"
-    toSMT (Protocol i) _ _ = "(= protocol " ++ show i ++ ")"
+    toSMT (Protocol i) _ _ = "(= (protocol 0)" ++ show i ++ ")"
     toSMT x _ _ = error $ "unrecognized criteria " ++ show x
 
 flagToString :: Flag -> String

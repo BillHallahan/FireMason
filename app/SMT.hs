@@ -5,6 +5,7 @@ import System.IO.Unsafe
 import System.Process
 import System.Exit
 import Data.String.ToString
+import Z3.Monad
 
 import Types
 

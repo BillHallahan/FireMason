@@ -101,10 +101,7 @@ targetsToChainIds (t:tx) = targetsToChainIds tx
 --                            , chain :: Chain
 --                            } deriving (Eq, Show)
 
-type IdNameChain = Map.Map ChainId (String, Chain)
 
-nameToIdListMap :: String -> IdNameChain -> [Int]
-nameToIdListMap s l = Map.keys . Map.filter (\ (n, _) -> n == s) $ l
 
 type InputInstruction = SynthInstruction InputRule
 type Instruction = SynthInstruction Rule

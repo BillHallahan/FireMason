@@ -3,6 +3,5 @@ extra-package-dbs: []
 packages:
 - '.'
 extra-deps:
-- ip-0.8.6
-- text-1.2.2.1
+- z3-4.1.0
 resolver: lts-6.5

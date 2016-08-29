@@ -51,7 +51,7 @@ Preprocessing executable 'criterion' for criterion-1.1.1.0...
 [3 of 3] Compiling Main             ( app/App.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/criterion/criterion-tmp/Main.o )
 Linking .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/criterion/criterion ...
 Installing library in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/criterion-1.1.1.0-GfL1mOGQgTU3WeNwqBDBn7
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/criterion-1.1.1.0-GfL1mOGQgTU3WeNwqBDBn7
 Installing executable(s) in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/bin
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.5/7.10.3/bin
 Registering criterion-1.1.1.0...

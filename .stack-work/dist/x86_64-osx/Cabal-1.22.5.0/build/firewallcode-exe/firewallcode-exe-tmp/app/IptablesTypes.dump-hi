@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-17 21:38:54.310981 UTC
+2016-08-29 20:11:40.040972 UTC
 
 interface main@main:IptablesTypes 7103
-  interface hash: 8921b5fafc4575cc1279ac4485f2275b
-  ABI hash: 0831eb350e3c52dad1a4fd399b0fd654
+  interface hash: 4750e3552d31478e5f4cb632aeb5b7a7
+  ABI hash: 6f5cc46ae5681d93494068694ab56fa8
   export-list hash: 0bdbf9c518841c1aa5e99aa1075f159b
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -59,9 +59,9 @@ import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  Types 424b33a5425ba6d35e60eebc847a79c3
-  exports: 313502530516a346768ec1c819f1e9aa
-  InputRule a16fb285644fe1cfce7725a3e2d545aa
+import  -/  Types 8f9f9ef24d7a230d4a5552d2b301ad89
+  exports: f5f85a5f38b612d4f86997d2d16e8581
+  InputRule 548f61072f1710c958131698bb5af20d
 4e2ae75ee3b477dcd91b4d0d5a242abc
   $fEqCommand :: GHC.Classes.Eq IptablesTypes.Command
   DFunId[0]
@@ -382,7 +382,7 @@ c485ee460c14864531e45c09d9ae526b
                                 IptablesTypes.$fShowCommand5
                                 (g (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x1))) } }
                    IptablesTypes.None -> IptablesTypes.$fShowCommand3 }) -}
-1541083653c2348d444e225c9c06c526
+3dacd5a3beaba7a16db94f325ec93995
   $fShowLine :: GHC.Show.Show IptablesTypes.Line
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -391,7 +391,7 @@ c485ee460c14864531e45c09d9ae526b
                   IptablesTypes.$fShowLine_$cshowsPrec
                   IptablesTypes.$fShowLine_$cshow
                   IptablesTypes.$fShowLine_$cshowList -}
-1541083653c2348d444e225c9c06c526
+3dacd5a3beaba7a16db94f325ec93995
   $fShowLine1 :: IptablesTypes.Line -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (\ w :: IptablesTypes.Line ->
@@ -418,7 +418,7 @@ c8ee6056e236ead0ba01cc9efeba8b33
 e4e8c9b56dd8bd1f44758816d15eafa6
   $fShowLine8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Line {"#) -}
-1541083653c2348d444e225c9c06c526
+3dacd5a3beaba7a16db94f325ec93995
   $fShowLine_$cshow :: IptablesTypes.Line -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(U,1*U,1*U(U,U,U(U)),U(U))>,
      Unfolding: InlineRule (1, True, False)
@@ -427,13 +427,13 @@ e4e8c9b56dd8bd1f44758816d15eafa6
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-1541083653c2348d444e225c9c06c526
+3dacd5a3beaba7a16db94f325ec93995
   $fShowLine_$cshowList :: [IptablesTypes.Line] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ IptablesTypes.Line
                    IptablesTypes.$fShowLine1) -}
-1541083653c2348d444e225c9c06c526
+3dacd5a3beaba7a16db94f325ec93995
   $fShowLine_$cshowsPrec ::
     GHC.Types.Int -> IptablesTypes.Line -> GHC.Show.ShowS
   {- Arity: 2,
@@ -444,7 +444,7 @@ e4e8c9b56dd8bd1f44758816d15eafa6
                  case w of ww { GHC.Types.I# ww1 ->
                  case w1 of ww2 { IptablesTypes.Line ww3 ww4 ww5 ww6 ->
                  IptablesTypes.$w$cshowsPrec ww1 ww3 ww4 ww5 ww6 } }) -}
-f81119172de6af7fc2e9aa18676d9e40
+58f903382b4e4d1238798272fea56c59
   $w$cshowsPrec ::
     GHC.Prim.Int#
     -> IptablesTypes.Table
@@ -543,9 +543,9 @@ f81119172de6af7fc2e9aa18676d9e40
     | New GHC.Base.String
     | Flush (GHC.Base.Maybe GHC.Base.String)
     | None
-793cb3178bea524a3b705400fa2c1e79
+aef84edb05d0b10fc4c46f11d9318adb
   type IptablesRule = Types.InputRule
-1541083653c2348d444e225c9c06c526
+3dacd5a3beaba7a16db94f325ec93995
   data Line
     = Line {table :: IptablesTypes.Table,
             command :: IptablesTypes.Command,
@@ -565,21 +565,21 @@ aacb03aaa97a8ddae33c85c35864319c
                    IptablesTypes.New n -> GHC.Base.Just @ GHC.Base.String n
                    IptablesTypes.Flush ds1 -> ds1
                    IptablesTypes.None -> GHC.Base.Nothing @ GHC.Base.String }) -}
-8cfd5ee2095459fd15f121de29381217
+39607ea365a84c85c73a9ea9af753672
   command :: IptablesTypes.Line -> IptablesTypes.Command
   RecSel IptablesTypes.Line
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LSLL),1*U(A,1*U,A,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ ds :: IptablesTypes.Line ->
                  case ds of wild { IptablesTypes.Line ds1 ds2 ds3 ds4 -> ds2 }) -}
-461c898d745293f77afba51e0170a467
+a8fcd408a6f651520c41409a6fed38fc
   fileline :: IptablesTypes.Line -> GHC.Types.Int
   RecSel IptablesTypes.Line
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LLLS),1*U(A,A,A,1*U(U))>,
      Unfolding: InlineRule (1, True, False)
                 (\ ds :: IptablesTypes.Line ->
                  case ds of wild { IptablesTypes.Line ds1 ds2 ds3 ds4 -> ds4 }) -}
-bb2f5cdaeeb1c166aeeb3b3ef57777cb
+6cfd4407a494810b43c936672a96efc5
   rule :: IptablesTypes.Line -> IptablesTypes.IptablesRule
   RecSel IptablesTypes.Line
   {- Arity: 1, HasNoCafRefs,
@@ -587,7 +587,7 @@ bb2f5cdaeeb1c166aeeb3b3ef57777cb
      Unfolding: InlineRule (1, True, False)
                 (\ ds :: IptablesTypes.Line ->
                  case ds of wild { IptablesTypes.Line ds1 ds2 ds3 ds4 -> ds3 }) -}
-8a59824f211514d0ba86de66a74e166b
+4df06274ce9d6cc7ddf18797901c5fd6
   table :: IptablesTypes.Line -> IptablesTypes.Table
   RecSel IptablesTypes.Line
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SLLL),1*U(1*U,A,A,A)>,

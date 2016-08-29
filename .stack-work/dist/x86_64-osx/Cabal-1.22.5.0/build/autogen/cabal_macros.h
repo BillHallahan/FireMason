@@ -49,6 +49,13 @@
   (major1) == 0 && (major2) <  2 || \
   (major1) == 0 && (major2) == 2 && (minor) <= 1)
 
+/* package z3-4.1.0 */
+#define VERSION_z3 "4.1.0"
+#define MIN_VERSION_z3(major1,major2,minor) (\
+  (major1) <  4 || \
+  (major1) == 4 && (major2) <  1 || \
+  (major1) == 4 && (major2) == 1 && (minor) <= 0)
+
 /* package HUnit-1.3.1.1 */
 #define VERSION_HUnit "1.3.1.1"
 #define MIN_VERSION_HUnit(major1,major2,minor) (\
@@ -105,5 +112,5 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 1)
 
-#define CURRENT_PACKAGE_KEY "firew_AdSXntBme9yGoesG9gwFu7"
+#define CURRENT_PACKAGE_KEY "firew_5GHTrwnWDkcFn6QBlrVltt"
 

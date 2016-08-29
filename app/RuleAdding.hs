@@ -19,25 +19,20 @@ instructionsToAddAtPos (x:xs) n =
     do
         let s = (chainName x)
         let r = (insRule x)
-        
-        let (change, noChange) = Map.partition (\(s', _) -> s' == s) n
 
-        let change' = if not . null $ change then change else Map.fromList [(maxId n + 1, (s, []))]
-
-        let (changeId, (_, ch)) = head . Map.toList $ change'
-        let n' = if not . null $ change then n else Map.insert (maxId n + 1) (s, []) n
+        let changeId = head $ idsWithName n s
+        let n' = if not . null $ (idsWithName n s) then n else addChain n s
 
         (cutC, cutR) <- (findBestPointCut r changeId n')
-        let cutCName = if isJust $ Map.lookup cutC n then fst . fromJust $ Map.lookup cutC n else error "Trying to cut nonexistent chain."
-        let (cutCh, notCutCh) = Map.partition (\(s', _) -> s' == cutCName) n
+        let cutCName = if isJust $ lookupName n cutC then fromJust $ lookupName n cutC else error "Trying to cut nonexistent chain."
 
-        let (_, (_, ch')) = head . Map.toList $ cutCh
-        let l = if not . null $ ch' then label $ ch' !! cutR else maximum . labels $ n
+        let withName = idsWithName n cutCName
+        let ch' = fromJust $ lookupChain n (head withName)
+        let l = if not . null $ ch' then label $ ch' !! cutR else maxLabel n
         let r' = Rule (criteria r) (targets r) l
-        let cutCh' = Map.map (\(s', c)-> (s', addRuleToChainAtPos r' c cutR)) cutCh
-        let n'' = Map.union cutCh' notCutCh
+        let cutCh' = switchChains n (\c-> addRuleToChainAtPos r' c cutR) (head . idsWithName n $ cutCName)
 
-        instr <- instructionsToAddAtPos xs n''
+        instr <- instructionsToAddAtPos xs cutCh'
         
         return $ (r', cutCName, l):instr
 
@@ -49,25 +44,23 @@ findBestPointCut r i n = findBestPointCut' r i n n
 findBestPointCut' :: Rule -> ChainId -> IdNameChain -> IdNameChain -> IO (ChainId, Int)
 findBestPointCut' r i n n' =
     let
-        nameU = fst . fromJust $ Map.lookup i n
+        nameU = fromJust $ lookupName n i
 
         (i', cut, _) = findPointCut r i n'
-        (name, c) = if isJust (Map.lookup i' n) then fromJust $ Map.lookup i' n else error "Rule being inserted into nonexistent chain."
+        (name, c) = if isJust $ lookupNameChain n i' then fromJust $ lookupNameChain n i' else error "Rule being inserted into nonexistent chain."
 
-        newChain = (addRuleToChainAtPos r c cut)
-        updatedChains = foldr (\i'' e -> Map.insert i'' (name, newChain) e) n (idsWithName name n)
-        newNameIdChain = increaseIndexes (updatedChains) (1 + maxId n)
-        combinedNIC = Map.union n newNameIdChain
+        updatedChains = switchChains n (\c' -> addRuleToChainAtPos r c' cut) i'
+        newNameIdChain = increaseIndexes updatedChains (1 + maxId n)
+        combinedNIC = setUnion n newNameIdChain
 
-        shortened = Map.insert i (name, (take (cut - 1) newChain)) n'
+        shortened = switchChains n' (take (cut - 1)) i'
 
-        idsU = idsWithName nameU newNameIdChain
+        idsU = idsWithName newNameIdChain nameU
 
-        idsOld = idsWithName name n
-        idsNew = idsWithName name newNameIdChain
+        idsOld = idsWithName n name
+        idsNew = idsWithName newNameIdChain name
 
         topStartingOld = topLevelJumpingTo combinedNIC (idsOld)
-        topStartingNew = topLevelJumpingTo combinedNIC (idsNew)
 
         topStarting = topLevelJumpingTo combinedNIC (idsOld ++ idsNew)
 
@@ -115,7 +108,7 @@ findBestPointCut' r i n n' =
                         )
         firewallPredicates <- readFile "smt/firewallPredicates2.smt2"
         noUndesired <- checkSat (firewallPredicates ++ converted)
-        if not noUndesired then return (i', cut) else trace ("cut name = " ++ name ++ " length = " ++ show cut ++ " rule = " ++ show r ++ "\n" ++ "n = " ++ show n ++ "\n") findBestPointCut' r i n shortened
+        if not noUndesired then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened
 
 addRuleToChainAtPos :: Rule -> Chain -> Int -> Chain 
 addRuleToChainAtPos r c i =
@@ -129,11 +122,11 @@ addRuleToChainAtPos r c i =
 findPointCut :: Rule -> ChainId -> IdNameChain -> (ChainId, Int, Int)
 findPointCut r i n = 
     let
-        (_, c) = fromJust $ Map.lookup i n
+        c = fromJust $ lookupChain n i--fromJust $ Map.lookup i n
 
         --Get scores for rules in chains we can jump to
         jCritTarget = jumpedToWithCriteria c
-        jCritIdChains = map (\(crit, t) -> (crit, t, snd . fromJust $ Map.lookup t n)) (jumpedToWithCriteria c)
+        jCritIdChains = map (\(crit, t) -> (crit, t, fromJust $ lookupChain n t)) (jumpedToWithCriteria c)
         jIdChainsAddedCrit = map (\(crit, t, ch) -> (t, map (\(Rule c t l) -> Rule (c ++ crit) t l) ch)) jCritIdChains
         jIdScores = map (\(t, ch) -> findPointCut r t n) jIdChainsAddedCrit
         third = (\(_, _, x) -> x)
