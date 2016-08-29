@@ -1,0 +1,39 @@
+Configuring z3-4.1.0...
+Building z3-4.1.0...
+Preprocessing library z3-4.1.0...
+[1 of 4] Compiling Z3.Base.C        ( .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Z3/Base/C.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Z3/Base/C.o )
+[2 of 4] Compiling Z3.Base          ( src/Z3/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Z3/Base.o )
+
+src/Z3/Base.hs:339:1: Warning:
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+src/Z3/Base.hs:347:1: Warning:
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+[3 of 4] Compiling Z3.Opts          ( src/Z3/Opts.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Z3/Opts.o )
+
+src/Z3/Opts.hs:53:1: Warning:
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+[4 of 4] Compiling Z3.Monad         ( src/Z3/Monad.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Z3/Monad.o )
+
+src/Z3/Monad.hs:329:1: Warning:
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+src/Z3/Monad.hs:335:1: Warning:
+    The import of ‘Word’ from module ‘Data.Word’ is redundant
+
+src/Z3/Monad.hs:336:1: Warning:
+    The import of ‘Data.Traversable’ is redundant
+      except perhaps to import instances from ‘Data.Traversable’
+    To import instances alone, use: import Data.Traversable()
+In-place registering z3-4.1.0...
+Installing library in
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/z3-4.1.0-IihW0G4lPF9JXAMQOHqRN1
+Registering z3-4.1.0...
