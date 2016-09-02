@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-29 20:44:33.514648 UTC
+2016-09-02 01:08:08.657131 UTC
 
 interface main@main:Main 7103
-  interface hash: 04cc3747fae401ffea21fbf1b9678244
+  interface hash: f2295c5c354c2608aab47c6a21d7fd6f
   ABI hash: 30a84c2a8c9da26b3d6c3ab0292a950f
   export-list hash: b88d5fd7e44297c2b41c341ba0c606fb
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -13,7 +13,7 @@ interface main@main:Main 7103
   where
 exports:
   Main.main
-module dependencies: ChainsToSMT2 ConvertIptables
+module dependencies: ChainsToSMT ChainsToSMT2 ConvertIptables
                      ConvertIptablesPorts ConvertToHorn CriteriaPrereqAddition
                      InstructionsToIptables IptablesTypes NameIdChain
                      ParseSpecificationLanguage ParserHelp RuleAdding SMT Types
@@ -130,9 +130,11 @@ import  -/  base-4.8.2.0:Text.Printf 0276d4e7547f991f04a90f6b1e7f1f46
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base c921f79770a215e3f4c72c747cb6a28a
 import  -/  criterion-1.1.1.0@crite_GfL1mOGQgTU3WeNwqBDBn7:Criterion.Measurement 01bb3155cd5013de60ce050556c2438b
-import  -/  ChainsToSMT2 a7909c6c5613c637ca868e8f8dd4ccdf
+import  -/  ChainsToSMT adef008645e59b7dc8bd2bd5071e231f
+  exports: 33d29ca389e7ef97588592f2e2ffe8d0
+import  -/  ChainsToSMT2 5a1df77e8401faba4de21541746e2534
   exports: 3b49f3851e5ce09538b9d9a618458298
-import  -/  ConvertIptables e5d5e062d9f6eba29fde55176d04454c
+import  -/  ConvertIptables b6940665fe83e4fc7587eb663283f846
   exports: 342829fdf4701e38e74799d5c0f98488
   convertScript f042a8fdfa86328cafe48a70ef65dcdc
 import  -/  ConvertToHorn cae0cf6b4879bcef2d5e9006d65e321e
@@ -157,8 +159,8 @@ import  -/  ParseSpecificationLanguage de8d79d36b5558fa7a29ff425aa2cc58
 import  -/  RuleAdding 9ca01fca1b7f8ab5789603b5623aa644
   exports: 5b724a0daca5fb7dcd46e4c4c60a6c50
   instructionsToAddAtPos 20d71a1f004c2f7f2fd46ca28f87f251
-import  -/  SMT c41b7464359db2df4f4b070fa3ed3edc
-  exports: f0323f17d5b754a19fed6a0e8267a257
+import  -/  SMT e345a2871f5e6eb288d7dcf0bc364057
+  exports: e75a40a2da8b8401c96f619812f462ba
 import  -/  Types 8f9f9ef24d7a230d4a5552d2b301ad89
   exports: f5f85a5f38b612d4f86997d2d16e8581
 ee6590a2ab0ffaa5074d93f2d3fc4c03

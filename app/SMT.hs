@@ -25,6 +25,7 @@ data SMT = SMTAnd [SMT]
            | SMTString String
 
            | DeclareConst String String
+           | DeclareFun String String String
 
            | MatchesCriteria Int Int Int
            | MatchesRule Int Int Int
@@ -54,6 +55,7 @@ instance ToString SMT where
     toString (SMTString s) = s
 
     toString (DeclareConst s1 s2) = toString (SMTF2 "declare-const" (SMTString s1) (SMTString s2))
+    toString (DeclareFun s1 s2 s3) = toString (SMTF3 "declare-fun" (SMTString s1) (SMTString s2) (SMTString s3))
 
     toString (MatchesCriteria p c r) = toString (SMTF3 "matches-criteria" (SMTInt p) (SMTInt c) (SMTInt r))
     toString (MatchesRule p c r) = toString (SMTF3 "matches-rule" (SMTInt p) (SMTInt c) (SMTInt r))

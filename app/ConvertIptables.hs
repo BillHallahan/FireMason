@@ -15,6 +15,7 @@ import ConvertIptablesPorts
 import ParserHelp
 import Types
 
+
 convertScript :: String -> Map.Map String InputChain
 convertScript coms =
     convertToChains (convertScript' coms) (Map.fromList [("INPUT", []),

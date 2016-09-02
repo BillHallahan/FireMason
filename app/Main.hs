@@ -24,6 +24,10 @@ import IptablesTypes
 
 import NameIdChain--temp
 
+
+
+import ChainsToSMT
+
 main = do
     initializeTime
     start <- getTime

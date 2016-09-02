@@ -19,8 +19,8 @@ import SMT
 convertChainsCheckSMT :: IdNameChain -> String -> String -> Int -> String -> String
 convertChainsCheckSMT n header replacePCR packetNum check = 
     let
-        chainlen = (foldl (++) "" $ map (\(i, (_, c)) -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") (length c)) (toList' n)) ++
-            (foldl (++) "" $ map (\i -> printSMTFunc1 "assert" $ printSMTFunc2 "=" ("(chain-length " ++ show i ++ ")") "0") (filter ((flip notElem) (validIds n)) [0..maxId n]))
+        chainlen = (foldl (++) "" $ map (\(i, (_, c)) -> toString . Assert $ SMTEq (SMTF1 "chain-length" (SMTInt i)) (SMTInt . length $ c)) (toList' n)) ++
+            (foldl (++) "" $ map (\i -> toString . Assert $ SMTEq (SMTF1 "chain-length" (SMTInt i)) (SMTInt 0)) (filter ((flip notElem) (validIds n)) [0..maxId n]))
 
         chainSetup = foldr (++) "" $ concat ((map (\(i, (_, c)) -> (map (\p -> setupChain p i (length c)) [0, 1])) (toList' n)))
 
@@ -128,12 +128,12 @@ instance ToSMT Criteria where
         let
             s = if e == Source then "source" else "destination"
         in
-                             ["(declare-fun " ++ s ++ "_port (Int) Int)",
-                              "(assert (<= 0 (" ++ s ++ "_port 0)))",
-                              "(assert (<= (" ++ s ++ "_port 0) 65535))"]
-    toSMTPrereq (Protocol _) = ["(declare-fun protocol (Int) Int)",
-                                "(assert (<= 0 (protocol 0)))",
-                                "(assert (<= (protocol 0) 255))"]
+                             [toString (DeclareFun (s ++ "_port") "(Int)" "Int"),--"(declare-fun " ++ s ++ "_port (Int) Int)",
+                              toString . Assert $ SMTF2 "<=" (SMTInt 0) (SMTF1 (s ++ "_port") (SMTInt 0)),--"(assert (<= 0 (" ++ s ++ "_port 0)))",
+                              toString . Assert $ SMTF2 "<=" (SMTF1 (s ++ "_port") (SMTInt 0)) (SMTInt 65535)]--"(assert (<= (" ++ s ++ "_port 0) 65535))"]
+    toSMTPrereq (Protocol _) = [toString (DeclareFun "protocol" "(Int)" "Int"),--"(declare-fun " ++ s ++ "_port (Int) Int)",
+                              toString . Assert $ SMTF2 "<=" (SMTInt 0) (SMTF1 "protocol" (SMTInt 0)),--"(assert (<= 0 (" ++ s ++ "_port 0)))",
+                              toString . Assert $ SMTF2 "<=" (SMTF1 "protocol" (SMTInt 0)) (SMTInt 255)]
     toSMTPrereq (PropVariableCriteria i) = ["(declare-fun v" ++ show i ++ " (Int) Bool)"]
     toSMTPrereq _ = []
 
