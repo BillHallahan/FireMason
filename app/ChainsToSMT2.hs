@@ -66,11 +66,10 @@ class ToSMT a where
     toSMTPrereq :: a -> [String]
     toSMT :: a -> Int -> Int -> String  --The two ints identify the chain and rule number, respectively, the chain was called from
     toSMTPath :: a -> Int -> Int -> String 
-    toSMTNotPath :: a -> Int -> Int -> String --If criteria is not met...
 
     toSMTPrereq _ = []
     toSMTPath _ _ _ = ""
-    toSMTNotPath _ _ _ = ""
+
 
 
 instance ToSMT Chain where
@@ -106,11 +105,9 @@ instance ToSMT Rule where
                     (printSMTFunc2 "and" (printSMTFunc1 "valid-packet" p) (printSMTFunc3 "matches-rule" p ch r))
                     (toSMTPath (PropVariableTarget v b) ch r))) (stringNumList 0 1)) ++ "\n"
         ++ printSMTFunc1 "assert" (printSMTFunc2 "=" (printSMTFunc2 "rule-target" (show ch) (show r)) "NONE") ++ "\n"
-        ++ toSMTNotPath (PropVariableTarget v b) ch r
 
     toSMTPath (Rule c t _) ch r =
-        (toSMTPath t ch r) ++ "\n"
-        ++ toSMTNotPath t ch r
+        (toSMTPath t ch r)
 
 instance ToSMT [Criteria] where
     toSMTPrereq [] = []
@@ -179,10 +176,6 @@ instance ToSMT [Target] where
     toSMTPath (t:[]) ch r = toSMTPath t ch r
     toSMTPath (t:ts) ch r = printSMTFunc2 "and" (toSMTPath t ch r) (toSMTPath ts ch r)
 
-    toSMTNotPath [] ch r = ""
-    toSMTNotPath (t:[]) ch r = toSMTNotPath t ch r
-    toSMTNotPath (t:ts) ch r = printSMTFunc2 "and" (toSMTNotPath t ch r) (toSMTNotPath ts ch r)
-
 instance ToSMT Target where 
     toSMT ACCEPT _ _ = "ACCEPT"
     toSMT DROP _ _ = "DROP"
@@ -200,8 +193,8 @@ instance ToSMT Target where
     toSMTPath (ST s) ch r = s
     toSMTPath _ _ _ = error "NOT HERE"
 
-    toSMTNotPath (Go i j) ch r = ""
-    toSMTNotPath _ _ _ = ""
+    --toSMTNotPath (Go i j) ch r = ""
+    --toSMTNotPath _ _ _ = ""
 
 onlyOneTopLevel :: Int -> [Int] -> String
 onlyOneTopLevel _ [] = []

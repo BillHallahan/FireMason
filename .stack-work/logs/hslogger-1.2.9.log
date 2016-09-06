@@ -1,0 +1,31 @@
+Configuring hslogger-1.2.9...
+Building hslogger-1.2.9...
+Preprocessing library hslogger-1.2.9...
+[1 of 8] Compiling System.Log       ( src/System/Log.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log.o )
+[2 of 8] Compiling System.Log.Formatter ( src/System/Log/Formatter.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log/Formatter.o )
+[3 of 8] Compiling System.Log.Handler ( src/System/Log/Handler.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log/Handler.o )
+[4 of 8] Compiling System.Log.Handler.Simple ( src/System/Log/Handler/Simple.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log/Handler/Simple.o )
+[5 of 8] Compiling System.Log.Handler.Syslog ( src/System/Log/Handler/Syslog.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log/Handler/Syslog.o )
+[6 of 8] Compiling System.Log.Handler.Growl ( src/System/Log/Handler/Growl.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log/Handler/Growl.o )
+
+src/System/Log/Handler/Growl.hs:42:1: Warning: Tab character
+
+src/System/Log/Handler/Growl.hs:45:1: Warning: Tab character
+
+src/System/Log/Handler/Growl.hs:47:1: Warning: Tab character
+
+src/System/Log/Handler/Growl.hs:97:1: Warning: Tab character
+
+src/System/Log/Handler/Growl.hs:128:1: Warning: Tab character
+
+src/System/Log/Handler/Growl.hs:130:1: Warning: Tab character
+[7 of 8] Compiling System.Log.Handler.Log4jXML ( src/System/Log/Handler/Log4jXML.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log/Handler/Log4jXML.o )
+[8 of 8] Compiling System.Log.Logger ( src/System/Log/Logger.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Log/Logger.o )
+
+src/System/Log/Logger.hs:201:1: Warning:
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+In-place registering hslogger-1.2.9...
+Installing library in
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-5.11/7.10.3/lib/x86_64-osx-ghc-7.10.3/hslogger-1.2.9-BLLA2mHMd1Y30ogCyK2blO
+Registering hslogger-1.2.9...

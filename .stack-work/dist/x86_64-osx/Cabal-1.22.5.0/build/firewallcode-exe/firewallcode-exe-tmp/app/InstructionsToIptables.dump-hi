@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-01 19:50:31.587042 UTC
+2016-09-05 19:34:50.145577 UTC
 
 interface main@main:InstructionsToIptables 7103
-  interface hash: 38df9e2e64607925f4a2ca369b480ed1
-  ABI hash: ad623fdf1fd190516854e844493fba3c
-  export-list hash: 78b8b1df694faca9fadd8aec92818327
+  interface hash: 42b9f44e6624fd9590fb5e9f19b40bcf
+  ABI hash: 165d214b1f7d9bb53c095c12cd355f62
+  export-list hash: 8bfd1896d0111f1f73df1dfbcbda0dc9
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e468f87777beb3fe7114763efe9ccb2f
   sig of: Nothing
@@ -19,11 +19,11 @@ exports:
   InstructionsToIptables.ToIptables{InstructionsToIptables.convert}
 module dependencies: ConvertIptables ConvertIptablesPorts
                      IptablesTypes NameIdChain ParserHelp Types
-package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
+package dependencies: MissingH-1.3.0.2@Missi_JQoKIaJuITOBZjt8xhTikH
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
                       binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
-                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
@@ -35,7 +35,7 @@ package dependencies: MissingH-1.3.0.2@Missi_0LYz2ExiF1QEfGgduKzSaZ
                       split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
                       text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
-                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep
                       transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
                       unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
                       utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
@@ -83,25 +83,25 @@ import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  ConvertIptables b6940665fe83e4fc7587eb663283f846
-  exports: 342829fdf4701e38e74799d5c0f98488
-  convertScript' 9fc992ee845fc618b8d358a63e9ad877
-import  -/  IptablesTypes 6f5cc46ae5681d93494068694ab56fa8
-  exports: 0bdbf9c518841c1aa5e99aa1075f159b
+import  -/  ConvertIptables 4c8d50f6af03eeb36044e4bd5b68d278
+  exports: b75e7484ee6c97ea9120ccbba2aefd69
+  convertScript' 352f139e3dbbc974ff5ba94b5abfdfd2
+import  -/  IptablesTypes b5cff6118edf8bbdf30ec5d24aa04222
+  exports: e67b39612fbc88b3bb808dee622b3eef
   Append 741853c63cb0e92ef0b0777e9fe96d9e
   Command 4e2ae75ee3b477dcd91b4d0d5a242abc
   Insert be7385e63bc1d393a4921ba222091991
   comChainName 2dd0bdd7fbf7cc3af6e6037889129d81
-  command 39607ea365a84c85c73a9ea9af753672
-  fileline a8fcd408a6f651520c41409a6fed38fc
-import  -/  NameIdChain 3329096891117c78fb869b82591be959
-  exports: abd57aa56b3922888fa8fd9dffdfa1d9
-  IdNameChain 4a390623d655b4c8df7fe2d184e86fe0
-  lookupName 1fbae789eacca65488ec3c427f9aae8c
+  command 36e72649b6bbcaa25d14f1424e56f1df
+  fileline 5f0e19b1a0671cb2c062b29318ee8700
+import  -/  NameIdChain fdfbaebba7f5b564923330024b8aad3d
+  exports: da732882b0e22f139cf86490db7c62d7
+  IdNameChain 3c9536ef1ede78e353f22b0b9cd1bfb9
+  lookupName 76d379b7144b703d4467f581ffd9c6a2
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
-import  -/  Types 8f9f9ef24d7a230d4a5552d2b301ad89
-  exports: f5f85a5f38b612d4f86997d2d16e8581
+import  -/  Types d6c7cbd499b1b23d477175270c131304
+  exports: 54b2d7991e7502b0509a3d8d97b51aee
   ACCEPT 08ea8d5ba9c8e5ae84bd818c2cc3ee1f
   BoolFlag a5bd0669b32ca5a1de6cf10948a3bcbc
   Criteria 605b90b34d99bcf3227a69e454b38e17
@@ -111,15 +111,15 @@ import  -/  Types 8f9f9ef24d7a230d4a5552d2b301ad89
   Not b8339c1be2f1b9a12b2b3eb568593726
   Port 0cdcd795ebd2c331c1401f6cf3404c99
   Protocol d38fdc887d9a0e7c53d19d8b463500f3
-  Rule 9ae32ffd9c10aaf03a215476f23bb135
-  Rule 548f61072f1710c958131698bb5af20d
+  Rule 14b9685d0ebd70dfb610f941b1812bb7
+  Rule 6c39c74a24681968e0d9e29caf86a35e
   Source b53eb4518fedc84d30c0b4327bd32c7d
   Target 97fc31d3ca68602965fcc27b6e7cac76
   flagsToStrings 7abd1d5c524884e32ea1c41c5656c8fa
   ifNotRemoveNot 8bd906fb684be459efcce140d2435556
   isNot d2fe06e8ccb3c367f7ef45b61423950b
   stringsToFlags 1b67ff14d71794063a3d844602d37d18
-dca8106cd72a4d3fac4dd28f864349f1
+66276d65799f1bd049288211324e4bd6
   $fToIptablesCommand ::
     InstructionsToIptables.ToIptables IptablesTypes.Command
   DFunId[0]
@@ -132,14 +132,14 @@ dca8106cd72a4d3fac4dd28f864349f1
 47773ada148e997b57a6770b64974ca3
   $fToIptablesCommand1 :: GHC.Base.String
   {- Strictness: b -}
-2b28668d41f1b359eea2d1614d6408fd
+5a038cdb7dda6eb1baa0558d5d4a789a
   $fToIptablesCommand_$cconvert ::
     IptablesTypes.Command -> NameIdChain.IdNameChain -> GHC.Base.String
   {- Arity: 2, Strictness: <S,1*U><L,A>, Inline: INLINE[0],
      Unfolding: InlineRule (2, True, True)
                 (\ w :: IptablesTypes.Command w1 :: NameIdChain.IdNameChain ->
                  InstructionsToIptables.$w$cconvert w) -}
-dca8106cd72a4d3fac4dd28f864349f1
+66276d65799f1bd049288211324e4bd6
   $fToIptablesGenRule :: InstructionsToIptables.ToIptables Types.Rule
   DFunId[0]
   {- Arity: 2,
@@ -161,7 +161,7 @@ be4911a58bdac60751a3278a435fa041
 924a524859d5a393d70814e09396788a
   $fToIptablesGenRule4 :: GHC.Base.String
   {- Strictness: b -}
-5c932f5a522e014ba99374fa37c1fe50
+a798db6b3f36cfded766b91da3255689
   $fToIptablesGenRule_$cconvert ::
     Types.Rule -> NameIdChain.IdNameChain -> GHC.Base.String
   {- Arity: 2,
@@ -171,7 +171,7 @@ be4911a58bdac60751a3278a435fa041
                 (\ w :: Types.Rule w1 :: NameIdChain.IdNameChain ->
                  case w of ww { Types.Rule ww1 ww2 ww3 ->
                  InstructionsToIptables.$w$cconvert1 ww1 ww2 w1 }) -}
-8920aab60d62ae7a4e8b673cc51fe734
+2dcfbf24bff26fc7008b2000f97e2506
   $fToIptablesGenRule_$cconvert1 ::
     [Types.Target] -> NameIdChain.IdNameChain -> GHC.Base.String
   {- Arity: 2,
@@ -190,7 +190,7 @@ be4911a58bdac60751a3278a435fa041
                             (go ys) }
                  } in
                  go tx) -}
-7885eb0cd7ffe9ee6843f1a0bb6c4f95
+dc55436be10330045b10d65cb8848851
   $fToIptablesGenRule_$cconvert2 ::
     Types.Target -> NameIdChain.IdNameChain -> GHC.Base.String
   {- Arity: 2,
@@ -210,7 +210,7 @@ be4911a58bdac60751a3278a435fa041
                              -> GHC.CString.unpackAppendCString# "-j "# ipv } } } }
                    Types.ACCEPT -> InstructionsToIptables.$fToIptablesGenRule2
                    Types.DROP -> InstructionsToIptables.$fToIptablesGenRule1 }) -}
-dca8106cd72a4d3fac4dd28f864349f1
+66276d65799f1bd049288211324e4bd6
   $fToIptablesTarget ::
     InstructionsToIptables.ToIptables Types.Target
   DFunId[0]
@@ -222,7 +222,7 @@ dca8106cd72a4d3fac4dd28f864349f1
                   `cast`
                 (Sym (InstructionsToIptables.NTCo:ToIptables[0]
                           <Types.Target>_N)) -}
-dca8106cd72a4d3fac4dd28f864349f1
+66276d65799f1bd049288211324e4bd6
   $fToIptables[] :: InstructionsToIptables.ToIptables [Types.Target]
   DFunId[0]
   {- Arity: 2,
@@ -233,7 +233,7 @@ dca8106cd72a4d3fac4dd28f864349f1
                   `cast`
                 (Sym (InstructionsToIptables.NTCo:ToIptables[0]
                           <[Types.Target]>_N)) -}
-dca8106cd72a4d3fac4dd28f864349f1
+66276d65799f1bd049288211324e4bd6
   $fToIptables[]0 ::
     InstructionsToIptables.ToIptables [Types.Criteria]
   DFunId[0]
@@ -243,7 +243,7 @@ dca8106cd72a4d3fac4dd28f864349f1
                   `cast`
                 (Sym (InstructionsToIptables.NTCo:ToIptables[0]
                           <[Types.Criteria]>_N)) -}
-a735e19aa11ef5a8394ed037d99fbd1f
+bddaf0f223283e1b050951eac76c3e3a
   $fToIptables[]0_$cconvert ::
     [Types.Criteria] -> NameIdChain.IdNameChain -> GHC.Base.String
   {- Arity: 2, Strictness: <S,1*U><L,A>, Inline: INLINE[0],
@@ -276,7 +276,7 @@ d4d1a6552d6a0da9fc54701654edf39d
                                       ww3
                                       (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
                                GHC.Types.: @ GHC.Types.Char ww5 ww6 } }))) }) -}
-31bf8e46ded6299651dba14c631784e3
+03d4f28f880be5bd4a4cd80faa4864cf
   $w$cconvert1 ::
     [Types.Criteria]
     -> [Types.Target] -> NameIdChain.IdNameChain -> GHC.Base.String
@@ -448,10 +448,10 @@ fa469744dfbc78a528259720223eb3d7
   $wgo1 ::
     [Types.Criteria] -> (# [Types.Criteria], [Types.Criteria] #)
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-dca8106cd72a4d3fac4dd28f864349f1
+66276d65799f1bd049288211324e4bd6
   class ToIptables a where
     convert :: a -> NameIdChain.IdNameChain -> GHC.Base.String
-d7858ce56b022abbb4c0d469b0d5120e
+2299fa4c9a343fc152ed021c7de6bd5c
   addToIptables ::
     [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
     -> NameIdChain.IdNameChain -> GHC.Base.String -> GHC.Base.String
@@ -518,7 +518,7 @@ af64436500dbc9234f9880f3cb20923c
 0a40f75dfbf26d2feced738320b8472c
   convertBoolFlags_go1 :: [[GHC.Types.Char]] -> [GHC.Types.Char]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-2e1db5193cebb2f6a06e7041fa768478
+1f4bfb739d48e85326167fe07bf09098
   increaseLabelsAbove ::
     GHC.Types.Int
     -> [(Types.Rule, GHC.Base.String, GHC.Types.Int)]

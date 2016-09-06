@@ -1,0 +1,611 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-05 18:31:00.470152 UTC
+
+interface main@main:IptablesTypes 7102
+  interface hash: 6543bc1ecaf9959ccf74632d3c16626e
+  ABI hash: 1ddf55e4553bf487a954b096da589c83
+  export-list hash: 4facbeac5c00aebe95278701f212ca21
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: dbae8b6274c43fc2a73ebb33608e06d9
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  IptablesTypes.comChainName
+  IptablesTypes.Command{IptablesTypes.Append IptablesTypes.Flush IptablesTypes.Insert IptablesTypes.New IptablesTypes.None}
+  IptablesTypes.IptablesRule
+  IptablesTypes.Line{IptablesTypes.Line IptablesTypes.command IptablesTypes.fileline IptablesTypes.rule IptablesTypes.table}
+  IptablesTypes.Table
+module dependencies: Types
+package dependencies: array-0.5.1.0@array_E0sTtauuKsGDLZoT7lTbgZ
+                      base-4.8.1.0* binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd
+                      bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH
+                      case-insensitive-1.2.0.7@casei_I0T7EQSGXb8L7vKDNltr0H
+                      containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN
+                      deepseq-1.4.1.1@deeps_LbCWUlehDDeLxurARKDH5o ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm integer-gmp-1.0.0.0
+                      semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I
+                      tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi
+                      text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010
+                      tostring-0.2.1.1@tostr_9mRZFMcnuWXE8LUkKdBchW
+                      transformers-0.4.2.0@trans_3eG64VdP2vzGjP6wJiCp5X
+                      unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb
+                      utf8-string-1.0.1.1@utf8s_HWC8Qen5AZrArJxFQJuE72
+orphans: base-4.8.1.0:GHC.Base base-4.8.1.0:GHC.Float
+         binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm:Data.Hashable.Generic
+         main@main:Types text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Show
+family instance modules: base-4.8.1.0:Control.Applicative
+                         base-4.8.1.0:Data.Either base-4.8.1.0:Data.Functor.Identity
+                         base-4.8.1.0:Data.Monoid base-4.8.1.0:Data.Type.Equality
+                         base-4.8.1.0:Data.Void base-4.8.1.0:GHC.Exts
+                         base-4.8.1.0:GHC.Generics
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntMap.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntSet.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Map.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Sequence
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Set.Base
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.List.NonEmpty
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.Semigroup
+                         tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi:Data.Tagged
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashSet
+import  -/  base-4.8.1.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.1.0:GHC.Show b8c65ca3124f92a166c9f05120382442
+import  -/  base-4.8.1.0:Prelude 518f762991bc287d78f21a73c974da1f
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  Types 539e504492eacb62971b007037e46fe7
+  exports: c4323cb63359ad0358876fdfba25ce76
+  InputRule f8cda0a866712c372c0afb7990e381cb
+4db06ce666ad374943ed57d7526293d3
+  $fEqCommand :: GHC.Classes.Eq IptablesTypes.Command
+  DFunId[0]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ IptablesTypes.Command
+                  IptablesTypes.$fEqCommand_$c==
+                  IptablesTypes.$fEqCommand_$c/= -}
+4db06ce666ad374943ed57d7526293d3
+  $fEqCommand_$c/= ::
+    IptablesTypes.Command -> IptablesTypes.Command -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a :: IptablesTypes.Command b :: IptablesTypes.Command ->
+                 case IptablesTypes.$fEqCommand_$c== a b of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True -> GHC.Types.False }) -}
+4db06ce666ad374943ed57d7526293d3
+  $fEqCommand_$c== ::
+    IptablesTypes.Command -> IptablesTypes.Command -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Unfolding: (\ ds :: IptablesTypes.Command
+                   ds1 :: IptablesTypes.Command ->
+                 case ds of wild {
+                   IptablesTypes.Append a1
+                   -> case ds1 of wild1 {
+                        DEFAULT -> GHC.Types.False
+                        IptablesTypes.Append b1 -> GHC.Base.eqString a1 b1 }
+                   IptablesTypes.Insert a1 a2
+                   -> case ds1 of wild1 {
+                        DEFAULT -> GHC.Types.False
+                        IptablesTypes.Insert b1 b2
+                        -> case GHC.Base.eqString a1 b1 of wild2 {
+                             GHC.Types.False -> GHC.Types.False
+                             GHC.Types.True -> GHC.Classes.eqInt a2 b2 } }
+                   IptablesTypes.New a1
+                   -> case ds1 of wild1 {
+                        DEFAULT -> GHC.Types.False
+                        IptablesTypes.New b1 -> GHC.Base.eqString a1 b1 }
+                   IptablesTypes.Flush a1
+                   -> case ds1 of wild1 {
+                        DEFAULT -> GHC.Types.False
+                        IptablesTypes.Flush b1
+                        -> case a1 of wild2 {
+                             GHC.Base.Nothing
+                             -> case b1 of wild3 {
+                                  GHC.Base.Nothing -> GHC.Types.True
+                                  GHC.Base.Just ipv -> GHC.Types.False }
+                             GHC.Base.Just a2
+                             -> case b1 of wild3 {
+                                  GHC.Base.Nothing -> GHC.Types.False
+                                  GHC.Base.Just b2 -> GHC.Base.eqString a2 b2 } } }
+                   IptablesTypes.None
+                   -> case ds1 of wild1 {
+                        DEFAULT -> GHC.Types.False
+                        IptablesTypes.None -> GHC.Types.True } }) -}
+4db06ce666ad374943ed57d7526293d3
+  $fShowCommand :: GHC.Show.Show IptablesTypes.Command
+  DFunId[0]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ IptablesTypes.Command
+                  IptablesTypes.$fShowCommand_$cshowsPrec
+                  IptablesTypes.$fShowCommand_$cshow
+                  IptablesTypes.$fShowCommand_$cshowList -}
+4db06ce666ad374943ed57d7526293d3
+  $fShowCommand1 :: IptablesTypes.Command -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (IptablesTypes.$fShowCommand_$cshowsPrec
+                   IptablesTypes.$fShowCommand2) -}
+7d16b4439dacf9f6613bdf876b8af65a
+  $fShowCommand10 :: [GHC.Types.Char]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   GHC.Show.shows6
+                   IptablesTypes.$fShowCommand11) -}
+84ad56010e84da7d9dda4b55dc49d71e
+  $fShowCommand11 :: [GHC.Types.Char]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   GHC.Show.shows8
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+78729ce3f4dd4ffc6822a726c10476f0
+  $fShowCommand12 :: [GHC.Types.Char]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   GHC.Show.shows6
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+2d678d03f1d35ec87f55ab6cddb813cd
+  $fShowCommand2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0) -}
+31bf2521cf7c93055fabbbb79d82b511
+  $fShowCommand3 :: GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (GHC.Base.++
+                   @ GHC.Types.Char
+                   IptablesTypes.$fShowCommand4) -}
+4df0acb69738e53e21412e399b6aabbd
+  $fShowCommand4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "None"#) -}
+c485ee460c14864531e45c09d9ae526b
+  $fShowCommand5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Flush "#) -}
+1faa647e73f8015599989631be4ed8ec
+  $fShowCommand6 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 11) -}
+2ef656c8de09bbb05bced185dd420dfc
+  $fShowCommand7 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "New "#) -}
+4ac2f30439a8c2c40074b97b5dfc03a5
+  $fShowCommand8 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Insert "#) -}
+15fe4c3c202277faae33a58ead6c0b81
+  $fShowCommand9 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Append "#) -}
+4db06ce666ad374943ed57d7526293d3
+  $fShowCommand_$cshow :: IptablesTypes.Command -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ x :: IptablesTypes.Command ->
+                 case x of wild {
+                   IptablesTypes.Append b1
+                   -> GHC.Base.++
+                        @ GHC.Types.Char
+                        IptablesTypes.$fShowCommand9
+                        (GHC.Types.:
+                           @ GHC.Types.Char
+                           GHC.Show.shows6
+                           (GHC.Show.showLitString b1 IptablesTypes.$fShowCommand12))
+                   IptablesTypes.Insert b1 b2
+                   -> GHC.Base.++
+                        @ GHC.Types.Char
+                        IptablesTypes.$fShowCommand8
+                        (GHC.Types.:
+                           @ GHC.Types.Char
+                           GHC.Show.shows6
+                           (GHC.Show.showLitString
+                              b1
+                              (GHC.Types.:
+                                 @ GHC.Types.Char
+                                 GHC.Show.shows6
+                                 (GHC.Types.:
+                                    @ GHC.Types.Char
+                                    GHC.Show.showSpace1
+                                    (case b2 of ww2 { GHC.Types.I# ww3 ->
+                                     case GHC.Show.$wshowSignedInt
+                                            11
+                                            ww3
+                                            (GHC.Types.[]
+                                               @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                                     GHC.Types.: @ GHC.Types.Char ww5 ww6 } })))))
+                   IptablesTypes.New b1
+                   -> GHC.Base.++
+                        @ GHC.Types.Char
+                        IptablesTypes.$fShowCommand7
+                        (GHC.Types.:
+                           @ GHC.Types.Char
+                           GHC.Show.shows6
+                           (GHC.Show.showLitString b1 IptablesTypes.$fShowCommand12))
+                   IptablesTypes.Flush b1
+                   -> GHC.Base.++
+                        @ GHC.Types.Char
+                        IptablesTypes.$fShowCommand5
+                        (case b1 of wild1 {
+                           GHC.Base.Nothing -> GHC.Show.$fShowMaybe3
+                           GHC.Base.Just b2
+                           -> GHC.Types.:
+                                @ GHC.Types.Char
+                                GHC.Show.shows9
+                                (GHC.Base.++
+                                   @ GHC.Types.Char
+                                   GHC.Show.$fShowMaybe1
+                                   (GHC.Types.:
+                                      @ GHC.Types.Char
+                                      GHC.Show.shows6
+                                      (GHC.Show.showLitString b2 IptablesTypes.$fShowCommand10))) })
+                   IptablesTypes.None -> IptablesTypes.$fShowCommand4 }) -}
+4db06ce666ad374943ed57d7526293d3
+  $fShowCommand_$cshowList ::
+    [IptablesTypes.Command] -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__
+                   @ IptablesTypes.Command
+                   IptablesTypes.$fShowCommand1) -}
+4db06ce666ad374943ed57d7526293d3
+  $fShowCommand_$cshowsPrec ::
+    GHC.Types.Int -> IptablesTypes.Command -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <L,1*U(U)><S,1*U>,
+     Unfolding: (\ a :: GHC.Types.Int ds :: IptablesTypes.Command ->
+                 case ds of wild {
+                   IptablesTypes.Append b1
+                   -> case a of wild1 { GHC.Types.I# x ->
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.>=# x 11) of wild2 {
+                        GHC.Types.False
+                        -> \ x1 :: GHC.Base.String ->
+                           GHC.Base.++
+                             @ GHC.Types.Char
+                             IptablesTypes.$fShowCommand9
+                             (GHC.Types.:
+                                @ GHC.Types.Char
+                                GHC.Show.shows6
+                                (GHC.Show.showLitString
+                                   b1
+                                   (GHC.Types.: @ GHC.Types.Char GHC.Show.shows6 x1)))
+                        GHC.Types.True
+                        -> \ x1 :: GHC.Base.String ->
+                           GHC.Types.:
+                             @ GHC.Types.Char
+                             GHC.Show.shows9
+                             (GHC.Base.++
+                                @ GHC.Types.Char
+                                IptablesTypes.$fShowCommand9
+                                (GHC.Types.:
+                                   @ GHC.Types.Char
+                                   GHC.Show.shows6
+                                   (GHC.Show.showLitString
+                                      b1
+                                      (GHC.Types.:
+                                         @ GHC.Types.Char
+                                         GHC.Show.shows6
+                                         (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x1))))) } }
+                   IptablesTypes.Insert b1 b2
+                   -> case a of wild1 { GHC.Types.I# x ->
+                      let {
+                        p :: GHC.Show.ShowS {- Arity: 1, Strictness: <L,U> -}
+                        = \ x1 :: GHC.Base.String ->
+                          GHC.Base.++
+                            @ GHC.Types.Char
+                            IptablesTypes.$fShowCommand8
+                            (GHC.Types.:
+                               @ GHC.Types.Char
+                               GHC.Show.shows6
+                               (GHC.Show.showLitString
+                                  b1
+                                  (GHC.Types.:
+                                     @ GHC.Types.Char
+                                     GHC.Show.shows6
+                                     (GHC.Types.:
+                                        @ GHC.Types.Char
+                                        GHC.Show.showSpace1
+                                        (case b2 of ww2 { GHC.Types.I# ww3 ->
+                                         case GHC.Show.$wshowSignedInt
+                                                11
+                                                ww3
+                                                x1 of ww4 { (#,#) ww5 ww6 ->
+                                         GHC.Types.: @ GHC.Types.Char ww5 ww6 } })))))
+                      } in
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.>=# x 11) of wild2 {
+                        GHC.Types.False -> p
+                        GHC.Types.True
+                        -> \ x1 :: GHC.Base.String ->
+                           GHC.Types.:
+                             @ GHC.Types.Char
+                             GHC.Show.shows9
+                             (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x1)) } }
+                   IptablesTypes.New b1
+                   -> case a of wild1 { GHC.Types.I# x ->
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.>=# x 11) of wild2 {
+                        GHC.Types.False
+                        -> \ x1 :: GHC.Base.String ->
+                           GHC.Base.++
+                             @ GHC.Types.Char
+                             IptablesTypes.$fShowCommand7
+                             (GHC.Types.:
+                                @ GHC.Types.Char
+                                GHC.Show.shows6
+                                (GHC.Show.showLitString
+                                   b1
+                                   (GHC.Types.: @ GHC.Types.Char GHC.Show.shows6 x1)))
+                        GHC.Types.True
+                        -> \ x1 :: GHC.Base.String ->
+                           GHC.Types.:
+                             @ GHC.Types.Char
+                             GHC.Show.shows9
+                             (GHC.Base.++
+                                @ GHC.Types.Char
+                                IptablesTypes.$fShowCommand7
+                                (GHC.Types.:
+                                   @ GHC.Types.Char
+                                   GHC.Show.shows6
+                                   (GHC.Show.showLitString
+                                      b1
+                                      (GHC.Types.:
+                                         @ GHC.Types.Char
+                                         GHC.Show.shows6
+                                         (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x1))))) } }
+                   IptablesTypes.Flush b1
+                   -> case a of wild1 { GHC.Types.I# x ->
+                      let {
+                        g :: GHC.Base.String -> GHC.Base.String
+                        = GHC.Show.$fShowMaybe_$cshowsPrec
+                            @ [GHC.Types.Char]
+                            GHC.Show.$fShow[]_$s$fShow[]1
+                            IptablesTypes.$fShowCommand6
+                            b1
+                      } in
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.>=# x 11) of wild2 {
+                        GHC.Types.False
+                        -> \ x1 :: GHC.Base.String ->
+                           GHC.Base.++ @ GHC.Types.Char IptablesTypes.$fShowCommand5 (g x1)
+                        GHC.Types.True
+                        -> \ x1 :: GHC.Base.String ->
+                           GHC.Types.:
+                             @ GHC.Types.Char
+                             GHC.Show.shows9
+                             (GHC.Base.++
+                                @ GHC.Types.Char
+                                IptablesTypes.$fShowCommand5
+                                (g (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x1))) } }
+                   IptablesTypes.None -> IptablesTypes.$fShowCommand3 }) -}
+e0426e84b0ced49dd96e9485c60388ba
+  $fShowLine :: GHC.Show.Show IptablesTypes.Line
+  DFunId[0]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ IptablesTypes.Line
+                  IptablesTypes.$fShowLine_$cshowsPrec
+                  IptablesTypes.$fShowLine_$cshow
+                  IptablesTypes.$fShowLine_$cshowList -}
+e0426e84b0ced49dd96e9485c60388ba
+  $fShowLine1 :: IptablesTypes.Line -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (\ w :: IptablesTypes.Line ->
+                 case w of ww { IptablesTypes.Line ww1 ww2 ww3 ww4 ->
+                 IptablesTypes.$w$cshowsPrec 0 ww1 ww2 ww3 ww4 }) -}
+1be7584d4b938afccde2df5401927668
+  $fShowLine2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "}"#) -}
+72671285e20d678d51a2efc46b61b28e
+  $fShowLine3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "fileline = "#) -}
+d9cdc7b4fa02e00613e306c4d9898d2d
+  $fShowLine4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "rule = "#) -}
+4d623432bc5c81c91245e006555ec067
+  $fShowLine5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "command = "#) -}
+d86553dcc64ed84381393822aa98d739
+  $fShowLine6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
+c8ee6056e236ead0ba01cc9efeba8b33
+  $fShowLine7 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "table = "#) -}
+e4e8c9b56dd8bd1f44758816d15eafa6
+  $fShowLine8 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Line {"#) -}
+e0426e84b0ced49dd96e9485c60388ba
+  $fShowLine_$cshow :: IptablesTypes.Line -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(U,1*U,1*U(U,U,U(U)),U(U))>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: IptablesTypes.Line ->
+                 IptablesTypes.$fShowLine_$cshowsPrec
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+e0426e84b0ced49dd96e9485c60388ba
+  $fShowLine_$cshowList :: [IptablesTypes.Line] -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__
+                   @ IptablesTypes.Line
+                   IptablesTypes.$fShowLine1) -}
+e0426e84b0ced49dd96e9485c60388ba
+  $fShowLine_$cshowsPrec ::
+    GHC.Types.Int -> IptablesTypes.Line -> GHC.Show.ShowS
+  {- Arity: 2,
+     Strictness: <S,1*U(U)><S,1*U(U,1*U,1*U(U,U,U(U)),U(U))>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: GHC.Types.Int w1 :: IptablesTypes.Line ->
+                 case w of ww { GHC.Types.I# ww1 ->
+                 case w1 of ww2 { IptablesTypes.Line ww3 ww4 ww5 ww6 ->
+                 IptablesTypes.$w$cshowsPrec ww1 ww3 ww4 ww5 ww6 } }) -}
+eb69cdb43493a55a983d4fb3c3d82c1d
+  $w$cshowsPrec ::
+    GHC.Prim.Int#
+    -> IptablesTypes.Table
+    -> IptablesTypes.Command
+    -> IptablesTypes.IptablesRule
+    -> GHC.Types.Int
+    -> GHC.Show.ShowS
+  {- Arity: 5,
+     Strictness: <L,U><L,U><L,1*U><L,1*U(U,U,U(U))><L,U(U)>,
+     Inline: [0],
+     Unfolding: (\ ww :: GHC.Prim.Int#
+                   ww1 :: IptablesTypes.Table
+                   ww2 :: IptablesTypes.Command
+                   ww3 :: IptablesTypes.IptablesRule
+                   ww4 :: GHC.Types.Int ->
+                 let {
+                   f :: GHC.Base.String -> GHC.Base.String
+                   = IptablesTypes.$fShowCommand_$cshowsPrec
+                       IptablesTypes.$fShowCommand2
+                       ww2
+                 } in
+                 let {
+                   f1 :: GHC.Base.String -> GHC.Base.String
+                   = case ww3 of ww5 { Types.Rule ww6 ww7 ww8 ->
+                     Types.$w$cshowsPrec2
+                       @ Types.InputCriteria
+                       Types.$fShowInputCriteria
+                       0
+                       ww6
+                       ww7
+                       ww8 }
+                 } in
+                 let {
+                   p :: GHC.Show.ShowS {- Arity: 1, Strictness: <L,1*U> -}
+                   = \ x :: GHC.Base.String ->
+                     GHC.Base.++
+                       @ GHC.Types.Char
+                       IptablesTypes.$fShowLine8
+                       (GHC.Base.++
+                          @ GHC.Types.Char
+                          IptablesTypes.$fShowLine7
+                          (GHC.Types.:
+                             @ GHC.Types.Char
+                             GHC.Show.shows6
+                             (GHC.Show.showLitString
+                                ww1
+                                (GHC.Types.:
+                                   @ GHC.Types.Char
+                                   GHC.Show.shows6
+                                   (GHC.Base.++
+                                      @ GHC.Types.Char
+                                      IptablesTypes.$fShowLine6
+                                      (GHC.Base.++
+                                         @ GHC.Types.Char
+                                         IptablesTypes.$fShowLine5
+                                         (f (GHC.Base.++
+                                               @ GHC.Types.Char
+                                               IptablesTypes.$fShowLine6
+                                               (GHC.Base.++
+                                                  @ GHC.Types.Char
+                                                  IptablesTypes.$fShowLine4
+                                                  (f1
+                                                     (GHC.Base.++
+                                                        @ GHC.Types.Char
+                                                        IptablesTypes.$fShowLine6
+                                                        (GHC.Base.++
+                                                           @ GHC.Types.Char
+                                                           IptablesTypes.$fShowLine3
+                                                           (case ww4 of ww5 { GHC.Types.I# ww6 ->
+                                                            case GHC.Show.$wshowSignedInt
+                                                                   0
+                                                                   ww6
+                                                                   (GHC.Base.++
+                                                                      @ GHC.Types.Char
+                                                                      IptablesTypes.$fShowLine2
+                                                                      x) of ww7 { (#,#) ww8 ww9 ->
+                                                            GHC.Types.:
+                                                              @ GHC.Types.Char
+                                                              ww8
+                                                              ww9 } })))))))))))))
+                 } in
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.>=# ww 11) of wild {
+                   GHC.Types.False -> p
+                   GHC.Types.True
+                   -> \ x :: GHC.Base.String ->
+                      GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.shows9
+                        (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x)) }) -}
+4db06ce666ad374943ed57d7526293d3
+  data Command
+    = Append GHC.Base.String
+    | Insert GHC.Base.String GHC.Types.Int
+    | New GHC.Base.String
+    | Flush (GHC.Base.Maybe GHC.Base.String)
+    | None
+85daa665016732fa8689e3c97a110aa4
+  type IptablesRule = Types.InputRule
+e0426e84b0ced49dd96e9485c60388ba
+  data Line
+    = Line {table :: IptablesTypes.Table,
+            command :: IptablesTypes.Command,
+            rule :: IptablesTypes.IptablesRule,
+            fileline :: GHC.Types.Int}
+aacb03aaa97a8ddae33c85c35864319c
+  type Table = GHC.Base.String
+f8707b38afb70baed6e837d50ab5d240
+  comChainName ::
+    IptablesTypes.Command -> GHC.Base.Maybe GHC.Base.String
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: IptablesTypes.Command ->
+                 case ds of wild {
+                   IptablesTypes.Append n -> GHC.Base.Just @ GHC.Base.String n
+                   IptablesTypes.Insert n ds1 -> GHC.Base.Just @ GHC.Base.String n
+                   IptablesTypes.New n -> GHC.Base.Just @ GHC.Base.String n
+                   IptablesTypes.Flush ds1 -> ds1
+                   IptablesTypes.None -> GHC.Base.Nothing @ GHC.Base.String }) -}
+02af45e5ca0458dec6f159cb5968f002
+  command :: IptablesTypes.Line -> IptablesTypes.Command
+  RecSel IptablesTypes.Line
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LSLL),1*U(A,1*U,A,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: IptablesTypes.Line ->
+                 case ds of wild { IptablesTypes.Line ds1 ds2 ds3 ds4 -> ds2 }) -}
+ae83a78289588cdfaf9420b2cf32ef20
+  fileline :: IptablesTypes.Line -> GHC.Types.Int
+  RecSel IptablesTypes.Line
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLLS),1*U(A,A,A,1*U(U))>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: IptablesTypes.Line ->
+                 case ds of wild { IptablesTypes.Line ds1 ds2 ds3 ds4 -> ds4 }) -}
+c4661b463735a8a4adfbc0fdc9596d14
+  rule :: IptablesTypes.Line -> IptablesTypes.IptablesRule
+  RecSel IptablesTypes.Line
+  {- Arity: 1, HasNoCafRefs,
+     Strictness: <S(LLSL),1*U(A,A,1*U(U,U,U),A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: IptablesTypes.Line ->
+                 case ds of wild { IptablesTypes.Line ds1 ds2 ds3 ds4 -> ds3 }) -}
+625c4dcd0e704ee0c566ef502d3ecd6c
+  table :: IptablesTypes.Line -> IptablesTypes.Table
+  RecSel IptablesTypes.Line
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SLLL),1*U(1*U,A,A,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: IptablesTypes.Line ->
+                 case ds of wild { IptablesTypes.Line ds1 ds2 ds3 ds4 -> ds1 }) -}
+instance GHC.Classes.Eq [IptablesTypes.Command]
+  = IptablesTypes.$fEqCommand
+instance GHC.Show.Show [IptablesTypes.Command]
+  = IptablesTypes.$fShowCommand
+instance GHC.Show.Show [IptablesTypes.Line]
+  = IptablesTypes.$fShowLine
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

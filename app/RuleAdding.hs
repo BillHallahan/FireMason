@@ -8,9 +8,12 @@ import Data.String.ToString
 
 import Types
 import NameIdChain
-import ChainsToSMT2
+import ChainsToSMT
+import qualified ChainsToSMT2 as S
 import SMT
 import Debug.Trace
+
+import Z3.Monad
 
 --Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions at which they should be added
 instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Int)]
@@ -71,7 +74,7 @@ findBestPointCut' r i n n' =
         firewallPredicatesReplacePCR <- readFile "smt/firewallPredicatesReplacePCR.smt2"
         let 
             orChangedChain = SMTOr $ map (\i'' -> (Reaches 1 i'' 0)) idsU
-            converted = convertChainsCheckSMT relevant
+            converted = S.convertChainsCheckSMT relevant
                         ((toString (Assert (SMTEq (SMTString "num-of-packets") (SMTInt 2)))) ++
                                                 (toString (DeclareConst "chain0" "Int")) ++
                                                 (toString (DeclareConst "chain1" "Int")))
@@ -91,15 +94,15 @@ findBestPointCut' r i n n' =
                                             SMTOr [
                                                 SMTEq (TerminatesWith 0) (TerminatesWith 1)
                                                 , SMTAnd [SMTF2 "reaches-end" (SMTInt 0) (SMTString "chain0"), SMTF2 "reaches-end" (SMTInt 1) (SMTString "chain1")]
-                                                , SMTAnd [SMTString (toSMT (criteria r) 0 0), orChangedChain]
+                                                , SMTAnd [SMTString (S.toSMT (criteria r) 0 0), orChangedChain]
                                                 ]
                                             , Implies
                                                 (SMTAnd [
-                                                    SMTString (toSMT (criteria r) 0 0)
+                                                    SMTString (S.toSMT (criteria r) 0 0)
                                                     , orChangedChain
                                                     ]
                                                 )
-                                                (SMTEq (TerminatesWith 1) (SMTString (toSMT (targets r) 0 0)))
+                                                (SMTEq (TerminatesWith 1) (SMTString (S.toSMT (targets r) 0 0)))
                                             ]
                                         )
                                     )
@@ -108,7 +111,69 @@ findBestPointCut' r i n n' =
                         )
         firewallPredicates <- readFile "smt/firewallPredicates2.smt2"
         noUndesired <- checkSat (firewallPredicates ++ converted)
-        if not noUndesired then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened
+        checking <- evalZ3 $ checkRuleImpact r relevant topStartingOld idsU
+
+        let same = (checking == Sat && noUndesired) || (checking == Unsat && not noUndesired)
+
+        if same then
+            (trace ("checking = " ++ show checking) (if not noUndesired then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened))
+        else error "not same"
+
+
+checkRuleImpact :: Rule -> IdNameChain -> [ChainId] -> [ChainId] -> Z3 Result
+checkRuleImpact r n top idsU = do
+    reset
+
+    intSort <- mkIntSort
+    zero <- mkInt 0 intSort
+    one <- mkInt 1 intSort
+    two <- mkInt 2 intSort
+
+    numOfPacketsSymb <- mkStringSymbol "num-of-packets"
+    numOfPackets <- mkConst numOfPacketsSymb intSort
+    assert =<< mkEq numOfPackets two
+
+    --convertChainsSMT n 2
+
+    --chain0Symb <- mkStringSymbol "chain0"
+    --chain0 <- mkConst chain0Symb intSort
+    --chain1Symb <- mkStringSymbol "chain1"
+    --chain1 <- mkConst chain1Symb intSort
+
+    --let topStarting = topLevelJumpingTo n top
+    --assert =<< mkOr =<< (sequence . (map (mkAnds chain0 chain1)) $ topStarting)
+
+    --assert =<< reaches zero chain0 zero
+    --assert =<< reaches one chain1 zero
+
+    --tw0 <- terminatesWith zero
+    --tw1 <- terminatesWith one
+    --reEnd0 <- reachesEnd zero chain0
+    --reEnd1 <- reachesEnd one chain1
+
+    --idsU' <- intSortList idsU
+    --let orChangedChain = mkOr =<< (sequence $ map (\i -> reaches one i zero) idsU') 
+
+    --targetAST <- if (head . targets $ r) == ACCEPT then acceptAST else dropAST
+
+    --innerOr <- mkOr =<< sequence [mkEq tw0 tw1
+    --                              , mkAnd [reEnd0, reEnd1]
+    --                              , mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]]
+    --imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]
+    --innerImplies <- mkImplies imAnd =<< mkEq tw1 targetAST
+
+    --assert =<< mkNot =<< mkAnd [innerOr, innerImplies]
+
+    solverCheck
+    where
+        mkAnds :: AST -> AST -> Int -> Z3 AST
+        mkAnds = (\c0 c1 i -> do
+                        intSort' <- mkIntSort
+                        i' <- mkInt i intSort'
+                        i'' <- mkInt (i + 1 + maxId n) intSort'
+                        ec0 <- mkEq c0 i'
+                        ec1 <- mkEq c1 i''
+                        mkAnd [ec0, ec1])
 
 addRuleToChainAtPos :: Rule -> Chain -> Int -> Chain 
 addRuleToChainAtPos r c i =

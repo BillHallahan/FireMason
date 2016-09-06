@@ -1,15 +1,15 @@
 Configuring hashable-1.2.4.0...
 Building hashable-1.2.4.0...
 Preprocessing library hashable-1.2.4.0...
-[1 of 3] Compiling Data.Hashable.Class ( Data/Hashable/Class.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Hashable/Class.o )
+[1 of 3] Compiling Data.Hashable.Class ( Data/Hashable/Class.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Hashable/Class.o )
 
 Data/Hashable/Class.hs:460:28: Warning:
     In the use of ‘B.inlinePerformIO’
     (imported from Data.ByteString.Internal):
     Deprecated: "If you think you know what you are doing, use 'unsafePerformIO'. If you are sure you know what you are doing, use 'unsafeDupablePerformIO'. If you enjoy sharing an address space with a malevolent agent of chaos, try 'accursedUnutterablePerformIO'."
-[2 of 3] Compiling Data.Hashable.Generic ( Data/Hashable/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Hashable/Generic.o )
-[3 of 3] Compiling Data.Hashable    ( Data/Hashable.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Hashable.o )
+[2 of 3] Compiling Data.Hashable.Generic ( Data/Hashable/Generic.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Hashable/Generic.o )
+[3 of 3] Compiling Data.Hashable    ( Data/Hashable.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Hashable.o )
 In-place registering hashable-1.2.4.0...
 Installing library in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/hashable-1.2.4.0-EalUWgp8NarBYWPbvYAD8I
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/ghc-7.10.2/7.10.2/lib/x86_64-osx-ghc-7.10.2/hashable-1.2.4.0-7lZto9aEWI74IRoYrJM1Mm
 Registering hashable-1.2.4.0...

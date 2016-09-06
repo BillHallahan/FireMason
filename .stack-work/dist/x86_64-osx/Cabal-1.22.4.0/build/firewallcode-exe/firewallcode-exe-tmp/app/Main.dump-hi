@@ -1,0 +1,191 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-05 18:31:06.604041 UTC
+
+interface main@main:Main 7102
+  interface hash: 55441ec6a018c2a3a6e31cad5c2c479b
+  ABI hash: e297a46784a438d3d79d429f33a325bb
+  export-list hash: 275b416cf17df8422ca0dad6e324dc99
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: c8c9e60041cf2f7315db34028fdd1816
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Main.main
+module dependencies: ChainsToSMT ChainsToSMT2 ConvertIptables
+                     ConvertIptablesPorts ConvertToHorn CriteriaPrereqAddition
+                     InstructionsToIptables IptablesTypes NameIdChain
+                     ParseSpecificationLanguage ParserHelp RuleAdding SMT Types
+package dependencies: MissingH-1.4.0.1@Missi_IUedVeBLJXI73qrXr2QSlw
+                      abstract-par-0.3.3@abstr_0mXTTcYXqAJ3jpj7PU0gDI
+                      aeson-1.0.0.0@aeson_5Oom0e7kmEy32XqlSIwNqL
+                      array-0.5.1.0@array_E0sTtauuKsGDLZoT7lTbgZ
+                      attoparsec-0.13.0.2@attop_KsL89vchYVsEGdsfsCX3s5 base-4.8.1.0
+                      base-compat-0.9.1@basec_68v0ejX8qDXK4dEbA6ZCbG
+                      binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd
+                      bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH
+                      case-insensitive-1.2.0.7@casei_I0T7EQSGXb8L7vKDNltr0H
+                      containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN
+                      criterion-1.1.1.0@crite_DMnBUUgpq1eGNVrGvIGdSU
+                      deepseq-1.4.1.1@deeps_LbCWUlehDDeLxurARKDH5o
+                      dlist-0.8.0.2@dlist_7yg0deLt1HD8qMf3TY6cGZ
+                      fail-4.9.0.0@fail_5C3OYtkH0wj6Fk9b1NbHTB ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm integer-gmp-1.0.0.0
+                      math-functions-0.2.0.1@mathf_8JZs3jCX5AFKT0IWJkuB9H
+                      monad-par-extras-0.3.3@monad_8xGzUKJMBBTHx71SGwaQWv
+                      monad-par-0.3.4.8@monad_EXsSOgQVcPy7Hi8HdZfysL
+                      mtl-2.2.1@mtl_KMpng31YRYc5JfMWFZ3FCU
+                      mwc-random-0.13.4.0@mwcra_CbxJtoPhfkaBBJ1sznixtf
+                      pretty-1.1.2.0@prett_7UQTOB05U7lIYPkFOVraeR
+                      primitive-0.6.1.0@primi_5Jnw7oEuYtM9dmKXelGXVb
+                      process-1.2.3.0@proce_FLTz0SLwyG6LJUpZ52HjkU
+                      regex-base-0.93.2@regex_2j0nR3pc4q24HZdEmShSMX
+                      regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl
+                      regex-compat-0.95.1@regex_LfevtAmd1jA93E87NZxMhh
+                      scientific-0.3.4.9@scien_FC2YxFpGuKj6CzVOArqfJD
+                      semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I
+                      split-0.2.3.1@split_Gd41gNkg1RrKgDS2jZ4Qe5
+                      statistics-0.13.3.0@stati_24cTNaNXpxFAlKhJZhwxQe
+                      tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi template-haskell-2.10.0.0
+                      text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010
+                      time-1.5.0.1@time_AXTdBF9VRQoBOqJT6qtmVH
+                      time-locale-compat-0.1.1.3@timel_JDSwwn2fwXt5nupu7xhJXh
+                      tostring-0.2.1.1@tostr_9mRZFMcnuWXE8LUkKdBchW
+                      transformers-0.4.2.0@trans_3eG64VdP2vzGjP6wJiCp5X
+                      unix-2.7.1.0@unix_A3WgcI5QiHK4PDo4jSYdwQ
+                      unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb
+                      utf8-string-1.0.1.1@utf8s_HWC8Qen5AZrArJxFQJuE72
+                      vector-th-unbox-0.2.1.6@vecto_0iELTB9XdBg5aa04dA4Fky
+                      vector-binary-instances-0.2.3.2@vecto_7u1eOokwKJ1HHLkq7w5abH
+                      vector-algorithms-0.7.0.1@vecto_A8W7cOKTLQ68WycYWTFGYJ
+                      vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF
+                      z3-4.1.0@z3_4JEFOmFD8nGErMH8Z2NNy3
+orphans: attoparsec-0.13.0.2@attop_KsL89vchYVsEGdsfsCX3s5:Data.Attoparsec.ByteString.Char8
+         attoparsec-0.13.0.2@attop_KsL89vchYVsEGdsfsCX3s5:Data.Attoparsec.Text.Internal
+         base-4.8.1.0:GHC.Base base-4.8.1.0:GHC.Float
+         binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm:Data.Hashable.Generic
+         main@main:Types
+         monad-par-0.3.4.8@monad_EXsSOgQVcPy7Hi8HdZfysL:Control.Monad.Par.Scheds.Trace
+         regex-base-0.93.2@regex_2j0nR3pc4q24HZdEmShSMX:Text.Regex.Base.Context
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.ByteString
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.ByteString.Lazy
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.Sequence
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.String
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Show
+         time-1.5.0.1@time_AXTdBF9VRQoBOqJT6qtmVH:Data.Time.Calendar.Gregorian
+         time-1.5.0.1@time_AXTdBF9VRQoBOqJT6qtmVH:Data.Time.Format.Parse
+         time-1.5.0.1@time_AXTdBF9VRQoBOqJT6qtmVH:Data.Time.LocalTime.LocalTime
+         transformers-0.4.2.0@trans_3eG64VdP2vzGjP6wJiCp5X:Control.Monad.Trans.Error
+         vector-binary-instances-0.2.3.2@vecto_7u1eOokwKJ1HHLkq7w5abH:Data.Vector.Binary
+         vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF:Data.Vector.Fusion.Bundle
+         vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF:Data.Vector.Unboxed
+family instance modules: attoparsec-0.13.0.2@attop_KsL89vchYVsEGdsfsCX3s5:Data.Attoparsec.Internal.Types
+                         base-4.8.1.0:Control.Applicative base-4.8.1.0:Data.Either
+                         base-4.8.1.0:Data.Functor.Identity base-4.8.1.0:Data.Monoid
+                         base-4.8.1.0:Data.Type.Equality base-4.8.1.0:Data.Void
+                         base-4.8.1.0:GHC.Exts base-4.8.1.0:GHC.Generics
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntMap.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntSet.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Map.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Sequence
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Set.Base
+                         criterion-1.1.1.0@crite_DMnBUUgpq1eGNVrGvIGdSU:Criterion.Types
+                         dlist-0.8.0.2@dlist_7yg0deLt1HD8qMf3TY6cGZ:Data.DList
+                         math-functions-0.2.0.1@mathf_8JZs3jCX5AFKT0IWJkuB9H:Numeric.RootFinding
+                         math-functions-0.2.0.1@mathf_8JZs3jCX5AFKT0IWJkuB9H:Numeric.Sum
+                         mwc-random-0.13.4.0@mwcra_CbxJtoPhfkaBBJ1sznixtf:System.Random.MWC
+                         pretty-1.1.2.0@prett_7UQTOB05U7lIYPkFOVraeR:Text.PrettyPrint.HughesPJ
+                         primitive-0.6.1.0@primi_5Jnw7oEuYtM9dmKXelGXVb:Control.Monad.Primitive
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.List.NonEmpty
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.Semigroup
+                         statistics-0.13.3.0@stati_24cTNaNXpxFAlKhJZhwxQe:Statistics.Distribution.Normal
+                         statistics-0.13.3.0@stati_24cTNaNXpxFAlKhJZhwxQe:Statistics.Resampling
+                         statistics-0.13.3.0@stati_24cTNaNXpxFAlKhJZhwxQe:Statistics.Resampling.Bootstrap
+                         tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi:Data.Tagged
+                         template-haskell-2.10.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashSet
+                         vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF:Data.Vector
+                         vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF:Data.Vector.Primitive
+                         vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF:Data.Vector.Storable
+                         vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF:Data.Vector.Unboxed
+                         vector-0.11.0.0@vecto_A9qWf1eecPQGJD12EBZIxF:Data.Vector.Unboxed.Base
+import  -/  base-4.8.1.0:Data.Foldable 2e5acb797cfda6b3b7fabd7052abe290
+import  -/  base-4.8.1.0:Data.List 2a4f5f92892d432e7113f64cd9dcca53
+import  -/  base-4.8.1.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.1.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.1.0:GHC.List f31ed8784b3e05f1397195751f7d74ea
+import  -/  base-4.8.1.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.1.0:Prelude 518f762991bc287d78f21a73c974da1f
+import  -/  base-4.8.1.0:System.Environment 946ddc2d7c48138bb213316abaff2a8d
+import  -/  base-4.8.1.0:System.IO 29a6f3d7c8ad8a4e6200d8bbb6e70aae
+import  -/  base-4.8.1.0:Text.Printf ad7802849661c053618cc511ab4272b4
+import  -/  containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Map 5e4cbf1ca2e6c8cfaecf2b4e95371357
+import  -/  containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Map.Base 7ea108dc1481cad0b32efe810e49ad43
+import  -/  criterion-1.1.1.0@crite_DMnBUUgpq1eGNVrGvIGdSU:Criterion.Measurement eb16c6d6fca6de677ceb6224d7e27b63
+import  -/  ChainsToSMT 006f80f5a090e65d853bee43e7e504eb
+  exports: eec9c452705d7708369335017461052a
+import  -/  ChainsToSMT2 c3d9c1efcbb55a3e5bb272493b808b4f
+  exports: fcbec7cd3ff01fc6bf8ec352d0091928
+import  -/  ConvertIptables 494bf2956f7e496c3d2de49a42875fc4
+  exports: 3c7c649666962c3b5055861cfe511177
+  convertScript 941926c0b057300d8c51b080d44e71b1
+import  -/  ConvertToHorn 19b084a7884829474c678cf3999e9ce8
+  exports: 266c75b3308c7b9566cb14e7d0975e75
+  inputInstructionsToInstructions 6f9173e09e4551e623d7224e6b7668e2
+  stringInputChainsToStringChains 577c9f700dd2882c568c3c78d3019a2d
+import  -/  CriteriaPrereqAddition 2da0311564a003c2317381d3aa80dca8
+  exports: daa28df1dd872b8af69923e4be77aa5c
+  criteriaPrereqAddition a03f5b0085efe56f35d7f544b3479b7e
+import  -/  InstructionsToIptables 59c7b857b32ad7cecd5365d31666e113
+  exports: a47788424ebe0604624e93b60b4db587
+  addToIptables 5e70fd44cd93390af23b44906d772580
+import  -/  IptablesTypes 1ddf55e4553bf487a954b096da589c83
+  exports: 4facbeac5c00aebe95278701f212ca21
+import  -/  NameIdChain a65e4f5fe9a5ce7ad24c8183a8c914cc
+  exports: b7ca760757feb67014dab71804222988
+  pathSimplification2' 9d92f5bcfd319c2dc5f2b8dc72bef304
+import  -/  ParseSpecificationLanguage e7948a71fd5650447e740d5d4251cf75
+  exports: b805ccfb33b37dfdd4f2cd95d84acb07
+  lexer 77c583e36e586e5038c1f8ebe9f4eeb6
+  parse 4eea5a46c0d562726fe7ef75745cd0a3
+import  -/  RuleAdding c77884c6b8305372f8fad90492f4988a
+  exports: 5414bc2e3c42fd7d4c85c45a6ed8e8ec
+  instructionsToAddAtPos e0e7584e627be5ec97b0f584272739d1
+import  -/  SMT 9cc8d0be0a65dc3071e5cf68f04feffe
+  exports: e9f9244ff2edf8000d33f225c93b28a8
+import  -/  Types 539e504492eacb62971b007037e46fe7
+  exports: c4323cb63359ad0358876fdfba25ce76
+8ee65123d858cadc458371aa72a49cb7
+  main :: GHC.Types.IO ()
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R)) -}
+c9fe9cb22a26151e7754e8f9c286db21
+  main1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <S,U> -}
+1b5610e22d035c2e1a1e3129f83e3a36
+  main2 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (GHC.TopHandler.runMainIO1
+                   @ ()
+                   Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

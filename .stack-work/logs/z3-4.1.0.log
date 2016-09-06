@@ -35,5 +35,5 @@ src/Z3/Monad.hs:336:1: Warning:
     To import instances alone, use: import Data.Traversable()
 In-place registering z3-4.1.0...
 Installing library in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/z3-4.1.0-IihW0G4lPF9JXAMQOHqRN1
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-5.11/7.10.3/lib/x86_64-osx-ghc-7.10.3/z3-4.1.0-IihW0G4lPF9JXAMQOHqRN1
 Registering z3-4.1.0...

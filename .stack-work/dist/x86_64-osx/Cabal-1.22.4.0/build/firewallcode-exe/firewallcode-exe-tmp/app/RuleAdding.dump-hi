@@ -1,0 +1,449 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-05 18:31:05.247931 UTC
+
+interface main@main:RuleAdding 7102
+  interface hash: 1132ca6716bd742b2556ecf51a272927
+  ABI hash: c77884c6b8305372f8fad90492f4988a
+  export-list hash: 5414bc2e3c42fd7d4c85c45a6ed8e8ec
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: dbae8b6274c43fc2a73ebb33608e06d9
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  RuleAdding.addRuleToChainAtPos
+  RuleAdding.checkRuleImpact
+  RuleAdding.findBestPointCut
+  RuleAdding.findBestPointCut'
+  RuleAdding.findPointCut
+  RuleAdding.instructionsToAddAtPos
+  RuleAdding.scm
+  RuleAdding.scoreCriteria
+  RuleAdding.scoreCriteriaList
+  RuleAdding.scoreRules
+  RuleAdding.scoreTargets
+module dependencies: ChainsToSMT ChainsToSMT2 NameIdChain
+                     ParserHelp SMT Types
+package dependencies: MissingH-1.4.0.1@Missi_IUedVeBLJXI73qrXr2QSlw
+                      array-0.5.1.0@array_E0sTtauuKsGDLZoT7lTbgZ base-4.8.1.0
+                      binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd
+                      bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH
+                      case-insensitive-1.2.0.7@casei_I0T7EQSGXb8L7vKDNltr0H
+                      containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN
+                      deepseq-1.4.1.1@deeps_LbCWUlehDDeLxurARKDH5o ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm integer-gmp-1.0.0.0
+                      mtl-2.2.1@mtl_KMpng31YRYc5JfMWFZ3FCU
+                      process-1.2.3.0@proce_FLTz0SLwyG6LJUpZ52HjkU
+                      regex-base-0.93.2@regex_2j0nR3pc4q24HZdEmShSMX
+                      regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl
+                      regex-compat-0.95.1@regex_LfevtAmd1jA93E87NZxMhh
+                      semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I
+                      split-0.2.3.1@split_Gd41gNkg1RrKgDS2jZ4Qe5
+                      tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi
+                      text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010
+                      tostring-0.2.1.1@tostr_9mRZFMcnuWXE8LUkKdBchW
+                      transformers-0.4.2.0@trans_3eG64VdP2vzGjP6wJiCp5X
+                      unix-2.7.1.0@unix_A3WgcI5QiHK4PDo4jSYdwQ
+                      unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb
+                      utf8-string-1.0.1.1@utf8s_HWC8Qen5AZrArJxFQJuE72
+                      z3-4.1.0@z3_4JEFOmFD8nGErMH8Z2NNy3
+orphans: base-4.8.1.0:GHC.Base base-4.8.1.0:GHC.Float
+         binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm:Data.Hashable.Generic
+         main@main:Types
+         regex-base-0.93.2@regex_2j0nR3pc4q24HZdEmShSMX:Text.Regex.Base.Context
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.ByteString
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.ByteString.Lazy
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.Sequence
+         regex-posix-0.95.2@regex_6Fv9CTZU9JMB52PT4YRZTl:Text.Regex.Posix.String
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Show
+         transformers-0.4.2.0@trans_3eG64VdP2vzGjP6wJiCp5X:Control.Monad.Trans.Error
+family instance modules: base-4.8.1.0:Control.Applicative
+                         base-4.8.1.0:Data.Either base-4.8.1.0:Data.Functor.Identity
+                         base-4.8.1.0:Data.Monoid base-4.8.1.0:Data.Type.Equality
+                         base-4.8.1.0:Data.Void base-4.8.1.0:GHC.Exts
+                         base-4.8.1.0:GHC.Generics
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntMap.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntSet.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Map.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Sequence
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Set.Base
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.List.NonEmpty
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.Semigroup
+                         tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi:Data.Tagged
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashSet
+import  -/  base-4.8.1.0:Data.Either bc9482e78cc431fce439b593377aa2e6
+import  -/  base-4.8.1.0:Data.Foldable 2e5acb797cfda6b3b7fabd7052abe290
+import  -/  base-4.8.1.0:Data.List 2a4f5f92892d432e7113f64cd9dcca53
+import  -/  base-4.8.1.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.1.0:Data.OldList 21f46c368c20a00483b41333e53a55cb
+import  -/  base-4.8.1.0:Data.Ord a885fb4f85a39c11c2b68af93fcbded7
+import  -/  base-4.8.1.0:Data.Traversable 89769555cf5e62f4edd3d085405c2caa
+import  -/  base-4.8.1.0:Debug.Trace 7cf679861c4b1d69175105437aae1212
+import  -/  base-4.8.1.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.1.0:GHC.Enum d0db4d619cd8916cc7a23444816222af
+import  -/  base-4.8.1.0:GHC.List f31ed8784b3e05f1397195751f7d74ea
+import  -/  base-4.8.1.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.1.0:GHC.Real 4c3b525ecbd4d62bb287aec36d4c2f0d
+import  -/  base-4.8.1.0:GHC.Show b8c65ca3124f92a166c9f05120382442
+import  -/  base-4.8.1.0:Prelude 518f762991bc287d78f21a73c974da1f
+import  -/  base-4.8.1.0:System.IO 29a6f3d7c8ad8a4e6200d8bbb6e70aae
+import  -/  containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Map 5e4cbf1ca2e6c8cfaecf2b4e95371357
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
+import  -/  ChainsToSMT 006f80f5a090e65d853bee43e7e504eb
+  exports: eec9c452705d7708369335017461052a
+  acceptAST a50760dfc28fee7eebb74897ef6136cb
+  convertChainsSMT d38f96951b88170d8198be4a47c7174f
+  dropAST 45a9e51fc80bccd1e721db60ff833534
+  intSortList c789203f133bb2f72a4e107aa34cb58d
+  reaches 46dcfb57f9e812cf7325787ad5d93ab0
+  reachesEnd bcea21bf5d0aeb62eff8744bc5f5678a
+  terminatesWith 96213bac1d165688a2f6c525b52ee596
+  toSMTCriteriaList 88cf39aec52091b89b395f3551426697
+import  -/  ChainsToSMT2 c3d9c1efcbb55a3e5bb272493b808b4f
+  exports: fcbec7cd3ff01fc6bf8ec352d0091928
+  convertChainsCheckSMT deaead73b27057b18b90a7766da58bb3
+  toSMT 6960d7e2fbc9829a9a7f140ced1ff55d
+import  -/  NameIdChain a65e4f5fe9a5ce7ad24c8183a8c914cc
+  exports: b7ca760757feb67014dab71804222988
+  IdNameChain 4f027086f050705bb246d9c6a97e7640
+  addChain d043f6b5e3267dc7da1ec43819a5fc25
+  chains c21dbf5d7a39ca8a3f614d526ee70e36
+  idsWithName 6343de980709ad3a1026961c5a864b80
+  increaseIndexes 59f83e152994c712b89d165264071b3f
+  jumpedToWithCriteria 8033bba77dbb74077a76bc5cb36b9307
+  lookupChain 6a6384e364ccc4770c7e9823512e3e98
+  lookupName 52d10d1431a9644fd7ad20ea37f9704f
+  lookupNameChain 1d22a0ab19a0fc72cf7310c34a0ce1a5
+  maxId daa975967deca25ea610ce0c2523eb3b
+  maxLabel ad037ab461c6ec78fd7a79b808c2a995
+  reduceReferenced 61287386ec5cecff26122678f31c3e3a
+  setUnion 7255fdf55d1eed529399a371c7105932
+  switchChains 730718a8b6623184398a6a99de5bd619
+  topLevelJumpingTo 8e1e669f97dbb2bc7689b8b173db1b25
+import  -/  SMT 9cc8d0be0a65dc3071e5cf68f04feffe
+  exports: e9f9244ff2edf8000d33f225c93b28a8
+  Assert 3453e207ac0edce4ef2d0f87f8113bf3
+  DeclareConst 640192b49d89bd8046586d15f6582c46
+  Implies 4f3d0b0ce26e93f4a31373baf7340566
+  Reaches e8aaab5f76457a0c2a335dc9c5bd3682
+  SMTAnd 16fb6c23c54de909b7e152d852770101
+  SMTEq de9a4faa81e4af18afa652c138220cc2
+  SMTF2 5aee18848805ee46366cbab589e47762
+  SMTF3 e2745f3394f103175db5bbbabf9b9557
+  SMTInt b8a8ac1cb86ea77a7dbcda14c232da96
+  SMTNot fbd7a4342986868a1dcf2145b93eb5ba
+  SMTOr ea0901ce6f40c78a19726be81bcd3e7e
+  SMTString 0bcf09811aa7e06e4e856ff8aac83fc0
+  TerminatesWith dcc8b93821e62b42e8c4dcbb30347e46
+  checkSat a7a5c6b7474519d339c492ace17d2339
+import  -/  Types 539e504492eacb62971b007037e46fe7
+  exports: c4323cb63359ad0358876fdfba25ce76
+  ACCEPT f6849424ce0242a5a46c02798e52f2f7
+  Chain c41be8acc41c6a1718d073e82a7aa403
+  ChainId c884b4bd8354c5f5ad5e611c0e6a2eb5
+  Criteria 06ff56a5f2e549856785fb4c617e8e9a
+  Instruction 487b50fc5f458d72df2d3b18517c0814
+  Not a1696263dc6e755d9c9c7671f466a19e
+  Port bc39a03feb63e6236cbedbfcdfc736da
+  Protocol 1dd54f33dcea36ae94747ac76558d75a
+  Rule 415230da6bf948321541e9ace77f4a95
+  Rule f8cda0a866712c372c0afb7990e381cb
+  Target c2ab377181a680cc86186fdc5c3fa065
+  chainName 698cd58279a7b0259c075dfafdae59c6
+  criteria e12965477819f1f30d11587524bdaaac
+  insRule 4b65cd80a21c45a6063709e9d87fe8c7
+  label fa7c42e1de199bed432b356957a04172
+  targets beab55b969d849107e1ce73f3f785cb6
+import  -/  tostring-0.2.1.1@tostr_9mRZFMcnuWXE8LUkKdBchW:Data.String.ToString df6e27529c302a068f01a5d691251e4b
+import  -/  z3-4.1.0@z3_4JEFOmFD8nGErMH8Z2NNy3:Z3.Base 54ac5841233e1d8383ab1325cf5d1dd0
+import  -/  z3-4.1.0@z3_4JEFOmFD8nGErMH8Z2NNy3:Z3.Monad 436abfc0b312f62fb00b793a9ad56086
+32f55c68252caf7333d98a04461bf393
+  $s$fShowGenRule2 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
+                 case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec2
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5 }) -}
+47f70c49c11aa55ec857cd4190119d93
+  $wa ::
+    Types.Rule
+    -> NameIdChain.IdNameChain
+    -> [Types.ChainId]
+    -> [Types.ChainId]
+    -> Z3.Base.Solver
+    -> GHC.Prim.Addr#
+    -> GHC.ForeignPtr.ForeignPtrContents
+    -> GHC.Prim.MutVar# GHC.Prim.RealWorld GHC.Types.Word
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Z3.Base.Result #)
+  {- Arity: 9,
+     Strictness: <L,1*U(U,1*U,A)><L,U(A,A,A,A,A,A,A,A,A,U,A,A,A,U,U,1*C1(U),U(U),A,A,A,U)><L,U><L,1*U><L,U(U,U)><L,U><L,U><L,U><L,U>,
+     Inline: [0] -}
+36e1fbc35e3dfaa43c36ee12a91448d4
+  $waddRuleToChainAtPos ::
+    Types.Rule
+    -> Types.Chain -> GHC.Prim.Int# -> [Types.GenRule Types.Criteria]
+  {- Arity: 3, HasNoCafRefs, Strictness: <L,U><L,U><L,U>,
+     Inline: [0],
+     Unfolding: (\ w :: Types.Rule
+                   w1 :: Types.Chain
+                   ww :: GHC.Prim.Int# ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.<=# ww 0) of wild1 {
+                   GHC.Types.False
+                   -> case w1 of wild {
+                        []
+                        -> GHC.Base.++
+                             @ (Types.GenRule Types.Criteria)
+                             (GHC.Types.[] @ Types.Rule)
+                             (GHC.Types.: @ Types.Rule w (GHC.Types.[] @ Types.Rule))
+                        : ipv ipv1
+                        -> case ww of ds1 {
+                             DEFAULT
+                             -> let {
+                                  ds2 :: ([Types.Rule], [Types.Rule])
+                                  = case GHC.List.splitAt_$s$wsplitAt'
+                                           @ Types.Rule
+                                           (GHC.Prim.-# ds1 1)
+                                           ipv1 of ww1 { (#,#) ww2 ww3 ->
+                                    (ww2, ww3) }
+                                } in
+                                GHC.Base.++
+                                  @ (Types.GenRule Types.Criteria)
+                                  (GHC.Types.:
+                                     @ Types.Rule
+                                     ipv
+                                     (case ds2 of wild2 { (,) xs' xs'' -> xs' }))
+                                  (GHC.Types.:
+                                     @ Types.Rule
+                                     w
+                                     (case ds2 of wild2 { (,) xs' xs'' -> xs'' }))
+                             1
+                             -> GHC.Base.++
+                                  @ (Types.GenRule Types.Criteria)
+                                  (GHC.Types.: @ Types.Rule ipv (GHC.Types.[] @ Types.Rule))
+                                  (GHC.Types.: @ Types.Rule w ipv1) } }
+                   GHC.Types.True
+                   -> GHC.Base.++
+                        @ (Types.GenRule Types.Criteria)
+                        (GHC.Types.[] @ Types.Rule)
+                        (GHC.Types.: @ Types.Rule w w1) }) -}
+d1413c1718c115753326c029f27cfe59
+  $wscoreCriteria ::
+    Types.Criteria -> Types.Criteria -> GHC.Prim.Int#
+  {- Arity: 2, Strictness: <S,1*U><S,1*U>, Inline: [0] -}
+3d511e9f9cf30fa8a04b924c2e791464
+  $wscoreCriteriaList ::
+    [Types.Criteria] -> [Types.Criteria] -> GHC.Prim.Int#
+  {- Arity: 2, Strictness: <S,1*U><S,1*U>, Inline: [0] -}
+20ecf0313305d0cf808fd23bd0455a2c
+  $wscoreTargets :: [Types.Target] -> [Types.Target] -> GHC.Prim.Int#
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U>, Inline: [0] -}
+f74d652079a2c676b8fbdec7e5d57fda
+  addRuleToChainAtPos ::
+    Types.Rule -> Types.Chain -> GHC.Types.Int -> Types.Chain
+  {- Arity: 3, HasNoCafRefs, Strictness: <L,U><L,U><S,1*U(U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ w :: Types.Rule w1 :: Types.Chain w2 :: GHC.Types.Int ->
+                 case w2 of ww { GHC.Types.I# ww1 ->
+                 RuleAdding.$waddRuleToChainAtPos w w1 ww1 }) -}
+22dec3d4f7a272026f3683e3e6204ab2
+  checkRuleImpact ::
+    Types.Rule
+    -> NameIdChain.IdNameChain
+    -> [Types.ChainId]
+    -> [Types.ChainId]
+    -> Z3.Monad.Z3 Z3.Base.Result
+  {- Arity: 6,
+     Strictness: <L,1*U(U,1*U,A)><L,U(A,A,A,A,A,A,A,A,A,U,A,A,A,U,U,1*C1(U),U(U),A,A,A,U)><L,U><L,1*U><S(LS(SL)),1*U(U(U,U),U(U(U,U),U))><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                RuleAdding.checkRuleImpact1
+                  `cast`
+                (<Types.Rule>_R
+                 ->_R <NameIdChain.IdNameChain>_R
+                 ->_R <[Types.ChainId]>_R
+                 ->_R <[Types.ChainId]>_R
+                 ->_R Trans
+                          (<Z3.Monad.Z3Env>_R
+                           ->_R Sym (GHC.Types.NTCo:IO[0] <Z3.Base.Result>_R))
+                          (Trans
+                               (Sym (Control.Monad.Trans.Reader.NTCo:ReaderT[0]
+                                         <Z3.Monad.Z3Env>_R <GHC.Types.IO>_R <Z3.Base.Result>_N))
+                               (Sym (Z3.Monad.NTCo:Z3[0]) <Z3.Base.Result>_N))) -}
+c261ec3ec6f907c75a451d1aebdfe31e
+  checkRuleImpact1 ::
+    Types.Rule
+    -> NameIdChain.IdNameChain
+    -> [Types.ChainId]
+    -> [Types.ChainId]
+    -> Z3.Monad.Z3Env
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Z3.Base.Result #)
+  {- Arity: 6,
+     Strictness: <L,1*U(U,1*U,A)><L,U(A,A,A,A,A,A,A,A,A,U,A,A,A,U,U,1*C1(U),U(U),A,A,A,U)><L,U><L,1*U><S(LS(SL)),1*U(U(U,U),U(U(U,U),U))><L,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (6, True, False)
+                (\ w :: Types.Rule
+                   w1 :: NameIdChain.IdNameChain
+                   w2 :: [Types.ChainId]
+                   w3 :: [Types.ChainId]
+                   w4 :: Z3.Monad.Z3Env
+                   w5 :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case w4 of ww { Z3.Monad.Z3Env ww1 ww2 ->
+                 case ww2 of ww3 { Z3.Base.Context ww4 ww5 ->
+                 case ww4 of ww6 { GHC.ForeignPtr.ForeignPtr ww7 ww8 ->
+                 RuleAdding.$wa w w1 w2 w3 ww1 ww7 ww8 ww5 w5 } } }) -}
+06832c4365508944ddcf7e7aabac491a
+  findBestPointCut ::
+    Types.Rule
+    -> Types.ChainId
+    -> NameIdChain.IdNameChain
+    -> GHC.Types.IO (Types.ChainId, GHC.Types.Int)
+  {- Arity: 4,
+     Strictness: <L,U(U,U,U(U))><L,U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U,U)>,
+     Unfolding: InlineRule (0, True, True)
+                RuleAdding.findBestPointCut1
+                  `cast`
+                (<Types.Rule>_R
+                 ->_R <Types.ChainId>_R
+                 ->_R <NameIdChain.IdNameChain>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0]
+                               <(Types.ChainId, GHC.Types.Int)>_R)) -}
+4fd5271fbdaf043f3018e4a70975859e
+  findBestPointCut' ::
+    Types.Rule
+    -> Types.ChainId
+    -> NameIdChain.IdNameChain
+    -> NameIdChain.IdNameChain
+    -> GHC.Types.IO (Types.ChainId, GHC.Types.Int)
+  {- Arity: 5,
+     Strictness: <L,U(U,U,U(U))><L,U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U,U)><L,U(A,A,C(U),A,A,1*C1(C1(U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U))),A,A,A,A,A,A,A,A,A,A,A,A,A,A,A)><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                RuleAdding.findBestPointCut2
+                  `cast`
+                (<Types.Rule>_R
+                 ->_R <Types.ChainId>_R
+                 ->_R <NameIdChain.IdNameChain>_R
+                 ->_R <NameIdChain.IdNameChain>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0]
+                               <(Types.ChainId, GHC.Types.Int)>_R)) -}
+ee981ee50a2e4134dc1010979f9d1109
+  findBestPointCut1 ::
+    Types.Rule
+    -> Types.ChainId
+    -> NameIdChain.IdNameChain
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          (Types.ChainId, GHC.Types.Int) #)
+  {- Arity: 4,
+     Strictness: <L,U(U,U,U(U))><L,U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U,U)>,
+     Unfolding: InlineRule (3, True, False)
+                (\ r :: Types.Rule
+                   i :: Types.ChainId
+                   n :: NameIdChain.IdNameChain
+                   eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 RuleAdding.findBestPointCut2 r i n n eta) -}
+c59951b5e3dc673a9fc4ea436a2572ea
+  findBestPointCut2 ::
+    Types.Rule
+    -> Types.ChainId
+    -> NameIdChain.IdNameChain
+    -> NameIdChain.IdNameChain
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          (Types.ChainId, GHC.Types.Int) #)
+  {- Arity: 5,
+     Strictness: <L,U(U,U,U(U))><L,U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U,U)><L,U(A,A,C(U),A,A,1*C1(C1(U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U))),A,A,A,A,A,A,A,A,A,A,A,A,A,A,A)><L,U> -}
+a6e810cef078acf69db6d563986a40f3
+  findPointCut ::
+    Types.Rule
+    -> Types.ChainId
+    -> NameIdChain.IdNameChain
+    -> (Types.ChainId, GHC.Types.Int, GHC.Types.Int)
+  {- Arity: 3,
+     Strictness: <L,U(U,U,U(U))><L,U><L,U(A,A,C(U),A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A)> -}
+e0e7584e627be5ec97b0f584272739d1
+  instructionsToAddAtPos ::
+    [Types.Instruction]
+    -> NameIdChain.IdNameChain
+    -> GHC.Types.IO [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+  {- Arity: 3,
+     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                RuleAdding.instructionsToAddAtPos1
+                  `cast`
+                (<[Types.Instruction]>_R
+                 ->_R <NameIdChain.IdNameChain>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0]
+                               <[(Types.Rule, GHC.Base.String, GHC.Types.Int)]>_R)) -}
+404c6771debf9f46d2ad8d4c0d98f57a
+  instructionsToAddAtPos1 ::
+    [Types.Instruction]
+    -> NameIdChain.IdNameChain
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [(Types.Rule, GHC.Base.String, GHC.Types.Int)] #)
+  {- Arity: 3,
+     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U> -}
+d157374e39c64bd204cbd7d3b7da04ad
+  scm :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 100000) -}
+ff9a332319c57a975cb782d3d47e7f16
+  scoreCriteria :: Types.Criteria -> Types.Criteria -> GHC.Types.Int
+  {- Arity: 2, Strictness: <S,1*U><S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: Types.Criteria w1 :: Types.Criteria ->
+                 case RuleAdding.$wscoreCriteria w w1 of ww { DEFAULT ->
+                 GHC.Types.I# ww }) -}
+4e922840270e17e0611ee38070919d1a
+  scoreCriteriaList ::
+    [Types.Criteria] -> [Types.Criteria] -> GHC.Types.Int
+  {- Arity: 2, Strictness: <S,1*U><S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: [Types.Criteria] w1 :: [Types.Criteria] ->
+                 case RuleAdding.$wscoreCriteriaList w w1 of ww { DEFAULT ->
+                 GHC.Types.I# ww }) -}
+5aa2e1aea883e6cd0c3f247844b24e17
+  scoreRules :: Types.Rule -> Types.Rule -> GHC.Types.Int
+  {- Arity: 2,
+     Strictness: <S(SSL),1*U(1*U,1*U,A)><S(SLL),1*U(1*U,U,A)>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: Types.Rule w1 :: Types.Rule ->
+                 case w of ww { Types.Rule ww1 ww2 ww3 ->
+                 case w1 of ww4 { Types.Rule ww5 ww6 ww7 ->
+                 case RuleAdding.$wscoreCriteriaList ww1 ww5 of ww8 { DEFAULT ->
+                 case RuleAdding.$wscoreTargets ww2 ww6 of ww9 { DEFAULT ->
+                 GHC.Types.I# (GHC.Prim.+# ww8 ww9) } } } }) -}
+d69df3d2503d6b30cf80af882965430a
+  scoreTargets :: [Types.Target] -> [Types.Target] -> GHC.Types.Int
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: [Types.Target] w1 :: [Types.Target] ->
+                 case RuleAdding.$wscoreTargets w w1 of ww { DEFAULT ->
+                 GHC.Types.I# ww }) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

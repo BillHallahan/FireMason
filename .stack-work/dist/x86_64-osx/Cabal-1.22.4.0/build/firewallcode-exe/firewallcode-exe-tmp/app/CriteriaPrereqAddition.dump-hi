@@ -1,0 +1,197 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-05 18:30:59.683003 UTC
+
+interface main@main:CriteriaPrereqAddition 7102
+  interface hash: bacc8f53dbf460529686a44b5a1b81b1
+  ABI hash: 2da0311564a003c2317381d3aa80dca8
+  export-list hash: daa28df1dd872b8af69923e4be77aa5c
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: dbae8b6274c43fc2a73ebb33608e06d9
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  CriteriaPrereqAddition.criteriaPrereqAddition
+  CriteriaPrereqAddition.criteriaPrereqAdditionCriteria
+  CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+  CriteriaPrereqAddition.criteriaPrereqAdditionRule
+module dependencies: Types
+package dependencies: array-0.5.1.0@array_E0sTtauuKsGDLZoT7lTbgZ
+                      base-4.8.1.0* binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd
+                      bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH
+                      case-insensitive-1.2.0.7@casei_I0T7EQSGXb8L7vKDNltr0H
+                      containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN
+                      deepseq-1.4.1.1@deeps_LbCWUlehDDeLxurARKDH5o ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm integer-gmp-1.0.0.0
+                      semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I
+                      tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi
+                      text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010
+                      tostring-0.2.1.1@tostr_9mRZFMcnuWXE8LUkKdBchW
+                      transformers-0.4.2.0@trans_3eG64VdP2vzGjP6wJiCp5X
+                      unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb
+                      utf8-string-1.0.1.1@utf8s_HWC8Qen5AZrArJxFQJuE72
+orphans: base-4.8.1.0:GHC.Base base-4.8.1.0:GHC.Float
+         binary-0.7.5.0@binar_IvYoLp9H6Xy3zEH13MmZwd:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6elQVSg5cWdFrvRnfxTUrH:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_7lZto9aEWI74IRoYrJM1Mm:Data.Hashable.Generic
+         main@main:Types text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Show
+family instance modules: base-4.8.1.0:Control.Applicative
+                         base-4.8.1.0:Data.Either base-4.8.1.0:Data.Functor.Identity
+                         base-4.8.1.0:Data.Monoid base-4.8.1.0:Data.Type.Equality
+                         base-4.8.1.0:Data.Void base-4.8.1.0:GHC.Exts
+                         base-4.8.1.0:GHC.Generics
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntMap.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.IntSet.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Map.Base
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Sequence
+                         containers-0.5.6.2@conta_LKCPrTJwOTOLk4OU37YmeN:Data.Set.Base
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.List.NonEmpty
+                         semigroups-0.18.2@semig_2XoUd9gQ2RU8GmCVR7Zp0I:Data.Semigroup
+                         tagged-0.8.5@tagge_3xPBWzsl8Q1ImKSiXIolCi:Data.Tagged
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text
+                         text-1.2.2.1@text_DHzFFGZ106YGOWoHRNT010:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_1LtcJdHkai20BJ4Qj1mjtb:Data.HashSet
+import  -/  base-4.8.1.0:Data.Foldable 2e5acb797cfda6b3b7fabd7052abe290
+import  -/  base-4.8.1.0:Data.Functor 5c701b0af1708f0192a25dfe14ce6274
+import  -/  base-4.8.1.0:Data.List 2a4f5f92892d432e7113f64cd9dcca53
+import  -/  base-4.8.1.0:Data.OldList 21f46c368c20a00483b41333e53a55cb
+import  -/  base-4.8.1.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.1.0:Prelude 518f762991bc287d78f21a73c974da1f
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  Types 539e504492eacb62971b007037e46fe7
+  exports: c4323cb63359ad0358876fdfba25ce76
+  BoolFlag c63d64d39616d4c6d93fef2910be9666
+  Criteria 06ff56a5f2e549856785fb4c617e8e9a
+  Instruction 487b50fc5f458d72df2d3b18517c0814
+  NoInstruction 7aa1252dfb7cbf67f127561bc2193fc8
+  Not a1696263dc6e755d9c9c7671f466a19e
+  Port bc39a03feb63e6236cbedbfcdfc736da
+  Protocol 1dd54f33dcea36ae94747ac76558d75a
+  Rule 415230da6bf948321541e9ace77f4a95
+  Rule f8cda0a866712c372c0afb7990e381cb
+  ToChainNamed 2f5a00e1e189a94530d72423141b9d45
+2c8cda17ee7e1024713a03773c5e26f0
+  $wcriteriaPrereqAdditionRule ::
+    [Types.Criteria] -> [Types.Target] -> Types.Label -> [Types.Rule]
+  {- Arity: 3, HasNoCafRefs, Strictness: <S,U><L,U><L,U>,
+     Inline: [0],
+     Unfolding: (\ ww :: [Types.Criteria]
+                   ww1 :: [Types.Target]
+                   ww2 :: Types.Label ->
+                 GHC.Base.map
+                   @ [Types.Criteria]
+                   @ (Types.GenRule Types.Criteria)
+                   (\ c' :: [Types.Criteria] ->
+                    Types.Rule @ Types.Criteria c' ww1 ww2)
+                   (CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+                      ww
+                      ww)) -}
+a03f5b0085efe56f35d7f544b3479b7e
+  criteriaPrereqAddition :: Types.Instruction -> [Types.Instruction]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: (\ ds :: Types.SynthInstruction Types.Rule ->
+                 case ds of wild {
+                   Types.ToChainNamed n r
+                   -> case r of ww { Types.Rule ww1 ww2 ww3 ->
+                      GHC.Base.map
+                        @ (Types.GenRule Types.Criteria)
+                        @ (Types.SynthInstruction Types.Rule)
+                        (Types.ToChainNamed @ Types.Rule n)
+                        (GHC.Base.map
+                           @ [Types.Criteria]
+                           @ (Types.GenRule Types.Criteria)
+                           (\ c' :: [Types.Criteria] ->
+                            Types.Rule @ Types.Criteria c' ww2 ww3)
+                           (CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+                              ww1
+                              ww1)) }
+                   Types.NoInstruction r
+                   -> case r of ww { Types.Rule ww1 ww2 ww3 ->
+                      GHC.Base.map
+                        @ (Types.GenRule Types.Criteria)
+                        @ (Types.SynthInstruction Types.Rule)
+                        (Types.NoInstruction @ Types.Rule)
+                        (GHC.Base.map
+                           @ [Types.Criteria]
+                           @ (Types.GenRule Types.Criteria)
+                           (\ c' :: [Types.Criteria] ->
+                            Types.Rule @ Types.Criteria c' ww2 ww3)
+                           (CriteriaPrereqAddition.criteriaPrereqAdditionCriteriaList
+                              ww1
+                              ww1)) } }) -}
+df443408750bbfff0296050cb3b09540
+  criteriaPrereqAdditionCriteria ::
+    Types.Criteria -> [Types.Criteria]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Types.Criteria ->
+                 case ds of wild {
+                   DEFAULT -> GHC.Types.[] @ Types.Criteria
+                   Types.BoolFlag ds1
+                   -> CriteriaPrereqAddition.criteriaPrereqAdditionCriteria7
+                   Types.Port ds1 ds2
+                   -> CriteriaPrereqAddition.criteriaPrereqAdditionCriteria1 }) -}
+07d0f9b6e111d9a1eacc44fdb001beb2
+  criteriaPrereqAdditionCriteria1 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAddition.criteriaPrereqAdditionCriteria5
+                   CriteriaPrereqAddition.criteriaPrereqAdditionCriteria2) -}
+bdc0019cdf4dec707b0fc0a5eb618970
+  criteriaPrereqAdditionCriteria2 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAddition.criteriaPrereqAdditionCriteria3
+                   (GHC.Types.[] @ Types.Criteria)) -}
+c29b8d424853a9b88699bc5e4ec3d6a8
+  criteriaPrereqAdditionCriteria3 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol
+                   CriteriaPrereqAddition.criteriaPrereqAdditionCriteria4) -}
+37a96c8b902468fc90047b61b13f6188
+  criteriaPrereqAdditionCriteria4 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 17) -}
+e8e276877fb4bc901de9d7228c7c3dc5
+  criteriaPrereqAdditionCriteria5 :: Types.Criteria
+  {- HasNoCafRefs, Strictness: m6,
+     Unfolding: (Types.Protocol
+                   CriteriaPrereqAddition.criteriaPrereqAdditionCriteria6) -}
+a9a25f57d2bb887f4990b0286ad24936
+  criteriaPrereqAdditionCriteria6 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 6) -}
+c4c8588a8649a35c06799d6ef5066b2a
+  criteriaPrereqAdditionCriteria7 :: [Types.Criteria]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Criteria
+                   CriteriaPrereqAddition.criteriaPrereqAdditionCriteria5
+                   (GHC.Types.[] @ Types.Criteria)) -}
+9bb7ae33cd5d376a9ec5c755370f1547
+  criteriaPrereqAdditionCriteriaList ::
+    [Types.Criteria] -> [Types.Criteria] -> [[Types.Criteria]]
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U> -}
+7978c77217fffefaed2f92f33e8b6d75
+  criteriaPrereqAdditionRule :: Types.Rule -> [Types.Rule]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(U,U,U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ w :: Types.Rule ->
+                 case w of ww { Types.Rule ww1 ww2 ww3 ->
+                 CriteriaPrereqAddition.$wcriteriaPrereqAdditionRule
+                   ww1
+                   ww2
+                   ww3 }) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

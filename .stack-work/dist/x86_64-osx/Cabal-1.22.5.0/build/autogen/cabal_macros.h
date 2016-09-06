@@ -56,8 +56,8 @@
   (major1) == 4 && (major2) <  1 || \
   (major1) == 4 && (major2) == 1 && (minor) <= 0)
 
-/* package HUnit-1.3.1.1 */
-#define VERSION_HUnit "1.3.1.1"
+/* package HUnit-1.3.1.2 */
+#define VERSION_HUnit "1.3.1.2"
 #define MIN_VERSION_HUnit(major1,major2,minor) (\
   (major1) <  1 || \
   (major1) == 1 && (major2) <  3 || \
@@ -112,5 +112,5 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 1)
 
-#define CURRENT_PACKAGE_KEY "firew_5GHTrwnWDkcFn6QBlrVltt"
+#define CURRENT_PACKAGE_KEY "firew_D6gckZGGaaQ7EM9yN4FDyB"
 

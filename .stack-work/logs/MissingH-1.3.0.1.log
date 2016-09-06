@@ -1,0 +1,158 @@
+Configuring MissingH-1.3.0.1...
+Building MissingH-1.3.0.1...
+Preprocessing library MissingH-1.3.0.1...
+
+on the commandline: Warning:
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+[ 1 of 47] Compiling System.Console.GetOpt.Utils ( src/System/Console/GetOpt/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Console/GetOpt/Utils.o )
+[ 2 of 47] Compiling System.Debian    ( src/System/Debian.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Debian.o )
+[ 3 of 47] Compiling System.IO.WindowsCompat ( src/System/IO/WindowsCompat.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/WindowsCompat.o )
+[ 4 of 47] Compiling System.Posix.Consts ( src/System/Posix/Consts.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Posix/Consts.o )
+[ 5 of 47] Compiling System.IO.StatCompat ( src/System/IO/StatCompat.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/StatCompat.o )
+[ 6 of 47] Compiling System.IO.PlafCompat ( src/System/IO/PlafCompat.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/PlafCompat.o )
+[ 7 of 47] Compiling Data.Compression.Inflate ( src/Data/Compression/Inflate.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Compression/Inflate.o )
+[ 8 of 47] Compiling Data.Hash.MD5.Zord64_HARD ( src/Data/Hash/MD5/Zord64_HARD.lhs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Hash/MD5/Zord64_HARD.o )
+
+src/Data/Hash/MD5/Zord64_HARD.lhs:13:12: Warning:
+    No explicit implementation for
+      either ‘showsPrec’ or ‘show’
+    In the instance declaration for ‘Show Zord64’
+
+src/Data/Hash/MD5/Zord64_HARD.lhs:15:12: Warning:
+    No explicit implementation for
+      either ‘readsPrec’ or ‘GHC.Read.readPrec’
+    In the instance declaration for ‘Read Zord64’
+
+src/Data/Hash/MD5/Zord64_HARD.lhs:17:12: Warning:
+    No explicit implementation for
+      ‘*’, ‘abs’, and ‘signum’
+    In the instance declaration for ‘Num Zord64’
+
+src/Data/Hash/MD5/Zord64_HARD.lhs:26:12: Warning:
+    No explicit implementation for
+      ‘xor’, (either ‘rotate’ or (‘rotateL’ and ‘rotateR’)), ‘bitSize’,
+      ‘bitSizeMaybe’, ‘isSigned’, ‘testBit’, ‘bit’, and ‘popCount’
+    In the instance declaration for ‘Bits Zord64’
+
+src/Data/Hash/MD5/Zord64_HARD.lhs:43:12: Warning:
+    No explicit implementation for
+      ‘quotRem’
+    In the instance declaration for ‘Integral Zord64’
+
+src/Data/Hash/MD5/Zord64_HARD.lhs:46:12: Warning:
+    No explicit implementation for
+      ‘toRational’
+    In the instance declaration for ‘Real Zord64’
+
+src/Data/Hash/MD5/Zord64_HARD.lhs:47:12: Warning:
+    No explicit implementation for
+      ‘toEnum’ and ‘fromEnum’
+    In the instance declaration for ‘Enum Zord64’
+[ 9 of 47] Compiling Data.Hash.MD5    ( src/Data/Hash/MD5.lhs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Hash/MD5.o )
+
+src/Data/Hash/MD5.lhs:114:12: Warning:
+    No explicit implementation for
+      ‘*’, ‘abs’, ‘signum’, ‘fromInteger’, and (either ‘negate’ or ‘-’)
+    In the instance declaration for ‘Num ABCD’
+[10 of 47] Compiling Data.Hash.CRC32.GZip ( src/Data/Hash/CRC32/GZip.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Hash/CRC32/GZip.o )
+[11 of 47] Compiling Data.Hash.CRC32.Posix ( src/Data/Hash/CRC32/Posix.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Hash/CRC32/Posix.o )
+[12 of 47] Compiling Data.Bits.Utils  ( src/Data/Bits/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Bits/Utils.o )
+
+src/Data/Bits/Utils.hs:40:13: Warning:
+    In the use of ‘bitSize’ (imported from Data.Bits):
+    Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
+
+src/Data/Bits/Utils.hs:42:42: Warning:
+    In the use of ‘bitSize’ (imported from Data.Bits):
+    Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
+[13 of 47] Compiling System.FileArchive.GZip ( src/System/FileArchive/GZip.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/FileArchive/GZip.o )
+
+src/System/FileArchive/GZip.hs:44:1: Warning:
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+
+src/System/FileArchive/GZip.hs:56:10: Warning:
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in transformers-0.4.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/System/FileArchive/GZip.hs:56:10: Warning:
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in transformers-0.4.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+[14 of 47] Compiling Data.Tuple.Utils ( src/Data/Tuple/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Tuple/Utils.o )
+[15 of 47] Compiling Data.Maybe.Utils ( src/Data/Maybe/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Maybe/Utils.o )
+[16 of 47] Compiling Data.Either.Utils ( src/Data/Either/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Either/Utils.o )
+
+src/Data/Either/Utils.hs:29:1: Warning:
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+[17 of 47] Compiling Network.Utils    ( src/Network/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Network/Utils.o )
+[18 of 47] Compiling Network.SocketServer ( src/Network/SocketServer.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Network/SocketServer.o )
+[19 of 47] Compiling System.Time.ParseDate ( src/System/Time/ParseDate.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Time/ParseDate.o )
+[20 of 47] Compiling System.Path.NameManip ( src/System/Path/NameManip.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Path/NameManip.o )
+[21 of 47] Compiling Data.Quantity    ( src/Data/Quantity.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Quantity.o )
+[22 of 47] Compiling System.Time.Utils ( src/System/Time/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Time/Utils.o )
+[23 of 47] Compiling Data.Progress.Tracker ( src/Data/Progress/Tracker.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Progress/Tracker.o )
+[24 of 47] Compiling Data.BinPacking  ( src/Data/BinPacking.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/BinPacking.o )
+
+src/Data/BinPacking.hs:40:1: Warning:
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+
+src/Data/BinPacking.hs:59:55: Warning:
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in transformers-0.4.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Data/BinPacking.hs:59:55: Warning:
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in transformers-0.4.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Data/BinPacking.hs:72:18: Warning:
+    Variable ‘size’ is implicitly quantified due to a context
+    Use explicit forall syntax instead.
+    This will become an error in GHC 7.12.
+    In the type ‘(Num size, Ord size, Show size, Show obj) =>
+                 [size]
+                 -> [(size, obj)]
+                    -> Either (BinPackerError size obj) [[(size, obj)]]’
+    In the declaration for type synonym ‘BinPacker’
+
+src/Data/BinPacking.hs:72:18: Warning:
+    Variable ‘obj’ is implicitly quantified due to a context
+    Use explicit forall syntax instead.
+    This will become an error in GHC 7.12.
+    In the type ‘(Num size, Ord size, Show size, Show obj) =>
+                 [size]
+                 -> [(size, obj)]
+                    -> Either (BinPackerError size obj) [[(size, obj)]]’
+    In the declaration for type synonym ‘BinPacker’
+[25 of 47] Compiling Data.CSV         ( src/Data/CSV.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/CSV.o )
+[26 of 47] Compiling System.Cmd.Utils ( src/System/Cmd/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Cmd/Utils.o )
+[27 of 47] Compiling Network.Email.Sendmail ( src/Network/Email/Sendmail.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Network/Email/Sendmail.o )
+[28 of 47] Compiling Control.Concurrent.Thread.Utils ( src/Control/Concurrent/Thread/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Concurrent/Thread/Utils.o )
+[29 of 47] Compiling Network.Email.Mailbox ( src/Network/Email/Mailbox.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Network/Email/Mailbox.o )
+[30 of 47] Compiling Text.ParserCombinators.Parsec.Utils ( src/Text/ParserCombinators/Parsec/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/ParserCombinators/Parsec/Utils.o )
+[31 of 47] Compiling System.Daemon    ( src/System/Daemon.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Daemon.o )
+[32 of 47] Compiling System.IO.HVIO   ( src/System/IO/HVIO.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/HVIO.o )
+[33 of 47] Compiling System.IO.HVFS   ( src/System/IO/HVFS.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/HVFS.o )
+[34 of 47] Compiling System.IO.Binary ( src/System/IO/Binary.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/Binary.o )
+[35 of 47] Compiling System.IO.HVFS.Utils ( src/System/IO/HVFS/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/HVFS/Utils.o )
+[36 of 47] Compiling System.IO.Utils  ( src/System/IO/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/Utils.o )
+[37 of 47] Compiling Data.List.Utils  ( src/Data/List/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/List/Utils.o )
+[38 of 47] Compiling Data.Map.Utils   ( src/Data/Map/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Map/Utils.o )
+[39 of 47] Compiling System.Path      ( src/System/Path.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Path.o )
+[40 of 47] Compiling System.IO.HVFS.InstanceHelpers ( src/System/IO/HVFS/InstanceHelpers.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/HVFS/InstanceHelpers.o )
+[41 of 47] Compiling System.IO.HVFS.Combinators ( src/System/IO/HVFS/Combinators.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/IO/HVFS/Combinators.o )
+[42 of 47] Compiling Data.MIME.Types  ( src/Data/MIME/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/MIME/Types.o )
+[43 of 47] Compiling Data.String.Utils ( src/Data/String/Utils.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/String/Utils.o )
+[44 of 47] Compiling Data.Progress.Meter ( src/Data/Progress/Meter.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/Progress/Meter.o )
+[45 of 47] Compiling System.Path.WildMatch ( src/System/Path/WildMatch.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Path/WildMatch.o )
+[46 of 47] Compiling System.Path.Glob ( src/System/Path/Glob.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Path/Glob.o )
+[47 of 47] Compiling System.Debian.ControlParser ( src/System/Debian/ControlParser.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/System/Debian/ControlParser.o )
+In-place registering MissingH-1.3.0.1...
+Installing library in
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-5.11/7.10.3/lib/x86_64-osx-ghc-7.10.3/MissingH-1.3.0.1-Ib1zDeoXo62AcZUCIuxqeF
+Registering MissingH-1.3.0.1...

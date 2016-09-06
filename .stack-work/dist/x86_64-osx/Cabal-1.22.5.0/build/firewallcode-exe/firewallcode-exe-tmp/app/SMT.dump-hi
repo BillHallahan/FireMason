@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-08-30 14:46:56.753224 UTC
+2016-09-05 19:34:45.184531 UTC
 
 interface main@main:SMT 7103
-  interface hash: 29dad50305469def0a626fad05704f72
-  ABI hash: e345a2871f5e6eb288d7dcf0bc364057
-  export-list hash: e75a40a2da8b8401c96f619812f462ba
+  interface hash: 31457e6ff70b3b26208cd7e35eb65e7f
+  ABI hash: f153742b8522602caab65600c008fa3e
+  export-list hash: 3669e794b35f65dee8fd9e1fc24334a7
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -22,7 +22,7 @@ module dependencies: Types
 package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       base-4.8.2.0 binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
-                      case-insensitive-1.2.0.6@casei_8qjMvUrztuXBu8a9xaKGpv
+                      case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
@@ -31,7 +31,7 @@ package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
                       text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
-                      tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy
+                      tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep
                       transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
                       unix-2.7.1.0@unix_KZL8h98IqDM57kQSPo1mKx
                       unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
@@ -74,12 +74,12 @@ import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  base-4.8.2.0:System.IO.Unsafe fc45e72b9d9eb2c797a8c81f5821fcd0
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  Types 8f9f9ef24d7a230d4a5552d2b301ad89
-  exports: f5f85a5f38b612d4f86997d2d16e8581
+import  -/  Types d6c7cbd499b1b23d477175270c131304
+  exports: 54b2d7991e7502b0509a3d8d97b51aee
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 94dea86d30f5fa7449c1f8b584f7e1f2
-import  -/  tostring-0.2.1.1@tostr_H9ILO1H59wL709TBIbtvyy:Data.String.ToString f26ed1712f18acd23f20c0cf04363f67
+import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString 978e65d0cb7daa9905391bc5dd57c2a3
 import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9c2736322
-36edb6c8506d0b93248d5e6e25aa66e9
+67b91cee005240f9da53fe1012435ee3
   $fToStringSMT :: Data.String.ToString.ToString SMT.SMT
   DFunId[0]
   {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
@@ -87,10 +87,10 @@ import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9
                 SMT.$fToStringSMT_$ctoString
                   `cast`
                 (Sym (Data.String.ToString.NTCo:ToString[0] <SMT.SMT>_N)) -}
-36edb6c8506d0b93248d5e6e25aa66e9
+67b91cee005240f9da53fe1012435ee3
   $fToStringSMT_$ctoString :: SMT.SMT -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U> -}
-36edb6c8506d0b93248d5e6e25aa66e9
+67b91cee005240f9da53fe1012435ee3
   data SMT
     = SMTAnd [SMT.SMT]
     | Assert SMT.SMT
@@ -213,7 +213,7 @@ c2b45f4019cbd74a7b17b3f92a69e655
 65d4ebd30388c6b621546f1246cfe438
   checkSat4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "checkSat.smt2"#) -}
-0b95f0a308bdcb4450bc507db67696d3
+a5211bc2010ae0692c87a70f371b698c
   printSMTFunc1 ::
     Data.String.ToString.ToString a =>
     GHC.Base.String -> a -> GHC.Base.String
@@ -233,7 +233,7 @@ c2b45f4019cbd74a7b17b3f92a69e655
                             @ GHC.Types.Char
                             ($dToString `cast` (Data.String.ToString.NTCo:ToString[0] <a>_N) x)
                             SMT.printSMTFunc4)))) -}
-f7e5b78c80d51a7155160c69c65f8fb5
+6b296201973a39a6f052778802a0793a
   printSMTFunc2 ::
     (Data.String.ToString.ToString a,
      Data.String.ToString.ToString b) =>
@@ -263,7 +263,7 @@ f7e5b78c80d51a7155160c69c65f8fb5
                                   ($dToString1 `cast` (Data.String.ToString.NTCo:ToString[0] <b>_N)
                                      y)
                                   SMT.printSMTFunc4)))))) -}
-8eb246434ddf33a48f3f2f136b198c05
+2ff10de691881873d1737ef3babff663
   printSMTFunc3 ::
     (Data.String.ToString.ToString a, Data.String.ToString.ToString b,
      Data.String.ToString.ToString c) =>

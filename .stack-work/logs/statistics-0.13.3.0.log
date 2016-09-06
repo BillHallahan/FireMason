@@ -166,5 +166,5 @@ Statistics/Test/WilcoxonT.hs:43:1: Warning:
 [48 of 48] Compiling Statistics.Autocorrelation ( Statistics/Autocorrelation.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Statistics/Autocorrelation.o )
 In-place registering statistics-0.13.3.0...
 Installing library in
-/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/statistics-0.13.3.0-KDdeJDxRTXn5LkbuEgZHKJ
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.15/7.10.3/lib/x86_64-osx-ghc-7.10.3/statistics-0.13.3.0-862TQZlKrJkB6RcRVEJB2v
 Registering statistics-0.13.3.0...

@@ -1,0 +1,106 @@
+Configuring monad-par-0.3.4.7...
+Building monad-par-0.3.4.7...
+Preprocessing library monad-par-0.3.4.7...
+[1 of 7] Compiling Control.Monad.Par.Scheds.Sparks ( Control/Monad/Par/Scheds/Sparks.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/Sparks.o )
+[2 of 7] Compiling Control.Monad.Par.Scheds.DirectInternal ( Control/Monad/Par/Scheds/DirectInternal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/DirectInternal.o )
+[3 of 7] Compiling Control.Monad.Par.Scheds.Direct ( Control/Monad/Par/Scheds/Direct.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/Direct.o )
+
+Control/Monad/Par/Scheds/Direct.hs:208:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:209:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:209:10: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:217:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:418:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:422:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:456:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:457:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:465:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:468:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:469:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:470:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:471:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:472:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:515:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:516:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:517:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:618:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:636:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:641:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:645:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:651:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:687:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:696:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:710:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:711:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:712:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:713:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:714:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:715:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:716:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:719:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:731:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:752:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:753:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:901:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:912:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:916:1: Warning: Tab character
+
+Control/Monad/Par/Scheds/Direct.hs:919:1: Warning: Tab character
+[4 of 7] Compiling Control.Monad.Par.Scheds.TraceInternal ( Control/Monad/Par/Scheds/TraceInternal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/TraceInternal.o )
+
+Control/Monad/Par/Scheds/TraceInternal.hs:28:1: Warning:
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+Control/Monad/Par/Scheds/TraceInternal.hs:77:1: Warning:
+    Tab character
+
+Control/Monad/Par/Scheds/TraceInternal.hs:90:1: Warning:
+    Tab character
+
+Control/Monad/Par/Scheds/TraceInternal.hs:92:1: Warning:
+    Tab character
+[5 of 7] Compiling Control.Monad.Par.Scheds.Trace ( Control/Monad/Par/Scheds/Trace.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/Trace.o )
+[6 of 7] Compiling Control.Monad.Par.IO ( Control/Monad/Par/IO.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/IO.o )
+[7 of 7] Compiling Control.Monad.Par ( Control/Monad/Par.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par.o )
+In-place registering monad-par-0.3.4.7...
+Installing library in
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-5.11/7.10.3/lib/x86_64-osx-ghc-7.10.3/monad-par-0.3.4.7-Fu34LJQP7D1CCRKHLTIjuA
+Registering monad-par-0.3.4.7...

@@ -1,0 +1,69 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-05 18:30:58.506037 UTC
+
+interface main@main:ParserHelp 7102
+  interface hash: e7e23bd890ae35f42f8d37d4242318ab
+  ABI hash: 2963101e3925b4b7443579b40db62a20
+  export-list hash: e7d64e37248c29bbbe084ee8d6572989
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: dbae8b6274c43fc2a73ebb33608e06d9
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  ParserHelp.isInteger
+  ParserHelp.splitNonconsuming
+module dependencies:
+package dependencies: base-4.8.1.0* ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0 split-0.2.3.1@split_Gd41gNkg1RrKgDS2jZ4Qe5
+orphans: base-4.8.1.0:GHC.Base base-4.8.1.0:GHC.Float
+family instance modules: base-4.8.1.0:Control.Applicative
+                         base-4.8.1.0:Data.Either base-4.8.1.0:Data.Monoid
+                         base-4.8.1.0:Data.Type.Equality base-4.8.1.0:GHC.Generics
+import  -/  base-4.8.1.0:Data.Char ba93ec4ca3776f6d9a8c8a6223b2fb26
+import  -/  base-4.8.1.0:Data.Foldable 2e5acb797cfda6b3b7fabd7052abe290
+import  -/  base-4.8.1.0:Data.List 2a4f5f92892d432e7113f64cd9dcca53
+import  -/  base-4.8.1.0:Data.OldList 21f46c368c20a00483b41333e53a55cb
+import  -/  base-4.8.1.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.1.0:GHC.Unicode bed09d5db094d4196c8520e6b25efaa4
+import  -/  base-4.8.1.0:Prelude 518f762991bc287d78f21a73c974da1f
+import  -/  split-0.2.3.1@split_Gd41gNkg1RrKgDS2jZ4Qe5:Data.List.Split d75b5c2f3d62635a3c6bc72afe2b6c2e
+import  -/  split-0.2.3.1@split_Gd41gNkg1RrKgDS2jZ4Qe5:Data.List.Split.Internals ec4f367173781fb33bc362ea0d0a839b
+6fd687954b869378a68326f1c0f508af
+  isInteger :: GHC.Base.String -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: (\ ds :: [GHC.Types.Char] ->
+                 case ds of wild {
+                   [] -> GHC.Types.False
+                   : ipv ipv1
+                   -> (ParserHelp.isInteger_go wild)
+                        `cast`
+                      (Data.Monoid.NTCo:All[0]) }) -}
+a6d389f8e01872ff7122df83db860717
+  isInteger_go :: [GHC.Types.Char] -> Data.Monoid.All
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+e4b621fbefba7c5ac924ef7b4a206a3f
+  splitNonconsuming ::
+    GHC.Base.String -> GHC.Base.String -> [GHC.Base.String]
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><L,U>,
+     Unfolding: (\ on :: GHC.Base.String s :: GHC.Base.String ->
+                 case Data.List.Split.Internals.splitOn
+                        @ GHC.Types.Char
+                        GHC.Classes.$fEqChar
+                        on
+                        s of wild {
+                   [] -> GHC.Types.[] @ GHC.Base.String
+                   : x xs
+                   -> GHC.Types.:
+                        @ GHC.Base.String
+                        x
+                        (Data.OldList.prependToAll @ GHC.Base.String on xs) }) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

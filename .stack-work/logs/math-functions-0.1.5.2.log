@@ -1,0 +1,21 @@
+Configuring math-functions-0.1.5.2...
+Building math-functions-0.1.5.2...
+Preprocessing library math-functions-0.1.5.2...
+[1 of 6] Compiling Numeric.Sum      ( Numeric/Sum.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Numeric/Sum.o )
+
+Numeric/Sum.hs:57:1: Warning:
+    The import of ‘Data.Vector.Generic.Mutable’ is redundant
+      except perhaps to import instances from ‘Data.Vector.Generic.Mutable’
+    To import instances alone, use: import Data.Vector.Generic.Mutable()
+[2 of 6] Compiling Numeric.Polynomial.Chebyshev ( Numeric/Polynomial/Chebyshev.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Numeric/Polynomial/Chebyshev.o )
+[3 of 6] Compiling Numeric.Polynomial ( Numeric/Polynomial.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Numeric/Polynomial.o )
+[4 of 6] Compiling Numeric.MathFunctions.Constants ( Numeric/MathFunctions/Constants.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Numeric/MathFunctions/Constants.o )
+[5 of 6] Compiling Numeric.SpecFunctions ( Numeric/SpecFunctions.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Numeric/SpecFunctions.o )
+
+Numeric/SpecFunctions.hs:627:59: Warning:
+    Literal 18446744069414584320 is out of the Int range -9223372036854775808..9223372036854775807
+[6 of 6] Compiling Numeric.SpecFunctions.Extra ( Numeric/SpecFunctions/Extra.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Numeric/SpecFunctions/Extra.o )
+In-place registering math-functions-0.1.5.2...
+Installing library in
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-5.11/7.10.3/lib/x86_64-osx-ghc-7.10.3/math-functions-0.1.5.2-3LEsvkri95Y0iU7IlgKIu5
+Registering math-functions-0.1.5.2...

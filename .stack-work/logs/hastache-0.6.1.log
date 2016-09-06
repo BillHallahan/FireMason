@@ -10,7 +10,7 @@ Preprocessing executable 'mkReadme' for hastache-0.6.1...
 [3 of 3] Compiling Main             ( mkReadme.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/mkReadme/mkReadme-tmp/Main.o )
 Linking .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/mkReadme/mkReadme ...
 Installing library in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/hastache-0.6.1-DQnY8gBYehCBQyskPWGoTJ
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-5.11/7.10.3/lib/x86_64-osx-ghc-7.10.3/hastache-0.6.1-2u9FA0EgVXW25oYMnQ6RDD
 Installing executable(s) in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/bin
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-5.11/7.10.3/bin
 Registering hastache-0.6.1...
