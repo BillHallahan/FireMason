@@ -1,14 +1,14 @@
 Configuring monad-par-0.3.4.8...
 Building monad-par-0.3.4.8...
 Preprocessing library monad-par-0.3.4.8...
-[1 of 7] Compiling Control.Monad.Par.Scheds.Sparks ( Control/Monad/Par/Scheds/Sparks.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Control/Monad/Par/Scheds/Sparks.o )
-[2 of 7] Compiling Control.Monad.Par.Scheds.DirectInternal ( Control/Monad/Par/Scheds/DirectInternal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Control/Monad/Par/Scheds/DirectInternal.o )
-[3 of 7] Compiling Control.Monad.Par.Scheds.Direct ( Control/Monad/Par/Scheds/Direct.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Control/Monad/Par/Scheds/Direct.o )
-[4 of 7] Compiling Control.Monad.Par.Scheds.TraceInternal ( Control/Monad/Par/Scheds/TraceInternal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Control/Monad/Par/Scheds/TraceInternal.o )
-[5 of 7] Compiling Control.Monad.Par.Scheds.Trace ( Control/Monad/Par/Scheds/Trace.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Control/Monad/Par/Scheds/Trace.o )
-[6 of 7] Compiling Control.Monad.Par.IO ( Control/Monad/Par/IO.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Control/Monad/Par/IO.o )
-[7 of 7] Compiling Control.Monad.Par ( Control/Monad/Par.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Control/Monad/Par.o )
+[1 of 7] Compiling Control.Monad.Par.Scheds.Sparks ( Control/Monad/Par/Scheds/Sparks.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/Sparks.o )
+[2 of 7] Compiling Control.Monad.Par.Scheds.DirectInternal ( Control/Monad/Par/Scheds/DirectInternal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/DirectInternal.o )
+[3 of 7] Compiling Control.Monad.Par.Scheds.Direct ( Control/Monad/Par/Scheds/Direct.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/Direct.o )
+[4 of 7] Compiling Control.Monad.Par.Scheds.TraceInternal ( Control/Monad/Par/Scheds/TraceInternal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/TraceInternal.o )
+[5 of 7] Compiling Control.Monad.Par.Scheds.Trace ( Control/Monad/Par/Scheds/Trace.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/Scheds/Trace.o )
+[6 of 7] Compiling Control.Monad.Par.IO ( Control/Monad/Par/IO.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par/IO.o )
+[7 of 7] Compiling Control.Monad.Par ( Control/Monad/Par.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Control/Monad/Par.o )
 In-place registering monad-par-0.3.4.8...
 Installing library in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/ghc-7.10.2/7.10.2/lib/x86_64-osx-ghc-7.10.2/monad-par-0.3.4.8-EXsSOgQVcPy7Hi8HdZfysL
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.15/7.10.3/lib/x86_64-osx-ghc-7.10.3/monad-par-0.3.4.8-6VUKksahaJq7nZeOjTjnor
 Registering monad-par-0.3.4.8...

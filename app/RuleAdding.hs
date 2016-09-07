@@ -111,17 +111,19 @@ findBestPointCut' r i n n' =
                         )
         firewallPredicates <- readFile "smt/firewallPredicates2.smt2"
         noUndesired <- checkSat (firewallPredicates ++ converted)
-        checking <- evalZ3 $ checkRuleImpact r relevant topStartingOld idsU
+        (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
+
+        viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
         let same = (checking == Sat && noUndesired) || (checking == Unsat && not noUndesired)
 
         if same then
             (trace ("checking = " ++ show checking) (if not noUndesired then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened))
-        else error "not same"
+        else error ("not same\n" ++ viewModel)
 
 
-checkRuleImpact :: Rule -> IdNameChain -> [ChainId] -> [ChainId] -> Z3 Result
-checkRuleImpact r n top idsU = do
+checkRuleImpact :: Rule -> IdNameChain -> IdNameChain -> [ChainId] -> [ChainId] -> Z3 (Result, Maybe Model)
+checkRuleImpact r n n' top idsU = do
     reset
 
     intSort <- mkIntSort
@@ -133,38 +135,38 @@ checkRuleImpact r n top idsU = do
     numOfPackets <- mkConst numOfPacketsSymb intSort
     assert =<< mkEq numOfPackets two
 
-    --convertChainsSMT n 2
+    convertChainsSMT n' 2
 
-    --chain0Symb <- mkStringSymbol "chain0"
-    --chain0 <- mkConst chain0Symb intSort
-    --chain1Symb <- mkStringSymbol "chain1"
-    --chain1 <- mkConst chain1Symb intSort
+    chain0Symb <- mkStringSymbol "chain0"
+    chain0 <- mkConst chain0Symb intSort
+    chain1Symb <- mkStringSymbol "chain1"
+    chain1 <- mkConst chain1Symb intSort
 
-    --let topStarting = topLevelJumpingTo n top
-    --assert =<< mkOr =<< (sequence . (map (mkAnds chain0 chain1)) $ topStarting)
+    let topStarting = topLevelJumpingTo n top
+    assert =<< mkOr =<< (sequence . (map (mkAnds chain0 chain1)) $ topStarting)
 
-    --assert =<< reaches zero chain0 zero
-    --assert =<< reaches one chain1 zero
+    assert =<< reaches zero chain0 zero
+    assert =<< reaches one chain1 zero
 
-    --tw0 <- terminatesWith zero
-    --tw1 <- terminatesWith one
-    --reEnd0 <- reachesEnd zero chain0
-    --reEnd1 <- reachesEnd one chain1
+    tw0 <- terminatesWith zero
+    tw1 <- terminatesWith one
+    reEnd0 <- reachesEnd zero chain0
+    reEnd1 <- reachesEnd one chain1
 
-    --idsU' <- intSortList idsU
-    --let orChangedChain = mkOr =<< (sequence $ map (\i -> reaches one i zero) idsU') 
+    idsU' <- intSortList idsU
+    let orChangedChain = mkOr =<< (sequence $ map (\i -> reaches one i zero) idsU') 
 
-    --targetAST <- if (head . targets $ r) == ACCEPT then acceptAST else dropAST
+    targetAST <- if (head . targets $ r) == ACCEPT then acceptAST else dropAST
 
-    --innerOr <- mkOr =<< sequence [mkEq tw0 tw1
-    --                              , mkAnd [reEnd0, reEnd1]
-    --                              , mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]]
-    --imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]
-    --innerImplies <- mkImplies imAnd =<< mkEq tw1 targetAST
+    innerOr <- mkOr =<< sequence [mkEq tw0 tw1
+                                  , mkAnd [reEnd0, reEnd1]
+                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]]
+    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]
+    innerImplies <- mkImplies imAnd =<< mkEq tw1 targetAST
 
-    --assert =<< mkNot =<< mkAnd [innerOr, innerImplies]
+    assert =<< mkNot =<< mkAnd [innerOr, innerImplies]
 
-    solverCheck
+    getModel
     where
         mkAnds :: AST -> AST -> Int -> Z3 AST
         mkAnds = (\c0 c1 i -> do

@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-06 14:04:56.99419 UTC
+2016-09-07 00:38:47.143626 UTC
 
 interface main@main:ChainsToSMT 7103
-  interface hash: 268df286f49ff1674c910b200cd73b39
-  ABI hash: 4a28f4b8ef6a38e0baff5860407015e6
-  export-list hash: bb8f687626cdeaa6b080e33495e01e05
+  interface hash: d319e0229b560e2e900faeaa506f8cf5
+  ABI hash: 17e82a0233a4c14be8164b52a04b2487
+  export-list hash: 21a9bea0987c5bd952b60e9c2eb10b2e
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e468f87777beb3fe7114763efe9ccb2f
   sig of: Nothing
@@ -123,20 +123,20 @@ import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  NameIdChain fdfbaebba7f5b564923330024b8aad3d
-  exports: da732882b0e22f139cf86490db7c62d7
-  IdNameChain 3c9536ef1ede78e353f22b0b9cd1bfb9
-  maxId 4819a4d30f21830fad26bbbde093c71f
-  notTopLevelChains abecd12b4a10d397e810539334bef398
-  toList' ffab0604f30d00c58bb0c49df440b666
-  topLevelChains 370f0e0219861829a0ab65e927f527c2
-  validIds c4d5cab0ef942d150cdb3e8d382e8b90
-import  -/  Types d6c7cbd499b1b23d477175270c131304
-  exports: 54b2d7991e7502b0509a3d8d97b51aee
+import  -/  NameIdChain c61636e3a087d0026d136091b94e3f30
+  exports: 3fe191a4b47804c5db9eb5358a2ac838
+  IdNameChain e010f83d78702a2e02bd58d677836d95
+  maxId b5ba18f4d40a4ecc8dfbfee5625d7338
+  notTopLevelChains f13a5995beed8ee10a8e0030760a7e13
+  toList' 5ae48dbb125bd9f5d5842eac9e40f036
+  topLevelChains e9554f8666608370b4ba12228859b689
+  validIds b6eecb0c474734c7c90d7cfbb2f4744c
+import  -/  Types f411910ab9eb02e3fece784b491ea130
+  exports: 1725d3cdae695ee6949d8ed50f4d0c7c
   ACCEPT 08ea8d5ba9c8e5ae84bd818c2cc3ee1f
   ACK 69c02da22bdd3d2b93a2ecc7619dcfe7
   BoolFlag a5bd0669b32ca5a1de6cf10948a3bcbc
-  Chain abc9d41ae28f4b3e1146ec09870033e9
+  Chain e29fec291a6abd0b92f253c858f5c2c2
   Criteria 605b90b34d99bcf3227a69e454b38e17
   DROP e0e88d7e035c9851606c6a03aeae2391
   FIN acd0c3060669504ee79bdaf73850ca14
@@ -148,8 +148,8 @@ import  -/  Types d6c7cbd499b1b23d477175270c131304
   Protocol d38fdc887d9a0e7c53d19d8b463500f3
   RETURN 3f2ed69b4fdf43af50b4a72bb41f96de
   RST 0a1b39e3163ab3ce4a061f2482b7a7bf
-  Rule 14b9685d0ebd70dfb610f941b1812bb7
-  Rule 6c39c74a24681968e0d9e29caf86a35e
+  Rule 463e6937e80c1b2712030bd2add91a30
+  Rule 615e2b227b416b65d444dac1afb7a202
   SYN 0cbc6e0a2ddace940e82bf819da11d6b
   Source b53eb4518fedc84d30c0b4327bd32c7d
   Target 97fc31d3ca68602965fcc27b6e7cac76
@@ -2481,7 +2481,7 @@ c71ffca5235f279ff9d6b5fb25b8ca65
 fcd02a8395ac5cab4f9101a2b868155d
   chainLength3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "chain-length"#) -}
-74fc722c1610eff29216b020d93fb25d
+4d965d655a138e1145f6d96816c661f1
   convertChainsSMT ::
     NameIdChain.IdNameChain -> GHC.Types.Int -> Z3.Monad.Z3 ()
   {- Arity: 2,
@@ -3491,7 +3491,7 @@ bc89b2cda0b66f86ad75686fc7b12bfc
                  case ww2 of ww3 { Z3.Base.Context ww4 ww5 ->
                  case ww4 of ww6 { GHC.ForeignPtr.ForeignPtr ww7 ww8 ->
                  ChainsToSMT.$wa10 w ww1 ww7 ww8 ww5 w2 } } }) -}
-e9977b71af7aaa11b543d7232e6d528f
+c625a3d55ff7039ab3fb24ff4e50c85f
   reachabilityRulesChain ::
     GHC.Types.Int -> Types.Chain -> [Z3.Base.AST] -> Z3.Monad.Z3 ()
   {- Arity: 3, Strictness: <L,U(U)><L,1*U><L,U> -}
@@ -4400,7 +4400,7 @@ bfbe11b0d0e47551a4510b0aa096911f
                                (Sym (Control.Monad.Trans.Reader.NTCo:ReaderT[0]
                                          <Z3.Monad.Z3Env>_R <GHC.Types.IO>_R <Z3.Base.AST>_N))
                                (Sym (Z3.Monad.NTCo:Z3[0]) <Z3.Base.AST>_N))) -}
-0390a732d6dac7cd9e70c9f845651b44
+ae5da8e13044ba3df9d3d2b3aa0ce582
   toSMTChain ::
     Types.Chain
     -> GHC.Types.Int
@@ -4422,7 +4422,7 @@ bfbe11b0d0e47551a4510b0aa096911f
                                (Sym (Control.Monad.Trans.Reader.NTCo:ReaderT[0]
                                          <Z3.Monad.Z3Env>_R <GHC.Types.IO>_R <()>_N))
                                (Sym (Z3.Monad.NTCo:Z3[0]) <()>_N))) -}
-c7db3c35deed2dd1c9d28714aa13836c
+c6a40f78d3a5064916b430f6799a90f7
   toSMTChain1 ::
     [Types.Rule]
     -> GHC.Types.Int
@@ -4468,7 +4468,7 @@ b03c392393aca8122df8f86aef0ed807
 e46caf6fddcd6267e787affa7cf2c668
   toSMTPath1 :: t
   {- Strictness: b -}
-6a5e933953c42ac6a96f8c0262111558
+f82d84441e8ede8aa504e1060fcb4d1b
   toSMTPathChain ::
     Types.Chain
     -> GHC.Types.Int
@@ -4490,7 +4490,7 @@ e46caf6fddcd6267e787affa7cf2c668
                                (Sym (Control.Monad.Trans.Reader.NTCo:ReaderT[0]
                                          <Z3.Monad.Z3Env>_R <GHC.Types.IO>_R <()>_N))
                                (Sym (Z3.Monad.NTCo:Z3[0]) <()>_N))) -}
-e5f8fa611784b0c4ef2854d675546935
+54dd1cfb1e9d5d066aae356a4994d819
   toSMTPathChain1 ::
     [Types.Rule]
     -> GHC.Types.Int
@@ -4501,7 +4501,7 @@ e5f8fa611784b0c4ef2854d675546935
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 6,
      Strictness: <S,1*U><L,U(U)><L,U(U)><L,U(U)><L,1*U(U,U(U(U,U),U))><L,U> -}
-facc2aca0ad67c8de02a671640b31f2d
+1b179a469e85d40c99211fc0294d01ce
   toSMTPathRule ::
     Types.Rule
     -> Z3.Base.AST -> Z3.Base.AST -> GHC.Types.Int -> Z3.Monad.Z3 ()
@@ -4595,7 +4595,7 @@ d1044fab40c6c555205d31bc7f5860d7
                                (Sym (Control.Monad.Trans.Reader.NTCo:ReaderT[0]
                                          <Z3.Monad.Z3Env>_R <GHC.Types.IO>_R <()>_N))
                                (Sym (Z3.Monad.NTCo:Z3[0]) <()>_N))) -}
-6d19f9d6fce1cf62b2aa8d6462546691
+30957d340bb37cdb3e6311441d5e49a9
   toSMTRule ::
     Types.Rule
     -> Z3.Base.AST -> Z3.Base.AST -> GHC.Types.Int -> Z3.Monad.Z3 ()
