@@ -1,2 +1,0 @@
-chain INPUT : protocol = 37 AND source_port = 97 => ACCEPT,
-chain FORWARD : protocol = 6 AND SYN AND ACK  => DROP

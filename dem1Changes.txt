@@ -1,6 +1,0 @@
-chain INPUT : destination_port = 48 OR destination_port = 49 => DROP,
-chain INPUT : RST => DROP,
-chain FORWARD : protocol = 6 AND destination_port = 110 => DROP,
-chain INPUT : protocol = 124 => DROP,
-chain OUTPUT : protocol = 2 AND destination_ip = 4.5.6.0/24 => DROP,
-chain OUTPUT: source_ip = 7.8.9.10 => DROP
