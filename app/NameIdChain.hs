@@ -5,7 +5,7 @@ module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupN
 --which also requires appropriately duplicating chains
 
 import Data.List
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 import qualified Data.Maybe as MB
 import Types
 

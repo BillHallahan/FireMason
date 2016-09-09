@@ -65,12 +65,15 @@ instance ToIptables [Criteria] where
             (b', xs') = convertBoolFlags (Not (BoolFlag b):xs)
         in
         b' ++ convert xs' n
+    convert (IPAddress Destination i:xs) n = "-d " ++ show i ++ " " ++ convert xs n
+    convert (IPAddress Source i:xs) n = "-s " ++ show i ++ " " ++ convert xs n
     convert (Not c:xs) n = "! " ++ convert [c] n ++ " " ++ convert xs n
     convert (Port Destination (Left x):xs) n = "--dport " ++ show x ++ " " ++ convert xs n
     convert (Port Source (Left x):xs) n = "--sport " ++ show x ++ " " ++ convert xs n
     convert (Port Destination (Right (x, y)):xs) n = "--dport " ++ show x ++ ":" ++ show y ++ " " ++ convert xs n
     convert (Port Source (Right (x, y)):xs) n = "--sport " ++ show x ++ ":" ++ show y ++ " " ++ convert xs n
     convert (Protocol x:xs) n = "-p " ++ show x ++ " " ++ convert xs n
+    convert _ _ = "Unrecognized criteria when converting to iptables."
 
 convertBoolFlags :: [Criteria] -> (String, [Criteria])
 convertBoolFlags xs = 

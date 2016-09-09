@@ -1,6 +1,7 @@
 module ParseSpecificationLanguage where
 
 import Data.Char
+import Data.IP
 import Data.List
 import Data.List.Split
 
@@ -24,7 +25,7 @@ lexer s
     | otherwise = error $ "Unrecognized pattern " ++ s ++ afterTerm
     where
         afterSpaces = dropWhile isSpace s
-        (nextTerm, afterTerm) = span ((flip elem) ('-':'_':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
+        (nextTerm, afterTerm) = span ((flip elem) ('.':'-':'_':'/':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
 
 parse :: [String] -> [InputInstruction]
 parse s =
@@ -101,12 +102,17 @@ parseSpecificationCriteria' s
             p = if isInteger dp then (read dp :: Int) else error "Invalid port"
         in
         (InC $ Port Source (Left p), xs)
+    | ("destination_ip":"=":di:xs) <- s =
+        let di' = if '/' `elem` di then di else di ++ "/32" in (InC . (IPAddress Destination) . toIPRange $ di', xs)
+    | ("source_ip":"=":di:xs) <- s =
+        let di' = if '/' `elem` di then di else di ++ "/32" in (InC . (IPAddress Source) . toIPRange $ di', xs)
     | (head s) `elem` (Map.keys stringsToFlags) = (InC . fromJust $ Map.lookup (head s) stringsToFlags, tail s)
     | otherwise = (InC . SC $ concat s, [])
 
 parseSpecificationTarget :: [String] -> [Target]
 parseSpecificationTarget ("DROP":[]) = [DROP]
 parseSpecificationTarget ("ACCEPT":[]) = [ACCEPT]
+parseSpecificationTarget x = error ("Unrecognized target = " ++ show x )
 
 --Given a list of strings beginning with "(", finds all strings up to the matching ")"
 findInLeadingParenthesis :: [String] -> [String]

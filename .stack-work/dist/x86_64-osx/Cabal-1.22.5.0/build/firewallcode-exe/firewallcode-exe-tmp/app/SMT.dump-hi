@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-07 00:38:43.914017 UTC
+2016-09-08 15:10:33.270733 UTC
 
 interface main@main:SMT 7103
-  interface hash: d21b2cf32dcdb267c8e929a1433c91dc
-  ABI hash: 887fd995939af503980562bddb25003a
-  export-list hash: 783abfa736e9d815a1d558cee3a744ec
+  interface hash: 689be15bb646c8ac3ec87cf6d9abdb1d
+  ABI hash: bb0ce52fb4a545f7866ab96873dc4eff
+  export-list hash: 5bc876e004c370db3db3ba63df48f8b7
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -19,14 +19,18 @@ exports:
   SMT.printSMTFunc3
   SMT.SMT{SMT.Assert SMT.DeclareConst SMT.DeclareFun SMT.Implies SMT.MatchesCriteria SMT.MatchesRule SMT.Reaches SMT.ReachesEnd SMT.ReachesReturn SMT.ReturnsFrom SMT.RuleTarget SMT.SMTAnd SMT.SMTEq SMT.SMTF1 SMT.SMTF2 SMT.SMTF3 SMT.SMTInt SMT.SMTNot SMT.SMTOr SMT.SMTOrd SMT.SMTString SMT.TerminatesAt SMT.TerminatesWith SMT.TopLevelChain}
 module dependencies: Types
-package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0 binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
                       case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
                       mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
                       process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
                       semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
@@ -41,7 +45,9 @@ orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
          binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
          bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
          hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
-         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         main@main:Types
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
          transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
@@ -55,6 +61,8 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
                          tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
@@ -74,8 +82,8 @@ import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
 import  -/  base-4.8.2.0:System.IO.Unsafe fc45e72b9d9eb2c797a8c81f5821fcd0
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  Types f411910ab9eb02e3fece784b491ea130
-  exports: 1725d3cdae695ee6949d8ed50f4d0c7c
+import  -/  Types 834748e642c4e651373ed10baf19a0ff
+  exports: 6f12662abbc00dd4b84bee85c0e4261f
 import  -/  process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ:System.Process 0b686ab0189f265eb9f5a00bfda3b6db
 import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d0991a72f1064ecb9aa2833fb0b76080
 import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9c2736322

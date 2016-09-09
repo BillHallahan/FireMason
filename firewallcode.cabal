@@ -26,14 +26,16 @@ executable firewallcode-exe
   build-depends:       base
                      , z3
                      , criterion
+                     , iproute
                      , firewallcode
                      , split
                      , containers
+                     , largeword
                      , MissingH
                      , process
                      , tostring
   default-language:    Haskell2010
-  other-modules:     ChainsToSMT2
+  other-modules:     ChainsToSMT
                      , ConvertIptables
                      , ConvertIptablesPorts
                      , ConvertToHorn
@@ -44,7 +46,6 @@ executable firewallcode-exe
                      , ParserHelp
                      , ParseSpecificationLanguage
                      , RuleAdding
-                     , SMT
                      , Types
 
 test-suite firewallcode-test
@@ -52,14 +53,17 @@ test-suite firewallcode-test
   hs-source-dirs:      test, app
   main-is:             Spec.hs
   build-depends:       base
+                     , iproute
                      , firewallcode
                      , split
                      , containers
+                     , largeword
                      , MissingH
                      , HUnit
                      , process
                      , tostring
-  other-modules:       ChainsToSMT2
+                     , z3
+  other-modules:       ChainsToSMT
                      , ConvertToHorn
                      , ConvertToHornTests
                      , CriteriaPrereqAddition
@@ -70,7 +74,6 @@ test-suite firewallcode-test
                      , ParserHelp
                      , RuleAdding
                      , RuleAddingTests
-                     , SMT
                      , Types
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010

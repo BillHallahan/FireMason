@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-07 00:38:42.795997 UTC
+2016-09-09 16:53:24.996851 UTC
 
 interface main@main:Types [orphan module] 7103
-  interface hash: 3050a25c0d55baedc34a5101a65d7603
-  ABI hash: f411910ab9eb02e3fece784b491ea130
-  export-list hash: 1725d3cdae695ee6949d8ed50f4d0c7c
+  interface hash: 3f382e12893a7e856090fcc403e610cc
+  ABI hash: f67ef19ae195813ad97e9eb86fc5ce1b
+  export-list hash: 5b8ac4796ded9d231fd488d4a5d1c89e
   orphan hash: f5cd95dcb0a36d2e5e9074ee0cbfbfa4
   flag hash: e468f87777beb3fe7114763efe9ccb2f
   sig of: Nothing
@@ -17,12 +17,14 @@ exports:
   Types.flagsToStrings
   Types.flagsToStrings'
   Types.ifNotRemoveNot
+  Types.ipAddr
+  Types.ipToWord
   Types.isNot
   Types.isStateful
   Types.isStateless
   Types.stringsToFlags
   Types.targetsToChainIds
-  Types.Address
+  Types.toIPRange
   Types.Chain
   Types.ChainId
   Types.Criteria{Types.BoolFlag Types.IPAddress Types.Not Types.Port Types.PropVariableCriteria Types.Protocol Types.SC}
@@ -35,19 +37,23 @@ exports:
   Types.InputRule
   Types.Instruction
   Types.Label
-  Types.Mask
   Types.ModuleFunc
   Types.Rule
   Types.SynthInstruction{Types.NoInstruction Types.ToChainNamed Types.chainName Types.insRule}
   Types.Target{Types.ACCEPT Types.DROP Types.Go Types.GoReturn Types.GoTo Types.Jump Types.PropVariableTarget Types.RETURN Types.ST}
 module dependencies:
-package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0* binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
                       case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
                       semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
                       text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
@@ -58,6 +64,7 @@ orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
          binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
          bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
          hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
@@ -71,6 +78,8 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
                          tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
@@ -78,27 +87,37 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
                          unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
                          unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  base-4.8.2.0:Data.Bits 87551525e7ef366d0fc4cad44e8b1bfc
 import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.Int 1419fa899a36eeb2bd16fdb7f0a89738
 import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.2.0:Data.Word ec8deb535202352cc8b509b14004bcbd
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.Enum debc6de3086023a15993ab0cecffb90b
-import  -/  base-4.8.2.0:GHC.Int 28d8a9f7cfc272358fb4631d98c579ce
+import  -/  base-4.8.2.0:GHC.Real 1281efa9baf803bc7859d7efb89a38b3
 import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
+import  -/  base-4.8.2.0:GHC.Word 10dc88543d98000abab9695a1019767d
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base 8b0bee2cbf19008d0429e93c882cbe4e
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set 7116dff3002cb8f8fc1c63ac63f4ea50
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
+import  -/  iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP 01265d616023459ed1a88e34df15c136
+import  -/  iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr 405f7c868331a5344db48f25c3e84461
+import  -/  iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Internal dbf43e6b2d6321a399b282a76f903998
+import  -/  iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range 91da3076a3f7291d5ba7aeb7b3b6bf68
+import  -/  largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P:Data.LargeWord 354f86b73f096c48c610faad64e0d6d9
 import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d0991a72f1064ecb9aa2833fb0b76080
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fEqCriteria :: GHC.Classes.Eq Types.Criteria
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
                   @ Types.Criteria Types.$fEqCriteria_$c== Types.$fEqCriteria_$c/= -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fEqCriteria_$c/= ::
     Types.Criteria -> Types.Criteria -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -107,7 +126,7 @@ import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d
                  case Types.$fEqCriteria_$c== a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fEqCriteria_$c== ::
     Types.Criteria -> Types.Criteria -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
@@ -193,7 +212,7 @@ import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d
                    Types.URG
                    -> case ds1 of wild1 {
                         DEFAULT -> GHC.Types.False Types.URG -> GHC.Types.True } }) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fEqGenRule ::
     GHC.Classes.Eq crit => GHC.Classes.Eq (Types.GenRule crit)
   DFunId[0]
@@ -203,7 +222,7 @@ import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d
                   @ (Types.GenRule crit)
                   (Types.$fEqGenRule_$c== @ crit $dEq)
                   (Types.$fEqGenRule_$c/= @ crit $dEq) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fEqGenRule_$c/= ::
     GHC.Classes.Eq crit =>
     Types.GenRule crit -> Types.GenRule crit -> GHC.Types.Bool
@@ -217,7 +236,7 @@ import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d
                  case Types.$fEqGenRule_$c== @ crit $dEq a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fEqGenRule_$c== ::
     GHC.Classes.Eq crit =>
     Types.GenRule crit -> Types.GenRule crit -> GHC.Types.Bool
@@ -232,7 +251,7 @@ import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d
                  case w1 of ww { Types.Rule ww1 ww2 ww3 ->
                  case w2 of ww4 { Types.Rule ww5 ww6 ww7 ->
                  Types.$w$c== @ crit w ww1 ww2 ww3 ww5 ww6 ww7 } }) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fEqInputCriteria :: GHC.Classes.Eq Types.InputCriteria
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -240,7 +259,7 @@ a16fb285644fe1cfce7725a3e2d545aa
                   @ Types.InputCriteria
                   Types.$fEqInputCriteria_$c==
                   Types.$fEqInputCriteria_$c/= -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fEqInputCriteria_$c/= ::
     Types.InputCriteria -> Types.InputCriteria -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
@@ -249,7 +268,7 @@ a16fb285644fe1cfce7725a3e2d545aa
                  case Types.$fEqInputCriteria_$c== a b of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fEqInputCriteria_$c== ::
     Types.InputCriteria -> Types.InputCriteria -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
@@ -374,7 +393,7 @@ a16fb285644fe1cfce7725a3e2d545aa
                    -> case ds1 of wild1 {
                         DEFAULT -> GHC.Types.False
                         Types.ST b1 -> GHC.Base.eqString a1 b1 } }) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fMonoidGenRule :: GHC.Base.Monoid Types.InputRule
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -383,7 +402,7 @@ a16fb285644fe1cfce7725a3e2d545aa
                   Types.$fMonoidGenRule_$cmempty
                   Types.$fMonoidGenRule_$cmappend
                   Types.$fMonoidGenRule_$cmconcat -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fMonoidGenRule0 :: GHC.Base.Monoid Types.Rule
   DFunId[0]
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -392,7 +411,7 @@ a16fb285644fe1cfce7725a3e2d545aa
                   Types.$fMonoidGenRule0_$cmempty
                   Types.$fMonoidGenRule0_$cmappend
                   Types.$fMonoidGenRule0_$cmconcat -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fMonoidGenRule0_$cmappend ::
     Types.Rule -> Types.Rule -> Types.Rule
   {- Arity: 2, HasNoCafRefs,
@@ -407,14 +426,14 @@ a16fb285644fe1cfce7725a3e2d545aa
                    (GHC.Base.++ @ Types.Criteria ww1 ww5)
                    (GHC.Base.++ @ Types.Target ww2 ww6)
                    (GHC.Classes.$fOrdInt_$cmax ww3 ww7) } }) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fMonoidGenRule0_$cmconcat :: [Types.Rule] -> Types.Rule
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ w :: [Types.Rule] ->
                  case Types.$wgo1 w of ww { (#,,#) ww1 ww2 ww3 ->
                  Types.Rule @ Types.Criteria ww1 ww2 ww3 }) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fMonoidGenRule0_$cmempty :: Types.Rule
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (Types.Rule
@@ -422,7 +441,7 @@ a16fb285644fe1cfce7725a3e2d545aa
                    (GHC.Types.[] @ Types.Criteria)
                    (GHC.Types.[] @ Types.Target)
                    GHC.Base.minInt) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fMonoidGenRule_$cmappend ::
     Types.InputRule -> Types.InputRule -> Types.InputRule
   {- Arity: 2, HasNoCafRefs,
@@ -437,14 +456,14 @@ a16fb285644fe1cfce7725a3e2d545aa
                    (GHC.Base.++ @ Types.InputCriteria ww1 ww5)
                    (GHC.Base.++ @ Types.Target ww2 ww6)
                    (GHC.Classes.$fOrdInt_$cmax ww3 ww7) } }) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fMonoidGenRule_$cmconcat :: [Types.InputRule] -> Types.InputRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ w :: [Types.InputRule] ->
                  case Types.$wgo w of ww { (#,,#) ww1 ww2 ww3 ->
                  Types.Rule @ Types.InputCriteria ww1 ww2 ww3 }) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fMonoidGenRule_$cmempty :: Types.InputRule
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (Types.Rule
@@ -651,7 +670,7 @@ a16fb285644fe1cfce7725a3e2d545aa
                    -> case y of wild1 {
                         DEFAULT -> wild1 Types.RST -> Types.RST Types.URG -> Types.RST }
                    Types.URG -> y }) -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fShowCriteria :: GHC.Show.Show Types.Criteria
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -660,11 +679,11 @@ a16fb285644fe1cfce7725a3e2d545aa
                   Types.$fShowCriteria_$cshowsPrec
                   Types.$fShowCriteria_$cshow
                   Types.$fShowCriteria_$cshowList -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fShowCriteria1 :: Types.Criteria -> GHC.Show.ShowS
   {- Arity: 1,
      Unfolding: (\ w :: Types.Criteria -> Types.$w$cshowsPrec 0 w) -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fShowCriteria_$cshow :: Types.Criteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -673,13 +692,13 @@ a16fb285644fe1cfce7725a3e2d545aa
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fShowCriteria_$cshowList :: [Types.Criteria] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.Criteria
                    Types.$fShowCriteria1) -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $fShowCriteria_$cshowsPrec ::
     GHC.Types.Int -> Types.Criteria -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U(U)><S,1*U>, Inline: INLINE[0],
@@ -800,7 +819,7 @@ dfd6d9d25b5020133dcc550795c302c4
      Unfolding: InlineRule (3, True, True)
                 (\ w :: GHC.Types.Int w1 :: Types.Flag w2 :: GHC.Base.String ->
                  Types.$w$cshowsPrec1 w1 w2) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fShowGenRule ::
     GHC.Show.Show crit => GHC.Show.Show (Types.GenRule crit)
   DFunId[0]
@@ -832,7 +851,7 @@ c064acd9a271b36b4c8350302fbb84b9
 d07aff3c9bb5d6d09d10650531c3be0b
   $fShowGenRule7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Rule {"#) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fShowGenRule_$cshow ::
     GHC.Show.Show crit => Types.GenRule crit -> GHC.Base.String
   {- Arity: 2, Strictness: <L,1*U(A,A,1*C1(U))><S,1*U(U,U,U(U))>,
@@ -844,7 +863,7 @@ d07aff3c9bb5d6d09d10650531c3be0b
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fShowGenRule_$cshowList ::
     GHC.Show.Show crit => [Types.GenRule crit] -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,U(A,A,C(U))><S,1*U><L,U>,
@@ -861,7 +880,7 @@ d07aff3c9bb5d6d09d10650531c3be0b
                       Types.$fShowGenRule1)
                    eta
                    eta1) -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $fShowGenRule_$cshowsPrec ::
     GHC.Show.Show crit =>
     GHC.Types.Int -> Types.GenRule crit -> GHC.Show.ShowS
@@ -880,7 +899,7 @@ d07aff3c9bb5d6d09d10650531c3be0b
   $fShowGenRule_$cshowsPrec1 ::
     GHC.Types.Int -> Types.Target -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <L,1*U(U)><S,1*U><L,U> -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fShowInputCriteria :: GHC.Show.Show Types.InputCriteria
   DFunId[0]
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -889,10 +908,10 @@ a16fb285644fe1cfce7725a3e2d545aa
                   Types.$fShowInputCriteria_$cshowsPrec
                   Types.$fShowInputCriteria_$cshow
                   Types.$fShowInputCriteria_$cshowList -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fShowInputCriteria1 :: Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 1 -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fShowInputCriteria_$cshow ::
     Types.InputCriteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
@@ -902,14 +921,14 @@ a16fb285644fe1cfce7725a3e2d545aa
                    GHC.Show.shows18
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fShowInputCriteria_$cshowList ::
     [Types.InputCriteria] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Types.InputCriteria
                    Types.$fShowInputCriteria1) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $fShowInputCriteria_$cshowsPrec ::
     GHC.Types.Int -> Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <S,1*U(U)><S,1*U>, Inline: INLINE[0],
@@ -1189,7 +1208,7 @@ a985b0484b7e5f9cc695e9ab6fc8a177
                              ww4 of wild1 {
                         GHC.Types.False -> GHC.Types.False
                         GHC.Types.True -> GHC.Classes.eqInt ww2 ww5 } }) -}
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   $w$cshowsPrec :: GHC.Prim.Int# -> Types.Criteria -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <L,U><S,1*U>, Inline: [0] -}
 8e33f4fd031cf75e26ef6380dedbc5c6
@@ -1203,7 +1222,7 @@ a985b0484b7e5f9cc695e9ab6fc8a177
                    Types.RST -> GHC.Base.++ @ GHC.Types.Char Types.$fShowFlag2 w1
                    Types.URG
                    -> GHC.Base.++ @ GHC.Types.Char Types.$fShowFlag1 w1 }) -}
-0b1e0a81fe9201731ce251fe5be2edb2
+6955a8852ec986737ad88495175e47e6
   $w$cshowsPrec2 ::
     GHC.Show.Show crit =>
     GHC.Prim.Int#
@@ -1264,7 +1283,7 @@ a985b0484b7e5f9cc695e9ab6fc8a177
                                               Types.$fShowGenRule1
                                               x1
                                               (let {
-                                                 lvl30 :: [GHC.Types.Char]
+                                                 lvl36 :: [GHC.Types.Char]
                                                  = GHC.Types.:
                                                      @ GHC.Types.Char
                                                      GHC.Show.showList__2
@@ -1275,7 +1294,7 @@ a985b0484b7e5f9cc695e9ab6fc8a177
                                                    {- Arity: 1, Strictness: <S,1*U> -}
                                                  = \ ds2 :: [Types.Target] ->
                                                    case ds2 of wild1 {
-                                                     [] -> lvl30
+                                                     [] -> lvl36
                                                      : y ys
                                                      -> GHC.Types.:
                                                           @ GHC.Types.Char
@@ -1297,7 +1316,7 @@ a985b0484b7e5f9cc695e9ab6fc8a177
                         @ GHC.Types.Char
                         GHC.Show.shows9
                         (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x)) }) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $w$cshowsPrec3 ::
     GHC.Prim.Int# -> Types.InputCriteria -> GHC.Show.ShowS
   {- Arity: 2, Strictness: <L,U><S,1*U>, Inline: [0] -}
@@ -1381,15 +1400,25 @@ a16fb285644fe1cfce7725a3e2d545aa
                              @ GHC.Types.Char
                              GHC.Show.shows9
                              (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows8 x)) } }) -}
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   $wgo ::
     [Types.InputRule]
     -> (# [Types.InputCriteria], [Types.Target], Types.Label #)
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>, Inline: [0] -}
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   $wgo1 ::
     [Types.Rule] -> (# [Types.Criteria], [Types.Target], Types.Label #)
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>, Inline: [0] -}
+44f9033d89c4a82437b0be8ef69d3812
+  $wgo2 ::
+    [GHC.Types.Int]
+    -> GHC.Word.Word64
+    -> GHC.Word.Word64
+    -> (# GHC.Word.Word64, GHC.Word.Word64 #)
+  {- Arity: 3, Strictness: <S,1*U><L,U><L,U>, Inline: [0] -}
+e0894d3f0fdf68f065fa112d774e4bb6
+  $wgo3 :: [GHC.Types.Int] -> GHC.Prim.Word# -> GHC.Prim.Word#
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U>, Inline: [0] -}
 dfe032430ec449bef505cbaea13d9c2a
   $wpoly_go10 ::
     GHC.Prim.Int#
@@ -1397,16 +1426,14 @@ dfe032430ec449bef505cbaea13d9c2a
     -> [(GHC.Base.String, a)]
     -> Data.Map.Base.Map GHC.Base.String a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-6a1826a02311cb325d4bda01862a6323
-  type Address = GHC.Int.Int32
-e29fec291a6abd0b92f253c858f5c2c2
+d25949644282bfdca1b68ae1d802172e
   type Chain = [Types.Rule]
 c884b4bd8354c5f5ad5e611c0e6a2eb5
   type ChainId = GHC.Types.Int
-605b90b34d99bcf3227a69e454b38e17
+e19364fbcccdcd240635a00eaccbd95c
   data Criteria
     = BoolFlag Types.Flag
-    | IPAddress Types.Address Types.Mask
+    | IPAddress Types.Endpoint Data.IP.Range.IPRange
     | Not Types.Criteria
     | Port Types.Endpoint
            (Data.Either.Either GHC.Types.Int (GHC.Types.Int, GHC.Types.Int))
@@ -1419,36 +1446,34 @@ c884b4bd8354c5f5ad5e611c0e6a2eb5
 8e33f4fd031cf75e26ef6380dedbc5c6
   data Flag = SYN | ACK | FIN | RST | URG
     Promotable
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   data GenRule crit
     = Rule {criteria :: [crit],
             targets :: [Types.Target],
             label :: Types.Label}
-21aa6876ad119a87651b66f4560aa3a4
+9bcc41bdd9e30f2a9621d7c172b6f127
   type InputChain = [Types.InputRule]
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   data InputCriteria
     = InC Types.Criteria
     | InCNot Types.InputCriteria
     | And [Types.InputCriteria]
     | Or [Types.InputCriteria]
-a50de6099365cd9a20c2753334db1617
+dbf63d5ee8e351d7787d406a69fb141f
   type InputInstruction = Types.SynthInstruction Types.InputRule
-a16fb285644fe1cfce7725a3e2d545aa
+5ed100fb954faded5a9d23bdf7aced25
   type InputRule = Types.GenRule Types.InputCriteria
-5742d5fd0dc1bdf39e80eaa2bfa63e42
+b3fbf5bf05760ab3798a5246fa28e236
   type Instruction = Types.SynthInstruction Types.Rule
 8ea1cbc35ff6354c4e178e365701b867
   type Label = GHC.Types.Int
-5758ea52fd6597c2cd2c854545ea8c21
-  type Mask = GHC.Int.Int32
-cf16424ebcc20cc9c669281ff42e3a94
+412123223b75811677f5a722144c95e7
   type ModuleFunc =
     [GHC.Base.String]
     -> (GHC.Base.Maybe
           [Data.Either.Either Types.InputCriteria Types.Target],
         [GHC.Base.String])
-615e2b227b416b65d444dac1afb7a202
+d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   type Rule = Types.GenRule Types.Criteria
 2640b85626df3e3ba8d769766a058fcb
   data SynthInstruction r
@@ -1465,7 +1490,7 @@ cf16424ebcc20cc9c669281ff42e3a94
     | RETURN
     | PropVariableTarget GHC.Types.Int GHC.Types.Bool
     | ST GHC.Base.String
-9b50d14b02afeaaac055bf3e181da439
+e58c61be92902b096bfad4d2634cd2ad
   boolFlagToFlag :: Types.Criteria -> Types.Flag
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -1487,14 +1512,14 @@ cf16424ebcc20cc9c669281ff42e3a94
 86cc83d13a5267976d269d3f766b53e3
   chainName1 :: GHC.Base.String
   {- Strictness: b -}
-cf60e7838dcc471025e3f37e89561944
+ee303b4cb463a457ef7928db4fa1b9fc
   criteria :: Types.GenRule crit -> [crit]
   RecSel Types.GenRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U,A,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ @ crit ds :: Types.GenRule crit ->
                  case ds of wild { Types.Rule ds1 ds2 ds3 -> ds1 }) -}
-4cad1863aacb3a6129850cd355a27f8c
+6de712cf51c00517169eac30069703d3
   eitherToRule ::
     Data.Either.Either Types.InputCriteria Types.Target
     -> Types.InputRule
@@ -1520,7 +1545,7 @@ cf60e7838dcc471025e3f37e89561944
 d5047859311ee035e97cb438f461adf1
   eitherToRule1 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# (-1)) -}
-7abd1d5c524884e32ea1c41c5656c8fa
+43d8dcd97bd58f3a2f261031dcde0a32
   flagsToStrings :: Types.Criteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -1584,7 +1609,7 @@ a39b6f2a2e457a2c06d366d82ff8b34e
 04fb28d81cb43c9311035f2411ab8a58
   flagsToStrings'9 :: (Types.Flag, [GHC.Types.Char])
   {- Unfolding: ((Types.ACK, Types.$fShowFlag4)) -}
-8bd906fb684be459efcce140d2435556
+a5e444c12487d1077f3ad3729abe9549
   ifNotRemoveNot :: Types.Criteria -> Types.Criteria
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 8e138eb267aaea8894463ffcac20987b
@@ -1596,14 +1621,72 @@ a39b6f2a2e457a2c06d366d82ff8b34e
                  case ds of wild {
                    Types.ToChainNamed ds1 ds2 -> ds2
                    Types.NoInstruction ds1 -> ds1 }) -}
-d2fe06e8ccb3c367f7ef45b61423950b
+fdbee042de6ad89db4d1b84222f17fcf
+  ipAddr :: Data.IP.Range.IPRange -> Data.IP.Addr.IP
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Data.IP.Range.IPRange ->
+                 case ds of wild {
+                   Data.IP.Range.IPv4Range a
+                   -> Data.IP.Addr.IPv4 (Data.IP.Range.addr @ Data.IP.Addr.IPv4 a)
+                   Data.IP.Range.IPv6Range a
+                   -> Data.IP.Addr.IPv6
+                        (Data.IP.Range.addr @ Data.IP.Addr.IPv6 a) }) -}
+4f21ee11d7734c3243eac80232ee3bf4
+  ipToWord ::
+    Data.IP.Addr.IP
+    -> Data.Either.Either GHC.Word.Word32 Data.LargeWord.Word128
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ ds :: Data.IP.Addr.IP ->
+                 case ds of wild {
+                   Data.IP.Addr.IPv4 i
+                   -> Data.Either.Left
+                        @ GHC.Word.Word32
+                        @ Data.LargeWord.Word128
+                        (case Types.$wgo3
+                                (Data.IP.Addr.fromIPv4 i)
+                                __word 0 of ww { DEFAULT ->
+                         GHC.Word.W32# ww })
+                   Data.IP.Addr.IPv6 i
+                   -> Data.Either.Right
+                        @ GHC.Word.Word32
+                        @ Data.LargeWord.Word128
+                        (case Types.ipToWord1 of ww { Data.LargeWord.LargeKey ww1 ww2 ->
+                         case Types.$wgo2
+                                (Data.IP.Addr.fromIPv6 i)
+                                ww1
+                                ww2 of ww3 { (#,#) ww4 ww5 ->
+                         Data.LargeWord.LargeKey
+                           @ GHC.Word.Word64
+                           @ GHC.Word.Word64
+                           ww4
+                           ww5 } }) }) -}
+ddcbdc912ac7f75cb28a76aa3301afea
+  ipToWord1 ::
+    Data.LargeWord.LargeKey GHC.Word.Word64 GHC.Word.Word64
+  {- Unfolding: (case Data.LargeWord.$w$cintegerToLargeWord
+                        @ GHC.Word.Word64
+                        @ GHC.Word.Word64
+                        GHC.Word.$fFiniteBitsWord64
+                        Data.LargeWord.$fLargeWordWord64
+                        Data.LargeWord.$fLargeWordWord64
+                        Types.ipToWord2 of ww { (#,#) ww1 ww2 ->
+                 Data.LargeWord.LargeKey
+                   @ GHC.Word.Word64
+                   @ GHC.Word.Word64
+                   ww1
+                   ww2 }) -}
+dda749832e90fbc0fc678d7ac60ce193
+  ipToWord2 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (__integer 0) -}
+7716d4c3e98a0f60d908a97047fd83af
   isNot :: Types.Criteria -> GHC.Types.Bool
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
                 (\ ds :: Types.Criteria ->
                  case ds of wild {
                    DEFAULT -> GHC.Types.False Types.Not ds1 -> GHC.Types.True }) -}
-f76636800bda157494a7575c7bc54c12
+1d02917e851f2f23a5fe05c86e5119ba
   isStateful :: Types.Criteria -> GHC.Types.Bool
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: InlineRule (1, True, False)
@@ -1611,82 +1694,82 @@ f76636800bda157494a7575c7bc54c12
                  case Types.isStateless x of wild {
                    GHC.Types.False -> GHC.Types.True
                    GHC.Types.True -> GHC.Types.False }) -}
-bfdd7c167c8448b682e3e1e7c031b7ff
+06ea4806a9ad98faff8777598e2d707d
   isStateless :: Types.Criteria -> GHC.Types.Bool
   {- Arity: 1, Strictness: <S,1*U> -}
-6d1112a17350d26c3b7cc905d8b1623a
+c83166204ef81d416a488daa76929560
   label :: Types.GenRule crit -> Types.Label
   RecSel Types.GenRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LLS),1*U(A,A,1*U(U))>,
      Unfolding: InlineRule (1, True, False)
                 (\ @ crit ds :: Types.GenRule crit ->
                  case ds of wild { Types.Rule ds1 ds2 ds3 -> ds3 }) -}
-1b67ff14d71794063a3d844602d37d18
+7126d0f2a863ad1a2511873cf82249d1
   stringsToFlags :: Data.Map.Base.Map GHC.Base.String Types.Criteria
   {- Unfolding: (Types.$sfromList1
                    @ Types.Criteria
                    Types.stringsToFlags1) -}
-7fead12326d663ba5f8adcc95ed2b324
+37b788e4c53e3d9511116b39de1ef307
   stringsToFlags1 :: [(GHC.Base.String, Types.Criteria)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Criteria)
                    Types.stringsToFlags14
                    Types.stringsToFlags2) -}
-5807fc0c2fd43804cd83c29f3ad24b7c
+9810fb6aa484001f0f446c6e22d724f0
   stringsToFlags10 :: ([GHC.Types.Char], Types.Criteria)
   {- Unfolding: ((Types.$fShowFlag3, Types.stringsToFlags11)) -}
-a89b9b7feaac98a007822a081c09dcd9
+db283efbd13390914cb491975dcdcfc3
   stringsToFlags11 :: Types.Criteria
   {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.FIN) -}
-3b586964d636e6b93f12badfa7b09dec
+73ff63e28e5219b73ea29e66560f094f
   stringsToFlags12 :: ([GHC.Types.Char], Types.Criteria)
   {- Unfolding: ((Types.$fShowFlag4, Types.stringsToFlags13)) -}
-176f36b2b8dc4b6f7704ca141f1921bd
+855be2c01f7aba9737526d20e3c1b62f
   stringsToFlags13 :: Types.Criteria
   {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.ACK) -}
-a3a3bdacc93a758baf0c2959b82731c1
+0d94463660c531991b479a5b7eeafa2a
   stringsToFlags14 :: ([GHC.Types.Char], Types.Criteria)
   {- Unfolding: ((Types.$fShowFlag5, Types.stringsToFlags15)) -}
-94ea4844ad7fa87154a06f189b9b45b5
+702602d6ed31369fbe65a5a81c4398e7
   stringsToFlags15 :: Types.Criteria
   {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.SYN) -}
-1bd68af63f248e986deacb29c5e7ecc6
+48b8e3192605197e5a5ad711fda96b0b
   stringsToFlags2 :: [(GHC.Base.String, Types.Criteria)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Criteria)
                    Types.stringsToFlags12
                    Types.stringsToFlags3) -}
-4e278bc5793d2a22a595dc68d143c31c
+7efbde27927e15c86ecafb6873909919
   stringsToFlags3 :: [(GHC.Base.String, Types.Criteria)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Criteria)
                    Types.stringsToFlags10
                    Types.stringsToFlags4) -}
-ab8b37fc593f9e413fead5d12ff2b617
+baf2da33ffdb6e84221bd23a51c114c2
   stringsToFlags4 :: [(GHC.Base.String, Types.Criteria)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Criteria)
                    Types.stringsToFlags8
                    Types.stringsToFlags5) -}
-585afe4659a84d2f5def9c1a21a9639f
+d9fd11f266bbfd68855d24910dd1b740
   stringsToFlags5 :: [(GHC.Base.String, Types.Criteria)]
   {- Unfolding: (GHC.Types.:
                    @ (GHC.Base.String, Types.Criteria)
                    Types.stringsToFlags6
                    (GHC.Types.[] @ (GHC.Base.String, Types.Criteria))) -}
-6969d374464eb278c4576070c15a86e5
+94f60e3ae391518e63eb8ed461115333
   stringsToFlags6 :: ([GHC.Types.Char], Types.Criteria)
   {- Unfolding: ((Types.$fShowFlag1, Types.stringsToFlags7)) -}
-4e28eebfaf0ec52952cf39693de38bb9
+f3d14a5b47b76cb23be39169db54fa58
   stringsToFlags7 :: Types.Criteria
   {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.URG) -}
-91aff6bc1c541d2174a00658392d6807
+d3754beaeb2de6c9a8814aa5ca53a80a
   stringsToFlags8 :: ([GHC.Types.Char], Types.Criteria)
   {- Unfolding: ((Types.$fShowFlag2, Types.stringsToFlags9)) -}
-88594b12df810c3c3bf142cbe8d29c5c
+c42500065200c0e552262c63b4569859
   stringsToFlags9 :: Types.Criteria
   {- HasNoCafRefs, Unfolding: (Types.BoolFlag Types.RST) -}
-73ffac4abc5369d3a9e89359a701a3b6
+62c89352df6f39cc6c8106f1f6a0847b
   targets :: Types.GenRule crit -> [Types.Target]
   RecSel Types.GenRule
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LSL),1*U(A,1*U,A)>,
@@ -1695,6 +1778,92 @@ ab8b37fc593f9e413fead5d12ff2b617
                  case ds of wild { Types.Rule ds1 ds2 ds3 -> ds2 }) -}
 66678403ad397cc7251a4da536d0a69a
   targetsToChainIds :: [Types.Target] -> [Types.ChainId]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+ad27115d47e70cf4bf18c6f6002efb91
+  toIPRange :: GHC.Base.String -> Data.IP.Range.IPRange
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ s :: GHC.Base.String ->
+                 case GHC.List.elem
+                        @ GHC.Types.Char
+                        GHC.Classes.$fEqChar
+                        Types.toIPRange8
+                        s of wild {
+                   GHC.Types.False
+                   -> case Text.Read.readEither6
+                             @ Data.IP.Range.IPRange
+                             (Text.ParserCombinators.ReadP.run
+                                @ Data.IP.Range.IPRange
+                                Types.toIPRange6
+                                (GHC.Base.++ @ GHC.Types.Char s Types.toIPRange5)) of wild1 {
+                        [] -> Types.toIPRange4
+                        : x ds
+                        -> case ds of wild2 { [] -> x : ipv ipv1 -> Types.toIPRange3 } }
+                   GHC.Types.True
+                   -> case Text.Read.readEither6
+                             @ Data.IP.Range.IPRange
+                             (Text.ParserCombinators.ReadP.run
+                                @ Data.IP.Range.IPRange
+                                Types.toIPRange1
+                                s) of wild1 {
+                        [] -> Types.toIPRange4
+                        : x ds
+                        -> case ds of wild2 {
+                             [] -> x : ipv ipv1 -> Types.toIPRange3 } } }) -}
+bbbd6686284369e159a7fe30a9a68d0e
+  toIPRange1 :: Text.ParserCombinators.ReadP.P Data.IP.Range.IPRange
+  {- Unfolding: (Text.ParserCombinators.ReadP.Look
+                   @ Data.IP.Range.IPRange
+                   Types.toIPRange2) -}
+c229131da735b243a5f13ccb5d3fde85
+  toIPRange2 ::
+    GHC.Base.String
+    -> Text.ParserCombinators.ReadP.P Data.IP.Range.IPRange
+  {- Arity: 1,
+     Unfolding: (\ s :: GHC.Base.String ->
+                 case Types.toIPRange_go (Data.IP.Range.parseIPRange s) of wild {
+                   [] -> Text.ParserCombinators.ReadP.Fail @ Data.IP.Range.IPRange
+                   : ipv ipv1
+                   -> Text.ParserCombinators.ReadP.Final
+                        @ Data.IP.Range.IPRange
+                        wild }) -}
+70fbb829cf26ce769061e8004134a639
+  toIPRange3 :: Data.IP.Range.IPRange
+  {- Strictness: b -}
+b86f93a482fc69bd1cc7d46e1a83a965
+  toIPRange4 :: Data.IP.Range.IPRange
+  {- Strictness: b -}
+2112a1049cebf55f4349d82cfdfdcb31
+  toIPRange5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "/32"#) -}
+e72a52e1f8927fa8bbeff8417a18a4e8
+  toIPRange6 :: Text.ParserCombinators.ReadP.P Data.IP.Range.IPRange
+  {- Unfolding: (Text.ParserCombinators.ReadP.Look
+                   @ Data.IP.Range.IPRange
+                   Types.toIPRange7) -}
+ed2176930778f3723134a4ffdf6e204b
+  toIPRange7 ::
+    GHC.Base.String
+    -> Text.ParserCombinators.ReadP.P Data.IP.Range.IPRange
+  {- Arity: 1,
+     Unfolding: (\ s :: GHC.Base.String ->
+                 case Types.toIPRange_go1 (Data.IP.Range.parseIPRange s) of wild {
+                   [] -> Text.ParserCombinators.ReadP.Fail @ Data.IP.Range.IPRange
+                   : ipv ipv1
+                   -> Text.ParserCombinators.ReadP.Final
+                        @ Data.IP.Range.IPRange
+                        wild }) -}
+f0cbd00d4a9168be09de2073d4e052e5
+  toIPRange8 :: GHC.Types.Char
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.C# '/') -}
+aa9c101fc71ec538ea409dafcc3d3b82
+  toIPRange_go ::
+    [(Data.IP.Range.IPRange, GHC.Base.String)]
+    -> [(Data.IP.Range.IPRange, GHC.Base.String)]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+cabc810d0f6291f640866a93ae8cd03f
+  toIPRange_go1 ::
+    [(Data.IP.Range.IPRange, GHC.Base.String)]
+    -> [(Data.IP.Range.IPRange, GHC.Base.String)]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
 instance GHC.Classes.Eq [Types.Criteria] = Types.$fEqCriteria
 instance GHC.Classes.Eq [Types.Endpoint] = Types.$fEqEndpoint
@@ -1755,6 +1924,6 @@ vectorised tycons:
 vectorised reused tycons:
 parallel variables:
 parallel tycons:
-trusted: safe
+trusted: none
 require own pkg trusted: False
 

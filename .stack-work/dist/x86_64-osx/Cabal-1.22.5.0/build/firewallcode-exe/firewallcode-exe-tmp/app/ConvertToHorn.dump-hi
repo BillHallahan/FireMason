@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-07 00:38:43.269372 UTC
+2016-09-09 15:15:43.548536 UTC
 
 interface main@main:ConvertToHorn 7103
-  interface hash: 33cdbbd8e54f7f6dadd6f3e36db1fec7
-  ABI hash: 79a1e8ef35c1d1c67c57eee68a942d0e
-  export-list hash: 283b22ecfb3e9e70fb320bd3181b8dd6
+  interface hash: d60fd26f7b763352291896430bceea52
+  ABI hash: 6b1500975325a10c64277cb05a8cf0a9
+  export-list hash: 7a6585bf1c30690c111eeddced6b9073
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -21,13 +21,18 @@ exports:
   ConvertToHorn.simplifyNots
   ConvertToHorn.stringInputChainsToStringChains
 module dependencies: Types
-package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0* binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
                       case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
                       semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
                       text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
@@ -38,7 +43,9 @@ orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
          binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
          bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
          hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
-         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         main@main:Types
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
 family instance modules: base-4.8.2.0:Control.Applicative
@@ -51,6 +58,8 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
                          tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
@@ -63,48 +72,48 @@ import  -/  base-4.8.2.0:Data.Functor 5c701b0af1708f0192a25dfe14ce6274
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  Types f411910ab9eb02e3fece784b491ea130
-  exports: 1725d3cdae695ee6949d8ed50f4d0c7c
-  And 46e103565e7c95b143f5ebf87e28c3d1
-  Chain e29fec291a6abd0b92f253c858f5c2c2
-  Criteria 605b90b34d99bcf3227a69e454b38e17
-  InC 083e20e7e01c63070c106fabd0ee214c
-  InCNot c1d5eac0589cbbab10ed6c4cfcf27b2d
-  InputChain 21aa6876ad119a87651b66f4560aa3a4
-  InputCriteria a16fb285644fe1cfce7725a3e2d545aa
-  InputInstruction a50de6099365cd9a20c2753334db1617
-  InputRule a16fb285644fe1cfce7725a3e2d545aa
-  Instruction 5742d5fd0dc1bdf39e80eaa2bfa63e42
+import  -/  Types f67ef19ae195813ad97e9eb86fc5ce1b
+  exports: 5b8ac4796ded9d231fd488d4a5d1c89e
+  And 85bd045ebea8630e5dcef1a3703e86de
+  Chain d25949644282bfdca1b68ae1d802172e
+  Criteria e19364fbcccdcd240635a00eaccbd95c
+  InC c14db538541e4906c754ac3d457f3b88
+  InCNot b04697ad752423fb3cd7f625c8a8abf9
+  InputChain 9bcc41bdd9e30f2a9621d7c172b6f127
+  InputCriteria 5ed100fb954faded5a9d23bdf7aced25
+  InputInstruction dbf63d5ee8e351d7787d406a69fb141f
+  InputRule 5ed100fb954faded5a9d23bdf7aced25
+  Instruction b3fbf5bf05760ab3798a5246fa28e236
   NoInstruction b969e22921f283e869a0720ab3777dec
-  Not b8339c1be2f1b9a12b2b3eb568593726
-  Or 70a3aa7edd4ee0337d5f7da80cab24d9
+  Not 1adbafabbd7f98320f67479286fd3b91
+  Or e411507928ed798ea15b522bec20c5ba
   PropVariableTarget e516f11b198d68f0c48067d67afcef52
-  Rule 463e6937e80c1b2712030bd2add91a30
-  Rule 615e2b227b416b65d444dac1afb7a202
+  Rule eb6314db93fd1e95430be0629724bee0
+  Rule d2d2d6a4ee1cac213e2bbc8a9c0cecb2
   ToChainNamed ce4c7bf5b328004ab15754446244f326
-  criteria cf60e7838dcc471025e3f37e89561944
-  isStateless bfdd7c167c8448b682e3e1e7c031b7ff
-  label 6d1112a17350d26c3b7cc905d8b1623a
-  targets 73ffac4abc5369d3a9e89359a701a3b6
-f1453b79762275db8c9f06c406e9b338
+  criteria ee303b4cb463a457ef7928db4fa1b9fc
+  isStateless 06ea4806a9ad98faff8777598e2d707d
+  label c83166204ef81d416a488daa76929560
+  targets 62c89352df6f39cc6c8106f1f6a0847b
+42f74d9be9c3027cc04be61e04548841
   $weliminateOr ::
     [Types.InputCriteria]
     -> GHC.Types.Int
     -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
   {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
-c1fce448525a8749ab579dce66409516
+00b735fba1f57f9494fac10467e02ab8
   $winputCriteriaToCriteria ::
     [Types.InputCriteria]
     -> GHC.Types.Int
     -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
   {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
-b52553275910e6bb6dfc5d2c3782d446
+31f82e5d545d57c699bfcdb4d7e90d48
   condenseAnd :: [Types.InputCriteria] -> [Types.InputCriteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-2f056d91361f5b49d6582d2269d61e70
+2b0aba0b0296d790a42a389382cd2f02
   condenseOr :: [Types.InputCriteria] -> [Types.InputCriteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-5345fa9bf4be0f6269b918529f7a2ef6
+0ccb91043b645592b7e91640ba2b9eec
   eliminateOr ::
     [Types.InputCriteria]
     -> GHC.Types.Int
@@ -114,11 +123,11 @@ b52553275910e6bb6dfc5d2c3782d446
                 (\ w :: [Types.InputCriteria] w1 :: GHC.Types.Int ->
                  case ConvertToHorn.$weliminateOr w w1 of ww { (#,,#) ww1 ww2 ww3 ->
                  (ww1, ww2, ww3) }) -}
-eb18d51c2143256ec2ebf947df79c29d
+f83cfb1ca63f205ed97a6316e208c61d
   inputChainToChain ::
     [Types.InputRule] -> GHC.Types.Int -> [Types.Rule]
   {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
-1c4f02c79c3f68796a47ed16294bb6e8
+f690a3c6f4ed665cd516c827ec86518c
   inputCriteriaToCriteria ::
     [Types.InputCriteria]
     -> GHC.Types.Int
@@ -130,14 +139,14 @@ eb18d51c2143256ec2ebf947df79c29d
                         w
                         w1 of ww { (#,,#) ww1 ww2 ww3 ->
                  (ww1, ww2, ww3) }) -}
-65bd68905e120013165924acab2e6371
+71dac6ac7a5983be9e959c693d2b5bfa
   inputInstructionsToInstructions ::
     [Types.InputInstruction] -> GHC.Types.Int -> [Types.Instruction]
   {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
-5cd4bd50708eea9a501e273c7964a165
+4d212e07d732bebdc12389eebd8e234f
   simplifyNots :: [Types.InputCriteria] -> [Types.InputCriteria]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-52c6789462b6d89e872cf9dd166273ed
+c7cce9dc672c4539eaaf7f515924032b
   stringInputChainsToStringChains ::
     [(GHC.Base.String, Types.InputChain)]
     -> GHC.Types.Int -> [(GHC.Base.String, Types.Chain)]
@@ -147,6 +156,6 @@ vectorised tycons:
 vectorised reused tycons:
 parallel variables:
 parallel tycons:
-trusted: safe
+trusted: none
 require own pkg trusted: False
 

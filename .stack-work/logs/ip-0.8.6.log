@@ -297,5 +297,5 @@ src/Net/Mac/ByteString/Char8.hs:21:1: Warning:
     To import instances alone, use: import Data.Attoparsec.ByteString.Char8()
 In-place registering ip-0.8.6...
 Installing library in
-/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.5/7.10.3/lib/x86_64-osx-ghc-7.10.3/ip-0.8.6-GjaGvXJJ7M4APjo7Nna8VB
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.15/7.10.3/lib/x86_64-osx-ghc-7.10.3/ip-0.8.6-Ftvu7F99ZNkIyX71p2SivY
 Registering ip-0.8.6...

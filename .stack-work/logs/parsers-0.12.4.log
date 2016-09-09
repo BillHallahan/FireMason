@@ -1,0 +1,21 @@
+[1 of 1] Compiling Main             ( /private/var/folders/cq/zkct3dx51bs5rn7j0t4tck5m0000gn/T/stack26077/parsers-0.12.4/Setup.lhs, /private/var/folders/cq/zkct3dx51bs5rn7j0t4tck5m0000gn/T/stack26077/parsers-0.12.4/.stack-work/dist/x86_64-osx/Cabal-1.22.5.0/setup/Main.o )
+Linking /private/var/folders/cq/zkct3dx51bs5rn7j0t4tck5m0000gn/T/stack26077/parsers-0.12.4/.stack-work/dist/x86_64-osx/Cabal-1.22.5.0/setup/setup ...
+Configuring parsers-0.12.4...
+Building parsers-0.12.4...
+Preprocessing library parsers-0.12.4...
+[1 of 8] Compiling Text.Parser.Token.Highlight ( src/Text/Parser/Token/Highlight.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/Token/Highlight.o )
+[2 of 8] Compiling Text.Parser.Permutation ( src/Text/Parser/Permutation.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/Permutation.o )
+[3 of 8] Compiling Text.Parser.Combinators ( src/Text/Parser/Combinators.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/Combinators.o )
+[4 of 8] Compiling Text.Parser.LookAhead ( src/Text/Parser/LookAhead.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/LookAhead.o )
+[5 of 8] Compiling Text.Parser.Expression ( src/Text/Parser/Expression.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/Expression.o )
+[6 of 8] Compiling Text.Parser.Char ( src/Text/Parser/Char.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/Char.o )
+[7 of 8] Compiling Text.Parser.Token ( src/Text/Parser/Token.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/Token.o )
+
+src/Text/Parser/Token.hs:603:38: Warning:
+    Pattern match(es) are non-exhaustive
+    In a pattern binding: Patterns not matched: (_, [])
+[8 of 8] Compiling Text.Parser.Token.Style ( src/Text/Parser/Token/Style.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Parser/Token/Style.o )
+In-place registering parsers-0.12.4...
+Installing library in
+/Users/BillHallahan/.stack/snapshots/x86_64-osx/lts-6.15/7.10.3/lib/x86_64-osx-ghc-7.10.3/parsers-0.12.4-1TDFRcR03ve3ukSIOnypnP
+Registering parsers-0.12.4...

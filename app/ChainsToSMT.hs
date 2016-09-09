@@ -543,6 +543,18 @@ toSMTCriteria (BoolFlag f) p = do
     f' <- mkStringSymbol . flagToString $ f
     dec <- mkFuncDecl f' [] boolSort
     mkApp dec []
+toSMTCriteria (IPAddress e i) p = do
+    case (ipToWord . ipAddr $ i) of Left b -> ipEq b 32
+                                    Right b -> ipEq b 128
+    where   ipEq :: Integral a => a -> Int -> Z3 AST
+            ipEq b' l = do
+                            let s = if e == Source then "source_ip" else "destination_ip"
+                            pSymb <- mkStringSymbol s
+                            bitSort <- mkBvSort 32
+                            b <- mkBvNum l b'
+                            dec <- mkFuncDecl pSymb [] bitSort
+                            app <- mkApp dec []
+                            mkEq app b
 toSMTCriteria (Not c) p = do
     mkNot =<< toSMTCriteria c p
 toSMTCriteria (Port e (Left i)) p = do
@@ -576,7 +588,7 @@ toSMTCriteria (Protocol i) p = do
     dec <- mkFuncDecl pSymb [] intSort
     app <- mkApp dec []
     mkEq app i'
-toSMTCriteria _ _ = error "Criteria not recognized."
+toSMTCriteria _ _ = error "Criteria not recognized by SMT conversion."
 
 
 reachabilityRulesChain :: Int -> Chain -> [AST] -> Z3 ()

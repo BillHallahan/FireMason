@@ -1,0 +1,436 @@
+Configuring text-printer-0.4...
+Building text-printer-0.4...
+Preprocessing library text-printer-0.4...
+[1 of 3] Compiling Text.Printer     ( src/Text/Printer.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Printer.o )
+
+src/Text/Printer.hs:55:1: Warning:
+    The import of ‘Monoid’ from module ‘Data.Monoid’ is redundant
+
+src/Text/Printer.hs:57:1: Warning:
+    The import of ‘Traversable’
+    from module ‘Data.Traversable’ is redundant
+[2 of 3] Compiling Text.Printer.Integral ( src/Text/Printer/Integral.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Printer/Integral.o )
+
+src/Text/Printer/Integral.hs:69:1: Warning:
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+
+src/Text/Printer/Integral.hs:625:1: Warning:
+    Forall'd constraint ‘Ord α’ is not bound in RULE lhs
+      Orig bndrs: [p, α, $dOrd_arhy, $dIntegral_arhz, $dPrinter_arhA]
+      Orig lhs: let {
+                  $dMonoid_asWW ∷ Monoid p
+                  [LclId, Str=DmdType]
+                  $dMonoid_asWW = Text.Printer.$p2Printer @ p $dPrinter_arhA } in
+                let {
+                  $dIsString_asWV ∷ Data.String.IsString p
+                  [LclId, Str=DmdType]
+                  $dIsString_asWV = Text.Printer.$p1Printer @ p $dPrinter_arhA } in
+                let {
+                  $dEnum_asWR ∷ Enum α
+                  [LclId, Str=DmdType]
+                  $dEnum_asWR = GHC.Real.$p2Integral @ α $dIntegral_arhz } in
+                let {
+                  $dReal_asWQ ∷ Real α
+                  [LclId, Str=DmdType]
+                  $dReal_asWQ = GHC.Real.$p1Integral @ α $dIntegral_arhz } in
+                let {
+                  $dNum_asWS ∷ Num α
+                  [LclId, Str=DmdType]
+                  $dNum_asWS = GHC.Real.$p1Real @ α $dReal_asWQ } in
+                let {
+                  $dOrd_asWT ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_asWT = GHC.Real.$p2Real @ α $dReal_asWQ } in
+                let {
+                  $dEq_asWU ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asWU = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_asWT } in
+                let {
+                  $dEq_asWP ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asWP = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_arhy } in
+                let {
+                  $dPrinter_arhH ∷ Printer p
+                  [LclId, Str=DmdType]
+                  $dPrinter_arhH = $dPrinter_arhA } in
+                let {
+                  $dIntegral_arhG ∷ Integral α
+                  [LclId, Str=DmdType]
+                  $dIntegral_arhG = $dIntegral_arhz } in
+                let {
+                  $dOrd_arhF ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_arhF = $dOrd_asWT } in
+                let {
+                  $dPositionalSystem_arhE ∷ PositionalSystem Binary
+                  [LclId, Str=DmdType]
+                  $dPositionalSystem_arhE = $dPositionalSystem_asRl } in
+                number'
+                  @ Binary
+                  @ p
+                  @ α
+                  $dPositionalSystem_arhE
+                  $dOrd_arhF
+                  $dIntegral_arhG
+                  $dPrinter_arhH
+      optimised lhs: number'
+                       @ Binary
+                       @ p
+                       @ α
+                       $dPositionalSystem_arhE
+                       (GHC.Real.$p2Real @ α (GHC.Real.$p1Integral @ α $dIntegral_arhz))
+                       $dIntegral_arhG
+                       $dPrinter_arhA
+
+src/Text/Printer/Integral.hs:626:1: Warning:
+    Forall'd constraint ‘Ord α’ is not bound in RULE lhs
+      Orig bndrs: [p, α, $dOrd_arid, $dIntegral_arie, $dPrinter_arif]
+      Orig lhs: let {
+                  $dMonoid_asX4 ∷ Monoid p
+                  [LclId, Str=DmdType]
+                  $dMonoid_asX4 = Text.Printer.$p2Printer @ p $dPrinter_arif } in
+                let {
+                  $dIsString_asX3 ∷ Data.String.IsString p
+                  [LclId, Str=DmdType]
+                  $dIsString_asX3 = Text.Printer.$p1Printer @ p $dPrinter_arif } in
+                let {
+                  $dEnum_asWZ ∷ Enum α
+                  [LclId, Str=DmdType]
+                  $dEnum_asWZ = GHC.Real.$p2Integral @ α $dIntegral_arie } in
+                let {
+                  $dReal_asWY ∷ Real α
+                  [LclId, Str=DmdType]
+                  $dReal_asWY = GHC.Real.$p1Integral @ α $dIntegral_arie } in
+                let {
+                  $dNum_asX0 ∷ Num α
+                  [LclId, Str=DmdType]
+                  $dNum_asX0 = GHC.Real.$p1Real @ α $dReal_asWY } in
+                let {
+                  $dOrd_asX1 ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_asX1 = GHC.Real.$p2Real @ α $dReal_asWY } in
+                let {
+                  $dEq_asX2 ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asX2 = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_asX1 } in
+                let {
+                  $dEq_asWX ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asWX = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_arid } in
+                let {
+                  $dPrinter_arim ∷ Printer p
+                  [LclId, Str=DmdType]
+                  $dPrinter_arim = $dPrinter_arif } in
+                let {
+                  $dIntegral_aril ∷ Integral α
+                  [LclId, Str=DmdType]
+                  $dIntegral_aril = $dIntegral_arie } in
+                let {
+                  $dOrd_arik ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_arik = $dOrd_asX1 } in
+                let {
+                  $dPositionalSystem_arij ∷ PositionalSystem Decimal
+                  [LclId, Str=DmdType]
+                  $dPositionalSystem_arij =
+                    Text.Printer.Integral.$fPositionalSystemDecimal } in
+                number'
+                  @ Decimal
+                  @ p
+                  @ α
+                  $dPositionalSystem_arij
+                  $dOrd_arik
+                  $dIntegral_aril
+                  $dPrinter_arim
+      optimised lhs: number'
+                       @ Decimal
+                       @ p
+                       @ α
+                       $dPositionalSystem_arij
+                       (GHC.Real.$p2Real @ α (GHC.Real.$p1Integral @ α $dIntegral_arie))
+                       $dIntegral_aril
+                       $dPrinter_arif
+
+src/Text/Printer/Integral.hs:627:1: Warning:
+    Forall'd constraint ‘Ord α’ is not bound in RULE lhs
+      Orig bndrs: [p, α, $dOrd_ariS, $dIntegral_ariT, $dPrinter_ariU]
+      Orig lhs: let {
+                  $dMonoid_asXc ∷ Monoid p
+                  [LclId, Str=DmdType]
+                  $dMonoid_asXc = Text.Printer.$p2Printer @ p $dPrinter_ariU } in
+                let {
+                  $dIsString_asXb ∷ Data.String.IsString p
+                  [LclId, Str=DmdType]
+                  $dIsString_asXb = Text.Printer.$p1Printer @ p $dPrinter_ariU } in
+                let {
+                  $dEnum_asX7 ∷ Enum α
+                  [LclId, Str=DmdType]
+                  $dEnum_asX7 = GHC.Real.$p2Integral @ α $dIntegral_ariT } in
+                let {
+                  $dReal_asX6 ∷ Real α
+                  [LclId, Str=DmdType]
+                  $dReal_asX6 = GHC.Real.$p1Integral @ α $dIntegral_ariT } in
+                let {
+                  $dNum_asX8 ∷ Num α
+                  [LclId, Str=DmdType]
+                  $dNum_asX8 = GHC.Real.$p1Real @ α $dReal_asX6 } in
+                let {
+                  $dOrd_asX9 ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_asX9 = GHC.Real.$p2Real @ α $dReal_asX6 } in
+                let {
+                  $dEq_asXa ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asXa = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_asX9 } in
+                let {
+                  $dEq_asX5 ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asX5 = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_ariS } in
+                let {
+                  $dPrinter_arj1 ∷ Printer p
+                  [LclId, Str=DmdType]
+                  $dPrinter_arj1 = $dPrinter_ariU } in
+                let {
+                  $dIntegral_arj0 ∷ Integral α
+                  [LclId, Str=DmdType]
+                  $dIntegral_arj0 = $dIntegral_ariT } in
+                let {
+                  $dOrd_ariZ ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_ariZ = $dOrd_asX9 } in
+                let {
+                  $dPositionalSystem_ariY ∷ PositionalSystem Octal
+                  [LclId, Str=DmdType]
+                  $dPositionalSystem_ariY = $dPositionalSystem_asPg } in
+                number'
+                  @ Octal
+                  @ p
+                  @ α
+                  $dPositionalSystem_ariY
+                  $dOrd_ariZ
+                  $dIntegral_arj0
+                  $dPrinter_arj1
+      optimised lhs: number'
+                       @ Octal
+                       @ p
+                       @ α
+                       $dPositionalSystem_ariY
+                       (GHC.Real.$p2Real @ α (GHC.Real.$p1Integral @ α $dIntegral_ariT))
+                       $dIntegral_arj0
+                       $dPrinter_ariU
+
+src/Text/Printer/Integral.hs:628:1: Warning:
+    Forall'd constraint ‘Ord α’ is not bound in RULE lhs
+      Orig bndrs: [p, α, $dOrd_arjx, $dIntegral_arjy, $dPrinter_arjz]
+      Orig lhs: let {
+                  $dMonoid_asXk ∷ Monoid p
+                  [LclId, Str=DmdType]
+                  $dMonoid_asXk = Text.Printer.$p2Printer @ p $dPrinter_arjz } in
+                let {
+                  $dIsString_asXj ∷ Data.String.IsString p
+                  [LclId, Str=DmdType]
+                  $dIsString_asXj = Text.Printer.$p1Printer @ p $dPrinter_arjz } in
+                let {
+                  $dEnum_asXf ∷ Enum α
+                  [LclId, Str=DmdType]
+                  $dEnum_asXf = GHC.Real.$p2Integral @ α $dIntegral_arjy } in
+                let {
+                  $dReal_asXe ∷ Real α
+                  [LclId, Str=DmdType]
+                  $dReal_asXe = GHC.Real.$p1Integral @ α $dIntegral_arjy } in
+                let {
+                  $dNum_asXg ∷ Num α
+                  [LclId, Str=DmdType]
+                  $dNum_asXg = GHC.Real.$p1Real @ α $dReal_asXe } in
+                let {
+                  $dOrd_asXh ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_asXh = GHC.Real.$p2Real @ α $dReal_asXe } in
+                let {
+                  $dEq_asXi ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asXi = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_asXh } in
+                let {
+                  $dEq_asXd ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asXd = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_arjx } in
+                let {
+                  $dPrinter_arjG ∷ Printer p
+                  [LclId, Str=DmdType]
+                  $dPrinter_arjG = $dPrinter_arjz } in
+                let {
+                  $dIntegral_arjF ∷ Integral α
+                  [LclId, Str=DmdType]
+                  $dIntegral_arjF = $dIntegral_arjy } in
+                let {
+                  $dOrd_arjE ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_arjE = $dOrd_asXh } in
+                let {
+                  $dPositionalSystem_arjD ∷ PositionalSystem Hexadecimal
+                  [LclId, Str=DmdType]
+                  $dPositionalSystem_arjD = $dPositionalSystem_asLt } in
+                number'
+                  @ Hexadecimal
+                  @ p
+                  @ α
+                  $dPositionalSystem_arjD
+                  $dOrd_arjE
+                  $dIntegral_arjF
+                  $dPrinter_arjG
+      optimised lhs: number'
+                       @ Hexadecimal
+                       @ p
+                       @ α
+                       $dPositionalSystem_arjD
+                       (GHC.Real.$p2Real @ α (GHC.Real.$p1Integral @ α $dIntegral_arjy))
+                       $dIntegral_arjF
+                       $dPrinter_arjz
+
+src/Text/Printer/Integral.hs:629:1: Warning:
+    Forall'd constraint ‘Ord α’ is not bound in RULE lhs
+      Orig bndrs: [p, α, $dOrd_arkc, $dIntegral_arkd, $dPrinter_arke]
+      Orig lhs: let {
+                  $dMonoid_asXs ∷ Monoid p
+                  [LclId, Str=DmdType]
+                  $dMonoid_asXs = Text.Printer.$p2Printer @ p $dPrinter_arke } in
+                let {
+                  $dIsString_asXr ∷ Data.String.IsString p
+                  [LclId, Str=DmdType]
+                  $dIsString_asXr = Text.Printer.$p1Printer @ p $dPrinter_arke } in
+                let {
+                  $dEnum_asXn ∷ Enum α
+                  [LclId, Str=DmdType]
+                  $dEnum_asXn = GHC.Real.$p2Integral @ α $dIntegral_arkd } in
+                let {
+                  $dReal_asXm ∷ Real α
+                  [LclId, Str=DmdType]
+                  $dReal_asXm = GHC.Real.$p1Integral @ α $dIntegral_arkd } in
+                let {
+                  $dNum_asXo ∷ Num α
+                  [LclId, Str=DmdType]
+                  $dNum_asXo = GHC.Real.$p1Real @ α $dReal_asXm } in
+                let {
+                  $dOrd_asXp ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_asXp = GHC.Real.$p2Real @ α $dReal_asXm } in
+                let {
+                  $dEq_asXq ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asXq = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_asXp } in
+                let {
+                  $dEq_asXl ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asXl = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_arkc } in
+                let {
+                  $dPrinter_arkl ∷ Printer p
+                  [LclId, Str=DmdType]
+                  $dPrinter_arkl = $dPrinter_arke } in
+                let {
+                  $dIntegral_arkk ∷ Integral α
+                  [LclId, Str=DmdType]
+                  $dIntegral_arkk = $dIntegral_arkd } in
+                let {
+                  $dOrd_arkj ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_arkj = $dOrd_asXp } in
+                let {
+                  $dPositionalSystem_arki ∷ PositionalSystem LowHex
+                  [LclId, Str=DmdType]
+                  $dPositionalSystem_arki = $dPositionalSystem_asIU } in
+                number'
+                  @ LowHex
+                  @ p
+                  @ α
+                  $dPositionalSystem_arki
+                  $dOrd_arkj
+                  $dIntegral_arkk
+                  $dPrinter_arkl
+      optimised lhs: number'
+                       @ LowHex
+                       @ p
+                       @ α
+                       $dPositionalSystem_arki
+                       (GHC.Real.$p2Real @ α (GHC.Real.$p1Integral @ α $dIntegral_arkd))
+                       $dIntegral_arkk
+                       $dPrinter_arke
+
+src/Text/Printer/Integral.hs:630:1: Warning:
+    Forall'd constraint ‘Ord α’ is not bound in RULE lhs
+      Orig bndrs: [p, α, $dOrd_arkR, $dIntegral_arkS, $dPrinter_arkT]
+      Orig lhs: let {
+                  $dMonoid_asXA ∷ Monoid p
+                  [LclId, Str=DmdType]
+                  $dMonoid_asXA = Text.Printer.$p2Printer @ p $dPrinter_arkT } in
+                let {
+                  $dIsString_asXz ∷ Data.String.IsString p
+                  [LclId, Str=DmdType]
+                  $dIsString_asXz = Text.Printer.$p1Printer @ p $dPrinter_arkT } in
+                let {
+                  $dEnum_asXv ∷ Enum α
+                  [LclId, Str=DmdType]
+                  $dEnum_asXv = GHC.Real.$p2Integral @ α $dIntegral_arkS } in
+                let {
+                  $dReal_asXu ∷ Real α
+                  [LclId, Str=DmdType]
+                  $dReal_asXu = GHC.Real.$p1Integral @ α $dIntegral_arkS } in
+                let {
+                  $dNum_asXw ∷ Num α
+                  [LclId, Str=DmdType]
+                  $dNum_asXw = GHC.Real.$p1Real @ α $dReal_asXu } in
+                let {
+                  $dOrd_asXx ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_asXx = GHC.Real.$p2Real @ α $dReal_asXu } in
+                let {
+                  $dEq_asXy ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asXy = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_asXx } in
+                let {
+                  $dEq_asXt ∷ Eq α
+                  [LclId, Str=DmdType]
+                  $dEq_asXt = ghc-prim-0.4.0.0:GHC.Classes.$p1Ord @ α $dOrd_arkR } in
+                let {
+                  $dPrinter_arl0 ∷ Printer p
+                  [LclId, Str=DmdType]
+                  $dPrinter_arl0 = $dPrinter_arkT } in
+                let {
+                  $dIntegral_arkZ ∷ Integral α
+                  [LclId, Str=DmdType]
+                  $dIntegral_arkZ = $dIntegral_arkS } in
+                let {
+                  $dOrd_arkY ∷ Ord α
+                  [LclId, Str=DmdType]
+                  $dOrd_arkY = $dOrd_asXx } in
+                let {
+                  $dPositionalSystem_arkX ∷ PositionalSystem UpHex
+                  [LclId, Str=DmdType]
+                  $dPositionalSystem_arkX = $dPositionalSystem_asGk } in
+                number'
+                  @ UpHex
+                  @ p
+                  @ α
+                  $dPositionalSystem_arkX
+                  $dOrd_arkY
+                  $dIntegral_arkZ
+                  $dPrinter_arl0
+      optimised lhs: number'
+                       @ UpHex
+                       @ p
+                       @ α
+                       $dPositionalSystem_arkX
+                       (GHC.Real.$p2Real @ α (GHC.Real.$p1Integral @ α $dIntegral_arkS))
+                       $dIntegral_arkZ
+                       $dPrinter_arkT
+[3 of 3] Compiling Text.Printer.Fractional ( src/Text/Printer/Fractional.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Printer/Fractional.o )
+
+src/Text/Printer/Fractional.hs:27:1: Warning:
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+In-place registering text-printer-0.4...
+Installing library in
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.15/7.10.3/lib/x86_64-osx-ghc-7.10.3/text-printer-0.4-7X6LRujfSfLCuvsSdzcszA
+Registering text-printer-0.4...

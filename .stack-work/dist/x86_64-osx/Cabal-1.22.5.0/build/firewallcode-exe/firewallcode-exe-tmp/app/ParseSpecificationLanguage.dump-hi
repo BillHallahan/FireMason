@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-07 00:38:43.631462 UTC
+2016-09-09 18:35:41.208919 UTC
 
 interface main@main:ParseSpecificationLanguage 7103
-  interface hash: 9bc667af8447c8642941812215f1c3b5
-  ABI hash: ea599cd8596e7326d714f3924090f4d1
-  export-list hash: efb541e067b6f31c82d76f2ed5574599
+  interface hash: be99550837ca1f58c02813b27dbe1a8b
+  ABI hash: 82a421271cc10f2bee0e044387256987
+  export-list hash: 451b53cbf63c8e3359e07da7353f6376
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
@@ -26,13 +26,18 @@ exports:
   ParseSpecificationLanguage.parseSpecificationTarget
   ParseSpecificationLanguage.toConjunction
 module dependencies: ParserHelp Types
-package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0* binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
                       case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
                       semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
@@ -44,7 +49,9 @@ orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
          binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
          bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
          hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
-         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         main@main:Types
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
 family instance modules: base-4.8.2.0:Control.Applicative
@@ -57,6 +64,8 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
                          tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
@@ -72,36 +81,40 @@ import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
 import  -/  base-4.8.2.0:GHC.Unicode cdf84fc3abbaf34ba6b6645291cef991
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base 8b0bee2cbf19008d0429e93c882cbe4e
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP 01265d616023459ed1a88e34df15c136
 import  -/  ParserHelp c7affdab4be2cddd08133e07d05d3b63
   exports: 4408f0f73d248a4701f2f315f854c188
   isInteger cc10131991668b1b7abaf3e084cfc260
-import  -/  Types f411910ab9eb02e3fece784b491ea130
-  exports: 1725d3cdae695ee6949d8ed50f4d0c7c
+import  -/  Types f67ef19ae195813ad97e9eb86fc5ce1b
+  exports: 5b8ac4796ded9d231fd488d4a5d1c89e
   ACCEPT 08ea8d5ba9c8e5ae84bd818c2cc3ee1f
-  And 46e103565e7c95b143f5ebf87e28c3d1
+  And 85bd045ebea8630e5dcef1a3703e86de
   DROP e0e88d7e035c9851606c6a03aeae2391
   Destination 922d80ba258cc0a086584d38ca75ebef
-  InC 083e20e7e01c63070c106fabd0ee214c
-  InCNot c1d5eac0589cbbab10ed6c4cfcf27b2d
-  InputCriteria a16fb285644fe1cfce7725a3e2d545aa
-  InputInstruction a50de6099365cd9a20c2753334db1617
-  InputRule a16fb285644fe1cfce7725a3e2d545aa
+  IPAddress 9f35cd54f77f8e8e6e4d3e183b9dc3a8
+  InC c14db538541e4906c754ac3d457f3b88
+  InCNot b04697ad752423fb3cd7f625c8a8abf9
+  InputCriteria 5ed100fb954faded5a9d23bdf7aced25
+  InputInstruction dbf63d5ee8e351d7787d406a69fb141f
+  InputRule 5ed100fb954faded5a9d23bdf7aced25
   NoInstruction b969e22921f283e869a0720ab3777dec
-  Or 70a3aa7edd4ee0337d5f7da80cab24d9
-  Port 0cdcd795ebd2c331c1401f6cf3404c99
-  Protocol d38fdc887d9a0e7c53d19d8b463500f3
-  Rule 463e6937e80c1b2712030bd2add91a30
-  SC f35e0e42ed4e3547fc06c148eeae6c66
+  Or e411507928ed798ea15b522bec20c5ba
+  Port 175675c7c9254add9716442f319e60d5
+  Protocol 28d217f7cfd42059fccbb1335d04e6b8
+  Rule eb6314db93fd1e95430be0629724bee0
+  SC 7a36e86aa7fd2b3886950a3290825d7e
   Source b53eb4518fedc84d30c0b4327bd32c7d
   Target 97fc31d3ca68602965fcc27b6e7cac76
   ToChainNamed ce4c7bf5b328004ab15754446244f326
-  stringsToFlags 1b67ff14d71794063a3d844602d37d18
+  stringsToFlags 7126d0f2a863ad1a2511873cf82249d1
+  toIPRange ad27115d47e70cf4bf18c6f6002efb91
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split 487cc1966f0f25916f1ba58bdff4b0ee
 import  -/  split-0.2.3.1@split_2IxbOPGrTSq7kFrJA7odmE:Data.List.Split.Internals ec8cf5264ec78ab060cadb7ee5b994f0
 d600ab7acfa7e844b6d4a81e4b2c2483
@@ -109,59 +122,15 @@ d600ab7acfa7e844b6d4a81e4b2c2483
     GHC.Base.String
     -> Data.Map.Base.Map GHC.Base.String a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
-32fb99173fb37cd6b1a469e1d5e613d9
+34406e1d12cf8c530f14620359ed01ec
   $wparseSpecificationCriteria' ::
     [GHC.Base.String] -> (# Types.InputCriteria, [GHC.Base.String] #)
   {- Arity: 1, Strictness: <S,U>, Inline: [0] -}
-bbc2ae530983e2235f35f9eaf5129e17
-  $wparseSpecificationTarget ::
-    [GHC.Base.String] -> (# Types.Target, [Types.Target] #)
-  {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
-     Unfolding: (\ w :: [GHC.Base.String] ->
-                 case w of wild {
-                   []
-                   -> case ParseSpecificationLanguage.parseSpecificationTarget3
-                      ret_ty (# Types.Target, [Types.Target] #)
-                      of {}
-                   : ds1 ds2
-                   -> case GHC.Base.eqString
-                             ds1
-                             ParseSpecificationLanguage.parseSpecificationTarget2 of wild1 {
-                        GHC.Types.False
-                        -> case GHC.Base.eqString
-                                  ds1
-                                  ParseSpecificationLanguage.parseSpecificationTarget1 of wild2 {
-                             GHC.Types.False
-                             -> case ParseSpecificationLanguage.parseSpecificationTarget3
-                                ret_ty (# Types.Target, [Types.Target] #)
-                                of {}
-                             GHC.Types.True
-                             -> case ds2 of wild3 {
-                                  [] -> (# Types.DROP, GHC.Types.[] @ Types.Target #)
-                                  : ipv ipv1
-                                  -> case ParseSpecificationLanguage.parseSpecificationTarget3
-                                     ret_ty (# Types.Target, [Types.Target] #)
-                                     of {} } }
-                        GHC.Types.True
-                        -> case ds2 of wild2 {
-                             [] -> (# Types.ACCEPT, GHC.Types.[] @ Types.Target #)
-                             : ipv ipv1
-                             -> case GHC.Base.eqString
-                                       ds1
-                                       ParseSpecificationLanguage.parseSpecificationTarget1 of wild3 {
-                                  GHC.Types.False
-                                  -> case ParseSpecificationLanguage.parseSpecificationTarget3
-                                     ret_ty (# Types.Target, [Types.Target] #)
-                                     of {}
-                                  GHC.Types.True
-                                  -> case ParseSpecificationLanguage.parseSpecificationTarget3
-                                     ret_ty (# Types.Target, [Types.Target] #)
-                                     of {} } } } }) -}
 1d067a16bba19928ef9d851108547edd
   $wunsafeDrop :: GHC.Prim.Int# -> [a1] -> [a1]
   {- Arity: 2, HasNoCafRefs, Strictness: <L,1*U><S,1*U>,
      Inline: [0] -}
-549f9088d46f918dfc60088d4c1c218c
+e8c4a165e1db96069d7d23762dcf5108
   conjunctionAtFront ::
     [GHC.Base.String]
     -> GHC.Base.Maybe ([Types.InputCriteria] -> Types.InputCriteria)
@@ -181,7 +150,7 @@ bbc2ae530983e2235f35f9eaf5129e17
                         -> ParseSpecificationLanguage.conjunctionAtFront1 wild
                         GHC.Types.True
                         -> ParseSpecificationLanguage.toConjunction ipv } }) -}
-1e78dd15afce5b0ec4dfbb862dcd94e4
+7b833e219e6e398a155734134e0fc97b
   conjunctionAtFront1 ::
     [GHC.Base.String]
     -> GHC.Base.Maybe ([Types.InputCriteria] -> Types.InputCriteria)
@@ -258,7 +227,7 @@ f36dcc62cf478c86855b3b8802eeb668
 77c583e36e586e5038c1f8ebe9f4eeb6
   lexer :: GHC.Base.String -> [GHC.Base.String]
   {- Arity: 1, Strictness: <S,U> -}
-f0255551d51ee79d9bc24516d61a7fcf
+cc604c9c4ed8970432d2d4dda16c7bec
   parse :: [GHC.Base.String] -> [Types.InputInstruction]
   {- Arity: 1, Strictness: <L,U>,
      Unfolding: InlineRule (1, True, False)
@@ -293,11 +262,11 @@ f0255551d51ee79d9bc24516d61a7fcf
 26c4898de41ab3d8d4b34ee3e497f85e
   parse2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ","#) -}
-58677674f0a4a269dc9fcf62a8429e86
+98649cce5003a1807a96d1667a79dcf6
   parse3 ::
     [GHC.Base.String] -> Types.SynthInstruction Types.InputRule
   {- Arity: 1, Strictness: <S,1*U> -}
-e5152d25b30762136450397e2156e944
+53375d27c1ee0aab9164f178ccaed8b8
   parseInstruction ::
     [GHC.Base.String]
     -> ([GHC.Base.String], Types.InputRule -> Types.InputInstruction)
@@ -336,7 +305,7 @@ e5152d25b30762136450397e2156e944
 802964f1452876f449be5fd1ce6d8d33
   parseInstruction1 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "chain"#) -}
-62be1f6a7a5206cc77d0f502a992e2a4
+d923ad4d549abd669ac97f8488509735
   parseRule :: [GHC.Base.String] -> Types.InputRule
   {- Arity: 1, Strictness: <L,1*U>m, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
@@ -370,11 +339,11 @@ f11aeed7f40136dbbadae8dd00d82bac
 dbee4f01564b53798434edbcb7966178
   parseRule3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "=>"#) -}
-5a5623bc793d87522c94f344b1e7d440
+796ca13b8d6c0b1ba39e81c722b7b389
   parseSpecificationCriteria ::
     [GHC.Base.String] -> [Types.InputCriteria]
   {- Arity: 1, Strictness: <S,1*U> -}
-68c0df2a01147e36c4310d087129ea4f
+0c738df33c1017e13afe0351367ed7c0
   parseSpecificationCriteria' ::
     [GHC.Base.String] -> (Types.InputCriteria, [GHC.Base.String])
   {- Arity: 1, Strictness: <S,U>m, Inline: INLINE[0],
@@ -383,24 +352,63 @@ dbee4f01564b53798434edbcb7966178
                  case ParseSpecificationLanguage.$wparseSpecificationCriteria'
                         w of ww { (#,#) ww1 ww2 ->
                  (ww1, ww2) }) -}
-1b1e29e38ff91ac6cbaf44c3bc747e4a
+42783c8319966f507aaa9a3e28368e62
   parseSpecificationTarget :: [GHC.Base.String] -> [Types.Target]
-  {- Arity: 1, Strictness: <S,1*U>m2, Inline: INLINE[0],
-     Unfolding: InlineRule (1, True, False)
-                (\ w :: [GHC.Base.String] ->
-                 case ParseSpecificationLanguage.$wparseSpecificationTarget
-                        w of ww { (#,#) ww1 ww2 ->
-                 GHC.Types.: @ Types.Target ww1 ww2 }) -}
-62df66a2d2ef0c5b358cb09be796dd0d
-  parseSpecificationTarget1 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "DROP"#) -}
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ ds1 :: [GHC.Base.String] ->
+                 case ds1 of wild {
+                   [] -> ParseSpecificationLanguage.parseSpecificationTarget6
+                   : ds2 ds3
+                   -> let {
+                        fail :: GHC.Prim.Void# -> [Types.Target]
+                          {- Arity: 1, Strictness: <L,A> -}
+                        = \ ds4 :: GHC.Prim.Void#[OneShot] ->
+                          case GHC.Base.eqString
+                                 ds2
+                                 ParseSpecificationLanguage.parseSpecificationTarget5 of wild1 {
+                            GHC.Types.False
+                            -> ParseSpecificationLanguage.parseSpecificationTarget4 wild
+                            GHC.Types.True
+                            -> case ds3 of wild2 {
+                                 [] -> ParseSpecificationLanguage.parseSpecificationTarget3
+                                 : ipv ipv1
+                                 -> ParseSpecificationLanguage.parseSpecificationTarget4 wild } }
+                      } in
+                      case GHC.Base.eqString
+                             ds2
+                             ParseSpecificationLanguage.parseSpecificationTarget2 of wild1 {
+                        GHC.Types.False -> fail GHC.Prim.void#
+                        GHC.Types.True
+                        -> case ds3 of wild2 {
+                             [] -> ParseSpecificationLanguage.parseSpecificationTarget1
+                             : ipv ipv1 -> fail GHC.Prim.void# } } }) -}
+2a3f5bb210fd3b1b40f269b8b0e53bdf
+  parseSpecificationTarget1 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   Types.ACCEPT
+                   (GHC.Types.[] @ Types.Target)) -}
 14dfb52ab0a9d18677968e9cc9ff000f
   parseSpecificationTarget2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "ACCEPT"#) -}
-bed573d7b63ca7a455989de3107775f9
+beef0a1da88a627b58dd5b89af950fa5
   parseSpecificationTarget3 :: [Types.Target]
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ Types.Target
+                   Types.DROP
+                   (GHC.Types.[] @ Types.Target)) -}
+d76de213274260abdc02f8a8300156ae
+  parseSpecificationTarget4 :: [GHC.Base.String] -> [Types.Target]
+  {- Arity: 1, Strictness: <L,U>b -}
+a58754df9973f7a1f726a62aae95c16d
+  parseSpecificationTarget5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "DROP"#) -}
+8408ee2b11d3af3010e634f52ef9241a
+  parseSpecificationTarget6 :: [Types.Target]
   {- Strictness: b -}
-201de596b4aa36d804f0e75579b7f283
+93b7ad676676e65dd5ad87e001dd8fa7
   toConjunction ::
     GHC.Base.String
     -> GHC.Base.Maybe ([Types.InputCriteria] -> Types.InputCriteria)
@@ -418,14 +426,14 @@ bed573d7b63ca7a455989de3107775f9
                              @ ([Types.InputCriteria] -> Types.InputCriteria)
                         GHC.Types.True -> ParseSpecificationLanguage.toConjunction2 }
                    GHC.Types.True -> ParseSpecificationLanguage.toConjunction1 }) -}
-802c94bd255e1c20100e9d987ad2cda0
+090e6a99269aed04e2a9f5f686aff477
   toConjunction1 ::
     GHC.Base.Maybe ([Types.InputCriteria] -> Types.InputCriteria)
   {- HasNoCafRefs, Strictness: m2,
      Unfolding: (GHC.Base.Just
                    @ ([Types.InputCriteria] -> Types.InputCriteria)
                    Types.And) -}
-2720e76a59361a38656db40712067281
+c4f43fce7b574960571728e99096002b
   toConjunction2 ::
     GHC.Base.Maybe ([Types.InputCriteria] -> Types.InputCriteria)
   {- HasNoCafRefs, Strictness: m2,
@@ -443,6 +451,6 @@ vectorised tycons:
 vectorised reused tycons:
 parallel variables:
 parallel tycons:
-trusted: safe
+trusted: none
 require own pkg trusted: False
 

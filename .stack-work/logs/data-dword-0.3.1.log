@@ -1,0 +1,30 @@
+Configuring data-dword-0.3.1...
+Building data-dword-0.3.1...
+Preprocessing library data-dword-0.3.1...
+[1 of 3] Compiling Data.DoubleWord.Base ( src/Data/DoubleWord/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/DoubleWord/Base.o )
+[2 of 3] Compiling Data.DoubleWord.TH ( src/Data/DoubleWord/TH.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/DoubleWord/TH.o )
+
+src/Data/DoubleWord/TH.hs:24:1: Warning:
+    The import of ‘Control.Applicative’ is redundant
+      except perhaps to import instances from ‘Control.Applicative’
+    To import instances alone, use: import Control.Applicative()
+
+src/Data/DoubleWord/TH.hs:25:1: Warning:
+    Module ‘Language.Haskell.TH’ does not export ‘unpacked’
+
+src/Data/DoubleWord/TH.hs:899:16: Warning:
+    In the use of ‘bitSize’ (imported from Data.Bits):
+    Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
+
+src/Data/DoubleWord/TH.hs:900:18: Warning:
+    In the use of ‘bitSize’ (imported from Data.Bits):
+    Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
+
+src/Data/DoubleWord/TH.hs:1047:33: Warning:
+    In the use of ‘bitSize’ (imported from Data.Bits):
+    Deprecated: "Use 'bitSizeMaybe' or 'finiteBitSize' instead"
+[3 of 3] Compiling Data.DoubleWord  ( src/Data/DoubleWord.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Data/DoubleWord.o )
+In-place registering data-dword-0.3.1...
+Installing library in
+/Users/BillHallahan/Documents/Research/Firewalls/firewallcode/.stack-work/install/x86_64-osx/lts-6.15/7.10.3/lib/x86_64-osx-ghc-7.10.3/data-dword-0.3.1-4BjeQr8VYTn6ftWfzJb4pp
+Registering data-dword-0.3.1...

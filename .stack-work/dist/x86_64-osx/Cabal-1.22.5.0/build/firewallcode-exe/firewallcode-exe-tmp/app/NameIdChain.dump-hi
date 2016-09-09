@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-07 00:38:44.430489 UTC
+2016-09-09 15:15:44.533517 UTC
 
 interface main@main:NameIdChain 7103
-  interface hash: 8ed00ed3fb7458e6b317ef4d5006b180
-  ABI hash: c61636e3a087d0026d136091b94e3f30
-  export-list hash: 3fe191a4b47804c5db9eb5358a2ac838
-  orphan hash: 72c98c6c498a594565dc0f6f2ccd00df
+  interface hash: 747658bf6bbfee78c4084e86428f826a
+  ABI hash: 2bf5b7dbd40a8cd1030882a7b1dc68e1
+  export-list hash: 5312f794ea8b08b6b803601e85435089
+  orphan hash: 9a821eb03720933251e4a58521a0b641
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
@@ -17,13 +17,18 @@ exports:
   NameIdChain.pathSimplification2'
   NameIdChain.IdNameChain{NameIdChain.addChain NameIdChain.chains NameIdChain.idsWithName NameIdChain.increaseIndexes NameIdChain.lookupChain NameIdChain.lookupEquivalent NameIdChain.lookupName NameIdChain.lookupNameChain NameIdChain.maxId NameIdChain.maxLabel NameIdChain.names NameIdChain.namesChains NameIdChain.notTopLevelChains NameIdChain.reduceReferenced NameIdChain.setUnion NameIdChain.switchChains NameIdChain.toList' NameIdChain.topLevelChains NameIdChain.topLevelJumpingTo NameIdChain.validIds}
 module dependencies: Types
-package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
-                      base-4.8.2.0 binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
                       case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
                       deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
                       semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
                       tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
                       text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
@@ -34,7 +39,9 @@ orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
          binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
          bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
          hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
-         main@main:Types text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         main@main:Types
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
          text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
 family instance modules: base-4.8.2.0:Control.Applicative
@@ -47,6 +54,8 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
                          semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
                          tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
@@ -64,26 +73,26 @@ import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base 8b0bee2cbf19008d0429e93c882cbe4e
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Strict 2e796f3ebd5f3ce783e00a01f5cdcaa8
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  Types f411910ab9eb02e3fece784b491ea130
-  exports: 1725d3cdae695ee6949d8ed50f4d0c7c
-  Chain e29fec291a6abd0b92f253c858f5c2c2
+import  -/  Types f67ef19ae195813ad97e9eb86fc5ce1b
+  exports: 5b8ac4796ded9d231fd488d4a5d1c89e
+  Chain d25949644282bfdca1b68ae1d802172e
   ChainId c884b4bd8354c5f5ad5e611c0e6a2eb5
-  Criteria 605b90b34d99bcf3227a69e454b38e17
+  Criteria e19364fbcccdcd240635a00eaccbd95c
   Go 4c5408c41de596e0dc952fb3fcb57393
   GoReturn 108205ab09197687b0a03c823482edba
   GoTo 43a2108f77812364ff6f78a5370525f7
   Jump 2ea219c7a9fd7d6a6f1cd207005e536b
   Label 8ea1cbc35ff6354c4e178e365701b867
-  Rule 463e6937e80c1b2712030bd2add91a30
+  Rule eb6314db93fd1e95430be0629724bee0
   Target 97fc31d3ca68602965fcc27b6e7cac76
-  criteria cf60e7838dcc471025e3f37e89561944
-  label 6d1112a17350d26c3b7cc905d8b1623a
-  targets 73ffac4abc5369d3a9e89359a701a3b6
+  criteria ee303b4cb463a457ef7928db4fa1b9fc
+  label c83166204ef81d416a488daa76929560
+  targets 62c89352df6f39cc6c8106f1f6a0847b
   targetsToChainIds 66678403ad397cc7251a4da536d0a69a
-00edda89e8cf14919ab02ded17c54c9c
+fbcf3cc5fb2701f0cb1a7f7464cf84e1
   $sfromList ::
     [(Types.ChainId, a)] -> Data.Map.Base.Map Types.ChainId a
   {- Arity: 1, Strictness: <S,1*U>,
@@ -94,15 +103,75 @@ import  -/  Types f411910ab9eb02e3fece784b491ea130
                    -> case ds1 of wild1 { (,) kx x ->
                       case ds2 of wild2 {
                         []
-                        -> case kx of dt { GHC.Types.I# ipv ->
+                        -> case x of x1 { DEFAULT ->
+                           case kx of dt { GHC.Types.I# ipv ->
                            Data.Map.Base.Bin
                              @ Types.ChainId
                              @ a
                              1
                              dt
-                             x
+                             x1
                              (Data.Map.Base.Tip @ Types.ChainId @ a)
-                             (Data.Map.Base.Tip @ Types.ChainId @ a) }
+                             (Data.Map.Base.Tip @ Types.ChainId @ a) } }
+                        : ipv ipv1
+                        -> case ipv of wild3 { (,) ky ds3 ->
+                           case kx of wild4 { GHC.Types.I# x1 ->
+                           case ky of wild5 { GHC.Types.I# y ->
+                           case GHC.Prim.tagToEnum#
+                                  @ GHC.Types.Bool
+                                  (GHC.Prim.>=# x1 y) of wild6 {
+                             GHC.Types.False
+                             -> case x of x0 { DEFAULT ->
+                                NameIdChain.$wpoly_go4
+                                  @ a
+                                  1
+                                  (Data.Map.Base.Bin
+                                     @ Types.ChainId
+                                     @ a
+                                     1
+                                     wild4
+                                     x0
+                                     (Data.Map.Base.Tip @ Types.ChainId @ a)
+                                     (Data.Map.Base.Tip @ Types.ChainId @ a))
+                                  wild2 }
+                             GHC.Types.True
+                             -> case x of x0 { DEFAULT ->
+                                NameIdChain.$sfromList1
+                                  @ a
+                                  (Data.Map.Base.Bin
+                                     @ Types.ChainId
+                                     @ a
+                                     1
+                                     wild4
+                                     x0
+                                     (Data.Map.Base.Tip @ Types.ChainId @ a)
+                                     (Data.Map.Base.Tip @ Types.ChainId @ a))
+                                  wild2 } } } } } } } }) -}
+b706f157bf3a735d8fb5e592bb634091
+  $sfromList1 ::
+    Data.Map.Base.Map Types.ChainId a1
+    -> [(Types.ChainId, a1)] -> Data.Map.Base.Map Types.ChainId a1
+  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
+f7bda8a38c5b946b24c7efa0a27983d0
+  $sfromList2 ::
+    [(GHC.Types.Int, a)] -> Data.Map.Base.Map GHC.Types.Int a
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ @ a ds :: [(GHC.Types.Int, a)] ->
+                 case ds of wild {
+                   [] -> Data.Map.Base.Tip @ GHC.Types.Int @ a
+                   : ds1 ds2
+                   -> case ds1 of wild1 { (,) kx x ->
+                      case ds2 of wild2 {
+                        []
+                        -> case kx of dt { GHC.Types.I# ipv ->
+                           Data.Map.Base.Bin
+                             @ GHC.Types.Int
+                             @ a
+                             1
+                             dt
+                             x
+                             (Data.Map.Base.Tip @ GHC.Types.Int @ a)
+                             (Data.Map.Base.Tip @ GHC.Types.Int @ a) }
                         : ipv ipv1
                         -> case ipv of wild3 { (,) ky ds3 ->
                            case kx of wild4 { GHC.Types.I# x1 ->
@@ -115,30 +184,30 @@ import  -/  Types f411910ab9eb02e3fece784b491ea130
                                   @ a
                                   1
                                   (Data.Map.Base.Bin
-                                     @ Types.ChainId
+                                     @ GHC.Types.Int
                                      @ a
                                      1
                                      wild4
                                      x
-                                     (Data.Map.Base.Tip @ Types.ChainId @ a)
-                                     (Data.Map.Base.Tip @ Types.ChainId @ a))
+                                     (Data.Map.Base.Tip @ GHC.Types.Int @ a)
+                                     (Data.Map.Base.Tip @ GHC.Types.Int @ a))
                                   wild2
                              GHC.Types.True
-                             -> NameIdChain.$sfromList1
+                             -> NameIdChain.$sfromList3
                                   @ a
                                   (Data.Map.Base.Bin
-                                     @ Types.ChainId
+                                     @ GHC.Types.Int
                                      @ a
                                      1
                                      wild4
                                      x
-                                     (Data.Map.Base.Tip @ Types.ChainId @ a)
-                                     (Data.Map.Base.Tip @ Types.ChainId @ a))
+                                     (Data.Map.Base.Tip @ GHC.Types.Int @ a)
+                                     (Data.Map.Base.Tip @ GHC.Types.Int @ a))
                                   wild2 } } } } } } }) -}
-b706f157bf3a735d8fb5e592bb634091
-  $sfromList1 ::
-    Data.Map.Base.Map Types.ChainId a1
-    -> [(Types.ChainId, a1)] -> Data.Map.Base.Map Types.ChainId a1
+840aca3ec5a0ac55e03384c2ddb771a4
+  $sfromList3 ::
+    Data.Map.Base.Map GHC.Types.Int a1
+    -> [(GHC.Types.Int, a1)] -> Data.Map.Base.Map GHC.Types.Int a1
   {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
 827defd717bd2417d5e162ebc7d6380e
   $slookup1 ::
@@ -157,7 +226,7 @@ b706f157bf3a735d8fb5e592bb634091
                    w1 :: Data.Map.Base.Map Types.ChainId a ->
                  case w of ww { GHC.Types.I# ww1 ->
                  NameIdChain.$wpoly_go1 @ a ww1 w1 }) -}
-a1e8d1b940c78038189929b69b39eeaa
+22b317ee058b4cdf6c45775875c00d11
   $smapKeys ::
     (k1 -> GHC.Types.Int)
     -> Data.Map.Base.Map k1 a -> Data.Map.Base.Map GHC.Types.Int a
@@ -176,18 +245,25 @@ a1e8d1b940c78038189929b69b39eeaa
                        -> go4 (GHC.Types.: @ (GHC.Types.Int, a) (f kx, x) (go4 z' r)) l
                        Data.Map.Base.Tip -> z' }
                  } in
-                 NameIdChain.$sfromList
+                 NameIdChain.$sfromList2
                    @ a
                    (go4 (GHC.Types.[] @ (GHC.Types.Int, a)) eta)) -}
-b1721dddd2bb9972d0a1e028980e738f
+b96a2fee97cea8e7b751a42e143d8728
   $w$sgo1 ::
     GHC.Prim.Int#
     -> a1
     -> Data.Map.Base.Map Types.ChainId a1
     -> Data.Map.Base.Map Types.ChainId a1
-  {- Arity: 3, Strictness: <L,U><L,U><S,1*U>, Inline: [0] -}
-a88fa4975f0084f0af40274d1e86003d
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
+a4ad91a96a42849e020e6cadaa36c5dc
   $w$sgo10 ::
+    GHC.Prim.Int#
+    -> a1
+    -> Data.Map.Base.Map GHC.Types.Int a1
+    -> Data.Map.Base.Map GHC.Types.Int a1
+  {- Arity: 3, Strictness: <L,U><L,U><S,1*U>, Inline: [0] -}
+dff59ee44b78f3e377407729495a3dcc
+  $w$sgo4 ::
     (Types.ChainId -> a1 -> GHC.Base.Maybe a1)
     -> GHC.Prim.Int#
     -> Data.Map.Base.Map Types.ChainId a1
@@ -199,14 +275,21 @@ bc2eaab73b6f279c48d402d9bc316c7e
     GHC.Prim.Int#
     -> Data.Map.Base.Map Types.ChainId a -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U>, Inline: [0] -}
-e2be45fb43c48f97c8c6655fc74640a6
+577bb5488ae28e78490ad016b6d25304
   $wpoly_go10 ::
+    GHC.Prim.Int#
+    -> Data.Map.Base.Map GHC.Types.Int a
+    -> [(GHC.Types.Int, a)]
+    -> Data.Map.Base.Map GHC.Types.Int a
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
+0006578fcaa05548cf70a2a568dda437
+  $wpoly_go4 ::
     GHC.Prim.Int#
     -> Data.Map.Base.Map Types.ChainId a
     -> [(Types.ChainId, a)]
     -> Data.Map.Base.Map Types.ChainId a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-e010f83d78702a2e02bd58d677836d95
+54890519f0404b6cea7b9748a79256e5
   data IdNameChain
     = INC {addChain :: GHC.Base.String -> NameIdChain.IdNameChain,
            lookupNameChain :: Types.ChainId
@@ -234,7 +317,7 @@ e010f83d78702a2e02bd58d677836d95
            setUnion :: NameIdChain.IdNameChain -> NameIdChain.IdNameChain,
            toList' :: [(Types.ChainId, (GHC.Base.String, Types.Chain))]}
     RecFlag: Recursive
-3da9afb1ae0a7af8a678362eae0cd79a
+a12d504b93c5f10c808601998f958a20
   addChain ::
     NameIdChain.IdNameChain
     -> GHC.Base.String -> NameIdChain.IdNameChain
@@ -245,7 +328,7 @@ e010f83d78702a2e02bd58d677836d95
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds1 }) -}
-ca95a31542b88f962d1c48b2522d9fcd
+269c504f4e287621f0f11f9a0fcda7f3
   chains :: NameIdChain.IdNameChain -> [Types.Chain]
   RecSel NameIdChain.IdNameChain
   {- Arity: 1, HasNoCafRefs,
@@ -254,7 +337,7 @@ ca95a31542b88f962d1c48b2522d9fcd
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds7 }) -}
-fbc7cd7bd75480e7c78aa6427e674988
+af3cf1e47ac3550a25753c46c9cfbf96
   idsWithName ::
     NameIdChain.IdNameChain -> GHC.Base.String -> [Types.ChainId]
   RecSel NameIdChain.IdNameChain
@@ -264,7 +347,7 @@ fbc7cd7bd75480e7c78aa6427e674988
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds11 }) -}
-214e442caaeef1840df8b7533042851a
+638301979588d55e86c9a342682e39b4
   increaseIndexes ::
     NameIdChain.IdNameChain -> GHC.Types.Int -> NameIdChain.IdNameChain
   RecSel NameIdChain.IdNameChain
@@ -274,11 +357,11 @@ fbc7cd7bd75480e7c78aa6427e674988
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds12 }) -}
-a3787d79700c9205d262c7a430eae02d
+541c70507ca99ed2dc57ca002c4595d5
   jumpedToWithCriteria ::
     Types.Chain -> [([Types.Criteria], Types.ChainId)]
   {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-eef4430ab102460e48cedca8a1e5c5a6
+1ba198b3380485925642682bb37f2b14
   lookupChain ::
     NameIdChain.IdNameChain
     -> Types.ChainId -> GHC.Base.Maybe Types.Chain
@@ -289,7 +372,7 @@ eef4430ab102460e48cedca8a1e5c5a6
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds3 }) -}
-4721f509efc9b25e0d4949a1fb22e61a
+de53e73483d9835ab82693f72382418e
   lookupEquivalent ::
     NameIdChain.IdNameChain -> Types.ChainId -> [Types.ChainId]
   RecSel NameIdChain.IdNameChain
@@ -299,7 +382,7 @@ eef4430ab102460e48cedca8a1e5c5a6
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds5 }) -}
-2d187360ccd0709a0421adea8884d8c3
+f5eedf887739fe5af994b12ff9eea172
   lookupName ::
     NameIdChain.IdNameChain
     -> Types.ChainId -> GHC.Base.Maybe GHC.Base.String
@@ -310,7 +393,7 @@ eef4430ab102460e48cedca8a1e5c5a6
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds4 }) -}
-e0ec29ceb82db779e7030cbd1176e666
+acbe00cbde8eb87c3f1d04938cda22c5
   lookupNameChain ::
     NameIdChain.IdNameChain
     -> Types.ChainId -> GHC.Base.Maybe (GHC.Base.String, Types.Chain)
@@ -321,7 +404,7 @@ e0ec29ceb82db779e7030cbd1176e666
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds2 }) -}
-b5ba18f4d40a4ecc8dfbfee5625d7338
+4385c29f6c6fa3e02689cde2ecb81969
   maxId :: NameIdChain.IdNameChain -> Types.ChainId
   RecSel NameIdChain.IdNameChain
   {- Arity: 1, HasNoCafRefs,
@@ -330,7 +413,7 @@ b5ba18f4d40a4ecc8dfbfee5625d7338
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds17 }) -}
-ef5c0f0701baaa1582197527d106c9cd
+2991345298309b241e0dfb08f04a7e7f
   maxLabel :: NameIdChain.IdNameChain -> Types.Label
   RecSel NameIdChain.IdNameChain
   {- Arity: 1, HasNoCafRefs,
@@ -339,7 +422,7 @@ ef5c0f0701baaa1582197527d106c9cd
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds18 }) -}
-0a91a6b9f802c2e5052153ea5e7f7721
+9d92a93e3ed0ea8f9a15fbd67b68ef27
   mergeWithMap ::
     NameIdChain.IdNameChain
     -> Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
@@ -351,7 +434,7 @@ ef5c0f0701baaa1582197527d106c9cd
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds19 }) -}
-9346b1b0a039550df460e7734875e607
+1b04dce4af152a47dcad98dc11caba06
   names :: NameIdChain.IdNameChain -> [GHC.Base.String]
   RecSel NameIdChain.IdNameChain
   {- Arity: 1, HasNoCafRefs,
@@ -360,7 +443,7 @@ ef5c0f0701baaa1582197527d106c9cd
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds8 }) -}
-447526cb968e160ce316c183c9f94c7a
+96efea6f5d84c9e50e8ea23b548105dd
   namesChains ::
     NameIdChain.IdNameChain -> [(GHC.Base.String, Types.Chain)]
   RecSel NameIdChain.IdNameChain
@@ -370,7 +453,7 @@ ef5c0f0701baaa1582197527d106c9cd
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds9 }) -}
-f13a5995beed8ee10a8e0030760a7e13
+d332eff727db4c1e4d4685c86448c9d8
   notTopLevelChains :: NameIdChain.IdNameChain -> [Types.ChainId]
   RecSel NameIdChain.IdNameChain
   {- Arity: 1, HasNoCafRefs,
@@ -379,19 +462,19 @@ f13a5995beed8ee10a8e0030760a7e13
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds14 }) -}
-20c13f1418c16f9e40b3d9f3314d99e6
+6eed3895d0383ccaac0e8a46193a0856
   pathSimplification' ::
     [(GHC.Base.String, Types.Chain)]
     -> Data.Map.Base.Map GHC.Base.String Types.Chain
     -> Types.ChainId
     -> Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
   {- Arity: 3, Strictness: <S,1*U><L,U><L,U(U)> -}
-51651111831cb8ad46e8945f95320e59
+36efd79989c627b054d0e7569d3a7004
   pathSimplification2 ::
     Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
     -> NameIdChain.IdNameChain
   {- Arity: 1, Strictness: <L,U> -}
-2fa23565e32edc727f64536b64adc529
+29228ca8983a9657f6f6a53a65a069e1
   pathSimplification2' ::
     Data.Map.Base.Map GHC.Base.String Types.Chain
     -> NameIdChain.IdNameChain
@@ -443,7 +526,7 @@ f13a5995beed8ee10a8e0030760a7e13
 97fa3103b11e677d64a959ba17e261e5
   pathSimplification2'7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "INPUT"#) -}
-cb23d865a951981ede8808a04a2dfc68
+01f07d5b4a6520c3f7c33be59fee60cf
   reduceReferenced ::
     NameIdChain.IdNameChain
     -> [Types.ChainId] -> NameIdChain.IdNameChain
@@ -454,7 +537,7 @@ cb23d865a951981ede8808a04a2dfc68
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds13 }) -}
-bd8b8033190f50f342d7f3c4cccc517d
+f5cab99ac0fd696c05d8f1e4e94ab7f2
   setUnion ::
     NameIdChain.IdNameChain
     -> NameIdChain.IdNameChain -> NameIdChain.IdNameChain
@@ -465,7 +548,7 @@ bd8b8033190f50f342d7f3c4cccc517d
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds20 }) -}
-98dfed15026009721715e535f955c6bd
+a94e9c061dddffbe70f4df7c519b2e36
   switchChains ::
     NameIdChain.IdNameChain
     -> (Types.Chain -> Types.Chain)
@@ -478,7 +561,7 @@ bd8b8033190f50f342d7f3c4cccc517d
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds6 }) -}
-5ae48dbb125bd9f5d5842eac9e40f036
+aa8e1766616efc3271819975fe00ee17
   toList' ::
     NameIdChain.IdNameChain
     -> [(Types.ChainId, (GHC.Base.String, Types.Chain))]
@@ -489,7 +572,7 @@ bd8b8033190f50f342d7f3c4cccc517d
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds21 }) -}
-e9554f8666608370b4ba12228859b689
+84a3717aa2b86a5262b627935a532956
   topLevelChains :: NameIdChain.IdNameChain -> [Types.ChainId]
   RecSel NameIdChain.IdNameChain
   {- Arity: 1, HasNoCafRefs,
@@ -498,7 +581,7 @@ e9554f8666608370b4ba12228859b689
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds15 }) -}
-4ca80f3d618321f93f14f41f41d5b48f
+46a5fbb386ce299df0b2bd9fedfc81d8
   topLevelJumpingTo ::
     NameIdChain.IdNameChain -> [Types.ChainId] -> [Types.ChainId]
   RecSel NameIdChain.IdNameChain
@@ -508,7 +591,7 @@ e9554f8666608370b4ba12228859b689
                 (\ ds :: NameIdChain.IdNameChain ->
                  case ds of wild { NameIdChain.INC ds1 ds2 ds3 ds4 ds5 ds6 ds7 ds8 ds9 ds10 ds11 ds12 ds13 ds14 ds15 ds16 ds17 ds18 ds19 ds20 ds21 ->
                  ds16 }) -}
-b6eecb0c474734c7c90d7cfbb2f4744c
+d180a4d38e2b8371792d8f590ddc3927
   validIds :: NameIdChain.IdNameChain -> [Types.ChainId]
   RecSel NameIdChain.IdNameChain
   {- Arity: 1, HasNoCafRefs,
@@ -519,8 +602,12 @@ b6eecb0c474734c7c90d7cfbb2f4744c
                  ds10 }) -}
 "SPEC/NameIdChain fromList @ ChainId _" [ALWAYS] forall @ a
                                                         $dOrd :: GHC.Classes.Ord Types.ChainId
-  Data.Map.Base.fromList @ GHC.Types.Int @ a $dOrd
+  Data.Map.Strict.fromList @ GHC.Types.Int @ a $dOrd
   = NameIdChain.$sfromList @ a
+"SPEC/NameIdChain fromList @ Int _" [ALWAYS] forall @ a
+                                                    $dOrd :: GHC.Classes.Ord GHC.Types.Int
+  Data.Map.Base.fromList @ GHC.Types.Int @ a $dOrd
+  = NameIdChain.$sfromList2 @ a
 "SPEC/NameIdChain mapKeys _ @ Int _" [ALWAYS] forall @ k1
                                                      @ a
                                                      $dOrd :: GHC.Classes.Ord GHC.Types.Int

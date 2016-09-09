@@ -8,9 +8,6 @@ import Data.Map as Map
 
 nameIdChainTests = TestList [TestLabel "idsWithNameTest" idsWithNameTest
                              , TestLabel "increaseIndexesTest" increaseIndexesTest
-                             , TestLabel "increaseIndexesChainTest" increaseIndexesChainTest
-                             , TestLabel "increaseIndexesTargetTest1" increaseIndexesTargetTest1
-                             , TestLabel "increaseIndexesTargetTest2" increaseIndexesTargetTest2
                              , TestLabel "topLevelChainsTest" topLevelChainsTest
                              , TestLabel "topLevelJumpingToTest1" topLevelJumpingToTest1
                              , TestLabel "topLevelJumpingToTest2" topLevelJumpingToTest2
@@ -79,7 +76,8 @@ chain17 = [Rule {criteria = [Protocol 17, Port Destination (Left 1)], targets = 
          ]
 
 
-testIdNameChain = Map.fromList [(0, ("chain0", chain0))
+testIdNameChain = pathSimplification2 $
+                  Map.fromList [(0, ("chain0", chain0))
                                , (1, ("chain1", chain1))
                                , (3, ("chain3", chain3))
                                , (5, ("chain5", chain5))
@@ -90,7 +88,8 @@ testIdNameChain = Map.fromList [(0, ("chain0", chain0))
                                , (17, ("chain17", chain17))
                                ]
 
-testIdNameChainPlus6 = Map.fromList [(6, ("chain0", chain0Plus6))
+testIdNameChainPlus6 = pathSimplification2 $
+                       Map.fromList [(6, ("chain0", chain0Plus6))
                                     , (7, ("chain1", chain1Plus6))
                                     , (9, ("chain3", chain3Plus6))
                                     , (11, ("chain5", chain5))
@@ -104,27 +103,12 @@ testIdNameChainPlus6 = Map.fromList [(6, ("chain0", chain0Plus6))
 idsWithNameTest = 
     TestCase $ assertEqual "idsWithNameTest is not working correctly."
     [5, 7]
-    (idsWithName "chain5" testIdNameChain)
+    (idsWithName testIdNameChain "chain5")
 
 increaseIndexesTest = 
     TestCase $ assertEqual "increaseIndexes is not working correctly."
-    (testIdNameChainPlus6)
-    (increaseIndexes testIdNameChain 6)
-
-increaseIndexesChainTest = 
-    TestCase $ assertEqual "increaseIndexesChain is not working correctly."
-    (chain1Plus6)
-    (increaseIndexesChain chain1 6)
-
-increaseIndexesTargetTest1 =
-    TestCase $ assertEqual "increaseIndexesTarget is not working correctly."
-    (Go 9 0)
-    (increaseIndexesTarget (Go 5 0) 4)
-
-increaseIndexesTargetTest2 =
-    TestCase $ assertEqual "increaseIndexesTarget is not working correctly."
-    DROP
-    (increaseIndexesTarget DROP 4)
+    (toList' testIdNameChainPlus6)
+    (toList' $ increaseIndexes testIdNameChain 6)
 
 topLevelChainsTest =
   TestCase $ assertEqual "topLevelChains is not working correctly."
@@ -143,23 +127,23 @@ topLevelJumpingToTest2 =
 
 reduceReferencedTest1 =
     TestCase $ assertEqual "reduceReferenced is not working correctly."
-    (Map.fromList [(1, ("chain1", chain1))
+    (toList $ Map.fromList [(1, ("chain1", chain1))
                   , (3, ("chain3", chain3))
                   , (7, ("chain5", chain5_2))
                   , (8, ("chain8", chain8))
                   ])
-    (reduceReferenced testIdNameChain [1])
+    (toList' $ reduceReferenced testIdNameChain [1])
 
 reduceReferencedTest2 =
     TestCase $ assertEqual "reduceReferenced is not working correctly."
-    (Map.fromList [(0, ("chain0", chain0))
+    (toList $ Map.fromList [(0, ("chain0", chain0))
                   , (1, ("chain1", chain1))
                   , (3, ("chain3", chain3))
                   , (5, ("chain5", chain5))
                   , (7, ("chain5", chain5_2))
                   , (8, ("chain8", chain8))
                   ])
-    (reduceReferenced testIdNameChain [0, 1])
+    (toList' $ reduceReferenced testIdNameChain [0, 1])
 
 maxIdTest =
     TestCase $ assertEqual "maxId is not working correctly."

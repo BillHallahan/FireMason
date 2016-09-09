@@ -28,6 +28,20 @@
   (major1) == 1 && (major2) <  1 || \
   (major1) == 1 && (major2) == 1 && (minor) <= 1)
 
+/* package iproute-1.7.0 */
+#define VERSION_iproute "1.7.0"
+#define MIN_VERSION_iproute(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  7 || \
+  (major1) == 1 && (major2) == 7 && (minor) <= 0)
+
+/* package largeword-1.2.5 */
+#define VERSION_largeword "1.2.5"
+#define MIN_VERSION_largeword(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 5)
+
 /* package process-1.2.3.0 */
 #define VERSION_process "1.2.3.0"
 #define MIN_VERSION_process(major1,major2,minor) (\
@@ -112,5 +126,5 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 1)
 
-#define CURRENT_PACKAGE_KEY "firew_D6gckZGGaaQ7EM9yN4FDyB"
+#define CURRENT_PACKAGE_KEY "firew_JjLgyvoVO8FHpHEqpPbHf9"
 

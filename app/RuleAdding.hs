@@ -1,16 +1,17 @@
 module RuleAdding where
 
+import Data.Either
 import Data.List
 import Data.Maybe
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 import Data.Ord
 import Data.String.ToString
+import Data.Word
+import Data.LargeWord
 
 import Types
 import NameIdChain
 import ChainsToSMT
-import qualified ChainsToSMT2 as S
-import SMT
 import Debug.Trace
 
 import Z3.Monad
@@ -72,54 +73,13 @@ findBestPointCut' r i n n' =
     in
     do
         firewallPredicatesReplacePCR <- readFile "smt/firewallPredicatesReplacePCR.smt2"
-        let 
-            orChangedChain = SMTOr $ map (\i'' -> (Reaches 1 i'' 0)) idsU
-            converted = S.convertChainsCheckSMT relevant
-                        ((toString (Assert (SMTEq (SMTString "num-of-packets") (SMTInt 2)))) ++
-                                                (toString (DeclareConst "chain0" "Int")) ++
-                                                (toString (DeclareConst "chain1" "Int")))
-                        firewallPredicatesReplacePCR
-                        2
-                        (
-                            (toString . Assert . SMTOr $ map (\i'' -> (SMTAnd [SMTEq (SMTString "chain0") (SMTInt i''), SMTEq (SMTString "chain1") (SMTInt (i'' + 1 + maxId n))])) topStartingOld)
-                         ++
-                            (toString (Assert (SMTF3 "reaches" (SMTInt 0) (SMTString "chain0") (SMTInt 0))))
-                         ++
-                            (toString (Assert (SMTF3 "reaches" (SMTInt 1) (SMTString "chain1") (SMTInt 0))))
-                         ++
-                            (toString 
-                                (Assert
-                                    (SMTNot
-                                        (SMTAnd [
-                                            SMTOr [
-                                                SMTEq (TerminatesWith 0) (TerminatesWith 1)
-                                                , SMTAnd [SMTF2 "reaches-end" (SMTInt 0) (SMTString "chain0"), SMTF2 "reaches-end" (SMTInt 1) (SMTString "chain1")]
-                                                , SMTAnd [SMTString (S.toSMT (criteria r) 0 0), orChangedChain]
-                                                ]
-                                            , Implies
-                                                (SMTAnd [
-                                                    SMTString (S.toSMT (criteria r) 0 0)
-                                                    , orChangedChain
-                                                    ]
-                                                )
-                                                (SMTEq (TerminatesWith 1) (SMTString (S.toSMT (targets r) 0 0)))
-                                            ]
-                                        )
-                                    )
-                                )
-                            )
-                        )
-        firewallPredicates <- readFile "smt/firewallPredicates2.smt2"
-        noUndesired <- checkSat (firewallPredicates ++ converted)
+        let
         (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
 
         viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
-        let same = (checking == Sat && noUndesired) || (checking == Unsat && not noUndesired)
 
-        if same then
-            (trace ("checking = " ++ show checking) (if not noUndesired then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened))
-        else error ("not same\n" ++ viewModel)
+        (trace ("checking = " ++ show checking) (if checking == Unsat then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened))
 
 
 checkRuleImpact :: Rule -> IdNameChain -> IdNameChain -> [ChainId] -> [ChainId] -> Z3 (Result, Maybe Model)
@@ -211,7 +171,7 @@ scoreRules (Rule c t _) (Rule c' t' _) = (scoreCriteriaList c c') + (scoreTarget
 
 --scoreCriteriaMax
 scm :: Int
-scm = 100000
+scm = 10^16
 
 scoreCriteriaList :: [Criteria] -> [Criteria] -> Int
 scoreCriteriaList [] cx' = - (scm * length cx')
@@ -224,6 +184,19 @@ scoreCriteriaList (c:cx) cx' =
 
 --Should return values in between -scm and scm, where -scm is no match, scm is a perfect match
 scoreCriteria :: Criteria -> Criteria -> Int
+scoreCriteria (IPAddress e i) (IPAddress e' i') = 
+    let
+        r1 = ipToWord . ipAddr $ i
+        r1' = either (c) (c') r1
+        r2 = ipToWord . ipAddr $ i'
+        r2' = either (c) (c') r2
+        base = scm - div ((abs $ r1' - r2') * scm) (2^32 - 1)
+    in
+    if e == e' then base else div base 2
+    where c :: Word32 -> Int
+          c = fromIntegral
+          c' :: Word128 -> Int
+          c' = fromIntegral
 scoreCriteria (Protocol i) (Protocol j) = (div scm 2) + div ((255 - (abs $ j - i)) * scm) 510
 scoreCriteria (Port e p) (Port e' p') =
     let

@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-07 00:38:49.639605 UTC
+2016-09-09 18:25:43.450849 UTC
 
 interface main@main:Main 7103
-  interface hash: fd1222642c1cf1cc5e8afc5def690671
-  ABI hash: 642e82945d1b833ad4fce14d54cb4e40
-  export-list hash: ccbb46343a3d19012c3dd7992664af17
+  interface hash: a4ab9915254d0e090b55c5a8b19141b2
+  ABI hash: ed631c32ee5a73f772ffdbfffb7ccfee
+  export-list hash: 9b2f6f83f3e28e99816f1d3fc52d9888
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 1e3361fb471ccc1f0605f4d3c4d9aa91
   sig of: Nothing
@@ -13,16 +13,18 @@ interface main@main:Main 7103
   where
 exports:
   Main.main
-module dependencies: ChainsToSMT ChainsToSMT2 ConvertIptables
+module dependencies: ChainsToSMT ConvertIptables
                      ConvertIptablesPorts ConvertToHorn CriteriaPrereqAddition
                      InstructionsToIptables IptablesTypes NameIdChain
-                     ParseSpecificationLanguage ParserHelp RuleAdding SMT Types
+                     ParseSpecificationLanguage ParserHelp RuleAdding Types
 package dependencies: MissingH-1.3.0.2@Missi_JQoKIaJuITOBZjt8xhTikH
                       abstract-par-0.3.3@abstr_L1snHpEAWsL0S2A3rOumSN
                       aeson-0.11.2.1@aeson_43tr7H3v7HP7PrHDWSJDlb
+                      appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
                       array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
                       attoparsec-0.13.0.2@attop_F2JR8EcnzjH8eSBi5YocsE base-4.8.2.0
                       binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
                       bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
                       case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
                       containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
@@ -32,14 +34,16 @@ package dependencies: MissingH-1.3.0.2@Missi_JQoKIaJuITOBZjt8xhTikH
                       erf-2.0.0.0@erf_6l78BnvLL4b2mWYp3HJJxX
                       fail-4.9.0.0@fail_2xB1AvdW34sDm9N3JOe33G ghc-prim-0.4.0.0
                       hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
                       math-functions-0.1.7.0@mathf_BN6S7j0ar3LC4TsnYu0us5
                       monad-par-extras-0.3.3@monad_2Djrgge7sndL6tvzoMxpYM
                       monad-par-0.3.4.8@monad_6VUKksahaJq7nZeOjTjnor
                       mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
                       mwc-random-0.13.4.0@mwcra_0lrQ1SkkNA85sa8eZ98xQk
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
                       pretty-1.1.2.0@prett_JItwetRppk1H5Uq3xbjDGC
                       primitive-0.6.1.0@primi_EphY2c7CCxSCBKjAN0YTR3
-                      process-1.2.3.0@proce_52AgREEfSrnJLlkGV9YZZJ
                       regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP
                       regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89
                       regex-compat-0.95.1@regex_EyUO1k1s8YNJ81jSdgVW1z
@@ -52,7 +56,6 @@ package dependencies: MissingH-1.3.0.2@Missi_JQoKIaJuITOBZjt8xhTikH
                       time-1.5.0.1@time_FTheb6LSxyX1UABIbBXRfn
                       tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep
                       transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
-                      unix-2.7.1.0@unix_KZL8h98IqDM57kQSPo1mKx
                       unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
                       utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
                       vector-algorithms-0.7.0.1@vecto_2O3XZ6glbAwDmJCc3dC3Ee
@@ -70,6 +73,7 @@ orphans: aeson-0.11.2.1@aeson_43tr7H3v7HP7PrHDWSJDlb:Data.Aeson.Types.Generic
          hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
          main@main:Types
          monad-par-0.3.4.8@monad_6VUKksahaJq7nZeOjTjnor:Control.Monad.Par.Scheds.Trace
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
          regex-base-0.93.2@regex_47KXx9dLqeO8MNJeizLKhP:Text.Regex.Base.Context
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString
          regex-posix-0.95.2@regex_ClFHQvfj6rtJ1Pxo4OAy89:Text.Regex.Posix.ByteString.Lazy
@@ -97,6 +101,8 @@ family instance modules: attoparsec-0.13.0.2@attop_F2JR8EcnzjH8eSBi5YocsE:Data.A
                          containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
                          criterion-1.1.1.0@crite_8pl1nA6NjLKGpKwO4aMnAe:Criterion.Types
                          dlist-0.7.1.2@dlist_AO7XAasbAeyL0XLKeq1Aui:Data.DList
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
                          math-functions-0.1.7.0@mathf_BN6S7j0ar3LC4TsnYu0us5:Numeric.Sum
                          mwc-random-0.13.4.0@mwcra_0lrQ1SkkNA85sa8eZ98xQk:System.Random.MWC
                          pretty-1.1.2.0@prett_JItwetRppk1H5Uq3xbjDGC:Text.PrettyPrint.HughesPJ
@@ -130,39 +136,36 @@ import  -/  base-4.8.2.0:Text.Printf 0276d4e7547f991f04a90f6b1e7f1f46
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map bf7758bd12b23a367777a33fd16e39de
 import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base 8b0bee2cbf19008d0429e93c882cbe4e
 import  -/  criterion-1.1.1.0@crite_8pl1nA6NjLKGpKwO4aMnAe:Criterion.Measurement 102a77a8d594a8e6f02595f7264bf373
-import  -/  ChainsToSMT 17e82a0233a4c14be8164b52a04b2487
-  exports: 21a9bea0987c5bd952b60e9c2eb10b2e
-import  -/  ChainsToSMT2 fe3e22856b9e6a8ccf5616f04fcb0168
-  exports: e797fb5131cee46f116d7a1a0c53e62a
-import  -/  ConvertIptables 016d349e4c6706433593b3a1639c9b1b
-  exports: aed029846baa0c21d74befa34a41b5f7
-  convertScript 34c5a8b2dc15587a48772ba08c62d791
-import  -/  ConvertToHorn 79a1e8ef35c1d1c67c57eee68a942d0e
-  exports: 283b22ecfb3e9e70fb320bd3181b8dd6
-  inputInstructionsToInstructions 65bd68905e120013165924acab2e6371
-  stringInputChainsToStringChains 52c6789462b6d89e872cf9dd166273ed
-import  -/  CriteriaPrereqAddition c55f4ddc6665db6c1a663c7440939e8c
-  exports: 8581cb31316dd82c84f8931037388f2d
-  criteriaPrereqAddition 2cd872c6bf4fa1bdfe295c1be21720c6
-import  -/  InstructionsToIptables 340c71ef80e98b3e8d6e1f1e787721e2
-  exports: a2c6460e53e320fddd8e3f8c1b1b33d4
-  addToIptables 7b52f7898474fccaed2c4b247f9d5b1f
-import  -/  IptablesTypes d6d32675f891965a10b341335025b78d
-  exports: 53706e1708144ae7acb36095a9f8fb1c
-import  -/  NameIdChain c61636e3a087d0026d136091b94e3f30
-  exports: 3fe191a4b47804c5db9eb5358a2ac838
-  pathSimplification2' 2fa23565e32edc727f64536b64adc529
-import  -/  ParseSpecificationLanguage ea599cd8596e7326d714f3924090f4d1
-  exports: efb541e067b6f31c82d76f2ed5574599
+import  -/  iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP 01265d616023459ed1a88e34df15c136
+import  -/  ChainsToSMT e054480cfc717d43f5b7f7420ebb8a53
+  exports: a987fdc46e0a9a2f1d4dbc40cbbf8170
+import  -/  ConvertIptables abec668a96bdd70077df2f75b21cc722
+  exports: 0e78435eb8789221e338f81ffefe7ee4
+  convertScript 9f533c78dc97f4e2ebaa8e6d5e2255a5
+import  -/  ConvertToHorn 6b1500975325a10c64277cb05a8cf0a9
+  exports: 7a6585bf1c30690c111eeddced6b9073
+  inputInstructionsToInstructions 71dac6ac7a5983be9e959c693d2b5bfa
+  stringInputChainsToStringChains c7cce9dc672c4539eaaf7f515924032b
+import  -/  CriteriaPrereqAddition fa61d1860d5cac947d85f5b118cb0d62
+  exports: e48cc67b8c6d8c4dac12ed51f073bb9a
+  criteriaPrereqAddition c1bfdbdaea20b95d89543965a16f3c86
+import  -/  InstructionsToIptables c2c418abfb80f2146dfd21fe4598f9ea
+  exports: fca53db62a383030f3da7d96101eb284
+  addToIptables 707591ed26217aa277cb610cc72b5483
+import  -/  IptablesTypes 79b115fc8440acdfc5372d3d548fca62
+  exports: d7e48047831db0f2703ffd9b6a21af17
+import  -/  NameIdChain 2bf5b7dbd40a8cd1030882a7b1dc68e1
+  exports: 5312f794ea8b08b6b803601e85435089
+  pathSimplification2' 29228ca8983a9657f6f6a53a65a069e1
+import  -/  ParseSpecificationLanguage 82a421271cc10f2bee0e044387256987
+  exports: 451b53cbf63c8e3359e07da7353f6376
   lexer 77c583e36e586e5038c1f8ebe9f4eeb6
-  parse f0255551d51ee79d9bc24516d61a7fcf
-import  -/  RuleAdding fb0c396bee31b2b6fcc6840d622be2a9
-  exports: cf49e0925aeeaa3f29863fa9fb7416a2
-  instructionsToAddAtPos b581f21448ef6991f386071a5e346314
-import  -/  SMT 887fd995939af503980562bddb25003a
-  exports: 783abfa736e9d815a1d558cee3a744ec
-import  -/  Types f411910ab9eb02e3fece784b491ea130
-  exports: 1725d3cdae695ee6949d8ed50f4d0c7c
+  parse cc604c9c4ed8970432d2d4dda16c7bec
+import  -/  RuleAdding 2a2d9ddc88644be0c878dfc01e4b8c61
+  exports: 4ba91c71a43e57df26bc6960dfe123a7
+  instructionsToAddAtPos 2f87d28406509c37e0d2279afbc968a4
+import  -/  Types f67ef19ae195813ad97e9eb86fc5ce1b
+  exports: 5b8ac4796ded9d231fd488d4a5d1c89e
 ee6590a2ab0ffaa5074d93f2d3fc4c03
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <L,U>,

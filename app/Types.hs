@@ -4,24 +4,29 @@
 
 module Types where
 
+import Data.Bits
 import Data.Int
 import qualified Data.Set as Set  
 import qualified Data.Map as Map  
+
+import Data.IP
+import Data.IP.Internal
+
+import Data.LargeWord
 
 import Data.Maybe
 
 import Data.String.ToString
 
+import Data.Word
+
 type InputChain = [InputRule]
 type Chain = [Rule]
-
-type Address = Int32
-type Mask = Int32
 
 type ChainId = Int
 
 data Criteria = BoolFlag Flag
-                | IPAddress Address Mask
+                | IPAddress Endpoint IPRange
                 | Not Criteria
                 | Port Endpoint (Either Int (Int, Int))
                 | PropVariableCriteria Int
@@ -62,6 +67,7 @@ flagsToStrings' = Map.fromList [(SYN, "SYN")
 
 isStateless :: Criteria -> Bool
 isStateless (BoolFlag _) = True
+isStateless (IPAddress _ _) = True
 isStateless (Not c) = isStateless c
 isStateless (Port _ _) = True
 isStateless (Protocol _) = True
@@ -69,6 +75,21 @@ isStateless (SC _) = True
 
 isStateful :: Criteria -> Bool
 isStateful c = not . isStateless $ c
+
+toIPRange :: String -> IPRange
+toIPRange s = if '/' `elem` s then read s :: IPRange else read (s ++ "/32") :: IPRange
+
+ipAddr :: IPRange -> IP
+ipAddr (IPv4Range a) = IPv4 . addr $ a
+ipAddr (IPv6Range a) = IPv6 . addr $ a
+
+--see https://mail.haskell.org/pipermail/beginners/2010-October/005571.html
+ipToWord :: IP -> Either Word32 Word128
+ipToWord (IPv4 i) = Left $ foldl accum 0 (map fromIntegral (fromIPv4 i))
+    where accum a e = (a `shiftL` 8) .|. fromIntegral e
+ipToWord (IPv6 i) = Right $ foldl accum 0 (map fromIntegral (fromIPv6 i))
+    where accum a e = (a `shiftL` 8) .|. fromIntegral e
+
 
 data Endpoint = Source | Destination deriving (Eq, Show)
 

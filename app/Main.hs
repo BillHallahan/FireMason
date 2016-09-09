@@ -12,13 +12,11 @@ import Criterion.Measurement
 
 import Types
 import ConvertIptables
-import ChainsToSMT2
 import ConvertToHorn
 import CriteriaPrereqAddition
 import InstructionsToIptables
 import ParseSpecificationLanguage
 import RuleAdding
-import SMT
 
 import IptablesTypes
 
@@ -27,6 +25,11 @@ import NameIdChain--temp
 
 
 import ChainsToSMT
+
+
+
+import Data.IP
+
 
 main = do
     initializeTime

@@ -7,6 +7,7 @@ import Data.Maybe
 import Data.List.Split
 import Data.String.Utils
 import Data.Char
+import Data.IP
 
 import qualified Data.Map as Map
 
@@ -107,6 +108,10 @@ convertCommand ("-N":chain:xs, i) = (Just . New $ chain , xs)
 convertCommand (xs, _) = (Nothing, xs)
 
 convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either InputCriteria Target], [String], Maybe ModuleFunc)
+convertCriteriaOrTarget ("-d":d:xs) _ = 
+    let d' = if '/' `elem` d then d else d ++ "/32" in (Just [ Left . InC . (IPAddress Destination) . toIPRange $ d'], xs, Nothing)
+convertCriteriaOrTarget ("-s":s:xs) _ =
+    let s' = if '/' `elem` s then s else s ++ "/32" in(Just [ Left . InC . (IPAddress Source)  . toIPRange $ s'], xs, Nothing)
 convertCriteriaOrTarget ("-j":j:xs) _ = case j of "ACCEPT" -> (Just [Right ACCEPT],xs, Nothing)
                                                   "DROP" -> (Just [Right DROP],xs, Nothing)
                                                   "RETURN" -> (Just [Right RETURN],xs, Nothing)
