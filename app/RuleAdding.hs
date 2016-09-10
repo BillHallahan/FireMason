@@ -8,15 +8,14 @@ import Data.Ord
 import Data.String.ToString
 import Data.Word
 import Data.LargeWord
+import Z3.Monad
 
 import Types
 import NameIdChain
 import ChainsToSMT
 import Debug.Trace
 
-import Z3.Monad
-
---Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions at which they should be added
+--Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions (in terms of labels) at which they should be added
 instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Int)]
 instructionsToAddAtPos [] n = return []
 instructionsToAddAtPos (x:xs) n = 
@@ -72,8 +71,6 @@ findBestPointCut' r i n n' =
 
     in
     do
-        firewallPredicatesReplacePCR <- readFile "smt/firewallPredicatesReplacePCR.smt2"
-        let
         (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
 
         viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
@@ -91,11 +88,8 @@ checkRuleImpact r n n' top idsU = do
     one <- mkInt 1 intSort
     two <- mkInt 2 intSort
 
-    numOfPacketsSymb <- mkStringSymbol "num-of-packets"
-    numOfPackets <- mkConst numOfPacketsSymb intSort
-    assert =<< mkEq numOfPackets two
-
     convertChainsSMT n' 2
+    enforcePacketsEqual zero one
 
     chain0Symb <- mkStringSymbol "chain0"
     chain0 <- mkConst chain0Symb intSort
@@ -163,7 +157,7 @@ findPointCut r i n =
         maxScore = if not . null $ scores then maximum scores else -scm - 1
         maxScoreLoc = if not . null $ scores then fromJust $ elemIndex maxScore scores else 0
     in
-    trace ("r = " ++ show r ++ " maxL = " ++ show maxScore ++ " maxJ = " ++ show maxJ) (if third maxJ <= maxScore then (i, maxScoreLoc, maxScore) else maxJ)
+    if third maxJ <= maxScore then (i, maxScoreLoc, maxScore) else maxJ
 
 
 scoreRules :: Rule -> Rule -> Int

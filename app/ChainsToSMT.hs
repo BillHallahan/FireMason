@@ -107,6 +107,13 @@ intBoolAST s i = do
     dec <- mkFuncDecl s' [intSort] boolSort
     mkApp dec [i]
 
+intIntAST :: String -> AST -> Z3 AST
+intIntAST s i = do
+    intSort <- mkIntSort
+    s' <- mkStringSymbol s
+    dec <- mkFuncDecl s' [intSort] intSort
+    mkApp dec [i]
+
 matchesCriteria :: AST -> AST -> AST -> Z3 AST
 matchesCriteria p c r = intIntIntBoolAST "matches-criteria" p c r
 
@@ -539,10 +546,11 @@ toSMTCriteriaList c p = do
 
 toSMTCriteria :: Criteria -> AST -> Z3 AST
 toSMTCriteria (BoolFlag f) p = do
+    intSort <- mkIntSort
     boolSort <- mkBoolSort
     f' <- mkStringSymbol . flagToString $ f
-    dec <- mkFuncDecl f' [] boolSort
-    mkApp dec []
+    dec <- mkFuncDecl f' [intSort] boolSort
+    intBoolAST (flagToString f) p--mkApp dec [p]
 toSMTCriteria (IPAddress e i) p = do
     case (ipToWord . ipAddr $ i) of Left b -> ipEq b 32
                                     Right b -> ipEq b 128
@@ -550,21 +558,19 @@ toSMTCriteria (IPAddress e i) p = do
             ipEq b' l = do
                             let s = if e == Source then "source_ip" else "destination_ip"
                             pSymb <- mkStringSymbol s
-                            bitSort <- mkBvSort 32
+                            bitSort <- mkBvSort l
+                            intSort <- mkIntSort
                             b <- mkBvNum l b'
-                            dec <- mkFuncDecl pSymb [] bitSort
-                            app <- mkApp dec []
+                            dec <- mkFuncDecl pSymb [intSort] bitSort
+                            app <- mkApp dec [p]
                             mkEq app b
 toSMTCriteria (Not c) p = do
     mkNot =<< toSMTCriteria c p
 toSMTCriteria (Port e (Left i)) p = do
     let s = if e == Source then "source_port" else "destination_port"
-    pSymb <- mkStringSymbol s
     intSort <- mkIntSort
     i' <- mkInt i intSort
-
-    dec <- mkFuncDecl pSymb [] intSort
-    app <- mkApp dec []
+    app <- intIntAST s p
     mkEq app i'
 toSMTCriteria (Port e (Right (i, j))) p = do
     let s = if e == Source then "source_port" else "destination_port"
@@ -573,8 +579,8 @@ toSMTCriteria (Port e (Right (i, j))) p = do
     i' <- mkInt i intSort
     j' <- mkInt j intSort
 
-    dec <- mkFuncDecl pSymb [] intSort
-    app <- mkApp dec []
+    dec <- mkFuncDecl pSymb [intSort] intSort
+    app <- intIntAST s p--mkApp dec [p]
 
     l <- mkLe i' app
     l' <- mkLe app j'
@@ -585,10 +591,52 @@ toSMTCriteria (Protocol i) p = do
     intSort <- mkIntSort
     i' <- mkInt i intSort
 
-    dec <- mkFuncDecl pSymb [] intSort
-    app <- mkApp dec []
+    dec <- mkFuncDecl pSymb [intSort] intSort
+    app <- intIntAST "protocol" p--mkApp dec [p]
     mkEq app i'
 toSMTCriteria _ _ = error "Criteria not recognized by SMT conversion."
+
+enforcePacketsEqual :: AST -> AST -> Z3 ()
+enforcePacketsEqual i j = do
+    flagEq "SYN"
+    flagEq "ACK"
+    flagEq "FIN"
+    flagEq "RST"
+    flagEq "URG"
+
+    ipEq "source_ip"
+    ipEq "destination_ip"
+    
+    intIntEq "source_port"
+    intIntEq "destination_port"
+
+    intIntEq "protocol"
+    where
+        flagEq :: String -> Z3 ()
+        flagEq s = do
+            flagI <- intBoolAST s i
+            flagJ <- intBoolAST s j
+            assert =<< mkEq flagI flagJ
+
+        ipEq :: String -> Z3 ()
+        ipEq s = do
+            bitSort <- mkBvSort 32
+            intSort <- mkIntSort
+            ipSymb <- mkStringSymbol s
+            ipDec <- mkFuncDecl ipSymb [intSort] bitSort
+            ipAppI <- mkApp ipDec [i]
+            ipAppJ <- mkApp ipDec [j]
+            assert =<< mkEq ipAppI ipAppJ
+
+        intIntEq :: String -> Z3 ()
+        intIntEq s = do
+            intSort <- mkIntSort
+            symb <- mkStringSymbol s
+            dec <- mkFuncDecl symb [intSort] intSort
+            appI <- mkApp dec [i]
+            appJ <- mkApp dec [j]
+            assert =<< mkEq appI appJ
+
 
 
 reachabilityRulesChain :: Int -> Chain -> [AST] -> Z3 ()
@@ -635,6 +683,12 @@ convertChainsSMT n packetNum = do
     numOfChainsInt <- mkInt (maxId n + 1) intSort
 
     assert =<< mkEq numOfChainsConst numOfChainsInt
+
+    numOfPacketsSymb <- mkStringSymbol "num-of-packets"
+    numOfPackets <- mkConst numOfPacketsSymb intSort
+    numOfPacketsInt <- mkInt packetNum intSort
+    assert =<< mkEq numOfPackets numOfPacketsInt
+
     where 
         chainLengthCon :: (Int, (String, Chain)) -> Z3 ()
         chainLengthCon (i, (_, c)) = do
@@ -690,57 +744,3 @@ convertChainsSMT n packetNum = do
             c' <- mkInt c intSort
 
             notTopLevelPolicy c'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
