@@ -10,6 +10,9 @@ import Z3.Monad
 import NameIdChain
 import Types
 
+
+import Debug.Trace
+
 makeTargetDatatype :: Z3 Sort
 makeTargetDatatype = do
     accept <- mkStringSymbol "ACCEPT"
@@ -552,18 +555,19 @@ toSMTCriteria (BoolFlag f) p = do
     dec <- mkFuncDecl f' [intSort] boolSort
     intBoolAST (flagToString f) p--mkApp dec [p]
 toSMTCriteria (IPAddress e i) p = do
-    case (ipToWord . ipAddr $ i) of Left b -> ipEq b 32
-                                    Right b -> ipEq b 128
-    where   ipEq :: Integral a => a -> Int -> Z3 AST
-            ipEq b' l = do
+    case (ipToWord . ipAddr $ i, ipMask i) of (Left b, Left m) ->  trace ("ip = " ++ show i ++ " b = " ++ show b ++ " m = " ++ show m) ipEq b m 32
+                                              (Right b, Right m) -> ipEq b m 128
+    where   ipEq :: Integral a => a -> a -> Int -> Z3 AST
+            ipEq b' m' l = do
                             let s = if e == Source then "source_ip" else "destination_ip"
                             pSymb <- mkStringSymbol s
                             bitSort <- mkBvSort l
                             intSort <- mkIntSort
                             b <- mkBvNum l b'
+                            m <- mkBvNum l m'
                             dec <- mkFuncDecl pSymb [intSort] bitSort
                             app <- mkApp dec [p]
-                            mkEq app b
+                            mkEq b =<< mkBvand app m
 toSMTCriteria (Not c) p = do
     mkNot =<< toSMTCriteria c p
 toSMTCriteria (Port e (Left i)) p = do
