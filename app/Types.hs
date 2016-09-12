@@ -83,17 +83,20 @@ ipAddr :: IPRange -> IP
 ipAddr (IPv4Range a) = IPv4 . addr $ a
 ipAddr (IPv6Range a) = IPv6 . addr $ a
 
+ipMask :: IPRange -> Either Word32 Word128
+ipMask (IPv4Range a) = Left $ foldl (\e x -> setBit e x) 0 [32 - mlen a..31]
+ipMask (IPv6Range a) = Right $ foldl (\e x -> setBit e x) 0 [128 - mlen a..127]
+
 --see https://mail.haskell.org/pipermail/beginners/2010-October/005571.html
 ipToWord :: IP -> Either Word32 Word128
 ipToWord (IPv4 i) = Left $ foldl accum 0 (map fromIntegral (fromIPv4 i))
     where accum a e = (a `shiftL` 8) .|. fromIntegral e
 ipToWord (IPv6 i) = Right $ foldl accum 0 (map fromIntegral (fromIPv6 i))
-    where accum a e = (a `shiftL` 8) .|. fromIntegral e
+    where accum a e = (a `shiftL` 16) .|. fromIntegral e
 
 
 data Endpoint = Source | Destination deriving (Eq, Show)
 
---type  InputCriteria = Criteria
 data InputCriteria = InC Criteria
                      | InCNot InputCriteria
                      | And [InputCriteria]
