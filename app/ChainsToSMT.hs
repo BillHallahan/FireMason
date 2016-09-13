@@ -11,7 +11,6 @@ import NameIdChain
 import Types
 
 
-import Debug.Trace
 
 makeTargetDatatype :: Z3 Sort
 makeTargetDatatype = do
@@ -555,7 +554,7 @@ toSMTCriteria (BoolFlag f) p = do
     dec <- mkFuncDecl f' [intSort] boolSort
     intBoolAST (flagToString f) p--mkApp dec [p]
 toSMTCriteria (IPAddress e i) p = do
-    case (ipToWord . ipAddr $ i, ipMask i) of (Left b, Left m) ->  trace ("ip = " ++ show i ++ " b = " ++ show b ++ " m = " ++ show m) ipEq b m 32
+    case (ipToWord . ipAddr $ i, ipMask i) of (Left b, Left m) -> ipEq b m 32
                                               (Right b, Right m) -> ipEq b m 128
     where   ipEq :: Integral a => a -> a -> Int -> Z3 AST
             ipEq b' m' l = do

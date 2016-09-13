@@ -24,11 +24,9 @@ import NameIdChain--temp
 
 
 
-import ChainsToSMT
 
+import RuleEliminating
 
-
-import Data.IP
 
 
 main = do
@@ -62,3 +60,6 @@ main = do
 
     let diff = secs $ end - start
     printf $ "Computation time: " ++ diff ++ "\n"
+
+    x <- findRedundantRule pathSimp
+    printf $ (show x) ++ "\n" 
