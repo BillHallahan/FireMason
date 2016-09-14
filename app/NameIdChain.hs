@@ -1,4 +1,5 @@
-module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupName, lookupEquivalent, allChainEquivalents, switchChains, chains, names, namesChains, validIds, idsWithName,
+module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupName, lookupEquivalent
+    , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
     increaseIndexes, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, maxId,
     maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplification2, pathSimplification2') where
 --This is to convert all jumps/gotos/returns to the type Go Int Int,
@@ -18,6 +19,7 @@ data IdNameChain =  INC {addChain :: String -> IdNameChain
                        , lookupEquivalent :: ChainId -> [ChainId]
                        , allChainEquivalents :: [[ChainId]]
                        , switchChains :: (Chain -> Chain) -> ChainId -> IdNameChain
+                       , addRuleToChains :: Rule -> ChainId -> Int -> IdNameChain 
                        , chains :: [Chain]
                        , names :: [String]
                        , namesChains :: [(String, Chain)]
@@ -62,6 +64,12 @@ pathSimplification2 m =
                 in
                 pathSimplification2 m''
             )
+        addR = let
+                    addRule :: Rule -> Int -> Chain -> Chain
+                    addRule r i c = let (c', c'') = splitAt i c in c' ++ r:c''
+                in
+                (\r' ch i' ->  sC (addRule r' i') ch)
+
         chs = map (snd) (Map.elems m)
         ns = map (fst) (Map.elems m)
         idsName = (\s -> Map.keys $ Map.filter (\x -> s == fst x) m)
@@ -80,6 +88,7 @@ pathSimplification2 m =
          , lookupEquivalent = lEquiv
          , allChainEquivalents = allEquiv
          , switchChains = sC
+         , addRuleToChains = addR
          , chains = chs
          , names = ns
          , namesChains = Map.elems m

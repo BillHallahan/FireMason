@@ -1,4 +1,4 @@
-module RuleAdding where
+module RuleAdding (addRulesToIdNameChain, instructionsToAddAtPos) where
 
 import Data.Either
 import Data.List
@@ -14,6 +14,12 @@ import Types
 import NameIdChain
 import ChainsToSMT
 import Debug.Trace
+
+
+addRulesToIdNameChain :: [(Rule, String, Int)] -> IdNameChain -> IdNameChain
+addRulesToIdNameChain [] n = n
+addRulesToIdNameChain ((r, s, i):xs) n = 
+    let withName = idsWithName n s in addRulesToIdNameChain xs (addRuleToChains n r (head withName) i) 
 
 --Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions (in terms of labels) at which they should be added
 instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Int)]
@@ -33,7 +39,7 @@ instructionsToAddAtPos (x:xs) n =
         let ch' = fromJust $ lookupChain n (head withName)
         let l = if not . null $ ch' then label $ ch' !! cutR else maxLabel n
         let r' = Rule (criteria r) (targets r) l
-        let cutCh' = switchChains n (\c-> addRuleToChainAtPos r' c cutR) (head . idsWithName n $ cutCName)
+        let cutCh' = addRuleToChains n r' (head withName) cutR--switchChains n (\c-> addRuleToChainAtPos r' c cutR) (head . idsWithName n $ cutCName)
 
         instr <- instructionsToAddAtPos xs cutCh'
         
@@ -52,7 +58,7 @@ findBestPointCut' r i n n' =
         (i', cut, _) = findPointCut r i n'
         (name, c) = if isJust $ lookupNameChain n i' then fromJust $ lookupNameChain n i' else error "Rule being inserted into nonexistent chain."
 
-        updatedChains = switchChains n (\c' -> addRuleToChainAtPos r c' cut) i'
+        updatedChains = addRuleToChains n r i' cut
         newNameIdChain = increaseIndexes updatedChains (1 + maxId n)
         combinedNIC = setUnion n newNameIdChain
 
@@ -130,13 +136,6 @@ checkRuleImpact r n n' top idsU = do
                         ec0 <- mkEq c0 i'
                         ec1 <- mkEq c1 i''
                         mkAnd [ec0, ec1])
-
-addRuleToChainAtPos :: Rule -> Chain -> Int -> Chain 
-addRuleToChainAtPos r c i =
-    let
-        (c', c'') = splitAt i c
-    in
-    c' ++ r:c''
 
 --Returns the Name, one Id for, and position of the best (as determined by a similarity heuristic) place to insert the given rule in/below the
 --chain with the given id in the IdNameChain

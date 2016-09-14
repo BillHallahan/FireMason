@@ -1,6 +1,6 @@
 {-# LANGUAGE FlexibleInstances #-}
 
-module InstructionsToIptables where
+module InstructionsToIptables (addToIptables, commentOutRules) where
 
 import Data.List
 import qualified Data.Map as Map
@@ -26,6 +26,17 @@ addToIptables ((r, c, i):xs) n s =
         xs' = increaseLabelsAbove i xs
     in
     addToIptables xs' n (addToStringAtLine ("iptables " ++ convert com n ++ " " ++ convert r n) i s)
+
+commentOutRules :: [(String, Int)] -> String -> String
+commentOutRules [] s = s
+commentOutRules ((s', i):xs) s = 
+    let
+        ss = lines s
+        (hxs, t:txs) = splitAt (i - 1) ss
+        ss' = hxs ++ (('#':t):txs)
+        fxs = foldr1 (\x e -> x ++ "\n" ++ e) ss'
+    in
+    commentOutRules xs fxs
 
 
 addToStringAtLine :: String -> Int -> String -> String

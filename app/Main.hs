@@ -22,11 +22,7 @@ import IptablesTypes
 
 import NameIdChain--temp
 
-
-
-
 import RuleEliminating
-
 
 
 main = do
@@ -54,12 +50,22 @@ main = do
 
     let addedToIp = addToIptables addedPos pathSimp contents
 
-    writeFile outputScriptName addedToIp
+
+    let converted2' = Map.toList . convertScript $ addedToIp
+    let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0 
+    let pathSimp2 = pathSimplification2' converted2
+
+
+    redundant <- findRedundantRule pathSimp2
+    let commentedInIp = commentOutRules redundant addedToIp
+
+    --writeFile outputScriptName addedToIp
+    writeFile outputScriptName commentedInIp
 
     end <- getTime
 
     let diff = secs $ end - start
     printf $ "Computation time: " ++ diff ++ "\n"
 
-    x <- findRedundantRule pathSimp
-    printf $ (show x) ++ "\n" 
+    
+    printf $ (show redundant) ++ "\n" 
