@@ -37,7 +37,6 @@ findRedundantRule''' n c r =
                 else
                     label (ch !! r)
         rSame = if rLabel == -1 then [] else map (fst) $ filter (\(i, ru) -> label ru == rLabel) (zip [0..] ch)
-
     in
     if
         null rSame
