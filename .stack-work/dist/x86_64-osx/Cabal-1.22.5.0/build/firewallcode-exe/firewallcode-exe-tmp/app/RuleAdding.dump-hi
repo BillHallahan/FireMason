@@ -1,0 +1,366 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-16 15:15:49.733769 UTC
+
+interface main@main:RuleAdding 7103
+  interface hash: afc10c58838b072d6b87cae23c0be0fc
+  ABI hash: dd16bff2851f7527a161dcf25abed1ef
+  export-list hash: 36a69b35a8dec378bf47145f77c18493
+  orphan hash: 449a6b668632f9617fce3b2944d14466
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  RuleAdding.addRulesToIdNameChain
+  RuleAdding.instructionsToAddAtPos
+module dependencies: ChainsToSMT NameIdChain Types
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
+                      mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep
+                      transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
+                      z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+         transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
+import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
+import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.2.0:Data.OldList d8fd80b0e14aa085ce6219cd89dad356
+import  -/  base-4.8.2.0:Data.Ord 66127262fc269c8a61d7d87ba94bd4d2
+import  -/  base-4.8.2.0:Data.Traversable 7576318f4ef8587ad947f87012b65abf
+import  -/  base-4.8.2.0:Data.Word ec8deb535202352cc8b509b14004bcbd
+import  -/  base-4.8.2.0:Debug.Trace 6660afb6094d69397ea084364da8f950
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.Enum debc6de3086023a15993ab0cecffb90b
+import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
+import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.2.0:GHC.Real 1281efa9baf803bc7859d7efb89a38b3
+import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
+import  -/  base-4.8.2.0:GHC.Word 10dc88543d98000abab9695a1019767d
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Strict 2e796f3ebd5f3ce783e00a01f5cdcaa8
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
+import  -/  largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P:Data.LargeWord 354f86b73f096c48c610faad64e0d6d9
+import  -/  ChainsToSMT 2326a4fa73a5063de321540f6618af88
+  exports: 9b1a29472a91c576ed20a2fb6a81fddd
+  acceptAST 0d7eaac37dca002c5af99f7256f70a1f
+  convertChainsSMT 5972ce3c46564abc0ec5cadb495ac98d
+  dropAST 31278a19cefdc7414733617e57ebff46
+  enforcePacketsEqual 5cfacda6e37c7929435901e9c41b6f45
+  intSortList 13a934af2e6995bf95537569155e437e
+  reaches 62ac1e70e5a25447a30689dccefc2380
+  reachesEnd c13018001df988be09ebd6746f6d9bbe
+  terminatesWith b4192454506f955288a25c427f9eabb6
+  toSMTCriteriaList af502a3778cd511affd3afa45d955202
+import  -/  NameIdChain 82de17877c1a2ba2bc457b2b4344ab82
+  exports: 1404acfb85a934eafad2eb4c785471d5
+  IdNameChain 236fcdd68ade61509ed973d26be27184
+  addChain 5c9d3f8226e883e458bdf4caf048a20d
+  addRuleToChains 864401ff0a4c3f6c63b90fdde511510a
+  chains fd7f24bdf09a2701b39412747354b3a8
+  idsWithName e6cbd131d857d91671e0d7b8f54f24de
+  increaseIndexes 72d31868eac4df220c7b36df116a6f7f
+  jumpedToWithCriteria 4e706efe6f4521627ce9648d729c6016
+  lookupChain 7d67a6ec20f59041e9e57a26919b3e6f
+  lookupName 120ce4f59a9d4be96044c1647889d652
+  lookupNameChain ca7170215ac7bac252db377e59fc3844
+  maxId 323d89c91ed0ae916671940365ab9ba7
+  maxLabel 5ad2c4a12d30c0eb49b7647b2f40c15b
+  reduceReferenced 444f2929b8a609cf3f8124d7db6147a3
+  setUnion a5a96fdcdc1a30c5ab3c79b6b98c8fc9
+  switchChains af37dfa2800ab46d2b10506139e65568
+  topLevelJumpingTo e17e71991581829ee567a86497905fa0
+import  -/  Types ae53e2699ad6d0166c06d9687149e3e7
+  exports: d51b92dffa880c4df17ac8601327b0a2
+  ACCEPT 08ea8d5ba9c8e5ae84bd818c2cc3ee1f
+  ChainId c884b4bd8354c5f5ad5e611c0e6a2eb5
+  Criteria e19364fbcccdcd240635a00eaccbd95c
+  IPAddress 9f35cd54f77f8e8e6e4d3e183b9dc3a8
+  Instruction c59865b289e3a60f83b8af8159df7e9c
+  Not 1adbafabbd7f98320f67479286fd3b91
+  Port 175675c7c9254add9716442f319e60d5
+  Protocol 28d217f7cfd42059fccbb1335d04e6b8
+  Rule 30c487073b35ac8fdff0d361e2257c83
+  Rule 2763a04da1bec065877eb2b8e3c9f38c
+  Target 97fc31d3ca68602965fcc27b6e7cac76
+  ToChainNamed ce4c7bf5b328004ab15754446244f326
+  criteria 3d3cb479422c910a1244322a683b8784
+  ipAddr fdbee042de6ad89db4d1b84222f17fcf
+  ipToWord 6fe15e18e0cca783b1fe74db8165523f
+  label 87d399b1535c1f5a4fc3d169a58a9baa
+  targets a2559cdf0772c1316d0c1859a3776ed1
+import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d0991a72f1064ecb9aa2833fb0b76080
+import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Base 61b82345797cf0bb463627ba35c4d83f
+import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9c2736322
+3978ce69811152b763a6b4dda04c05f8
+  $s$fShowGenRule :: GHC.Show.Show (Types.GenRule Types.Criteria)
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ (Types.GenRule Types.Criteria)
+                  (Types.$fShowGenRule_$cshowsPrec
+                     @ Types.Criteria
+                     Types.$fShowCriteria)
+                  RuleAdding.$s$fShowGenRule3
+                  RuleAdding.$s$fShowGenRule1 -}
+4bacb6fa9f80f3748125b7fe77aec2bb
+  $s$fShowGenRule1 ::
+    [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.Criteria)
+                   RuleAdding.$s$fShowGenRule2
+                   eta
+                   eta1) -}
+c1feee11aa53dfe365ca4aa12d0ad7a7
+  $s$fShowGenRule2 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
+                 case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec2
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5 }) -}
+32bae4461bed1d7e867433f0e84e98f4
+  $s$fShowGenRule3 :: Types.GenRule Types.Criteria -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(U,U,U(U))>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: Types.GenRule Types.Criteria ->
+                 case x of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec2
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5
+                   (GHC.Types.[] @ GHC.Types.Char) }) -}
+b17c9ee6f6d7d811c287aa3774e5750a
+  $s^1 :: GHC.Types.Int
+  {- Strictness: b -}
+7f719fd47019429dc85207b765143867
+  $s^2 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (__integer 0) -}
+eebbae05f40cd7f3a61437b030c77e8a
+  $w$s^ :: GHC.Types.Int -> GHC.Integer.Type.Integer -> GHC.Prim.Int#
+  {- Arity: 2, Strictness: <L,U(U)><S,U>, Inline: [0],
+     Unfolding: (\ w :: GHC.Types.Int w1 :: GHC.Integer.Type.Integer ->
+                 case GHC.Integer.Type.ltInteger#
+                        w1
+                        RuleAdding.$s^2 of wild { DEFAULT ->
+                 case GHC.Prim.tagToEnum# @ GHC.Types.Bool wild of wild1 {
+                   GHC.Types.False
+                   -> case GHC.Integer.Type.eqInteger#
+                             w1
+                             RuleAdding.$s^2 of wild2 { DEFAULT ->
+                      case GHC.Prim.tagToEnum# @ GHC.Types.Bool wild2 of wild3 {
+                        GHC.Types.False
+                        -> case w of ww { GHC.Types.I# ww1 -> RuleAdding.$wf ww1 w1 }
+                        GHC.Types.True -> 1 } }
+                   GHC.Types.True
+                   -> case RuleAdding.$s^1 ret_ty GHC.Prim.Int# of {} } }) -}
+8bd57db7d04baffb2a4b7944843ae31b
+  $waddRulesToIdNameChain ::
+    [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+    -> (GHC.Base.String -> NameIdChain.IdNameChain)
+    -> (Types.ChainId -> GHC.Base.Maybe (GHC.Base.String, Types.Chain))
+    -> (Types.ChainId -> GHC.Base.Maybe Types.Chain)
+    -> (Types.ChainId -> GHC.Base.Maybe GHC.Base.String)
+    -> (Types.ChainId -> [Types.ChainId])
+    -> [[Types.ChainId]]
+    -> ((Types.Chain -> Types.Chain)
+        -> Types.ChainId -> NameIdChain.IdNameChain)
+    -> (Types.Rule
+        -> Types.ChainId -> GHC.Types.Int -> NameIdChain.IdNameChain)
+    -> [Types.Chain]
+    -> [GHC.Base.String]
+    -> [(GHC.Base.String, Types.Chain)]
+    -> [Types.ChainId]
+    -> (GHC.Base.String -> [Types.ChainId])
+    -> (GHC.Types.Int -> NameIdChain.IdNameChain)
+    -> ([Types.ChainId] -> NameIdChain.IdNameChain)
+    -> [Types.ChainId]
+    -> [Types.ChainId]
+    -> ([Types.ChainId] -> [Types.ChainId])
+    -> Types.ChainId
+    -> Types.Label
+    -> (Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
+        -> NameIdChain.IdNameChain)
+    -> (NameIdChain.IdNameChain -> NameIdChain.IdNameChain)
+    -> [(Types.ChainId, (GHC.Base.String, Types.Chain))]
+    -> (# GHC.Base.String -> NameIdChain.IdNameChain,
+          Types.ChainId -> GHC.Base.Maybe (GHC.Base.String, Types.Chain),
+          Types.ChainId -> GHC.Base.Maybe Types.Chain,
+          Types.ChainId -> GHC.Base.Maybe GHC.Base.String,
+          Types.ChainId -> [Types.ChainId],
+          [[Types.ChainId]],
+          (Types.Chain -> Types.Chain)
+          -> Types.ChainId -> NameIdChain.IdNameChain,
+          Types.Rule
+          -> Types.ChainId -> GHC.Types.Int -> NameIdChain.IdNameChain,
+          [Types.Chain],
+          [GHC.Base.String],
+          [(GHC.Base.String, Types.Chain)],
+          [Types.ChainId],
+          GHC.Base.String -> [Types.ChainId],
+          GHC.Types.Int -> NameIdChain.IdNameChain,
+          [Types.ChainId] -> NameIdChain.IdNameChain,
+          [Types.ChainId],
+          [Types.ChainId],
+          [Types.ChainId] -> [Types.ChainId],
+          Types.ChainId,
+          Types.Label,
+          Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
+          -> NameIdChain.IdNameChain,
+          NameIdChain.IdNameChain -> NameIdChain.IdNameChain,
+          [(Types.ChainId, (GHC.Base.String, Types.Chain))] #)
+  {- Arity: 24,
+     Strictness: <S,1*U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U>,
+     Inline: [0] -}
+af1a205d8050ccf493a1cb48666e53f1
+  $wf :: GHC.Prim.Int# -> GHC.Integer.Type.Integer -> GHC.Prim.Int#
+  {- Arity: 2, Strictness: <L,U><L,U>, Inline: [0] -}
+51e43c48b09808e610e5b9b12fdd1b4f
+  addRulesToIdNameChain ::
+    [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+    -> NameIdChain.IdNameChain -> NameIdChain.IdNameChain
+  {- Arity: 2,
+     Strictness: <S,1*U><S,1*U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U)>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+                   w1 :: NameIdChain.IdNameChain ->
+                 case w1 of ww { NameIdChain.INC ww1 ww2 ww3 ww4 ww5 ww6 ww7 ww8 ww9 ww10 ww11 ww12 ww13 ww14 ww15 ww16 ww17 ww18 ww19 ww20 ww21 ww22 ww23 ->
+                 case RuleAdding.$waddRulesToIdNameChain
+                        w
+                        ww1
+                        ww2
+                        ww3
+                        ww4
+                        ww5
+                        ww6
+                        ww7
+                        ww8
+                        ww9
+                        ww10
+                        ww11
+                        ww12
+                        ww13
+                        ww14
+                        ww15
+                        ww16
+                        ww17
+                        ww18
+                        ww19
+                        ww20
+                        ww21
+                        ww22
+                        ww23 of ww24 { (#,,,,,,,,,,,,,,,,,,,,,,#) ww25 ww26 ww27 ww28 ww29 ww30 ww31 ww32 ww33 ww34 ww35 ww36 ww37 ww38 ww39 ww40 ww41 ww42 ww43 ww44 ww45 ww46 ww47 ->
+                 NameIdChain.INC
+                   ww25
+                   ww26
+                   ww27
+                   ww28
+                   ww29
+                   ww30
+                   ww31
+                   ww32
+                   ww33
+                   ww34
+                   ww35
+                   ww36
+                   ww37
+                   ww38
+                   ww39
+                   ww40
+                   ww41
+                   ww42
+                   ww43
+                   ww44
+                   ww45
+                   ww46
+                   ww47 } }) -}
+4fc555f1adef4b1a2ecbe82af1d49c99
+  instructionsToAddAtPos ::
+    [Types.Instruction]
+    -> NameIdChain.IdNameChain
+    -> GHC.Types.IO [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+  {- Arity: 3,
+     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                RuleAdding.instructionsToAddAtPos1
+                  `cast`
+                (<[Types.Instruction]>_R
+                 ->_R <NameIdChain.IdNameChain>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0]
+                               <[(Types.Rule, GHC.Base.String, GHC.Types.Int)]>_R)) -}
+d69096c50ebb0462e253a870b82c0c00
+  instructionsToAddAtPos1 ::
+    [Types.Instruction]
+    -> NameIdChain.IdNameChain
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [(Types.Rule, GHC.Base.String, GHC.Types.Int)] #)
+  {- Arity: 3,
+     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U> -}
+"SPEC/RuleAdding $fShowGenRule @ Criteria" [ALWAYS] forall $dShow :: GHC.Show.Show
+                                                                       Types.Criteria
+  Types.$fShowGenRule @ Types.Criteria $dShow
+  = RuleAdding.$s$fShowGenRule
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

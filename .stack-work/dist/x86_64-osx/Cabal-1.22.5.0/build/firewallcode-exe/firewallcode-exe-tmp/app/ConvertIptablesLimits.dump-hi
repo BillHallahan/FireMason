@@ -1,0 +1,142 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-16 15:15:50.466501 UTC
+
+interface main@main:ConvertIptablesLimits 7103
+  interface hash: 8976ec6a4e33de1cf8793c629605762e
+  ABI hash: af4d2fdfb454a7d33dfa7261f7d9b910
+  export-list hash: 595905a535d7dc765bc006c6b07a88e6
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  ConvertIptablesLimits.convertLimitRule
+module dependencies: IptablesTypes Types
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  base-4.8.2.0:Data.Char c8f827952d4111ae2e47c0b105217cdb
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:Data.List 3f0782c8d4bf50eecefcd5ea1798aac8
+import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
+import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.2.0:GHC.Unicode cdf84fc3abbaf34ba6b6645291cef991
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  IptablesTypes a8bddafcdf14ff361369377deca32a6c
+  exports: d7e48047831db0f2703ffd9b6a21af17
+import  -/  Types ae53e2699ad6d0166c06d9687149e3e7
+  exports: d51b92dffa880c4df17ac8601327b0a2
+  InCLimit dfab7c278ab0209c79e8723a6b173cd3
+  ModuleFunc 8f1308c3a848fba6ea7db3685b6ce127
+a5155535225b04e3e91d94c143dd1d4e
+  $wconvertLimitRule' ::
+    [GHC.Base.String]
+    -> (# GHC.Base.Maybe GHC.Types.Int,
+          GHC.Base.Maybe GHC.Types.Int,
+          [GHC.Base.String] #)
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
+0553ebc010101eddd850680fdab210bf
+  convertLimitRule :: Types.ModuleFunc
+  {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ w :: [GHC.Base.String] ->
+                 case ConvertIptablesLimits.$wconvertLimitRule'
+                        w of ww { (#,,#) ww1 ww2 ww3 ->
+                 case ww1 of wild {
+                   GHC.Base.Nothing
+                   -> case ww2 of wild1 {
+                        GHC.Base.Nothing
+                        -> (GHC.Base.Nothing
+                              @ [Data.Either.Either Types.InputCriteria Types.Target],
+                            ww3)
+                        GHC.Base.Just ipv
+                        -> (GHC.Base.Just
+                              @ [Data.Either.Either Types.InputCriteria Types.Target]
+                              (GHC.Types.:
+                                 @ (Data.Either.Either Types.InputCriteria Types.Target)
+                                 (Data.Either.Left
+                                    @ Types.InputCriteria
+                                    @ Types.Target
+                                    (Types.InCLimit ConvertIptablesLimits.convertLimitRule2 ipv))
+                                 (GHC.Types.[]
+                                    @ (Data.Either.Either Types.InputCriteria Types.Target))),
+                            ww3) }
+                   GHC.Base.Just ipv
+                   -> (GHC.Base.Just
+                         @ [Data.Either.Either Types.InputCriteria Types.Target]
+                         (GHC.Types.:
+                            @ (Data.Either.Either Types.InputCriteria Types.Target)
+                            (Data.Either.Left
+                               @ Types.InputCriteria
+                               @ Types.Target
+                               (Types.InCLimit
+                                  ipv
+                                  (case ww2 of wild1 {
+                                     GHC.Base.Nothing -> ConvertIptablesLimits.convertLimitRule1
+                                     GHC.Base.Just ipv1 -> ipv1 })))
+                            (GHC.Types.[]
+                               @ (Data.Either.Either Types.InputCriteria Types.Target))),
+                       ww3) } }) -}
+9585ea8782c4ee1abfa6298fd58995ba
+  convertLimitRule1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 5) -}
+270a17334bfc774e8b94efa8097900c1
+  convertLimitRule2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 10800) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

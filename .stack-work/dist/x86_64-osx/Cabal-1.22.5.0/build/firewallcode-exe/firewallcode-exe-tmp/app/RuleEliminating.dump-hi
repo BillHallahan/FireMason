@@ -1,0 +1,169 @@
+
+==================== FINAL INTERFACE ====================
+2016-09-16 15:15:50.080196 UTC
+
+interface main@main:RuleEliminating 7103
+  interface hash: 7b5aca0c36168833d34d87373ba5748a
+  ABI hash: a149e6e69eb39b15e6e402d91b3eb56e
+  export-list hash: e40533badcf67487e99ea6a0b0ff2069
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 97344007ccf84cb5abb832d455d4804c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  RuleEliminating.findRedundantRule
+module dependencies: ChainsToSMT NameIdChain Types
+package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      byteorder-1.0.4@byteo_6yQGE3rJo3bBqr3CFoBQ27
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      case-insensitive-1.2.0.7@casei_2hQWsf0VfQP5NW180eleos
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY
+                      largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P
+                      mtl-2.2.1@mtl_Aue4leSeVkpKLsfHIV51E8
+                      network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw
+                      semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep
+                      transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
+                      unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw
+                      utf8-string-1.0.1.1@utf8s_L8eKHa7Iv9q7FVKUYW6u4b
+                      z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         main@main:Types
+         network-2.6.3.1@netwo_4FL8hbDqfKm3Q9HV1QK1xw:Network.Socket
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+         transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Addr
+                         iproute-1.7.0@iprou_EmwGKuwHXxo93hguRyGitY:Data.IP.Range
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.List.NonEmpty
+                         semigroups-0.18.1@semig_LaeT7FLzCl4KIQUoVrPYl1:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
+import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
+import  -/  base-4.8.2.0:Data.Functor 5c701b0af1708f0192a25dfe14ce6274
+import  -/  base-4.8.2.0:Data.Maybe 1cb58de2b04ee3c0c0a7dc9201184aff
+import  -/  base-4.8.2.0:Data.Traversable 7576318f4ef8587ad947f87012b65abf
+import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
+import  -/  base-4.8.2.0:Debug.Trace 6660afb6094d69397ea084364da8f950
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.List 0c736920522bbd14b770342776012ab6
+import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
+import  -/  ChainsToSMT 2326a4fa73a5063de321540f6618af88
+  exports: 9b1a29472a91c576ed20a2fb6a81fddd
+  convertChainsSMT 5972ce3c46564abc0ec5cadb495ac98d
+  matchesRule f46ce6e2c34410dc83074f421f8c9c8c
+import  -/  NameIdChain 82de17877c1a2ba2bc457b2b4344ab82
+  exports: 1404acfb85a934eafad2eb4c785471d5
+  IdNameChain 236fcdd68ade61509ed973d26be27184
+  allChainEquivalents 513cf5d7664730dcf14717e2e95d07d9
+  lookupChain 7d67a6ec20f59041e9e57a26919b3e6f
+  lookupName 120ce4f59a9d4be96044c1647889d652
+import  -/  Types ae53e2699ad6d0166c06d9687149e3e7
+  exports: d51b92dffa880c4df17ac8601327b0a2
+  ChainId c884b4bd8354c5f5ad5e611c0e6a2eb5
+  label 87d399b1535c1f5a4fc3d169a58a9baa
+import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Base 61b82345797cf0bb463627ba35c4d83f
+import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9c2736322
+7b24585cbbf58c7fb015b706128e81fa
+  findRedundantRule ::
+    NameIdChain.IdNameChain
+    -> GHC.Types.IO [(GHC.Base.String, GHC.Types.Int)]
+  {- Arity: 2,
+     Strictness: <L,U(A,A,C(U),C(U),A,1*U,A,A,A,A,A,U,A,A,A,U,U,A,U(U),A,A,A,U)><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                RuleEliminating.findRedundantRule1
+                  `cast`
+                (<NameIdChain.IdNameChain>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0]
+                               <[(GHC.Base.String, GHC.Types.Int)]>_R)) -}
+f8cc25bb460f4af479830d256a2153ac
+  findRedundantRule1 ::
+    NameIdChain.IdNameChain
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [(GHC.Base.String, GHC.Types.Int)] #)
+  {- Arity: 2,
+     Strictness: <L,U(A,A,C(U),C(U),A,1*U,A,A,A,A,A,U,A,A,A,U,U,A,U(U),A,A,A,U)><L,U>,
+     Unfolding: (\ x :: NameIdChain.IdNameChain
+                   s :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case Control.Exception.Base.bracket1
+                        @ Z3.Base.Config
+                        @ ()
+                        @ Z3.Monad.Z3Env
+                        Z3.Base.mkConfig1
+                          `cast`
+                        (Sym (GHC.Types.NTCo:IO[0] <Z3.Base.Config>_R))
+                        Z3.Base.delConfig1
+                          `cast`
+                        (<Z3.Base.Config>_R ->_R Sym (GHC.Types.NTCo:IO[0] <()>_R))
+                        Z3.Monad.evalZ2
+                          `cast`
+                        (<Z3.Base.Config>_R
+                         ->_R Sym (GHC.Types.NTCo:IO[0] <Z3.Monad.Z3Env>_R))
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case ((ChainsToSMT.convertChainsSMT
+                          x
+                          RuleEliminating.findRedundantRule3)
+                         `cast`
+                       (Trans
+                            (Z3.Monad.NTCo:Z3[0] <()>_N)
+                            (Control.Monad.Trans.Reader.NTCo:ReaderT[0]
+                                 <Z3.Monad.Z3Env>_R <GHC.Types.IO>_R <()>_N))
+                         ipv1)
+                        `cast`
+                      (GHC.Types.NTCo:IO[0] <()>_R)
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 RuleEliminating.findRedundantRule2
+                   x
+                   (NameIdChain.allChainEquivalents x)
+                   ipv1
+                   ipv2 } }) -}
+1cbd4bc7c5e5ba87491c4991200de128
+  findRedundantRule2 ::
+    NameIdChain.IdNameChain
+    -> [[Types.ChainId]]
+    -> Z3.Monad.Z3Env
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [(GHC.Base.String, GHC.Types.Int)] #)
+  {- Arity: 4,
+     Strictness: <L,U(A,A,C(U),C(U),A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A)><S,1*U><L,U(U(U,U),U(U(U,U),U))><L,U> -}
+e8b33a26d5846575be22cf7039d0edcb
+  findRedundantRule3 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

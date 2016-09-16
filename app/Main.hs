@@ -37,6 +37,10 @@ main = do
     contents <- readFile inputScriptName
 
     let converted' = Map.toList . convertScript $ contents
+
+
+    putStrLn . show$ converted'
+
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
     let pathSimp = pathSimplification2' converted
 

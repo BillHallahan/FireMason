@@ -24,11 +24,8 @@ addRulesToIdNameChain ((r, s, i):xs) n =
 --Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions (in terms of labels) at which they should be added
 instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Int)]
 instructionsToAddAtPos [] n = return []
-instructionsToAddAtPos (x:xs) n = 
+instructionsToAddAtPos (ToChainNamed s r:xs) n = 
     do
-        let s = (chainName x)
-        let r = (insRule x)
-
         let changeId = head $ idsWithName n s
         let n' = if not . null $ (idsWithName n s) then n else addChain n s
 
@@ -44,6 +41,7 @@ instructionsToAddAtPos (x:xs) n =
         instr <- instructionsToAddAtPos xs cutCh'
         
         return $ (r', cutCName, l):instr
+instructionsToAddAtPos (x:xs) _ = error ("Unrecognized instruction " ++ show x)
 
 findBestPointCut :: Rule -> ChainId -> IdNameChain -> IO (ChainId, Int)
 findBestPointCut r i n = findBestPointCut' r i n n

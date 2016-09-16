@@ -98,6 +98,7 @@ ipToWord (IPv6 i) = Right $ foldl accum 0 (map fromIntegral (fromIPv6 i))
 data Endpoint = Source | Destination deriving (Eq, Show)
 
 data InputCriteria = InC Criteria
+                     | InCLimit Int Int
                      | InCNot InputCriteria
                      | And [InputCriteria]
                      | Or [InputCriteria] deriving (Eq, Show)

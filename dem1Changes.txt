@@ -1,0 +1,6 @@
+acl INPUT : destination_port = 48 OR destination_port = 49 => DROP,
+acl INPUT : RST => DROP,
+acl FORWARD : protocol = 6 AND destination_port = 110 => DROP,
+acl INPUT : protocol = 124 => ACCEPT,
+acl OUTPUT : protocol = 2 AND destination_ip = 4.5.6.0/24 => DROP,
+acl OUTPUT: source_ip = 7.8.9.10 => DROP
