@@ -118,8 +118,8 @@ checkRuleImpact r n n' top idsU = do
 
     innerOr <- mkOr =<< sequence [mkEq tw0 tw1
                                   , mkAnd [reEnd0, reEnd1]
-                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]]
-    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero, orChangedChain]
+                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero zero zero, orChangedChain]]
+    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero zero zero, orChangedChain]
     innerImplies <- mkImplies imAnd =<< mkEq tw1 targetAST
 
     assert =<< mkNot =<< mkAnd [innerOr, innerImplies]

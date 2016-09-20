@@ -25,6 +25,8 @@ import NameIdChain--temp
 import RuleEliminating
 
 
+import Debug.Trace
+
 main = do
     initializeTime
     start <- getTime
@@ -39,10 +41,17 @@ main = do
     let converted' = Map.toList . convertScript $ contents
 
 
-    putStrLn . show$ converted'
+    putStrLn . show $ converted'
 
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
     let pathSimp = pathSimplification2' converted
+
+
+    putStrLn $ "limit 5" ++ show (limits pathSimp 5)
+
+    putStrLn "pathSimp = "
+
+    putStrLn . show . toList'$ pathSimp
 
     changes <- readFile changesFileName
 
@@ -60,7 +69,7 @@ main = do
     let pathSimp2 = pathSimplification2' converted2
 
 
-    redundant <- findRedundantRule pathSimp2
+    redundant <- trace (show . toList' $ pathSimp2) $ findRedundantRule pathSimp2
     let commentedInIp = commentOutRules redundant addedToIp
 
     --writeFile outputScriptName addedToIp

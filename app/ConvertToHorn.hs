@@ -16,11 +16,10 @@ inputChainToChain [] _ = []
 inputChainToChain (r:rs) i = 
     let
     (newC, newR, i') = inputCriteriaToCriteria (criteria r) i
-    newR' = newR--newR' = inputChainToChain newR (i + i')
     r' = map (\c -> Rule c (targets r) (label r)) newC
+    newR' = map (\r'' -> Rule (criteria r'') (targets r'') (label r)) newR
     in
-    newR' ++ r' ++ (inputChainToChain rs (i + i' + length newR'))
-    --r':(inputChainToChain (newR ++ rs) (i + i'))
+    newR' ++ r' ++ (inputChainToChain rs (i + i' + length newR))
 
 --This should be called only on the [InputCriteria] in an And, and will combine multiple And's into one as much as possible
 condenseAnd :: [InputCriteria] -> [InputCriteria]
@@ -52,7 +51,7 @@ inputCriteriaToCriteria (And c: cx) i = inputCriteriaToCriteria ((condenseAnd c)
 inputCriteriaToCriteria (Or c:cx) i = 
     let
         (c', r, i') = eliminateOr (condenseOr $ c) i
-        (c'', r', i'') = inputCriteriaToCriteria cx (i')--We add exactly one Propositional Variable in eliminateOr
+        (c'', r', i'') = inputCriteriaToCriteria cx (i')
     in
     ((mappend) <$> c' <*> c'', r ++ r', i'')
 inputCriteriaToCriteria (InCNot (InC c):cx) i = 
@@ -61,13 +60,15 @@ inputCriteriaToCriteria (InCNot (InC c):cx) i =
     in
     (map (Not c:) c'', r', i')
 inputCriteriaToCriteria (InCNot c:cx) i = inputCriteriaToCriteria ((simplifyNots [InCNot c]) ++ cx) i
-inputCriteriaToCriteria (InC c:cx) i = 
+inputCriteriaToCriteria (c':cx) i = 
     let
+        c = case c' of InC c -> c
+                       InCLimit r b -> Limit i r b
         (c'', r', i') =  inputCriteriaToCriteria cx i
         propRules = [Rule [c] [PropVariableTarget i True] (-1), Rule [Not c] [PropVariableTarget i False] (-1)]
     in
     if isStateless c then (map (c:) c'', r', i')
-        else (map (c:) c'', r' ++ propRules, i' + 1)
+        else (map (PropVariableCriteria i:) c'', r' ++ propRules, i' + 1)
 
 --Moves all Nots as deep into the criteria as possible,
 --by applying DeMorgans Law

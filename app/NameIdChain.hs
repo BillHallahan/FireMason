@@ -1,6 +1,6 @@
 module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupName, lookupEquivalent
     , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
-    increaseIndexes, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, maxId,
+    increaseIndexes, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, maxId,
     maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplification2, pathSimplification2') where
 --This is to convert all jumps/gotos/returns to the type Go Int Int,
 --which also requires appropriately duplicating chains
@@ -30,6 +30,7 @@ data IdNameChain =  INC {addChain :: String -> IdNameChain
                        , notTopLevelChains :: [ChainId]
                        , topLevelChains :: [ChainId]
                        , topLevelJumpingTo :: [ChainId] -> [ChainId]
+                       , limits :: Int -> Maybe [(ChainId, Int)]
                        , maxId :: ChainId
                        , maxLabel :: Label
                        , mergeWithMap :: Map.Map ChainId (String, Chain) -> IdNameChain
@@ -76,6 +77,8 @@ pathSimplification2 m =
         incr = (\i -> pathSimplification2 $ increaseIndexes' m i)
         redRef = (\i -> pathSimplification2 $ reduceReferenced' m i)
         topJ = (\i -> topLevelJumpingTo' m i)
+        limsMap = limitsMap m
+        lims = trace ("limsMap = " ++ show limsMap) (\i -> Map.lookup i limsMap)
         mI' = maximum . Map.keys $ m
         mL = maximum . labels $ m
         merge = (\m' -> pathSimplification2 $ Map.union m m')
@@ -99,6 +102,7 @@ pathSimplification2 m =
          , topLevelChains = topLevelChains' m
          , notTopLevelChains = notTopLevelChains' m
          , topLevelJumpingTo = topJ
+         , limits = lims
          , maxId = mI'
          , maxLabel = mL
          , mergeWithMap = merge
@@ -125,7 +129,6 @@ pathSimplification' ((s, c):cx) m ch =
         newMap = Map.insert ch (s, simplified) (pathSimplification' cx m (ch + 1 + length newChains))
     in
     Map.union newChains newMap
-    --(NameIdChain s ch simplified):newChains ++ pathSimplification' cx m (ch + 1 + length newChains)
 
 pathSimplificationChain :: Chain -> Map.Map String Chain -> ChainId-> Int -> (Chain, Map.Map ChainId (String, Chain))
 pathSimplificationChain [] _ _ _ = ([], Map.empty)
@@ -188,6 +191,47 @@ jumpedToWithCriteria (r:rx) =
 
 jumpedTo :: Chain -> [ChainId]
 jumpedTo t = map (snd) (jumpedToWithCriteria t)
+
+
+
+limitsMap :: Map.Map ChainId (String, Chain) -> Map.Map Int [(ChainId, Int)]
+limitsMap n = 
+    let
+        top = topLevelChains' n
+    in
+    limitsMapChains n $ map (\t -> (t, snd . MB.fromJust . Map.lookup t $ n)) top
+
+limitsMapChains :: Map.Map ChainId (String, Chain) -> [(ChainId, Chain)] -> Map.Map Int [(ChainId, Int)]
+limitsMapChains _ [] = Map.fromList []
+limitsMapChains n ((i, c):xs) = Map.unionWith (++) (limitsMapRules n i (zip [0..] c)) (limitsMapChains n xs)
+
+limitsMapRules :: Map.Map ChainId (String, Chain) ->  ChainId -> [(Int, Rule)] -> Map.Map Int [(ChainId, Int)]
+limitsMapRules _ _ [] = Map.fromList []
+limitsMapRules n i ((r', r):rs) = 
+    let
+        u = Map.unionWith (++) (limitsMapCriteria n i r' . criteria $ r) (limitsMapTargets n i r' . targets $ r)
+    in
+    Map.unionWith (++) u (limitsMapRules n i rs)
+
+limitsMapCriteria :: Map.Map ChainId (String, Chain) ->  ChainId -> Int -> [Criteria] -> Map.Map Int [(ChainId, Int)]
+limitsMapCriteria _ _ _ [] = Map.fromList []
+limitsMapCriteria n ch r (Limit i _ _ :cs) = Map.unionWith (++) (Map.fromList [(i, [(ch, r)])]) (limitsMapCriteria n ch r cs)
+limitsMapCriteria n ch r (Not (Limit i _ _) :cs) = Map.unionWith (++) (Map.fromList [(i, [(ch, r)])]) (limitsMapCriteria n ch r cs)
+limitsMapCriteria n ch r (_:cs) = limitsMapCriteria n ch r cs
+
+limitsMapTargets :: Map.Map ChainId (String, Chain) ->  ChainId -> Int -> [Target] -> Map.Map Int [(ChainId, Int)]
+limitsMapTargets _ _ _ [] = Map.fromList []
+limitsMapTargets n _ _ (Go ch r:ts) = 
+    let
+        c = snd . MB.fromJust . Map.lookup ch $ n
+    in
+    Map.unionWith (++) (limitsMapRules n ch (zip [0..] c)) (limitsMapTargets n ch r ts)
+limitsMapTargets n _ _ (GoReturn ch r:ts) = 
+    let
+        c = snd . MB.fromJust . Map.lookup ch $ n
+    in
+    Map.unionWith (++) (limitsMapRules n ch (zip [0..] c)) (limitsMapTargets n ch r ts)
+limitsMapTargets n ch r (t:ts) = limitsMapTargets n ch r ts
 
 --Returns a list of all top level chains from which it is eventually possible to reach one of the chains with the given ids
 topLevelJumpingTo' :: Map.Map ChainId (String, Chain) -> [ChainId] -> [ChainId]

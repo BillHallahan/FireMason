@@ -27,6 +27,11 @@ type ChainId = Int
 
 data Criteria = BoolFlag Flag
                 | IPAddress Endpoint IPRange
+                | Limit Int Int Int --Id SubId Rate Burst
+                        --The Id relates multiple limits that draw from the same
+                        --source, SubId indicates a single limit instance split
+                        --between multiple rules, more than one of which could
+                        --be matched, but which only should be drawn from once
                 | Not Criteria
                 | Port Endpoint (Either Int (Int, Int))
                 | PropVariableCriteria Int
@@ -68,6 +73,7 @@ flagsToStrings' = Map.fromList [(SYN, "SYN")
 isStateless :: Criteria -> Bool
 isStateless (BoolFlag _) = True
 isStateless (IPAddress _ _) = True
+isStateless (Limit _ _ _) = False
 isStateless (Not c) = isStateless c
 isStateless (Port _ _) = True
 isStateless (Protocol _) = True

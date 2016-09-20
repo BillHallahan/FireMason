@@ -48,15 +48,17 @@ findRedundantRule''' n c r =
         intSort <- mkIntSort
         p <- mkInt 0 intSort
 
+        check <- solverCheck
+
         assert =<< mkOr =<< (sequence $ map (\(c2, r2) -> matchesRule' p c2 r2) ((,) <$> c <*> rSame))
 
         r'' <- solverCheck
 
-        solverPop 1
+        trace ("check before = " ++ show check ++ " check after = " ++ show r'') solverPop 1
 
         rs <- findRedundantRule''' n c (r + 1)
 
-        if r'' == Sat then return (rs) else  return (rLabel:rs)
+        if r'' == Sat then return (rs) else return (rLabel:rs)
     where 
           matchesRule' :: AST -> Int -> Int -> Z3 AST
           matchesRule' p1 c1 r1 = do
