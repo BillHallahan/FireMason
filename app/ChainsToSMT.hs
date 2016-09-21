@@ -336,12 +336,14 @@ reachesMatchesTerminating p c r t = do
     intSort <- mkIntSort
     o <- mkInt 1 intSort
     r' <- mkAdd [r, o]
-    notRe <- mkNot =<< reaches p c r'
+    notReaches <- mkNot =<< reaches p c r'
+
+    notRet <- mkNot =<< returnsFrom p c
 
     tW <- terminatesWith p
     e <- mkEq tW t
 
-    and' <- mkAnd [notRe, e]
+    and' <- mkAnd [notReaches, notRet, e]
 
     assert =<< mkImplies mR and'
 

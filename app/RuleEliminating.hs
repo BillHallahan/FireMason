@@ -54,7 +54,7 @@ findRedundantRule''' n c r =
 
         r'' <- solverCheck
 
-        trace ("check before = " ++ show check ++ " check after = " ++ show r'') solverPop 1
+        trace ("label = " ++ (show . label $ ch !! r) ++ " c = " ++ (show c) ++ " r = " ++ (show r) ++ " check before = " ++ show check ++ " check after = " ++ show r'') solverPop 1
 
         rs <- findRedundantRule''' n c (r + 1)
 
