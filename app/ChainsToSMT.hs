@@ -11,9 +11,6 @@ import Z3.Monad
 import NameIdChain
 import Types
 
-import Debug.Trace
-
-
 makeTargetDatatype :: Z3 Sort
 makeTargetDatatype = do
     accept <- mkStringSymbol "ACCEPT"
@@ -633,7 +630,7 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
 
     let pre = precedingLimit same (fromIntegral pInt) (fromIntegral chInt) (fromIntegral ruInt)
 
-    intSort <- trace ("(p, ch, ru) = " ++ show pInt ++ ", " ++ show chInt ++ ", " ++ show ruInt ++ " pre = " ++ show pre ++ " SAME = " ++ show same) mkIntSort
+    intSort <- mkIntSort
 
     i' <- mkInt i intSort
     b' <- mkInt b intSort

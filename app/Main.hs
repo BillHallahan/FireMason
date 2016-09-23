@@ -68,6 +68,7 @@ main = do
     let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0 
     let pathSimp2 = pathSimplification2' converted2
 
+    putStrLn "Before redundant"
 
     redundant <- trace (show . toList' $ pathSimp2) $ findRedundantRule pathSimp2
     let commentedInIp = commentOutRules redundant addedToIp

@@ -80,7 +80,7 @@ findBestPointCut' r i n n' =
         viewModel <- trace (show . toList' $ relevant) $ if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
 
-        trace viewModel $ (trace ("checking = " ++ show checking) (if checking == Unsat then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened))
+        if checking == Unsat then return (i', cut) else findBestPointCut' r i n shortened
 
 
 checkRuleImpact :: Rule -> IdNameChain -> IdNameChain -> [ChainId] -> [ChainId] -> Z3 (Result, Maybe Model)

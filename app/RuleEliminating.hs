@@ -7,9 +7,6 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
-
-import Debug.Trace
-
 --returns a list of chain names and rule numbers (in terms of labels) which should be removed 
 findRedundantRule :: IdNameChain -> IO [(String, Int)]
 findRedundantRule n = evalZ3 . findRedundantRule' $ n
@@ -54,24 +51,7 @@ findRedundantRule''' n c r =
 
         r'' <- solverCheck
 
-
-        -----
-        if r'' == Sat then do
-            m <- solverGetModel
-            return ()
-            dec <- intIntFuncDecl "limit-initial"
-            f <- getFuncInterp m dec
-
-            if isJust f then do
-                let  f' = fromJust f
-                f'' <- getInt =<< funcEntryGetValue =<< funcInterpGetEntry f' 0
-                trace ("f'' = " ++ show f'') return ()
-            else return ()
-            -----
-        else return ()
-
-
-        trace ("label = " ++ (show . label $ ch !! r) ++ " c = " ++ (show c) ++ " r = " ++ (show r) ++ " check before = " ++ show check ++ " check after = " ++ show r'') solverPop 1
+        solverPop 1
 
         rs <- findRedundantRule''' n c (r + 1)
 
