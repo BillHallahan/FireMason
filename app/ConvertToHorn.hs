@@ -72,13 +72,13 @@ inputCriteriaToCriteria elim (InCNot (InC c):cx) i =
 inputCriteriaToCriteria elim (InCNot c:cx) i = inputCriteriaToCriteria elim ((simplifyNots [InCNot c]) ++ cx) i
 inputCriteriaToCriteria elim (c':cx) i = 
     let
-        c = case c' of InC c -> c
-                       InCLimit r b -> Limit i r b
-        (c'', r', i') =  inputCriteriaToCriteria elim cx i
+        (c, i') = case c' of InC c -> (c, i)
+                             InCLimit r b -> (Limit i r b, i + 1)
+        (c'', r', i'') =  inputCriteriaToCriteria elim cx i'
         propRules = [Rule [c] [PropVariableTarget i True] (-1), Rule [Not c] [PropVariableTarget i False] (-1)]
     in
-    (map (c:) c'', r', i')--if isStateless c then (map (c:) c'', r', i')
-       -- else (map (PropVariableCriteria i:) c'', r' ++ propRules, i' + 1)
+    (map (c:) c'', r', i'')
+    
 
 
 --Moves all Nots as deep into the criteria as possible,

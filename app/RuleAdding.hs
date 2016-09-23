@@ -57,7 +57,7 @@ findBestPointCut' r i n n' =
         (name, c) = if isJust $ lookupNameChain n i' then fromJust $ lookupNameChain n i' else error "Rule being inserted into nonexistent chain."
 
         updatedChains = addRuleToChains n r i' cut
-        newNameIdChain = increaseIndexes updatedChains (1 + maxId n)
+        newNameIdChain = increaseIds updatedChains (1 + maxId n)
         combinedNIC = setUnion n newNameIdChain
 
         shortened = switchChains n' (take (cut - 1)) i'
@@ -77,10 +77,10 @@ findBestPointCut' r i n n' =
     do
         (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
 
-        viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
+        viewModel <- trace (show . toList' $ relevant) $ if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
 
-        (trace ("checking = " ++ show checking) (if checking == Unsat then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened))
+        trace viewModel $ (trace ("checking = " ++ show checking) (if checking == Unsat then return (i', cut) else trace ("cut = " ++ show (chains shortened)) findBestPointCut' r i n shortened))
 
 
 checkRuleImpact :: Rule -> IdNameChain -> IdNameChain -> [ChainId] -> [ChainId] -> Z3 (Result, Maybe Model)
@@ -100,6 +100,12 @@ checkRuleImpact r n n' top idsU = do
     chain1Symb <- mkStringSymbol "chain1"
     chain1 <- mkConst chain1Symb intSort
 
+    let limIdPairs = map (\x -> (x, x + maxId n + 1)) (limitIds n)
+    mapM_ (\(x, y) -> do 
+        x' <- mkInt x intSort
+        y' <- mkInt y intSort
+        enforceLimitsEqual x' y') limIdPairs
+
     let topStarting = topLevelJumpingTo n top
     assert =<< mkOr =<< (sequence . (map (mkAnds chain0 chain1)) $ topStarting)
 
@@ -118,8 +124,8 @@ checkRuleImpact r n n' top idsU = do
 
     innerOr <- mkOr =<< sequence [mkEq tw0 tw1
                                   , mkAnd [reEnd0, reEnd1]
-                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero zero zero, orChangedChain]]
-    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) zero zero zero, orChangedChain]
+                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) n' zero zero zero, orChangedChain]]
+    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) n' zero zero zero, orChangedChain]
     innerImplies <- mkImplies imAnd =<< mkEq tw1 targetAST
 
     assert =<< mkNot =<< mkAnd [innerOr, innerImplies]

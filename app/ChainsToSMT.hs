@@ -3,6 +3,7 @@
 
 module ChainsToSMT where
 
+import Data.List
 import Data.Maybe
 import Control.Applicative
 import Z3.Monad
@@ -10,6 +11,7 @@ import Z3.Monad
 import NameIdChain
 import Types
 
+import Debug.Trace
 
 
 makeTargetDatatype :: Z3 Sort
@@ -109,6 +111,12 @@ intBoolAST s i = do
     dec <- mkFuncDecl s' [intSort] boolSort
     mkApp dec [i]
 
+intIntFuncDecl :: String -> Z3 FuncDecl
+intIntFuncDecl s = do
+    intSort <- mkIntSort
+    s' <- mkStringSymbol s
+    mkFuncDecl s' [intSort] intSort
+
 intIntAST :: String -> AST -> Z3 AST
 intIntAST s i = do
     intSort <- mkIntSort
@@ -116,16 +124,35 @@ intIntAST s i = do
     dec <- mkFuncDecl s' [intSort] intSort
     mkApp dec [i]
 
+propVariableAST :: Int -> AST -> Z3 AST
+propVariableAST v i = intBoolAST ("v" ++ show v) i
+
+maxAST :: AST -> AST -> Z3 AST
+maxAST i j = do
+    comp <- mkGe i j
+    mkIte comp i j
+
+minAST :: AST -> AST -> Z3 AST
+minAST i j = do
+    comp <- mkLe i j
+    mkIte comp i j
+
 matchesCriteria :: AST -> AST -> AST -> Z3 AST
 matchesCriteria p c r = intIntIntBoolAST "matches-criteria" p c r
 
 ruleTarget :: AST -> AST -> Z3 AST
-ruleTarget c r= do
+ruleTarget c r = do
     intSort <- mkIntSort
     t <- makeTargetDatatype
     ruleTarget <- mkStringSymbol "rule-target"
     dec <- mkFuncDecl ruleTarget [intSort, intSort] t
     mkApp dec [c, r]
+
+arrivalTime :: AST -> Z3 AST
+arrivalTime  p = intIntAST "arrival-time" p
+
+limitInitial :: AST -> Z3 AST
+limitInitial i = intIntAST "limit-initial" i
 
 reaches :: AST -> AST -> AST -> Z3 AST
 reaches p c r = intIntIntBoolAST "reaches" p c r
@@ -459,6 +486,13 @@ reachesNextNoneTarget p c r = do
 
     assert =<< mkImplies a reNext
 
+arrivalTimeNonNegative:: AST -> Z3 ()
+arrivalTimeNonNegative p = do
+    intSort <- mkIntSort
+    z <- mkInt 0 intSort
+    aT <- arrivalTime p
+    assert =<< mkGe aT z
+
 intSortList :: [Int] -> Z3 [AST]
 intSortList s = do
     intSort <- mkIntSort
@@ -532,65 +566,52 @@ toSMTPathTarget (GoReturn i j) ch r pN = do
     mapM_ (\p -> notMatchesGo p ch r i' j') =<< intSortList [0..(pN - 1)]
 toSMTPathTarget (PropVariableTarget i b) ch r pN = do
     rT <- ruleTarget ch r
-
-    
-
     none <- noneAST
-
     assert =<< mkEq rT none
-
-
-    mapM_ (\p -> propVarDec p b i) =<< intSortList [0..(pN - 1)]
-
+    mapM_ (\p -> propVarDec i p b) =<< intSortList [0..(pN - 1)]
     where
-        propVarDec :: AST -> Bool -> Int -> Z3 ()
-        propVarDec p b' v = do
+        propVarDec :: Int -> AST -> Bool -> Z3 ()
+        propVarDec v p b' = do
             b'' <- mkBool b
 
             matches <- matchesRule p ch r
-
-            intSort <- mkIntSort
-            boolSort <- mkBoolSort
-
-            s <- mkStringSymbol ("v" ++ show v)
-            dec <- mkFuncDecl s [intSort] boolSort
-            app <- mkApp dec [p]
+            app <- propVariableAST v p
             e <- mkEq app b''
 
             assert =<< mkImplies matches e
 
 toSMTPath t _ _ _ = error "Target " ++ show t ++ " not recognized."
 
-toSMTChain :: Chain -> Int -> Int -> Int -> Z3 ()
-toSMTChain [] _ _ _ = return ()
-toSMTChain (c:cx) ch r pN = do
+toSMTChain :: Chain -> IdNameChain -> Int -> Int -> Int -> Z3 ()
+toSMTChain [] _ _ _ _ = return ()
+toSMTChain (c:cx) n ch r pN = do
     intSort <- mkIntSort
     ch' <- mkInt ch intSort
     r' <- mkInt r intSort
 
-    toSMTRule c ch' r' pN
-    toSMTChain cx ch (r + 1) pN
+    toSMTRule c n ch' r' pN
+    toSMTChain cx n ch (r + 1) pN
 
-toSMTRule :: Rule -> AST -> AST -> Int -> Z3 ()
-toSMTRule (Rule [] t _) ch r pN = mapM_ (\p -> assert =<< matchesCriteria p ch r) =<< intSortList [0..(pN - 1)]
-toSMTRule (Rule c _ _) ch r pN = 
+toSMTRule :: Rule -> IdNameChain -> AST -> AST -> Int -> Z3 ()
+toSMTRule (Rule [] t _) n ch r pN = mapM_ (\p -> assert =<< matchesCriteria p ch r) =<< intSortList [0..(pN - 1)]
+toSMTRule (Rule c _ _) n ch r pN = 
     mapM_ (\p -> do
-            crit <- toSMTCriteriaList c p ch r
+            crit <- toSMTCriteriaList c n p ch r
             mC <- matchesCriteria p ch r
             assert =<< (mkEq crit mC)) =<< intSortList [0..(pN - 1)]
 
-toSMTCriteriaList :: [Criteria] -> AST -> AST -> AST -> Z3 AST
-toSMTCriteriaList c p ch r = do
-    mkAnd =<< (sequence $ map (\c' -> toSMTCriteria c' p ch r) c)
+toSMTCriteriaList :: [Criteria] -> IdNameChain -> AST -> AST -> AST -> Z3 AST
+toSMTCriteriaList c n p ch r = do
+    mkAnd =<< (sequence $ map (\c' -> toSMTCriteria c' n p ch r) c)
 
-toSMTCriteria :: Criteria -> AST -> AST -> AST -> Z3 AST
-toSMTCriteria (BoolFlag f) p _ _ = do
+toSMTCriteria :: Criteria -> IdNameChain -> AST -> AST -> AST -> Z3 AST
+toSMTCriteria (BoolFlag f) _ p _ _ = do
     intSort <- mkIntSort
     boolSort <- mkBoolSort
     f' <- mkStringSymbol . flagToString $ f
     dec <- mkFuncDecl f' [intSort] boolSort
     intBoolAST (flagToString f) p--mkApp dec [p]
-toSMTCriteria (IPAddress e i) p _ _ = do
+toSMTCriteria (IPAddress e i) _ p _ _ = do
     case (ipToWord . ipAddr $ i, ipMask i) of (Left b, Left m) -> ipEq b m 32
                                               (Right b, Right m) -> ipEq b m 128
     where   ipEq :: Integral a => a -> a -> Int -> Z3 AST
@@ -604,20 +625,86 @@ toSMTCriteria (IPAddress e i) p _ _ = do
                             dec <- mkFuncDecl pSymb [intSort] bitSort
                             app <- mkApp dec [p]
                             mkEq b =<< mkBvand app m
-toSMTCriteria (Limit i r b) p _ _ = do
-    intSort <- mkIntSort
-    f <- mkInt 4 intSort
-    t <- mkInt 2 intSort
-    mkGe f t
-toSMTCriteria (Not c) p ch r = do
-    mkNot =<< toSMTCriteria c p ch r
-toSMTCriteria (Port e (Left i)) p _ _ = do
+toSMTCriteria (Limit i ra b) n p ch ru = do
+    let same = fromJust $ limits n i
+    pInt <- getInt p
+    chInt <- getInt ch
+    ruInt <-getInt ru
+
+    let pre = precedingLimit same (fromIntegral pInt) (fromIntegral chInt) (fromIntegral ruInt)
+
+    intSort <- trace ("(p, ch, ru) = " ++ show pInt ++ ", " ++ show chInt ++ ", " ++ show ruInt ++ " pre = " ++ show pre ++ " SAME = " ++ show same) mkIntSort
+
+    i' <- mkInt i intSort
+    b' <- mkInt b intSort
+    ra' <- mkInt ra intSort
+
+    zero <- mkInt 0 intSort
+    one <- mkInt 1 intSort
+    negOne <- mkInt (-1) intSort
+
+
+    limInit <- limitInitial i'
+
+    assert =<< mkGe limInit zero
+
+    let (preP, preCh, preR) = if pre == Nothing then (0 ,-1, -1) else fromJust pre --THIS IS BAD- VALUES SET WRONG- FIX
+    preP' <- mkInt preP intSort
+    preCh' <- mkInt preCh intSort
+    preR' <- mkInt preR intSort 
+
+    preT <- if pre == Nothing then mkInt 0 intSort else arrivalTime(preP')
+    currT <- arrivalTime(p)
+
+
+    preLim <- if pre == Nothing then limitInitial i' else limitFuncAST i' preP' preCh' preR'
+    limitFunc <- limitFuncAST i' p ch ru
+
+
+    timeDiff <- mkSub [currT, preT]
+    timeDiffTimeRate <- mkMul [timeDiff, ra']
+
+    limAdjEq <- mkAdd [preLim, timeDiffTimeRate]
+
+    limAdjCap <- minAST limAdjEq b'
+
+    limAdjCapMOne <- mkSub [limAdjCap, one]
+
+    -- if pre == Nothing
+    --     then do
+    --         limitI <- limitInitial i'
+    --         assert =<< mkEq limitFunc limitI
+    --     else do
+    limitsEq <- mkEq limitFunc limAdjCapMOne
+    matches <- matchesRule p ch ru
+
+    assert =<< mkImplies matches limitsEq
+
+    limitsEq' <- mkEq limitFunc limAdjCap
+    notMatches <- mkNot matches
+
+    assert =<< mkImplies notMatches limitsEq'
+
+    mkGe limAdjCap one
+    where   --gets the packet and limit before the current packet and limit combination
+            precedingLimit :: [(ChainId, Int)] -> Int -> Int -> Int -> Maybe (Int, ChainId, Int)
+            precedingLimit n 0 c r =
+                let pos = fromJust $ (c, r) `elemIndex` n in
+                    if pos /= 0 then Just (0, fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else Nothing
+            precedingLimit n p' c r =
+                let pos = fromJust $ (c, r) `elemIndex` n in
+                    if pos /= 0 then Just (p', fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else
+                                     Just (p' - 1, fst . last $ n, snd . last $ n)
+
+toSMTCriteria (Not c) n p ch r = do
+    mkNot =<< toSMTCriteria c n p ch r
+toSMTCriteria (Port e (Left i)) _ p _ _ = do
     let s = if e == Source then "source_port" else "destination_port"
     intSort <- mkIntSort
     i' <- mkInt i intSort
     app <- intIntAST s p
     mkEq app i'
-toSMTCriteria (Port e (Right (i, j))) p _ _ = do
+toSMTCriteria (Port e (Right (i, j))) _ p _ _ = do
     let s = if e == Source then "source_port" else "destination_port"
     pSymb <- mkStringSymbol s
     intSort <- mkIntSort
@@ -631,7 +718,7 @@ toSMTCriteria (Port e (Right (i, j))) p _ _ = do
     l' <- mkLe app j' 
 
     mkAnd [l, l']
-toSMTCriteria (Protocol i) p _ _ = do
+toSMTCriteria (Protocol i) _ p _ _ = do
     pSymb <- mkStringSymbol "protocol"
     intSort <- mkIntSort
     i' <- mkInt i intSort
@@ -639,10 +726,8 @@ toSMTCriteria (Protocol i) p _ _ = do
     dec <- mkFuncDecl pSymb [intSort] intSort
     app <- intIntAST "protocol" p
     mkEq app i'
-toSMTCriteria (PropVariableCriteria i) p _ _ = do
-    s <- mkStringSymbol ("v" ++ show i)
-    mkBoolVar s
-toSMTCriteria c _  _ _ = error ("Criteria " ++ show c ++ " not recognized by SMT conversion.")
+toSMTCriteria (PropVariableCriteria i) _ p _ _ = propVariableAST i p
+toSMTCriteria c _ _ _ _ = error ("Criteria " ++ show c ++ " not recognized by SMT conversion.")
 
 enforcePacketsEqual :: AST -> AST -> Z3 ()
 enforcePacketsEqual i j = do
@@ -659,7 +744,10 @@ enforcePacketsEqual i j = do
     intIntEq "destination_port"
 
     intIntEq "protocol"
-    where
+
+    intIntEq "arrival-time"
+
+    where        
         flagEq :: String -> Z3 ()
         flagEq s = do
             flagI <- intBoolAST s i
@@ -686,6 +774,12 @@ enforcePacketsEqual i j = do
             assert =<< mkEq appI appJ
 
 
+enforceLimitsEqual :: AST -> AST -> Z3 ()
+enforceLimitsEqual i j = do
+    li <- limitInitial i
+    lj <- limitInitial j
+
+    assert =<< mkEq li lj
 
 reachabilityRulesChain :: Int -> Chain -> [AST] -> Z3 ()
 reachabilityRulesChain i c pN = do
@@ -719,11 +813,13 @@ convertChainsSMT n packetNum = do
 
     mapM_ (\(i, (_, c')) -> toSMTPathChain c' i 0 packetNum) (toList' n)
 
-    mapM_ (\(i, (_, c')) -> toSMTChain c' i 0 packetNum) (toList' n)
+    mapM_ (\(i, (_, c')) -> toSMTChain c' n i 0 packetNum) (toList' n)
 
     mapM_ (\(i, (_, c')) -> reachabilityRulesChain i c' =<< intSortList [0..(packetNum - 1)] ) (toList' n)
 
     mapM_ (\p -> onlyOneTopLevel p =<< (intSortList . topLevelChains $ n)) =<< intSortList [0..(packetNum - 1)]
+
+    mapM_ (\p -> arrivalTimeNonNegative p) =<< intSortList [0..(packetNum - 1)]
 
     intSort <- mkIntSort
     numOfChains <- mkStringSymbol "num-of-chains"

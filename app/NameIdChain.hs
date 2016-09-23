@@ -1,6 +1,6 @@
 module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupName, lookupEquivalent
     , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
-    increaseIndexes, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, maxId,
+    increaseIds, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, limitIds, maxId,
     maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplification2, pathSimplification2') where
 --This is to convert all jumps/gotos/returns to the type Go Int Int,
 --which also requires appropriately duplicating chains
@@ -25,12 +25,13 @@ data IdNameChain =  INC {addChain :: String -> IdNameChain
                        , namesChains :: [(String, Chain)]
                        , validIds :: [ChainId]
                        , idsWithName :: String -> [ChainId]
-                       , increaseIndexes :: Int -> IdNameChain
+                       , increaseIds :: Int -> IdNameChain
                        , reduceReferenced :: [ChainId] -> IdNameChain
                        , notTopLevelChains :: [ChainId]
                        , topLevelChains :: [ChainId]
                        , topLevelJumpingTo :: [ChainId] -> [ChainId]
                        , limits :: Int -> Maybe [(ChainId, Int)]
+                       , limitIds :: [Int]
                        , maxId :: ChainId
                        , maxLabel :: Label
                        , mergeWithMap :: Map.Map ChainId (String, Chain) -> IdNameChain
@@ -74,12 +75,11 @@ pathSimplification2 m =
         chs = map (snd) (Map.elems m)
         ns = map (fst) (Map.elems m)
         idsName = (\s -> Map.keys $ Map.filter (\x -> s == fst x) m)
-        incr = (\i -> pathSimplification2 $ increaseIndexes' m i)
+        incr = (\i -> pathSimplification2 $ increaseIds' m i)
         redRef = (\i -> pathSimplification2 $ reduceReferenced' m i)
         topJ = (\i -> topLevelJumpingTo' m i)
-        limsMap = limitsMap m
-        lims = trace ("limsMap = " ++ show limsMap) (\i -> Map.lookup i limsMap)
-        mI' = maximum . Map.keys $ m
+        lims = \i -> Map.lookup i (limitsMap m)
+        mI' = maximum (Map.keys m ++ limitIds' m ++ propVariableIds' m)
         mL = maximum . labels $ m
         merge = (\m' -> pathSimplification2 $ Map.union m m')
         u = (\m' -> mergeWithMap m' m)
@@ -97,12 +97,13 @@ pathSimplification2 m =
          , namesChains = Map.elems m
          , validIds = Map.keys m
          , idsWithName = idsName
-         , increaseIndexes = incr
+         , increaseIds = incr
          , reduceReferenced = redRef
          , topLevelChains = topLevelChains' m
          , notTopLevelChains = notTopLevelChains' m
          , topLevelJumpingTo = topJ
          , limits = lims
+         , limitIds = limitIds' m
          , maxId = mI'
          , maxLabel = mL
          , mergeWithMap = merge
@@ -246,17 +247,53 @@ topLevelJumpingTo'' n i = filter (\c -> i `elem` (Map.keys $ reduceReferenced' n
 idsWithName' :: String -> Map.Map ChainId (String, Chain) -> [ChainId]
 idsWithName' s n = Map.keys $ Map.filter (\x -> s == fst x) n
 
-increaseIndexes' :: Map.Map ChainId (String, Chain) -> Int -> Map.Map ChainId (String, Chain)
-increaseIndexes' x j = Map.mapKeys (j +) $ Map.map (\(n, c) -> (n, increaseIndexesChain c j)) x
+increaseIds' :: Map.Map ChainId (String, Chain) -> Int -> Map.Map ChainId (String, Chain)
+increaseIds' x j = Map.mapKeys (j +) $ Map.map (\(n, c) -> (n, increaseIdsChain c j)) x
 
-increaseIndexesChain :: Chain -> Int -> Chain
-increaseIndexesChain [] _ = []
-increaseIndexesChain ((Rule c t l):cx) i = (Rule c (map (flip increaseIndexesTarget i) t) l):increaseIndexesChain cx i
+increaseIdsChain :: Chain -> Int -> Chain
+increaseIdsChain [] _ = []
+increaseIdsChain ((Rule c t l):cx) i = (Rule (map (flip increaseIdsCriteria i) c) (map (flip increaseIdsTarget i) t) l):increaseIdsChain cx i
 
-increaseIndexesTarget :: Target -> Int -> Target
-increaseIndexesTarget (Go c r) i = Go (c + i) r
-increaseIndexesTarget (GoReturn c r) i = GoReturn (c + i) r
-increaseIndexesTarget t _ = t
+increaseIdsCriteria :: Criteria -> Int -> Criteria
+increaseIdsCriteria (Limit j r b) i = Limit (j + i) r b
+increaseIdsCriteria (PropVariableCriteria j) i = PropVariableCriteria (j + i)
+increaseIdsCriteria c _ = c
+
+increaseIdsTarget :: Target -> Int -> Target
+increaseIdsTarget (Go c r) i = Go (c + i) r
+increaseIdsTarget (GoReturn c r) i = GoReturn (c + i) r
+increaseIdsTarget (PropVariableTarget j b) i = PropVariableTarget (j + i) b
+increaseIdsTarget t _ = t
+
+limitIds' :: Map.Map ChainId (String, Chain) -> [Int]
+limitIds' n = concat $ map (limitIdsChain . snd) (Map.elems n)
+
+limitIdsChain :: Chain -> [Int]
+limitIdsChain [] = []
+limitIdsChain ((Rule c _ _):rx) = limitIdsCriteria c ++ limitIdsChain rx
+
+limitIdsCriteria :: [Criteria] -> [Int]
+limitIdsCriteria [] = []
+limitIdsCriteria (Limit i _ _:cx) = i:limitIdsCriteria cx
+limitIdsCriteria (_:cx) = limitIdsCriteria cx
+
+propVariableIds' :: Map.Map ChainId (String, Chain) -> [Int]
+propVariableIds' n = concat $ map (propVariableIdsChain . snd) (Map.elems n)
+
+propVariableIdsChain :: Chain -> [Int]
+propVariableIdsChain [] = []
+propVariableIdsChain ((Rule c t _):rx) = propVariableIdsCriteria c ++ propVariableIdsTarget t  ++ propVariableIdsChain rx
+
+propVariableIdsCriteria :: [Criteria] -> [Int]
+propVariableIdsCriteria [] = []
+propVariableIdsCriteria (PropVariableCriteria i:cx) = i:propVariableIdsCriteria cx
+propVariableIdsCriteria (_:cx) = propVariableIdsCriteria cx
+
+propVariableIdsTarget :: [Target] -> [Int]
+propVariableIdsTarget [] = []
+propVariableIdsTarget (PropVariableTarget i _:cx) = i:propVariableIdsTarget cx
+propVariableIdsTarget (_:cx) = propVariableIdsTarget cx
+
 
 --Given a IdNameChain and a list of ids, returns a new IdNameChain with only the IdNameChain with those ids, and all IdNameChain's that can be reached
 --from one of them through some sequence of Go/GoReturn's

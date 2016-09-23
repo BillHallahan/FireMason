@@ -54,6 +54,23 @@ findRedundantRule''' n c r =
 
         r'' <- solverCheck
 
+
+        -----
+        if r'' == Sat then do
+            m <- solverGetModel
+            return ()
+            dec <- intIntFuncDecl "limit-initial"
+            f <- getFuncInterp m dec
+
+            if isJust f then do
+                let  f' = fromJust f
+                f'' <- getInt =<< funcEntryGetValue =<< funcInterpGetEntry f' 0
+                trace ("f'' = " ++ show f'') return ()
+            else return ()
+            -----
+        else return ()
+
+
         trace ("label = " ++ (show . label $ ch !! r) ++ " c = " ++ (show c) ++ " r = " ++ (show r) ++ " check before = " ++ show check ++ " check after = " ++ show r'') solverPop 1
 
         rs <- findRedundantRule''' n c (r + 1)
