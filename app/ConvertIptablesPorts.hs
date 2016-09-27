@@ -36,7 +36,7 @@ convertUDPRule xs = (Nothing, xs)
 --this will convert a port range, but will return nothing if it is a list of ports
 --this is to prevent conflicts between the rules for tcp and udp, and the rule 
 --for -m multiport
-convertPortRuleNoCommas :: Endpoint -> String -> [String] -> [String] -> (Maybe [Either InputCriteria Target], [String])
+convertPortRuleNoCommas :: Endpoint -> String -> [String] -> [String] -> (Maybe [Either FileCriteria Target], [String])
 convertPortRuleNoCommas name p xs xss = if filter (','==) p == "" then (Just [Left $ portCriteriaFromRangeString p name], xs) else (Nothing, xss)
 
 convertMultiportRule :: ModuleFunc
@@ -45,10 +45,10 @@ convertMultiportRule ("--dport":dps:xs) = (Just $ [Left $ Or (portCriteriaFromNu
 convertMultiportRule ("--port":ps:xs) = (Just $ [Left $ Or (portCriteriaFromNumsRangesString ps Source ++ portCriteriaFromNumsRangesString ps Destination)], xs)
 convertMultiportRule xs = (Nothing, xs)
 
-portCriteriaFromRangeString :: String -> Endpoint -> InputCriteria
+portCriteriaFromRangeString :: String -> Endpoint -> FileCriteria
 portCriteriaFromRangeString ps portName = InC . Port portName $ convertNumRange . splitNonconsuming ":" $ ps
 
-portCriteriaFromNumsRangesString :: String -> Endpoint -> [InputCriteria]
+portCriteriaFromNumsRangesString :: String -> Endpoint -> [FileCriteria]
 portCriteriaFromNumsRangesString ps portName =
     let
         ports = convertNumsRangesString $ ps

@@ -1,7 +1,7 @@
-module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupName, lookupEquivalent
+module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupRule, lookupName, lookupEquivalent
     , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
     increaseIds, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, limitIds, maxId,
-    maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplification2, pathSimplification2') where
+    maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplification) where
 --This is to convert all jumps/gotos/returns to the type Go Int Int,
 --which also requires appropriately duplicating chains
 
@@ -15,6 +15,7 @@ import Debug.Trace
 data IdNameChain =  INC {addChain :: String -> IdNameChain
                        , lookupNameChain :: ChainId -> Maybe (String, Chain)
                        , lookupChain :: ChainId -> Maybe Chain
+                       , lookupRule :: ChainId -> Int -> Maybe Rule
                        , lookupName :: ChainId -> Maybe String
                        , lookupEquivalent :: ChainId -> [ChainId]
                        , allChainEquivalents :: [[ChainId]]
@@ -50,6 +51,8 @@ pathSimplification2 m =
                     pathSimplification2 $ Map.insert (mI' + 1) (s, []) m
             )
         lC = (\i -> pure (snd) <*> Map.lookup i m)
+        lR = (\c i -> case lC c of Just c' -> Just (c' !! i)
+                                   Nothing -> Nothing)
         lN = (\i -> pure (fst) <*> Map.lookup i m)
         lEquiv = 
             (\i -> 
@@ -87,6 +90,7 @@ pathSimplification2 m =
     INC {addChain = add
          , lookupNameChain = (flip Map.lookup) m
          , lookupChain = lC
+         , lookupRule = lR
          , lookupName = lN
          , lookupEquivalent = lEquiv
          , allChainEquivalents = allEquiv
@@ -111,11 +115,11 @@ pathSimplification2 m =
          , toList' = Map.toList m
         }
 
-pathSimplification2' :: Map.Map String Chain -> IdNameChain
-pathSimplification2' m = pathSimplification2 . pathSimplification $ m
+pathSimplification :: Map.Map String Chain -> IdNameChain
+pathSimplification m = pathSimplification2 . pathSimplification'' $ m
 
-pathSimplification :: Map.Map String Chain -> Map.Map ChainId (String, Chain) 
-pathSimplification m =
+pathSimplification'' :: Map.Map String Chain -> Map.Map ChainId (String, Chain) 
+pathSimplification'' m =
     let
         init = map (\s -> (s, MB.fromJust (Map.lookup s m))) ["INPUT", "OUTPUT", "FORWARD"]
     in

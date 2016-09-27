@@ -18,7 +18,7 @@ import ParserHelp
 import Types
 
 
-convertScript :: String -> Map.Map String InputChain
+convertScript :: String -> Map.Map String FileChain
 convertScript coms =
     convertToChains (convertScript' coms) (Map.fromList [("INPUT", []),
                                                          ("OUTPUT", []),
@@ -51,7 +51,7 @@ subBashVariables ((s, i):xsi) m
         in
         (rep, i):subBashVariables xsi m
 
-convertToChains :: [Line] -> Map.Map String InputChain -> Map.Map String InputChain
+convertToChains :: [Line] -> Map.Map String FileChain -> Map.Map String FileChain
 convertToChains l m
     | [] <- l = m
     | New s <- c = convertToChains ls (Map.insert s [] m)
@@ -108,7 +108,7 @@ convertCommand ("-I":chain:num:xs, i) | isInteger num = (Just $ Insert chain (re
 convertCommand ("-N":chain:xs, i) = (Just . New $ chain , xs)
 convertCommand (xs, _) = (Nothing, xs)
 
-convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either InputCriteria Target], [String], Maybe ModuleFunc)
+convertCriteriaOrTarget :: [String] -> [ModuleFunc] -> (Maybe [Either FileCriteria Target], [String], Maybe ModuleFunc)
 convertCriteriaOrTarget ("-d":d:xs) _ = 
     let d' = if '/' `elem` d then d else d ++ "/32" in (Just [ Left . InC . (IPAddress Destination) . toIPRange $ d'], xs, Nothing)
 convertCriteriaOrTarget ("-s":s:xs) _ =

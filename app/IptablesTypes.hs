@@ -6,7 +6,7 @@ import Types
 
 type Table = String
 
-type IptablesRule = InputRule
+type IptablesRule = FileRule
 
 data Line = Line {table :: Table 
                   ,command :: Command

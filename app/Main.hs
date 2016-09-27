@@ -13,7 +13,7 @@ import Criterion.Measurement
 import Types
 import ConvertIptables
 import ConvertToHorn
-import CriteriaPrereqAddition
+import ExampleAdjustment
 import InstructionsToIptables
 import ParseSpecificationLanguage
 import RuleAdding
@@ -44,7 +44,7 @@ main = do
     putStrLn . show $ converted'
 
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
-    let pathSimp = pathSimplification2' converted
+    let pathSimp = pathSimplification converted
 
 
     putStrLn $ "limit 5" ++ show (limits pathSimp 5)
@@ -55,25 +55,29 @@ main = do
 
     changes <- readFile changesFileName
 
-    let rulesToAdd = (flip inputInstructionsToInstructions 0) . parse . lexer $ changes
+    let rulesToAdd = exampleInstructionsToExamples . parse . lexer $ changes
 
     let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd
 
-    addedPos <- instructionsToAddAtPos rulesToAdd' pathSimp
+    let rulesToAdd'' = map (instruction) rulesToAdd'
+
+    inconsistent <- findInconsistencies rulesToAdd'
+
+    putStrLn $ "\n\n\nInconsistent = " ++ show inconsistent
+
+    addedPos <- instructionsToAddAtPos rulesToAdd'' pathSimp
 
     let addedToIp = addToIptables addedPos pathSimp contents
 
 
     let converted2' = Map.toList . convertScript $ addedToIp
     let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0 
-    let pathSimp2 = pathSimplification2' converted2
+    let pathSimp2 = pathSimplification converted2
 
-    putStrLn "Before redundant"
 
     redundant <- trace (show . toList' $ pathSimp2) $ findRedundantRule pathSimp2
     let commentedInIp = commentOutRules redundant addedToIp
 
-    --writeFile outputScriptName addedToIp
     writeFile outputScriptName commentedInIp
 
     end <- getTime
@@ -82,4 +86,4 @@ main = do
     printf $ "Computation time: " ++ diff ++ "\n"
 
     
-    printf $ (show redundant) ++ "\n" 
+    printf $ (show redundant) ++ "\n"

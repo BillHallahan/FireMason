@@ -14,7 +14,7 @@ convertLimitRule xs =
         r' = if isJust r then fromJust r else 3 * 60 * 60
         b' = if isJust b then fromJust b else 5
     in
-    if isJust r || isJust b then (Just [Left $ InCLimit r' b'], xs') else (Nothing, xs')
+    if isJust r || isJust b then (Just [Left . Ext . InCLimit r' $ b'], xs') else (Nothing, xs')
 
 convertLimitRule' :: [String] -> (Maybe Int, Maybe Int, [String])
 convertLimitRule' [] = (Nothing, Nothing, [])

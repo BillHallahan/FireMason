@@ -626,7 +626,7 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
     let same = fromJust $ limits n i
     pInt <- getInt p
     chInt <- getInt ch
-    ruInt <-getInt ru
+    ruInt <- getInt ru
 
     let pre = precedingLimit same (fromIntegral pInt) (fromIntegral chInt) (fromIntegral ruInt)
 
@@ -645,17 +645,23 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
 
     assert =<< mkGe limInit zero
 
-    let (preP, preCh, preR) = if pre == Nothing then (0 ,-1, -1) else fromJust pre --THIS IS BAD- VALUES SET WRONG- FIX
-    preP' <- mkInt preP intSort
-    preCh' <- mkInt preCh intSort
-    preR' <- mkInt preR intSort 
+    (preLim, preT) <- if pre == Nothing 
+                    then do
+                        lim <- limitInitial i'
+                        return (lim, zero)
+                    else do
+                        let (preP, preCh, preR) = fromJust pre
+                        preP' <- mkInt preP intSort
+                        preCh' <- mkInt preCh intSort
+                        preR' <- mkInt preR intSort 
 
-    preT <- if pre == Nothing then mkInt 0 intSort else arrivalTime(preP')
-    currT <- arrivalTime(p)
+                        lim <- limitFuncAST i' preP' preCh' preR'
+                        aT <- arrivalTime(preP')
+                        return (lim, aT)
 
-
-    preLim <- if pre == Nothing then limitInitial i' else limitFuncAST i' preP' preCh' preR'
     limitFunc <- limitFuncAST i' p ch ru
+
+    currT <- arrivalTime(p)
 
 
     timeDiff <- mkSub [currT, preT]
@@ -667,11 +673,6 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
 
     limAdjCapMOne <- mkSub [limAdjCap, one]
 
-    -- if pre == Nothing
-    --     then do
-    --         limitI <- limitInitial i'
-    --         assert =<< mkEq limitFunc limitI
-    --     else do
     limitsEq <- mkEq limitFunc limAdjCapMOne
     matches <- matchesRule p ch ru
 

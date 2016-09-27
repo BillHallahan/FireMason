@@ -20,7 +20,8 @@ import Data.String.ToString
 
 import Data.Word
 
-type InputChain = [InputRule]
+type InputChain a = [InputRule a]
+type FileChain = [FileRule]
 type Chain = [Rule]
 
 type ChainId = Int
@@ -103,11 +104,18 @@ ipToWord (IPv6 i) = Right $ foldl accum 0 (map fromIntegral (fromIPv6 i))
 
 data Endpoint = Source | Destination deriving (Eq, Show)
 
-data InputCriteria = InC Criteria
-                     | InCLimit Int Int
-                     | InCNot InputCriteria
-                     | And [InputCriteria]
-                     | Or [InputCriteria] deriving (Eq, Show)
+data InputCriteria a = InC Criteria
+                     | Ext a
+                     | InCNot (InputCriteria a)
+                     | And [InputCriteria a]
+                     | Or [InputCriteria a] deriving (Eq, Show)
+
+data LimitInput = InCLimit Int Int deriving (Eq, Show)
+
+type FileCriteria = InputCriteria LimitInput 
+
+type ExampleCriteria = InputCriteria State
+
 
 
 data Target = Jump String
@@ -120,22 +128,20 @@ data Target = Jump String
               | PropVariableTarget Int Bool
               | ST String deriving (Eq, Show)
 
+data State = Time Seconds deriving (Eq, Show)
+
 targetsToChainIds :: [Target] -> [ChainId]
 targetsToChainIds [] = []
 targetsToChainIds ((Go ch r):tx) = ch:targetsToChainIds tx
 targetsToChainIds ((GoReturn ch r):tx) = ch:targetsToChainIds tx
 targetsToChainIds (t:tx) = targetsToChainIds tx 
 
---data NameIdChain = NameIdChain {
---                            name ::String
---                            , ids :: Int
---                            , chain :: Chain
---                            } deriving (Eq, Show)
 
+type Seconds = Int
+data Example = Example {instruction :: Instruction, state :: [State]}
 
-
-type InputInstruction = SynthInstruction InputRule
-type Instruction = SynthInstruction Rule
+exampleToRule :: Example -> Rule
+exampleToRule e = insRule . instruction $ e
 
 
 data SynthInstruction r = ToChainNamed {chainName :: String
@@ -143,9 +149,16 @@ data SynthInstruction r = ToChainNamed {chainName :: String
                           | NoInstruction {insRule :: r} deriving (Eq, Show)
 
 
+type FileInstruction = SynthInstruction FileRule
+type ExampleInstruction = SynthInstruction ExampleRule
+type InputInstruction a = SynthInstruction (InputRule a)
+type Instruction = SynthInstruction Rule
+
 type Label = Int
 
-type InputRule = GenRule InputCriteria
+type ExampleRule = GenRule ExampleCriteria
+type InputRule a = GenRule (InputCriteria a)
+type FileRule = GenRule FileCriteria
 type Rule = GenRule Criteria
 
 data GenRule crit = Rule { criteria :: [crit]
@@ -153,7 +166,7 @@ data GenRule crit = Rule { criteria :: [crit]
                    ,label :: Label
                  } deriving (Eq, Show)
 
-eitherToRule :: Either InputCriteria Target -> InputRule
+eitherToRule :: Either FileCriteria Target -> FileRule
 eitherToRule (Left c) = Rule [c] [] (-1)
 eitherToRule (Right t) = Rule [] [t] (-1)
 
@@ -161,12 +174,12 @@ instance Monoid Rule where
     mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
     Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2}
 
-instance Monoid InputRule where
+instance Monoid (InputRule a) where
     mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
     Rule c1 t1 l1 `mappend` Rule c2 t2 l2= Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2}
 
 
-type ModuleFunc = [String] -> (Maybe [Either InputCriteria Target], [String])
+type ModuleFunc = [String] -> (Maybe [Either FileCriteria Target], [String])
 
 
 instance ToString Int where

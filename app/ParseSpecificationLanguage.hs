@@ -27,28 +27,29 @@ lexer s
         afterSpaces = dropWhile isSpace s
         (nextTerm, afterTerm) = span ((flip elem) ('.':'-':'_':'/':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
 
-parse :: [String] -> [InputInstruction]
+parse :: [String] -> [ExampleInstruction]
 parse s =
     let
         instrCon = map parseInstruction (splitOn [","] s)
+        instrCon' = map (\((s, f), i)-> (s, f, i)) (zip instrCon [0..])
     in 
-    map (\(x, sCon) -> sCon . parseRule $ x) instrCon--map parseRule (splitOn [","] s)
+    map (\(x, sCon, l) -> sCon (parseRule x l)) instrCon'--map parseRule (splitOn [","] s)
 
-parseInstruction :: [String] -> ([String], InputRule -> InputInstruction)
+parseInstruction :: [String] -> ([String], ExampleRule -> ExampleInstruction)
 parseInstruction ("acl":c:":":xs) = (xs, ToChainNamed c)
 parseInstruction xs = (xs, NoInstruction)
 
-parseRule :: [String] -> InputRule
-parseRule s =
+parseRule :: [String] -> Label -> ExampleRule
+parseRule s l =
     let
         (c, t) = break ("=>" == ) s
     in
-    Rule (parseSpecificationCriteria c) (if not . null $ t then parseSpecificationTarget $ tail t else []) (-1)
+    Rule (parseSpecificationCriteria c) (if not . null $ t then parseSpecificationTarget $ tail t else []) l
 
 isConjunction :: String -> Bool
 isConjunction s = s `elem` ["AND", "OR"]
 
-toConjunction :: String -> Maybe ([InputCriteria] -> InputCriteria)
+toConjunction :: String -> Maybe ([ExampleCriteria] -> ExampleCriteria)
 toConjunction "AND" = Just And
 toConjunction "OR" = Just Or
 toConjunction _ = Nothing
@@ -56,14 +57,14 @@ toConjunction _ = Nothing
 --Returns Nothing if passed an empty list, or the conjunction corresponding
 --to "AND" or "OR" at the head of the list, if that exists
 --if the list has elements, and the first is not valid, errors
-conjunctionAtFront :: [String] -> Maybe ([InputCriteria] -> InputCriteria)
+conjunctionAtFront :: [String] -> Maybe ([ExampleCriteria] -> ExampleCriteria)
 conjunctionAtFront [] = Nothing
 conjunctionAtFront s =  if isConjunction (head s) then 
                             toConjunction (head s)
                         else
                             error ("Invalid: " ++ (head s))
 
-parseSpecificationCriteria :: [String] -> [InputCriteria]
+parseSpecificationCriteria :: [String] -> [ExampleCriteria]
 parseSpecificationCriteria s
     | [] <- s = []
     | ("(":xs) <-s =
@@ -80,13 +81,13 @@ parseSpecificationCriteria s
         in
         if isJust conj then [fromJust conj $ c:(parseSpecificationCriteria $ tail xs)] else [c]
 
-parseSpecificationCriteria' :: [String] -> (InputCriteria, [String])
+parseSpecificationCriteria' :: [String] -> (ExampleCriteria, [String])
 parseSpecificationCriteria' s
     | ("NOT":xs) <- s =
         let
             (next, xs') = parseSpecificationCriteria' xs
         in
-        (InCNot next, xs')
+        (InCNot $ next, xs')
     | ("protocol":"=":p:xs) <- s =
         let
             p' = if isInteger p then (read p :: Int) else error "Invalid protocol"
@@ -106,6 +107,11 @@ parseSpecificationCriteria' s
         let di' = if '/' `elem` di then di else di ++ "/32" in (InC . (IPAddress Destination) . toIPRange $ di', xs)
     | ("source_ip":"=":di:xs) <- s =
         let di' = if '/' `elem` di then di else di ++ "/32" in (InC . (IPAddress Source) . toIPRange $ di', xs)
+    | ("time":"=":t:xs) <- s =
+        let
+            t' = if isInteger t then (read t :: Int) else error "Invalid time"
+        in
+        (Ext . Time $ t', xs)
     | (head s) `elem` (Map.keys stringsToFlags) = (InC . fromJust $ Map.lookup (head s) stringsToFlags, tail s)
     | otherwise = (InC . SC $ concat s, [])
 
