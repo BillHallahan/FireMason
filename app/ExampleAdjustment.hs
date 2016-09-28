@@ -1,4 +1,4 @@
-module ExampleAdjustment (criteriaPrereqAddition, findInconsistencies) where
+module ExampleAdjustment (criteriaPrereqAddition, findInconsistentRules) where
 
 import Data.List
 import qualified Data.Map as Map
@@ -25,12 +25,13 @@ criteriaPrereqAddition' (NoInstruction r) = map (NoInstruction) (criteriaPrereqA
 --Asserts that there is a chain with instructions to add two rules that are simultaneously
 --satisfiable, and tries to find them
 --Returns a list of chains, labels for 2 rules that are contradictory
-findInconsistencies :: [Example] -> IO [(ChainId, Int, Int)]
-findInconsistencies rs = do
-    evalZ3 . findInconsistencies' $ map (instruction) rs
+--Only considers the examples instructions, not the state!
+findInconsistentRules :: [Example] -> IO [(ChainId, Int, Int)]
+findInconsistentRules rs = do
+    evalZ3 . findInconsistentRules' $ map (instruction) rs
 
-findInconsistencies' :: [Instruction] -> Z3 [(ChainId, Int, Int)]
-findInconsistencies' rs = do
+findInconsistentRules' :: [Instruction] -> Z3 [(ChainId, Int, Int)]
+findInconsistentRules' rs = do
     let rs' = pathSimplification . toRules $ rs
     trace ("\n\n\n" ++ (show . toList' $ rs')) convertChainsSMT rs' 1
 
@@ -63,7 +64,7 @@ findInconsistencies' rs = do
 
     assert =<< mkAnd [matches1, matches2, differentTargets]
 
-    findInconsistencies'' rs rs'
+    findInconsistentRules'' rs rs'
     where
         toRules :: [Instruction] -> Map.Map String Chain
         toRules [] = Map.fromList []
@@ -75,11 +76,11 @@ findInconsistencies' rs = do
             Map.insert n (r:existing) m
         toRules (_:xs) = toRules xs
 
---helps findInconsistencies', by actually running the check.  Returns the list if unsat,
+--helps findInconsistentRules', by actually running the check.  Returns the list if unsat,
 --if sat extracts the simultaneously satisfiable rules from the model, asserts that the chain
 --and rules in question are not them, and continues searching 
-findInconsistencies'' :: [Instruction] -> IdNameChain -> Z3 [(ChainId, Int, Int)]
-findInconsistencies'' rs n = do
+findInconsistentRules'' :: [Instruction] -> IdNameChain -> Z3 [(ChainId, Int, Int)]
+findInconsistentRules'' rs n = do
     (_, m) <- solverCheckAndGetModel
 
     if isJust m
@@ -121,17 +122,21 @@ findInconsistencies'' rs n = do
                 r2Neq' <- mkNot =<< mkEq r2 r1Int
                 assert =<< mkOr [chNeq, r1Neq', r2Neq']
 
-                rs' <- findInconsistencies'' rs n
+                rs' <- findInconsistentRules'' rs n
 
-                let r1Label = case lookupRule n ch'' r1'' of Just r1''' -> label r1'''
-                                                             Nothing -> error "Error - inconsistency detected with nonexisting rule."
-                let r2Label = case lookupRule n ch'' r2'' of Just r2''' -> label r2'''
-                                                             Nothing -> error "Error - inconsistency detected with nonexisting rule."
+                let r1Label = chainRuleToLabel n ch'' r1''
+                let r2Label = chainRuleToLabel n ch'' r2''
 
                 --return ((ch'', r1'', r2''):rs')
                 return ((ch'', r1Label, r2Label):rs')
             else return []
         else return []
+
+chainRuleToLabel :: IdNameChain -> ChainId -> Int -> Label
+chainRuleToLabel n ch r = case lookupRule n ch r of Just r' -> label r'
+                                                    Nothing -> error "Error - inconsistency detected with nonexisting rule."
+
+--Given a list of 
 
 criteriaPrereqAdditionRule :: Rule -> [Rule]
 criteriaPrereqAdditionRule (Rule c t i) = map (\c' -> Rule c' t i) $ criteriaPrereqAdditionCriteriaList c c

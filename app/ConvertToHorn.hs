@@ -2,25 +2,27 @@ module ConvertToHorn (stringInputChainsToStringChains, inputInstructionTypeConve
 
 import Types
 
-type ElimExt a = a -> Int -> (Maybe Criteria, [Rule], Int)
-type ElimOr a = ElimExt a -> [InputCriteria a] -> Int -> ([[Criteria]], [Rule], Int)
+import Debug.Trace
+
+type ElimExt a b = a -> Int -> ((Maybe Criteria), [Rule], Int, [b])
+type ElimOr a b = ElimExt a b -> [InputCriteria a] -> Int -> ([([Criteria], [b])], [Rule], Int)
 
 stringInputChainsToStringChains :: [(String, FileChain)] -> Int -> [(String, Chain)]
 stringInputChainsToStringChains [] _ = []
 stringInputChainsToStringChains ((s, c):sc) j = 
     let
-        c' = inputChainToChain (eliminateOrPropVar) (eliminateLimits) c j
+        c' = map (fst) $ inputChainToChain (eliminateOrPropVar) (eliminateLimits) c j
     in
     (s, c'):stringInputChainsToStringChains sc (j + length c')--Adding length c' is sufficient to ensure no
                                                                --collisions, but will skip some numbers, this is fine
 
-inputChainToChain :: ElimOr a -> ElimExt a -> [InputRule a] -> Int -> [Rule]
+inputChainToChain :: (Show a, Show b) =>ElimOr a b -> ElimExt a b -> [InputRule a] -> Int -> [(Rule, [b])]
 inputChainToChain _ _ [] _ = []
 inputChainToChain elim elimE (r:rs) i = 
     let
-    (newC, newR, i') = inputCriteriaToCriteria (elim) (elimE) (criteria r) i
-    r' = map (\c -> Rule c (targets r) (label r)) newC
-    newR' = map (\r'' -> Rule (criteria r'') (targets r'') (label r)) newR
+    (newCS, newR, i') = inputCriteriaToCriteria (elim) (elimE) (criteria r) i
+    r' = map (\(c, s) -> (Rule c (targets r) (label r), s)) newCS
+    newR' = map (\r'' -> (Rule (criteria r'') (targets r'') (label r), [])) newR 
     in
     newR' ++ r' ++ (inputChainToChain (elim) (elimE) rs (i + i' + length newR))
 
@@ -36,14 +38,14 @@ condenseOr [] = []
 condenseOr (Or c:cx) = (condenseOr c) ++ condenseOr cx
 condenseOr (c:cx) = c:condenseOr cx
 
-eliminateLimits :: ElimExt LimitInput
-eliminateLimits (InCLimit r b) i = (Just . Limit i r $ b, [] , i + 1)
+eliminateLimits :: ElimExt LimitInput Int
+eliminateLimits (InCLimit r b) i = (Just . Limit i r $ b, [] , i + 1, [])
 
-eliminateState :: ElimExt State
-eliminateState _ i = (Nothing, [], i)
+eliminateState :: ElimExt State State
+eliminateState s i = (Nothing, [], i, [s])
 
 --This should be called only on the [InputCriteria] in an Or
-eliminateOr :: ElimOr a
+eliminateOr :: (Show a, Show b) => ElimOr a b
 eliminateOr _ [] i = ([], [], i)
 eliminateOr elimE (c:cx) i =
     let
@@ -52,19 +54,19 @@ eliminateOr elimE (c:cx) i =
     in
     (c' ++ c'', r ++ r', i'')
 
-eliminateOrPropVar :: ElimOr a
+eliminateOrPropVar ::(Show a, Show b) => ElimOr a b
 eliminateOrPropVar _ [] _ = ([], [], -1)
 eliminateOrPropVar elimE cx i =
     let
         (c', r, i') = inputCriteriaToCriteria (eliminateOrPropVar) (elimE) cx i
-        c'' = concat c'
+        c'' = concat . map (fst) $ c'
         r' = map (\ct -> Rule [ct] [PropVariableTarget i' True] (-1)) c''
         r'' = Rule (map (\ct -> Not ct) (c'')) [PropVariableTarget i' False] (-1)
     in
-    ([[PropVariableCriteria i']], r'':r ++ r', i' + 1)
+    ([([PropVariableCriteria i'], [])], r'':r ++ r', i' + 1)
 
-inputCriteriaToCriteria :: ElimOr a -> ElimExt a -> [InputCriteria a] -> Int -> ([[Criteria]], [Rule], Int)
-inputCriteriaToCriteria _  _ [] i = ([[]], [], i)
+inputCriteriaToCriteria :: (Show a, Show b) => ElimOr a b -> ElimExt a b -> [InputCriteria a] -> Int -> ([([Criteria], [b])], [Rule], Int)
+inputCriteriaToCriteria _  _ [] i = ([([], [])], [], i)
 inputCriteriaToCriteria elim elimE (And c: cx) i = inputCriteriaToCriteria (elim) (elimE) ((condenseAnd c) ++ cx) i
 inputCriteriaToCriteria elim elimE (Or c:cx) i = 
     let
@@ -76,16 +78,16 @@ inputCriteriaToCriteria elim elimE (InCNot (InC c):cx) i =
     let
         (c'', r', i') =  inputCriteriaToCriteria (elim) (elimE) cx i
     in
-    (map (Not c:) c'', r', i')
+    (map (\(c''', s) -> (Not c:c''', s)) c'', r', i')
 inputCriteriaToCriteria elim elimE (InCNot c:cx) i = inputCriteriaToCriteria elim (elimE) ((simplifyNots [InCNot c]) ++ cx) i
 inputCriteriaToCriteria elim elimE (c':cx) i = 
     let
-        (c, r'', i') = case c' of InC c2 -> (Just c2, [], i)
-                                  Ext a -> elimE a i--Ext (InCLimit r b) -> (Limit i r b, i + 1)
-        (c'', r', i'') =  inputCriteriaToCriteria elim (elimE) cx i'
+        (c, r'', i', b') = case c' of InC c2 -> (Just c2, [], i, [])
+                                      Ext a' -> trace ("EXT " ++ show a') $ elimE a' i--Ext (InCLimit r b) -> (Limit i r b, i + 1)
+        (c'', r', i'') = inputCriteriaToCriteria elim (elimE) cx i'
     in
-    case c of Just c'''' -> (map (c'''':) c'', r'' ++ r', i'')
-              Nothing -> (c'', r'' ++ r', i'')
+    case c of Just c'''' -> trace ("AFTER EXT 1 = " ++ show b') (map (\(c2, s) -> (c'''':c2, b' ++ s)) c'', r'' ++ r', i'')
+              Nothing -> trace ("AFTER EXT 2 = " ++ show b') (map (\(c''', s) -> (c''', b' ++ s)) c'', r'' ++ r', i'')
     
 
 
@@ -107,51 +109,26 @@ simplifyNots (InCNot (InCNot c):cx) = simplifyNots (c:cx)
 simplifyNots (c:cx) = c:simplifyNots cx
 
 
--- inputInstructionsToInstructions :: [InputInstruction a] -> Int -> [Instruction]
--- inputInstructionsToInstructions x i = map (snd) (inputInstructionsToInsNumInstructions x i)
-
--- inputInstructionsToInsNumInstructions :: [InputInstruction a] -> Int -> [(Int, Instruction)]
--- inputInstructionsToInsNumInstructions x i = map (\(i', ex) -> (i', instruction ex)) (inputInstructionsToInsNumExamples x i)
-
--- inputInstructionsToExamples :: [ExampleInstruction] -> Int -> [Example]
--- inputInstructionsToExamples x i = map (snd) (inputInstructionsToInsNumExamples x i)
-
--- inputInstructionsToInsNumExamples :: [ExampleInstruction] -> Int -> [(Int, Example)]
--- inputInstructionsToInsNumExamples x i = inputInstructionsToInsNumExamples' x i 0
-
--- inputInstructionsToInsNumExamples' :: [ExampleInstruction] -> Int -> Int -> [(Int, Example)]
--- inputInstructionsToInsNumExamples' [] _ _ = []
--- inputInstructionsToInsNumExamples' ((ToChainNamed s r):xs) i j =
---     let
---          rules = map ((,) j) $ map (\r' -> Example {instruction = ToChainNamed s $ r'}) (inputChainToChain (eliminateOr) (eliminateState) [r] i)
---     in
---     rules ++ inputInstructionsToInsNumExamples' xs (i + length rules) (j + 1)
--- inputInstructionsToInsNumExamples' ((NoInstruction r):xs) i j =
---     let
---         rules = map ((,) j) $ map (\r' -> Example {instruction =  NoInstruction $ r'}) (inputChainToChain (eliminateOr) (eliminateState) [r] i)
---     in
---     rules ++ inputInstructionsToInsNumExamples' xs (i + length rules) (j + 1)
-
 fileInstructionsToInstruction :: [FileInstruction] -> [Instruction]
-fileInstructionsToInstruction xs = inputInstructionTypeConversion (eliminateOrPropVar) (eliminateLimits) (\x -> id) xs
+fileInstructionsToInstruction xs = inputInstructionTypeConversion (eliminateOrPropVar) (eliminateLimits) (\x -> fst) xs
 
 exampleInstructionsToExamples :: [ExampleInstruction] -> [Example]
 exampleInstructionsToExamples xs = inputInstructionTypeConversion (eliminateOr) (eliminateState) (insToExample) xs
-    where insToExample :: ExampleInstruction -> Instruction -> Example
-          insToExample e i = Example {instruction = i, state = []}
+    where insToExample :: ExampleInstruction -> (Instruction, [State]) -> Example
+          insToExample e i = Example {instruction = fst i, state = snd i}
 
-inputInstructionTypeConversion :: ElimOr a -> ElimExt a -> (InputInstruction a -> Instruction -> b) -> [InputInstruction a] -> [b]
+inputInstructionTypeConversion :: (Show a, Show c) => ElimOr a c -> ElimExt a c -> (InputInstruction a -> (Instruction, [c]) -> b) -> [InputInstruction a] -> [b]
 inputInstructionTypeConversion elimOr elimExt con xs = inputInstructionTypeConversion' (elimOr) (elimExt) con xs 0
 
-inputInstructionTypeConversion' :: ElimOr a -> ElimExt a -> (InputInstruction a -> Instruction -> b) -> [InputInstruction a] -> Int -> [b]
+inputInstructionTypeConversion' ::(Show a, Show c) => ElimOr a c -> ElimExt a c -> (InputInstruction a -> (Instruction, [c]) -> b) -> [InputInstruction a] -> Int -> [b]
 inputInstructionTypeConversion' _ _ _ [] _ = []
 inputInstructionTypeConversion' elimOr elimExt con  ((ToChainNamed s r):xs) i = 
     let
-        ins = map (ToChainNamed s) (inputChainToChain (elimOr) (elimExt) [r] i)
+        ins = map (\(ru, st) -> (ToChainNamed s ru, st)) (inputChainToChain (elimOr) (elimExt) [r] i)
     in
     (map (con (ToChainNamed s r)) ins) ++ inputInstructionTypeConversion' (elimOr) (elimExt) (con) xs (i + 1)
 inputInstructionTypeConversion' elimOr elimExt con ((NoInstruction r):xs) i =
     let
-        ins = map (NoInstruction) (inputChainToChain (elimOr) (elimExt) [r] i)
+        ins = map (\(ru, st) -> (NoInstruction ru, st)) (inputChainToChain (elimOr) (elimExt) [r] i)
     in
     (map (con (NoInstruction r)) ins) ++ inputInstructionTypeConversion' (elimOr) (elimExt) (con) xs (i + 1)

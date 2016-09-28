@@ -57,11 +57,13 @@ main = do
 
     let rulesToAdd = exampleInstructionsToExamples . parse . lexer $ changes
 
+    putStrLn $ "\n\n\n\n\ntoAdd = " ++ show rulesToAdd
+
     let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd
 
     let rulesToAdd'' = map (instruction) rulesToAdd'
 
-    inconsistent <- findInconsistencies rulesToAdd'
+    inconsistent <- findInconsistentRules rulesToAdd'
 
     putStrLn $ "\n\n\nInconsistent = " ++ show inconsistent
 

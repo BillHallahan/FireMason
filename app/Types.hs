@@ -23,6 +23,7 @@ import Data.Word
 type InputChain a = [InputRule a]
 type FileChain = [FileRule]
 type Chain = [Rule]
+type ExampleChain = [Example]
 
 type ChainId = Int
 
@@ -138,7 +139,7 @@ targetsToChainIds (t:tx) = targetsToChainIds tx
 
 
 type Seconds = Int
-data Example = Example {instruction :: Instruction, state :: [State]}
+data Example = Example {instruction :: Instruction, state :: [State]} deriving (Eq, Show)
 
 exampleToRule :: Example -> Rule
 exampleToRule e = insRule . instruction $ e
