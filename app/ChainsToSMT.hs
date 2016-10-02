@@ -495,7 +495,7 @@ intSortList s = do
     intSort <- mkIntSort
     sequence (map (\x -> mkInt x intSort) s)
 
-toSMTPathChain :: Chain -> Int -> Int -> Int -> Z3 ()
+toSMTPathChain :: Chain -> ChainId -> RuleInd -> Int -> Z3 ()
 toSMTPathChain [] ch r pN = return ()
 toSMTPathChain (c:cx) ch r pN = do
     intSort <- mkIntSort
@@ -579,7 +579,7 @@ toSMTPathTarget (PropVariableTarget i b) ch r pN = do
 
 toSMTPath t _ _ _ = error "Target " ++ show t ++ " not recognized."
 
-toSMTChain :: Chain -> IdNameChain -> Int -> Int -> Int -> Z3 ()
+toSMTChain :: Chain -> IdNameChain -> ChainId -> RuleInd -> Int -> Z3 ()
 toSMTChain [] _ _ _ _ = return ()
 toSMTChain (c:cx) n ch r pN = do
     intSort <- mkIntSort

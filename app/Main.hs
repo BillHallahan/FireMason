@@ -25,7 +25,6 @@ import NameIdChain--temp
 import RuleEliminating
 
 
-import Debug.Trace
 
 main = do
     initializeTime
@@ -44,40 +43,47 @@ main = do
     putStrLn . show $ converted'
 
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
-    let pathSimp = pathSimplification converted
+    let pathSimp = pathSimplificationChains converted
 
 
-    putStrLn $ "limit 5" ++ show (limits pathSimp 5)
-
-    putStrLn "pathSimp = "
 
     putStrLn . show . toList'$ pathSimp
 
     changes <- readFile changesFileName
 
-    let rulesToAdd = exampleInstructionsToExamples . parse . lexer $ changes
+    let rulesToAdd = parse . lexer $ changes
+    let rulesToAdd2 = exampleRuleInstructionsToExamplesInstructions rulesToAdd
 
     putStrLn $ "\n\n\n\n\ntoAdd = " ++ show rulesToAdd
 
-    let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd
+    let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd2
 
-    let rulesToAdd'' = map (instruction) rulesToAdd'
+    let rulesToAdd'' = map (\i -> case i of ToChainNamed n e -> ToChainNamed n . exRule $ e
+                                            NoInstruction e -> NoInstruction . exRule $ e) rulesToAdd'--THIS IS TEMPORARY AND NEEDS TO BE CHANGED TO ELIMINATE STATE
 
     inconsistent <- findInconsistentRules rulesToAdd'
 
-    putStrLn $ "\n\n\nInconsistent = " ++ show inconsistent
+    let rulesToAddMap = exMap rulesToAdd'
+
+    let inconsistentINC = pathSimplificationExamples rulesToAddMap
+
+    let inconsistentEx = map (\(ch, r1, r2) -> (find (\ins -> (label . insRule $ ins) == r1) rulesToAdd, find (\ins -> (label . insRule $ ins) == r2) rulesToAdd)) inconsistent
+
+    putStrLn . foldr (++) "" . map (\r -> "Example\n" ++ (show . fst $ r) ++ "\nis inconsistent with\n" ++ (show . snd $ r) ++ "\n\n") $ inconsistentEx
 
     addedPos <- instructionsToAddAtPos rulesToAdd'' pathSimp
 
     let addedToIp = addToIptables addedPos pathSimp contents
 
 
+    putStrLn addedToIp
+
     let converted2' = Map.toList . convertScript $ addedToIp
     let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0 
-    let pathSimp2 = pathSimplification converted2
+    let pathSimp2 = pathSimplificationChains converted2
 
 
-    redundant <- trace (show . toList' $ pathSimp2) $ findRedundantRule pathSimp2
+    redundant <- findRedundantRule pathSimp2
     let commentedInIp = commentOutRules redundant addedToIp
 
     writeFile outputScriptName commentedInIp
@@ -89,3 +95,14 @@ main = do
 
     
     printf $ (show redundant) ++ "\n"
+
+    where
+        exMap :: [ExampleInstruction] -> Map.Map String ExampleChain
+        exMap [] = Map.fromList []
+        exMap (ToChainNamed n e:xs) = 
+            let
+                m = exMap xs
+                existing = Map.findWithDefault [] n m
+            in
+            Map.insert n (e:existing) m
+        exMap (_:xs) = exMap xs

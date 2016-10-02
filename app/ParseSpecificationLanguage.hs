@@ -27,7 +27,7 @@ lexer s
         afterSpaces = dropWhile isSpace s
         (nextTerm, afterTerm) = span ((flip elem) ('.':'-':'_':'/':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
 
-parse :: [String] -> [ExampleInstruction]
+parse :: [String] -> [ExampleRuleInstruction]
 parse s =
     let
         instrCon = map parseInstruction (splitOn [","] s)
@@ -35,7 +35,7 @@ parse s =
     in 
     map (\(x, sCon, l) -> sCon (parseRule x l)) instrCon'--map parseRule (splitOn [","] s)
 
-parseInstruction :: [String] -> ([String], ExampleRule -> ExampleInstruction)
+parseInstruction :: [String] -> ([String], ExampleRule -> ExampleRuleInstruction)
 parseInstruction ("acl":c:":":xs) = (xs, ToChainNamed c)
 parseInstruction xs = (xs, NoInstruction)
 

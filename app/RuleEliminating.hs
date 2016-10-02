@@ -8,15 +8,15 @@ import NameIdChain
 import Types
 
 --returns a list of chain names and rule numbers (in terms of labels) which should be removed 
-findRedundantRule :: IdNameChain -> IO [(String, Int)]
+findRedundantRule :: IdNameChain -> IO [(String, Label)]
 findRedundantRule n = evalZ3 . findRedundantRule' $ n
 
-findRedundantRule':: IdNameChain -> Z3 [(String, Int)]
+findRedundantRule':: IdNameChain -> Z3 [(String, Label)]
 findRedundantRule' n = do
     convertChainsSMT n 1
     findRedundantRule'' n (allChainEquivalents n)
 
-findRedundantRule'' :: IdNameChain -> [[ChainId]] -> Z3 [(String, Int)]
+findRedundantRule'' :: IdNameChain -> [[ChainId]] -> Z3 [(String, Label)]
 findRedundantRule'' _ [] = return []
 findRedundantRule'' n (c:cs) = do
 
@@ -57,7 +57,7 @@ findRedundantRule''' n c r =
 
         if r'' == Sat then return (rs) else return (rLabel:rs)
     where 
-          matchesRule' :: AST -> Int -> Int -> Z3 AST
+          matchesRule' :: AST -> ChainId -> RuleInd -> Z3 AST
           matchesRule' p1 c1 r1 = do
             intSort <- mkIntSort
             c1' <- mkInt c1 intSort

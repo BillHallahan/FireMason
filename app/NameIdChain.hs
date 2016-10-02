@@ -1,7 +1,7 @@
-module NameIdChain (IdNameChain, addChain, lookupNameChain, lookupChain, lookupRule, lookupName, lookupEquivalent
+module NameIdChain (IdNameChain, IdNameChainType, addChain, accessRules, lookupNameChain, lookupChain, lookupRule, lookupName, lookupEquivalent
     , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
     increaseIds, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, limitIds, maxId,
-    maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplification) where
+    maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplificationChains, pathSimplificationExamples, pathSimplification) where
 --This is to convert all jumps/gotos/returns to the type Go Int Int,
 --which also requires appropriately duplicating chains
 
@@ -9,8 +9,6 @@ import Data.List
 import qualified Data.Map.Strict as Map
 import qualified Data.Maybe as MB
 import Types
-
-import Debug.Trace
 
 data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                                , accessRules :: ct -> Rule
@@ -21,7 +19,7 @@ data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                                , lookupEquivalent :: ChainId -> [ChainId]
                                , allChainEquivalents :: [[ChainId]]
                                , switchChains :: ([ct] -> [ct]) -> ChainId -> IdNameChainType ct
-                               , addRuleToChains :: ct -> ChainId -> Int -> IdNameChainType ct
+                               , addRuleToChains :: ct -> ChainId -> RuleInd -> IdNameChainType ct
                                , chains :: [[ct]]
                                , names :: [String]
                                , namesChains :: [(String, [ct])]
@@ -42,16 +40,17 @@ data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                             }
 
 type IdNameChain = IdNameChainType Rule
+type IdNameExample = IdNameChainType ExampleRule
 
-pathSimplification2 :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> IdNameChainType r
-pathSimplification2 accessR m =
+idNameChainCons :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> IdNameChainType r
+idNameChainCons accessR m =
     let
         add = 
             (\s ->
                 if s `elem` ns then
                     error "Can't insert a new chain with an existing name"
                 else
-                    pathSimplification2 accessR $ Map.insert (mI' + 1) (s, []) m
+                    idNameChainCons accessR $ Map.insert (mI' + 1) (s, []) m
             )
         lC = (\i -> pure (snd) <*> Map.lookup i m)
         lR = (\c i -> case lC c of Just c' -> Just (c' !! i)
@@ -70,10 +69,10 @@ pathSimplification2 accessR m =
                     equiv = lEquiv i
                     m'' = foldr (\i' l -> Map.adjust (\(s, c) -> (s, f c)) i' l) m equiv
                 in
-                pathSimplification2 accessR m''
+                idNameChainCons accessR m''
             )
         addR = let
-                    addRule :: r -> Int -> [r] -> [r]
+                    addRule :: r -> RuleInd -> [r] -> [r]
                     addRule r i c = let (c', c'') = splitAt i c in c' ++ r:c''
                 in
                 (\r' ch i' ->  sC (addRule r' i') ch)
@@ -81,13 +80,13 @@ pathSimplification2 accessR m =
         chs = map (snd) (Map.elems m)
         ns = map (fst) (Map.elems m)
         idsName = (\s -> Map.keys $ Map.filter (\x -> s == fst x) m)
-        incr = (\i -> pathSimplification2 (id) $ increaseIds' accessR m i)
-        redRef = (\i -> pathSimplification2 accessR $ reduceReferenced' accessR m i)
+        incr = (\i -> idNameChainCons (id) $ increaseIds' accessR m i)
+        redRef = (\i -> idNameChainCons accessR $ reduceReferenced' accessR m i)
         topJ = (\i -> topLevelJumpingTo' accessR m i)
         lims = \i -> Map.lookup i (limitsMap accessR m)
         mI' = maximum (Map.keys m ++ limitIds' accessR m ++ propVariableIds' accessR m)
         mL = maximum . labels accessR $ m
-        merge = (\m' -> pathSimplification2 accessR $ Map.union m m')
+        merge = (\m' -> idNameChainCons accessR $ Map.union m m')
         u = (\m' -> mergeWithMap m' m)
     in
     INC {addChain = add
@@ -119,57 +118,62 @@ pathSimplification2 accessR m =
          , toList' = Map.toList m
         }
 
-pathSimplification :: Map.Map String Chain -> IdNameChain
-pathSimplification m = pathSimplification2 (id) . pathSimplification'' $ m
+pathSimplificationChains :: Map.Map String Chain -> IdNameChain
+pathSimplificationChains m = pathSimplification (id) (\_ -> id) m
 
-pathSimplification'' :: Map.Map String Chain -> Map.Map ChainId (String, Chain) 
-pathSimplification'' m =
+pathSimplificationExamples :: Map.Map String ExampleChain -> IdNameChainType Example
+pathSimplificationExamples m = pathSimplification (exRule) (\e r -> modifyEx e r) m
+    where
+        modifyEx :: Example -> Rule -> Example
+        modifyEx (Example _ s) r = Example r s
+
+pathSimplification :: (ct -> Rule) -> (ct -> Rule -> ct) -> Map.Map String [ct] -> IdNameChainType ct
+pathSimplification acc rev m = 
     let
         init = map (\s -> (s, MB.fromJust (Map.lookup s m))) ["INPUT", "OUTPUT", "FORWARD"]
     in
-    pathSimplification' init m 0
+    idNameChainCons (acc) . pathSimplification' acc rev init m $ 0
 
-
-pathSimplification' :: [(String, Chain)] -> Map.Map String Chain -> ChainId -> Map.Map ChainId (String, Chain)
-pathSimplification' [] _ _ = Map.empty
-pathSimplification' ((s, c):cx) m ch =
+pathSimplification' :: (ct -> Rule) -> (ct -> Rule -> ct) -> [(String, [ct])] -> Map.Map String [ct] -> ChainId -> Map.Map ChainId (String, [ct])
+pathSimplification' _ _ [] _ _ = Map.empty
+pathSimplification' acc rev ((s, c):cx) m ch =
     let
-        (simplified, newChains) = pathSimplificationChain c m ch 0
-        newMap = Map.insert ch (s, simplified) (pathSimplification' cx m (ch + 1 + length newChains))
+        (simplified, newChains) = pathSimplificationChain acc rev c m ch 0
+        newMap = Map.insert ch (s, simplified) (pathSimplification' acc rev cx m (ch + 1 + length newChains))
     in
     Map.union newChains newMap
 
-pathSimplificationChain :: Chain -> Map.Map String Chain -> ChainId-> Int -> (Chain, Map.Map ChainId (String, Chain))
-pathSimplificationChain [] _ _ _ = ([], Map.empty)
-pathSimplificationChain (r:rx) m ch ru =
+pathSimplificationChain :: (ct -> Rule)  -> (ct -> Rule -> ct) -> [ct] -> Map.Map String [ct] -> ChainId -> RuleInd -> ([ct], Map.Map ChainId (String, [ct]))
+pathSimplificationChain _  _[] _ _ _ = ([], Map.empty)
+pathSimplificationChain acc rev (r:rx) m ch ru =
     let
-        (c, ic) = pathSimplificationChain rx m ch (ru + 1)
-        (newTargets, ic') = pathSimplificationTargets (targets r) m (ch + length ic) ru 
+        (c, ic) = pathSimplificationChain acc rev rx m ch (ru + 1)
+        (newTargets, ic') = pathSimplificationTargets acc rev (targets . acc $ r) m (ch + length ic) ru 
     in
-    ((Rule (criteria r) newTargets (label r)):c, Map.union ic ic')
+    ((rev r . Rule (criteria . acc $ r) newTargets $ (label . acc $ r)):c, Map.union ic ic')
 
 
-pathSimplificationTargets :: [Target] -> Map.Map String Chain -> ChainId -> Int  -> ([Target], Map.Map ChainId (String, Chain))
-pathSimplificationTargets [] _ _ _ = ([], Map.empty)
-pathSimplificationTargets (t:ts) m ch r =
+pathSimplificationTargets :: (ct -> Rule)  -> (ct -> Rule -> ct) -> [Target] -> Map.Map String [ct] -> ChainId -> RuleInd  -> ([Target], Map.Map ChainId (String, [ct]))
+pathSimplificationTargets _ _ [] _ _ _ = ([], Map.empty)
+pathSimplificationTargets acc rev (t:ts) m ch r =
     let
-        (t', ic) = pathSimplificationTarget t m ch r
-        (t'', ic') = pathSimplificationTargets ts m (ch + length ic) r
+        (t', ic) = pathSimplificationTarget acc rev t m ch r
+        (t'', ic') = pathSimplificationTargets acc rev ts m (ch + length ic) r
     in
     (t':t'', Map.union ic ic')
 
-pathSimplificationTarget :: Target -> Map.Map String Chain -> ChainId -> Int -> (Target, Map.Map ChainId (String, Chain))
-pathSimplificationTarget (Jump j) m ch _ = 
+pathSimplificationTarget :: (ct -> Rule)  -> (ct -> Rule -> ct) -> Target -> Map.Map String [ct] -> ChainId -> RuleInd -> (Target, Map.Map ChainId (String, [ct]))
+pathSimplificationTarget acc rev (Jump j) m ch _ = 
     let
         chain = MB.fromJust (Map.lookup j m) 
     in
-        (Go (ch + 1) 0, pathSimplification' [(j, chain)] m (ch + 1))
-pathSimplificationTarget (GoTo g) m ch _ = 
+        (Go (ch + 1) 0, pathSimplification' acc rev [(j, chain)] m (ch + 1))
+pathSimplificationTarget acc rev (GoTo g) m ch _ = 
     let
         chain = MB.fromJust (Map.lookup g m) 
     in
-        (GoReturn (ch + 1) 0, pathSimplification' [(g, chain)] m (ch + 1))
-pathSimplificationTarget t _ _ _ = (t, Map.empty)
+        (GoReturn (ch + 1) 0, pathSimplification' acc rev [(g, chain)] m (ch + 1))
+pathSimplificationTarget _ _ t _ _ _ = (t, Map.empty)
 
 labels :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> [Label]
 labels acc n = map (label) $ concat (map (map acc . snd) (Map.elems n))

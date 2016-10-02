@@ -13,16 +13,14 @@ import Z3.Monad
 import Types
 import NameIdChain
 import ChainsToSMT
-import Debug.Trace
 
-
-addRulesToIdNameChain :: [(Rule, String, Int)] -> IdNameChain -> IdNameChain
+addRulesToIdNameChain :: [(Rule, String, Label)] -> IdNameChain -> IdNameChain
 addRulesToIdNameChain [] n = n
 addRulesToIdNameChain ((r, s, i):xs) n = 
     let withName = idsWithName n s in addRulesToIdNameChain xs (addRuleToChains n r (head withName) i) 
 
 --Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions (in terms of labels) at which they should be added
-instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Int)]
+instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Label)]
 instructionsToAddAtPos [] n = return []
 instructionsToAddAtPos (ToChainNamed s r:xs) n = 
     do
@@ -36,19 +34,19 @@ instructionsToAddAtPos (ToChainNamed s r:xs) n =
         let ch' = fromJust $ lookupChain n (head withName)
         let l = if not . null $ ch' then label $ ch' !! cutR else maxLabel n
         let r' = Rule (criteria r) (targets r) l
-        let cutCh' = addRuleToChains n r' (head withName) cutR--switchChains n (\c-> addRuleToChainAtPos r' c cutR) (head . idsWithName n $ cutCName)
+        let cutCh' = addRuleToChains n r' (head withName) cutR
 
         instr <- instructionsToAddAtPos xs cutCh'
         
         return $ (r', cutCName, l):instr
 instructionsToAddAtPos (x:xs) _ = error ("Unrecognized instruction " ++ show x)
 
-findBestPointCut :: Rule -> ChainId -> IdNameChain -> IO (ChainId, Int)
+findBestPointCut :: Rule -> ChainId -> IdNameChain -> IO (ChainId, RuleInd)
 findBestPointCut r i n = findBestPointCut' r i n n
 
 --We cut chains shorter in n' as we determine that certain positions are too deep to insert the new rule
 --We use n to always be able to evaluate the new rule with the whole chain
-findBestPointCut' :: Rule -> ChainId -> IdNameChain -> IdNameChain -> IO (ChainId, Int)
+findBestPointCut' :: Rule -> ChainId -> IdNameChain -> IdNameChain -> IO (ChainId, RuleInd)
 findBestPointCut' r i n n' =
     let
         nameU = fromJust $ lookupName n i
@@ -77,7 +75,7 @@ findBestPointCut' r i n n' =
     do
         (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
 
-        viewModel <- trace (show . toList' $ relevant) $ if isJust model then evalZ3 . showModel . fromJust $ model else return ""
+        viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
 
         if checking == Unsat then return (i', cut) else findBestPointCut' r i n shortened
@@ -143,7 +141,7 @@ checkRuleImpact r n n' top idsU = do
 
 --Returns the Name, one Id for, and position of the best (as determined by a similarity heuristic) place to insert the given rule in/below the
 --chain with the given id in the IdNameChain
-findPointCut :: Rule -> ChainId -> IdNameChain -> (ChainId, Int, Int)
+findPointCut :: Rule -> ChainId -> IdNameChain -> (ChainId, RuleInd, Int)
 findPointCut r i n = 
     let
         c = fromJust $ lookupChain n i--fromJust $ Map.lookup i n

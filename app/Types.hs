@@ -26,6 +26,7 @@ type Chain = [Rule]
 type ExampleChain = [Example]
 
 type ChainId = Int
+type RuleInd = Int
 
 data Criteria = BoolFlag Flag
                 | IPAddress Endpoint IPRange
@@ -106,10 +107,10 @@ ipToWord (IPv6 i) = Right $ foldl accum 0 (map fromIntegral (fromIPv6 i))
 data Endpoint = Source | Destination deriving (Eq, Show)
 
 data InputCriteria a = InC Criteria
-                     | Ext a
-                     | InCNot (InputCriteria a)
-                     | And [InputCriteria a]
-                     | Or [InputCriteria a] deriving (Eq, Show)
+                       | Ext a
+                       | InCNot (InputCriteria a)
+                       | And [InputCriteria a]
+                       | Or [InputCriteria a] deriving (Eq, Show)
 
 data LimitInput = InCLimit Int Int deriving (Eq, Show)
 
@@ -121,8 +122,8 @@ type ExampleCriteria = InputCriteria State
 
 data Target = Jump String
               | GoTo String
-              | Go ChainId Int
-              | GoReturn ChainId Int
+              | Go ChainId RuleInd
+              | GoReturn ChainId RuleInd
               | ACCEPT
               | DROP
               | RETURN
@@ -139,10 +140,7 @@ targetsToChainIds (t:tx) = targetsToChainIds tx
 
 
 type Seconds = Int
-data Example = Example {instruction :: Instruction, state :: [State]} deriving (Eq, Show)
-
-exampleToRule :: Example -> Rule
-exampleToRule e = insRule . instruction $ e
+data Example = Example {exRule :: Rule, state :: [State]} deriving (Eq, Show)
 
 
 data SynthInstruction r = ToChainNamed {chainName :: String
@@ -151,7 +149,8 @@ data SynthInstruction r = ToChainNamed {chainName :: String
 
 
 type FileInstruction = SynthInstruction FileRule
-type ExampleInstruction = SynthInstruction ExampleRule
+type ExampleInstruction = SynthInstruction Example
+type ExampleRuleInstruction = SynthInstruction ExampleRule
 type InputInstruction a = SynthInstruction (InputRule a)
 type Instruction = SynthInstruction Rule
 

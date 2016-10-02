@@ -1,8 +1,6 @@
-module ConvertToHorn (stringInputChainsToStringChains, inputInstructionTypeConversion, exampleInstructionsToExamples) where --inputInstructionsToInstructions, inputInstructionsToExamples, inputInstructionsToInsNumExamples) where
+module ConvertToHorn (stringInputChainsToStringChains, inputInstructionTypeConversion, exampleRuleInstructionsToExamplesInstructions) where --inputInstructionsToInstructions, inputInstructionsToExamples, inputInstructionsToInsNumExamples) where
 
 import Types
-
-import Debug.Trace
 
 type ElimExt a b = a -> Int -> ((Maybe Criteria), [Rule], Int, [b])
 type ElimOr a b = ElimExt a b -> [InputCriteria a] -> Int -> ([([Criteria], [b])], [Rule], Int)
@@ -83,11 +81,11 @@ inputCriteriaToCriteria elim elimE (InCNot c:cx) i = inputCriteriaToCriteria eli
 inputCriteriaToCriteria elim elimE (c':cx) i = 
     let
         (c, r'', i', b') = case c' of InC c2 -> (Just c2, [], i, [])
-                                      Ext a' -> trace ("EXT " ++ show a') $ elimE a' i--Ext (InCLimit r b) -> (Limit i r b, i + 1)
+                                      Ext a' -> elimE a' i
         (c'', r', i'') = inputCriteriaToCriteria elim (elimE) cx i'
     in
-    case c of Just c'''' -> trace ("AFTER EXT 1 = " ++ show b') (map (\(c2, s) -> (c'''':c2, b' ++ s)) c'', r'' ++ r', i'')
-              Nothing -> trace ("AFTER EXT 2 = " ++ show b') (map (\(c''', s) -> (c''', b' ++ s)) c'', r'' ++ r', i'')
+    case c of Just c'''' -> (map (\(c2, s) -> (c'''':c2, b' ++ s)) c'', r'' ++ r', i'')
+              Nothing ->  (map (\(c''', s) -> (c''', b' ++ s)) c'', r'' ++ r', i'')
     
 
 
@@ -112,10 +110,11 @@ simplifyNots (c:cx) = c:simplifyNots cx
 fileInstructionsToInstruction :: [FileInstruction] -> [Instruction]
 fileInstructionsToInstruction xs = inputInstructionTypeConversion (eliminateOrPropVar) (eliminateLimits) (\x -> fst) xs
 
-exampleInstructionsToExamples :: [ExampleInstruction] -> [Example]
-exampleInstructionsToExamples xs = inputInstructionTypeConversion (eliminateOr) (eliminateState) (insToExample) xs
-    where insToExample :: ExampleInstruction -> (Instruction, [State]) -> Example
-          insToExample e i = Example {instruction = fst i, state = snd i}
+exampleRuleInstructionsToExamplesInstructions :: [ExampleRuleInstruction] -> [ExampleInstruction]
+exampleRuleInstructionsToExamplesInstructions xs = inputInstructionTypeConversion (eliminateOr) (eliminateState) (insToExample) xs
+    where insToExample :: ExampleRuleInstruction -> (Instruction, [State]) -> ExampleInstruction
+          insToExample e (ToChainNamed n r, s) = ToChainNamed {chainName = n, insRule = Example {exRule = r, state = s}}
+          insToExample e (NoInstruction r, s) = NoInstruction {insRule = Example {exRule = r, state = s}}
 
 inputInstructionTypeConversion :: (Show a, Show c) => ElimOr a c -> ElimExt a c -> (InputInstruction a -> (Instruction, [c]) -> b) -> [InputInstruction a] -> [b]
 inputInstructionTypeConversion elimOr elimExt con xs = inputInstructionTypeConversion' (elimOr) (elimExt) con xs 0

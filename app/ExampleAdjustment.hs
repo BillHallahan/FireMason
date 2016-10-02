@@ -10,30 +10,18 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
-import Debug.Trace
-
---Responsible for adding criteria to a rule that other criteria in that rule depending on
---for example, ports only make sense in iptables if specifying compatible protocol 
-
-criteriaPrereqAddition :: Example -> [Example]
-criteriaPrereqAddition e = map (\i -> Example i (state e)) $ criteriaPrereqAddition' (instruction e)
-
-criteriaPrereqAddition' :: Instruction -> [Instruction]
-criteriaPrereqAddition' (ToChainNamed n r) = map (ToChainNamed n) (criteriaPrereqAdditionRule r)
-criteriaPrereqAddition' (NoInstruction r) = map (NoInstruction) (criteriaPrereqAdditionRule r)
-
 --Asserts that there is a chain with instructions to add two rules that are simultaneously
 --satisfiable, and tries to find them
 --Returns a list of chains, labels for 2 rules that are contradictory
 --Only considers the examples instructions, not the state!
-findInconsistentRules :: [Example] -> IO [(ChainId, Int, Int)]
+findInconsistentRules :: [ExampleInstruction] -> IO [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules rs = do
-    evalZ3 . findInconsistentRules' $ map (instruction) rs
+    evalZ3 . findInconsistentRules' $ rs
 
-findInconsistentRules' :: [Instruction] -> Z3 [(ChainId, Int, Int)]
+findInconsistentRules' :: [ExampleInstruction] -> Z3 [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules' rs = do
-    let rs' = pathSimplification . toRules $ rs
-    trace ("\n\n\n" ++ (show . toList' $ rs')) convertChainsSMT rs' 1
+    let rs' = pathSimplificationChains . toRules $ rs
+    convertChainsSMT rs' 1
 
     intSort <- mkIntSort
 
@@ -66,20 +54,20 @@ findInconsistentRules' rs = do
 
     findInconsistentRules'' rs rs'
     where
-        toRules :: [Instruction] -> Map.Map String Chain
+        toRules :: [ExampleInstruction] -> Map.Map String Chain
         toRules [] = Map.fromList []
-        toRules (ToChainNamed n r:xs) = 
+        toRules (ToChainNamed n e:xs) = 
             let
                 m = toRules xs
                 existing = Map.findWithDefault [] n m
             in
-            Map.insert n (r:existing) m
+            Map.insert n (exRule e:existing) m
         toRules (_:xs) = toRules xs
 
 --helps findInconsistentRules', by actually running the check.  Returns the list if unsat,
 --if sat extracts the simultaneously satisfiable rules from the model, asserts that the chain
 --and rules in question are not them, and continues searching 
-findInconsistentRules'' :: [Instruction] -> IdNameChain -> Z3 [(ChainId, Int, Int)]
+findInconsistentRules'' :: [ExampleInstruction] -> IdNameChainType ct -> Z3 [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules'' rs n = do
     (_, m) <- solverCheckAndGetModel
 
@@ -132,11 +120,17 @@ findInconsistentRules'' rs n = do
             else return []
         else return []
 
-chainRuleToLabel :: IdNameChain -> ChainId -> Int -> Label
-chainRuleToLabel n ch r = case lookupRule n ch r of Just r' -> label r'
+chainRuleToLabel :: IdNameChainType ct -> ChainId -> RuleInd -> Label
+chainRuleToLabel n ch r = case lookupRule n ch r of Just r' -> label . accessRules n $ r'
                                                     Nothing -> error "Error - inconsistency detected with nonexisting rule."
 
---Given a list of 
+
+--Responsible for adding criteria to a rule that other criteria in that rule depending on
+--for example, ports only make sense in iptables if specifying compatible protocol 
+
+criteriaPrereqAddition :: ExampleInstruction -> [ExampleInstruction]
+criteriaPrereqAddition (ToChainNamed n e) = map (\r' -> ToChainNamed n (Example {exRule = r', state = state e})) (criteriaPrereqAdditionRule . exRule $ e)
+criteriaPrereqAddition (NoInstruction e) = map (\r' -> NoInstruction (Example {exRule = r', state = state e})) (criteriaPrereqAdditionRule . exRule $ e)
 
 criteriaPrereqAdditionRule :: Rule -> [Rule]
 criteriaPrereqAdditionRule (Rule c t i) = map (\c' -> Rule c' t i) $ criteriaPrereqAdditionCriteriaList c c
