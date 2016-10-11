@@ -622,8 +622,10 @@ toSMTCriteria (IPAddress e i) _ p _ _ = do
                             dec <- mkFuncDecl pSymb [intSort] bitSort
                             app <- mkApp dec [p]
                             mkEq b =<< mkBvand app m
-toSMTCriteria (Limit i ra b) n p ch ru = do
-    let same = fromJust $ limits n i
+toSMTCriteria (Limit i ra b s) n p ch ru = do
+    let same = case limits n i of
+                    Just l -> l
+                    Nothing -> error "Limit in criteria but no information in NameIdChain"
     pInt <- getInt p
     chInt <- getInt ch
     ruInt <- getInt ru
@@ -635,6 +637,7 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
     i' <- mkInt i intSort
     b' <- mkInt b intSort
     ra' <- mkInt ra intSort
+    s' <- mkInt s intSort
 
     zero <- mkInt 0 intSort
     one <- mkInt 1 intSort
@@ -645,12 +648,8 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
 
     assert =<< mkGe limInit zero
 
-    (preLim, preT) <- if pre == Nothing 
-                    then do
-                        lim <- limitInitial i'
-                        return (lim, zero)
-                    else do
-                        let (preP, preCh, preR) = fromJust pre
+    (preLim, preT) <- case pre of
+                    Just (preP, preCh, preR) -> do
                         preP' <- mkInt preP intSort
                         preCh' <- mkInt preCh intSort
                         preR' <- mkInt preR intSort 
@@ -658,6 +657,9 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
                         lim <- limitFuncAST i' preP' preCh' preR'
                         aT <- arrivalTime(preP')
                         return (lim, aT)
+                    Nothing ->  do
+                        lim <- limitInitial i'
+                        return (lim, zero)
 
     limitFunc <- limitFuncAST i' p ch ru
 
@@ -671,9 +673,9 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
 
     limAdjCap <- minAST limAdjEq b'
 
-    limAdjCapMOne <- mkSub [limAdjCap, one]
+    limAdjCapMSub <- mkSub [limAdjCap, s']
 
-    limitsEq <- mkEq limitFunc limAdjCapMOne
+    limitsEq <- mkEq limitFunc limAdjCapMSub
     matches <- matchesRule p ch ru
 
     assert =<< mkImplies matches limitsEq
@@ -683,14 +685,22 @@ toSMTCriteria (Limit i ra b) n p ch ru = do
 
     assert =<< mkImplies notMatches limitsEq'
 
-    mkGe limAdjCap one
+    mkGe limAdjCap s'
     where   --gets the packet and limit before the current packet and limit combination
             precedingLimit :: [(ChainId, Int)] -> Int -> Int -> Int -> Maybe (Int, ChainId, Int)
             precedingLimit n 0 c r =
-                let pos = fromJust $ (c, r) `elemIndex` n in
+                let 
+                    pos = case (c, r) `elemIndex` n of
+                                Just pos' -> pos'
+                                Nothing -> error "Must have information on the limit"
+                in
                     if pos /= 0 then Just (0, fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else Nothing
             precedingLimit n p' c r =
-                let pos = fromJust $ (c, r) `elemIndex` n in
+                let 
+                    pos = case (c, r) `elemIndex` n of
+                                Just pos' -> pos'
+                                Nothing -> error "Must have information on the limit"
+                in
                     if pos /= 0 then Just (p', fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else
                                      Just (p' - 1, fst . last $ n, snd . last $ n)
 

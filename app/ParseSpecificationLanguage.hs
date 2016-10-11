@@ -21,6 +21,7 @@ lexer s
     | ')':xs <- afterSpaces = ")":lexer xs
     | ':':xs <- afterSpaces = ":":lexer xs
     | ',':xs <- afterSpaces = ",":lexer xs
+    | '#':xs <- afterSpaces = lexer . dropWhile (/= '\n') $ xs
     | length nextTerm >= 1 = nextTerm:lexer afterTerm
     | otherwise = error $ "Unrecognized pattern " ++ s ++ afterTerm
     where

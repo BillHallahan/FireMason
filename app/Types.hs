@@ -30,11 +30,12 @@ type RuleInd = Int
 
 data Criteria = BoolFlag Flag
                 | IPAddress Endpoint IPRange
-                | Limit Int Int Int --Id SubId Rate Burst
+                | Limit Int Int Int Int--Id SubId Rate Burst Sub
                         --The Id relates multiple limits that draw from the same
                         --source, SubId indicates a single limit instance split
                         --between multiple rules, more than one of which could
                         --be matched, but which only should be drawn from once
+                        --Sub is the amount to subtract each time the rule is matched
                 | Not Criteria
                 | Port Endpoint (Either Int (Int, Int))
                 | PropVariableCriteria Int
@@ -76,7 +77,7 @@ flagsToStrings' = Map.fromList [(SYN, "SYN")
 isStateless :: Criteria -> Bool
 isStateless (BoolFlag _) = True
 isStateless (IPAddress _ _) = True
-isStateless (Limit _ _ _) = False
+isStateless (Limit _ _ _ _) = False
 isStateless (Not c) = isStateless c
 isStateless (Port _ _) = True
 isStateless (Protocol _) = True
@@ -112,7 +113,7 @@ data InputCriteria a = InC Criteria
                        | And [InputCriteria a]
                        | Or [InputCriteria a] deriving (Eq, Show)
 
-data LimitInput = InCLimit Int Int deriving (Eq, Show)
+data LimitInput = InCLimit Int Int Int deriving (Eq, Show)
 
 type FileCriteria = InputCriteria LimitInput 
 

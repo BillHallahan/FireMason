@@ -7,7 +7,7 @@ type ElimOr a b = ElimExt a b -> [InputCriteria a] -> Int -> ([([Criteria], [b])
 
 stringInputChainsToStringChains :: [(String, FileChain)] -> Int -> [(String, Chain)]
 stringInputChainsToStringChains [] _ = []
-stringInputChainsToStringChains ((s, c):sc) j = 
+stringInputChainsToStringChains ((s, c):sc) j =
     let
         c' = map (fst) $ inputChainToChain (eliminateOrPropVar) (eliminateLimits) c j
     in
@@ -16,11 +16,11 @@ stringInputChainsToStringChains ((s, c):sc) j =
 
 inputChainToChain :: (Show a, Show b) =>ElimOr a b -> ElimExt a b -> [InputRule a] -> Int -> [(Rule, [b])]
 inputChainToChain _ _ [] _ = []
-inputChainToChain elim elimE (r:rs) i = 
+inputChainToChain elim elimE (r:rs) i =
     let
     (newCS, newR, i') = inputCriteriaToCriteria (elim) (elimE) (criteria r) i
     r' = map (\(c, s) -> (Rule c (targets r) (label r), s)) newCS
-    newR' = map (\r'' -> (Rule (criteria r'') (targets r'') (label r), [])) newR 
+    newR' = map (\r'' -> (Rule (criteria r'') (targets r'') (label r), [])) newR
     in
     newR' ++ r' ++ (inputChainToChain (elim) (elimE) rs (i + i' + length newR))
 
@@ -37,7 +37,7 @@ condenseOr (Or c:cx) = (condenseOr c) ++ condenseOr cx
 condenseOr (c:cx) = c:condenseOr cx
 
 eliminateLimits :: ElimExt LimitInput Int
-eliminateLimits (InCLimit r b) i = (Just . Limit i r $ b, [] , i + 1, [])
+eliminateLimits (InCLimit r b s) i = (Just . Limit i r b $ s, [] , i + 1, [])
 
 eliminateState :: ElimExt State State
 eliminateState s i = (Nothing, [], i, [s])
@@ -66,19 +66,19 @@ eliminateOrPropVar elimE cx i =
 inputCriteriaToCriteria :: (Show a, Show b) => ElimOr a b -> ElimExt a b -> [InputCriteria a] -> Int -> ([([Criteria], [b])], [Rule], Int)
 inputCriteriaToCriteria _  _ [] i = ([([], [])], [], i)
 inputCriteriaToCriteria elim elimE (And c: cx) i = inputCriteriaToCriteria (elim) (elimE) ((condenseAnd c) ++ cx) i
-inputCriteriaToCriteria elim elimE (Or c:cx) i = 
+inputCriteriaToCriteria elim elimE (Or c:cx) i =
     let
         (c', r, i') = elim (elimE) (condenseOr $ c) i
         (c'', r', i'') = inputCriteriaToCriteria (elim) (elimE) cx (i')
     in
     ((mappend) <$> c' <*> c'', r ++ r', i'')
-inputCriteriaToCriteria elim elimE (InCNot (InC c):cx) i = 
+inputCriteriaToCriteria elim elimE (InCNot (InC c):cx) i =
     let
         (c'', r', i') =  inputCriteriaToCriteria (elim) (elimE) cx i
     in
     (map (\(c''', s) -> (Not c:c''', s)) c'', r', i')
 inputCriteriaToCriteria elim elimE (InCNot c:cx) i = inputCriteriaToCriteria elim (elimE) ((simplifyNots [InCNot c]) ++ cx) i
-inputCriteriaToCriteria elim elimE (c':cx) i = 
+inputCriteriaToCriteria elim elimE (c':cx) i =
     let
         (c, r'', i', b') = case c' of InC c2 -> (Just c2, [], i, [])
                                       Ext a' -> elimE a' i
@@ -86,7 +86,7 @@ inputCriteriaToCriteria elim elimE (c':cx) i =
     in
     case c of Just c'''' -> (map (\(c2, s) -> (c'''':c2, b' ++ s)) c'', r'' ++ r', i'')
               Nothing ->  (map (\(c''', s) -> (c''', b' ++ s)) c'', r'' ++ r', i'')
-    
+
 
 
 --Moves all Nots as deep into the criteria as possible,
@@ -98,7 +98,7 @@ simplifyNots (InCNot (And c):cx) =
         notted = map (InCNot) c
     in
     Or (simplifyNots $ notted):simplifyNots cx
-simplifyNots (InCNot (Or c):cx) = 
+simplifyNots (InCNot (Or c):cx) =
     let
         notted = map (InCNot) c
     in
@@ -121,7 +121,7 @@ inputInstructionTypeConversion elimOr elimExt con xs = inputInstructionTypeConve
 
 inputInstructionTypeConversion' ::(Show a, Show c) => ElimOr a c -> ElimExt a c -> (InputInstruction a -> (Instruction, [c]) -> b) -> [InputInstruction a] -> Int -> [b]
 inputInstructionTypeConversion' _ _ _ [] _ = []
-inputInstructionTypeConversion' elimOr elimExt con  ((ToChainNamed s r):xs) i = 
+inputInstructionTypeConversion' elimOr elimExt con  ((ToChainNamed s r):xs) i =
     let
         ins = map (\(ru, st) -> (ToChainNamed s ru, st)) (inputChainToChain (elimOr) (elimExt) [r] i)
     in

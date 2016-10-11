@@ -7,7 +7,7 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
---returns a list of chain names and rule numbers (in terms of labels) which should be removed 
+--returns a list of chain names and rule numbers (in terms of labels) which should be removed
 findRedundantRule :: IdNameChain -> IO [(String, Label)]
 findRedundantRule n = evalZ3 . findRedundantRule' $ n
 
@@ -56,7 +56,7 @@ findRedundantRule''' n c r =
         rs <- findRedundantRule''' n c (r + 1)
 
         if r'' == Sat then return (rs) else return (rLabel:rs)
-    where 
+    where
           matchesRule' :: AST -> ChainId -> RuleInd -> Z3 AST
           matchesRule' p1 c1 r1 = do
             intSort <- mkIntSort

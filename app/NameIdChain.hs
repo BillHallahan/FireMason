@@ -130,7 +130,7 @@ pathSimplificationExamples m = pathSimplification (exRule) (\e r -> modifyEx e r
 pathSimplification :: (ct -> Rule) -> (ct -> Rule -> ct) -> Map.Map String [ct] -> IdNameChainType ct
 pathSimplification acc rev m = 
     let
-        init = map (\s -> (s, MB.fromJust (Map.lookup s m))) ["INPUT", "OUTPUT", "FORWARD"]
+        init = map (\s -> (s, Map.findWithDefault [] s m)) ["INPUT", "OUTPUT", "FORWARD"]
     in
     idNameChainCons (acc) . pathSimplification' acc rev init m $ 0
 
@@ -228,8 +228,8 @@ limitsMapRules acc n i ((r'', r'):rs) =
 
 limitsMapCriteria :: Map.Map ChainId (String, [r]) ->  ChainId -> Int -> [Criteria] -> Map.Map Int [(ChainId, Int)]
 limitsMapCriteria _ _ _ [] = Map.fromList []
-limitsMapCriteria n ch r' (Limit i _ _ :cs) = Map.unionWith (++) (Map.fromList [(i, [(ch, r')])]) (limitsMapCriteria n ch r' cs)
-limitsMapCriteria n ch r' (Not (Limit i _ _) :cs) = Map.unionWith (++) (Map.fromList [(i, [(ch, r')])]) (limitsMapCriteria n ch r' cs)
+limitsMapCriteria n ch r' ((Limit i _ _ _) :cs) = Map.unionWith (++) (Map.fromList [(i, [(ch, r')])]) (limitsMapCriteria n ch r' cs)
+limitsMapCriteria n ch r' (Not (Limit i _ _ _) :cs) = Map.unionWith (++) (Map.fromList [(i, [(ch, r')])]) (limitsMapCriteria n ch r' cs)
 limitsMapCriteria n ch r' (_:cs) = limitsMapCriteria n ch r' cs
 
 limitsMapTargets :: (r -> Rule) -> Map.Map ChainId (String, [r]) ->  ChainId -> Int -> [Target] -> Map.Map Int [(ChainId, Int)]
@@ -267,7 +267,7 @@ increaseIdsChain [] _ = []
 increaseIdsChain ((Rule c t l):cx) i = (Rule (map (flip increaseIdsCriteria i) c) (map (flip increaseIdsTarget i) t) l):increaseIdsChain cx i
 
 increaseIdsCriteria :: Criteria -> Int -> Criteria
-increaseIdsCriteria (Limit j r b) i = Limit (j + i) r b
+increaseIdsCriteria (Limit j r b s) i = Limit (j + i) r b s
 increaseIdsCriteria (PropVariableCriteria j) i = PropVariableCriteria (j + i)
 increaseIdsCriteria c _ = c
 
@@ -286,7 +286,7 @@ limitIdsChain ((Rule c _ _):rx) = limitIdsCriteria c ++ limitIdsChain rx
 
 limitIdsCriteria :: [Criteria] -> [Int]
 limitIdsCriteria [] = []
-limitIdsCriteria (Limit i _ _:cx) = i:limitIdsCriteria cx
+limitIdsCriteria (Limit i _ _ _:cx) = i:limitIdsCriteria cx
 limitIdsCriteria (_:cx) = limitIdsCriteria cx
 
 propVariableIds' :: (r -> Rule) ->  Map.Map ChainId (String, [r]) -> [Int]

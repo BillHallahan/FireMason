@@ -25,7 +25,6 @@ import NameIdChain--temp
 import RuleEliminating
 
 
-
 main = do
     initializeTime
     start <- getTime
@@ -39,10 +38,9 @@ main = do
 
     let converted' = Map.toList . convertScript $ contents
 
-
     putStrLn . show $ converted'
 
-    let converted = Map.fromList $ stringInputChainsToStringChains converted' 0 
+    let converted = Map.fromList $ stringInputChainsToStringChains converted' 0
     let pathSimp = pathSimplificationChains converted
 
 
@@ -63,13 +61,24 @@ main = do
 
     inconsistent <- findInconsistentRules rulesToAdd'
 
+    let inconsistentGroups = groupInconsistentRules rulesToAdd' inconsistent
+
+    putStrLn . show $ inconsistentGroups
+
     let rulesToAddMap = exMap rulesToAdd'
 
     let inconsistentINC = pathSimplificationExamples rulesToAddMap
 
     let inconsistentEx = map (\(ch, r1, r2) -> (find (\ins -> (label . insRule $ ins) == r1) rulesToAdd, find (\ins -> (label . insRule $ ins) == r2) rulesToAdd)) inconsistent
 
+    let con = (map (\(la, e''') -> (la, map (label . exRule . insRule) $ e''')) $ (Map.toList . contradictBeforeLists (contradict inconsistent) $ rulesToAdd'))
+
+    putStrLn $ "\n\n" ++ show (filter (\(c, _, _) -> c == 0) inconsistent)
+    putStrLn $ "\ncon = " ++ show con
+
     putStrLn . foldr (++) "" . map (\r -> "Example\n" ++ (show . fst $ r) ++ "\nis inconsistent with\n" ++ (show . snd $ r) ++ "\n\n") $ inconsistentEx
+
+    if not . null $ inconsistentEx then error "Resolve inconsistencies in examples before continuing." else return ()
 
     addedPos <- instructionsToAddAtPos rulesToAdd'' pathSimp
 
@@ -79,7 +88,7 @@ main = do
     putStrLn addedToIp
 
     let converted2' = Map.toList . convertScript $ addedToIp
-    let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0 
+    let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0
     let pathSimp2 = pathSimplificationChains converted2
 
 
@@ -93,13 +102,13 @@ main = do
     let diff = secs $ end - start
     printf $ "Computation time: " ++ diff ++ "\n"
 
-    
+
     printf $ (show redundant) ++ "\n"
 
     where
         exMap :: [ExampleInstruction] -> Map.Map String ExampleChain
         exMap [] = Map.fromList []
-        exMap (ToChainNamed n e:xs) = 
+        exMap (ToChainNamed n e:xs) =
             let
                 m = exMap xs
                 existing = Map.findWithDefault [] n m
