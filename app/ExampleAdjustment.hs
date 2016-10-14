@@ -1,4 +1,5 @@
-module ExampleAdjustment (criteriaPrereqAddition, findInconsistentRules, groupInconsistentRules, contradictBeforeLists, contradict) where
+module ExampleAdjustment (exInstructionsToMap, contradictingExampleIdsToExampleInstructions, statefulExampleInstructionsToInstructions, criteriaPrereqAddition, findInconsistentRulesStateful, findInconsistentRules,
+ findInconsistentRulesLabels, chainRuleToLabel, groupInconsistentRules, contradictBeforeLists, contradict) where
 
 import Data.List
 import qualified Data.Map as Map
@@ -11,6 +12,68 @@ import NameIdChain
 import Types
 
 import Debug.Trace
+
+exInstructionsToMap :: [ExampleInstruction] -> Map.Map String ExampleChain
+exInstructionsToMap [] = Map.fromList []
+exInstructionsToMap (ToChainNamed n e:xs) =
+    let
+        m = exInstructionsToMap xs
+        existing = Map.findWithDefault [] n m
+    in
+    Map.insert n (e:existing) m
+exInstructionsToMap (_:xs) = exInstructionsToMap xs
+
+
+statefulExampleInstructionsToInstructions :: [ExampleInstruction] -> IO [Instruction]
+statefulExampleInstructionsToInstructions e = evalZ3 . statefulExampleInstructionsToInstructions' e . pathSimplificationExamples . exInstructionsToMap $ e
+
+
+statefulExampleInstructionsToInstructions' :: [ExampleInstruction] -> IdNameExamples -> Z3 [Instruction]
+statefulExampleInstructionsToInstructions' ex n = do
+    let ruleNum = foldr (+) 0 . map (length) $ (chains n)
+    trace ("IdNameExamples = " ++ (show . toList' $ n)) convertExamplesSMT n ruleNum
+    mapM_ (\(ei, p) ->
+        do
+            let e = insRule ei
+
+            intSort <- mkIntSort
+            
+            zero <- mkInt 0 intSort
+            p' <- mkInt p intSort
+
+            --make sure the packet has the correct critera
+            assert =<< toSMTCriteriaList (criteria . exRule $ e) Nothing p' zero zero
+
+            --make sure the packet starts at the right place
+            let c = (idsWithName n . chainName $ ei) !! 0 --Only one, because from ExampleInstructions
+            c' <- mkInt c intSort
+
+            assert =<< reaches p' c' zero
+
+            --make sure the packet terminates correctly
+            tar <- if (targets . exRule $ e) !! 0 == ACCEPT then acceptAST else dropAST
+            tw <- terminatesWith p'
+
+            assert =<< mkEq tw tar
+            ) $ zip ex [0..]
+
+    --By forcing the policies to be NONE, we can ensure that all packets match some rule
+    mapM_ (\c -> 
+            do
+                intSort <- mkIntSort
+
+                c' <- mkInt c intSort
+                pol <- policy c'
+                none <- noneAST
+                assert =<< mkEq pol none
+            ) (validIds n) 
+
+    (checking, model) <- getModel
+
+    viewModel <- if isJust model then showModel . fromJust $ model else return . show $ checking
+
+    trace ("v=  " ++ viewModel) return []
+
 
 --Given [ExampleInstruction] and [(ChainId, RuleInd, RuleInd)] that are contradictory, returns Right [(ChainId, [RuleInd])] such that
 --all rule in each list are resolvable together, or Left [(ChainId, [RuleInd])] such that those rules are not resolvable
@@ -125,20 +188,71 @@ shareCriteriaList f exL i =
     map (label . exRule . insRule) . filter (\e -> not . null . intersect (criteria . exRule . insRule $ ex) $ (criteria . exRule . insRule $ e )) $ exL
 
 
+contradictingExampleIdsToExampleInstructions :: [ExampleInstruction] -> [(ChainId, RuleInd, RuleInd)] -> [ExampleInstruction]
+contradictingExampleIdsToExampleInstructions ex rs =
+    let
+        n = pathSimplificationExamples . exInstructionsToMap $ ex
+        rs' = map (\(c, r) -> case (lookupName n c, lookupRule n c r) of 
+                                    (Just name, Just e) -> (name, e)
+                                    (_, _) -> error "Unrecognized rule when resolving contradicting examples."
+                    ) . nub . concat . map (\(c, r1, r2) -> [(c, r1), (c, r2)]) $ rs
+    in
+    map (\(n', r) -> ToChainNamed {chainName = n', insRule = r} ) rs'
+    
+
 --Return whether the indicated chainId and RuleInds are in the list of contradictions, in either order
 contradict :: [(ChainId, Label, Label)] -> ChainId ->  Label -> Label -> Bool
 contradict [] _ _ _ = False
 contradict ((c, r1, r2):xs) c' r1' r2' = (c == c && ((r1 == r1' && r2 == r2') || (r1 == r2' && r2 == r1'))) || contradict xs c' r1' r2'
+
+--Given ExampleInstructions and [(ChainId, RuleInd, RuleInd)] from findInconsistent Rules, returns any that are
+--not resolvable, even using state
+findInconsistentRulesStateful :: [ExampleInstruction] -> [(ChainId, RuleInd, RuleInd)] -> [(ChainId, RuleInd, RuleInd)]
+findInconsistentRulesStateful ex ix = findInconsistentRulesStateful' (pathSimplificationExamples . exInstructionsToMap $ ex) ix
+    where
+        findInconsistentRulesStateful' :: IdNameExamples -> [(ChainId, RuleInd, RuleInd)] -> [(ChainId, RuleInd, RuleInd)]
+        findInconsistentRulesStateful' _ [] = []
+        findInconsistentRulesStateful' n (crr@(c, r1, r2):ix) =
+            let
+                r1' = case lookupRule n c r1 of
+                            Just r -> r
+                            Nothing -> error "Can't find example in inconsistentRulesStateful"
+                r2' = case lookupRule n c r2 of
+                            Just r -> r
+                            Nothing -> error "Can't find example in inconsistentRulesStateful"
+                state1 = state r1'
+                state2 = state r2'
+                diff1 = state1 \\ state2
+                diff2 = state2 \\ state1
+            in
+            if diff1 /= [] && diff2 /= [] then findInconsistentRulesStateful' n ix else  crr:findInconsistentRulesStateful' n ix
+
 
 --Asserts that there is a chain with instructions to add two rules that are simultaneously
 --satisfiable, and tries to find them
 --Returns a list of chains, labels for 2 rules that are contradictory
 --The smaller label is listed first
 --Only considers the examples instructions, not the state!
-findInconsistentRules :: [ExampleInstruction] -> IO [(ChainId, Label, Label)]
+findInconsistentRulesLabels :: [ExampleInstruction] -> [(ChainId, RuleInd, RuleInd)] -> [(ChainId, Label, Label)]
+findInconsistentRulesLabels e rs = 
+    let
+        n = pathSimplificationChains . toRules $ e
+    in
+    nub . findInconsistentRulesLabels' n $ rs
+    where
+        findInconsistentRulesLabels' :: IdNameChain ->  [(ChainId, RuleInd, RuleInd)] -> [(ChainId, Label, Label)]
+        findInconsistentRulesLabels' _ [] = []
+        findInconsistentRulesLabels' n ((c, r1, r2):rs) =
+            let
+                r1Label = chainRuleToLabel n c r1
+                r2Label = chainRuleToLabel n c r2
+            in
+            ((c, r1Label, r2Label):findInconsistentRulesLabels' n rs)
+
+findInconsistentRules :: [ExampleInstruction] -> IO [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules rs = fmap (nub) (evalZ3 . findInconsistentRules' $ rs)
 
-findInconsistentRules' :: [ExampleInstruction] -> Z3 [(ChainId, Label, Label)]
+findInconsistentRules' :: [ExampleInstruction] -> Z3 [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules' rs = do
     let rs' = pathSimplificationChains . toRules $ rs
     convertChainsSMT rs' 1
@@ -189,7 +303,7 @@ toRules (_:xs) = toRules xs
 --helps findInconsistentRules', by actually running the check.  Returns the list if unsat,
 --if sat extracts the simultaneously satisfiable rules from the model, asserts that the chain
 --and rules in question are not them, and continues searching
-findInconsistentRules'' :: [ExampleInstruction] -> IdNameChainType ct -> Z3 [(ChainId, Label, Label)]
+findInconsistentRules'' :: [ExampleInstruction] -> IdNameChainType ct -> Z3 [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules'' rs n = do
     (_, m) <- solverCheckAndGetModel
 
@@ -234,9 +348,9 @@ findInconsistentRules'' rs n = do
 
                 let r1Label = chainRuleToLabel n ch'' r1''
                 let r2Label = chainRuleToLabel n ch'' r2''
-
-                --return ((ch'', r1'', r2''):rs')
                 return ((ch'', r1Label, r2Label):rs')
+
+                return ((ch'', r1'', r2''):rs')
             else return []
         Nothing -> return []
 

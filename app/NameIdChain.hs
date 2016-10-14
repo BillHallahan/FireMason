@@ -1,4 +1,4 @@
-module NameIdChain (IdNameChain, IdNameChainType, addChain, accessRules, lookupNameChain, lookupChain, lookupRule, lookupName, lookupEquivalent
+module NameIdChain (IdNameChain, IdNameExamples, IdNameChainType, addChain, accessRules, lookupNameChain, lookupChain, lookupRule, lookupName, lookupEquivalent
     , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
     increaseIds, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, limitIds, maxId,
     maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplificationChains, pathSimplificationExamples, pathSimplification) where
@@ -14,7 +14,7 @@ data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                                , accessRules :: ct -> Rule
                                , lookupNameChain :: ChainId -> Maybe (String, [ct])
                                , lookupChain :: ChainId -> Maybe [ct]
-                               , lookupRule :: ChainId -> Int -> Maybe ct
+                               , lookupRule :: ChainId -> RuleInd -> Maybe ct
                                , lookupName :: ChainId -> Maybe String
                                , lookupEquivalent :: ChainId -> [ChainId]
                                , allChainEquivalents :: [[ChainId]]
@@ -33,6 +33,7 @@ data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                                , limits :: Int -> Maybe [(ChainId, Int)]
                                , limitIds :: [Int]
                                , maxId :: ChainId
+                               , labels :: [Label]
                                , maxLabel :: Label
                                , mergeWithMap :: Map.Map ChainId (String, [ct]) -> IdNameChainType ct
                                , setUnion :: IdNameChainType ct -> IdNameChainType ct
@@ -40,7 +41,8 @@ data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                             }
 
 type IdNameChain = IdNameChainType Rule
-type IdNameExample = IdNameChainType ExampleRule
+type IdNameExampleRule = IdNameChainType ExampleRule
+type IdNameExamples = IdNameChainType Example
 
 idNameChainCons :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> IdNameChainType r
 idNameChainCons accessR m =
@@ -85,7 +87,8 @@ idNameChainCons accessR m =
         topJ = (\i -> topLevelJumpingTo' accessR m i)
         lims = \i -> Map.lookup i (limitsMap accessR m)
         mI' = maximum (Map.keys m ++ limitIds' accessR m ++ propVariableIds' accessR m)
-        mL = maximum . labels accessR $ m
+        lab = map (label . accessR) . concat . map (snd) $ Map.elems m
+        mL = maximum lab
         merge = (\m' -> idNameChainCons accessR $ Map.union m m')
         u = (\m' -> mergeWithMap m' m)
     in
@@ -112,6 +115,7 @@ idNameChainCons accessR m =
          , limits = lims
          , limitIds = limitIds' accessR m
          , maxId = mI'
+         , labels = lab
          , maxLabel = mL
          , mergeWithMap = merge
          , setUnion = u
@@ -175,8 +179,6 @@ pathSimplificationTarget acc rev (GoTo g) m ch _ =
         (GoReturn (ch + 1) 0, pathSimplification' acc rev [(g, chain)] m (ch + 1))
 pathSimplificationTarget _ _ t _ _ _ = (t, Map.empty)
 
-labels :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> [Label]
-labels acc n = map (label) $ concat (map (map acc . snd) (Map.elems n))
 
 --Returns a list of the top level chains (that is, the chains a packet must start in, and can't reach through a jump/goto)
 topLevelChains' :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> [ChainId]

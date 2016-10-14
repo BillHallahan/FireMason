@@ -61,29 +61,36 @@ main = do
 
     inconsistent <- findInconsistentRules rulesToAdd'
 
-    let inconsistentGroups = groupInconsistentRules rulesToAdd' inconsistent
+    let inconsistentNonStateful = findInconsistentRulesStateful rulesToAdd' inconsistent
+
+    let inconsistentLabels = findInconsistentRulesLabels rulesToAdd' inconsistentNonStateful
+
+    putStrLn $ "inconsistent = " ++ show inconsistent ++ " inconsistentLabels = " ++ show inconsistentLabels
+
+    let inconsistentGroups = groupInconsistentRules rulesToAdd' inconsistentLabels
 
     putStrLn . show $ inconsistentGroups
 
-    let rulesToAddMap = exMap rulesToAdd'
+    let rulesToAddMap = exInstructionsToMap rulesToAdd'
 
     let inconsistentINC = pathSimplificationExamples rulesToAddMap
 
-    let inconsistentEx = map (\(ch, r1, r2) -> (find (\ins -> (label . insRule $ ins) == r1) rulesToAdd, find (\ins -> (label . insRule $ ins) == r2) rulesToAdd)) inconsistent
+    let inconsistentEx = map (\(ch, r1, r2) -> (find (\ins -> (label . insRule $ ins) == r1) rulesToAdd, find (\ins -> (label . insRule $ ins) == r2) rulesToAdd)) inconsistentLabels
 
-    let con = (map (\(la, e''') -> (la, map (label . exRule . insRule) $ e''')) $ (Map.toList . contradictBeforeLists (contradict inconsistent) $ rulesToAdd'))
+    let con = (map (\(la, e''') -> (la, map (label . exRule . insRule) $ e''')) $ (Map.toList . contradictBeforeLists (contradict inconsistentLabels) $ rulesToAdd'))
 
-    putStrLn $ "\n\n" ++ show (filter (\(c, _, _) -> c == 0) inconsistent)
+    putStrLn $ "\n\n" ++ show (filter (\(c, _, _) -> c == 0) inconsistentLabels)
     putStrLn $ "\ncon = " ++ show con
 
     putStrLn . foldr (++) "" . map (\r -> "Example\n" ++ (show . fst $ r) ++ "\nis inconsistent with\n" ++ (show . snd $ r) ++ "\n\n") $ inconsistentEx
 
     if not . null $ inconsistentEx then error "Resolve inconsistencies in examples before continuing." else return ()
 
+    insStateRes <- statefulExampleInstructionsToInstructions . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
+
     addedPos <- instructionsToAddAtPos rulesToAdd'' pathSimp
 
     let addedToIp = addToIptables addedPos pathSimp contents
-
 
     putStrLn addedToIp
 
@@ -104,14 +111,3 @@ main = do
 
 
     printf $ (show redundant) ++ "\n"
-
-    where
-        exMap :: [ExampleInstruction] -> Map.Map String ExampleChain
-        exMap [] = Map.fromList []
-        exMap (ToChainNamed n e:xs) =
-            let
-                m = exMap xs
-                existing = Map.findWithDefault [] n m
-            in
-            Map.insert n (e:existing) m
-        exMap (_:xs) = exMap xs

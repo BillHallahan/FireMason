@@ -75,7 +75,7 @@ findBestPointCut' r i n n' =
     do
         (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
 
-        viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
+        --viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
 
         if checking == Unsat then return (i', cut) else findBestPointCut' r i n shortened
@@ -122,8 +122,8 @@ checkRuleImpact r n n' top idsU = do
 
     innerOr <- mkOr =<< sequence [mkEq tw0 tw1
                                   , mkAnd [reEnd0, reEnd1]
-                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) n' zero zero zero, orChangedChain]]
-    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) n' zero zero zero, orChangedChain]
+                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) (Just n') zero zero zero, orChangedChain]]
+    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) (Just n') zero zero zero, orChangedChain]
     innerImplies <- mkImplies imAnd =<< mkEq tw1 targetAST
 
     assert =<< mkNot =<< mkAnd [innerOr, innerImplies]

@@ -11,6 +11,8 @@ import Z3.Monad
 import NameIdChain
 import Types
 
+import Debug.Trace
+
 makeTargetDatatype :: Z3 Sort
 makeTargetDatatype = do
     accept <- mkStringSymbol "ACCEPT"
@@ -107,6 +109,31 @@ intBoolAST s i = do
     s' <- mkStringSymbol s
     dec <- mkFuncDecl s' [intSort] boolSort
     mkApp dec [i]
+
+intIntBoolFuncDecl :: String -> Z3 FuncDecl
+intIntBoolFuncDecl s = do
+    intSort <- mkIntSort
+    boolSort <- mkBoolSort
+    s' <- mkStringSymbol s
+    mkFuncDecl s' [intSort, intSort] boolSort
+
+intIntIntIntIntFuncDecl :: String -> Z3 FuncDecl
+intIntIntIntIntFuncDecl s = do
+    intSort <- mkIntSort
+    s' <- mkStringSymbol s
+    mkFuncDecl s' [intSort, intSort, intSort, intSort] intSort
+
+intIntIntIntFuncDecl :: String -> Z3 FuncDecl
+intIntIntIntFuncDecl s = do
+    intSort <- mkIntSort
+    s' <- mkStringSymbol s
+    mkFuncDecl s' [intSort, intSort, intSort] intSort
+
+intIntIntFuncDecl :: String -> Z3 FuncDecl
+intIntIntFuncDecl s = do
+    intSort <- mkIntSort
+    s' <- mkStringSymbol s
+    mkFuncDecl s' [intSort, intSort] intSort
 
 intIntFuncDecl :: String -> Z3 FuncDecl
 intIntFuncDecl s = do
@@ -495,15 +522,15 @@ intSortList s = do
     intSort <- mkIntSort
     sequence (map (\x -> mkInt x intSort) s)
 
-toSMTPathChain :: Chain -> ChainId -> RuleInd -> Int -> Z3 ()
-toSMTPathChain [] ch r pN = return ()
-toSMTPathChain (c:cx) ch r pN = do
+toSMTPathChain :: IdNameChainType r -> [r] -> ChainId -> RuleInd -> Int -> Z3 ()
+toSMTPathChain _ [] ch r pN = return ()
+toSMTPathChain n (c:cx) ch r pN = do
     intSort <- mkIntSort
     ch' <- mkInt ch intSort
     r' <- mkInt r intSort
 
-    toSMTPathRule c ch' r' pN
-    toSMTPathChain cx ch (r + 1) pN
+    toSMTPathRule (accessRules n c) ch' r' pN
+    toSMTPathChain n cx ch (r + 1) pN
 
 toSMTPathRule :: Rule -> AST -> AST -> Int -> Z3 ()
 toSMTPathRule (Rule [] t _) ch r pN = toSMTPathTargets t ch r pN
@@ -579,29 +606,40 @@ toSMTPathTarget (PropVariableTarget i b) ch r pN = do
 
 toSMTPath t _ _ _ = error "Target " ++ show t ++ " not recognized."
 
-toSMTChain :: Chain -> IdNameChain -> ChainId -> RuleInd -> Int -> Z3 ()
-toSMTChain [] _ _ _ _ = return ()
-toSMTChain (c:cx) n ch r pN = do
+toSMTChain :: (r -> IdNameChainType r -> AST -> AST -> Int -> Z3 ()) -> [r] -> IdNameChainType r -> ChainId -> RuleInd -> Int -> Z3 ()
+toSMTChain _ [] _ _ _ _ = return ()
+toSMTChain f (c:cx) n ch r pN = do
     intSort <- mkIntSort
     ch' <- mkInt ch intSort
     r' <- mkInt r intSort
 
-    toSMTRule c n ch' r' pN
-    toSMTChain cx n ch (r + 1) pN
+    f c n ch' r' pN
+    toSMTChain f cx n ch (r + 1) pN
 
 toSMTRule :: Rule -> IdNameChain -> AST -> AST -> Int -> Z3 ()
-toSMTRule (Rule [] t _) n ch r pN = mapM_ (\p -> assert =<< matchesCriteria p ch r) =<< intSortList [0..(pN - 1)]
+toSMTRule (Rule [] t _) _ ch r pN = mapM_ (\p -> assert =<< matchesCriteria p ch r) =<< intSortList [0..(pN - 1)]
 toSMTRule (Rule c _ _) n ch r pN = 
     mapM_ (\p -> do
-            crit <- toSMTCriteriaList c n p ch r
+            crit <- toSMTCriteriaList c (Just n) p ch r
             mC <- matchesCriteria p ch r
             assert =<< (mkEq crit mC)) =<< intSortList [0..(pN - 1)]
 
-toSMTCriteriaList :: [Criteria] -> IdNameChain -> AST -> AST -> AST -> Z3 AST
+toSMTExample :: Example -> IdNameExamples -> AST -> AST -> Int -> Z3 ()
+toSMTExample e n ch r pN
+    | (null . criteria . exRule $ e) && (null . state $ e) = mapM_ (\p -> assert =<< matchesCriteria p ch r) =<< intSortList [0..(pN - 1)]
+    | otherwise = 
+        mapM_ (\p -> do
+            crit <- if not . null . criteria . exRule $ e then toSMTCriteriaList (criteria . exRule $ e) (Just n) p ch r else mkTrue
+            st <- if not . null . state $ e then toSMTStateList (state e) n p ch r else mkTrue
+            mC <- matchesCriteria p ch r
+            mA <- mkAnd [crit, st]
+            assert =<< (mkEq mA mC)) =<< intSortList [0..(pN - 1)]
+
+toSMTCriteriaList :: [Criteria] -> Maybe (IdNameChainType r) -> AST -> AST -> AST -> Z3 AST
 toSMTCriteriaList c n p ch r = do
     mkAnd =<< (sequence $ map (\c' -> toSMTCriteria c' n p ch r) c)
 
-toSMTCriteria :: Criteria -> IdNameChain -> AST -> AST -> AST -> Z3 AST
+toSMTCriteria :: Criteria -> Maybe (IdNameChainType r) -> AST -> AST -> AST -> Z3 AST
 toSMTCriteria (BoolFlag f) _ p _ _ = do
     intSort <- mkIntSort
     boolSort <- mkBoolSort
@@ -622,15 +660,10 @@ toSMTCriteria (IPAddress e i) _ p _ _ = do
                             dec <- mkFuncDecl pSymb [intSort] bitSort
                             app <- mkApp dec [p]
                             mkEq b =<< mkBvand app m
-toSMTCriteria (Limit i ra b s) n p ch ru = do
-    let same = case limits n i of
-                    Just l -> l
-                    Nothing -> error "Limit in criteria but no information in NameIdChain"
+toSMTCriteria (Limit i ra b s) (Just n) p ch ru = do    
     pInt <- getInt p
     chInt <- getInt ch
     ruInt <- getInt ru
-
-    let pre = precedingLimit same (fromIntegral pInt) (fromIntegral chInt) (fromIntegral ruInt)
 
     intSort <- mkIntSort
 
@@ -640,14 +673,12 @@ toSMTCriteria (Limit i ra b s) n p ch ru = do
     s' <- mkInt s intSort
 
     zero <- mkInt 0 intSort
-    one <- mkInt 1 intSort
-    negOne <- mkInt (-1) intSort
 
-
-    limInit <- limitInitial i'
-
-    assert =<< mkGe limInit zero
-
+    let same = case limits n i of
+                    Just l -> l
+                    Nothing -> error "Limit in criteria but no information in NameIdChain"
+                    
+    let pre = precedingLimit same (fromIntegral pInt) (fromIntegral chInt) (fromIntegral ruInt)
     (preLim, preT) <- case pre of
                     Just (preP, preCh, preR) -> do
                         preP' <- mkInt preP intSort
@@ -661,48 +692,30 @@ toSMTCriteria (Limit i ra b s) n p ch ru = do
                         lim <- limitInitial i'
                         return (lim, zero)
 
-    limitFunc <- limitFuncAST i' p ch ru
-
     currT <- arrivalTime(p)
-
 
     timeDiff <- mkSub [currT, preT]
     timeDiffTimeRate <- mkMul [timeDiff, ra']
 
-    limAdjEq <- mkAdd [preLim, timeDiffTimeRate]
-
-    limAdjCap <- minAST limAdjEq b'
-
-    limAdjCapMSub <- mkSub [limAdjCap, s']
-
-    limitsEq <- mkEq limitFunc limAdjCapMSub
-    matches <- matchesRule p ch ru
-
-    assert =<< mkImplies matches limitsEq
-
-    limitsEq' <- mkEq limitFunc limAdjCap
-    notMatches <- mkNot matches
-
-    assert =<< mkImplies notMatches limitsEq'
-
-    mkGe limAdjCap s'
+    toSMTLimit n i' ra' b' s' p ch ru preLim timeDiffTimeRate Nothing
     where   --gets the packet and limit before the current packet and limit combination
-            precedingLimit :: [(ChainId, Int)] -> Int -> Int -> Int -> Maybe (Int, ChainId, Int)
-            precedingLimit n 0 c r =
-                let 
-                    pos = case (c, r) `elemIndex` n of
-                                Just pos' -> pos'
-                                Nothing -> error "Must have information on the limit"
-                in
-                    if pos /= 0 then Just (0, fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else Nothing
-            precedingLimit n p' c r =
-                let 
-                    pos = case (c, r) `elemIndex` n of
-                                Just pos' -> pos'
-                                Nothing -> error "Must have information on the limit"
-                in
-                    if pos /= 0 then Just (p', fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else
-                                     Just (p' - 1, fst . last $ n, snd . last $ n)
+        precedingLimit :: [(ChainId, RuleInd)] -> Int -> Int -> Int -> Maybe (Int, ChainId, Int)
+        precedingLimit n 0 c r =
+            let 
+                pos = case (c, r) `elemIndex` n of
+                            Just pos' -> pos'
+                            Nothing -> error "Must have information on the limit"
+            in
+                if pos /= 0 then Just (0, fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else Nothing
+        precedingLimit n p' c r =
+            let 
+                pos = case (c, r) `elemIndex` n of
+                            Just pos' -> pos'
+                            Nothing -> error "Must have information on the limit"
+            in
+                if pos /= 0 then Just (p', fst $ n !! (pos - 1), snd $ n !! (pos - 1)) else
+                                 Just (p' - 1, fst . last $ n, snd . last $ n)
+toSMTCriteria (Limit i ra b s) Nothing _ _ _ = error "Limit criteria with no NameIdChainType encountered."
 
 toSMTCriteria (Not c) n p ch r = do
     mkNot =<< toSMTCriteria c n p ch r
@@ -736,6 +749,206 @@ toSMTCriteria (Protocol i) _ p _ _ = do
     mkEq app i'
 toSMTCriteria (PropVariableCriteria i) _ p _ _ = propVariableAST i p
 toSMTCriteria c _ _ _ _ = error ("Criteria " ++ show c ++ " not recognized by SMT conversion.")
+
+--IdNameChain -> LimitId -> Rate -> Burst -> Sub -> PacketNum -> ChainId -> RuleInd -> PreLimit -> timeDiff -> Maybe matchesOnlyIfTrue -> Z3 AST
+toSMTLimit :: IdNameChainType r -> AST -> AST -> AST -> AST -> AST -> AST -> AST -> AST -> AST -> Maybe AST-> Z3 AST
+toSMTLimit n i ra b s p ch ru preLim timeDiffTimeRate ifTrue = do
+    intSort <- mkIntSort
+
+    zero <- mkInt 0 intSort
+    one <- mkInt 1 intSort
+    negOne <- mkInt (-1) intSort
+
+
+    limInit <- limitInitial i
+
+    assert =<< mkGe limInit zero
+
+    ifTrue' <- case ifTrue of
+                    Just t -> return t
+                    Nothing -> mkTrue
+    notIfTrue' <- mkNot ifTrue'
+
+    limitFunc <- limitFuncAST i p ch ru    
+
+    limAdjEq <- mkAdd [preLim, timeDiffTimeRate]
+
+    limAdjCap <- minAST limAdjEq b
+
+    limAdjCapMSub <- mkSub [limAdjCap, s]
+
+    limitsEq <- mkEq limitFunc limAdjCapMSub
+    matches <- matchesRule p ch ru
+    matchesAnd <- mkAnd [matches, ifTrue']
+
+    assert =<< mkImplies matchesAnd limitsEq
+
+    limitsEq' <- mkEq limitFunc limAdjCap
+    notMatches <- mkNot matches
+    notMatchesOr <- mkOr [notMatches, notIfTrue']
+
+    assert =<< mkImplies notMatchesOr limitsEq'
+
+    mkGe limAdjCap s
+
+toSMTStateList :: [State] -> IdNameExamples -> AST -> AST -> AST -> Z3 AST
+toSMTStateList s n p ch r = do
+    mkAnd =<< (sequence $ map (\s' -> toSMTState s' n p ch r) s)
+
+toSMTState :: State -> IdNameExamples -> AST -> AST -> AST -> Z3 AST
+toSMTState (Time t) n p ch ru = do
+    pInt <- getInt p
+    chInt <- getInt ch
+    ruInt <- getInt ru
+
+    intSort <- mkIntSort
+    zero <- mkInt 0 intSort
+
+    let r = case lookupRule n (fromIntegral chInt) (fromIntegral ruInt)
+                    of Just r' -> accessRules n r'
+                       Nothing -> error "Cannot access rule in toSMTState"
+
+
+    limitIdApp <- limitId ch ru
+    
+    rateFunc <- intIntFuncDecl "limit-rate"
+    rateApp <- mkApp rateFunc [limitIdApp]
+
+    assert =<< mkGt rateApp zero
+
+    burstFunc <- intIntFuncDecl "limit-burst"
+    burstApp <- mkApp burstFunc [limitIdApp]
+
+    assert =<< mkGt burstApp zero
+
+    assert =<< mkLe rateApp burstApp
+
+    subFunc <- intIntFuncDecl "subVar"
+    subApp <- mkApp subFunc [limitIdApp]
+
+    assert =<< mkGt subApp zero
+
+    assert =<< mkLe subApp burstApp
+
+    limInit <- limitInitial limitIdApp
+    assert =<< mkEq limInit burstApp
+
+    let prevT = prevTime (t) (label r) n
+    let timeDiff = t - prevT
+
+    timeDiff' <- trace ("prevTime = " ++ show prevT ++ " timeDiff = " ++ show timeDiff) mkInt timeDiff intSort
+
+    let preRules = tail . iterate (\res -> case res of
+                                        Just (p, c, r) -> preRule n p c r
+                                        Nothing -> Nothing) $ (Just (fromIntegral pInt, fromIntegral chInt, fromIntegral ruInt))
+
+    samePacketCheck <- mapM
+        (\(p', c', r') -> do
+            p'' <- mkInt p' intSort
+            c'' <- mkInt c' intSort
+            r'' <- mkInt r' intSort
+
+            limitIdApp' <- limitId ch ru
+            limitIdApp'' <- limitId c'' r''
+            trace ("(p, c, r) = " ++ show (pInt, chInt, ruInt) ++ " (p', c', r') = " ++ show (p', c', r')) mkEq limitIdApp' limitIdApp''
+            ) (filter (\(p', _, _) -> p' == (fromIntegral pInt)) . map (fromJust) . takeWhile (isJust) $ preRules)
+
+    timeDiffOr <- if not . null $ samePacketCheck then mkOr samePacketCheck else mkFalse
+
+    timeDiffRate <- mkMul [timeDiff', rateApp]
+
+    timeDiffRateIte <- mkIte timeDiffOr zero timeDiffRate
+
+    pre <- precedingLimit n limitIdApp (fromIntegral pInt) (fromIntegral chInt) (fromIntegral ruInt) 
+
+    preFunc <- intIntIntIntIntFuncDecl "pre-func"
+    preApp <- mkApp preFunc [limitIdApp, p, ch, ru]
+    assert =<< mkEq preApp pre 
+
+    useLimitFunc <- intIntBoolFuncDecl "use-limit"
+    useLimitApp <- mkApp useLimitFunc [ch, ru]
+
+    lim <- toSMTLimit n limitIdApp rateApp burstApp subApp p ch ru pre timeDiffRateIte (Just useLimitApp)
+    mkImplies useLimitApp lim
+    where
+        limitId :: AST -> AST -> Z3 AST
+        limitId c r = do
+            limitIdFunc <- intIntIntFuncDecl "limit-id"
+            mkApp limitIdFunc [c, r]
+
+        --Get the greatest time that is less than or equal to t and from a packet before l
+        prevTime :: Int -> Label -> IdNameExamples -> Int
+        prevTime t l ex = maximum . map (prevTime' t l) $ (chains ex)
+
+        prevTime' :: Int -> Label -> ExampleChain -> Int
+        prevTime' _ _ [] = 0
+        prevTime' t l (e:ex) =
+            let
+                t' = maximum . map (prevTime'' t (label . exRule $ e) l) $ (state e)
+            in
+            maximum [t', prevTime' t l ex]
+
+        prevTime'' :: Int -> Label -> Label -> State -> Int
+        prevTime'' t l1 l2 (Time t') = if t' < t || (t' == t && l1 < l2) then t' else 0
+        prevTime'' t _ _ _ = 0
+
+        --Creates a Z3 AST that references the first limit with the given Id before
+        --the given packet, chain id, and rule id, or (0, 0, 0) if none exists
+        precedingLimit :: IdNameExamples -> AST -> Int -> ChainId -> RuleInd -> Z3 AST
+        precedingLimit _ i 0 0 0 = limitInitial i
+        precedingLimit n i p c r = do
+            intSort <- mkIntSort
+            let (preP, preC, preR) = case preRule n p c r of 
+                                            Just res -> res
+                                            Nothing -> (0, 0, 0)
+
+            preP' <- mkInt preP intSort
+            preC' <- mkInt preC intSort
+            preR' <- mkInt preR intSort
+
+            limIdCR <- limitId preC' preR'
+            limEq <- mkEq i limIdCR
+
+            limFunc <- limitFuncAST i preP' preC' preR'
+
+            pre' <- precedingLimit n i preP preC preR
+
+            trace ("pre = " ++ show (preP, preC, preR) ++ " now = " ++ show (p, c, r)) mkIte limEq limFunc pre'
+
+        --This finds the packet, chain, and rule processed immediately before the current
+        --packet, chain, and rule and returns them as Just(packet, chainId, RuleId)
+        -- or if given (0, 0, 0) returns Nothing
+        preRule :: IdNameExamples -> Int -> ChainId -> RuleInd -> Maybe (Int, ChainId, RuleInd)
+        preRule n p c r
+            | r > 0 = Just (p, c, r - 1)
+            | c > 0 = case largestNZLessC of
+                            Just (i, c') -> Just (p, i, (length c') - 1)
+                            Nothing -> Just (p - 1, head mId, (length largestNZ) - 1)
+            | p > 0 = Just (p - 1, fst largestNZ, (length . snd $ largestNZ) - 1)
+            | otherwise = Nothing
+            where
+                ch = case lookupChain n c of
+                    Just c' -> c'
+                    Nothing -> error "Unrecognized chain in precedingList"
+
+                mId = reverse . validIds $ n
+
+                largestNZLessC = maxNZChain c
+
+                largestNZ = case maxNZChain (head mId + 1) of
+                                    Just c' -> c'
+                                    Nothing -> error "No chains of nonzero length"
+
+                --Returns ChainId and Chain of the largest chain of nonzero length with an id less than i, or Nothing (if there is not one)
+                maxNZChain :: Int -> Maybe (ChainId, ExampleChain)
+                maxNZChain i =
+                    let
+                        chs = filter (\c' -> (length . fromJust . lookupChain n $ c') /= 0) . filter (\c' -> i > c') $ mId
+                    in 
+                    if length chs /= 0 then Just (head chs, fromJust . lookupChain n . head $ chs) else Nothing
+
+
+
 
 enforcePacketsEqual :: AST -> AST -> Z3 ()
 enforcePacketsEqual i j = do
@@ -789,14 +1002,14 @@ enforceLimitsEqual i j = do
 
     assert =<< mkEq li lj
 
-reachabilityRulesChain :: Int -> Chain -> [AST] -> Z3 ()
+reachabilityRulesChain :: Int -> [r] -> [AST] -> Z3 ()
 reachabilityRulesChain i c pN = do
-    mapM_ (\p -> mapM_ (\r -> do
+    mapM_ (\p -> mapM_ (\r' -> do
                                 intSort <- mkIntSort
                                 i' <- mkInt i intSort
-                                reachesPrior p i' r
-                                reachesNextNotMatches p i' r
-                                reachesNextNoneTarget p i' r
+                                reachesPrior p i' r'
+                                reachesNextNotMatches p i' r'
+                                reachesNextNoneTarget p i' r'
                                 ) =<< (intSortList [0..((length c) - 1)])) pN
 
 flagToString :: Flag -> String
@@ -807,7 +1020,13 @@ flagToString RST = "RST"
 flagToString URG = "URG"
 
 convertChainsSMT :: IdNameChain -> Int -> Z3 ()
-convertChainsSMT n packetNum = do
+convertChainsSMT n packetNum = convertGenChainsSMT (toSMTRule) n packetNum
+
+convertExamplesSMT :: IdNameExamples -> Int -> Z3 ()
+convertExamplesSMT n packetNum = convertGenChainsSMT (toSMTExample) n packetNum
+
+convertGenChainsSMT :: (r -> IdNameChainType r -> AST -> AST -> Int -> Z3 ()) -> IdNameChainType r -> Int -> Z3 ()
+convertGenChainsSMT f n packetNum = do
     mapM_ (chainLengthCon) (toList' n)
     mapM_ (chainLengthZeroCon) (filter ((flip notElem) (validIds n)) [0..maxId n])
 
@@ -819,9 +1038,9 @@ convertChainsSMT n packetNum = do
     mapM_ (\(p', c') -> topLevelPolicyCon p' c') (liftA2 (,) [0..(packetNum - 1)] (topLevelChains n))
     mapM_ (notTopLevelPolicyCon) (notTopLevelChains n)
 
-    mapM_ (\(i, (_, c')) -> toSMTPathChain c' i 0 packetNum) (toList' n)
+    mapM_ (\(i, (_, c')) -> toSMTPathChain n c' i 0 packetNum) (toList' n)
 
-    mapM_ (\(i, (_, c')) -> toSMTChain c' n i 0 packetNum) (toList' n)
+    mapM_ (\(i, (_, c')) -> toSMTChain f c' n i 0 packetNum) (toList' n)
 
     mapM_ (\(i, (_, c')) -> reachabilityRulesChain i c' =<< intSortList [0..(packetNum - 1)] ) (toList' n)
 
@@ -842,7 +1061,7 @@ convertChainsSMT n packetNum = do
     assert =<< mkEq numOfPackets numOfPacketsInt
 
     where 
-        chainLengthCon :: (Int, (String, Chain)) -> Z3 ()
+        chainLengthCon :: (Int, (String, [r])) -> Z3 ()
         chainLengthCon (i, (_, c)) = do
             intSort <- mkIntSort
             i' <- mkInt i intSort

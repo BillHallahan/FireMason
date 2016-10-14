@@ -35,7 +35,7 @@ data Criteria = BoolFlag Flag
                         --source, SubId indicates a single limit instance split
                         --between multiple rules, more than one of which could
                         --be matched, but which only should be drawn from once
-                        --Sub is the amount to subtract each time the rule is matched
+                        --Sub is the amount to subtractACCEPT each time the rule is matched
                 | Not Criteria
                 | Port Endpoint (Either Int (Int, Int))
                 | PropVariableCriteria Int
