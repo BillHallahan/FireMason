@@ -1,5 +1,5 @@
-module ExampleAdjustment (exInstructionsToMap, contradictingExampleIdsToExampleInstructions, statefulExampleInstructionsToInstructions, criteriaPrereqAddition, findInconsistentRulesStateful, findInconsistentRules,
- findInconsistentRulesLabels, chainRuleToLabel, groupInconsistentRules, contradictBeforeLists, contradict) where
+module ExampleAdjustment (exInstructionsToMap, contradictingExampleIdsToExampleInstructions, statefulExampleInstructionsToInstructions, criteriaPrereqAddition, findConsistentAndInconsistentRules,
+ findInconsistentRulesStateful, findInconsistentRules, findInconsistentRulesLabels, chainRuleToLabel, groupInconsistentRules, contradictBeforeLists, contradict) where
 
 import Data.List
 import qualified Data.Map as Map
@@ -24,14 +24,20 @@ exInstructionsToMap (ToChainNamed n e:xs) =
 exInstructionsToMap (_:xs) = exInstructionsToMap xs
 
 
-statefulExampleInstructionsToInstructions :: [ExampleInstruction] -> IO [Instruction]
-statefulExampleInstructionsToInstructions e = evalZ3 . statefulExampleInstructionsToInstructions' e . pathSimplificationExamples . exInstructionsToMap $ e
+statefulExampleInstructionsToInstructions :: [ExampleInstruction] -> Maybe [Int] -> IO (Maybe [Instruction])
+statefulExampleInstructionsToInstructions e mi = 
+    let
+        opts = opt "MODEL" True
+        e' = sortByTime e
+    in
+    evalZ3With Nothing opts (statefulExampleInstructionsToInstructions' e' mi . pathSimplificationExamples . exInstructionsToMap $ e')
 
 
-statefulExampleInstructionsToInstructions' :: [ExampleInstruction] -> IdNameExamples -> Z3 [Instruction]
-statefulExampleInstructionsToInstructions' ex n = do
+--The Maybe [Int] allows passing a list of allowed sub values
+statefulExampleInstructionsToInstructions' :: [ExampleInstruction] -> Maybe [Int] -> IdNameExamples -> Z3 (Maybe [Instruction])
+statefulExampleInstructionsToInstructions' ex mi n = do
     let ruleNum = foldr (+) 0 . map (length) $ (chains n)
-    trace ("IdNameExamples = " ++ (show . toList' $ n)) convertExamplesSMT n ruleNum
+    trace ("IdNameExamples = " ++ (show . toList' $ n)) convertExamplesSMT n ruleNum mi
     mapM_ (\(ei, p) ->
         do
             let e = insRule ei
@@ -68,12 +74,114 @@ statefulExampleInstructionsToInstructions' ex n = do
                 assert =<< mkEq pol none
             ) (validIds n) 
 
-    (checking, model) <- getModel
+    (checking, limsInfo) <- withModel . evalLimitsModel $ n
 
-    viewModel <- if isJust model then showModel . fromJust $ model else return . show $ checking
+    let ins = case limsInfo of
+                    Just i -> Just . map (\(c, r) -> toInstructionWithLimits i n c r)  . chainRuleIds $ n
+                    Nothing -> Nothing
 
-    trace ("v=  " ++ viewModel) return []
+    trace ("limsInfo = " ++ show limsInfo ++ "\n\n ins = " ++ show ins) return ins
+    where
+        toInstructionWithLimits :: Map.Map (ChainId, RuleInd) Criteria -> IdNameExamples -> ChainId -> RuleInd -> Instruction
+        toInstructionWithLimits crc n c r =
+            let
+                crit = Map.lookup (c, r) crc
+                name = case lookupName n c of
+                            Just na -> na
+                            Nothing -> error "lookupName called on chain does not exist"
+                r'' = case lookupRule n c r of
+                            Just r' -> r'
+                            Nothing -> error "chainRulesIds returned a rule that does not exist"
+                r''' = case crit of
+                            Just cr -> Rule {criteria = cr:(criteria . exRule $ r''), targets = targets . exRule $ r'', label = label . exRule $ r''}
+                            Nothing -> Rule {criteria = criteria . exRule $ r'', targets = targets . exRule $ r'', label = label . exRule $ r''}
+            in
+            ToChainNamed {chainName = name, insRule = r'''}
+            
 
+
+evalLimitsModel :: IdNameExamples -> Model -> Z3 (Map.Map (ChainId, RuleInd) Criteria)--Z3 [((ChainId, RuleInd), Criteria)]
+evalLimitsModel n m = do
+    --showM <- showModel m
+    useLimRes <- useLimitFunc n m
+
+    limitIdFunc <- intIntIntFuncDecl "limit-id"
+    rateFunc <- intIntFuncDecl "limit-rate"
+    burstFunc <- intIntFuncDecl "limit-burst"
+    subFunc <- intIntFuncDecl "subVar"
+    limitInfo <- mapM (\(c, r) -> do
+            intSort <- mkIntSort
+
+            c' <- mkInt c intSort
+            r' <- mkInt r intSort
+            
+            limId <- return . fromIntegral . fromJust =<< evalInt m =<< mkApp limitIdFunc [c', r']
+
+            i' <- mkInt limId intSort
+
+            rate <- return . fromIntegral . fromJust =<< evalInt m =<< mkApp rateFunc [i']
+
+            burst <- return . fromIntegral . fromJust =<< evalInt m =<< mkApp burstFunc [i']
+
+            sub <- return . fromIntegral . fromJust =<< evalInt m =<< mkApp subFunc [i']
+
+            return ((c, r), Limit limId rate burst sub)
+
+        ) useLimRes
+
+    trace (show limitInfo) return . Map.fromList $ limitInfo
+    
+
+
+useLimitFunc :: IdNameExamples -> Model -> Z3 [(Int, Int)]
+useLimitFunc n m = do
+    useLimitFunc <- intIntBoolFuncDecl "use-limit"
+
+    (argsToVals, useLimitElseVal) <- functionInterp m (useLimitFunc) (\x -> return . fromIntegral =<< getInt x) (getBool) 
+
+    let argsToVals' = map (\(a, _) -> (a !! 0, a !! 1)) argsToVals
+    let haveLimit = map (\(a, _) -> (a !! 0, a !! 1)) . filter (\(a, b) -> b) $ argsToVals
+    let haveLimit' = if useLimitElseVal then filter (\i -> not $ i `elem` argsToVals') (chainRuleIds n) else []
+
+    return (haveLimit ++ haveLimit')
+
+--Given a model, a function declaration, and the functions argument and return types, returns a tuple
+--containing a list of pairs of arguments and the return values, and the return value for the else condition
+functionInterp :: Model -> FuncDecl -> (AST -> Z3 argType) -> (AST -> Z3 retType) -> Z3 ([([argType], retType)], retType)
+functionInterp m f argf retf = do
+    interp' <- getFuncInterp m f
+    let interp = case interp' of
+                        Just fi -> fi
+                        Nothing -> error "No interpretation found for use-limit"
+
+    entNum <- funcInterpGetNumEntries interp
+    useLimitEntries <- mapM (funcInterpGetEntry interp)  [0..entNum - 1]
+    argsToVals <- mapM (\e -> do
+            argNum <- funcEntryGetNumArgs e
+            args <- mapM (funcEntryGetArg e) [0..argNum - 1]
+            argVals <- mapM (argf) args
+
+            ret <- funcEntryGetValue e
+            retVal <- retf ret
+
+            return (argVals, retVal)
+            ) useLimitEntries
+
+    el <- funcInterpGetElse interp
+    elseVal <- retf el
+
+    return (argsToVals, elseVal)
+
+
+
+--Given a list of example instructions, sorts them in ascending order by the largest (assuming well formed, only) time in there states
+--ExampleInstructions with not time are placed at the beginning
+sortByTime :: [ExampleInstruction] -> [ExampleInstruction] 
+sortByTime e = sortOn (maximum . map (time) . state . insRule) e
+    where
+        time :: State -> Int
+        time (Time t) = t
+        time _ = -1
 
 --Given [ExampleInstruction] and [(ChainId, RuleInd, RuleInd)] that are contradictory, returns Right [(ChainId, [RuleInd])] such that
 --all rule in each list are resolvable together, or Left [(ChainId, [RuleInd])] such that those rules are not resolvable
@@ -228,11 +336,7 @@ findInconsistentRulesStateful ex ix = findInconsistentRulesStateful' (pathSimpli
             if diff1 /= [] && diff2 /= [] then findInconsistentRulesStateful' n ix else  crr:findInconsistentRulesStateful' n ix
 
 
---Asserts that there is a chain with instructions to add two rules that are simultaneously
---satisfiable, and tries to find them
---Returns a list of chains, labels for 2 rules that are contradictory
---The smaller label is listed first
---Only considers the examples instructions, not the state!
+
 findInconsistentRulesLabels :: [ExampleInstruction] -> [(ChainId, RuleInd, RuleInd)] -> [(ChainId, Label, Label)]
 findInconsistentRulesLabels e rs = 
     let
@@ -249,6 +353,28 @@ findInconsistentRulesLabels e rs =
             in
             ((c, r1Label, r2Label):findInconsistentRulesLabels' n rs)
 
+
+--returns two lists in a tuple
+--the first list is the consistent rules in the form (c, r)
+--the second is pairs of inconsistent rules in the form (c, r1, r2)
+findConsistentAndInconsistentRules :: [ExampleInstruction] -> IO ([(ChainId, RuleInd)], [(ChainId, RuleInd, RuleInd)])
+findConsistentAndInconsistentRules e = do
+    inconsistent <- findInconsistentRules e
+    let reformList = inconsistentListReformat inconsistent
+    let n = pathSimplificationExamples . exInstructionsToMap $ e
+    let consistent = filter (\cr ->not $ cr `elem` reformList) (chainRuleIds n)
+    
+    return (consistent, inconsistent)
+    where
+        inconsistentListReformat :: [(ChainId, RuleInd, RuleInd)] -> [(ChainId, RuleInd)]
+        inconsistentListReformat [] = []
+        inconsistentListReformat ((c, r1, r2):xs) = (c, r1):(c, r2):inconsistentListReformat xs
+
+--Asserts that there is a chain with instructions to add two rules that are simultaneously
+--satisfiable, and tries to find them
+--Returns a list of chains, labels for 2 rules that are contradictory
+--The smaller label is listed first
+--Only considers the examples instructions, not the state!
 findInconsistentRules :: [ExampleInstruction] -> IO [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules rs = fmap (nub) (evalZ3 . findInconsistentRules' $ rs)
 
@@ -345,10 +471,6 @@ findInconsistentRules'' rs n = do
                 assert =<< mkOr [chNeq, r1Neq', r2Neq']
 
                 rs' <- findInconsistentRules'' rs n
-
-                let r1Label = chainRuleToLabel n ch'' r1''
-                let r2Label = chainRuleToLabel n ch'' r2''
-                return ((ch'', r1Label, r2Label):rs')
 
                 return ((ch'', r1'', r2''):rs')
             else return []

@@ -624,13 +624,13 @@ toSMTRule (Rule c _ _) n ch r pN =
             mC <- matchesCriteria p ch r
             assert =<< (mkEq crit mC)) =<< intSortList [0..(pN - 1)]
 
-toSMTExample :: Example -> IdNameExamples -> AST -> AST -> Int -> Z3 ()
-toSMTExample e n ch r pN
+toSMTExample :: Maybe [Int] -> Example -> IdNameExamples -> AST -> AST -> Int -> Z3 ()
+toSMTExample mi e n ch r pN
     | (null . criteria . exRule $ e) && (null . state $ e) = mapM_ (\p -> assert =<< matchesCriteria p ch r) =<< intSortList [0..(pN - 1)]
     | otherwise = 
         mapM_ (\p -> do
             crit <- if not . null . criteria . exRule $ e then toSMTCriteriaList (criteria . exRule $ e) (Just n) p ch r else mkTrue
-            st <- if not . null . state $ e then toSMTStateList (state e) n p ch r else mkTrue
+            st <- if not . null . state $ e then toSMTStateList (state e) n mi p ch r else mkTrue
             mC <- matchesCriteria p ch r
             mA <- mkAnd [crit, st]
             assert =<< (mkEq mA mC)) =<< intSortList [0..(pN - 1)]
@@ -791,12 +791,12 @@ toSMTLimit n i ra b s p ch ru preLim timeDiffTimeRate ifTrue = do
 
     mkGe limAdjCap s
 
-toSMTStateList :: [State] -> IdNameExamples -> AST -> AST -> AST -> Z3 AST
-toSMTStateList s n p ch r = do
-    mkAnd =<< (sequence $ map (\s' -> toSMTState s' n p ch r) s)
+toSMTStateList :: [State] -> IdNameExamples -> Maybe [Int] -> AST -> AST -> AST -> Z3 AST
+toSMTStateList s n mi p ch r = do
+    mkAnd =<< (sequence $ map (\s' -> toSMTState s' n mi p ch r) s)
 
-toSMTState :: State -> IdNameExamples -> AST -> AST -> AST -> Z3 AST
-toSMTState (Time t) n p ch ru = do
+toSMTState :: State -> IdNameExamples -> Maybe [Int] -> AST -> AST -> AST -> Z3 AST
+toSMTState (Time t) n mi p ch ru = do
     pInt <- getInt p
     chInt <- getInt ch
     ruInt <- getInt ru
@@ -830,13 +830,25 @@ toSMTState (Time t) n p ch ru = do
 
     assert =<< mkLe subApp burstApp
 
+    case mi of
+        Just mi' -> do
+            subVarC <- intIntFuncDecl "subVarControl"
+            subVarCApp <- mkApp subVarC [limitIdApp]
+
+            assert =<< mkOr =<< mapM (\i ->  do
+                i' <- mkInt i intSort
+                mkEq i' subApp
+                ) mi'
+
+        Nothing -> return ()
+
     limInit <- limitInitial limitIdApp
     assert =<< mkEq limInit burstApp
 
     let prevT = prevTime (t) (label r) n
     let timeDiff = t - prevT
 
-    timeDiff' <- trace ("prevTime = " ++ show prevT ++ " timeDiff = " ++ show timeDiff) mkInt timeDiff intSort
+    timeDiff' <- mkInt timeDiff intSort
 
     let preRules = tail . iterate (\res -> case res of
                                         Just (p, c, r) -> preRule n p c r
@@ -850,7 +862,7 @@ toSMTState (Time t) n p ch ru = do
 
             limitIdApp' <- limitId ch ru
             limitIdApp'' <- limitId c'' r''
-            trace ("(p, c, r) = " ++ show (pInt, chInt, ruInt) ++ " (p', c', r') = " ++ show (p', c', r')) mkEq limitIdApp' limitIdApp''
+            mkEq limitIdApp' limitIdApp''
             ) (filter (\(p', _, _) -> p' == (fromIntegral pInt)) . map (fromJust) . takeWhile (isJust) $ preRules)
 
     timeDiffOr <- if not . null $ samePacketCheck then mkOr samePacketCheck else mkFalse
@@ -913,7 +925,7 @@ toSMTState (Time t) n p ch ru = do
 
             pre' <- precedingLimit n i preP preC preR
 
-            trace ("pre = " ++ show (preP, preC, preR) ++ " now = " ++ show (p, c, r)) mkIte limEq limFunc pre'
+            mkIte limEq limFunc pre'
 
         --This finds the packet, chain, and rule processed immediately before the current
         --packet, chain, and rule and returns them as Just(packet, chainId, RuleId)
@@ -1022,8 +1034,8 @@ flagToString URG = "URG"
 convertChainsSMT :: IdNameChain -> Int -> Z3 ()
 convertChainsSMT n packetNum = convertGenChainsSMT (toSMTRule) n packetNum
 
-convertExamplesSMT :: IdNameExamples -> Int -> Z3 ()
-convertExamplesSMT n packetNum = convertGenChainsSMT (toSMTExample) n packetNum
+convertExamplesSMT :: IdNameExamples -> Int -> Maybe [Int] -> Z3 ()
+convertExamplesSMT n packetNum mi = convertGenChainsSMT (toSMTExample mi) n packetNum
 
 convertGenChainsSMT :: (r -> IdNameChainType r -> AST -> AST -> Int -> Z3 ()) -> IdNameChainType r -> Int -> Z3 ()
 convertGenChainsSMT f n packetNum = do

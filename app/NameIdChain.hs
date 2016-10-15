@@ -1,4 +1,4 @@
-module NameIdChain (IdNameChain, IdNameExamples, IdNameChainType, addChain, accessRules, lookupNameChain, lookupChain, lookupRule, lookupName, lookupEquivalent
+module NameIdChain (IdNameChain, IdNameExamples, IdNameChainType, addChain, accessRules, lookupNameChain, lookupChain, lookupRule, chainRuleIds, lookupName, lookupEquivalent
     , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
     increaseIds, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, limitIds, maxId,
     maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplificationChains, pathSimplificationExamples, pathSimplification) where
@@ -15,6 +15,7 @@ data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                                , lookupNameChain :: ChainId -> Maybe (String, [ct])
                                , lookupChain :: ChainId -> Maybe [ct]
                                , lookupRule :: ChainId -> RuleInd -> Maybe ct
+                               , chainRuleIds :: [(ChainId, RuleInd)]
                                , lookupName :: ChainId -> Maybe String
                                , lookupEquivalent :: ChainId -> [ChainId]
                                , allChainEquivalents :: [[ChainId]]
@@ -57,6 +58,7 @@ idNameChainCons accessR m =
         lC = (\i -> pure (snd) <*> Map.lookup i m)
         lR = (\c i -> case lC c of Just c' -> Just (c' !! i)
                                    Nothing -> Nothing)
+        cri = concat . map (\c -> [(c, r) | r <- [0..((length . MB.fromJust . lC $ c) - 1)]]) $ (Map.keys m)
         lN = (\i -> pure (fst) <*> Map.lookup i m)
         lEquiv = 
             (\i -> 
@@ -97,6 +99,7 @@ idNameChainCons accessR m =
          , lookupNameChain = (flip Map.lookup) m
          , lookupChain = lC
          , lookupRule = lR
+         , chainRuleIds = cri
          , lookupName = lN
          , lookupEquivalent = lEquiv
          , allChainEquivalents = allEquiv
