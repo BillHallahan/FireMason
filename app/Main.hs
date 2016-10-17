@@ -25,6 +25,8 @@ import NameIdChain--temp
 import RuleEliminating
 
 
+import Debug.Trace
+
 main = do
     initializeTime
     start <- getTime
@@ -57,10 +59,12 @@ main = do
 
     let (haveState, noState) = partition (\e -> not . null . state . insRule $ e) rulesToAdd'
 
+    putStrLn $ "\nhave = " ++ show haveState ++ "\ndoesn't have "  ++ show noState
+
     (consistent, inconsistent) <- findConsistentAndInconsistentRules rulesToAdd'
 
     let rulesToAdd'' = map (\i -> case i of ToChainNamed n e -> ToChainNamed n . exRule $ e
-                                            NoInstruction e -> NoInstruction . exRule $ e) rulesToAdd'--THIS IS TEMPORARY AND NEEDS TO BE CHANGED TO ELIMINATE STATE
+                                            NoInstruction e -> NoInstruction . exRule $ e) noState--rulesToAdd'--THIS IS TEMPORARY AND NEEDS TO BE CHANGED TO ELIMINATE STATE
 
     let inconsistentNonStateful = findInconsistentRulesStateful rulesToAdd' inconsistent
 
@@ -84,19 +88,28 @@ main = do
     let minute = 60
     let hour = minute * 60
     let day = hour * 24
+
+    
+
     insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day])) . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
 
-    addedPos <- instructionsToAddAtPos rulesToAdd'' pathSimp
+    putStrLn "HERE"
 
-    let addedToIp = addToIptables addedPos pathSimp contents
+    addedPos <- case insStateRes of
+                        Just insStateRes' -> instructionsToAddAtPos (rulesToAdd'' ++ insStateRes') pathSimp
+                        Nothing -> error "Irresolvable state" -- IMPROVE THIS ERROR MESSAGE
 
+    putStrLn "HERE 2"
+
+    let addedToIp = addToIptables addedPos pathSimp contents 
+    
     putStrLn addedToIp
 
     let converted2' = Map.toList . convertScript $ addedToIp
     let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0
     let pathSimp2 = pathSimplificationChains converted2
 
-    redundant <- findRedundantRule pathSimp2
+    redundant <- trace (show . toList' $ pathSimp2) findRedundantRule pathSimp2
     let commentedInIp = commentOutRules redundant addedToIp
 
     writeFile outputScriptName commentedInIp

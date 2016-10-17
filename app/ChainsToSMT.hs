@@ -629,8 +629,11 @@ toSMTExample mi e n ch r pN
     | (null . criteria . exRule $ e) && (null . state $ e) = mapM_ (\p -> assert =<< matchesCriteria p ch r) =<< intSortList [0..(pN - 1)]
     | otherwise = 
         mapM_ (\p -> do
+            p' <- return . fromIntegral =<< getInt p
+            r' <- return . fromIntegral =<< getInt r
+            let e' = (concat . map (\(_, (_, c)) -> c) . toList' $ n) !! p'
             crit <- if not . null . criteria . exRule $ e then toSMTCriteriaList (criteria . exRule $ e) (Just n) p ch r else mkTrue
-            st <- if not . null . state $ e then toSMTStateList (state e) n mi p ch r else mkTrue
+            st <- if not . null . state $ e then toSMTStateList (state e') n mi p ch r pN else mkTrue
             mC <- matchesCriteria p ch r
             mA <- mkAnd [crit, st]
             assert =<< (mkEq mA mC)) =<< intSortList [0..(pN - 1)]
@@ -676,7 +679,7 @@ toSMTCriteria (Limit i ra b s) (Just n) p ch ru = do
 
     let same = case limits n i of
                     Just l -> l
-                    Nothing -> error "Limit in criteria but no information in NameIdChain"
+                    Nothing -> error ("Limit " ++ (show i) ++ " in criteria but no information in NameIdChain" ++ "\nlimits = " ++ (show . limitIds $ n) ++ "\n\n")
                     
     let pre = precedingLimit same (fromIntegral pInt) (fromIntegral chInt) (fromIntegral ruInt)
     (preLim, preT) <- case pre of
@@ -791,12 +794,13 @@ toSMTLimit n i ra b s p ch ru preLim timeDiffTimeRate ifTrue = do
 
     mkGe limAdjCap s
 
-toSMTStateList :: [State] -> IdNameExamples -> Maybe [Int] -> AST -> AST -> AST -> Z3 AST
-toSMTStateList s n mi p ch r = do
-    mkAnd =<< (sequence $ map (\s' -> toSMTState s' n mi p ch r) s)
+toSMTStateList :: [State] -> IdNameExamples -> Maybe [Int] -> AST -> AST -> AST -> Int -> Z3 AST
+toSMTStateList s n mi p ch r pN = do
+    mkAnd =<< (sequence $ map (\s' -> toSMTState s' n mi p ch r pN) s)
 
-toSMTState :: State -> IdNameExamples -> Maybe [Int] -> AST -> AST -> AST -> Z3 AST
-toSMTState (Time t) n mi p ch ru = do
+--Ensure the time t is from the packet p, not some other Time
+toSMTState :: State -> IdNameExamples -> Maybe [Int] -> AST -> AST -> AST -> Int -> Z3 AST
+toSMTState (Time t) n mi p ch ru pN = do
     pInt <- getInt p
     chInt <- getInt ch
     ruInt <- getInt ru
@@ -821,7 +825,7 @@ toSMTState (Time t) n mi p ch ru = do
 
     assert =<< mkGt burstApp zero
 
-    assert =<< mkLe rateApp burstApp
+    --assert =<< mkLe rateApp burstApp
 
     subFunc <- intIntFuncDecl "subVar"
     subApp <- mkApp subFunc [limitIdApp]
@@ -829,6 +833,15 @@ toSMTState (Time t) n mi p ch ru = do
     assert =<< mkGt subApp zero
 
     assert =<< mkLe subApp burstApp
+
+    --We want limit-burst to be a multiple of subVar to prevent odd behavior
+    --For all numbers >= pN * subVar, the behavior would be the same, so only need to check
+    --up to pN*subVar
+    assert =<< mkOr =<< mapM (\pN' -> do
+        pN'' <- mkInt pN' intSort
+        pNSubMul <- mkMul [pN'', subApp]
+        mkEq burstApp pNSubMul
+        ) [1..pN]
 
     case mi of
         Just mi' -> do
@@ -867,7 +880,7 @@ toSMTState (Time t) n mi p ch ru = do
 
     timeDiffOr <- if not . null $ samePacketCheck then mkOr samePacketCheck else mkFalse
 
-    timeDiffRate <- mkMul [timeDiff', rateApp]
+    timeDiffRate <- trace ("pInt = " ++ show pInt ++ " chInt = " ++ show chInt ++ " ruInt = " ++ show ruInt ++ " timeDiff = " ++ show timeDiff) mkMul [timeDiff', rateApp]
 
     timeDiffRateIte <- mkIte timeDiffOr zero timeDiffRate
 
@@ -880,8 +893,14 @@ toSMTState (Time t) n mi p ch ru = do
     useLimitFunc <- intIntBoolFuncDecl "use-limit"
     useLimitApp <- mkApp useLimitFunc [ch, ru]
 
+    ignoreRuleFunc <- intIntBoolFuncDecl "ignore-rule"
+    notIgnoreRuleApp <- mkNot =<< mkApp ignoreRuleFunc [ch, ru]
+
+    assert =<< mkImplies useLimitApp notIgnoreRuleApp
+
     lim <- toSMTLimit n limitIdApp rateApp burstApp subApp p ch ru pre timeDiffRateIte (Just useLimitApp)
-    mkImplies useLimitApp lim
+    useLim <- mkImplies useLimitApp lim
+    mkAnd [notIgnoreRuleApp, useLim]
     where
         limitId :: AST -> AST -> Z3 AST
         limitId c r = do
@@ -958,9 +977,6 @@ toSMTState (Time t) n mi p ch ru = do
                         chs = filter (\c' -> (length . fromJust . lookupChain n $ c') /= 0) . filter (\c' -> i > c') $ mId
                     in 
                     if length chs /= 0 then Just (head chs, fromJust . lookupChain n . head $ chs) else Nothing
-
-
-
 
 enforcePacketsEqual :: AST -> AST -> Z3 ()
 enforcePacketsEqual i j = do

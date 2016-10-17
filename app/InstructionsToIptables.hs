@@ -78,6 +78,7 @@ instance ToIptables [Criteria] where
         b' ++ convert xs' n
     convert (IPAddress Destination i:xs) n = "-d " ++ show i ++ " " ++ convert xs n
     convert (IPAddress Source i:xs) n = "-s " ++ show i ++ " " ++ convert xs n
+    convert (Limit i r b s:xs) n = "-m limit --limit " ++ show r ++ "/" ++ convertLimitUnits s ++ " --limit-burst " ++ show (b `div` s) ++ " "  ++ convert xs n
     convert (Not c:xs) n = "! " ++ convert [c] n ++ " " ++ convert xs n
     convert (Port Destination (Left x):xs) n = "--dport " ++ show x ++ " " ++ convert xs n
     convert (Port Source (Left x):xs) n = "--sport " ++ show x ++ " " ++ convert xs n
@@ -85,6 +86,13 @@ instance ToIptables [Criteria] where
     convert (Port Source (Right (x, y)):xs) n = "--sport " ++ show x ++ ":" ++ show y ++ " " ++ convert xs n
     convert (Protocol x:xs) n = "-p " ++ show x ++ " " ++ convert xs n
     convert _ _ = "Unrecognized criteria when converting to iptables."
+
+convertLimitUnits :: Int -> String
+convertLimitUnits 1 = "second"
+convertLimitUnits 60 = "minute"
+convertLimitUnits 3600 = "hour"
+convertLimitUnits 86400 = "day"
+convertLimitUnits _ = error "Invalid units in limit"
 
 convertBoolFlags :: [Criteria] -> (String, [Criteria])
 convertBoolFlags xs = 

@@ -1,7 +1,7 @@
 module NameIdChain (IdNameChain, IdNameExamples, IdNameChainType, addChain, accessRules, lookupNameChain, lookupChain, lookupRule, chainRuleIds, lookupName, lookupEquivalent
     , allChainEquivalents, switchChains, addRuleToChains, chains, names, namesChains, validIds, idsWithName,
     increaseIds, reduceReferenced, notTopLevelChains, topLevelChains, topLevelJumpingTo, limits, limitIds, maxId,
-    maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplificationChains, pathSimplificationExamples, pathSimplification) where
+    maxLabel, setUnion, toList', jumpedToWithCriteria, pathSimplificationChains, pathSimplificationExamples, pathSimplification, increaseIdsCriteria) where
 --This is to convert all jumps/gotos/returns to the type Go Int Int,
 --which also requires appropriately duplicating chains
 
@@ -9,6 +9,8 @@ import Data.List
 import qualified Data.Map.Strict as Map
 import qualified Data.Maybe as MB
 import Types
+
+import Debug.Trace
 
 data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                                , accessRules :: ct -> Rule
@@ -284,6 +286,7 @@ increaseIdsTarget t _ = t
 
 limitIds' :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> [Int]
 limitIds' acc n = concat $ map (limitIdsChain . map acc . snd) (Map.elems n)
+
 
 limitIdsChain :: Chain -> [Int]
 limitIdsChain [] = []

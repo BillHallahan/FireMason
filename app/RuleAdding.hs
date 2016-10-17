@@ -14,6 +14,8 @@ import Types
 import NameIdChain
 import ChainsToSMT
 
+import Debug.Trace
+
 addRulesToIdNameChain :: [(Rule, String, Label)] -> IdNameChain -> IdNameChain
 addRulesToIdNameChain [] n = n
 addRulesToIdNameChain ((r, s, i):xs) n = 
@@ -75,7 +77,7 @@ findBestPointCut' r i n n' =
     do
         (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
 
-        --viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
+        viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
 
         if checking == Unsat then return (i', cut) else findBestPointCut' r i n shortened
@@ -98,11 +100,32 @@ checkRuleImpact r n n' top idsU = do
     chain1Symb <- mkStringSymbol "chain1"
     chain1 <- mkConst chain1Symb intSort
 
+    --Enforce the chains have the same policy
+    let chainIdPairs = map (\x -> (x, x + maxId n + 1)) (validIds n)
+    mapM_ (\(x, y) -> do 
+        x' <- mkInt x intSort
+        y' <- mkInt y intSort
+        policyX <- policy x'
+        policyY <- policy y'
+        assert =<< mkEq policyX policyY
+        ) chainIdPairs
+
+    --Enforce that limit information is the same between the chains
     let limIdPairs = map (\x -> (x, x + maxId n + 1)) (limitIds n)
     mapM_ (\(x, y) -> do 
         x' <- mkInt x intSort
         y' <- mkInt y intSort
         enforceLimitsEqual x' y') limIdPairs
+
+    --Enforce that any limits refered to in the packet will be matchable
+    mapM_ (\(i, r, b, s) -> do
+            i' <- mkInt (i + 1 + maxId n) intSort
+            b' <- mkInt b intSort
+
+            limInit <- limitInitial i'
+
+            assert =<< mkEq limInit b'
+        ) (limitInfo . criteria $ r)
 
     let topStarting = topLevelJumpingTo n top
     assert =<< mkOr =<< (sequence . (map (mkAnds chain0 chain1)) $ topStarting)
@@ -122,8 +145,8 @@ checkRuleImpact r n n' top idsU = do
 
     innerOr <- mkOr =<< sequence [mkEq tw0 tw1
                                   , mkAnd [reEnd0, reEnd1]
-                                  , mkAnd =<< sequence [toSMTCriteriaList (criteria r) (Just n') zero zero zero, orChangedChain]]
-    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (criteria r) (Just n') zero zero zero, orChangedChain]
+                                  , mkAnd =<< sequence [toSMTCriteriaList (eliminateLimits . criteria $ r) (Just n') zero zero zero, orChangedChain]]
+    imAnd <- mkAnd =<< sequence [toSMTCriteriaList (eliminateLimits . criteria $ r) (Just n') zero zero zero, orChangedChain]
     innerImplies <- mkImplies imAnd =<< mkEq tw1 targetAST
 
     assert =<< mkNot =<< mkAnd [innerOr, innerImplies]
@@ -138,6 +161,16 @@ checkRuleImpact r n n' top idsU = do
                         ec0 <- mkEq c0 i'
                         ec1 <- mkEq c1 i''
                         mkAnd [ec0, ec1])
+
+        eliminateLimits :: [Criteria] -> [Criteria]
+        eliminateLimits [] = []
+        eliminateLimits (Limit _ _ _ _:xs) = eliminateLimits xs
+        eliminateLimits (x:xs) = x:eliminateLimits xs
+
+        limitInfo :: [Criteria] -> [(Int, Int, Int, Int)]
+        limitInfo [] = []
+        limitInfo (Limit i r b s:xs) = (i, r, b, s):limitInfo xs
+        limitInfo (_:xs) = limitInfo xs
 
 --Returns the Name, one Id for, and position of the best (as determined by a similarity heuristic) place to insert the given rule in/below the
 --chain with the given id in the IdNameChain

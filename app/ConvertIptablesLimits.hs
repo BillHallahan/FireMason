@@ -12,7 +12,7 @@ convertLimitRule xs =
     let
         (r, b, s, xs') = convertLimitRule' xs
         r' = if isJust r then fromJust r else 3 * 60 * 60
-        b' = if isJust b then fromJust b else 5
+        b' = (if isJust b then fromJust b else 5) * s'
         s' = if isJust s then fromJust s else 1
     in
     if isJust r || isJust b then (Just [Left . Ext . InCLimit r' b' $ s'], xs') else (Nothing, xs')

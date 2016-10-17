@@ -30,12 +30,37 @@ statefulExampleInstructionsToInstructions e mi =
         opts = opt "MODEL" True
         e' = sortByTime e
     in
-    evalZ3With Nothing opts (statefulExampleInstructionsToInstructions' e' mi . pathSimplificationExamples . exInstructionsToMap $ e')
+    evalZ3With Nothing opts (statefulExampleInstructionsToInstructions' e' mi Nothing . pathSimplificationExamples . exInstructionsToMap $ e')
 
 
---The Maybe [Int] allows passing a list of allowed sub values
-statefulExampleInstructionsToInstructions' :: [ExampleInstruction] -> Maybe [Int] -> IdNameExamples -> Z3 (Maybe [Instruction])
-statefulExampleInstructionsToInstructions' ex mi n = do
+--In statefulExampleInstructionsToInstructions'' we attempt to get a model
+--In statefulExampleInstructionsToInstructions', if we have a model, we can try to get a better model by reducing the score
+statefulExampleInstructionsToInstructions' :: [ExampleInstruction] -> Maybe [Int] -> Maybe (Int, Int) -> IdNameExamples -> Z3 (Maybe [Instruction])
+statefulExampleInstructionsToInstructions' ex mi minMaxS n = do
+    let minS = case minMaxS of
+                    Just (minS', _) -> minS'
+                    Nothing -> 0
+
+    stEx <- statefulExampleInstructionsToInstructions'' ex mi minMaxS n
+    case stEx of
+        Just (ins, s)
+            | s == minS -> return . Just $ ins
+            | otherwise -> do
+                let  diff = s - minS
+                low <- statefulExampleInstructionsToInstructions' ex mi (Just (minS, quot diff 2)) n
+                case low of
+                    Just low' -> return . Just $ low'
+                    Nothing -> do
+                        high <- statefulExampleInstructionsToInstructions' ex mi (Just (quot diff 2, s)) n
+                        case high of
+                            Just high' -> return . Just $ high'
+                            Nothing -> return . Just $ ins
+        Nothing -> return Nothing
+
+--The Maybe [Int] allows passing a list of allowed sub values, the Maybe (Int, Int) allows performing a binary search for the optimal score
+--Returns a list of instructions and a score in a tuple
+statefulExampleInstructionsToInstructions'' :: [ExampleInstruction] -> Maybe [Int] -> Maybe (Int, Int) -> IdNameExamples -> Z3 (Maybe ([Instruction], Int))
+statefulExampleInstructionsToInstructions'' ex mi minMaxS n = do
     let ruleNum = foldr (+) 0 . map (length) $ (chains n)
     trace ("IdNameExamples = " ++ (show . toList' $ n)) convertExamplesSMT n ruleNum mi
     mapM_ (\(ei, p) ->
@@ -60,6 +85,39 @@ statefulExampleInstructionsToInstructions' ex mi n = do
             tar <- if (targets . exRule $ e) !! 0 == ACCEPT then acceptAST else dropAST
             tw <- terminatesWith p'
 
+            scoreSymb <- mkStringSymbol "score"
+            scoreVar <- mkIntVar scoreSymb
+
+
+            case minMaxS of
+                Just (_, maxS) -> do
+                    maxS' <- mkInt maxS intSort
+                    assert =<< mkLe scoreVar maxS'
+                Nothing -> return ()
+
+            useLimitFunc <- intIntBoolFuncDecl "use-limit"
+            ignoreRuleFunc <- intIntBoolFuncDecl "ignore-rule"
+            useLimitScoreFunc <- intIntIntFuncDecl "use-limit-score"
+            ignoreRuleScoreFunc <- intIntIntFuncDecl "ignore-rule-score"
+
+            addedScores <- mkAdd =<< mapM (\(c, r) -> do
+                    c' <- mkInt c intSort
+                    r' <- mkInt r intSort
+
+                    useLimitApp <- mkApp useLimitFunc [c', r']
+                    useLimitScoreApp <- mkApp useLimitScoreFunc [c', r']
+
+                    notIgnoreRuleApp <- mkNot=<< mkApp ignoreRuleFunc [c', r']
+                    notIgnoreRuleScoreApp <- mkApp ignoreRuleScoreFunc [c', r']
+
+                    smtBoolToSMTInt useLimitApp useLimitScoreApp
+                    smtBoolToSMTInt notIgnoreRuleApp notIgnoreRuleScoreApp
+
+                    mkAdd [useLimitScoreApp, notIgnoreRuleScoreApp]
+                ) (chainRuleIds n)
+
+            assert =<< mkEq scoreVar addedScores
+
             assert =<< mkEq tw tar
             ) $ zip ex [0..]
 
@@ -72,16 +130,39 @@ statefulExampleInstructionsToInstructions' ex mi n = do
                 pol <- policy c'
                 none <- noneAST
                 assert =<< mkEq pol none
-            ) (validIds n) 
+            ) (validIds n)
 
-    (checking, limsInfo) <- withModel . evalLimitsModel $ n
+    (checking, m) <- solverCheckAndGetModel
 
-    let ins = case limsInfo of
-                    Just i -> Just . map (\(c, r) -> toInstructionWithLimits i n c r)  . chainRuleIds $ n
-                    Nothing -> Nothing
+    --(checking, limsInfo) <- withModel .
+    case m of
+        Just m' -> do
+            showM <- showModel m'
+            ins <- informationFromModel n m'
 
-    trace ("limsInfo = " ++ show limsInfo ++ "\n\n ins = " ++ show ins) return ins
+            scoreSymb <- trace ("m = " ++ showM)  mkStringSymbol "score"
+            score <- return . fromIntegral . fromJust =<< evalInt m' =<< mkIntVar scoreSymb
+
+            return . Just $ (ins, score)
+        Nothing -> return Nothing
     where
+        informationFromModel :: IdNameExamples -> Model -> Z3 [Instruction]
+        informationFromModel n m = do
+            limsInfo <- getLimitsModel n m
+            ignore <- getNotIgnoredRules n m
+            ins <- return . map (\(c, r) -> toInstructionWithLimits limsInfo n c r)  . filter ((flip elem) ignore) . chainRuleIds $ n
+            trace ("limsInfo = " ++ show limsInfo ++ "\n\n ins = " ++ show ins) return ins
+
+        --Given a true or false boolean value and an integer value, sets the integer value to 1 or 0, respectively
+        smtBoolToSMTInt :: AST -> AST -> Z3 ()
+        smtBoolToSMTInt b i = do
+            intSort <- mkIntSort
+            zero <- mkInt 0 intSort
+            one <- mkInt 1 intSort
+            vZero <- mkEq i zero
+            vOne <- mkEq i one
+            assert =<< mkIte b vOne vZero
+
         toInstructionWithLimits :: Map.Map (ChainId, RuleInd) Criteria -> IdNameExamples -> ChainId -> RuleInd -> Instruction
         toInstructionWithLimits crc n c r =
             let
@@ -99,10 +180,22 @@ statefulExampleInstructionsToInstructions' ex mi n = do
             ToChainNamed {chainName = name, insRule = r'''}
             
 
+getNotIgnoredRules :: IdNameExamples -> Model -> Z3 [(ChainId, RuleInd)]
+getNotIgnoredRules n m = do
+    ignore <- intIntBoolFuncDecl "ignore-rule"
 
-evalLimitsModel :: IdNameExamples -> Model -> Z3 (Map.Map (ChainId, RuleInd) Criteria)--Z3 [((ChainId, RuleInd), Criteria)]
-evalLimitsModel n m = do
-    --showM <- showModel m
+    return . catMaybes =<< mapM (\(c, r) -> do
+            intSort <- mkIntSort
+
+            c' <- mkInt c intSort
+            r' <- mkInt r intSort
+
+            ignoredRule <- return . fromJust =<< evalBool m =<< mkApp ignore [c', r']
+            if not ignoredRule then return . Just $ (c, r) else return Nothing
+        ) (chainRuleIds  n)
+
+getLimitsModel :: IdNameExamples -> Model -> Z3 (Map.Map (ChainId, RuleInd) Criteria)--Z3 [((ChainId, RuleInd), Criteria)]
+getLimitsModel n m = do
     useLimRes <- useLimitFunc n m
 
     limitIdFunc <- intIntIntFuncDecl "limit-id"

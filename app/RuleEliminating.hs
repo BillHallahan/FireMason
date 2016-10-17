@@ -7,6 +7,8 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
+import Debug.Trace
+
 --returns a list of chain names and rule numbers (in terms of labels) which should be removed
 findRedundantRule :: IdNameChain -> IO [(String, Label)]
 findRedundantRule n = evalZ3 . findRedundantRule' $ n
@@ -45,9 +47,7 @@ findRedundantRule''' n c r =
         intSort <- mkIntSort
         p <- mkInt 0 intSort
 
-        check <- solverCheck
-
-        assert =<< mkOr =<< (sequence $ map (\(c2, r2) -> matchesRule' p c2 r2) ((,) <$> c <*> rSame))
+        assert =<< mkOr =<< mapM (\(c2, r2) -> matchesRule' p c2 r2) ((,) <$> c <*> rSame)
 
         r'' <- solverCheck
 
