@@ -29,29 +29,38 @@ statefulExampleInstructionsToInstructions e mi =
     let
         opts = opt "MODEL" True
         e' = sortByTime e
+        mi' = if isJust mi then (if not (0 `elem` fromJust mi) then Just $ 0:(fromJust mi) else mi) else Nothing
     in
-    evalZ3With Nothing opts (statefulExampleInstructionsToInstructions' e' mi Nothing . pathSimplificationExamples . exInstructionsToMap $ e')
+    evalZ3With Nothing opts (statefulExampleInstructionsToInstructions' e' mi' Nothing Nothing . pathSimplificationExamples . exInstructionsToMap $ e')
 
 
 --In statefulExampleInstructionsToInstructions'' we attempt to get a model
 --In statefulExampleInstructionsToInstructions', if we have a model, we can try to get a better model by reducing the score
-statefulExampleInstructionsToInstructions' :: [ExampleInstruction] -> Maybe [Int] -> Maybe (Int, Int) -> IdNameExamples -> Z3 (Maybe [Instruction])
-statefulExampleInstructionsToInstructions' ex mi minMaxS n = do
+statefulExampleInstructionsToInstructions' :: [ExampleInstruction] -> Maybe [Int] -> Maybe (Int, Int)  -> Maybe (Int, Int) -> IdNameExamples -> Z3 (Maybe [Instruction])
+statefulExampleInstructionsToInstructions' ex mi minMaxS minMaxSub n = do
     let minS = case minMaxS of
                     Just (minS', _) -> minS'
                     Nothing -> 0
 
-    stEx <- statefulExampleInstructionsToInstructions'' ex mi minMaxS n
-    case stEx of
-        Just (ins, s)
-            | s == minS -> return . Just $ ins
+    let minSub = case minMaxSub of
+                    Just (minS', _) -> minS'
+                    Nothing -> 0
+
+    stEx <- statefulExampleInstructionsToInstructions'' ex mi minMaxS minMaxSub n
+    trace ("\n\nstEx = " ++ show stEx ++ "\n") $ case stEx of
+        Just (ins, sc, sub)
+            | sc == minS && sub == minSub -> return . Just $ ins
             | otherwise -> do
-                let  diff = s - minS
-                low <- statefulExampleInstructionsToInstructions' ex mi (Just (minS, quot diff 2)) n
+                let  diff = sc - minS
+                let subDiff = sub - minSub
+                let (subLow, subHigh) = case diff of --We begin trying to decrease subVar after we have already mnimized score
+                                            0 -> (Nothing, Nothing)
+                                            otherwise -> trace "subLOWHIGH" (Just (minSub, quot subDiff 2), Just(quot subDiff 2, sub))
+                low <- statefulExampleInstructionsToInstructions' ex mi (Just (minS, quot diff 2)) subLow n
                 case low of
                     Just low' -> return . Just $ low'
                     Nothing -> do
-                        high <- statefulExampleInstructionsToInstructions' ex mi (Just (quot diff 2, s)) n
+                        high <- statefulExampleInstructionsToInstructions' ex mi (Just (quot diff 2, sc)) subHigh n
                         case high of
                             Just high' -> return . Just $ high'
                             Nothing -> return . Just $ ins
@@ -59,10 +68,20 @@ statefulExampleInstructionsToInstructions' ex mi minMaxS n = do
 
 --The Maybe [Int] allows passing a list of allowed sub values, the Maybe (Int, Int) allows performing a binary search for the optimal score
 --Returns a list of instructions and a score in a tuple
-statefulExampleInstructionsToInstructions'' :: [ExampleInstruction] -> Maybe [Int] -> Maybe (Int, Int) -> IdNameExamples -> Z3 (Maybe ([Instruction], Int))
-statefulExampleInstructionsToInstructions'' ex mi minMaxS n = do
+statefulExampleInstructionsToInstructions'' :: [ExampleInstruction] -> Maybe [Int] -> Maybe (Int, Int) -> Maybe (Int, Int) -> IdNameExamples -> Z3 (Maybe ([Instruction], Int, Int))
+statefulExampleInstructionsToInstructions'' ex mi minMaxS minMaxSub n = do
     let ruleNum = foldr (+) 0 . map (length) $ (chains n)
+
+    reset
+
     trace ("IdNameExamples = " ++ (show . toList' $ n)) convertExamplesSMT n ruleNum mi
+    
+    scoreSymb <- mkStringSymbol "score"
+    scoreVar <- mkIntVar scoreSymb
+    addedSubsSymb <- mkStringSymbol "addedSubs"
+    addedSubsVar <- mkIntVar addedSubsSymb
+
+
     mapM_ (\(ei, p) ->
         do
             let e = insRule ei
@@ -85,20 +104,24 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS n = do
             tar <- if (targets . exRule $ e) !! 0 == ACCEPT then acceptAST else dropAST
             tw <- terminatesWith p'
 
-            scoreSymb <- mkStringSymbol "score"
-            scoreVar <- mkIntVar scoreSymb
-
-
             case minMaxS of
-                Just (_, maxS) -> do
+                Just (minS, maxS) -> do
                     maxS' <- mkInt maxS intSort
-                    assert =<< mkLe scoreVar maxS'
+                    case minMaxSub of
+                        Just (minSub, maxSub) -> do
+                            assert =<< mkLe scoreVar maxS'--Really could just be mKEq- playing it safe...
+                            maxSub' <- mkInt maxSub intSort
+                            assert =<< mkLt addedSubsVar maxSub'
+                        Nothing -> do
+                            assert =<< mkLt scoreVar maxS'
                 Nothing -> return ()
 
             useLimitFunc <- intIntBoolFuncDecl "use-limit"
             ignoreRuleFunc <- intIntBoolFuncDecl "ignore-rule"
             useLimitScoreFunc <- intIntIntFuncDecl "use-limit-score"
             ignoreRuleScoreFunc <- intIntIntFuncDecl "ignore-rule-score"
+            limitIdFunc <- intIntIntFuncDecl "limit-id"
+            subFunc <- intIntFuncDecl "subVar"
 
             addedScores <- mkAdd =<< mapM (\(c, r) -> do
                     c' <- mkInt c intSort
@@ -113,10 +136,22 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS n = do
                     smtBoolToSMTInt useLimitApp useLimitScoreApp
                     smtBoolToSMTInt notIgnoreRuleApp notIgnoreRuleScoreApp
 
+
                     mkAdd [useLimitScoreApp, notIgnoreRuleScoreApp]
                 ) (chainRuleIds n)
 
+            addedSubs <- mkAdd =<< mapM (\(c, r) -> do
+                    c' <- mkInt c intSort
+                    r' <- mkInt r intSort
+
+                    limIdApp <- mkApp limitIdFunc [c', r']
+
+                    mkApp subFunc [limIdApp]
+                ) (chainRuleIds n)
+
             assert =<< mkEq scoreVar addedScores
+            assert =<< mkEq addedSubsVar addedSubs
+
 
             assert =<< mkEq tw tar
             ) $ zip ex [0..]
@@ -140,10 +175,10 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS n = do
             showM <- showModel m'
             ins <- informationFromModel n m'
 
-            scoreSymb <- trace ("m = " ++ showM)  mkStringSymbol "score"
-            score <- return . fromIntegral . fromJust =<< evalInt m' =<< mkIntVar scoreSymb
+            score <- return . fromIntegral . fromJust =<< evalInt m' scoreVar
+            addedSubsVal <- return . fromIntegral . fromJust =<< evalInt m' addedSubsVar
 
-            return . Just $ (ins, score)
+            return . Just $ (ins, score, addedSubsVal)
         Nothing -> return Nothing
     where
         informationFromModel :: IdNameExamples -> Model -> Z3 [Instruction]
@@ -178,6 +213,21 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS n = do
                             Nothing -> Rule {criteria = criteria . exRule $ r'', targets = targets . exRule $ r'', label = label . exRule $ r''}
             in
             ToChainNamed {chainName = name, insRule = r'''}
+
+        --returns a Z3 function  with Name s to map list[i] to i
+        smtListToIndex :: String -> [Int] -> Z3 FuncDecl
+        smtListToIndex s i = do
+            sFunc <- intIntFuncDecl s
+            let i' = zip i [0..]
+            mapM_ (\(x, y) -> do
+                    intSort <- mkIntSort
+                    x' <- mkInt x intSort
+                    y' <- mkInt y intSort
+
+                    sApp <- mkApp sFunc [x']
+                    assert =<< mkEq sApp y' 
+                ) i'
+            return sFunc
             
 
 getNotIgnoredRules :: IdNameExamples -> Model -> Z3 [(ChainId, RuleInd)]

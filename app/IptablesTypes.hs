@@ -14,9 +14,11 @@ data Line = Line {table :: Table
                   ,fileline :: Int} deriving (Show)
 
 data Command = Append String
+			   | DeleteChain (Maybe String)
                | Insert String Int
-               | New String
                | Flush (Maybe String)
+               | New String
+               | Policy String Target
                | None deriving (Eq, Show)
 
 comChainName :: Command -> Maybe String

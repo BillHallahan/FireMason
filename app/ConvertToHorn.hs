@@ -9,7 +9,7 @@ stringInputChainsToStringChains :: [(String, FileChain)] -> Int -> [(String, Cha
 stringInputChainsToStringChains [] _ = []
 stringInputChainsToStringChains ((s, c):sc) j =
     let
-        c' = map (fst) $ inputChainToChain (eliminateOrPropVar) (eliminateLimits) c j
+        c' = map (fst) $ inputChainToChain (eliminateOrPropVar) (eliminateFileInput) c j
     in
     (s, c'):stringInputChainsToStringChains sc (j + length c')--Adding length c' is sufficient to ensure no
                                                                --collisions, but will skip some numbers, this is fine
@@ -36,8 +36,9 @@ condenseOr [] = []
 condenseOr (Or c:cx) = (condenseOr c) ++ condenseOr cx
 condenseOr (c:cx) = c:condenseOr cx
 
-eliminateLimits :: ElimExt LimitInput Int
-eliminateLimits (InCLimit r b s) i = (Just . Limit i r b $ s, [] , i + 1, [])
+eliminateFileInput :: ElimExt FileInput Int
+eliminateFileInput (InCLimit r b s) i = (Just . Limit i r b $ s, [] , i + 1, [])
+eliminateFileInput (InCUnrecognizedCriteria s) i = (Just . UnrecognizedCriteria i $ s, [] , i + 1, [])
 
 eliminateState :: ElimExt State State
 eliminateState s i = (Nothing, [], i, [s])
@@ -77,6 +78,23 @@ inputCriteriaToCriteria elim elimE (InCNot (InC c):cx) i =
         (c'', r', i') =  inputCriteriaToCriteria (elim) (elimE) cx i
     in
     (map (\(c''', s) -> (Not c:c''', s)) c'', r', i')
+inputCriteriaToCriteria elim elimE (InCNot (Ext a'):cx) i =
+    let
+        (c, r'', i', b') = eliminatedNot (elimE) a' i
+        (c'', r', i'') = inputCriteriaToCriteria elim (elimE) cx i'
+    in
+    case c of 
+        Just c'''' -> (map (\(c2, s) -> (c'''':c2, b' ++ s)) c'', r'' ++ r', i'')
+        Nothing ->  (map (\(c''', s) -> (c''', b' ++ s)) c'', r'' ++ r', i'')
+        where
+            eliminatedNot :: (ElimExt a b) -> ElimExt a b
+            eliminatedNot elimE' a' i =
+                let
+                    (c, r, i', b) = elimE' a' $ i
+                in
+                case c of
+                    Just c' -> (Just . Not $ c', r, i', b)
+                    otherwise -> (c, r, i', b)
 inputCriteriaToCriteria elim elimE (InCNot c:cx) i = inputCriteriaToCriteria elim (elimE) ((simplifyNots [InCNot c]) ++ cx) i
 inputCriteriaToCriteria elim elimE (c':cx) i =
     let
@@ -86,7 +104,6 @@ inputCriteriaToCriteria elim elimE (c':cx) i =
     in
     case c of Just c'''' -> (map (\(c2, s) -> (c'''':c2, b' ++ s)) c'', r'' ++ r', i'')
               Nothing ->  (map (\(c''', s) -> (c''', b' ++ s)) c'', r'' ++ r', i'')
-
 
 
 --Moves all Nots as deep into the criteria as possible,
@@ -108,7 +125,7 @@ simplifyNots (c:cx) = c:simplifyNots cx
 
 
 fileInstructionsToInstruction :: [FileInstruction] -> [Instruction]
-fileInstructionsToInstruction xs = inputInstructionTypeConversion (eliminateOrPropVar) (eliminateLimits) (\x -> fst) xs
+fileInstructionsToInstruction xs = inputInstructionTypeConversion (eliminateOrPropVar) (eliminateFileInput) (\x -> fst) xs
 
 exampleRuleInstructionsToExamplesInstructions :: [ExampleRuleInstruction] -> [ExampleInstruction]
 exampleRuleInstructionsToExamplesInstructions xs = inputInstructionTypeConversion (eliminateOr) (eliminateState) (insToExample) xs

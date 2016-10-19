@@ -40,6 +40,7 @@ data Criteria = BoolFlag Flag
                 | Port Endpoint (Either Int (Int, Int))
                 | PropVariableCriteria Int
                 | Protocol Int
+                | UnrecognizedCriteria Int String
                 | SC String deriving (Eq, Show)
 
 data Flag = SYN | ACK | FIN | RST | URG deriving (Ord, Eq, Show)
@@ -113,9 +114,10 @@ data InputCriteria a = InC Criteria
                        | And [InputCriteria a]
                        | Or [InputCriteria a] deriving (Eq, Show)
 
-data LimitInput = InCLimit Int Int Int deriving (Eq, Show)
+data FileInput = InCLimit Int Int Int
+                 | InCUnrecognizedCriteria String deriving (Eq, Show)
 
-type FileCriteria = InputCriteria LimitInput 
+type FileCriteria = InputCriteria FileInput 
 
 type ExampleCriteria = InputCriteria State
 
@@ -129,6 +131,7 @@ data Target = Jump String
               | DROP
               | RETURN
               | PropVariableTarget Int Bool
+              | UnrecognizedTarget Int String
               | ST String deriving (Eq, Show)
 
 data State = Time Seconds deriving (Eq, Show)

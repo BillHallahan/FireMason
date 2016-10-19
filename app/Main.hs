@@ -46,7 +46,7 @@ main = do
     let pathSimp = pathSimplificationChains converted
 
 
-    putStrLn . show . toList'$ pathSimp
+    putStrLn . show . toList' $ pathSimp
 
     changes <- readFile changesFileName
 
@@ -92,11 +92,12 @@ main = do
     
 
     insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day])) . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
+    --insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day]))  haveState
 
-    putStrLn "HERE"
+    putStrLn $ "HERE " ++ show insStateRes
 
     addedPos <- case insStateRes of
-                        Just insStateRes' -> instructionsToAddAtPos (rulesToAdd'' ++ insStateRes') pathSimp
+                        Just insStateRes' -> instructionsToAddAtPos (insStateRes' ++ rulesToAdd'') pathSimp
                         Nothing -> error "Irresolvable state" -- IMPROVE THIS ERROR MESSAGE
 
     putStrLn "HERE 2"

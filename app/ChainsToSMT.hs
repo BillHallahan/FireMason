@@ -110,6 +110,13 @@ intBoolAST s i = do
     dec <- mkFuncDecl s' [intSort] boolSort
     mkApp dec [i]
 
+intBoolFuncDecl :: String -> Z3 FuncDecl
+intBoolFuncDecl s = do
+    intSort <- mkIntSort
+    boolSort <- mkBoolSort
+    s' <- mkStringSymbol s
+    mkFuncDecl s' [intSort] boolSort
+
 intIntBoolFuncDecl :: String -> Z3 FuncDecl
 intIntBoolFuncDecl s = do
     intSort <- mkIntSort
@@ -541,7 +548,7 @@ toSMTPathRule (Rule c [] _) ch r pN = do
 toSMTPathRule (Rule c t _) ch r pN = toSMTPathTargets t ch r pN
 
 toSMTPathTargets :: [Target] -> AST -> AST -> Int -> Z3 ()
-toSMTPathTargets (t:[]) ch r pN = toSMTPathTarget t ch r pN
+toSMTPathTargets (t:tx) ch r pN = toSMTPathTarget t ch r pN
 
 toSMTPathTarget :: Target -> AST -> AST -> Int -> Z3 ()
 toSMTPathTarget (ACCEPT) ch r pN= do
@@ -603,6 +610,17 @@ toSMTPathTarget (PropVariableTarget i b) ch r pN = do
             e <- mkEq app b''
 
             assert =<< mkImplies matches e
+toSMTPathTarget (UnrecognizedTarget i s) ch r _ = do
+    intSort <- mkIntSort
+    i' <- mkInt i intSort
+    unrecTargetSymb <- mkStringSymbol "unrecognized-target"
+    unrecFuncDecl <- mkFuncDecl unrecTargetSymb [intSort] =<< makeTargetDatatype
+    unrecApp <- mkApp unrecFuncDecl [i']
+    rT <- ruleTarget ch r
+
+    assert =<< mkEq unrecApp =<< noneAST 
+
+    assert =<< mkEq unrecApp rT
 
 toSMTPath t _ _ _ = error "Target " ++ show t ++ " not recognized."
 
@@ -751,6 +769,11 @@ toSMTCriteria (Protocol i) _ p _ _ = do
     app <- intIntAST "protocol" p
     mkEq app i'
 toSMTCriteria (PropVariableCriteria i) _ p _ _ = propVariableAST i p
+toSMTCriteria (UnrecognizedCriteria i _) _ p _ _ = do
+    intSort <- mkIntSort
+    i' <- mkInt i intSort
+    unrecFuncDecl <- intBoolFuncDecl "unrecognizedCriteria"
+    mkApp unrecFuncDecl [i']
 toSMTCriteria c _ _ _ _ = error ("Criteria " ++ show c ++ " not recognized by SMT conversion.")
 
 --IdNameChain -> LimitId -> Rate -> Burst -> Sub -> PacketNum -> ChainId -> RuleInd -> PreLimit -> timeDiff -> Maybe matchesOnlyIfTrue -> Z3 AST
@@ -880,7 +903,7 @@ toSMTState (Time t) n mi p ch ru pN = do
 
     timeDiffOr <- if not . null $ samePacketCheck then mkOr samePacketCheck else mkFalse
 
-    timeDiffRate <- trace ("pInt = " ++ show pInt ++ " chInt = " ++ show chInt ++ " ruInt = " ++ show ruInt ++ " timeDiff = " ++ show timeDiff) mkMul [timeDiff', rateApp]
+    timeDiffRate <- mkMul [timeDiff', rateApp]
 
     timeDiffRateIte <- mkIte timeDiffOr zero timeDiffRate
 
