@@ -1,0 +1,2 @@
+acl FORWARD : protocol = 6 AND destination_port = 110 => DROP,
+acl INPUT : protocol = 124 => ACCEPT

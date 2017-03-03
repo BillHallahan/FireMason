@@ -1,0 +1,6 @@
+acl INPUT : source_ip = 192.132.209.0/24 AND SYN AND time = 10 => ACCEPT,
+acl INPUT : source_ip = 192.132.209.0/24 AND SYN AND time = 11 => ACCEPT,
+acl INPUT : source_ip = 192.132.209.0/24 AND SYN AND time = 12 => ACCEPT,
+acl INPUT : source_ip = 192.132.209.0/24 AND SYN AND time = 13 => DROP,
+acl INPUT : source_ip = 192.132.209.0/24 AND SYN AND time = 19 => DROP,
+acl INPUT : source_ip = 192.132.209.0/24 AND SYN AND time = 21 => ACCEPT

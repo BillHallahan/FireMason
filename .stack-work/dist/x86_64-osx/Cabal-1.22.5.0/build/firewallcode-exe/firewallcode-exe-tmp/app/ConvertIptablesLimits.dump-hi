@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-16 15:15:50.466501 UTC
+2017-03-03 16:06:52.379723 UTC
 
 interface main@main:ConvertIptablesLimits 7103
-  interface hash: 8976ec6a4e33de1cf8793c629605762e
-  ABI hash: af4d2fdfb454a7d33dfa7261f7d9b910
+  interface hash: b6a4dcd1bed71ec033adbbc7fe7ff593
+  ABI hash: 302f9d45914c7af66a094c64037391ec
   export-list hash: 595905a535d7dc765bc006c6b07a88e6
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -71,67 +71,93 @@ import  -/  base-4.8.2.0:GHC.Unicode cdf84fc3abbaf34ba6b6645291cef991
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  base-4.8.2.0:Text.Read ef0ef92fb7358ae94bab089940adfd2a
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
-import  -/  IptablesTypes a8bddafcdf14ff361369377deca32a6c
-  exports: d7e48047831db0f2703ffd9b6a21af17
-import  -/  Types ae53e2699ad6d0166c06d9687149e3e7
-  exports: d51b92dffa880c4df17ac8601327b0a2
-  InCLimit dfab7c278ab0209c79e8723a6b173cd3
-  ModuleFunc 8f1308c3a848fba6ea7db3685b6ce127
-a5155535225b04e3e91d94c143dd1d4e
-  $wconvertLimitRule' ::
+import  -/  IptablesTypes 77929783e1bd548d87f5f7b07a624da9
+  exports: 2ea6f182fbe7d9a4a26dc92a1b35a045
+import  -/  Types 5cc88623eea062e7f6011dfd679287af
+  exports: 150e5976e36f4ba67c4c37181359bbdd
+  Ext 602fb4892b1deb6651658835e747d9cc
+  InCLimit ccf7dfdbaf5848dede88053aeebe3b2b
+  ModuleFunc a1a12e9eec1af74eb394d30b1e30a4e7
+41361305657cf38c5d38e314e99a4582
+  $wconvertLimitRule ::
     [GHC.Base.String]
-    -> (# GHC.Base.Maybe GHC.Types.Int,
-          GHC.Base.Maybe GHC.Types.Int,
+    -> (# GHC.Base.Maybe
+            [Data.Either.Either Types.FileCriteria Types.Target],
           [GHC.Base.String] #)
-  {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-0553ebc010101eddd850680fdab210bf
-  convertLimitRule :: Types.ModuleFunc
-  {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
-     Unfolding: InlineRule (1, True, False)
-                (\ w :: [GHC.Base.String] ->
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0],
+     Unfolding: (\ w :: [GHC.Base.String] ->
                  case ConvertIptablesLimits.$wconvertLimitRule'
-                        w of ww { (#,,#) ww1 ww2 ww3 ->
+                        w of ww { (#,,,#) ww1 ww2 ww3 ww4 ->
+                 let {
+                   $w$j :: GHC.Prim.Void#
+                           -> (# GHC.Base.Maybe
+                                   [Data.Either.Either Types.FileCriteria Types.Target],
+                                 [GHC.Base.String] #)
+                     {- Arity: 1, Strictness: <L,U>, Inline: [0] -}
+                   = \ void :: GHC.Prim.Void#[OneShot] ->
+                     let {
+                       s' :: GHC.Types.Int
+                       = case ww3 of wild {
+                           GHC.Base.Nothing -> ConvertIptablesLimits.convertLimitRule2
+                           GHC.Base.Just ipv -> ipv }
+                     } in
+                     (# GHC.Base.Just
+                          @ [Data.Either.Either Types.FileCriteria Types.Target]
+                          (GHC.Types.:
+                             @ (Data.Either.Either Types.FileCriteria Types.Target)
+                             (Data.Either.Left
+                                @ (Types.InputCriteria Types.FileInput)
+                                @ Types.Target
+                                (Types.Ext
+                                   @ Types.FileInput
+                                   (Types.InCLimit
+                                      (case ww1 of wild {
+                                         GHC.Base.Nothing -> ConvertIptablesLimits.convertLimitRule1
+                                         GHC.Base.Just ipv -> ipv })
+                                      (case ww2 of wild {
+                                         GHC.Base.Nothing
+                                         -> case s' of wild1 { GHC.Types.I# y ->
+                                            GHC.Types.I# (GHC.Prim.*# 5 y) }
+                                         GHC.Base.Just ipv
+                                         -> case ipv of wild1 { GHC.Types.I# x ->
+                                            case s' of wild2 { GHC.Types.I# y ->
+                                            GHC.Types.I# (GHC.Prim.*# x y) } } })
+                                      s')))
+                             (GHC.Types.[]
+                                @ (Data.Either.Either Types.FileCriteria Types.Target))),
+                        ww4 #)
+                 } in
                  case ww1 of wild {
                    GHC.Base.Nothing
                    -> case ww2 of wild1 {
                         GHC.Base.Nothing
-                        -> (GHC.Base.Nothing
-                              @ [Data.Either.Either Types.InputCriteria Types.Target],
-                            ww3)
-                        GHC.Base.Just ipv
-                        -> (GHC.Base.Just
-                              @ [Data.Either.Either Types.InputCriteria Types.Target]
-                              (GHC.Types.:
-                                 @ (Data.Either.Either Types.InputCriteria Types.Target)
-                                 (Data.Either.Left
-                                    @ Types.InputCriteria
-                                    @ Types.Target
-                                    (Types.InCLimit ConvertIptablesLimits.convertLimitRule2 ipv))
-                                 (GHC.Types.[]
-                                    @ (Data.Either.Either Types.InputCriteria Types.Target))),
-                            ww3) }
-                   GHC.Base.Just ipv
-                   -> (GHC.Base.Just
-                         @ [Data.Either.Either Types.InputCriteria Types.Target]
-                         (GHC.Types.:
-                            @ (Data.Either.Either Types.InputCriteria Types.Target)
-                            (Data.Either.Left
-                               @ Types.InputCriteria
-                               @ Types.Target
-                               (Types.InCLimit
-                                  ipv
-                                  (case ww2 of wild1 {
-                                     GHC.Base.Nothing -> ConvertIptablesLimits.convertLimitRule1
-                                     GHC.Base.Just ipv1 -> ipv1 })))
-                            (GHC.Types.[]
-                               @ (Data.Either.Either Types.InputCriteria Types.Target))),
-                       ww3) } }) -}
-9585ea8782c4ee1abfa6298fd58995ba
+                        -> (# GHC.Base.Nothing
+                                @ [Data.Either.Either Types.FileCriteria Types.Target],
+                              ww4 #)
+                        GHC.Base.Just ipv -> $w$j GHC.Prim.void# }
+                   GHC.Base.Just ipv -> $w$j GHC.Prim.void# } }) -}
+cbea7d9fdee2c2023117c4dbde610167
+  $wconvertLimitRule' ::
+    [GHC.Base.String]
+    -> (# GHC.Base.Maybe GHC.Types.Int,
+          GHC.Base.Maybe GHC.Types.Int,
+          GHC.Base.Maybe GHC.Types.Int,
+          [GHC.Base.String] #)
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
+0f6bf186f76b60f4afd6b9c26abdae7c
+  convertLimitRule :: Types.ModuleFunc
+  {- Arity: 1, Strictness: <S,1*U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ w :: [GHC.Base.String] ->
+                 case ConvertIptablesLimits.$wconvertLimitRule
+                        w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+d9160b3f418752f638931008ba0dfd6d
   convertLimitRule1 :: GHC.Types.Int
-  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 5) -}
-270a17334bfc774e8b94efa8097900c1
-  convertLimitRule2 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 10800) -}
+424858ad5897be82b642a933f9fd5806
+  convertLimitRule2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

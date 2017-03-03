@@ -1,0 +1,3 @@
+acl INPUT : SYN AND time = 10 => ACCEPT,
+acl INPUT : SYN AND time = 15 => DROP,
+acl INPUT : SYN AND time = 20 => ACCEPT

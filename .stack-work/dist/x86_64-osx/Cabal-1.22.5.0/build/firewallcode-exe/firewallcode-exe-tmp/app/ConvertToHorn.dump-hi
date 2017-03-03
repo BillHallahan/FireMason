@@ -1,24 +1,19 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-16 15:15:44.815462 UTC
+2017-03-03 16:06:41.71216 UTC
 
 interface main@main:ConvertToHorn 7103
-  interface hash: a34cf0a80456c71a7a583301dff3d015
-  ABI hash: a9643a427062393f0bfac6be5a683cb1
-  export-list hash: 7a6585bf1c30690c111eeddced6b9073
+  interface hash: 43e3bcc250702e4de9eaaaf66963e9db
+  ABI hash: 61a096c728f4b681a9da311411e4b9b6
+  export-list hash: acea6c3652e463f91137efd13c01918b
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
   where
 exports:
-  ConvertToHorn.condenseAnd
-  ConvertToHorn.condenseOr
-  ConvertToHorn.eliminateOr
-  ConvertToHorn.inputChainToChain
-  ConvertToHorn.inputCriteriaToCriteria
-  ConvertToHorn.inputInstructionsToInstructions
-  ConvertToHorn.simplifyNots
+  ConvertToHorn.exampleRuleInstructionsToExamplesInstructions
+  ConvertToHorn.inputInstructionTypeConversion
   ConvertToHorn.stringInputChainsToStringChains
 module dependencies: Types
 package dependencies: appar-0.1.4@appar_0ov5bpGH3STIB4U7WU8MFi
@@ -69,88 +64,228 @@ family instance modules: base-4.8.2.0:Control.Applicative
                          unordered-containers-0.2.7.1@unord_5iWC5HdL16JGHXLbsgBJnw:Data.HashSet
 import  -/  base-4.8.2.0:Data.Foldable 2ce969969ad5231eb40bd713f94f05ad
 import  -/  base-4.8.2.0:Data.Functor 5c701b0af1708f0192a25dfe14ce6274
+import  -/  base-4.8.2.0:Data.Tuple 012ad951a59a9d85fe1de36a2f012986
 import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
 import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
+import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
-import  -/  Types ae53e2699ad6d0166c06d9687149e3e7
-  exports: d51b92dffa880c4df17ac8601327b0a2
-  And a27524a6296f7ee795b4b1e1a1374e70
-  Chain e118016d110774f4e1148cdb40ee3eee
-  Criteria e19364fbcccdcd240635a00eaccbd95c
-  InC 7f9c9f259fa6bd941df8e4ccf89691ac
-  InCNot 77f8d72dd870d383e88f3baa9167f51f
-  InputChain 4709311dcda84b32de06a111ec13c576
-  InputCriteria 67d439e932b644546a2278344c017a4d
-  InputInstruction 85e9daae985d4a4c6617c8f1f9553efc
-  InputRule 67d439e932b644546a2278344c017a4d
-  Instruction c59865b289e3a60f83b8af8159df7e9c
-  NoInstruction b969e22921f283e869a0720ab3777dec
-  Not 1adbafabbd7f98320f67479286fd3b91
-  Or 5cd93233d7a6ac3928f924259a0a0c58
-  PropVariableTarget e516f11b198d68f0c48067d67afcef52
-  Rule 30c487073b35ac8fdff0d361e2257c83
-  Rule 2763a04da1bec065877eb2b8e3c9f38c
-  ToChainNamed ce4c7bf5b328004ab15754446244f326
-  criteria 3d3cb479422c910a1244322a683b8784
-  isStateless 06ea4806a9ad98faff8777598e2d707d
-  label 87d399b1535c1f5a4fc3d169a58a9baa
-  targets a2559cdf0772c1316d0c1859a3776ed1
-0c0aea7b19a31248d6370444bd32d7ba
-  $weliminateOr ::
-    [Types.InputCriteria]
+import  -/  Types 5cc88623eea062e7f6011dfd679287af
+  exports: 150e5976e36f4ba67c4c37181359bbdd
+  And df5fb54a2110a27758fbe9675de5424a
+  Chain 3dbdd334c06dc203715a96fc567f1d9d
+  Criteria cd9fa80f07dac492cd3e2abc1ff8b6ce
+  Example d9d67ce4e5cccb6fcc816ee577c05efd
+  ExampleInstruction 3b01b508ea36d48a33c260bcddd81cec
+  ExampleRuleInstruction 46f347b42af3a8727d29e0c088cd167a
+  Ext 602fb4892b1deb6651658835e747d9cc
+  FileChain afffda57cf84b65c064abb67c0359334
+  FileInput 89a04067a57a11855a548d82893fcb82
+  FileInstruction f0746210ee13027b6ae5867e8a7de3c9
+  InC 2a5f9ce572febac397c57a2dc6471dfd
+  InCLimit ccf7dfdbaf5848dede88053aeebe3b2b
+  InCNot 6bb52d82617bd14e3cad7bd94157d8c0
+  InCUnrecognizedCriteria ee0627d04e20bde8a5ab756099b7525e
+  InputCriteria f9dd8015851b3b1a4f6aafd664bf2e83
+  InputInstruction 0bdaa4f442c452db1e8c138c216895ed
+  InputRule 3dc6d62e77db94c517aa1b70e09fcbe3
+  Instruction e8272939ad2c8b0969c48a3271151491
+  Limit 5962206ea3870b4c24faa7effc070a30
+  NoInstruction 5a7f5abc0196294611d09d9567b3af63
+  Not 61e60cc3636b62910d4a9b4b95695e64
+  Or 0509595fad38b894b5eb1565daab0f98
+  PropVariableCriteria 5c3bb4b40c09029d5a7b21fb0fdf3120
+  PropVariableTarget f210cf5a358c0f49c36a766251360ff2
+  Rule 1d4b9954523d9dff99b05d967c44b033
+  Rule 3dc6d62e77db94c517aa1b70e09fcbe3
+  State de92fe5b7c87fc4f092b6c97d49d061f
+  ToChainNamed e2b38926c90b10dd6443e5b0cf04b4c4
+  UnrecognizedCriteria 8e721950a5ede6981f7aa9a90609f096
+  chainName a80867638159762b187444a25391a975
+  criteria b74a79f7f223d4d90fb85353a46cfd8a
+  exRule f6cf230b9e31ca2f3452a2782b1c01fc
+  insRule 725e7647be6c577d6c99bb6dd004303f
+  label f7075d026a31f1475fa9bcc64ff2fcf1
+  state f212cf20f9f1fb7cbe1c6fba554e082c
+  targets f70e06da4eb5a74e71183801cbf417b6
+dad17223f52641f945e7577174fd00fc
+  $w$seliminateOr ::
+    ConvertToHorn.ElimExt Types.State Types.State
+    -> [Types.InputCriteria Types.State]
     -> GHC.Types.Int
-    -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
-  {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
-e4eafd8488450febae069d1e9f4ba407
-  $winputCriteriaToCriteria ::
-    [Types.InputCriteria]
+    -> (# [([Types.Criteria], [Types.State])],
+          [Types.Rule],
+          GHC.Types.Int #)
+  {- Arity: 3, HasNoCafRefs, Strictness: <L,U><S,1*U><L,U>,
+     Inline: [0] -}
+5f465aa0765a5587cd81148980360b6c
+  $winputInstructionTypeConversion' ::
+    ConvertToHorn.ElimOr a c
+    -> ConvertToHorn.ElimExt a c
+    -> (Types.InputInstruction a -> (Types.Instruction, [c]) -> b)
+    -> [Types.InputInstruction a]
     -> GHC.Types.Int
-    -> (# [[Types.Criteria]], [Types.Rule], GHC.Types.Int #)
-  {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
-ef29407152c20b9e996b308a978558ec
-  condenseAnd :: [Types.InputCriteria] -> [Types.InputCriteria]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-0c64fc8c2bd89e87847fcb2b630f5f76
-  condenseOr :: [Types.InputCriteria] -> [Types.InputCriteria]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-aee05704971046427911d96401eed7b6
-  eliminateOr ::
-    [Types.InputCriteria]
+    -> [b]
+  {- Arity: 5, HasNoCafRefs,
+     Strictness: <L,C(C1(C1(U(U,U,U))))><L,U><L,C(U)><S,1*U><L,U(U)>,
+     Inline: [0] -}
+2952eeef4b69fb3bcd1c95b90b211452
+  type ElimExt a b =
+    a
     -> GHC.Types.Int
-    -> ([[Types.Criteria]], [Types.Rule], GHC.Types.Int)
-  {- Arity: 2, Strictness: <S,1*U><L,U>m, Inline: INLINE[0],
+    -> (GHC.Base.Maybe Types.Criteria,
+        [Types.Rule],
+        GHC.Types.Int,
+        [b])
+acd7c4c38ccb4cacc7d69c421ce953cd
+  type ElimOr a b =
+    ConvertToHorn.ElimExt a b
+    -> [Types.InputCriteria a]
+    -> GHC.Types.Int
+    -> ([([Types.Criteria], [b])], [Types.Rule], GHC.Types.Int)
+82ee7973b54598ff899c2428a144397c
+  eliminateState :: ConvertToHorn.ElimExt Types.State Types.State
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><L,U>m,
      Unfolding: InlineRule (2, True, False)
-                (\ w :: [Types.InputCriteria] w1 :: GHC.Types.Int ->
-                 case ConvertToHorn.$weliminateOr w w1 of ww { (#,,#) ww1 ww2 ww3 ->
-                 (ww1, ww2, ww3) }) -}
-84ab6c86bd5d99ef285643e4516a35f5
-  inputChainToChain ::
-    [Types.InputRule] -> GHC.Types.Int -> [Types.Rule]
-  {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
-5993e855ab908a80d7de60e650210b5e
-  inputCriteriaToCriteria ::
-    [Types.InputCriteria]
-    -> GHC.Types.Int
-    -> ([[Types.Criteria]], [Types.Rule], GHC.Types.Int)
-  {- Arity: 2, Strictness: <S,1*U><L,U>m, Inline: INLINE[0],
+                (\ s :: Types.State i :: GHC.Types.Int ->
+                 (GHC.Base.Nothing @ Types.Criteria,
+                  GHC.Types.[] @ Types.Rule,
+                  i,
+                  GHC.Types.: @ Types.State s (GHC.Types.[] @ Types.State))) -}
+112fff03bf18766a70653d067f59d4a1
+  exampleRuleInstructionsToExamplesInstructions ::
+    [Types.ExampleRuleInstruction] -> [Types.ExampleInstruction]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ xs :: [Types.ExampleRuleInstruction] ->
+                 ConvertToHorn.exampleRuleInstructionsToExamplesInstructions_$sinputInstructionTypeConversion'
+                   @ (Types.SynthInstruction Types.Example)
+                   ConvertToHorn.exampleRuleInstructionsToExamplesInstructions_$seliminateOr
+                   ConvertToHorn.eliminateState
+                   ConvertToHorn.exampleRuleInstructionsToExamplesInstructions2
+                   xs
+                   ConvertToHorn.exampleRuleInstructionsToExamplesInstructions1) -}
+39cc566f523902b459c654925bcf7a8e
+  exampleRuleInstructionsToExamplesInstructions1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0) -}
+36c89d56ed0b69f8a50576008486599f
+  exampleRuleInstructionsToExamplesInstructions2 ::
+    Types.ExampleRuleInstruction
+    -> (Types.Instruction, [Types.State]) -> Types.ExampleInstruction
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,A><S(SL),1*U(1*U,U)>,
      Unfolding: InlineRule (2, True, False)
-                (\ w :: [Types.InputCriteria] w1 :: GHC.Types.Int ->
-                 case ConvertToHorn.$winputCriteriaToCriteria
+                (\ e :: Types.ExampleRuleInstruction
+                   ds :: (Types.Instruction, [Types.State]) ->
+                 case ds of wild { (,) ds1 s ->
+                 case ds1 of wild1 {
+                   Types.ToChainNamed n r
+                   -> Types.ToChainNamed @ Types.Example n (Types.Example r s)
+                   Types.NoInstruction r
+                   -> Types.NoInstruction @ Types.Example (Types.Example r s) } }) -}
+8bd4cee951514e1c101112b2acd48f69
+  exampleRuleInstructionsToExamplesInstructions_$seliminateOr ::
+    ConvertToHorn.ElimOr Types.State Types.State
+  {- Arity: 3, HasNoCafRefs, Strictness: <L,U><S,1*U><L,U>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ w :: ConvertToHorn.ElimExt Types.State Types.State
+                   w1 :: [Types.InputCriteria Types.State]
+                   w2 :: GHC.Types.Int ->
+                 case ConvertToHorn.$w$seliminateOr
                         w
-                        w1 of ww { (#,,#) ww1 ww2 ww3 ->
+                        w1
+                        w2 of ww { (#,,#) ww1 ww2 ww3 ->
                  (ww1, ww2, ww3) }) -}
-297493778f96ef0b0fb771e4ebeb6bc0
-  inputInstructionsToInstructions ::
-    [Types.InputInstruction] -> GHC.Types.Int -> [Types.Instruction]
-  {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
-e65f937519ce598ec9faed7d64fee949
-  simplifyNots :: [Types.InputCriteria] -> [Types.InputCriteria]
-  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
-c5bbfe5c6b4efc77b9a26db1d88ee235
+a478b3272d227aaf8096b9ded94eeb3c
+  exampleRuleInstructionsToExamplesInstructions_$sinputInstructionTypeConversion' ::
+    ConvertToHorn.ElimOr Types.State Types.State
+    -> ConvertToHorn.ElimExt Types.State Types.State
+    -> (Types.InputInstruction Types.State
+        -> (Types.Instruction, [Types.State]) -> b)
+    -> [Types.InputInstruction Types.State]
+    -> GHC.Types.Int
+    -> [b]
+  {- Arity: 5, HasNoCafRefs,
+     Strictness: <L,C(C1(C1(U(U,U,U))))><L,U><L,C(U)><S,1*U><L,U(U)> -}
+9575fb4dca6f5ff734b444b666eb5c40
+  inputInstructionTypeConversion ::
+    (GHC.Show.Show a, GHC.Show.Show c) =>
+    ConvertToHorn.ElimOr a c
+    -> ConvertToHorn.ElimExt a c
+    -> (Types.InputInstruction a -> (Types.Instruction, [c]) -> b)
+    -> [Types.InputInstruction a]
+    -> [b]
+  {- Arity: 6, HasNoCafRefs,
+     Strictness: <L,A><L,A><L,C(C1(C1(U(U,U,U))))><L,U><L,C(U)><S,1*U>,
+     Unfolding: InlineRule (6, True, False)
+                (\ @ a3
+                   @ c
+                   @ b
+                   $dShow :: GHC.Show.Show a3
+                   $dShow1 :: GHC.Show.Show c
+                   elimOr :: ConvertToHorn.ElimOr a3 c
+                   elimExt :: ConvertToHorn.ElimExt a3 c
+                   con :: Types.InputInstruction a3 -> (Types.Instruction, [c]) -> b
+                   xs :: [Types.InputInstruction a3] ->
+                 ConvertToHorn.inputInstructionTypeConversion'
+                   @ a3
+                   @ c
+                   @ b
+                   $dShow
+                   $dShow1
+                   elimOr
+                   elimExt
+                   con
+                   xs
+                   ConvertToHorn.exampleRuleInstructionsToExamplesInstructions1) -}
+af379e37a94fff7e76502f4a7e8126b4
+  inputInstructionTypeConversion' ::
+    (GHC.Show.Show a, GHC.Show.Show c) =>
+    ConvertToHorn.ElimOr a c
+    -> ConvertToHorn.ElimExt a c
+    -> (Types.InputInstruction a -> (Types.Instruction, [c]) -> b)
+    -> [Types.InputInstruction a]
+    -> GHC.Types.Int
+    -> [b]
+  {- Arity: 7, HasNoCafRefs,
+     Strictness: <L,A><L,A><L,C(C1(C1(U(U,U,U))))><L,U><L,C(U)><S,1*U><L,U(U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (7, True, True)
+                (\ @ a3
+                   @ c
+                   @ b
+                   w :: GHC.Show.Show a3
+                   w1 :: GHC.Show.Show c
+                   w2 :: ConvertToHorn.ElimOr a3 c
+                   w3 :: ConvertToHorn.ElimExt a3 c
+                   w4 :: Types.InputInstruction a3 -> (Types.Instruction, [c]) -> b
+                   w5 :: [Types.InputInstruction a3]
+                   w6 :: GHC.Types.Int ->
+                 ConvertToHorn.$winputInstructionTypeConversion'
+                   @ a3
+                   @ c
+                   @ b
+                   w2
+                   w3
+                   w4
+                   w5
+                   w6) -}
+b07daa24c46eee883ccd4a5428339d5c
   stringInputChainsToStringChains ::
-    [(GHC.Base.String, Types.InputChain)]
+    [(GHC.Base.String, Types.FileChain)]
     -> GHC.Types.Int -> [(GHC.Base.String, Types.Chain)]
-  {- Arity: 2, Strictness: <S,1*U><L,U(U)> -}
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,U(U)> -}
+"SPEC inputInstructionTypeConversion' @ State @ State _" [ALWAYS] forall @ b
+                                                                         $dShow :: GHC.Show.Show
+                                                                                     Types.State
+                                                                         $dShow1 :: GHC.Show.Show
+                                                                                      Types.State
+  ConvertToHorn.inputInstructionTypeConversion' @ Types.State
+                                                @ Types.State
+                                                @ b
+                                                $dShow
+                                                $dShow1
+  = ConvertToHorn.exampleRuleInstructionsToExamplesInstructions_$sinputInstructionTypeConversion'
+      @ b
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

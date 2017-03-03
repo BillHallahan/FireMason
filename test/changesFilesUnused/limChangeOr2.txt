@@ -1,0 +1,3 @@
+acl INPUT : protocol = 17 AND (time = 2 OR time = 10)=> DROP,
+acl INPUT : protocol = 17 AND (time = 6 OR time = 15) => ACCEPT,
+acl INPUT : protocol = 17 AND time = 20 => DROP

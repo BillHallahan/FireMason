@@ -1,0 +1,50 @@
+acl INPUT : destination_port = 48 AND time = 10 => ACCEPT,
+acl INPUT : destination_port = 48 AND time = 20 => DROP,
+acl INPUT : destination_port = 48 AND time = 30 => ACCEPT,
+acl INPUT : destination_port = 48 AND time = 40 => DROP,
+#For input
+#A = {2, 4}
+#B = {{2, 4}}
+
+acl OUTPUT : destination_port = 48 AND time = 10 => ACCEPT,
+acl OUTPUT : source_port = 48 AND time = 20 => ACCEPT,
+acl OUTPUT : destination_port = 48 AND time = 30 => DROP,
+acl OUTPUT : destination_port = 48 AND time = 510 => ACCEPT,
+acl OUTPUT : destination_port = 48 AND time = 530 => ACCEPT,
+acl OUTPUT : destination_port = 48 AND time = 540 => DROP,
+acl OUTPUT : source_port = 48 AND time = 1010 => ACCEPT,
+acl OUTPUT : destination_port = 48 AND time = 1020 => ACCEPT,
+acl OUTPUT : source_port = 48 AND time = 1030 => DROP,
+#For OUTPUT:
+#A = {8, 11, 14}
+#B = {{8, 11}, {14}}
+
+acl FORWARD : protocol = 10 AND time = 10 => ACCEPT,
+acl FORWARD : source_port = 20 AND time = 15 => ACCEPT,
+acl FORWARD : protocol = 10 AND time = 30 => ACCEPT,
+acl FORWARD : source_port = 20 AND time = 35 => ACCEPT,
+acl FORWARD : protocol = 10 AND time = 40 => DROP,
+acl FORWARD : source_port = 20 AND time = 50 => DROP,
+acl FORWARD : protocol = 10 AND time = 100 => ACCEPT,
+acl FORWARD : protocol = 10 AND time = 105 => ACCEPT,
+acl FORWARD : protocol = 10 AND time = 110 => DROP,
+acl FORWARD : source_port = 20 AND time = 110 => ACCEPT,
+#For FORWARD:
+#A = {26, 27}
+#B = {{26}, {27}}
+
+acl check : destination_port = 48 AND time = 10 => ACCEPT,
+acl check : protocol = 10 AND time = 15 => ACCEPT,
+acl check : source_port = 48 AND time = 20 => ACCEPT,
+acl check : destination_port = 48 AND time = 30 => DROP,
+acl check : protocol = 10 AND time = 35 => ACCEPT,
+acl check : protocol = 10 AND time = 40 => DROP,
+acl check : destination_port = 48 AND time = 510 => ACCEPT,
+acl check : destination_port = 48 AND time = 530 => ACCEPT,
+acl check : destination_port = 48 AND time = 540 => DROP,
+acl check : source_port = 48 AND time = 1010 => ACCEPT,
+acl check : destination_port = 48 AND time = 1020 => ACCEPT,
+acl check : source_port = 48 AND time = 1030 => DROP,
+#For check:
+#A = {39, 41, 44, 47}
+#B = {{39, 44}, {41}, {47}}

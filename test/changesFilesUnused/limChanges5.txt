@@ -1,0 +1,8 @@
+acl INPUT : protocol = 16 AND time = 20 => ACCEPT,
+acl INPUT : protocol = 18 AND time = 25 => DROP,
+acl INPUT : protocol = 16 AND time = 40 => ACCEPT,
+acl INPUT : protocol = 18 AND time = 45 => DROP,
+acl INPUT : protocol = 18 AND time = 90 => ACCEPT,
+acl INPUT : protocol = 16 AND time = 250 => ACCEPT,
+acl INPUT : protocol = 18 AND time = 255 => DROP,
+acl INPUT : protocol = 16 => ACCEPT

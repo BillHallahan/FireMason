@@ -1,0 +1,1 @@
+acl INPUT : destination_port = 48 => DROP

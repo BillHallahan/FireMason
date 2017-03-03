@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-16 15:15:49.733769 UTC
+2017-03-03 16:06:51.6542 UTC
 
 interface main@main:RuleAdding 7103
-  interface hash: afc10c58838b072d6b87cae23c0be0fc
-  ABI hash: dd16bff2851f7527a161dcf25abed1ef
-  export-list hash: 36a69b35a8dec378bf47145f77c18493
-  orphan hash: 449a6b668632f9617fce3b2944d14466
+  interface hash: 3652729752344dc74150b4680460f266
+  ABI hash: e9486f17065ddeb4b0cf577900608d21
+  export-list hash: 4346cf51419c6bbc6bb6c89b8f08eefc
+  orphan hash: bc3cac5e1c8e6b8996d09092a03a57d5
   flag hash: 97344007ccf84cb5abb832d455d4804c
   sig of: Nothing
   used TH splices: False
@@ -86,58 +86,88 @@ import  -/  containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Strict 2e79
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
 import  -/  largeword-1.2.5@large_7BOdRtoTTTgFdsG28EDk6P:Data.LargeWord 354f86b73f096c48c610faad64e0d6d9
-import  -/  ChainsToSMT 2326a4fa73a5063de321540f6618af88
-  exports: 9b1a29472a91c576ed20a2fb6a81fddd
+import  -/  ChainsToSMT a5d09012218541d5d937a97d7a7afb79
+  exports: 2fc28bf6cf78356ef3a858d4e27d894f
   acceptAST 0d7eaac37dca002c5af99f7256f70a1f
-  convertChainsSMT 5972ce3c46564abc0ec5cadb495ac98d
+  convertChainsSMT 4b874fb54cfd3b30b8dd451e425607f4
   dropAST 31278a19cefdc7414733617e57ebff46
-  enforcePacketsEqual 5cfacda6e37c7929435901e9c41b6f45
-  intSortList 13a934af2e6995bf95537569155e437e
-  reaches 62ac1e70e5a25447a30689dccefc2380
-  reachesEnd c13018001df988be09ebd6746f6d9bbe
-  terminatesWith b4192454506f955288a25c427f9eabb6
-  toSMTCriteriaList af502a3778cd511affd3afa45d955202
-import  -/  NameIdChain 82de17877c1a2ba2bc457b2b4344ab82
-  exports: 1404acfb85a934eafad2eb4c785471d5
-  IdNameChain 236fcdd68ade61509ed973d26be27184
-  addChain 5c9d3f8226e883e458bdf4caf048a20d
-  addRuleToChains 864401ff0a4c3f6c63b90fdde511510a
-  chains fd7f24bdf09a2701b39412747354b3a8
-  idsWithName e6cbd131d857d91671e0d7b8f54f24de
-  increaseIndexes 72d31868eac4df220c7b36df116a6f7f
-  jumpedToWithCriteria 4e706efe6f4521627ce9648d729c6016
-  lookupChain 7d67a6ec20f59041e9e57a26919b3e6f
-  lookupName 120ce4f59a9d4be96044c1647889d652
-  lookupNameChain ca7170215ac7bac252db377e59fc3844
-  maxId 323d89c91ed0ae916671940365ab9ba7
-  maxLabel 5ad2c4a12d30c0eb49b7647b2f40c15b
-  reduceReferenced 444f2929b8a609cf3f8124d7db6147a3
-  setUnion a5a96fdcdc1a30c5ab3c79b6b98c8fc9
-  switchChains af37dfa2800ab46d2b10506139e65568
-  topLevelJumpingTo e17e71991581829ee567a86497905fa0
-import  -/  Types ae53e2699ad6d0166c06d9687149e3e7
-  exports: d51b92dffa880c4df17ac8601327b0a2
-  ACCEPT 08ea8d5ba9c8e5ae84bd818c2cc3ee1f
+  enforceLimitsEqual c2fb011da49574596e8c5bb0bfc8cfe5
+  enforcePacketsEqual b5a998e98fbce4a372db432fe16b95f0
+  intSortList 0d3fdbb013ae61e2caf4ca4abae90abc
+  limitInitial ab7e11793fb7a844496d1031974fe726
+  policy 6f75ac18a5d0aeb03ca9495903321769
+  reaches 75f8bb5f8e88ca1bd889806e13b7f4dc
+  reachesEnd 656229e5f652e43472d893a964893e76
+  terminatesWith 2555ad283fb54bed14e10c707896f095
+  toSMTCriteriaList 207217778943d067f100687a3f827c90
+import  -/  NameIdChain bb1168b4d2b0d8906225834699a4eaf1
+  exports: 7f5e2a9988285dd65e6bffba242d2ff7
+  IdNameChain aea396c43cf9aa3176f82b0a2a6a1d1a
+  addChain 02d57c969a3cd084474b070f67e3947f
+  addRuleToChains 425cad73f1d12c3d9ea4065fef51e7ac
+  idsWithName ce3397453e99f2130d5eb8561ff09255
+  increaseIds 8994c93055b97ef97fd82ff1a74c0278
+  jumpedToWithCriteria 193e28208c3af6ba5d4702066f947302
+  limitIds 77e6e0efc9c690dbcf59a09c3749e2ca
+  lookupChain beb186531f64c001f02e2c272d9bda5b
+  lookupName 819e0c9d91c3e4c2396d6d0e37a83f43
+  lookupNameChain 5add9c5d1a8f587862023e2d44b31c87
+  maxId a5a6f96cfb0dd2fbb007469a235aa8e4
+  maxLabel e1162a2e007c589dfe418eed8a7c7040
+  reduceReferenced 7a607e4081962605a496ae0aaece4b24
+  setUnion f898181e183dd13b4069ce7e195e4f4d
+  switchChains 99088dba690ea53253f98a40104af1cc
+  toList' e68d2bdaed4e88dcd18011b9ad89192b
+  topLevelJumpingTo b31270ec502a54ba503bbd82aa5ea611
+  validIds 327791961625bb6c873b38abe5a91cc1
+import  -/  Types 5cc88623eea062e7f6011dfd679287af
+  exports: 150e5976e36f4ba67c4c37181359bbdd
+  ACCEPT c3a03ad0d4498a63dd85ab66746d4eca
   ChainId c884b4bd8354c5f5ad5e611c0e6a2eb5
-  Criteria e19364fbcccdcd240635a00eaccbd95c
-  IPAddress 9f35cd54f77f8e8e6e4d3e183b9dc3a8
-  Instruction c59865b289e3a60f83b8af8159df7e9c
-  Not 1adbafabbd7f98320f67479286fd3b91
-  Port 175675c7c9254add9716442f319e60d5
-  Protocol 28d217f7cfd42059fccbb1335d04e6b8
-  Rule 30c487073b35ac8fdff0d361e2257c83
-  Rule 2763a04da1bec065877eb2b8e3c9f38c
-  Target 97fc31d3ca68602965fcc27b6e7cac76
-  ToChainNamed ce4c7bf5b328004ab15754446244f326
-  criteria 3d3cb479422c910a1244322a683b8784
+  Criteria cd9fa80f07dac492cd3e2abc1ff8b6ce
+  IPAddress f8c5099a7237025ef3713bebfb52a514
+  Instruction e8272939ad2c8b0969c48a3271151491
+  Label 8ea1cbc35ff6354c4e178e365701b867
+  Limit 5962206ea3870b4c24faa7effc070a30
+  Not 61e60cc3636b62910d4a9b4b95695e64
+  Port 73ebf9c03aa3055cd5c7eeff13e668ec
+  Protocol dd6c0e897be9409b806a307928ee6cd1
+  Rule 1d4b9954523d9dff99b05d967c44b033
+  Rule 3dc6d62e77db94c517aa1b70e09fcbe3
+  RuleInd ec4e9c89174bda268454f41b7b334f61
+  Target c86273e8d5a2db581a040f85173b28c7
+  ToChainNamed e2b38926c90b10dd6443e5b0cf04b4c4
+  criteria b74a79f7f223d4d90fb85353a46cfd8a
   ipAddr fdbee042de6ad89db4d1b84222f17fcf
-  ipToWord 6fe15e18e0cca783b1fe74db8165523f
-  label 87d399b1535c1f5a4fc3d169a58a9baa
-  targets a2559cdf0772c1316d0c1859a3776ed1
+  ipToWord 6bc11b980f10dee2e61d9b0b9569787e
+  label f7075d026a31f1475fa9bcc64ff2fcf1
+  targets f70e06da4eb5a74e71183801cbf417b6
 import  -/  tostring-0.2.1.1@tostr_3WKXD89KZfc5BSX8Q5dXep:Data.String.ToString d0991a72f1064ecb9aa2833fb0b76080
 import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Base 61b82345797cf0bb463627ba35c4d83f
 import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9c2736322
-3978ce69811152b763a6b4dda04c05f8
+1aa1fc9e54f75cdb8e319dd9ba0241d5
+  $s$fShow(,)2 :: [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
+                   eta1 :: GHC.Base.String ->
+                 GHC.Show.showList__
+                   @ (Types.GenRule Types.Criteria)
+                   RuleAdding.$s$fShow(,)3
+                   eta
+                   eta1) -}
+7839c58de457162f7c5ad9e5709a4d37
+  $s$fShow(,)3 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
+  {- Arity: 1,
+     Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
+                 case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
+                 Types.$w$cshowsPrec5
+                   @ Types.Criteria
+                   Types.$fShowCriteria
+                   0
+                   ww3
+                   ww4
+                   ww5 }) -}
+eab7afd81e0ecad93cfb129b68c245b4
   $s$fShowGenRule :: GHC.Show.Show (Types.GenRule Types.Criteria)
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:.
@@ -145,38 +175,15 @@ import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9
                   (Types.$fShowGenRule_$cshowsPrec
                      @ Types.Criteria
                      Types.$fShowCriteria)
-                  RuleAdding.$s$fShowGenRule3
-                  RuleAdding.$s$fShowGenRule1 -}
-4bacb6fa9f80f3748125b7fe77aec2bb
-  $s$fShowGenRule1 ::
-    [Types.GenRule Types.Criteria] -> GHC.Show.ShowS
-  {- Arity: 2, Strictness: <S,1*U><L,U>,
-     Unfolding: (\ eta :: [Types.GenRule Types.Criteria]
-                   eta1 :: GHC.Base.String ->
-                 GHC.Show.showList__
-                   @ (Types.GenRule Types.Criteria)
-                   RuleAdding.$s$fShowGenRule2
-                   eta
-                   eta1) -}
-c1feee11aa53dfe365ca4aa12d0ad7a7
-  $s$fShowGenRule2 :: Types.GenRule Types.Criteria -> GHC.Show.ShowS
-  {- Arity: 1,
-     Unfolding: (\ w2 :: Types.GenRule Types.Criteria ->
-                 case w2 of ww2 { Types.Rule ww3 ww4 ww5 ->
-                 Types.$w$cshowsPrec2
-                   @ Types.Criteria
-                   Types.$fShowCriteria
-                   0
-                   ww3
-                   ww4
-                   ww5 }) -}
-32bae4461bed1d7e867433f0e84e98f4
-  $s$fShowGenRule3 :: Types.GenRule Types.Criteria -> GHC.Base.String
+                  RuleAdding.$s$fShowGenRule1
+                  RuleAdding.$s$fShow(,)2 -}
+20696176358e72431e6ddb3d8c9f6747
+  $s$fShowGenRule1 :: Types.GenRule Types.Criteria -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(U,U,U(U))>,
      Unfolding: InlineRule (1, True, False)
                 (\ x :: Types.GenRule Types.Criteria ->
                  case x of ww2 { Types.Rule ww3 ww4 ww5 ->
-                 Types.$w$cshowsPrec2
+                 Types.$w$cshowsPrec5
                    @ Types.Criteria
                    Types.$fShowCriteria
                    0
@@ -208,78 +215,98 @@ eebbae05f40cd7f3a61437b030c77e8a
                         GHC.Types.True -> 1 } }
                    GHC.Types.True
                    -> case RuleAdding.$s^1 ret_ty GHC.Prim.Int# of {} } }) -}
-8bd57db7d04baffb2a4b7944843ae31b
+86124a2eb237efac4320be837f22d8c8
   $waddRulesToIdNameChain ::
-    [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
-    -> (GHC.Base.String -> NameIdChain.IdNameChain)
-    -> (Types.ChainId -> GHC.Base.Maybe (GHC.Base.String, Types.Chain))
-    -> (Types.ChainId -> GHC.Base.Maybe Types.Chain)
+    [(Types.Rule, GHC.Base.String, Types.Label)]
+    -> (GHC.Base.String -> NameIdChain.IdNameChainType Types.Rule)
+    -> (Types.Rule -> Types.Rule)
+    -> (Types.ChainId
+        -> GHC.Base.Maybe (GHC.Base.String, [Types.Rule]))
+    -> (Types.ChainId -> GHC.Base.Maybe [Types.Rule])
+    -> (Types.ChainId -> Types.RuleInd -> GHC.Base.Maybe Types.Rule)
+    -> [(Types.ChainId, Types.RuleInd)]
     -> (Types.ChainId -> GHC.Base.Maybe GHC.Base.String)
     -> (Types.ChainId -> [Types.ChainId])
     -> [[Types.ChainId]]
-    -> ((Types.Chain -> Types.Chain)
-        -> Types.ChainId -> NameIdChain.IdNameChain)
+    -> (([Types.Rule] -> [Types.Rule])
+        -> Types.ChainId -> NameIdChain.IdNameChainType Types.Rule)
     -> (Types.Rule
-        -> Types.ChainId -> GHC.Types.Int -> NameIdChain.IdNameChain)
-    -> [Types.Chain]
+        -> Types.ChainId
+        -> Types.RuleInd
+        -> NameIdChain.IdNameChainType Types.Rule)
+    -> [[Types.Rule]]
     -> [GHC.Base.String]
-    -> [(GHC.Base.String, Types.Chain)]
+    -> [(GHC.Base.String, [Types.Rule])]
     -> [Types.ChainId]
     -> (GHC.Base.String -> [Types.ChainId])
     -> (GHC.Types.Int -> NameIdChain.IdNameChain)
-    -> ([Types.ChainId] -> NameIdChain.IdNameChain)
+    -> ([Types.ChainId] -> NameIdChain.IdNameChainType Types.Rule)
     -> [Types.ChainId]
     -> [Types.ChainId]
     -> ([Types.ChainId] -> [Types.ChainId])
+    -> (GHC.Types.Int
+        -> GHC.Base.Maybe [(Types.ChainId, GHC.Types.Int)])
+    -> [GHC.Types.Int]
     -> Types.ChainId
+    -> [Types.Label]
     -> Types.Label
-    -> (Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
-        -> NameIdChain.IdNameChain)
-    -> (NameIdChain.IdNameChain -> NameIdChain.IdNameChain)
-    -> [(Types.ChainId, (GHC.Base.String, Types.Chain))]
-    -> (# GHC.Base.String -> NameIdChain.IdNameChain,
-          Types.ChainId -> GHC.Base.Maybe (GHC.Base.String, Types.Chain),
-          Types.ChainId -> GHC.Base.Maybe Types.Chain,
+    -> (Data.Map.Base.Map Types.ChainId (GHC.Base.String, [Types.Rule])
+        -> NameIdChain.IdNameChainType Types.Rule)
+    -> (NameIdChain.IdNameChainType Types.Rule
+        -> NameIdChain.IdNameChainType Types.Rule)
+    -> [(Types.ChainId, (GHC.Base.String, [Types.Rule]))]
+    -> (# GHC.Base.String -> NameIdChain.IdNameChainType Types.Rule,
+          Types.Rule -> Types.Rule,
+          Types.ChainId -> GHC.Base.Maybe (GHC.Base.String, [Types.Rule]),
+          Types.ChainId -> GHC.Base.Maybe [Types.Rule],
+          Types.ChainId -> Types.RuleInd -> GHC.Base.Maybe Types.Rule,
+          [(Types.ChainId, Types.RuleInd)],
           Types.ChainId -> GHC.Base.Maybe GHC.Base.String,
           Types.ChainId -> [Types.ChainId],
           [[Types.ChainId]],
-          (Types.Chain -> Types.Chain)
-          -> Types.ChainId -> NameIdChain.IdNameChain,
+          ([Types.Rule] -> [Types.Rule])
+          -> Types.ChainId -> NameIdChain.IdNameChainType Types.Rule,
           Types.Rule
-          -> Types.ChainId -> GHC.Types.Int -> NameIdChain.IdNameChain,
-          [Types.Chain],
+          -> Types.ChainId
+          -> Types.RuleInd
+          -> NameIdChain.IdNameChainType Types.Rule,
+          [[Types.Rule]],
           [GHC.Base.String],
-          [(GHC.Base.String, Types.Chain)],
+          [(GHC.Base.String, [Types.Rule])],
           [Types.ChainId],
           GHC.Base.String -> [Types.ChainId],
           GHC.Types.Int -> NameIdChain.IdNameChain,
-          [Types.ChainId] -> NameIdChain.IdNameChain,
+          [Types.ChainId] -> NameIdChain.IdNameChainType Types.Rule,
           [Types.ChainId],
           [Types.ChainId],
           [Types.ChainId] -> [Types.ChainId],
+          GHC.Types.Int -> GHC.Base.Maybe [(Types.ChainId, GHC.Types.Int)],
+          [GHC.Types.Int],
           Types.ChainId,
+          [Types.Label],
           Types.Label,
-          Data.Map.Base.Map Types.ChainId (GHC.Base.String, Types.Chain)
-          -> NameIdChain.IdNameChain,
-          NameIdChain.IdNameChain -> NameIdChain.IdNameChain,
-          [(Types.ChainId, (GHC.Base.String, Types.Chain))] #)
-  {- Arity: 24,
-     Strictness: <S,1*U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U>,
+          Data.Map.Base.Map Types.ChainId (GHC.Base.String, [Types.Rule])
+          -> NameIdChain.IdNameChainType Types.Rule,
+          NameIdChain.IdNameChainType Types.Rule
+          -> NameIdChain.IdNameChainType Types.Rule,
+          [(Types.ChainId, (GHC.Base.String, [Types.Rule]))] #)
+  {- Arity: 30,
+     Strictness: <S,1*U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U><L,U>,
      Inline: [0] -}
 af1a205d8050ccf493a1cb48666e53f1
   $wf :: GHC.Prim.Int# -> GHC.Integer.Type.Integer -> GHC.Prim.Int#
   {- Arity: 2, Strictness: <L,U><L,U>, Inline: [0] -}
-51e43c48b09808e610e5b9b12fdd1b4f
+28247effbe2d0ca0ccc03de05936fb82
   addRulesToIdNameChain ::
-    [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+    [(Types.Rule, GHC.Base.String, Types.Label)]
     -> NameIdChain.IdNameChain -> NameIdChain.IdNameChain
   {- Arity: 2,
-     Strictness: <S,1*U><S,1*U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U)>m,
+     Strictness: <S,1*U><S,1*U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U)>m,
      Inline: INLINE[0],
      Unfolding: InlineRule (2, True, False)
-                (\ w :: [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+                (\ w :: [(Types.Rule, GHC.Base.String, Types.Label)]
                    w1 :: NameIdChain.IdNameChain ->
-                 case w1 of ww { NameIdChain.INC ww1 ww2 ww3 ww4 ww5 ww6 ww7 ww8 ww9 ww10 ww11 ww12 ww13 ww14 ww15 ww16 ww17 ww18 ww19 ww20 ww21 ww22 ww23 ->
+                 case w1 of ww { NameIdChain.INC ww1 ww2 ww3 ww4 ww5 ww6 ww7 ww8 ww9 ww10 ww11 ww12 ww13 ww14 ww15 ww16 ww17 ww18 ww19 ww20 ww21 ww22 ww23 ww24 ww25 ww26 ww27 ww28 ww29 ->
                  case RuleAdding.$waddRulesToIdNameChain
                         w
                         ww1
@@ -304,14 +331,15 @@ af1a205d8050ccf493a1cb48666e53f1
                         ww20
                         ww21
                         ww22
-                        ww23 of ww24 { (#,,,,,,,,,,,,,,,,,,,,,,#) ww25 ww26 ww27 ww28 ww29 ww30 ww31 ww32 ww33 ww34 ww35 ww36 ww37 ww38 ww39 ww40 ww41 ww42 ww43 ww44 ww45 ww46 ww47 ->
+                        ww23
+                        ww24
+                        ww25
+                        ww26
+                        ww27
+                        ww28
+                        ww29 of ww30 { (#,,,,,,,,,,,,,,,,,,,,,,,,,,,,#) ww31 ww32 ww33 ww34 ww35 ww36 ww37 ww38 ww39 ww40 ww41 ww42 ww43 ww44 ww45 ww46 ww47 ww48 ww49 ww50 ww51 ww52 ww53 ww54 ww55 ww56 ww57 ww58 ww59 ->
                  NameIdChain.INC
-                   ww25
-                   ww26
-                   ww27
-                   ww28
-                   ww29
-                   ww30
+                   @ Types.Rule
                    ww31
                    ww32
                    ww33
@@ -328,30 +356,42 @@ af1a205d8050ccf493a1cb48666e53f1
                    ww44
                    ww45
                    ww46
-                   ww47 } }) -}
-4fc555f1adef4b1a2ecbe82af1d49c99
+                   ww47
+                   ww48
+                   ww49
+                   ww50
+                   ww51
+                   ww52
+                   ww53
+                   ww54
+                   ww55
+                   ww56
+                   ww57
+                   ww58
+                   ww59 } }) -}
+af731f325aba8d5bef6ccc02c636bba6
   instructionsToAddAtPos ::
     [Types.Instruction]
     -> NameIdChain.IdNameChain
-    -> GHC.Types.IO [(Types.Rule, GHC.Base.String, GHC.Types.Int)]
+    -> GHC.Types.IO [(Types.Rule, GHC.Base.String, Types.Label)]
   {- Arity: 3,
-     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U>,
+     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U>,
      Unfolding: InlineRule (0, True, True)
                 RuleAdding.instructionsToAddAtPos1
                   `cast`
                 (<[Types.Instruction]>_R
                  ->_R <NameIdChain.IdNameChain>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0]
-                               <[(Types.Rule, GHC.Base.String, GHC.Types.Int)]>_R)) -}
-d69096c50ebb0462e253a870b82c0c00
+                               <[(Types.Rule, GHC.Base.String, Types.Label)]>_R)) -}
+8c66d02327c83e93b3e7fac4b726e7e8
   instructionsToAddAtPos1 ::
     [Types.Instruction]
     -> NameIdChain.IdNameChain
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          [(Types.Rule, GHC.Base.String, GHC.Types.Int)] #)
+          [(Types.Rule, GHC.Base.String, Types.Label)] #)
   {- Arity: 3,
-     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U> -}
+     Strictness: <S,1*U><L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U)><L,U> -}
 "SPEC/RuleAdding $fShowGenRule @ Criteria" [ALWAYS] forall $dShow :: GHC.Show.Show
                                                                        Types.Criteria
   Types.$fShowGenRule @ Types.Criteria $dShow

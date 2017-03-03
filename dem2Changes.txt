@@ -1,0 +1,11 @@
+acl INPUT : destination_port = 48 OR destination_port = 49 => DROP,
+acl INPUT : protocol = 10 AND RST => ACCEPT,
+acl FORWARD : protocol = 6 AND destination_port = 110 => DROP,
+acl INPUT : protocol = 124 => ACCEPT,
+acl OUTPUT : protocol = 2 AND source_ip = 3.2.0.0/16 AND destination_ip = 4.5.6.0/24 => DROP,
+acl OUTPUT: source_ip = 7.8.9.10 AND (time = 0 OR time = 10) => ACCEPT,
+acl OUTPUT : source_ip = 7.8.9.10 AND time = 20 => DROP,
+acl OUTPUT: source_ip = 7.8.9.10 AND (time = 30 OR time = 40) => ACCEPT,
+acl OUTPUT : source_ip = 7.8.9.10 AND time = 45 => DROP,
+acl OUTPUT: source_ip = 7.8.9.11 AND (time = 30 OR time = 40) => ACCEPT,
+acl OUTPUT : source_ip = 7.8.9.11 AND time = 45 => DROP

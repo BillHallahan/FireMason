@@ -1,0 +1,15 @@
+acl INPUT : protocol = 16 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 10 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 15 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 20 => DROP,
+acl INPUT : protocol = 17 AND time = 90 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 100 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 105 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 115 => DROP,
+acl INPUT : protocol = 17 AND time = 70 => ACCEPT
+#acl OUTPUT : protocol = 17 AND time = 10 => ACCEPT,
+#acl OUTPUT : protocol = 17 AND time = 20 => ACCEPT,
+#acl OUTPUT : protocol = 17 AND time = 30 => DROP
+#acl OUTPUT : protocol = 17 AND time = 510 => ACCEPT,
+#acl OUTPUT : protocol = 17 AND time = 530 => ACCEPT,
+#acl OUTPUT : protocol = 17 AND time = 540 => DROP

@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-09-16 15:15:50.080196 UTC
+2017-03-03 16:06:52.08335 UTC
 
 interface main@main:RuleEliminating 7103
-  interface hash: 7b5aca0c36168833d34d87373ba5748a
-  ABI hash: a149e6e69eb39b15e6e402d91b3eb56e
+  interface hash: 67a1d2ce04199583976a342d4379f0a1
+  ABI hash: b7aeafdf71a7cae876339feed37b7bd1
   export-list hash: e40533badcf67487e99ea6a0b0ff2069
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 97344007ccf84cb5abb832d455d4804c
@@ -76,42 +76,44 @@ import  -/  base-4.8.2.0:GHC.Num 9f42750c866f5832ca565146bd660c60
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  ChainsToSMT 2326a4fa73a5063de321540f6618af88
-  exports: 9b1a29472a91c576ed20a2fb6a81fddd
-  convertChainsSMT 5972ce3c46564abc0ec5cadb495ac98d
-  matchesRule f46ce6e2c34410dc83074f421f8c9c8c
-import  -/  NameIdChain 82de17877c1a2ba2bc457b2b4344ab82
-  exports: 1404acfb85a934eafad2eb4c785471d5
-  IdNameChain 236fcdd68ade61509ed973d26be27184
-  allChainEquivalents 513cf5d7664730dcf14717e2e95d07d9
-  lookupChain 7d67a6ec20f59041e9e57a26919b3e6f
-  lookupName 120ce4f59a9d4be96044c1647889d652
-import  -/  Types ae53e2699ad6d0166c06d9687149e3e7
-  exports: d51b92dffa880c4df17ac8601327b0a2
+import  -/  ChainsToSMT a5d09012218541d5d937a97d7a7afb79
+  exports: 2fc28bf6cf78356ef3a858d4e27d894f
+  convertChainsSMT 4b874fb54cfd3b30b8dd451e425607f4
+  matchesRule 9b41da992dc530de2eec88fcfcd174a3
+import  -/  NameIdChain bb1168b4d2b0d8906225834699a4eaf1
+  exports: 7f5e2a9988285dd65e6bffba242d2ff7
+  IdNameChain aea396c43cf9aa3176f82b0a2a6a1d1a
+  allChainEquivalents 0da904a44160819271fc596b3e8b93b7
+  lookupChain beb186531f64c001f02e2c272d9bda5b
+  lookupName 819e0c9d91c3e4c2396d6d0e37a83f43
+import  -/  Types 5cc88623eea062e7f6011dfd679287af
+  exports: 150e5976e36f4ba67c4c37181359bbdd
   ChainId c884b4bd8354c5f5ad5e611c0e6a2eb5
-  label 87d399b1535c1f5a4fc3d169a58a9baa
+  Label 8ea1cbc35ff6354c4e178e365701b867
+  RuleInd ec4e9c89174bda268454f41b7b334f61
+  label f7075d026a31f1475fa9bcc64ff2fcf1
 import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Base 61b82345797cf0bb463627ba35c4d83f
 import  -/  z3-4.1.0@z3_IihW0G4lPF9JXAMQOHqRN1:Z3.Monad 05f8d2c0a5ffd5e3709abba9c2736322
-7b24585cbbf58c7fb015b706128e81fa
+5a25a988f94879caa2857c202f298aeb
   findRedundantRule ::
     NameIdChain.IdNameChain
-    -> GHC.Types.IO [(GHC.Base.String, GHC.Types.Int)]
+    -> GHC.Types.IO [(GHC.Base.String, Types.Label)]
   {- Arity: 2,
-     Strictness: <L,U(A,A,C(U),C(U),A,1*U,A,A,A,A,A,U,A,A,A,U,U,A,U(U),A,A,A,U)><L,U>,
+     Strictness: <L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U,U,U)><L,U>,
      Unfolding: InlineRule (0, True, True)
                 RuleEliminating.findRedundantRule1
                   `cast`
                 (<NameIdChain.IdNameChain>_R
                  ->_R Sym (GHC.Types.NTCo:IO[0]
-                               <[(GHC.Base.String, GHC.Types.Int)]>_R)) -}
-f8cc25bb460f4af479830d256a2153ac
+                               <[(GHC.Base.String, Types.Label)]>_R)) -}
+96b2ded7cc6bd8393a713f7207e87f5b
   findRedundantRule1 ::
     NameIdChain.IdNameChain
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          [(GHC.Base.String, GHC.Types.Int)] #)
+          [(GHC.Base.String, Types.Label)] #)
   {- Arity: 2,
-     Strictness: <L,U(A,A,C(U),C(U),A,1*U,A,A,A,A,A,U,A,A,A,U,U,A,U(U),A,A,A,U)><L,U>,
+     Strictness: <L,U(U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U(U),U,U,U,U,U)><L,U>,
      Unfolding: (\ x :: NameIdChain.IdNameChain
                    s :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
                  case Control.Exception.Base.bracket1
@@ -129,7 +131,9 @@ f8cc25bb460f4af479830d256a2153ac
                         (<Z3.Base.Config>_R
                          ->_R Sym (GHC.Types.NTCo:IO[0] <Z3.Monad.Z3Env>_R))
                         s of ds1 { (#,#) ipv ipv1 ->
-                 case ((ChainsToSMT.convertChainsSMT
+                 case ((ChainsToSMT.convertGenChainsSMT
+                          @ Types.Rule
+                          ChainsToSMT.toSMTRule
                           x
                           RuleEliminating.findRedundantRule3)
                          `cast`
@@ -143,19 +147,19 @@ f8cc25bb460f4af479830d256a2153ac
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
                  RuleEliminating.findRedundantRule2
                    x
-                   (NameIdChain.allChainEquivalents x)
+                   (NameIdChain.allChainEquivalents @ Types.Rule x)
                    ipv1
                    ipv2 } }) -}
-1cbd4bc7c5e5ba87491c4991200de128
+5b062ce7cead071ebd6deaa77577d779
   findRedundantRule2 ::
     NameIdChain.IdNameChain
     -> [[Types.ChainId]]
     -> Z3.Monad.Z3Env
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          [(GHC.Base.String, GHC.Types.Int)] #)
+          [(GHC.Base.String, Types.Label)] #)
   {- Arity: 4,
-     Strictness: <L,U(A,A,C(U),C(U),A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A)><S,1*U><L,U(U(U,U),U(U(U,U),U))><L,U> -}
+     Strictness: <L,U(A,A,A,C(U),A,A,C(U),A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A)><S,1*U><L,U(U(U,U),U(U(U,U),U))><L,U> -}
 e8b33a26d5846575be22cf7039d0edcb
   findRedundantRule3 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1) -}

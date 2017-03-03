@@ -1,0 +1,4 @@
+
+
+iptables -A INPUT -s 199.83.127.227 -j DROP
+iptables -A INPUT -p tcp —dport 22 -j ACCEPT

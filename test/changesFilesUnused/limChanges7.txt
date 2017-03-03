@@ -1,0 +1,5 @@
+acl INPUT : protocol = 17 AND time = 10 => DROP,
+acl INPUT : source_ip = 8.4.3.2 AND time = 12 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 15 => ACCEPT,
+acl INPUT : protocol = 17 AND time = 20 => DROP,
+acl INPUT : source_ip = 8.4.3.2 AND time = 30 => DROP

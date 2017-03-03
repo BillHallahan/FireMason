@@ -1,0 +1,3 @@
+acl INPUT : (protocol = 17 OR protocol = 18) AND time = 10 => DROP,
+acl INPUT : (protocol = 17 OR protocol = 18) AND time = 15 => ACCEPT,
+acl INPUT : (protocol = 17 OR protocol = 18) AND time = 20 => DROP

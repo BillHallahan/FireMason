@@ -1,0 +1,1 @@
+acl INPUT : protocol = 17 => DROP
