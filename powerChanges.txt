@@ -1,1 +1,0 @@
-acl INPUT : source_ip = 199.83.127.227 AND destination_port = 22 => ACCEPT
