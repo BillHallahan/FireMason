@@ -2,7 +2,7 @@ module CriteriaPrereqAdditionTests where
 
 import Test.HUnit
 import Types
-import CriteriaPrereqAddition
+import ExampleAdjustment
 
 criteriaPrereqAdditionTests = TestList [TestLabel "criteriaPrereqAdditionTest1" criteriaPrereqAdditionTest1
                                         , TestLabel "criteriaPrereqAdditionTest2" criteriaPrereqAdditionTest2

@@ -1,7 +1,7 @@
 import Test.HUnit
 
 import ConvertToHornTests
-import CriteriaPrereqAdditionTests
+import ExampleAdjustmentTests
 import NameIdChainTests
 import RuleAddingTests
 import TypesTests
