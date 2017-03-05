@@ -14,8 +14,6 @@ import Types
 import NameIdChain
 import ChainsToSMT
 
-import Debug.Trace
-
 addRulesToIdNameChain :: [(Rule, String, Label)] -> IdNameChain -> IdNameChain
 addRulesToIdNameChain [] n = n
 addRulesToIdNameChain ((r, s, i):xs) n = 
@@ -80,7 +78,7 @@ findBestPointCut' r i n n' =
         viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""
 
 
-        if checking == Unsat then return (i', cut) else trace ("rule = " ++ show r ++ "\nshortened = " ++ (show . toList' $ shortened)) findBestPointCut' r i n shortened
+        if checking == Unsat then return (i', cut) else findBestPointCut' r i n shortened
 
 
 checkRuleImpact :: Rule -> IdNameChain -> IdNameChain -> [ChainId] -> [ChainId] -> Z3 (Result, Maybe Model)
@@ -141,7 +139,7 @@ checkRuleImpact r n n' top idsU = do
     idsU' <- intSortList idsU
     let orChangedChain = mkOr =<< (sequence $ map (\i -> reaches one i zero) idsU') 
 
-    targetAST <- if (head . targets $ r) == ACCEPT then acceptAST else dropAST
+    targetAST <- if targets r == ACCEPT then acceptAST else dropAST
 
     innerOr <- mkOr =<< sequence [mkEq tw0 tw1
                                   , mkAnd [reEnd0, reEnd1]
@@ -240,6 +238,5 @@ scoreCriteria (Not c) (c') = (scoreCriteria c c') `div` 2
 scoreCriteria (c) (Not c') = (scoreCriteria c c') `div` 2
 scoreCriteria _ _ = -scm
 
-scoreTargets :: [Target] -> [Target] -> Int
-scoreTargets [] _ = 0
-scoreTargets (t:tx) t' = if t `elem` t' then scm + scoreTargets tx t' else scoreTargets tx t'
+scoreTargets :: Target -> Target -> Int
+scoreTargets _ _ = 0

@@ -13,9 +13,6 @@ import NameIdChain
 import IptablesTypes
 import Types
 
-import Debug.Trace
-
-
 --adds the rules to the iptables specification in the string, based on information from IdNameChain
 addToIptables :: [(Rule, String, Int)] -> IdNameChain -> String -> String
 addToIptables [] _ s = s

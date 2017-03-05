@@ -132,15 +132,15 @@ data Target = Jump String
               | RETURN
               | PropVariableTarget Int Bool
               | UnrecognizedTarget Int String
-              | ST String deriving (Eq, Show)
+              | ST String
+              | NoTarget deriving (Eq, Show)
 
 data State = Time Seconds deriving (Eq, Show)
 
-targetsToChainIds :: [Target] -> [ChainId]
-targetsToChainIds [] = []
-targetsToChainIds ((Go ch r):tx) = ch:targetsToChainIds tx
-targetsToChainIds ((GoReturn ch r):tx) = ch:targetsToChainIds tx
-targetsToChainIds (t:tx) = targetsToChainIds tx 
+targetToChainIds :: Target -> Maybe ChainId
+targetToChainIds (Go ch r) = Just ch
+targetToChainIds (GoReturn ch r)= Just ch
+targetToChainIds _ = Nothing
 
 
 type Seconds = Int
@@ -166,21 +166,21 @@ type FileRule = GenRule FileCriteria
 type Rule = GenRule Criteria
 
 data GenRule crit = Rule { criteria :: [crit]
-                   ,targets :: [Target]
+                   ,targets :: Target
                    ,label :: Label
                  } deriving (Eq, Show)
 
 eitherToRule :: Either FileCriteria Target -> FileRule
-eitherToRule (Left c) = Rule [c] [] (-1)
-eitherToRule (Right t) = Rule [] [t] (-1)
+eitherToRule (Left c) = Rule [c] NoTarget (-1)
+eitherToRule (Right t) = Rule [] t (-1)
 
 instance Monoid Rule where
-    mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
-    Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2}
+    mempty = Rule {criteria = [], targets = NoTarget, label = minBound :: Int}
+    Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = if t1 /= NoTarget then t1 else t2, label = max l1 l2}
 
 instance Monoid (InputRule a) where
-    mempty = Rule {criteria = [], targets = [], label = minBound :: Int}
-    Rule c1 t1 l1 `mappend` Rule c2 t2 l2= Rule { criteria = c1 ++ c2, targets = t1 ++ t2, label = max l1 l2}
+    mempty = Rule {criteria = [], targets = NoTarget, label = minBound :: Int}
+    Rule c1 t1 l1 `mappend` Rule c2 t2 l2= Rule { criteria = c1 ++ c2, targets = if t1 /= NoTarget then t1 else t2, label = max l1 l2}
 
 
 type ModuleFunc = [String] -> (Maybe [Either FileCriteria Target], [String])

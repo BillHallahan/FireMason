@@ -45,7 +45,7 @@ parseRule s l =
     let
         (c, t) = break ("=>" == ) s
     in
-    Rule (parseSpecificationCriteria c) (if not . null $ t then parseSpecificationTarget $ tail t else []) l
+    Rule (parseSpecificationCriteria c) (if not . null $ t then (parseSpecificationTarget $ t !! 1) else NoTarget) l
 
 isConjunction :: String -> Bool
 isConjunction s = s `elem` ["AND", "OR"]
@@ -116,10 +116,10 @@ parseSpecificationCriteria' s
     | (head s) `elem` (Map.keys stringsToFlags) = (InC . fromJust $ Map.lookup (head s) stringsToFlags, tail s)
     | otherwise = (InC . SC $ concat s, [])
 
-parseSpecificationTarget :: [String] -> [Target]
-parseSpecificationTarget ("DROP":[]) = [DROP]
-parseSpecificationTarget ("ACCEPT":[]) = [ACCEPT]
-parseSpecificationTarget x = error ("Unrecognized target = " ++ show x )
+parseSpecificationTarget :: String -> Target
+parseSpecificationTarget ("DROP") = DROP
+parseSpecificationTarget ("ACCEPT") = ACCEPT
+parseSpecificationTarget x = error ("Unrecognized target = " ++ show x)
 
 --Given a list of strings beginning with "(", finds all strings up to the matching ")"
 findInLeadingParenthesis :: [String] -> [String]

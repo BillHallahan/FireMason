@@ -10,8 +10,6 @@ import qualified Data.Map.Strict as Map
 import qualified Data.Maybe as MB
 import Types
 
-import Debug.Trace
-
 data IdNameChainType ct = INC { addChain :: String -> IdNameChainType ct
                                , accessRules :: ct -> Rule
                                , lookupNameChain :: ChainId -> Maybe (String, [ct])
@@ -157,19 +155,9 @@ pathSimplificationChain _  _[] _ _ _ = ([], Map.empty)
 pathSimplificationChain acc rev (r:rx) m ch ru =
     let
         (c, ic) = pathSimplificationChain acc rev rx m ch (ru + 1)
-        (newTargets, ic') = pathSimplificationTargets acc rev (targets . acc $ r) m (ch + length ic) ru 
+        (newTargets, ic') = pathSimplificationTarget acc rev (targets . acc $ r) m (ch + length ic) ru 
     in
     ((rev r . Rule (criteria . acc $ r) newTargets $ (label . acc $ r)):c, Map.union ic ic')
-
-
-pathSimplificationTargets :: (ct -> Rule)  -> (ct -> Rule -> ct) -> [Target] -> Map.Map String [ct] -> ChainId -> RuleInd  -> ([Target], Map.Map ChainId (String, [ct]))
-pathSimplificationTargets _ _ [] _ _ _ = ([], Map.empty)
-pathSimplificationTargets acc rev (t:ts) m ch r =
-    let
-        (t', ic) = pathSimplificationTarget acc rev t m ch r
-        (t'', ic') = pathSimplificationTargets acc rev ts m (ch + length ic) r
-    in
-    (t':t'', Map.union ic ic')
 
 pathSimplificationTarget :: (ct -> Rule)  -> (ct -> Rule -> ct) -> Target -> Map.Map String [ct] -> ChainId -> RuleInd -> (Target, Map.Map ChainId (String, [ct]))
 pathSimplificationTarget acc rev (Jump j) m ch _ = 
@@ -205,9 +193,9 @@ jumpedToWithCriteria :: Chain -> [([Criteria], ChainId)]
 jumpedToWithCriteria [] = []
 jumpedToWithCriteria (r:rx) = 
     let
-        goes = map (\t -> (criteria r, t)) (targetsToChainIds (targets r))
+        t = targetToChainIds . targets $ r
     in
-    goes ++ jumpedToWithCriteria rx
+    if MB.isJust t then (criteria r, MB.fromJust t):jumpedToWithCriteria rx else jumpedToWithCriteria rx
 
 jumpedTo :: Chain -> [ChainId]
 jumpedTo t = map (snd) (jumpedToWithCriteria t)
@@ -239,19 +227,18 @@ limitsMapCriteria n ch r' ((Limit i _ _ _) :cs) = Map.unionWith (++) (Map.fromLi
 limitsMapCriteria n ch r' (Not (Limit i _ _ _) :cs) = Map.unionWith (++) (Map.fromList [(i, [(ch, r')])]) (limitsMapCriteria n ch r' cs)
 limitsMapCriteria n ch r' (_:cs) = limitsMapCriteria n ch r' cs
 
-limitsMapTargets :: (r -> Rule) -> Map.Map ChainId (String, [r]) ->  ChainId -> Int -> [Target] -> Map.Map Int [(ChainId, Int)]
-limitsMapTargets _ _ _ _ [] = Map.fromList []
-limitsMapTargets acc n _ _ (Go ch r:ts) = 
+limitsMapTargets :: (r -> Rule) -> Map.Map ChainId (String, [r]) ->  ChainId -> Int -> Target -> Map.Map Int [(ChainId, Int)]
+limitsMapTargets acc n _ _ (Go ch r) = 
     let
         c = map (acc) . snd . MB.fromJust . Map.lookup ch $ n
     in
-    Map.unionWith (++) (limitsMapRules acc n ch (zip [0..] c)) (limitsMapTargets acc n ch r ts)
-limitsMapTargets acc n _ _ (GoReturn ch r:ts) = 
+    limitsMapRules acc n ch (zip [0..] c)
+limitsMapTargets acc n _ _ (GoReturn ch r) = 
     let
         c = map (acc) . snd . MB.fromJust . Map.lookup ch $ n
     in
-    Map.unionWith (++) (limitsMapRules acc n ch (zip [0..] c)) (limitsMapTargets acc n ch r ts)
-limitsMapTargets acc n ch r (t:ts) = limitsMapTargets acc n ch r ts
+    limitsMapRules acc n ch (zip [0..] c)
+limitsMapTargets acc n ch r (t) = mempty
 
 --Returns a list of all top level chains from which it is eventually possible to reach one of the chains with the given ids
 topLevelJumpingTo' :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> [ChainId] -> [ChainId]
@@ -271,7 +258,7 @@ increaseIds' acc x j = Map.mapKeys (j +) $ Map.map (\(n, c) -> (n, increaseIdsCh
 
 increaseIdsChain :: Chain -> Int -> Chain
 increaseIdsChain [] _ = []
-increaseIdsChain ((Rule c t l):cx) i = (Rule (map (flip increaseIdsCriteria i) c) (map (flip increaseIdsTarget i) t) l):increaseIdsChain cx i
+increaseIdsChain ((Rule c t l):cx) i = (Rule (map (flip increaseIdsCriteria i) c) (increaseIdsTarget t i) l):increaseIdsChain cx i
 
 increaseIdsCriteria :: Criteria -> Int -> Criteria
 increaseIdsCriteria (Limit j r b s) i = Limit (j + i) r b s
@@ -302,17 +289,16 @@ propVariableIds' acc n = concat $ map (propVariableIdsChain . map acc . snd) (Ma
 
 propVariableIdsChain :: Chain -> [Int]
 propVariableIdsChain [] = []
-propVariableIdsChain ((Rule c t _):rx) = propVariableIdsCriteria c ++ propVariableIdsTarget t  ++ propVariableIdsChain rx
+propVariableIdsChain ((Rule c t _):rx) = propVariableIdsCriteria c ++ (MB.maybeToList . propVariableIdsTarget $ t)  ++ propVariableIdsChain rx
 
 propVariableIdsCriteria :: [Criteria] -> [Int]
 propVariableIdsCriteria [] = []
 propVariableIdsCriteria (PropVariableCriteria i:cx) = i:propVariableIdsCriteria cx
 propVariableIdsCriteria (_:cx) = propVariableIdsCriteria cx
 
-propVariableIdsTarget :: [Target] -> [Int]
-propVariableIdsTarget [] = []
-propVariableIdsTarget (PropVariableTarget i _:cx) = i:propVariableIdsTarget cx
-propVariableIdsTarget (_:cx) = propVariableIdsTarget cx
+propVariableIdsTarget :: Target -> Maybe Int
+propVariableIdsTarget (PropVariableTarget i _) = Just i
+propVariableIdsTarget _ = Nothing
 
 
 --Given a IdNameChain and a list of ids, returns a new IdNameChain with only the IdNameChain with those ids, and all IdNameChain's that can be reached
@@ -324,6 +310,6 @@ reduceReferenced'' :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> ChainId ->
 reduceReferenced'' acc x i =
     let
     (n, c) = MB.fromJust $ Map.lookup i x
-    t = targetsToChainIds . concat $ map (\x -> targets . acc $ x) c
+    t = MB.catMaybes . map targetToChainIds . map (\x -> targets . acc $ x) $ c
     in
     Map.union (foldr (Map.union) Map.empty (map (reduceReferenced'' acc  x) t)) (Map.fromList [(i, (n, c))])

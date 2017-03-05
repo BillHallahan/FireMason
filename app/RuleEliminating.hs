@@ -7,8 +7,6 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
-import Debug.Trace
-
 --returns a list of chain names and rule numbers (in terms of labels) which should be removed
 findRedundantRule :: IdNameChain -> IO [(String, Label)]
 findRedundantRule n = evalZ3 . findRedundantRule' $ n

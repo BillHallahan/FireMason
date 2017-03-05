@@ -11,8 +11,6 @@ import Z3.Monad
 import NameIdChain
 import Types
 
-import Debug.Trace
-
 makeTargetDatatype :: Z3 Sort
 makeTargetDatatype = do
     accept <- mkStringSymbol "ACCEPT"
@@ -540,15 +538,12 @@ toSMTPathChain n (c:cx) ch r pN = do
     toSMTPathChain n cx ch (r + 1) pN
 
 toSMTPathRule :: Rule -> AST -> AST -> Int -> Z3 ()
-toSMTPathRule (Rule [] t _) ch r pN = toSMTPathTargets t ch r pN
-toSMTPathRule (Rule c [] _) ch r pN = do
-    rT <- ruleTarget ch r
-    none <- noneAST
-    assert =<< mkEq rT none
-toSMTPathRule (Rule c t _) ch r pN = toSMTPathTargets t ch r pN
-
-toSMTPathTargets :: [Target] -> AST -> AST -> Int -> Z3 ()
-toSMTPathTargets (t:tx) ch r pN = toSMTPathTarget t ch r pN
+toSMTPathRule (Rule [] t _) ch r pN = toSMTPathTarget t ch r pN
+-- toSMTPathRule (Rule c No _) ch r pN = do
+--     rT <- ruleTarget ch r
+--     none <- noneAST
+--     assert =<< mkEq rT none
+toSMTPathRule (Rule c t _) ch r pN = toSMTPathTarget t ch r pN
 
 toSMTPathTarget :: Target -> AST -> AST -> Int -> Z3 ()
 toSMTPathTarget (ACCEPT) ch r pN= do

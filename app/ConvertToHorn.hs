@@ -59,8 +59,8 @@ eliminateOrPropVar elimE cx i =
     let
         (c', r, i') = inputCriteriaToCriteria (eliminateOrPropVar) (elimE) cx i
         c'' = concat . map (fst) $ c'
-        r' = map (\ct -> Rule [ct] [PropVariableTarget i' True] (-1)) c''
-        r'' = Rule (map (\ct -> Not ct) (c'')) [PropVariableTarget i' False] (-1)
+        r' = map (\ct -> Rule [ct] (PropVariableTarget i' True) (-1)) c''
+        r'' = Rule (map (\ct -> Not ct) (c'')) (PropVariableTarget i' False) (-1)
     in
     ([([PropVariableCriteria i'], [])], r'':r ++ r', i' + 1)
 

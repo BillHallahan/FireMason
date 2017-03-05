@@ -95,8 +95,8 @@ convertLines (x:xs) =
     let
         l = convertLine x []
         r = rule l
-        t = filter (not . isUnrecognizedTarget) . targets $ r
-        r' = r {targets = if not . null $ t then t else targets r}
+        t = if not . isUnrecognizedTarget . targets $ r then targets r else NoTarget
+        r' = r {targets = t}
         l' = l {rule = r'}
     in
     l':convertLines xs
@@ -108,7 +108,7 @@ convertLines (x:xs) =
 
 convertLine :: ([String], Int) -> [ModuleFunc] -> Line
 convertLine (s, i) fs
-    | [] <- s = Line "filter" None (Rule [] [] i) 0
+    | [] <- s = Line "filter" None (Rule [] NoTarget i) 0
     | "iptables":xs <- s = convertLine (xs, i) fs
     | "-t":t:xs <- s = 
         let

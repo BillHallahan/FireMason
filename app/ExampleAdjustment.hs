@@ -11,8 +11,6 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
-import Debug.Trace
-
 exInstructionsToMap :: [ExampleInstruction] -> Map.Map String ExampleChain
 exInstructionsToMap [] = Map.fromList []
 exInstructionsToMap (ToChainNamed n e:xs) =
@@ -25,6 +23,7 @@ exInstructionsToMap (_:xs) = exInstructionsToMap xs
 
 
 statefulExampleInstructionsToInstructions :: [ExampleInstruction] -> Maybe [Int] -> IO (Maybe [Instruction])
+statefulExampleInstructionsToInstructions [] _ = return . Just $ []
 statefulExampleInstructionsToInstructions e mi = 
     let
         opts = opt "MODEL" True
@@ -47,7 +46,7 @@ statefulExampleInstructionsToInstructions' ex mi minMaxS minMaxSub n = do
                     Nothing -> 0
 
     stEx <- statefulExampleInstructionsToInstructions'' ex mi minMaxS minMaxSub n
-    trace ("\n\nstEx = " ++ show stEx ++ "\n") $ case stEx of
+    case stEx of
         Just (ins, sc, sub)
             | sc == minS && sub == minSub -> return . Just $ ins
             | otherwise -> do
@@ -55,7 +54,7 @@ statefulExampleInstructionsToInstructions' ex mi minMaxS minMaxSub n = do
                 let subDiff = sub - minSub
                 let (subLow, subHigh) = case diff of --We begin trying to decrease subVar after we have already mnimized score
                                             0 -> (Nothing, Nothing)
-                                            otherwise -> trace "subLOWHIGH" (Just (minSub, quot subDiff 2), Just(quot subDiff 2, sub))
+                                            otherwise -> (Just (minSub, quot subDiff 2), Just(quot subDiff 2, sub))
                 low <- statefulExampleInstructionsToInstructions' ex mi (Just (minS, quot diff 2)) subLow n
                 case low of
                     Just low' -> return . Just $ low'
@@ -74,7 +73,7 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS minMaxSub n = do
 
     reset
 
-    trace ("IdNameExamples = " ++ (show . toList' $ n)) convertExamplesSMT n ruleNum mi
+    convertExamplesSMT n ruleNum mi
     
     scoreSymb <- mkStringSymbol "score"
     scoreVar <- mkIntVar scoreSymb
@@ -101,7 +100,7 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS minMaxSub n = do
             assert =<< reaches p' c' zero
 
             --make sure the packet terminates correctly
-            tar <- if (targets . exRule $ e) !! 0 == ACCEPT then acceptAST else dropAST
+            tar <- if (targets . exRule $ e) == ACCEPT then acceptAST else dropAST
             tw <- terminatesWith p'
 
             case minMaxS of
@@ -186,7 +185,7 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS minMaxSub n = do
             limsInfo <- getLimitsModel n m
             ignore <- getNotIgnoredRules n m
             ins <- return . map (\(c, r) -> toInstructionWithLimits limsInfo n c r)  . filter ((flip elem) ignore) . chainRuleIds $ n
-            trace ("limsInfo = " ++ show limsInfo ++ "\n\n ins = " ++ show ins) return ins
+            return ins
 
         --Given a true or false boolean value and an integer value, sets the integer value to 1 or 0, respectively
         smtBoolToSMTInt :: AST -> AST -> Z3 ()
@@ -272,7 +271,7 @@ getLimitsModel n m = do
 
         ) useLimRes
 
-    trace (show limitInfo) return . Map.fromList $ limitInfo
+    return . Map.fromList $ limitInfo
     
 
 
@@ -324,7 +323,6 @@ sortByTime e = sortOn (maximum . map (time) . state . insRule) e
     where
         time :: State -> Int
         time (Time t) = t
-        time _ = -1
 
 --Given [ExampleInstruction] and [(ChainId, RuleInd, RuleInd)] that are contradictory, returns Right [(ChainId, [RuleInd])] such that
 --all rule in each list are resolvable together, or Left [(ChainId, [RuleInd])] such that those rules are not resolvable

@@ -20,12 +20,9 @@ import RuleAdding
 
 import IptablesTypes
 
-import NameIdChain--temp
+import NameIdChain
 
 import RuleEliminating
-
-
-import Debug.Trace
 
 main = do
     initializeTime
@@ -40,26 +37,17 @@ main = do
 
     let converted' = Map.toList . convertScript $ contents
 
-    putStrLn . show $ converted'
-
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0
     let pathSimp = pathSimplificationChains converted
-
-
-    putStrLn . show . toList' $ pathSimp
 
     changes <- readFile changesFileName
 
     let rulesToAdd = parse . lexer $ changes
     let rulesToAdd2 = exampleRuleInstructionsToExamplesInstructions rulesToAdd
 
-    putStrLn $ "\n\n\n\n\ntoAdd = " ++ show rulesToAdd
-
     let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd2
 
     let (haveState, noState) = partition (\e -> not . null . state . insRule $ e) rulesToAdd'
-
-    putStrLn $ "\nhave = " ++ show haveState ++ "\ndoesn't have "  ++ show noState
 
     (consistent, inconsistent) <- findConsistentAndInconsistentRules rulesToAdd'
 
@@ -76,41 +64,37 @@ main = do
 
     if not . null $ inconsistentEx then error "Resolve inconsistencies in examples before continuing." else return ()
 
-
-    putStrLn $ "inconsistent = " ++ show inconsistent
-
     let rulesToAddMap = exInstructionsToMap rulesToAdd'
 
     putStrLn $ "\n\n" ++ show (filter (\(c, _, _) -> c == 0) inconsistentLabels)
     
-
     let sec = 1
     let minute = 60
     let hour = minute * 60
     let day = hour * 24
 
-    
+    putStrLn "HERE "
 
-    insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day])) . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
+    let contradicting = contradictingExampleIdsToExampleInstructions rulesToAdd' inconsistent
+
+    putStrLn "HERE 2"
+
+    insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day])) contradicting-- . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
     --insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day]))  haveState
 
-    putStrLn $ "HERE " ++ show insStateRes
+    putStrLn "HERE 3"
 
     addedPos <- case insStateRes of
                         Just insStateRes' -> instructionsToAddAtPos (insStateRes' ++ rulesToAdd'') pathSimp
                         Nothing -> error "Irresolvable state" -- IMPROVE THIS ERROR MESSAGE
 
-    putStrLn "HERE 2"
-
     let addedToIp = addToIptables addedPos pathSimp contents 
     
-    putStrLn addedToIp
-
     let converted2' = Map.toList . convertScript $ addedToIp
     let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0
     let pathSimp2 = pathSimplificationChains converted2
 
-    redundant <- trace (show . toList' $ pathSimp2) findRedundantRule pathSimp2
+    redundant <- findRedundantRule pathSimp2
     let commentedInIp = commentOutRules redundant addedToIp
 
     writeFile outputScriptName commentedInIp
