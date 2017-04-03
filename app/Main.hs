@@ -73,16 +73,10 @@ main = do
     let hour = minute * 60
     let day = hour * 24
 
-    putStrLn "HERE "
-
     let contradicting = contradictingExampleIdsToExampleInstructions rulesToAdd' inconsistent
-
-    putStrLn "HERE 2"
 
     insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day])) contradicting-- . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
     --insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day]))  haveState
-
-    putStrLn "HERE 3"
 
     addedPos <- case insStateRes of
                         Just insStateRes' -> instructionsToAddAtPos (insStateRes' ++ rulesToAdd'') pathSimp

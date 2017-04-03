@@ -1,0 +1,9 @@
+acl INPUT : protocol = 6 AND time = 10 => DROP,
+acl OUTPUT : protocol = 6 AND time = 15 => ACCEPT,
+acl FORWARD : protocol = 6 AND time = 20 => DROP,
+acl INPUT : protocol = 6 AND time = 80 => DROP,
+acl OUTPUT : protocol = 6 AND time = 95 => ACCEPT,
+acl FORWARD : protocol = 6 AND time = 100 => DROP,
+acl INPUT : protocol = 6 AND time = 280 => DROP,
+acl OUTPUT : protocol = 6 AND time = 295 => ACCEPT,
+acl FORWARD : protocol = 6 AND time = 300 => DROP 
