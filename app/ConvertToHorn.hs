@@ -38,6 +38,7 @@ condenseOr (c:cx) = c:condenseOr cx
 
 eliminateFileInput :: ElimExt FileInput Int
 eliminateFileInput (InCLimit r b s) i = (Just . Limit i r b $ s, [] , i + 1, [])
+eliminateFileInput (InCSet name sort action) i = (Just . Set i name sort $ action, [] , i + 1, [])
 eliminateFileInput (InCUnrecognizedCriteria s) i = (Just . UnrecognizedCriteria i $ s, [] , i + 1, [])
 
 eliminateState :: ElimExt State State
@@ -59,8 +60,8 @@ eliminateOrPropVar elimE cx i =
     let
         (c', r, i') = inputCriteriaToCriteria (eliminateOrPropVar) (elimE) cx i
         c'' = concat . map (fst) $ c'
-        r' = map (\ct -> Rule [ct] (PropVariableTarget i' True) (-1)) c''
-        r'' = Rule (map (\ct -> Not ct) (c'')) (PropVariableTarget i' False) (-1)
+        r' = map (\ct -> Rule [ct] [PropVariableTarget i' True] (-1)) c''
+        r'' = Rule (map (\ct -> Not ct) (c'')) [PropVariableTarget i' False] (-1)
     in
     ([([PropVariableCriteria i'], [])], r'':r ++ r', i' + 1)
 
@@ -83,7 +84,7 @@ inputCriteriaToCriteria elim elimE (InCNot (Ext a'):cx) i =
         (c, r'', i', b') = eliminatedNot (elimE) a' i
         (c'', r', i'') = inputCriteriaToCriteria elim (elimE) cx i'
     in
-    case c of 
+    case c of
         Just c'''' -> (map (\(c2, s) -> (c'''':c2, b' ++ s)) c'', r'' ++ r', i'')
         Nothing ->  (map (\(c''', s) -> (c''', b' ++ s)) c'', r'' ++ r', i'')
         where
