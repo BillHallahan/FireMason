@@ -13,11 +13,9 @@ convertSetRule xs =
         (name, set, mask, rcheck, update, remove, seconds, hitcount, xs') = convertSetRule' xs
         name' = if isJust name then fromJust name else ""
         mask' = if isJust mask then fromJust mask else 32
-        seconds' = if isJust seconds then fromJust seconds else 0
-        hitcount' = if isJust hitcount then fromJust hitcount else 0
         sort' = SetIPAddress Source mask'
         action' = if set then Add
-            else if rcheck || update then Check update seconds' hitcount'
+            else if rcheck || update then Check update seconds hitcount
             else Remove
     in
     (Just [Left . Ext . InCSet name' sort' $ action'], xs')
