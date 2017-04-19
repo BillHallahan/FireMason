@@ -42,7 +42,7 @@ data Criteria = BoolFlag Flag
                 | Protocol Int
                 | UnrecognizedCriteria Int String
                 | SC String
-                | Set Int String SetSort Action
+                | Set Int Int String SetSort Action
                 deriving (Eq, Show)
 
 

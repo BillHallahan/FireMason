@@ -1,6 +1,8 @@
 module ConvertToHorn (stringInputChainsToStringChains, inputInstructionTypeConversion, exampleRuleInstructionsToExamplesInstructions) where --inputInstructionsToInstructions, inputInstructionsToExamples, inputInstructionsToInsNumExamples) where
 
 import Types
+import Data.Maybe
+import qualified Data.Map as Map
 
 type ElimExt a b = a -> Int -> ((Maybe Criteria), [Rule], Int, [b])
 type ElimOr a b = ElimExt a b -> [InputCriteria a] -> Int -> ([([Criteria], [b])], [Rule], Int)
@@ -38,8 +40,29 @@ condenseOr (c:cx) = c:condenseOr cx
 
 eliminateFileInput :: ElimExt FileInput Int
 eliminateFileInput (InCLimit r b s) i = (Just . Limit i r b $ s, [] , i + 1, [])
-eliminateFileInput (InCSet name sort action) i = (Just . Set i name sort $ action, [] , i + 1, [])
+--eliminateFileInput (InCSet name sort action) i = (Just . Set i name sort $ action, [] , i + 1, [])
 eliminateFileInput (InCUnrecognizedCriteria s) i = (Just . UnrecognizedCriteria i $ s, [] , i + 1, [])
+
+eliminateInCSet :: Map.Map String Int -> Map.Map String Int -> [FileInput] -> [Criteria]
+eliminateInCSet m1 m2 [] = []
+eliminateInCSet m1 m2 (x:xs) =
+    let
+    (InCSet name sort action) = x
+    i = Map.lookup name m1
+    j = Map.lookup name m2
+    i' = if isJust i then fromJust i else succ (getMax (Map.toList m1))
+    j' = if isJust j then fromJust j else 0
+    tmp = Map.adjust succ name m2
+    c = eliminateInCSet m1 tmp xs
+    in (Set i' j' name sort action):c
+
+getMax :: (Num v, Ord v) => [(k, v)] -> v
+getMax [] = 0
+getMax ((k, v):xs) =
+    let
+    prev = getMax xs
+    rst = if v > prev then v else prev
+    in rst
 
 eliminateState :: ElimExt State State
 eliminateState s i = (Nothing, [], i, [s])
