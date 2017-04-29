@@ -160,8 +160,10 @@ targetToChainIds _ = Nothing
 type Seconds = Int
 data Example = Example {exRule :: Rule, state :: [State]} deriving (Eq, Show)
 
+data Spec = Maintain | Repair | Verify deriving (Eq, Show)
 
-data SynthInstruction r = ToChainNamed {chainName :: String
+data SynthInstruction r = ToChainNamed {  spec :: Spec
+                                        , chainName :: String
                                         , insRule :: r}
                           | NoInstruction {insRule :: r} deriving (Eq, Show)
 

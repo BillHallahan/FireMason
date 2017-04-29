@@ -154,7 +154,7 @@ fileInstructionsToInstruction xs = inputInstructionTypeConversion (eliminateOrPr
 exampleRuleInstructionsToExamplesInstructions :: [ExampleRuleInstruction] -> [ExampleInstruction]
 exampleRuleInstructionsToExamplesInstructions xs = inputInstructionTypeConversion (eliminateOr) (eliminateState) (insToExample) xs
     where insToExample :: ExampleRuleInstruction -> (Instruction, [State]) -> ExampleInstruction
-          insToExample e (ToChainNamed n r, s) = ToChainNamed {chainName = n, insRule = Example {exRule = r, state = s}}
+          insToExample e (ToChainNamed spec n r, s) = ToChainNamed {spec = spec, chainName = n, insRule = Example {exRule = r, state = s}}
           insToExample e (NoInstruction r, s) = NoInstruction {insRule = Example {exRule = r, state = s}}
 
 inputInstructionTypeConversion :: (Show a, Show c) => ElimOr a c -> ElimExt a c -> (InputInstruction a -> (Instruction, [c]) -> b) -> [InputInstruction a] -> [b]
@@ -162,11 +162,11 @@ inputInstructionTypeConversion elimOr elimExt con xs = inputInstructionTypeConve
 
 inputInstructionTypeConversion' ::(Show a, Show c) => ElimOr a c -> ElimExt a c -> (InputInstruction a -> (Instruction, [c]) -> b) -> [InputInstruction a] -> Int -> [b]
 inputInstructionTypeConversion' _ _ _ [] _ = []
-inputInstructionTypeConversion' elimOr elimExt con  ((ToChainNamed s r):xs) i =
+inputInstructionTypeConversion' elimOr elimExt con  ((ToChainNamed spec s r):xs) i =
     let
-        ins = map (\(ru, st) -> (ToChainNamed s ru, st)) (inputChainToChain (elimOr) (elimExt) [r] i)
+        ins = map (\(ru, st) -> (ToChainNamed spec s ru, st)) (inputChainToChain (elimOr) (elimExt) [r] i)
     in
-    (map (con (ToChainNamed s r)) ins) ++ inputInstructionTypeConversion' (elimOr) (elimExt) (con) xs (i + 1)
+    (map (con (ToChainNamed spec s r)) ins) ++ inputInstructionTypeConversion' (elimOr) (elimExt) (con) xs (i + 1)
 inputInstructionTypeConversion' elimOr elimExt con ((NoInstruction r):xs) i =
     let
         ins = map (\(ru, st) -> (NoInstruction ru, st)) (inputChainToChain (elimOr) (elimExt) [r] i)

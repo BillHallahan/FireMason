@@ -16,6 +16,7 @@ import ConvertToHorn
 import ExampleAdjustment
 import InstructionsToIptables
 import ParseSpecificationLanguage
+import qualified ParseSpecificationLanguage2 as PSL2
 import RuleAdding
 
 import IptablesTypes
@@ -42,7 +43,12 @@ main = do
 
     changes <- readFile changesFileName
 
-    let rulesToAdd = parse . lexer $ changes
+    --let rulesToAdd = parse . lexer $ changes
+    let rulesToAdd = PSL2.parse $ changes
+
+    print rulesToAdd
+
+
     let rulesToAdd2 = exampleRuleInstructionsToExamplesInstructions rulesToAdd
 
     let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd2
@@ -51,7 +57,7 @@ main = do
 
     (consistent, inconsistent) <- findConsistentAndInconsistentRules rulesToAdd'
 
-    let rulesToAdd'' = map (\i -> case i of ToChainNamed n e -> ToChainNamed n . exRule $ e
+    let rulesToAdd'' = map (\i -> case i of ToChainNamed spec n e -> ToChainNamed spec n . exRule $ e
                                             NoInstruction e -> NoInstruction . exRule $ e) noState--rulesToAdd'--THIS IS TEMPORARY AND NEEDS TO BE CHANGED TO ELIMINATE STATE
 
     let inconsistentNonStateful = findInconsistentRulesStateful rulesToAdd' inconsistent

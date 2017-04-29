@@ -13,7 +13,7 @@ import Types
 
 exInstructionsToMap :: [ExampleInstruction] -> Map.Map String ExampleChain
 exInstructionsToMap [] = Map.fromList []
-exInstructionsToMap (ToChainNamed n e:xs) =
+exInstructionsToMap (ToChainNamed s n e:xs) =
     let
         m = exInstructionsToMap xs
         existing = Map.findWithDefault [] n m
@@ -211,7 +211,7 @@ statefulExampleInstructionsToInstructions'' ex mi minMaxS minMaxSub n = do
                             Just cr -> Rule {criteria = cr:(criteria . exRule $ r''), targets = targets . exRule $ r'', label = label . exRule $ r''}
                             Nothing -> Rule {criteria = criteria . exRule $ r'', targets = targets . exRule $ r'', label = label . exRule $ r''}
             in
-            ToChainNamed {chainName = name, insRule = r'''}
+            ToChainNamed {spec = Repair, chainName = name, insRule = r'''}
 
         --returns a Z3 function  with Name s to map list[i] to i
         smtListToIndex :: String -> [Int] -> Z3 FuncDecl
@@ -446,7 +446,7 @@ contradictingExampleIdsToExampleInstructions ex rs =
                                     (_, _) -> error "Unrecognized rule when resolving contradicting examples."
                     ) . nub . concat . map (\(c, r1, r2) -> [(c, r1), (c, r2)]) $ rs
     in
-    map (\(n', r) -> ToChainNamed {chainName = n', insRule = r} ) rs'
+    map (\(n', r) -> ToChainNamed {spec = Repair, chainName = n', insRule = r} ) rs'
     
 
 --Return whether the indicated chainId and RuleInds are in the list of contradictions, in either order
@@ -559,7 +559,7 @@ findInconsistentRules' rs = do
 
 toRules :: [ExampleInstruction] -> Map.Map String Chain
 toRules [] = Map.fromList []
-toRules (ToChainNamed n e:xs) =
+toRules (ToChainNamed spec n e:xs) =
     let
         m = toRules xs
         existing = Map.findWithDefault [] n m
@@ -626,7 +626,7 @@ chainRuleToLabel n ch r = case lookupRule n ch r of Just r' -> label . accessRul
 --for example, ports only make sense in iptables if specifying compatible protocol
 
 criteriaPrereqAddition :: ExampleInstruction -> [ExampleInstruction]
-criteriaPrereqAddition (ToChainNamed n e) = map (\r' -> ToChainNamed n (Example {exRule = r', state = state e})) (criteriaPrereqAdditionRule . exRule $ e)
+criteriaPrereqAddition (ToChainNamed spec n e) = map (\r' -> ToChainNamed spec n (Example {exRule = r', state = state e})) (criteriaPrereqAdditionRule . exRule $ e)
 criteriaPrereqAddition (NoInstruction e) = map (\r' -> NoInstruction (Example {exRule = r', state = state e})) (criteriaPrereqAdditionRule . exRule $ e)
 
 criteriaPrereqAdditionRule :: Rule -> [Rule]

@@ -37,7 +37,7 @@ parse s =
     map (\(x, sCon, l) -> sCon (parseRule x l)) instrCon'--map parseRule (splitOn [","] s)
 
 parseInstruction :: [String] -> ([String], ExampleRule -> ExampleRuleInstruction)
-parseInstruction ("acl":c:":":xs) = (xs, ToChainNamed c)
+parseInstruction ("acl":c:":":xs) = (xs, ToChainNamed Repair c)
 parseInstruction xs = (xs, NoInstruction)
 
 parseRule :: [String] -> Label -> ExampleRule

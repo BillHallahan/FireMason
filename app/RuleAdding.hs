@@ -22,7 +22,7 @@ addRulesToIdNameChain ((r, s, i):xs) n =
 --Given a list of instructions and an IdNameChain, returns a list of rules, and chain names and positions (in terms of labels) at which they should be added
 instructionsToAddAtPos :: [Instruction] -> IdNameChain -> IO [(Rule, String, Label)]
 instructionsToAddAtPos [] n = return []
-instructionsToAddAtPos (ToChainNamed s r:xs) n = 
+instructionsToAddAtPos (ToChainNamed spec s r:xs) n = 
     do
         let changeId = head $ idsWithName n s
         let n' = if not . null $ (idsWithName n s) then n else addChain n s
