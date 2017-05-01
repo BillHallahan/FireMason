@@ -1,1 +1,4 @@
+maintain(INPUT, destination_ip = 1.2.3.4 => DROP)
 repair(INPUT, protocol = 10 => DROP)
+verify(INPUT, source_ip = 1.2.3.4 => DROP)
+verify(protocols-chain, protocol = 17 => ACCEPT)

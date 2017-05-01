@@ -24,6 +24,7 @@ executable FireMason-exe
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
+                     , bv
                      , z3
                      , criterion
                      , iproute

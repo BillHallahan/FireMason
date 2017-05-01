@@ -25,6 +25,8 @@ import NameIdChain
 
 import RuleEliminating
 
+import Verifier
+
 main = do
     initializeTime
     start <- getTime
@@ -46,12 +48,18 @@ main = do
     --let rulesToAdd = parse . lexer $ changes
     let rulesToAdd = PSL2.parse $ changes
 
-    print rulesToAdd
-
 
     let rulesToAdd2 = exampleRuleInstructionsToExamplesInstructions rulesToAdd
 
-    let rulesToAdd' = concat $ map (criteriaPrereqAddition) rulesToAdd2
+    let maintainRules = filter (\r -> spec r == Maintain) rulesToAdd2
+    let repairRules = filter (\r -> spec r == Repair) rulesToAdd2
+    let verifyRules = filter (\r -> spec r == Verify) rulesToAdd2
+
+    print maintainRules
+    print repairRules
+    print verifyRules
+
+    let rulesToAdd' = concat $ map (criteriaPrereqAddition) repairRules
 
     let (haveState, noState) = partition (\e -> not . null . state . insRule $ e) rulesToAdd'
 
@@ -98,6 +106,14 @@ main = do
     let commentedInIp = commentOutRules redundant addedToIp
 
     writeFile outputScriptName commentedInIp
+
+    let fixed = addRulesToIdNameChain addedPos pathSimp
+
+
+    --Verification
+    ver <- verify fixed verifyRules
+
+    print ver
 
     end <- getTime
 
