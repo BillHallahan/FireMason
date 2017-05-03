@@ -10,8 +10,6 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
-import qualified Debug.Trace as T
-
 verify :: IdNameChain -> [ExampleInstruction] -> IO [(String, [Criteria])]
 verify i e = do
     evalZ3 (verify' i e)
@@ -69,9 +67,7 @@ verifyPacket n c@(ToChainNamed _ _ _) = do
     (b, m) <- solverCheckAndGetModel
 
     res <- case m of
-                Just m' -> do
-                            mString <- showModel m'
-                            T.trace (mString) parseModel m'
+                Just m' -> parseModel m'
                 Nothing -> return (0, [])
 
     solverPop 1

@@ -55,9 +55,9 @@ main = do
     let repairRules = filter (\r -> spec r == Repair) rulesToAdd2
     let verifyRules = filter (\r -> spec r == Verify) rulesToAdd2
 
-    print maintainRules
-    print repairRules
-    print verifyRules
+    -- print maintainRules
+    -- print repairRules
+    -- print verifyRules
 
     let rulesToAdd' = concat $ map (criteriaPrereqAddition) repairRules
 
