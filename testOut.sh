@@ -4,9 +4,9 @@ IPTABLES=/sbin/iptables
 
 $IPTABLES -N protocols-chain
 $IPTABLES -F protocols-chain
-$IPTABLES -A protocols-chain -p 117 -j ACCEPT
+$IPTABLES -A protocols-chain -p 17 -j ACCEPT
 $IPTABLES -A protocols-chain -p tcp -j ACCEPT
-$IPTABLES -A protocols-chain -p udp -j ACCEPT
+##$IPTABLES -A protocols-chain -p udp -j ACCEPT
 
 
 $IPTABLES -A INPUT -p tcp --tcp-flags SYN,ACK SYN -j DROP

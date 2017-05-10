@@ -91,6 +91,11 @@ parseCriteria = catMaybes . map parseCriteria' . splitOn ["," :: String] . map (
                 di' = if '/' `elem` di then di else di ++ "/32"
             in
             Just . InC . (IPAddress Source) . toIPRange $ di'
+        parseCriteria' ("time":"=":t:xs)  =
+            let
+                t' = if isInteger t then (read t :: Int) else error "Invalid time"
+            in
+            Just . Ext . Time $ t'
         parseCriteria' [] = Nothing
         parseCriteria' s = error ("Unrecognized criteria " ++ show s ++ ".")
 

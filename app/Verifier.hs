@@ -10,71 +10,96 @@ import ChainsToSMT
 import NameIdChain
 import Types
 
-verify :: IdNameChain -> [ExampleInstruction] -> IO [(String, [Criteria])]
+import qualified Debug.Trace as T
+
+verify :: IdNameChain -> [ExampleInstruction] -> IO [[([String], [Criteria])]]
 verify i e = do
     evalZ3 (verify' i e)
 
 --Returns a list of lists of criteria, that describe packets that will be incorrectly routed by the firewall 
-verify' :: IdNameChain -> [ExampleInstruction] -> Z3 [(String, [Criteria])]
+verify' :: IdNameChain -> [ExampleInstruction] -> Z3 [[([String], [Criteria])]]
 verify' n ex = do
     reset
 
-    convertChainsSMT n 1
+    let ex' = map (\e -> [e]) . filter (null . state . insRule) $ ex
+    let ex'' = filter (not . null . state . insRule) ex
 
-    return . filter (not . null . snd) =<< mapM (verifyPacket n) ex
+    return . filter (not . null . snd . \s -> (!!) s 0) =<< mapM (
+            \e ->
+                do 
+                    reset
+                    convertChainsSMT n (length e)
+                    verifyPacket n e) (if not . null $ ex'' then ex'':ex' else ex')
 
-verifyPacket :: IdNameChain -> ExampleInstruction -> Z3 (String, [Criteria])
-verifyPacket n c@(ToChainNamed _ _ _) = do
+verifyPacket :: IdNameChain -> [ExampleInstruction] -> Z3 [([String], [Criteria])]
+verifyPacket n c' = do
     solverPush
 
+    names' <- mapM (
+        \(c, i) ->
+            do
+            let name = chainName c
+            let rule = insRule c
 
-    let name = chainName c
-    let rule = insRule c
+            let crit = criteria . exRule $ rule
+            let tar = targets . exRule $ rule
+            let time = case state rule of
+                                [Time s] -> Just s
+                                [] -> Nothing
 
-    let crit = criteria . exRule $ rule
-    let tar = targets . exRule $ rule
+            intSort <- mkIntSort
+            zero <- mkInt 0 intSort
+            num <- mkInt i intSort
 
-    intSort <- mkIntSort
-    zero <- mkInt 0 intSort
+            time' <- case time of
+                            Just s -> mkInt s intSort
+                            Nothing -> return zero
 
-    return True
+            arrival <- arrivalTime num
 
-    let ids = idsWithName n name
+            assert =<< mkEq arrival time'
 
-    let topStarting = topLevelJumpingTo n ids
-    
-    assert =<< mkOr =<< mapM (\t -> do
-                                    t' <- mkInt t intSort
-                                    reaches zero t' zero
-                                    ) topStarting
+            let ids = idsWithName n name
+
+            let topStarting = topLevelJumpingTo n ids
+            
+            assert =<< mkOr =<< mapM (\t -> do
+                                            t' <- mkInt t intSort
+                                            reaches num t' zero
+                                            ) topStarting
 
 
-    starting <- mkStringSymbol "starting"
-    starting' <- mkVar starting intSort
-    assert =<< reaches zero starting' zero
+            starting <- mkStringSymbol "starting"
+            starting' <- mkVar starting intSort
+            assert =<< reaches num starting' zero
 
-    let maxChainId = maxId n
-    maxChainId' <- mkInt maxChainId intSort
-    assert =<< mkLe zero starting'
-    assert =<< mkLe starting' maxChainId'
+            let maxChainId = maxId n
+            maxChainId' <- mkInt maxChainId intSort
+            assert =<< mkLe zero starting'
+            assert =<< mkLe starting' maxChainId'
 
-    assert =<< toSMTCriteriaList (eliminateLimits $ crit) (Just n) zero zero zero
 
-    tw0 <- terminatesWith zero
+            assert =<< toSMTCriteriaList (eliminateLimits $ crit) (Just n) num zero zero
 
-    assert =<< mkNot =<< mkEq tw0 =<< if tar == ACCEPT then acceptAST else dropAST
+            tw0 <- terminatesWith num
+
+            assert =<< mkNot =<< mkEq tw0 =<< if tar == ACCEPT then acceptAST else dropAST
+
+            return name
+            ) (zip c' [0..])
 
     (b, m) <- solverCheckAndGetModel
 
     res <- case m of
-                Just m' -> parseModel m'
-                Nothing -> return (0, [])
+                Just m' -> (mapM (\i -> parseModel m' i) ([0..(length c' - 1)]))
+                Nothing -> return [(0, [])]
 
     solverPop 1
 
-    let res' = (case lookupName n . fst $ res of
-                        Just name' -> name
-                        Nothing -> "", snd res)
+    let res' = map (\r -> (case lookupName n . fst $ r of
+                                    Just name' -> names'
+                                    Nothing -> [""]
+                                , snd r)) res
 
     return res'
     where
@@ -83,8 +108,8 @@ verifyPacket n c@(ToChainNamed _ _ _) = do
         eliminateLimits (Limit _ _ _ _:xs) = eliminateLimits xs
         eliminateLimits (x:xs) = x:eliminateLimits xs
 
-parseModel :: Model -> Z3 (Int, [Criteria])
-parseModel m = do
+parseModel :: Model -> Int -> Z3 (Int, [Criteria])
+parseModel m i = do
     protSymb <- mkStringSymbol "protocol"
     sourceIPSymb <- mkStringSymbol "source_ip"
     destIPSymb <- mkStringSymbol "destination_ip"
@@ -100,7 +125,7 @@ parseModel m = do
     intSort <- mkIntSort
     bitSort <- mkBvSort 32
 
-    zero <- mkInt 0 intSort
+    num <- mkInt i intSort
 
     starting <- mkStringSymbol "starting"
     starting' <- mkVar starting intSort
@@ -112,11 +137,11 @@ parseModel m = do
     sourcePortDecl <- mkFuncDecl sourcePortSymb [intSort] intSort
     destPortDecl <- mkFuncDecl destPortSymb [intSort] intSort
 
-    protApp <- mkApp protDecl [zero]
-    sourceIPApp <- mkApp sourceIPDecl [zero]
-    destIPApp <- mkApp destIPDecl [zero]
-    sourcePortApp <- mkApp sourcePortDecl [zero]
-    destPortApp <- mkApp destPortDecl [zero]
+    protApp <- mkApp protDecl [num]
+    sourceIPApp <- mkApp sourceIPDecl [num]
+    destIPApp <- mkApp destIPDecl [num]
+    sourcePortApp <- mkApp sourcePortDecl [num]
+    destPortApp <- mkApp destPortDecl [num]
 
     prot <- return . Protocol . fromIntegral =<< getInt . fromJust =<< eval m protApp
     sourceIp <- do
