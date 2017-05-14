@@ -16,6 +16,7 @@ iptables -A INPUT -p 10 -j DROP
 
 $IPTABLES -A OUTPUT -p tcp --dport 45 -j ACCEPT
 #$IPTABLES -A OUTPUT -j protocols-chain
+iptables -A OUTPUT -p 17 -j ACCEPT
 $IPTABLES -A OUTPUT -p 124 -j ACCEPT
 $IPTABLES -A OUTPUT -d 4.5.0.0/16 -j ACCEPT
 #$IPTABLES -A OUTPUT -p 8 -d 4.5.6.7 -j ACCEPT

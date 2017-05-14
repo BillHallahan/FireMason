@@ -21,6 +21,7 @@ lexer s
     | '=':xs <- afterSpaces = "=":lexer xs
     | ')':',':xs <- afterSpaces = ")":lexer xs
     | ',':xs <- afterSpaces = ",":lexer xs
+    | ';':xs <- afterSpaces = ";":lexer xs
     | ')':xs <- afterSpaces = ")":lexer xs
     | length nextTerm >= 1 = nextTerm:lexer afterTerm
     | otherwise = error $ "Unrecognized pattern " ++ s
@@ -32,10 +33,13 @@ parseStatement :: [String] -> [ExampleRuleInstruction]
 parseStatement s
     | (spec:"(":xs) <- s =
         let (ca, xs') = span ((/=) ")") xs in
-        parseRule spec ca:(parseStatement . tail $ xs')
+        parseRules spec ca ++ (parseStatement . tail $ xs')
     | (",":xs) <- s = parseStatement xs
     | [] <- s = []
     | otherwise = error ("Unrecognizable statement " ++ concat s)
+
+parseRules :: String -> [String] -> [ExampleRuleInstruction]
+parseRules spec s = map (parseRule spec) $ splitOn [";"] s 
 
 parseRule :: String -> [String] -> ExampleRuleInstruction
 parseRule spec s =
