@@ -1,0 +1,6 @@
+link: http://askubuntu.com/questions/476626/iptables-issue-cant-ssh-remote-machines
+
+The firewall script is on my machine (IP address 192.168.1.99), and now I want
+to SSH to 192.168.1.15, but I find I cannot access 192.168.1.15
+
+

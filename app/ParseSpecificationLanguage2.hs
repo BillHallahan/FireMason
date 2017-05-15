@@ -100,6 +100,11 @@ parseCriteria = catMaybes . map parseCriteria' . splitOn ["," :: String] . map (
                 t' = if isInteger t then (read t :: Int) else error "Invalid time"
             in
             Just . Ext . Time $ t'
+        parseCriteria' ("SYN":xs) = Just . InC . BoolFlag $ SYN
+        parseCriteria' ("ACK":xs) = Just . InC . BoolFlag $ ACK
+        parseCriteria' ("FIN":xs) = Just . InC . BoolFlag $ FIN
+        parseCriteria' ("RST":xs) = Just . InC . BoolFlag $ RST
+        parseCriteria' ("URG":xs) = Just . InC . BoolFlag $ URG
         parseCriteria' [] = Nothing
         parseCriteria' s = error ("Unrecognized criteria " ++ show s ++ ".")
 

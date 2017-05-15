@@ -143,6 +143,7 @@ data Target = Jump String
               | GoReturn ChainId RuleInd
               | ACCEPT
               | DROP
+              | REJECT
               | RETURN
               | PropVariableTarget Int Bool
               | UnrecognizedTarget Int String

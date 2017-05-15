@@ -15,7 +15,6 @@ import ConvertIptables
 import ConvertToHorn
 import ExampleAdjustment
 import InstructionsToIptables
-import ParseSpecificationLanguage
 import qualified ParseSpecificationLanguage2 as PSL2
 import RuleAdding
 
@@ -80,7 +79,7 @@ main = do
 
     let rulesToAddMap = exInstructionsToMap rulesToAdd'
 
-    putStrLn $ "\n\n" ++ show (filter (\(c, _, _) -> c == 0) inconsistentLabels)
+    putStrLn $ "\n\nInconsistent = " ++ show (filter (\(c, _, _) -> c == 0) inconsistentLabels)
     
     let sec = 1
     let minute = 60
@@ -92,18 +91,36 @@ main = do
     insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day])) contradicting-- . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
     --insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day]))  haveState
 
+    putStrLn "After Lim gen"
+
+    putStrLn ("insStateRes = " ++ show insStateRes)
+    putStrLn ("rulesToAdd = " ++ show rulesToAdd'')
+
     addedPos <- case insStateRes of
-                        Just insStateRes' -> instructionsToAddAtPos (insStateRes' ++ rulesToAdd'') pathSimp
+                        Just insStateRes' -> instructionsToAddAtPos ((reverse insStateRes') ++ rulesToAdd'') pathSimp
                         Nothing -> error "Irresolvable state" -- IMPROVE THIS ERROR MESSAGE
 
-    let addedToIp = addToIptables addedPos pathSimp contents 
+    putStrLn "After addedPos"
+
+    print addedPos
+    print contents
+
+    let addedToIp = addToIptables (reverse addedPos) pathSimp contents 
     
     let converted2' = Map.toList . convertScript $ addedToIp
     let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0
     let pathSimp2 = pathSimplificationChains converted2
 
+    putStrLn "Before Red"
+
     redundant <- findRedundantRule pathSimp2
+    --print $ (endRed - startRed)
+
+    putStrLn "After Red"
+
     let commentedInIp = commentOutRules redundant addedToIp
+
+    putStrLn "After Comm"
 
     writeFile outputScriptName commentedInIp
 

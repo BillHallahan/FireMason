@@ -1,0 +1,12 @@
+link:
+http://serverfault.com/questions/298954/how-can-i-rate-limit-ssh-connections-with-iptables
+
+I want to rate limit SSH
+
+The correct solution should be to add
+-A INPUT -p tcp --dport 2020 -m state --state NEW -j ACCEPT
+
+after the following two lines of rules
+
+-A INPUT -p tcp --dport 2020 -m state --state NEW -m recent --set --name SSH
+-A INPUT -p tcp --dport 2020 -m state --state NEW -m recent --update --seconds 120 --hitcount 8 --rttl --name SSH -j DROP

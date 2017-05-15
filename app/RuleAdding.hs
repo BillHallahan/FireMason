@@ -31,7 +31,9 @@ instructionsToAddAtPos (ToChainNamed spec s r:xs) n =
         let cutCName = if isJust $ lookupName n cutC then fromJust $ lookupName n cutC else error "Trying to cut nonexistent chain."
 
         let withName = idsWithName n cutCName
-        let ch' = fromJust $ lookupChain n (head withName)
+        let ch' = case lookupChain n (head withName) of
+                            Just __ch -> __ch
+                            Nothing -> error ("Trying to look up with nonexistent name " ++ (show . head $ withName))
         let l = if not . null $ ch' then label $ ch' !! cutR else maxLabel n
         let r' = Rule (criteria r) (targets r) l
         let cutCh' = addRuleToChains n r' (head withName) cutR
@@ -42,14 +44,22 @@ instructionsToAddAtPos (ToChainNamed spec s r:xs) n =
 instructionsToAddAtPos (x:xs) _ = error ("Unrecognized instruction " ++ show x)
 
 findBestPointCut :: Rule -> ChainId -> IdNameChain -> IO (ChainId, RuleInd)
-findBestPointCut r i n = findBestPointCut' r i n n
+findBestPointCut r i n = findBestPointCut' (r {criteria = eliminateLimits . criteria $ r}) i n n
+    where
+        eliminateLimits :: [Criteria] -> [Criteria]
+        eliminateLimits [] = []
+        eliminateLimits (Limit _ _ _ _:xs) = eliminateLimits xs
+        eliminateLimits (x:xs) = x:eliminateLimits xs
+
 
 --We cut chains shorter in n' as we determine that certain positions are too deep to insert the new rule
 --We use n to always be able to evaluate the new rule with the whole chain
 findBestPointCut' :: Rule -> ChainId -> IdNameChain -> IdNameChain -> IO (ChainId, RuleInd)
 findBestPointCut' r i n n' =
     let
-        nameU = fromJust $ lookupName n i
+        nameU = case lookupName n i of
+                        Just __n -> __n
+                        Nothing -> error ("Unknown name from " ++ (show i) ++ " in findBestPointCut'")
 
         (i', cut, _) = findPointCut r i n'
         (name, c) = if isJust $ lookupNameChain n i' then fromJust $ lookupNameChain n i' else error "Rule being inserted into nonexistent chain."
@@ -175,11 +185,15 @@ checkRuleImpact r n n' top idsU = do
 findPointCut :: Rule -> ChainId -> IdNameChain -> (ChainId, RuleInd, Int)
 findPointCut r i n = 
     let
-        c = fromJust $ lookupChain n i--fromJust $ Map.lookup i n
+        c = case lookupChain n i of--fromJust $ Map.lookup i n
+                    Just __c -> __c
+                    Nothing -> error ("Unknown name from" ++ (show i) ++ " in findPointCut")
 
         --Get scores for rules in chains we can jump to
         jCritTarget = jumpedToWithCriteria c
-        jCritIdChains = map (\(crit, t) -> (crit, t, fromJust $ lookupChain n t)) (jumpedToWithCriteria c)
+        jCritIdChains = map (\(crit, t) -> (crit, t, case lookupChain n t of
+                                                                Just __t -> __t
+                                                                Nothing -> error ("Unknown id " ++ (show t)))) (jumpedToWithCriteria c)
         jIdChainsAddedCrit = map (\(crit, t, ch) -> (t, map (\(Rule c t l) -> Rule (c ++ crit) t l) ch)) jCritIdChains
         jIdScores = map (\(t, ch) -> findPointCut r t n) jIdChainsAddedCrit
         third = (\(_, _, x) -> x)
@@ -187,7 +201,9 @@ findPointCut r i n =
  
         scores =  map (scoreRules r) c
         maxScore = if not . null $ scores then maximum scores else -scm - 1
-        maxScoreLoc = if not . null $ scores then fromJust $ elemIndex maxScore scores else 0
+        maxScoreLoc = if not . null $ scores then case elemIndex maxScore scores of
+                                                            Just __s -> __s
+                                                            Nothing -> error "Unknow index" else 0
     in
     if third maxJ <= maxScore then (i, maxScoreLoc, maxScore) else maxJ
 

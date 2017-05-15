@@ -1,0 +1,2 @@
+repair(OUTPUT, destination_ip = 192.168.1.15 => ACCEPT;
+INPUT, source_ip = 192.168.1.15 => ACCEPT)

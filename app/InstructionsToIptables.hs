@@ -20,9 +20,14 @@ addToIptables ((r, c, i):xs) n s =
     let
         above = command . fromJust $ find (\l -> fileline l == i) (convertScript' s)
         com = if (fromJust . comChainName $ above) == c then above else Append c
-        xs' = increaseLabelsAbove i xs
+        xs' = increaseLabelsAbove (if isInsert above then i + 1 else i) xs
+        i' = if isInsert above then i + 1 else i
     in
-    addToIptables xs' n (addToStringAtLine ("iptables " ++ convert com n ++ " " ++ convert r n) i s)
+    addToIptables xs' n (addToStringAtLine ("iptables " ++ convert com n ++ " " ++ convert r n) i' s)
+    where
+        isInsert :: Command -> Bool
+        isInsert (Insert _ _) = True
+        isInsert _ = False
 
 commentOutRules :: [(String, Int)] -> String -> String
 commentOutRules [] s = s

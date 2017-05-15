@@ -95,7 +95,7 @@ convertLines (x:xs) =
     let
         l = convertLine x []
         r = rule l
-        t = if not . isUnrecognizedTarget . targets $ r then targets r else NoTarget
+        t = targets r--if not . isUnrecognizedTarget . targets $ r then targets r else NoTarget
         r' = r {targets = t}
         l' = l {rule = r'}
     in
@@ -180,11 +180,12 @@ convertCriteriaOrTarget x@(x':xs) fs i =
                       Nothing -> Nothing
     in
         case modParse of Just (ms, s) -> (fromJust ms, s, Nothing)
-                         Nothing -> ([Left . Ext . InCUnrecognizedCriteria $ x', Right . UnrecognizedTarget i $ x'], xs, Nothing)
+                         Nothing -> ([Left . Ext . InCUnrecognizedCriteria $ x'], xs, Nothing)
 
 convertTarget :: String -> Target
 convertTarget "ACCEPT" = ACCEPT
 convertTarget "DROP" = DROP
+convertTarget "REJECT" = REJECT
 convertTarget "RETURN" = RETURN
 convertTarget j = Jump j
 

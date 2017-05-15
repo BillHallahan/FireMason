@@ -21,9 +21,13 @@ makeTargetDatatype = do
     isDrop <- mkStringSymbol "is-DROP"
     dropCon <- mkConstructor drop isDrop []
 
-    return <- mkStringSymbol "RETURN"
+    return' <- mkStringSymbol "RETURN"
     isReturn <- mkStringSymbol "is-RETURN"
-    returnCon <- mkConstructor return isReturn []
+    returnCon <- mkConstructor return' isReturn []
+
+    reject <- mkStringSymbol "REJECT"
+    isReject <- mkStringSymbol "is-REJECT"
+    rejectCon <- mkConstructor reject isReject []
 
     intSort <- mkIntSort
 
@@ -45,7 +49,7 @@ makeTargetDatatype = do
 
     target <- mkStringSymbol "Target"
 
-    mkDatatype target [acceptCon, dropCon, returnCon, goCon, goreturnCon, noneCon]
+    mkDatatype target [acceptCon, dropCon, returnCon, goCon, goreturnCon, noneCon, rejectCon]
 
 targetDataRecognizer :: Int -> Z3 AST
 targetDataRecognizer i = do
@@ -61,6 +65,10 @@ acceptAST = do
 dropAST :: Z3 AST
 dropAST = do
     targetDataRecognizer 1
+
+rejectAST :: Z3 AST
+rejectAST = do
+    targetDataRecognizer 6
 
 returnAST :: Z3 AST
 returnAST = do
@@ -558,6 +566,12 @@ toSMTPathTarget (DROP) ch r pN= do
     assert =<< mkEq rT drop
 
     mapM_ (\p -> reachesMatchesTerminating p ch r drop) =<< intSortList [0..(pN - 1)]
+toSMTPathTarget (REJECT) ch r pN= do
+    rT <- ruleTarget ch r
+    reject <- rejectAST
+    assert =<< mkEq rT reject
+
+    mapM_ (\p -> reachesMatchesTerminating p ch r reject) =<< intSortList [0..(pN - 1)]
 toSMTPathTarget (RETURN) ch r pN= do
     rT <- ruleTarget ch r
     return <- returnAST
@@ -613,11 +627,19 @@ toSMTPathTarget (UnrecognizedTarget i s) ch r _ = do
     unrecApp <- mkApp unrecFuncDecl [i']
     rT <- ruleTarget ch r
 
+    --assert =<< mkEq unrecApp =<< noneAST 
+
+    assert =<< mkEq unrecApp rT
+toSMTPathTarget NoTarget ch r _= do
+    unrecTargetSymb <- mkStringSymbol "no-target"
+    unrecFuncDecl <- mkFuncDecl unrecTargetSymb [] =<< makeTargetDatatype
+    unrecApp <- mkApp unrecFuncDecl []
+    rT <- ruleTarget ch r
+
     assert =<< mkEq unrecApp =<< noneAST 
 
     assert =<< mkEq unrecApp rT
-
-toSMTPath t _ _ _ = error "Target " ++ show t ++ " not recognized."
+toSMTPathTarget t _ _ _ = error ("Target " ++ show t ++ " not recognized in toSMTPathTarrget.")
 
 toSMTChain :: (r -> IdNameChainType r -> AST -> AST -> Int -> Z3 ()) -> [r] -> IdNameChainType r -> ChainId -> RuleInd -> Int -> Z3 ()
 toSMTChain _ [] _ _ _ _ = return ()

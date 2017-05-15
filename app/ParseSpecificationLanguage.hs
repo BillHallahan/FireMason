@@ -63,7 +63,7 @@ conjunctionAtFront [] = Nothing
 conjunctionAtFront s =  if isConjunction (head s) then 
                             toConjunction (head s)
                         else
-                            error ("Invalid: " ++ (head s))
+                            error ("Invalid!: " ++ (head s))
 
 parseSpecificationCriteria :: [String] -> [ExampleCriteria]
 parseSpecificationCriteria s

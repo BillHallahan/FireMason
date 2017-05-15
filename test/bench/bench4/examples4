@@ -1,0 +1,9 @@
+repair(INPUT, source_ip = 192.132.209.0/24, SYN, time = 10 => ACCEPT;
+INPUT, source_ip = 192.132.209.0/24, SYN, time = 10 => ACCEPT;
+INPUT, source_ip = 192.132.209.0/24, SYN, time = 10 => ACCEPT;
+INPUT, source_ip = 192.132.209.0/24, SYN, time = 11 => DROP;
+INPUT, source_ip = 192.132.209.0/24, SYN, time = 140 => ACCEPT;
+INPUT, source_ip = 192.132.209.0/24, SYN, time = 140 => ACCEPT;
+INPUT, source_ip = 192.132.209.0/24, SYN, time = 140 => ACCEPT;
+INPUT, source_ip = 192.132.209.0/24, SYN, time = 141 => DROP)
+

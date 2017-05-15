@@ -1,0 +1,8 @@
+http://askubuntu.com/questions/240360/is-there-a-rule-for-iptables-to-limit-the-amount-of-syn-packets-a-24-range-of-i
+
+My server is under TCP SYN flooding attack. 
+Is it possible to limit the amount of SYN packets, e.g., inserting the following
+rule to somewhere
+iptables -A INPUT -p tcp -s 10.0.0.0/24 --syn -m limit --limit 1/s --limit-burst 3 -j RETURN
+
+(The solution I'm finding is on the source ip from the first post, not the commenter)

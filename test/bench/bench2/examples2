@@ -1,0 +1,2 @@
+repair(INPUT, protocol = 22, source_ip = 71.82.93.101 => ACCEPT),
+repair(INPUT, protocol = 22, not source_ip = 71.82.93.101 => DROP)

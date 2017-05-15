@@ -1,0 +1,5 @@
+link:
+http://serverfault.com/questions/118669/good-iptables-starting-rules-for-a-webserver
+
+The administrator only wants to allow SSH access from the IP address 
+71.82.93.101

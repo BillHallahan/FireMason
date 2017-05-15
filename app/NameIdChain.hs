@@ -58,12 +58,16 @@ idNameChainCons accessR m =
         lC = (\i -> pure (snd) <*> Map.lookup i m)
         lR = (\c i -> case lC c of Just c' -> Just (c' !! i)
                                    Nothing -> Nothing)
-        cri = concat . map (\c -> [(c, r) | r <- [0..((length . MB.fromJust . lC $ c) - 1)]]) $ (Map.keys m)
+        cri = concat . map (\c -> [(c, r) | r <- [0..((length $ case lC c of
+                                                                    Just __c -> __c
+                                                                    Nothing -> error "cri in IdNameChain") - 1)]]) $ (Map.keys m)
         lN = (\i -> pure (fst) <*> Map.lookup i m)
         lEquiv = 
             (\i -> 
                 if MB.isJust $ Map.lookup i m then 
-                    Map.keys $ Map.filter (\(s', _) -> s' == (fst. MB.fromJust $ Map.lookup i m)) m 
+                    Map.keys $ Map.filter (\(s', _) -> s' == (fst $ case Map.lookup i m of
+                                                                            Just __n -> __n
+                                                                            Nothing -> error "lEquiv in IdNameChain")) m 
                 else []
             )
         allEquiv = (map (idsName) ns)
@@ -162,12 +166,16 @@ pathSimplificationChain acc rev (r:rx) m ch ru =
 pathSimplificationTarget :: (ct -> Rule)  -> (ct -> Rule -> ct) -> Target -> Map.Map String [ct] -> ChainId -> RuleInd -> (Target, Map.Map ChainId (String, [ct]))
 pathSimplificationTarget acc rev (Jump j) m ch _ = 
     let
-        chain = MB.fromJust (Map.lookup j m) 
+        chain = case Map.lookup j m of
+                        Just _ch -> _ch
+                        Nothing -> error ("Unknown chain in lookup Jump" ++ show j)
     in
         (Go (ch + 1) 0, pathSimplification' acc rev [(j, chain)] m (ch + 1))
 pathSimplificationTarget acc rev (GoTo g) m ch _ = 
     let
-        chain = MB.fromJust (Map.lookup g m) 
+        chain = case Map.lookup g m of
+                        Just _ch -> _ch
+                        Nothing -> error ("Unknown chain in lookup GoTo" ++ show g)
     in
         (GoReturn (ch + 1) 0, pathSimplification' acc rev [(g, chain)] m (ch + 1))
 pathSimplificationTarget _ _ t _ _ _ = (t, Map.empty)
@@ -195,7 +203,10 @@ jumpedToWithCriteria (r:rx) =
     let
         t = targetToChainIds . targets $ r
     in
-    if MB.isJust t then (criteria r, MB.fromJust t):jumpedToWithCriteria rx else jumpedToWithCriteria rx
+    if MB.isJust t then (criteria r, case t of
+                                            Just __t -> __t
+                                            Nothing -> error ("Unknow in jumpedToWithCriteria " ++ show r)
+                        ):jumpedToWithCriteria rx else jumpedToWithCriteria rx
 
 jumpedTo :: Chain -> [ChainId]
 jumpedTo t = map (snd) (jumpedToWithCriteria t)
@@ -207,7 +218,9 @@ limitsMap acc n =
     let
         top = topLevelChains' acc n
     in
-    limitsMapChains acc n $ map (\t -> (t, snd . MB.fromJust . Map.lookup t $ n)) top
+    limitsMapChains acc n $ map (\t -> (t, snd $ case Map.lookup t n of
+                                                        Just __t -> __t
+                                                        Nothing -> error ("In limitsMap unknown " ++ show t))) top
 
 limitsMapChains :: (r -> Rule) -> Map.Map ChainId (String, [r]) -> [(ChainId, [r])] -> Map.Map Int [(ChainId, Int)]
 limitsMapChains _ _ [] = Map.fromList []
@@ -230,12 +243,16 @@ limitsMapCriteria n ch r' (_:cs) = limitsMapCriteria n ch r' cs
 limitsMapTargets :: (r -> Rule) -> Map.Map ChainId (String, [r]) ->  ChainId -> Int -> Target -> Map.Map Int [(ChainId, Int)]
 limitsMapTargets acc n _ _ (Go ch r) = 
     let
-        c = map (acc) . snd . MB.fromJust . Map.lookup ch $ n
+        c = map (acc) . snd $ case Map.lookup ch n of
+                                        Just __ch -> __ch
+                                        Nothing -> error ("limitsMapTargets has unknown " ++ show ch)
     in
     limitsMapRules acc n ch (zip [0..] c)
 limitsMapTargets acc n _ _ (GoReturn ch r) = 
     let
-        c = map (acc) . snd . MB.fromJust . Map.lookup ch $ n
+        c = map (acc) . snd $ case Map.lookup ch n of
+                                        Just __ch -> __ch
+                                        Nothing -> error ("limitsMapTargets has unknown " ++ show ch)
     in
     limitsMapRules acc n ch (zip [0..] c)
 limitsMapTargets acc n ch r (t) = mempty
