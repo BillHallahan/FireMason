@@ -1,3 +1,3 @@
-acl INPUT : protocol = 6 AND time = 10 => DROP,
-acl OUTPUT : protocol = 6 AND time = 15 => ACCEPT,
-acl FORWARD : protocol = 6 AND time = 20 => DROP 
+repair(INPUT, protocol = 6, time = 10 => DROP),
+repair(INPUT, protocol = 6, time = 15 => ACCEPT),
+repair(INPUT, protocol = 6, time = 20 => DROP)

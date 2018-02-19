@@ -1,0 +1,12 @@
+repair(INPUT, protocol = 6, destination_port = 130 => DROP),
+repair(OUTPUT, source_ip = 123.42.67.0/24, protocol = 98 => ACCEPT),
+repair(FORWARD, destination_ip = 73.8.0.0/16, protocol = 101 => ACCEPT),
+repair(FORWARD, protocol = 44 => ACCEPT),
+repair(INPUT, protocol = 4 => ACCEPT),
+repair(OUTPUT, source_ip = 9.4.3.2, destination_ip = 2.3.4.5, protocol = 57 => DROP),
+repair(INPUT, protocol = 49  => DROP),
+repair(OUTPUT, destination_ip = 73.8.0.0/16, protocol = 43 => ACCEPT),
+repair(FORWARD, source_ip = 123.42.67.0/24, protocol = 65 => ACCEPT),
+repair(FORWARD, protocol = 62 => ACCEPT),
+repair(INPUT, protocol = 94, destination_port = 34 => ACCEPT),
+repair(OUTPUT, source_ip = 10.4.0.0/16, destination_port = 67, protocol = 12 => DROP)

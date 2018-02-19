@@ -1,0 +1,9 @@
+repair(INPUT, protocol = 6, time = 10 => ACCEPT),
+repair(INPUT, protocol = 6, time = 40 => ACCEPT),
+repair(INPUT, protocol = 6, time = 50 => DROP),
+repair(FORWARD, protocol = 7, time = 110 => ACCEPT),
+repair(FORWARD, protocol = 7, time = 140 => ACCEPT),
+repair(FORWARD, protocol = 7, time = 150 => DROP),
+repair(OUTPUT, protocol = 8, time = 210 => ACCEPT),
+repair(OUTPUT, protocol = 8, time = 240 => ACCEPT),
+repair(OUTPUT, protocol = 8, time = 250 => DROP)

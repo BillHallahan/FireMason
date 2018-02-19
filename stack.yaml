@@ -3,5 +3,6 @@ extra-package-dbs: []
 packages:
 - '.'
 extra-deps:
+- bv-0.4.1
 - z3-4.1.0
 resolver: lts-6.15

@@ -73,13 +73,13 @@ main = do
 
     let inconsistentEx = map (\(ch, r1, r2) -> (find (\ins -> (label . insRule $ ins) == r1) rulesToAdd, find (\ins -> (label . insRule $ ins) == r2) rulesToAdd)) inconsistentLabels
 
-    putStrLn . foldr (++) "" . map (\r -> "Example\n" ++ (show . fst $ r) ++ "\nis inconsistent with\n" ++ (show . snd $ r) ++ "\n\n") $ inconsistentEx
+    -- putStrLn . foldr (++) "" . map (\r -> "Example\n" ++ (show . fst $ r) ++ "\nis inconsistent with\n" ++ (show . snd $ r) ++ "\n\n") $ inconsistentEx
 
     if not . null $ inconsistentEx then error "Resolve inconsistencies in examples before continuing." else return ()
 
     let rulesToAddMap = exInstructionsToMap rulesToAdd'
 
-    putStrLn $ "\n\nInconsistent = " ++ show (filter (\(c, _, _) -> c == 0) inconsistentLabels)
+    -- putStrLn $ "\n\nInconsistent = " ++ show (filter (\(c, _, _) -> c == 0) inconsistentLabels)
     
     let sec = 1
     let minute = 60
@@ -91,19 +91,17 @@ main = do
     insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day])) contradicting-- . contradictingExampleIdsToExampleInstructions rulesToAdd' $ inconsistent
     --insStateRes <- (flip statefulExampleInstructionsToInstructions (Just [sec, minute, hour, day]))  haveState
 
-    putStrLn "After Lim gen"
+    -- putStrLn "After Lim gen"
 
-    putStrLn ("insStateRes = " ++ show insStateRes)
-    putStrLn ("rulesToAdd = " ++ show rulesToAdd'')
+    -- putStrLn ("insStateRes = " ++ show insStateRes)
+    -- putStrLn ("rulesToAdd = " ++ show rulesToAdd'')
 
     addedPos <- case insStateRes of
                         Just insStateRes' -> instructionsToAddAtPos ((reverse insStateRes') ++ rulesToAdd'') pathSimp
                         Nothing -> error "Irresolvable state" -- IMPROVE THIS ERROR MESSAGE
 
-    putStrLn "After addedPos"
+    -- putStrLn "After addedPos"
 
-    print addedPos
-    print contents
 
     let addedToIp = addToIptables (reverse addedPos) pathSimp contents 
     
@@ -111,16 +109,17 @@ main = do
     let converted2 = Map.fromList $ stringInputChainsToStringChains converted2' 0
     let pathSimp2 = pathSimplificationChains converted2
 
-    putStrLn "Before Red"
+    -- putStrLn "Before Red"
 
     redundant <- findRedundantRule pathSimp2
     --print $ (endRed - startRed)
 
-    putStrLn "After Red"
+    -- putStrLn "After Red"
 
-    let commentedInIp = commentOutRules redundant addedToIp
+    -- let commentedInIp = commentOutRules redundant addedToIp
+    let commentedInIp = addedToIp
 
-    putStrLn "After Comm"
+    -- putStrLn "After Comm"
 
     writeFile outputScriptName commentedInIp
 
@@ -130,7 +129,7 @@ main = do
     --Verification
     ver <- verify fixed verifyRules
 
-    print ver
+    -- print ver
 
     end <- getTime
 

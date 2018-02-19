@@ -1,0 +1,1 @@
+repair(INPUT, protocol = 22 => ACCEPT only destination_ip = 71.82.93.102, destination_port = 4)

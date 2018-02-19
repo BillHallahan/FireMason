@@ -1,11 +1,8 @@
 repair(INPUT, protocol = 22, time = 0 =>ACCEPT),
 repair(INPUT, protocol = 22, time = 20 =>ACCEPT),
-repair(INPUT, protocol = 22, time = 30 =>ACCEPT),
 repair(INPUT, protocol = 22, time = 50 =>ACCEPT),
 repair(INPUT, protocol = 22, time = 55 =>ACCEPT),
 repair(INPUT, protocol = 22, time = 70 =>ACCEPT),
 repair(INPUT, protocol = 22, time = 80 =>ACCEPT),
 repair(INPUT, protocol = 22, time = 90 =>ACCEPT),
-repair(INPUT, protocol = 22, time = 110 =>ACCEPT),
-repair(INPUT, protocol = 22, time = 115 => DROP),
-repair(INPUT, protocol = 22, time = 200 =>ACCEPT)
+repair(INPUT, protocol = 22, time = 110 =>DROP)

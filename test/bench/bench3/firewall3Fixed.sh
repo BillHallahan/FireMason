@@ -1,7 +1,7 @@
 
 
 # Loopback interface
-iptables -A INPUT -m limit --limit 3/minute --limit-burst 4 -p 22 -j ACCEPT
+iptables -A INPUT -m limit --limit 2/minute --limit-burst 4 -p 22 -j ACCEPT
 iptables -A INPUT -p 22 -j DROP
 iptables -A INPUT -i lo -j ACCEPT
 

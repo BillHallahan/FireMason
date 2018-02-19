@@ -28,6 +28,6 @@ iptables -A INPUT -i lo -j ACCEPT
 
 iptables -I INPUT -p icmp --icmp-type destination-unreachable -j ACCEPT
 iptables -I INPUT -p icmp --icmp-type source-quench -j ACCEPT
+iptables -I INPUT -p icmp --icmp-type time-exceeded -j ACCEPT
 iptables -I INPUT 0 -p 22 -s 71.82.93.101/32 -j ACCEPT
 iptables -I INPUT 0 -p 22 ! -s 71.82.93.101/32  -j DROP
-iptables -I INPUT -p icmp --icmp-type time-exceeded -j ACCEPT
