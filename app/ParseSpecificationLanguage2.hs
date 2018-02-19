@@ -16,7 +16,8 @@ lexer :: String -> [String]
 lexer s
     | all isSpace s = []
     | 'n':'o':'t':xs <- afterSpaces = "not":lexer xs
-    | 'o':'n':'l':'y':xs <- afterSpaces = "only":lexer xs
+    | 'o':'n':'l':'y':'i':'f':xs <- afterSpaces = "only":lexer xs
+    | 'u':'n':'l':'e':'s':'s':xs <- afterSpaces = "unless":lexer xs
     | 'A':'C':'C':'E':'P':'T':xs <- afterSpaces = "ACCEPT":lexer xs
     | 'D':'R':'O':'P':xs <- afterSpaces = "DROP":lexer xs
     | '(':xs <- afterSpaces = "(":lexer xs
@@ -126,7 +127,13 @@ parseTarget s =
                 c = parseCriteria xs
                 t = parseTargetSimple tc
             in
-            [(c, t), ([InCNot (And c)], negateTarget t)]
+            [ ([], negateTarget t), (c, t)]
+        tc:"unless":xs -> 
+            let
+                c = parseCriteria xs
+                t = parseTargetSimple tc
+            in
+            [([], negateTarget t), (map InCNot c, t)]
         _ -> error ("Unknown target " ++ intercalate " " s)
 
 parseTargetSimple :: String -> Target
