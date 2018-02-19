@@ -21,6 +21,8 @@ lexer s
     | 'A':'C':'C':'E':'P':'T':xs <- afterSpaces = "ACCEPT":lexer xs
     | 'D':'R':'O':'P':xs <- afterSpaces = "DROP":lexer xs
     | '(':xs <- afterSpaces = "(":lexer xs
+    | '<':'=':xs <- afterSpaces = "<=":lexer xs
+    | '>':'=':xs <- afterSpaces = ">=":lexer xs
     | '=':'>':xs <- afterSpaces = "=>":lexer xs
     | '=':xs <- afterSpaces = "=":lexer xs
     | ')':',':xs <- afterSpaces = ")":lexer xs
@@ -72,6 +74,9 @@ parseSpec s
     where
         s' = filter (not . isSpace) s
 
+maxPort :: Int
+maxPort = 65535
+
 parseCriteria :: [String] -> [ExampleCriteria]
 parseCriteria = catMaybes . map parseCriteria' . splitOn ["," :: String] . map (filter (not . isSpace))
     where
@@ -87,11 +92,43 @@ parseCriteria = catMaybes . map parseCriteria' . splitOn ["," :: String] . map (
                 d' = if isInteger d then (read d :: Int) else error "Invalid port"
             in
             Just . InC $ Port Destination (Left d')
+        parseCriteria' (d1:"<=":"destination_port":"<=":d2:xs) =
+            let
+                d1' = if isInteger d1 then (read d1 :: Int) else error "Invalid port"
+                d2' = if isInteger d2 then (read d2 :: Int) else error "Invalid port"
+            in
+            Just . InC $ Port Destination (Right (d1', d2'))
+        parseCriteria' ("destination_port":"<=":d:xs) =
+            let
+                d' = if isInteger d then (read d :: Int) else error "Invalid port"
+            in
+            Just . InC $ Port Destination (Right (0, d'))
+        parseCriteria' ("destination_port":">=":d:xs) =
+            let
+                d' = if isInteger d then (read d :: Int) else error "Invalid port"
+            in
+            Just . InC $ Port Destination (Right (d', maxPort))
         parseCriteria' ("source_port":"=":d:xs) =
             let
                 d' = if isInteger d then (read d :: Int) else error "Invalid port"
             in
             Just . InC $ Port Source (Left d')
+        parseCriteria' (d1:"<=":"source_port":"<=":d2:xs) =
+            let
+                d1' = if isInteger d1 then (read d1 :: Int) else error "Invalid port"
+                d2' = if isInteger d2 then (read d2 :: Int) else error "Invalid port"
+            in
+            Just . InC $ Port Source (Right (d1', d2'))
+        parseCriteria' ("source_port":"<=":d:xs) =
+            let
+                d' = if isInteger d then (read d :: Int) else error "Invalid port"
+            in
+            Just . InC $ Port Source (Right (0, d'))
+        parseCriteria' ("source_port":">=":d:xs) =
+            let
+                d' = if isInteger d then (read d :: Int) else error "Invalid port"
+            in
+            Just . InC $ Port Source (Right (d', maxPort))
         parseCriteria' ("destination_ip":"=":di:xs)  =
             let
                 di' = if '/' `elem` di then di else di ++ "/32"

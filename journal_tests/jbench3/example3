@@ -1,0 +1,1 @@
+repair(INPUT, protocol = 17, 1000 <= destination_port <= 2000 => ACCEPT)
