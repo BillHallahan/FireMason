@@ -191,13 +191,17 @@ eitherToRule :: Either FileCriteria Target -> FileRule
 eitherToRule (Left c) = Rule [c] NoTarget (-1)
 eitherToRule (Right t) = Rule [] t (-1)
 
+instance Semigroup Rule where
+    Rule c1 t1 l1 <> Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = if t1 /= NoTarget then t1 else t2, label = max l1 l2}
+
 instance Monoid Rule where
     mempty = Rule {criteria = [], targets = NoTarget, label = minBound :: Int}
-    Rule c1 t1 l1 `mappend` Rule c2 t2 l2 = Rule { criteria = c1 ++ c2, targets = if t1 /= NoTarget then t1 else t2, label = max l1 l2}
+
+instance Semigroup (InputRule a) where
+    Rule c1 t1 l1 <> Rule c2 t2 l2= Rule { criteria = c1 ++ c2, targets = if t1 /= NoTarget then t1 else t2, label = max l1 l2}
 
 instance Monoid (InputRule a) where
     mempty = Rule {criteria = [], targets = NoTarget, label = minBound :: Int}
-    Rule c1 t1 l1 `mappend` Rule c2 t2 l2= Rule { criteria = c1 ++ c2, targets = if t1 /= NoTarget then t1 else t2, label = max l1 l2}
 
 
 type ModuleFunc = [String] -> (Maybe [Either FileCriteria Target], [String])

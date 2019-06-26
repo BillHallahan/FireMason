@@ -26,6 +26,8 @@ import RuleEliminating
 
 import Verifier
 
+import System.Exit
+
 main = do
     initializeTime
     start <- getTime
@@ -41,6 +43,12 @@ main = do
 
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0
     let pathSimp = pathSimplificationChains converted
+
+    {-
+    redundant <- findRedundantRule pathSimp
+    print redundant 
+    exitSuccess
+    -}
 
     changes <- readFile changesFileName
 

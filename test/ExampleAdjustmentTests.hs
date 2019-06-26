@@ -1,4 +1,4 @@
-module CriteriaPrereqAdditionTests where
+module ExampleAdjustmentTests where
 
 import Test.HUnit
 import Types
