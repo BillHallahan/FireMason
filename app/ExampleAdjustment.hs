@@ -29,8 +29,9 @@ statefulExampleInstructionsToInstructions e mi =
         opts = opt "MODEL" True
         e' = sortByTime e
         mi' = if isJust mi then (if not (0 `elem` fromJust mi) then Just $ 0:(fromJust mi) else mi) else Nothing
-    in
-    evalZ3With Nothing opts (statefulExampleInstructionsToInstructions' e' mi' Nothing Nothing . pathSimplificationExamples . exInstructionsToMap $ e')
+    in do
+        putStrLn "evalZ3"
+        evalZ3With Nothing opts (statefulExampleInstructionsToInstructions' e' mi' Nothing Nothing . pathSimplificationExamples . exInstructionsToMap $ e')
 
 
 --In statefulExampleInstructionsToInstructions'' we attempt to get a model
@@ -517,7 +518,9 @@ findConsistentAndInconsistentRules e = do
 --The smaller label is listed first
 --Only considers the examples instructions, not the state!
 findInconsistentRules :: [ExampleInstruction] -> IO [(ChainId, RuleInd, RuleInd)]
-findInconsistentRules rs = fmap (nub) (evalZ3 . findInconsistentRules' $ rs)
+findInconsistentRules rs = do
+    putStrLn "evalZ3"
+    fmap (nub) (evalZ3 . findInconsistentRules' $ rs)
 
 findInconsistentRules' :: [ExampleInstruction] -> Z3 [(ChainId, RuleInd, RuleInd)]
 findInconsistentRules' rs = do

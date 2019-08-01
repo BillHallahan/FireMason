@@ -26,7 +26,40 @@ import RuleEliminating
 
 import Verifier
 
+import Z3.Monad
+import ChainsToSMT
+
 main = do
+    args <- getArgs
+
+    if "--smt" `elem` args then smt else repair
+
+smt :: IO ()
+smt = do
+    args <- getArgs
+    let inputScriptName = args !! 0
+
+    contents <- readFile inputScriptName
+
+    let converted' = Map.toList . convertScript $ contents
+
+    let converted = Map.fromList $ stringInputChainsToStringChains converted' 0
+    let pathSimp = pathSimplificationChains converted
+
+    s <- evalZ3 (printFormula pathSimp)
+
+    putStrLn s
+
+    return ()
+
+printFormula :: IdNameChain -> Z3 String
+printFormula inc = do
+    convertChainsSMT inc 10
+
+    solverToString
+
+repair :: IO ()
+repair = do
     initializeTime
     start <- getTime
 

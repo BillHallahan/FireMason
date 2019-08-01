@@ -83,6 +83,8 @@ findBestPointCut' r i n n' =
 
     in
     do
+        putStrLn "evalZ3"
+        putStrLn "evalZ3"
         (checking, model) <- evalZ3 $ checkRuleImpact r n relevant topStartingOld idsU
 
         viewModel <- if isJust model then evalZ3 . showModel . fromJust $ model else return ""

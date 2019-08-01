@@ -7,6 +7,7 @@ import Data.Char
 import Data.List
 import Data.List.Split
 import Data.Maybe
+import Data.String.Utils
 
 parse :: String -> [ExampleRuleInstruction]
 parse = parseStatement . lexer
@@ -33,7 +34,7 @@ lexer s
     | otherwise = error $ "Unrecognized pattern " ++ s
     where
         afterSpaces = dropWhile isSpace s
-        (nextTerm, afterTerm) = span ((flip elem) ('.':'-':'_':'/':' ':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
+        (nextTerm, afterTerm) = span ((flip elem) ('.':'-':'_':'/':' ':'*':['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'])) afterSpaces
 
 parseStatement :: [String] -> [ExampleRuleInstruction]
 parseStatement s
@@ -131,14 +132,16 @@ parseCriteria = catMaybes . map parseCriteria' . splitOn ["," :: String] . map (
             Just . InC $ Port Source (Right (d', maxPort))
         parseCriteria' ("destination_ip":"=":di:xs)  =
             let
-                di' = if '/' `elem` di then di else di ++ "/32"
+                di' = cleanIP di
+                di'' = if '/' `elem` di' then di' else di' ++ "/32"
             in
-            Just . InC . (IPAddress Destination) . toIPRange $ di'
+            Just . InC . (IPAddress Destination) . toIPRange $ di''
         parseCriteria' ("source_ip":"=":di:xs)  =
             let
-                di' = if '/' `elem` di then di else di ++ "/32"
+                di' = cleanIP di
+                di'' = if '/' `elem` di' then di' else di' ++ "/32"
             in
-            Just . InC . (IPAddress Source) . toIPRange $ di'
+            Just . InC . (IPAddress Source) . toIPRange $ di''
         parseCriteria' ("time":"=":t:xs)  =
             let
                 t' = if isInteger t then (read t :: Int) else error "Invalid time"
@@ -152,6 +155,14 @@ parseCriteria = catMaybes . map parseCriteria' . splitOn ["," :: String] . map (
         parseCriteria' [] = Nothing
         parseCriteria' s = error ("Unrecognized criteria " ++ show s ++ ".")
 
+cleanIP :: String -> String
+cleanIP s =
+    let
+        c = length $ filter (== '*') s
+        s' = replace "*" "0" s
+    in
+    s' ++ "/" ++ show ((4 - c) * 8)
+
 parseTarget :: [String] -> [([ExampleCriteria], Target)]
 parseTarget [s] = [([], parseTargetSimple s)]
 parseTarget s =
@@ -164,13 +175,13 @@ parseTarget s =
                 c = parseCriteria xs
                 t = parseTargetSimple tc
             in
-            [ ([], negateTarget t), (c, t)]
+            map (\c -> ([InCNot c], negateTarget t)) c ++ [(c, t)]
         tc:"unless":xs -> 
             let
                 c = parseCriteria xs
                 t = parseTargetSimple tc
             in
-            [([], negateTarget t), (map InCNot c, t)]
+            map (\c' -> ([c'], negateTarget t)) c ++ [(map InCNot c, t)]
         _ -> error ("Unknown target " ++ intercalate " " s)
 
 parseTargetSimple :: String -> Target

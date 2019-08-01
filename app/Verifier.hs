@@ -14,6 +14,7 @@ import qualified Debug.Trace as T
 
 verify :: IdNameChain -> [ExampleInstruction] -> IO [[([String], [Criteria])]]
 verify i e = do
+    putStrLn "evalZ3"
     evalZ3 (verify' i e)
 
 --Returns a list of lists of criteria, that describe packets that will be incorrectly routed by the firewall 
