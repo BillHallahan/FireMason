@@ -54,7 +54,7 @@ smt = do
 
 printFormula :: IdNameChain -> Z3 String
 printFormula inc = do
-    convertChainsSMT inc 10
+    convertChainsSMT inc 1
 
     solverToString
 
