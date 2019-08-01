@@ -25,10 +25,11 @@ executable FireMason-exe
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , bv
-                     , z3 == 4.1.0
-                     , criterion
+                     , z3 >= 4.1.0
+                     , criterion <= 1.4.1.0
                      , iproute
                      , FireMason
+                     , semigroups
                      , split
                      , containers
                      , largeword
@@ -65,7 +66,7 @@ test-suite FireMason-test
                      , HUnit
                      , process
                      , tostring
-                     , z3 == 4.1.0
+                     , z3
   other-modules:       ChainsToSMT
                      , ConvertToHorn
                      , ConvertToHornTests

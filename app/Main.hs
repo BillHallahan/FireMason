@@ -28,6 +28,7 @@ import Verifier
 
 import Z3.Monad
 import ChainsToSMT
+import System.Exit
 
 main = do
     args <- getArgs
@@ -83,6 +84,12 @@ repair = do
 
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0
     let pathSimp = pathSimplificationChains converted
+
+    {-
+    redundant <- findRedundantRule pathSimp
+    print redundant 
+    exitSuccess
+    -}
 
     changes <- readFile changesFileName
 
