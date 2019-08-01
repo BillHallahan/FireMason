@@ -46,14 +46,23 @@ smt = do
     let converted = Map.fromList $ stringInputChainsToStringChains converted' 0
     let pathSimp = pathSimplificationChains converted
 
-    s <- evalZ3 (printFormula pathSimp)
+    putStrLn $ printableNames pathSimp
+
+    s <- evalZ3 (printableFormula pathSimp)
 
     putStrLn s
 
     return ()
 
-printFormula :: IdNameChain -> Z3 String
-printFormula inc = do
+printableNames :: IdNameChain -> String
+printableNames inc =
+    let
+        lst = map (\(chain_id, (name, _)) -> (chain_id, name)) $ toList' inc
+    in
+    concatMap (\(chain_id, name) -> show chain_id ++ ", " ++ name ++ "\n") lst
+
+printableFormula :: IdNameChain -> Z3 String
+printableFormula inc = do
     convertChainsSMT inc 1
 
     solverToString
